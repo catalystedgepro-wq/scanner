@@ -1,0 +1,20 @@
+metric,name,value,unit,snapshot_time,captured_at
+fuel_mw,Solar,11382,MW,15:45,2026-04-27T22:49:26Z
+fuel_mw,Wind,5478,MW,15:45,2026-04-27T22:49:26Z
+fuel_mw,Geothermal,719,MW,15:45,2026-04-27T22:49:26Z
+fuel_mw,Biomass,156,MW,15:45,2026-04-27T22:49:26Z
+fuel_mw,Biogas,148,MW,15:45,2026-04-27T22:49:26Z
+fuel_mw,Small hydro,257,MW,15:45,2026-04-27T22:49:26Z
+fuel_mw,Coal,0,MW,15:45,2026-04-27T22:49:26Z
+fuel_mw,Nuclear,2273,MW,15:45,2026-04-27T22:49:26Z
+fuel_mw,Natural Gas,2498,MW,15:45,2026-04-27T22:49:26Z
+fuel_mw,Large Hydro,716,MW,15:45,2026-04-27T22:49:26Z
+fuel_mw,Batteries,-5127,MW,15:45,2026-04-27T22:49:26Z
+fuel_mw,Imports,-865,MW,15:45,2026-04-27T22:49:26Z
+fuel_mw,Other,0,MW,15:45,2026-04-27T22:49:26Z
+renewable_share,renewable_pct,65.58,pct,15:45,2026-04-27T22:49:26Z
+total_supply,total_mw,28754,MW,15:45,2026-04-27T22:49:26Z
+demand_mw,Day ahead forecast,22150,MW,00:00,2026-04-27T22:49:26Z
+demand_mw,Hour ahead forecast,21867,MW,00:00,2026-04-27T22:49:26Z
+netdemand_mw,Hour ahead forecast,21867,MW,00:00,2026-04-27T22:49:26Z
+netdemand_mw,Net demand forecast,17971,MW,00:00,2026-04-27T22:49:26Z

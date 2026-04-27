@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sector Heatmap — Where SEC Catalysts Cluster | Catalyst Edge</title>
+<meta name="description" content="Live sector heatmap of where SEC catalysts and filings cluster today. Spot sector rotation early, find the hottest rails for gap trades and convergence signals.">
+<meta property="og:title" content="Sector Heatmap — Catalyst Edge">
+<meta property="og:description" content="See which sectors are absorbing catalyst flow right now — ranked by filing density, score concentration, and top picks.">
+<link rel="canonical" href="https://catalystedgescanner.com/sectors/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#070a12;--surface:#0f1420;--surface-2:#151c2c;--gold:#d4a843;
+  --green:#22c55e;--red:#ef4444;--cyan:#06b6d4;--violet:#8b5cf6;
+  --text:#e2e8f0;--dim:#94a3b8;--muted:#64748b;--border:#1e293b;
+  --radius:14px;--mono:'IBM Plex Mono',monospace
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Space Grotesk',sans-serif;background:radial-gradient(1200px 600px at 70% -10%,rgba(212,168,67,.06),transparent 60%) ,var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
+.wrap{max-width:1180px;margin:0 auto;padding:1.25rem 1.5rem 3rem}
+.nav{position:sticky;top:0;z-index:100;background:rgba(7,10,18,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:.75rem 1.5rem;display:flex;align-items:center;gap:1rem}
+.nav a{color:var(--gold);font-weight:600;font-size:.95rem}
+.nav .sep{color:var(--muted)}
+.crumb{color:var(--dim);font-size:.9rem}
+.hero{padding:2.4rem 0 1.4rem;border-bottom:1px dashed rgba(212,168,67,.18)}
+.hero .kicker{color:var(--gold);font-size:.72rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;margin-bottom:.6rem}
+.hero h1{font-size:clamp(1.7rem,4.6vw,2.6rem);font-weight:800;line-height:1.12;letter-spacing:-.01em;margin-bottom:.55rem}
+.hero h1 em{font-style:normal;color:var(--gold)}
+.hero p{color:var(--dim);font-size:.98rem;max-width:720px}
+.hero .timestamp{color:var(--muted);font-size:.72rem;margin-top:.8rem;font-family:var(--mono)}
+.hero .timestamp .dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--green);margin-right:6px;vertical-align:middle;box-shadow:0 0 8px var(--green)}
+
+.stats-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:.75rem;margin:1.6rem 0 2rem}
+.sb-item{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:.9rem 1rem;position:relative;overflow:hidden}
+.sb-item .sb-accent{position:absolute;top:0;left:0;right:0;height:3px}
+.sb-val{font-size:1.55rem;font-weight:800;font-family:var(--mono);letter-spacing:-.02em}
+.sb-lbl{font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-top:.2rem}
+.sb-trend{font-size:.7rem;color:var(--dim);margin-top:.1rem}
+
+.section-title{display:flex;align-items:baseline;justify-content:space-between;margin:2rem 0 .7rem;gap:.75rem;flex-wrap:wrap}
+.section-title h2{font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);font-weight:700}
+.section-title .hint{font-size:.72rem;color:var(--muted)}
+
+.leader{background:linear-gradient(135deg,rgba(212,168,67,.08),rgba(7,10,18,.2));border:1px solid rgba(212,168,67,.32);border-radius:16px;padding:1.4rem 1.5rem;margin-bottom:1.8rem;position:relative;overflow:hidden}
+.leader::before{content:"";position:absolute;inset:0;background:radial-gradient(320px 180px at 90% 20%,rgba(212,168,67,.1),transparent 70%);pointer-events:none}
+.leader-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:1.6rem;position:relative}
+.leader .badge{display:inline-block;font-family:var(--mono);font-size:.64rem;padding:.25rem .55rem;border:1px solid rgba(212,168,67,.4);color:var(--gold);border-radius:999px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:.8rem}
+.leader h3{font-size:clamp(1.4rem,3.2vw,2rem);font-weight:800;margin-bottom:.45rem;color:var(--text)}
+.leader .lead-sub{color:var(--dim);font-size:.9rem;max-width:520px}
+.leader .lead-metrics{display:flex;gap:1.4rem;margin-top:1rem;flex-wrap:wrap}
+.leader .lm{min-width:90px}
+.leader .lm-val{font-size:1.2rem;font-weight:800;font-family:var(--mono);color:var(--gold)}
+.leader .lm-lbl{font-size:.62rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase}
+.leader .lead-right{display:flex;flex-direction:column;justify-content:center;gap:.5rem}
+.leader .lr-head{font-size:.65rem;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.2rem}
+.leader .lr-ticker{font-family:var(--mono);font-size:1.8rem;font-weight:800;color:var(--gold);letter-spacing:.04em}
+.leader .lr-ticker small{font-family:'Space Grotesk',sans-serif;font-size:.7rem;color:var(--dim);margin-left:.4rem;letter-spacing:.02em;font-weight:500}
+
+.heatmap{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:.9rem}
+.heat-cell{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.05rem 1.1rem;position:relative;overflow:hidden;transition:transform .2s,border-color .2s,box-shadow .2s}
+.heat-cell:hover{transform:translateY(-3px);border-color:var(--gold);box-shadow:0 6px 24px rgba(212,168,67,.08)}
+.heat-cell .sector-head{display:flex;align-items:center;justify-content:space-between;gap:.5rem;margin-bottom:.45rem}
+.heat-cell .sector-name{font-size:.98rem;font-weight:800;color:var(--text);letter-spacing:-.01em}
+.heat-cell .rank{font-family:var(--mono);font-size:.6rem;color:var(--muted);padding:2px 7px;border:1px solid var(--border);border-radius:999px;letter-spacing:.08em}
+.heat-bar{height:5px;background:rgba(255,255,255,.04);border-radius:999px;overflow:hidden;margin:.3rem 0 .85rem}
+.heat-bar > span{display:block;height:100%;border-radius:999px;transition:width .6s ease}
+.metric-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.25rem}
+.metric-row .metric-label{font-size:.62rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.metric-row .metric-val{font-size:.82rem;font-weight:700;font-family:var(--mono)}
+.top-pick{margin-top:.7rem;padding-top:.65rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.top-pick .tp-left .tp-label{font-size:.58rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.05rem}
+.top-pick .tp-left .tp-ticker{font-family:var(--mono);font-size:1rem;font-weight:800;color:var(--gold);letter-spacing:.02em}
+.top-pick .tp-score{font-family:var(--mono);font-size:.72rem;color:var(--dim);padding:3px 8px;border:1px solid var(--border);border-radius:999px}
+.ticker-pills{display:flex;flex-wrap:wrap;gap:.28rem;margin-top:.55rem}
+.ticker-pill{padding:2px 7px;border-radius:5px;font-size:.62rem;font-weight:600;background:rgba(212,168,67,.07);color:var(--dim);font-family:var(--mono)}
+.ticker-pill.more{background:rgba(255,255,255,.03);color:var(--muted)}
+
+.quiet{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.1rem 1.2rem;margin-top:1.5rem;display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}
+.quiet .q-left{flex:1;min-width:220px}
+.quiet h4{font-size:.85rem;margin-bottom:.25rem;color:var(--text)}
+.quiet p{font-size:.78rem;color:var(--dim)}
+
+.guide{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.2rem 1.3rem;margin-top:2rem}
+.guide h3{font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-bottom:.8rem;font-weight:700}
+.guide-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
+.guide-grid .gi .gi-head{font-size:.82rem;font-weight:700;color:var(--text);margin-bottom:.2rem;display:flex;align-items:center;gap:.4rem}
+.guide-grid .gi .gi-dot{width:10px;height:10px;border-radius:2px}
+.guide-grid .gi p{font-size:.74rem;color:var(--dim)}
+
+.cta-bar{background:linear-gradient(135deg,rgba(212,168,67,.07),rgba(7,10,18,.3));border:1px solid var(--gold);border-radius:var(--radius);padding:1.4rem;text-align:center;margin:2.2rem 0 0}
+.cta-bar h3{color:var(--gold);font-size:1.05rem;margin-bottom:.35rem;font-weight:800}
+.cta-bar p{color:var(--dim);font-size:.85rem;margin-bottom:.85rem;max-width:560px;margin-left:auto;margin-right:auto}
+.cta-bar a{display:inline-block;padding:.55rem 1.6rem;background:linear-gradient(135deg,var(--gold),#f1ce88);color:#070a12;font-weight:700;border-radius:7px;font-size:.85rem;letter-spacing:.02em}
+
+.footer{text-align:center;padding:1.8rem 1rem 1rem;font-size:.72rem;color:var(--muted);border-top:1px solid var(--border);margin-top:2.5rem}
+.footer a{color:var(--muted);margin:0 .35rem}
+.loading{grid-column:1/-1;text-align:center;padding:3rem;color:var(--muted);font-size:.9rem}
+.skeleton{background:linear-gradient(90deg,rgba(255,255,255,.02),rgba(255,255,255,.05),rgba(255,255,255,.02));background-size:200% 100%;animation:shimmer 1.6s infinite;border-radius:var(--radius);height:150px}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+
+@media(max-width:720px){
+  .stats-bar{grid-template-columns:repeat(2,1fr)}
+  .leader-grid{grid-template-columns:1fr}
+  .leader .lead-right{align-items:flex-start}
+}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Catalyst Edge Sector Heatmap","url":"https://catalystedgescanner.com/sectors/","description":"Live sector heatmap showing where SEC catalysts are clustering today","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@800;900&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/lib/cinematic-hero.css">
+  <link rel="stylesheet" href="/lib/cyber-shell.css">
+  <link rel="stylesheet" href="/lib/polish-tokens.css">
+</head>
+<body>
+  <div class="cy-bg" aria-hidden="true"></div>
+  <div class="cy-floor" aria-hidden="true"></div>
+  <div class="cy-vignette" aria-hidden="true"></div>
+  <div class="cy-scan" aria-hidden="true"></div>
+<div class="nav">
+  <a href="/">Catalyst Edge</a>
+  <span class="sep">/</span>
+  <span class="crumb">Sector Heatmap</span>
+</div>
+<div class="wrap">
+<div class="ce-breadcrumb" style="max-width:1400px;margin:8px auto 0;padding:0 28px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-mute,#5a6c92);"><a href="/scanner/" style="color:var(--neon-cyan,#00ffff);text-decoration:none">&larr; Scanner</a><span style="color:var(--ink-mute,#5a6c92);margin:0 8px">&middot;</span><span>SECTORS HEATMAP</span></div>
+
+<section class="cin-hero cy-neon-hero cy-shimmer">
+    <div class="cin-grid">
+      <div class="cin-stat-stack">
+        <div class="cin-eyebrow"><span class="cin-live-dot"></span>GICS · 11 SECTORS · LIVE</div>
+        <div class="cin-colossal">
+          <div class="cin-num-row"><span class="cin-num">11</span></div><div class="cin-side">
+          <span class="cin-tag"><b>GICS</b> sectors</span>
+          <span class="cin-tag">live catalyst <b>flow</b></span>
+          <span class="cin-tag">front-run the ETFs</span>
+          </div>
+        </div>
+        <div class="cin-stamp">SECTORS//ROTATION · v1.3 · <b>LIVE</b></div>
+      </div>
+      <div class="cin-h1-block">
+        <div class="cin-h1-eyebrow">🌊 Sector Rotation · Where Catalyst Flow is Clustering</div>
+        <h1 class="cin-headline">
+ Every SEC filing, earnings move, and news catalyst <em>grouped by GICS sector</em>—the wider the bar, the more <span class="cin-accent">risk the tape is absorbing</span>.
+ </h1>
+        <p class="cin-lede">Use this to front-run sector rotation before the ETFs do. Every catalyst weighted, every sector ranked by total catalyst score. The leader is where the smart-money flow is concentrating right now.</p>
+        <div class="cin-cta-row">
+          <a href="#sector-table" class="cin-btn-primary">See leader ↓</a>
+          <a href="/scanner/" class="cin-btn-ghost">Open scanner</a>
+        </div>
+        <div class="cin-strip">
+          <div class="cin-cell"><div class="cin-k">Active sectors</div><div class="cin-v" id="s-sectors">–</div></div>
+          <div class="cin-cell"><div class="cin-k">Total picks</div><div class="cin-v bull" id="s-picks">–</div></div>
+          <div class="cin-cell"><div class="cin-k">Coverage</div><div class="cin-v gold" id="s-coverage">–</div></div>
+          <div class="cin-cell"><div class="cin-k">Leader score</div><div class="cin-v cyan" id="s-top-score">–</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="stats-bar" style="display:none">
+    <div class="sb-item"><span id="s-sectors-sub"></span><span id="s-picks-sub"></span><span id="s-coverage-sub"></span><span id="s-top-score-sub"></span></div>
+  </div>
+
+  <div class="section-title">
+    <h2>Sector Leader</h2>
+    <span class="hint">Highest cumulative catalyst score today</span>
+  </div>
+  <div id="leader-slot"></div>
+
+  <div class="section-title">
+    <h2>Full Heatmap</h2>
+    <span class="hint">Ranked by total score · click a ticker to open it in Scanner</span>
+  </div>
+  <div id="heatmap-grid" class="heatmap">
+    <div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div>
+    <div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div>
+  </div>
+
+  <div id="quiet-slot"></div>
+
+  <div class="guide">
+    <h3>How to read this board</h3>
+    <div class="guide-grid">
+      <div class="gi"><div class="gi-head"><span class="gi-dot" style="background:var(--green)"></span>Dominant</div><p>Top of the pack — catalysts and scoring density are concentrated here. Expect sector ETF flows to follow.</p></div>
+      <div class="gi"><div class="gi-head"><span class="gi-dot" style="background:var(--gold)"></span>Building</div><p>Mid-tier clusters that are loading up. Watch for a second-day follow-through to confirm rotation.</p></div>
+      <div class="gi"><div class="gi-head"><span class="gi-dot" style="background:var(--cyan)"></span>Active</div><p>Lower-density signal, but real names populating. Useful for pairs trades or sympathy plays.</p></div>
+      <div class="gi"><div class="gi-head"><span class="gi-dot" style="background:var(--muted)"></span>Quiet</div><p>Catalyst-light today. Often the contrarian setup for tomorrow if a single headline breaks cover.</p></div>
+    </div>
+  </div>
+
+  <div class="cta-bar">
+    <h3>Get sector rotation in your inbox, free.</h3>
+    <p>Every morning at 4:15 AM ET: today's hottest sector, the three tickers driving it, and the divergences worth stalking. Zero fluff.</p>
+    <a href="/preview/">Subscribe Free →</a>
+  </div>
+</div>
+<div class="footer">
+  &copy; 2026 Catalyst Edge
+  &middot; <a href="/">Scanner</a>
+  &middot; <a href="/rankings/">Rankings</a>
+  &middot; <a href="/screener/">Screener</a>
+  &middot; <a href="/spotlight/">Spotlight</a>
+  &middot; <a href="/convergence/">Convergence</a>
+  &middot; <a href="/darkpool/">Dark Pool</a>
+  &middot; <a href="/deepvalue/">Deep Value</a>
+  &middot; <a href="/performance/">Performance</a>
+  &middot; <a href="/glossary/">Glossary</a>
+  &middot; Not financial advice.
+</div>
+<script>
+(function(){
+  var grid = document.getElementById('heatmap-grid');
+  var leader = document.getElementById('leader-slot');
+  var quietSlot = document.getElementById('quiet-slot');
+
+  function el(tag, cls, text) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text !== undefined && text !== null) e.textContent = text;
+    return e;
+  }
+
+  function heatTier(pct) {
+    if (pct > 0.7) return {c:'#22c55e', label:'Dominant'};
+    if (pct > 0.4) return {c:'#d4a843', label:'Building'};
+    if (pct > 0.2) return {c:'#06b6d4', label:'Active'};
+    return {c:'#64748b', label:'Quiet'};
+  }
+
+  function fmtTimestamp() {
+    var d = new Date();
+    var mo = d.toLocaleString('en-US',{month:'short'});
+    return 'Updated ' + mo + ' ' + d.getDate() + ' · ' + d.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'});
+  }
+
+  function renderLeader(s) {
+    var card = el('div','leader');
+    var g = el('div','leader-grid');
+
+    var left = el('div');
+    left.appendChild(el('div','badge','Sector Leader'));
+    left.appendChild(el('h3', null, s.sector));
+    var sub = el('p','lead-sub',
+      s.count + ' tracked names are absorbing catalyst flow in ' + s.sector + ' today — more than any other sector on the board.');
+    left.appendChild(sub);
+
+    var metrics = el('div','lead-metrics');
+    [
+      {lbl:'Picks', val:String(s.count)},
+      {lbl:'Avg score', val:String(s.avg_score)},
+      {lbl:'Total score', val:String(s.total_score)},
+      {lbl:'Share', val:Math.round(s.heat_pct*100)+'%'}
+    ].forEach(function(m){
+      var lm = el('div','lm');
+      lm.appendChild(el('div','lm-val',m.val));
+      lm.appendChild(el('div','lm-lbl',m.lbl));
+      metrics.appendChild(lm);
+    });
+    left.appendChild(metrics);
+    g.appendChild(left);
+
+    var right = el('div','lead-right');
+    right.appendChild(el('div','lr-head','Top ticker'));
+    var t = el('div','lr-ticker',s.top_ticker || '—');
+    var smallScore = el('small', null, s.top_score + ' pts');
+    t.appendChild(smallScore);
+    right.appendChild(t);
+    if (s.tickers && s.tickers.length > 1) {
+      var rest = el('div','ticker-pills');
+      s.tickers.slice(1,7).forEach(function(tk){
+        if (tk) rest.appendChild(el('span','ticker-pill',tk));
+      });
+      right.appendChild(rest);
+    }
+    g.appendChild(right);
+    card.appendChild(g);
+    return card;
+  }
+
+  function renderCell(s, idx) {
+    var cell = el('div','heat-cell');
+    var tier = heatTier(s.heat_pct);
+
+    var head = el('div','sector-head');
+    head.appendChild(el('div','sector-name', s.sector));
+    head.appendChild(el('span','rank','#' + String(idx+1).padStart(2,'0')));
+    cell.appendChild(head);
+
+    var bar = el('div','heat-bar');
+    var fill = el('span');
+    fill.style.width = Math.max(6, Math.round(s.heat_pct*100)) + '%';
+    fill.style.background = tier.c;
+    bar.appendChild(fill);
+    cell.appendChild(bar);
+
+    [
+      {lbl:'Picks', val:String(s.count), color: tier.c},
+      {lbl:'Avg score', val:String(s.avg_score)},
+      {lbl:'Total score', val:String(s.total_score), color: tier.c}
+    ].forEach(function(r){
+      var row = el('div','metric-row');
+      row.appendChild(el('span','metric-label', r.lbl));
+      var v = el('span','metric-val', r.val);
+      if (r.color) v.style.color = r.color;
+      row.appendChild(v);
+      cell.appendChild(row);
+    });
+
+    if (s.top_ticker) {
+      var tp = el('div','top-pick');
+      var tpl = el('div','tp-left');
+      tpl.appendChild(el('div','tp-label', tier.label + ' leader'));
+      tpl.appendChild(el('div','tp-ticker', s.top_ticker));
+      tp.appendChild(tpl);
+      tp.appendChild(el('div','tp-score', s.top_score + ' pts'));
+      cell.appendChild(tp);
+    }
+
+    if (s.tickers && s.tickers.length > 0) {
+      var pills = el('div','ticker-pills');
+      var shown = s.tickers.slice(0, 6);
+      shown.forEach(function(tk){ if (tk) pills.appendChild(el('span','ticker-pill', tk)); });
+      if (s.tickers.length > shown.length) {
+        pills.appendChild(el('span','ticker-pill more', '+' + (s.count - shown.length)));
+      }
+      cell.appendChild(pills);
+    }
+    return cell;
+  }
+
+  function renderQuiet(quiet) {
+    if (!quiet.length) return null;
+    var box = el('div','quiet');
+    var left = el('div','q-left');
+    left.appendChild(el('h4', null, 'Quiet sectors — where nothing is happening yet'));
+    left.appendChild(el('p', null,
+      'Sectors with zero or light catalyst flow today. Often the earliest contrarian setups once a single headline breaks cover.'));
+    box.appendChild(left);
+    var pills = el('div','ticker-pills');
+    quiet.forEach(function(s){
+      pills.appendChild(el('span','ticker-pill', s.sector + ' (' + s.count + ')'));
+    });
+    box.appendChild(pills);
+    return box;
+  }
+
+  fetch('/api/sector-heatmap').then(function(r){return r.json()}).then(function(d){
+    var sectors = (d.sectors || []).slice();
+    grid.textContent = '';
+
+    var classified = d.classified_picks != null ? d.classified_picks : d.total_picks;
+    var total = d.total_picks || 0;
+    var coverage = total ? Math.round(100*classified/total) : 0;
+
+    function setText(id, val) { var n = document.getElementById(id); if (n) n.textContent = val; }
+    setText('ts', fmtTimestamp());
+    setText('s-sectors', sectors.filter(function(s){return s.sector!=='Unclassified'}).length);
+    setText('s-picks', total);
+    setText('s-coverage', coverage + '%');
+    setText('s-coverage-sub', classified + ' of ' + total + ' picks classified');
+    setText('s-top-score', sectors.length ? sectors[0].total_score : '—');
+    setText('s-top-score-sub', sectors.length ? sectors[0].sector : 'No data yet');
+
+    if (!sectors.length) {
+      grid.appendChild(el('div','loading','No sector data available yet.'));
+      return;
+    }
+
+    var namedSectors = sectors.filter(function(s){return s.sector && s.sector !== 'Unclassified'});
+    var topLeader = namedSectors[0] || sectors[0];
+    if (topLeader) leader.appendChild(renderLeader(topLeader));
+
+    var quiet = [];
+    namedSectors.forEach(function(s, idx){
+      if (s.count <= 2 && idx >= 4) { quiet.push(s); return; }
+      grid.appendChild(renderCell(s, idx));
+    });
+
+    var quietBox = renderQuiet(quiet);
+    if (quietBox) quietSlot.appendChild(quietBox);
+
+    var unc = sectors.find(function(s){return s.sector==='Unclassified'});
+    if (unc && unc.count) {
+      var note = el('div','quiet');
+      var left = el('div','q-left');
+      left.appendChild(el('h4', null, unc.count + ' picks still pending sector tag'));
+      left.appendChild(el('p', null,
+        'These are typically brand-new warrants/units or tiny OTC tickers that our GICS resolver has not yet mapped to a parent. They are not discarded — they still count toward total picks.'));
+      left.style.borderColor = 'var(--muted)';
+      note.appendChild(left);
+      quietSlot.appendChild(note);
+    }
+  }).catch(function(){
+    grid.textContent = '';
+    grid.appendChild(el('div','loading','Could not load sector data.'));
+  });
+})();
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KV1VDK22VC"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-KV1VDK22VC');</script>
+</body>
+</html>

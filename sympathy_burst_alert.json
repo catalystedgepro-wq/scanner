@@ -1,0 +1,23 @@
+{
+  "title": "Live Audit Required: Financials Sympathy Burst (21 Entities)",
+  "priority": "high",
+  "generated_at": "2026-04-09T00:45:09Z",
+  "bundle": "assets/index-lZQhsETW.js",
+  "active_burst": true,
+  "sector": "financials",
+  "count": 21,
+  "ui_density_mode": "suppressed",
+  "leaders": [
+    "BHR-PD",
+    "SSB",
+    "C-PR",
+    "SLNHP",
+    "DMII"
+  ],
+  "verification_tasks": [
+    "Shield efficacy: confirm suppressed mode hides non-critical sympathy labels while selected and hovered links remain legible.",
+    "Frame rate: ensure the active burst does not degrade operator-side HUD smoothness during the particle bleed pass.",
+    "Lead clarity: verify the sympathy lead remains clearly distinguished from followers in the NodeInspector."
+  ],
+  "recommendation": "Log into the live HUD and perform a visual audit before the market cools."
+}

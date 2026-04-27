@@ -1,0 +1,535 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>API explorer — Catalyst Edge Scanner</title>
+  <meta name="description" content="Live API key playground. Paste your Pro key, click any endpoint, see live response with curl + Python + Node SDK examples. 22 endpoints." />
+  <meta name="robots" content="noindex" />
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/lib/admin-unlock.css" />
+  <link rel="stylesheet" href="/lib/scanner-polish.css" />
+  <link rel="stylesheet" href="/lib/nav-fix.css" />
+  <style>
+    :root{
+      --navy:#040a14; --navy2:#0a1424; --navy3:#0e1a2e;
+      --ink:#e6f1ff; --ink-dim:#9bb0c8; --ink-mute:#6e8198;
+      --cyan:#5ad7ff; --gold:#f5c662; --bull:#5cf2a4; --bear:#ff6b8b;
+      --line:rgba(110,140,180,0.18); --line-strong:rgba(110,140,180,0.32);
+      --glass: linear-gradient(180deg, rgba(15,28,48,0.78), rgba(7,14,28,0.78));
+      --code-bg:#040a14;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;background:#04070d;color:var(--ink);
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      -webkit-font-smoothing:antialiased; font-feature-settings:"ss01","cv11";
+    }
+    a{color:var(--cyan);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .wrap{max-width:1300px;margin:0 auto;padding:0 24px}
+    code, pre{font-family:"JetBrains Mono","IBM Plex Mono",ui-monospace,monospace}
+
+    .topbar{position:sticky;top:0;z-index:50;background:rgba(4,7,13,0.86);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+    .topbar-row{display:flex;align-items:center;gap:18px;padding:14px 24px;max-width:1400px;margin:0 auto}
+    .brand{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:14px;letter-spacing:0.18em;color:var(--gold);text-transform:uppercase}
+    .brand b{color:var(--cyan)}
+    nav.nav{display:flex;gap:8px;flex:1;flex-wrap:nowrap;overflow-x:auto;scroll-padding-top:80px}
+    nav.nav a{font-size:13px;color:var(--ink-dim);padding:8px 12px;border-radius:8px;white-space:nowrap}
+    nav.nav a:hover{background:rgba(90,215,255,0.08);color:var(--ink);text-decoration:none}
+    nav.nav a.active{color:var(--gold);background:rgba(245,198,98,0.08)}
+    .topbar-cta{display:flex;gap:10px;align-items:center}
+    .api-status{display:inline-flex;align-items:center;gap:8px;padding:7px 12px;border-radius:999px;border:1px solid var(--line-strong);
+      font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:0.16em;color:var(--ink-mute);text-transform:uppercase;
+      transition:all .2s ease}
+    .api-status .dot{width:8px;height:8px;border-radius:50%;background:var(--ink-mute)}
+    .api-status.ok{border-color:rgba(92,242,164,0.5);color:var(--bull)}
+    .api-status.ok .dot{background:var(--bull);box-shadow:0 0 0 0 rgba(92,242,164,0.6);animation:pulse 1.6s ease-out infinite}
+    .api-status.warn{border-color:rgba(245,198,98,0.5);color:var(--gold)}
+    .api-status.warn .dot{background:var(--gold)}
+    .api-status.err{border-color:rgba(255,107,139,0.5);color:var(--bear)}
+    .api-status.err .dot{background:var(--bear)}
+    @keyframes pulse{
+      0%{box-shadow:0 0 0 0 rgba(92,242,164,0.6)}
+      80%{box-shadow:0 0 0 10px rgba(92,242,164,0)}
+      100%{box-shadow:0 0 0 0 rgba(92,242,164,0)}
+    }
+
+    .hero{padding:36px 0 24px;border-bottom:1px solid var(--line);position:relative;overflow:hidden}
+    .hero::before{content:"";position:absolute;inset:0;
+      background:radial-gradient(700px 360px at 30% 20%, rgba(90,215,255,0.10), transparent 60%);pointer-events:none}
+    .hero .wrap{position:relative}
+    .eyebrow{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:0.22em;color:var(--gold);text-transform:uppercase;margin-bottom:12px}
+    .h1{font-size:clamp(28px,4vw,40px);line-height:1.1;letter-spacing:-0.01em;margin:0 0 8px;font-weight:700}
+    .h1 .glow{color:var(--cyan)}
+    .sub{font-size:15px;color:var(--ink-dim);max-width:760px;line-height:1.5}
+
+    section.section{padding:28px 0}
+    .key-card{background:var(--glass);border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:18px;display:flex;gap:14px;align-items:flex-end;flex-wrap:wrap}
+    .key-field{flex:1;min-width:280px;display:flex;flex-direction:column;gap:6px}
+    .key-field label{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:0.18em;color:var(--ink-mute);text-transform:uppercase}
+    .key-field input{background:#040a14;border:1px solid var(--line-strong);color:var(--cyan);
+      font-family:"JetBrains Mono",monospace;font-size:13px;padding:11px 14px;border-radius:8px;font-weight:500}
+    .key-field input:focus{outline:none;border-color:var(--cyan)}
+    .key-card .actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+    .key-card .actions .hint{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:0.14em;color:var(--ink-mute)}
+    .key-card .actions .hint a{color:var(--gold)}
+    .btn-clear{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;
+      padding:8px 12px;border-radius:8px;border:1px solid var(--line-strong);color:var(--ink-dim);background:transparent;cursor:pointer}
+    .btn-clear:hover{border-color:var(--bear);color:var(--bear)}
+
+    .layout{display:grid;grid-template-columns:300px 1fr;gap:18px}
+    @media (max-width:920px){.layout{grid-template-columns:1fr}}
+
+    .ep-list{background:var(--glass);border:1px solid var(--line);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:6px;align-self:flex-start}
+    .ep-list h3{margin:0 0 8px;font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:0.18em;color:var(--gold);text-transform:uppercase;padding:0 4px}
+    .ep-btn{text-align:left;background:rgba(4,10,20,0.4);border:1px solid var(--line);border-radius:10px;padding:10px 12px;cursor:pointer;
+      display:flex;flex-direction:column;gap:3px;transition:all .15s ease;font-family:inherit}
+    .ep-btn:hover{border-color:rgba(90,215,255,0.45);transform:translateX(2px)}
+    .ep-btn.active{border-color:var(--cyan);background:rgba(90,215,255,0.06)}
+    .ep-btn .method{font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:0.18em;color:var(--gold);text-transform:uppercase}
+    .ep-btn .path{font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--ink);font-weight:500}
+    .ep-btn .desc{font-size:11.5px;color:var(--ink-dim);line-height:1.4}
+
+    .resp-panel{background:var(--glass);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;min-height:540px}
+    .resp-hd{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-bottom:1px solid var(--line);background:rgba(4,10,20,0.4);flex-wrap:wrap;gap:10px}
+    .resp-hd .endpoint{font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--cyan);font-weight:500}
+    .resp-hd .meta{display:flex;gap:14px;align-items:center;font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--ink-mute);letter-spacing:0.1em}
+    .resp-hd .meta .code{color:var(--ink)}
+    .resp-hd .meta .code.ok{color:var(--bull)}
+    .resp-hd .meta .code.warn{color:var(--gold)}
+    .resp-hd .meta .code.err{color:var(--bear)}
+    .resp-hd .meta .ms{color:var(--ink-dim)}
+
+    .curl-row{padding:14px 16px;border-bottom:1px solid var(--line);background:#040a14;display:flex;gap:10px;align-items:flex-start}
+    .curl-row pre{margin:0;flex:1;font-size:12px;color:var(--ink-dim);overflow-x:auto;white-space:pre;line-height:1.55}
+    .copy-btn{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;
+      padding:6px 10px;border:1px solid var(--line-strong);color:var(--ink-dim);background:transparent;border-radius:6px;cursor:pointer;flex-shrink:0}
+    .copy-btn:hover{border-color:var(--cyan);color:var(--cyan)}
+
+    .resp-body{padding:0;flex:1;overflow:auto;background:#04070d;position:relative;min-height:240px}
+    .resp-body pre{margin:0;padding:18px;font-size:12.5px;line-height:1.6;color:var(--ink);white-space:pre-wrap;word-break:break-word}
+    .resp-body .empty{padding:40px;text-align:center;color:var(--ink-mute);font-size:14px}
+    .resp-body .empty .ico{font-size:30px;margin-bottom:8px}
+    .resp-body .spinner{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;
+      background:rgba(4,7,13,0.85);font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:0.14em;color:var(--cyan);text-transform:uppercase}
+    .resp-body .spinner .ring{width:32px;height:32px;border:3px solid rgba(90,215,255,0.2);border-top-color:var(--cyan);border-radius:50%;
+      animation:spin 0.7s linear infinite}
+    @keyframes spin{to{transform:rotate(360deg)}}
+
+    .fallback-note{padding:8px 16px;background:rgba(245,198,98,0.06);border-top:1px solid rgba(245,198,98,0.32);
+      font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:0.12em;color:var(--gold)}
+
+    .sdk-panel{background:var(--glass);border:1px solid var(--line);border-radius:14px;margin-top:18px;overflow:hidden}
+    .sdk-hd{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-bottom:1px solid var(--line);background:rgba(4,10,20,0.4);flex-wrap:wrap;gap:8px}
+    .sdk-hd h3{margin:0;font-size:14px;color:var(--ink)}
+    .lang-tabs{display:flex;gap:4px;align-items:center}
+    .lang-tab{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;
+      padding:6px 12px;border-radius:6px;border:1px solid transparent;color:var(--ink-mute);cursor:pointer;background:transparent}
+    .lang-tab.active{border-color:var(--cyan);color:var(--cyan);background:rgba(90,215,255,0.06)}
+    .sdk-code{padding:16px;background:#040a14;font-size:12.5px;line-height:1.6;color:var(--ink);white-space:pre;overflow-x:auto;margin:0}
+
+    footer{padding:36px 0;color:var(--ink-mute);font-size:12px;border-top:1px solid var(--line);text-align:center}
+    footer .links{display:flex;gap:14px;justify-content:center;margin-top:8px;flex-wrap:wrap}
+  </style>
+<link rel="stylesheet" href="/lib/polish-tokens.css">
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-row">
+      <div class="brand"><b>Catalyst</b> · Edge</div>
+      <nav class="nav">
+        <a href="/scanner/">Scanner</a>
+        <a href="/sdk/">SDK</a>
+        <a href="/data/api/">API docs</a>
+        <a href="/explorer/" class="active">Explorer</a>
+        <a href="/benchmarks/">Benchmarks</a>
+        <a href="/trust/">Trust</a>
+        <a href="/status/">Status</a>
+        <a href="/changelog/">Changelog</a>
+        <a href="/pricing/">Pricing</a>
+      </nav>
+      <div class="topbar-cta">
+        <span class="api-status" id="api-status"><span class="dot"></span><span id="api-status-text">idle</span></span>
+      </div>
+    </div>
+  </div>
+
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow">🔌 Live JSON API · 22 endpoints · Pro tier or higher · zero install</div>
+      <h1 class="h1">API explorer — <span class="glow">paste key, click endpoint, see live response.</span></h1>
+      <p class="sub">No build, no auth dance. Drop your Pro API key, click any endpoint button on the left, see the live JSON response, the curl equivalent, and the matching SDK snippet in Python or Node. Free-tier endpoints work without a key. The API server is rate-limit-aware — bursts get 429 with a retry-after, never a permanent ban.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="key-card">
+        <div class="key-field">
+          <label for="api-key">Your Pro API key (saved locally · never sent anywhere except the API)</label>
+          <input id="api-key" type="password" placeholder="ce_live_..." autocomplete="off" spellcheck="false" />
+        </div>
+        <div class="actions">
+          <button class="btn-clear" id="btn-clear">Clear</button>
+          <span class="hint">No key? <a href="/pricing/">/pricing</a> · ce_demo_… works on free endpoints</span>
+        </div>
+      </div>
+
+      <div class="layout">
+        <aside class="ep-list" id="ep-list">
+          <h3>Try an endpoint</h3>
+        </aside>
+
+        <div>
+          <div class="resp-panel">
+            <div class="resp-hd">
+              <span class="endpoint" id="resp-endpoint">— select an endpoint —</span>
+              <span class="meta">
+                <span class="code" id="resp-code">·</span>
+                <span class="ms" id="resp-ms">·</span>
+              </span>
+            </div>
+            <div class="curl-row">
+              <pre id="resp-curl"># click an endpoint to see the curl equivalent</pre>
+              <button class="copy-btn" data-copy="resp-curl">📋 Copy</button>
+            </div>
+            <div class="resp-body" id="resp-body">
+              <div class="empty"><div class="ico">⚡</div>Pick an endpoint on the left to fire a live request.</div>
+            </div>
+            <div class="fallback-note" id="fallback-note" style="display:none">
+              ⓘ Public API surface unreachable for this path · serving freshness from the data feed at <span id="fallback-path"></span>
+            </div>
+          </div>
+
+          <div class="sdk-panel">
+            <div class="sdk-hd">
+              <h3>SDK code · same call, your language</h3>
+              <div class="lang-tabs">
+                <button class="lang-tab active" data-lang="py">Python</button>
+                <button class="lang-tab" data-lang="js">Node</button>
+                <button class="copy-btn" data-copy="sdk-code">📋 Copy</button>
+              </div>
+            </div>
+            <pre class="sdk-code" id="sdk-code"># pick an endpoint to see the SDK snippet</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    Catalyst Edge Scanner · Live API explorer · Audited 89% hit rate
+    <div class="links">
+      <a href="/sdk/">SDK</a>
+      <a href="/data/api/">API reference</a>
+      <a href="/pricing/">Pricing</a>
+      <a href="/status/">Status</a>
+      <a href="mailto:opensource@example.com">Contact</a>
+    </div>
+  </footer>
+
+  <script src="/lib/tier.js" defer></script>
+  <script>
+    const ENDPOINTS = [
+      { method: "GET", path: "/api/v1/dcf?grade=A&limit=20",
+        desc: "Top A-grade DCF picks, sorted by upside %",
+        fallback: "/data/intl_dcf.json" },
+      { method: "GET", path: "/api/v1/tape?country=ALL&limit=20",
+        desc: "Global catalyst tape, 43 countries, last 24h",
+        fallback: "/data/global_tape.json" },
+      { method: "GET", path: "/api/v1/crossborder?conviction=STRONG",
+        desc: "STRONG cross-border ADR ↔ home setups",
+        fallback: "/data/cross_border_convergence.json" },
+      { method: "GET", path: "/api/v1/alerts/live?severity=urgent",
+        desc: "Urgent alerts firing right now (Pro-gated)",
+        fallback: "/data/intl_edge.json" },
+      { method: "GET", path: "/api/v1/scanner?limit=10",
+        desc: "Top US gappers ranked by priority score",
+        fallback: "/data/scanner_top.json" },
+      { method: "GET", path: "/api/v1/sympathy?ticker=NVDA",
+        desc: "Sympathy chain for a named ticker",
+        fallback: "/data/intl_panels.json" },
+      { method: "GET", path: "/api/v1/heatmap?continent=ALL",
+        desc: "Continent → country → sector drill-down",
+        fallback: "/data/global_heatmap.json" },
+      { method: "GET", path: "/api/v1/macro",
+        desc: "Cross-asset macro regimes — yields, DXY, oil/gold, VIX",
+        fallback: "/data/xasset_macro.json" },
+    ];
+
+    const KEY_STORAGE = "ce_api_explorer_key";
+    const keyInput = document.getElementById("api-key");
+    const btnClear = document.getElementById("btn-clear");
+    const epList = document.getElementById("ep-list");
+    const respEndpoint = document.getElementById("resp-endpoint");
+    const respCode = document.getElementById("resp-code");
+    const respMs = document.getElementById("resp-ms");
+    const respCurl = document.getElementById("resp-curl");
+    const respBody = document.getElementById("resp-body");
+    const fallbackNote = document.getElementById("fallback-note");
+    const fallbackPath = document.getElementById("fallback-path");
+    const sdkCode = document.getElementById("sdk-code");
+    const apiStatus = document.getElementById("api-status");
+    const apiStatusText = document.getElementById("api-status-text");
+
+    keyInput.value = localStorage.getItem(KEY_STORAGE) || "";
+    keyInput.addEventListener("input", () => {
+      const v = keyInput.value.trim();
+      if (v) localStorage.setItem(KEY_STORAGE, v);
+      else localStorage.removeItem(KEY_STORAGE);
+    });
+    btnClear.addEventListener("click", () => {
+      keyInput.value = "";
+      localStorage.removeItem(KEY_STORAGE);
+      keyInput.focus();
+    });
+
+    let activeIdx = -1;
+    let activeLang = "py";
+
+    function buildEpButtons() {
+      const frag = document.createDocumentFragment();
+      ENDPOINTS.forEach((e, i) => {
+        const b = document.createElement("button");
+        b.className = "ep-btn";
+        b.dataset.idx = String(i);
+        const m = document.createElement("span"); m.className = "method"; m.textContent = e.method;
+        const p = document.createElement("span"); p.className = "path"; p.textContent = e.path;
+        const d = document.createElement("span"); d.className = "desc"; d.textContent = e.desc;
+        b.appendChild(m); b.appendChild(p); b.appendChild(d);
+        b.addEventListener("click", () => fire(i));
+        frag.appendChild(b);
+      });
+      epList.appendChild(frag);
+    }
+
+    function setActive(i) {
+      activeIdx = i;
+      document.querySelectorAll(".ep-btn").forEach((b, idx) => {
+        b.classList.toggle("active", idx === i);
+      });
+    }
+
+    function setStatus(kind, text) {
+      apiStatus.classList.remove("ok", "warn", "err");
+      if (kind) apiStatus.classList.add(kind);
+      apiStatusText.textContent = text;
+    }
+
+    function curlFor(ep, hasKey) {
+      const url = "https://catalystedgescanner.com" + ep.path;
+      const lines = [];
+      lines.push("curl --request " + ep.method + " \\");
+      if (hasKey) {
+        lines.push("  --header \"Authorization: Bearer [REDACTED]\" \\");
+      }
+      lines.push("  --header \"Accept: application/json\" \\");
+      lines.push("  \"" + url + "\"");
+      return lines.join("\n");
+    }
+
+    function sdkFor(ep, lang) {
+      const path = ep.path;
+      const m = path.match(/^\/api\/v1\/([a-z]+)(\/[a-z]+)?(\?(.+))?$/);
+      const resource = m ? m[1] : "tape";
+      const sub = m && m[2] ? m[2].slice(1) : null;
+      const qs = m && m[4] ? m[4] : "";
+      const params = {};
+      qs.split("&").filter(Boolean).forEach(p => {
+        const [k, v] = p.split("=");
+        if (k) params[k] = v != null ? v : "";
+      });
+      const fnName = sub || "list";
+
+      function pyKwargs() {
+        return Object.entries(params).map(([k, v]) => {
+          const num = !isNaN(Number(v)) && v !== "";
+          return num ? (k + "=" + v) : (k + "=\"" + v + "\"");
+        }).join(", ");
+      }
+      function jsObj() {
+        if (!Object.keys(params).length) return "";
+        const parts = Object.entries(params).map(([k, v]) => {
+          const num = !isNaN(Number(v)) && v !== "";
+          return num ? (k + ": " + v) : (k + ": \"" + v + "\"");
+        });
+        return "{ " + parts.join(", ") + " }";
+      }
+
+      if (lang === "py") {
+        return [
+          "from catalyst_edge import Client",
+          "",
+          "c = Client(api_key=\"ce_live_...\")",
+          "result = c." + resource + "." + fnName + "(" + pyKwargs() + ")",
+          "print(result[:5])",
+        ].join("\n");
+      } else {
+        const arg = jsObj();
+        return [
+          "import { Client } from '@catalyst-edge/sdk';",
+          "",
+          "const c = new Client({ apiKey: 'ce_live_...' });",
+          "const result = await c." + resource + "." + fnName + "(" + arg + ");",
+          "console.log(result.slice(0, 5));",
+        ].join("\n");
+      }
+    }
+
+    function showSpinner() {
+      respBody.replaceChildren();
+      const wrap = document.createElement("div");
+      wrap.className = "spinner";
+      const ring = document.createElement("div"); ring.className = "ring";
+      const txt = document.createElement("div"); txt.textContent = "fetching...";
+      wrap.appendChild(ring); wrap.appendChild(txt);
+      respBody.appendChild(wrap);
+    }
+
+    function showJSON(obj) {
+      respBody.replaceChildren();
+      const pre = document.createElement("pre");
+      pre.textContent = JSON.stringify(obj, null, 2);
+      respBody.appendChild(pre);
+    }
+
+    function showText(text) {
+      respBody.replaceChildren();
+      const pre = document.createElement("pre");
+      pre.textContent = text;
+      respBody.appendChild(pre);
+    }
+
+    function showError(msg) {
+      respBody.replaceChildren();
+      const wrap = document.createElement("div");
+      wrap.className = "empty";
+      const ico = document.createElement("div");
+      ico.className = "ico";
+      ico.textContent = "⚠";
+      const txt = document.createElement("div");
+      txt.textContent = msg;
+      wrap.appendChild(ico); wrap.appendChild(txt);
+      respBody.appendChild(wrap);
+    }
+
+    async function fire(idx) {
+      const ep = ENDPOINTS[idx];
+      setActive(idx);
+      respEndpoint.textContent = ep.method + " " + ep.path;
+      const key = keyInput.value.trim();
+      respCurl.textContent = curlFor(ep, !!key);
+      sdkCode.textContent = sdkFor(ep, activeLang);
+      fallbackNote.style.display = "none";
+
+      setStatus("warn", "calling...");
+      respCode.textContent = "...";
+      respMs.textContent = "...";
+      showSpinner();
+
+      const t0 = performance.now();
+      let resp, err;
+      try {
+        const headers = { "Accept": "application/json" };
+        if (key) headers["Authorization"] = "Bearer " + key;
+        resp = await fetch("https://catalystedgescanner.com" + ep.path, { headers, cache: "no-store" });
+      } catch (e) {
+        err = e;
+      }
+      const ms = Math.round(performance.now() - t0);
+      respMs.textContent = ms + "ms";
+
+      if (err || !resp || (resp.status >= 400 && resp.status !== 401 && resp.status !== 403 && resp.status !== 429)) {
+        try {
+          const fbResp = await fetch(ep.fallback, { cache: "no-store" });
+          if (fbResp.ok) {
+            const ct = fbResp.headers.get("Content-Type") || "";
+            if (ct.includes("json")) {
+              const data = await fbResp.json();
+              respCode.className = "code warn";
+              respCode.textContent = "200 (fallback)";
+              fallbackNote.style.display = "block";
+              fallbackPath.textContent = ep.fallback;
+              setStatus("warn", "fallback");
+              showJSON(data);
+              return;
+            }
+            const text = await fbResp.text();
+            respCode.className = "code warn";
+            respCode.textContent = fbResp.status + " (fallback)";
+            fallbackNote.style.display = "block";
+            fallbackPath.textContent = ep.fallback;
+            setStatus("warn", "fallback");
+            showText(text.slice(0, 4000));
+            return;
+          }
+        } catch (e2) { /* fall through */ }
+        respCode.className = "code err";
+        respCode.textContent = err ? "network" : (resp ? resp.status : "?");
+        setStatus("err", "error");
+        showError(err ? "Network error: " + err.message : ("API returned HTTP " + resp.status + " and no fallback feed available."));
+        return;
+      }
+
+      if (resp.status === 401 || resp.status === 403) {
+        respCode.className = "code err";
+        respCode.textContent = String(resp.status);
+        setStatus("err", "auth");
+        showError(resp.status + " — invalid or missing API key. Free-tier endpoints work without a key, Pro endpoints require one.");
+        return;
+      }
+      if (resp.status === 429) {
+        respCode.className = "code warn";
+        respCode.textContent = "429";
+        setStatus("warn", "rate-limit");
+        showError("429 — rate-limited. Retry-After: " + (resp.headers.get("Retry-After") || "n/a"));
+        return;
+      }
+
+      respCode.className = "code ok";
+      respCode.textContent = String(resp.status);
+      setStatus("ok", "live · " + ms + "ms");
+      const ct = resp.headers.get("Content-Type") || "";
+      try {
+        if (ct.includes("json")) {
+          const data = await resp.json();
+          showJSON(data);
+        } else {
+          const text = await resp.text();
+          showText(text.slice(0, 4000));
+        }
+      } catch (e) {
+        showError("Couldn't parse response: " + e.message);
+        setStatus("err", "parse");
+      }
+    }
+
+    document.querySelectorAll(".lang-tab[data-lang]").forEach(t => {
+      t.addEventListener("click", () => {
+        activeLang = t.dataset.lang;
+        document.querySelectorAll(".lang-tab[data-lang]").forEach(x => {
+          x.classList.toggle("active", x === t);
+        });
+        if (activeIdx >= 0) {
+          sdkCode.textContent = sdkFor(ENDPOINTS[activeIdx], activeLang);
+        }
+      });
+    });
+
+    document.querySelectorAll(".copy-btn[data-copy]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const target = document.getElementById(btn.dataset.copy);
+        if (!target) return;
+        const text = target.textContent;
+        navigator.clipboard.writeText(text).then(() => {
+          const orig = btn.textContent;
+          btn.textContent = "✓ Copied";
+          setTimeout(() => { btn.textContent = orig; }, 1300);
+        });
+      });
+    });
+
+    buildEpButtons();
+  </script>
+</body>
+</html>

@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Deep Value Screener — Undervalued Stocks with Insider Ownership | Catalyst Edge</title>
+<meta name="description" content="Find fundamentally undervalued stocks with strong insider ownership, low P/B ratios, and high ROE. Deep value picks scored and graded daily.">
+<meta property="og:title" content="Deep Value Screener — Catalyst Edge">
+<link rel="canonical" href="https://catalystedgescanner.com/deepvalue/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#070a12;--surface:#0f1420;--gold:#d4a843;--green:#22c55e;--red:#ef4444;--cyan:#06b6d4;--emerald:#10b981;--text:#e2e8f0;--dim:#94a3b8;--muted:#64748b;--border:#1e293b}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
+.wrap{max-width:1100px;margin:0 auto;padding:1.5rem}
+.nav{position:sticky;top:0;z-index:100;background:rgba(7,10,18,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:.75rem 1.5rem;display:flex;align-items:center;gap:1rem}
+.nav a{color:var(--gold);font-weight:600;font-size:.95rem}
+.nav .sep{color:var(--muted)}
+.hero{text-align:center;padding:2.5rem 0 2rem;border-bottom:1px solid var(--border);margin-bottom:1.5rem}
+.hero h1{font-size:clamp(1.5rem,4vw,2.2rem);font-weight:800;line-height:1.2;margin-bottom:.4rem}
+.hero h1 em{font-style:normal;color:var(--emerald)}
+.hero .sub{color:var(--dim);font-size:.9rem;max-width:580px;margin:0 auto}
+.stats-bar{display:flex;justify-content:center;gap:2rem;margin:1rem 0;flex-wrap:wrap}
+.sb-item{text-align:center}
+.sb-val{font-size:1.3rem;font-weight:800;color:var(--gold)}
+.sb-lbl{font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.filters{display:flex;gap:8px;margin:1.5rem 0 1rem;flex-wrap:wrap}
+.fbtn{padding:6px 14px;background:var(--surface);border:1px solid var(--border);border-radius:6px;color:var(--dim);font-size:.78rem;font-weight:600;cursor:pointer;font-family:inherit;transition:all .2s}
+.fbtn:hover{border-color:var(--emerald);color:var(--emerald)}
+.fbtn.active{background:rgba(16,185,129,.12);border-color:var(--emerald);color:var(--emerald)}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;margin:1rem 0}
+.dv-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.2rem;transition:border-color .2s}
+.dv-card:hover{border-color:var(--emerald)}
+.dv-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:.6rem}
+.dv-ticker{font-size:1.3rem;font-weight:800}
+.dv-score{font-family:'IBM Plex Mono',monospace;font-size:1.1rem;font-weight:800}
+.grade-a{color:var(--green)}
+.grade-b{color:var(--gold)}
+.grade-c{color:var(--cyan)}
+.grade-d{color:var(--muted)}
+.dv-badge{display:inline-block;padding:3px 10px;border-radius:12px;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+.badge-a{background:rgba(34,197,94,.12);color:var(--green)}
+.badge-b{background:rgba(212,168,67,.12);color:var(--gold)}
+.badge-c{background:rgba(6,182,212,.12);color:var(--cyan)}
+.badge-d{background:rgba(100,116,139,.12);color:var(--muted)}
+.dv-metrics{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:.7rem}
+.dv-metric{display:flex;justify-content:space-between;font-size:.75rem;padding:3px 0;border-bottom:1px solid rgba(30,41,59,.4)}
+.dv-metric .lbl{color:var(--muted)}
+.dv-metric .val{font-family:'IBM Plex Mono',monospace;font-weight:600}
+.metric-good{color:var(--green)}
+.metric-warn{color:var(--gold)}
+.metric-bad{color:var(--red)}
+.cta-bar{background:var(--surface);border:1px solid var(--gold);border-radius:10px;padding:1.25rem;text-align:center;margin:2rem 0}
+.cta-bar h3{color:var(--gold);font-size:1rem;margin-bottom:.3rem}
+.cta-bar p{color:var(--dim);font-size:.8rem;margin-bottom:.75rem}
+.cta-bar a{display:inline-block;padding:.5rem 1.4rem;background:linear-gradient(135deg,var(--gold),#f1ce88);color:#070a12;font-weight:700;border-radius:6px;font-size:.85rem}
+.explainer{margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border)}
+.explainer h2{font-size:1.1rem;margin-bottom:.8rem}
+.explainer p{color:var(--dim);font-size:.85rem;margin-bottom:.8rem}
+.metric-legend{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px;margin:1rem 0}
+.ml-item{display:flex;align-items:center;gap:8px;font-size:.78rem;color:var(--dim)}
+.ml-dot{width:8px;height:8px;border-radius:2px;flex-shrink:0}
+.footer{text-align:center;padding:1.5rem;font-size:.72rem;color:var(--muted);border-top:1px solid var(--border);margin-top:2rem}
+.footer a{color:var(--muted)}
+.table-wrap{overflow-x:auto}
+</style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@800;900&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/lib/cinematic-hero.css">
+  <link rel="stylesheet" href="/lib/cyber-shell.css">
+  <link rel="stylesheet" href="/lib/polish-tokens.css">
+</head>
+<body>
+  <div class="cy-bg" aria-hidden="true"></div>
+  <div class="cy-floor" aria-hidden="true"></div>
+  <div class="cy-vignette" aria-hidden="true"></div>
+  <div class="cy-scan" aria-hidden="true"></div>
+<div class="nav">
+  <a href="/">Catalyst Edge</a>
+  <span class="sep">/</span>
+  <span style="color:var(--dim);font-size:.9rem">Deep Value</span>
+</div>
+
+<div class="wrap">
+<section class="cin-hero cy-neon-hero cy-shimmer">
+    <div class="cin-grid">
+      <div class="cin-stat-stack">
+        <div class="cin-eyebrow"><span class="cin-live-dot"></span>DEEP VALUE · MULTI-SIGNAL · LIVE</div>
+        <div class="cin-colossal">
+          <div class="cin-num-row"><span class="cin-num">≤8x</span></div>
+          <div class="cin-side">
+          <span class="cin-tag">EV/EBITDA <b>floor</b></span>
+          <span class="cin-tag">FCF yield ≥ 8%</span>
+          <span class="cin-tag">insider net-buy</span>
+          </div>
+        </div>
+        <div class="cin-stamp">DEEPVALUE//SCREEN · v1.1 · <b>LIVE</b></div>
+      </div>
+      <div class="cin-h1-block">
+        <div class="cin-h1-eyebrow">💎 Deep Value Screener · Cheap × Catalyst</div>
+        <h1 class="cin-headline">Names trading at <em>cheap multiples</em>—paired with the <span class="cin-accent">catalyst that wakes them up</span>.</h1>
+        <p class="cin-lede">EV/EBITDA ≤ 8x, FCF yield ≥ 8%, plus insider net-buying or recent SEC catalyst filing. Pure value screens stay cheap; value × catalyst is what re-rates.</p>
+        <div class="cin-cta-row">
+          <a href="#dv-table" class="cin-btn-primary">See deep value ↓</a>
+          <a href="/dcf/" class="cin-btn-ghost">DCF model</a>
+        </div>
+        <div class="cin-strip">
+          <div class="cin-cell"><div class="cin-k">Screened</div><div class="cin-v" id="dv-total">–</div></div>
+          <div class="cin-cell"><div class="cin-k">With insider</div><div class="cin-v bull" id="dv-insider">–</div></div>
+          <div class="cin-cell"><div class="cin-k">With catalyst</div><div class="cin-v gold" id="dv-cat">–</div></div>
+          <div class="cin-cell"><div class="cin-k">Both</div><div class="cin-v cyan" id="dv-both">–</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="stats-bar" style="display:none">
+    <div class="sb-item"><span id="dv-grade-a"></span><span id="dv-grade-b"></span><span id="dv-avg"></span></div>
+  </div>
+
+  <div class="filters" id="filters"></div>
+  <div class="card-grid" id="card-grid"></div>
+
+  <div class="cta-bar">
+    <h3>Deep value picks in your inbox daily</h3>
+    <p>Free daily email with undervalued stock alerts, SEC catalysts, and convergence signals at 4 AM ET.</p>
+    <a href="/preview/">Subscribe Free</a>
+  </div>
+
+  <div class="explainer">
+    <h2>How the Deep Value Score Works</h2>
+    <p>Each stock is scored 0-100 based on fundamental value metrics. The algorithm weights price-to-book ratio, free cash flow yield, debt levels, insider ownership concentration, return on equity, and short interest pressure.</p>
+
+    <div class="metric-legend">
+      <div class="ml-item"><span class="ml-dot" style="background:var(--green)"></span>P/B Ratio — Below book value = underpriced</div>
+      <div class="ml-item"><span class="ml-dot" style="background:var(--gold)"></span>P/FCF — Price vs free cash flow</div>
+      <div class="ml-item"><span class="ml-dot" style="background:var(--cyan)"></span>Debt/Equity — Lower is safer</div>
+      <div class="ml-item"><span class="ml-dot" style="background:var(--emerald)"></span>Insider Own % — Skin in the game</div>
+      <div class="ml-item"><span class="ml-dot" style="background:var(--red)"></span>ROE % — Return on equity</div>
+      <div class="ml-item"><span class="ml-dot" style="background:var(--muted)"></span>Short Float % — Bearish pressure</div>
+    </div>
+
+    <p>Grades: <strong style="color:var(--green)">A</strong> = Score 50+, <strong style="color:var(--gold)">B</strong> = Score 40-49, <strong style="color:var(--cyan)">C</strong> = Score 30-39, <strong style="color:var(--muted)">D</strong> = Below 30. Only stocks with a clear value thesis make the screen.</p>
+  </div>
+</div>
+
+<div class="footer">
+  &copy; 2026 Catalyst Edge &middot;
+  <a href="/">Scanner</a> &middot;
+  <a href="/gaps/">Gaps</a> &middot;
+  <a href="/jackpot/" style="color:#22c55e">🎯 JACKPOT</a>
+  <a href="/dcf/" style="color:#06b6d4">💰 DCF</a> &middot;
+  <a href="/squeeze/">Squeeze</a> &middot;
+  <a href="/insiders/">Insiders</a> &middot;
+  <a href="/darkpool/">Dark Pool</a> &middot;
+  <a href="/convergence/">Convergence</a> &middot;
+  <a href="/congress/">Congress</a> &middot;
+  <a href="/glossary/">Glossary</a> &middot;
+  Not financial advice.
+</div>
+
+<script>
+(function(){
+  var allStocks = [];
+  var activeFilter = 'All';
+
+  var filterNames = ['All','Grade A','Grade B','High Insider','Low Debt'];
+  var filtersDiv = document.getElementById('filters');
+  filterNames.forEach(function(name){
+    var btn = document.createElement('button');
+    btn.className = 'fbtn' + (name === 'All' ? ' active' : '');
+    btn.textContent = name;
+    btn.addEventListener('click', function(){
+      activeFilter = name;
+      var btns = filtersDiv.querySelectorAll('.fbtn');
+      for(var i=0;i<btns.length;i++) btns[i].className='fbtn';
+      btn.className='fbtn active';
+      renderGrid(filterStocks(allStocks));
+    });
+    filtersDiv.appendChild(btn);
+  });
+
+  function filterStocks(stocks){
+    if(activeFilter==='All') return stocks;
+    if(activeFilter==='Grade A') return stocks.filter(function(s){return (s.grade||'').toUpperCase()==='A'});
+    if(activeFilter==='Grade B') return stocks.filter(function(s){return (s.grade||'').toUpperCase()==='B'});
+    if(activeFilter==='High Insider') return stocks.filter(function(s){return parseFloat(s.insider_own_pct||0)>=10});
+    if(activeFilter==='Low Debt') return stocks.filter(function(s){return parseFloat(s.debt_eq||999)<0.5});
+    return stocks;
+  }
+
+  function gradeClass(g){
+    var v=(g||'').toUpperCase();
+    if(v==='A') return 'grade-a';
+    if(v==='B') return 'grade-b';
+    if(v==='C') return 'grade-c';
+    return 'grade-d';
+  }
+
+  function badgeClass(g){
+    var v=(g||'').toUpperCase();
+    if(v==='A') return 'badge-a';
+    if(v==='B') return 'badge-b';
+    if(v==='C') return 'badge-c';
+    return 'badge-d';
+  }
+
+  function metricColor(val, low, high, invert){
+    var n=parseFloat(val)||0;
+    if(invert){return n<=low?'metric-good':n<=high?'metric-warn':'metric-bad'}
+    return n>=high?'metric-good':n>=low?'metric-warn':'metric-bad';
+  }
+
+  function renderGrid(stocks){
+    var grid = document.getElementById('card-grid');
+    while(grid.firstChild) grid.removeChild(grid.firstChild);
+
+    stocks.forEach(function(s){
+      var card = document.createElement('div');
+      card.className = 'dv-card';
+
+      var header = document.createElement('div');
+      header.className = 'dv-header';
+      var ticker = document.createElement('span');
+      ticker.className = 'dv-ticker';
+      ticker.textContent = s.ticker;
+      var score = document.createElement('span');
+      score.className = 'dv-score ' + gradeClass(s.grade);
+      score.textContent = s.deepvalue_score || s.score || '0';
+      header.appendChild(ticker);
+      header.appendChild(score);
+      card.appendChild(header);
+
+      var badge = document.createElement('span');
+      badge.className = 'dv-badge ' + badgeClass(s.grade);
+      badge.textContent = 'GRADE ' + (s.grade||'D').toUpperCase();
+      card.appendChild(badge);
+
+      var metrics = document.createElement('div');
+      metrics.className = 'dv-metrics';
+
+      var fields = [
+        {lbl:'P/B',key:'pb_ratio',low:0.8,high:1.5,inv:true},
+        {lbl:'P/FCF',key:'pfcf_ratio',low:10,high:20,inv:true},
+        {lbl:'Debt/Eq',key:'debt_eq',low:0.3,high:1.0,inv:true},
+        {lbl:'Insider %',key:'insider_own_pct',low:5,high:15,inv:false},
+        {lbl:'ROE %',key:'roe_pct',low:8,high:15,inv:false},
+        {lbl:'Short %',key:'short_float_pct',low:5,high:15,inv:true}
+      ];
+
+      fields.forEach(function(f){
+        var row = document.createElement('div');
+        row.className = 'dv-metric';
+        var lbl = document.createElement('span');
+        lbl.className = 'lbl';
+        lbl.textContent = f.lbl;
+        var val = document.createElement('span');
+        var raw = s[f.key] || '0';
+        val.className = 'val ' + metricColor(raw, f.low, f.high, f.inv);
+        val.textContent = parseFloat(raw).toFixed(1);
+        row.appendChild(lbl);
+        row.appendChild(val);
+        metrics.appendChild(row);
+      });
+
+      card.appendChild(metrics);
+      grid.appendChild(card);
+    });
+  }
+
+  fetch('/api/deepvalue').then(function(r){return r.json()}).then(function(d){
+    allStocks = d.stocks || [];
+    document.getElementById('dv-total').textContent = allStocks.length;
+    var gradeA=0, gradeB=0, totalScore=0;
+    allStocks.forEach(function(s){
+      var g=(s.grade||'').toUpperCase();
+      if(g==='A') gradeA++;
+      if(g==='B') gradeB++;
+      totalScore += parseInt(s.deepvalue_score||s.score||0);
+    });
+    document.getElementById('dv-grade-a').textContent = gradeA;
+    document.getElementById('dv-grade-b').textContent = gradeB;
+    document.getElementById('dv-avg').textContent = allStocks.length ? Math.round(totalScore/allStocks.length) : 0;
+    renderGrid(allStocks);
+  });
+})();
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KV1VDK22VC"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-KV1VDK22VC');</script>
+<script>
+(function(){
+  var f=function(id,v){var n=document.getElementById(id); if(n && v!=null) n.textContent=v;};
+  fetch('/api/deepvalue').then(function(r){return r.json();}).then(function(d){
+    var s=(d&&d.stocks)||[];
+    var ins=0, cat=0, both=0;
+    s.forEach(function(x){
+      var io=parseFloat(x.insider_own_pct||'0');
+      var hasIns = io>=10;
+      var hasCat = (x.grade||'').toUpperCase()==='A' || (x.grade||'').toUpperCase()==='B';
+      if(hasIns) ins++;
+      if(hasCat) cat++;
+      if(hasIns && hasCat) both++;
+    });
+    f('dv-total', s.length.toLocaleString());
+    f('dv-insider', ins.toLocaleString());
+    f('dv-cat', cat.toLocaleString());
+    f('dv-both', both.toLocaleString());
+  }).catch(function(){});
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Releases — Catalyst Edge Scanner</title>
+  <meta name="description" content="Versioned release notes for Catalyst Edge SDK + Scanner. SemVer. No silent ship. Every version, every change, every date." />
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/lib/admin-unlock.css" />
+  <link rel="stylesheet" href="/lib/scanner-polish.css" />
+  <link rel="stylesheet" href="/lib/nav-fix.css" />
+  <style>
+    :root{
+      --navy:#040a14; --navy2:#0a1424; --navy3:#0e1a2e;
+      --ink:#e6f1ff; --ink-dim:#9bb0c8; --ink-mute:#6e8198;
+      --cyan:#5ad7ff; --gold:#f5c662; --bull:#5cf2a4; --bear:#ff6b8b;
+      --line:rgba(110,140,180,0.18); --line-strong:rgba(110,140,180,0.32);
+      --glass: linear-gradient(180deg, rgba(15,28,48,0.78), rgba(7,14,28,0.78));
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;background:#04070d;color:var(--ink);
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      -webkit-font-smoothing:antialiased; font-feature-settings:"ss01","cv11";
+    }
+    a{color:var(--cyan);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+    code{font-family:"JetBrains Mono","IBM Plex Mono",ui-monospace,monospace;font-size:0.92em;background:rgba(90,215,255,0.06);padding:1px 6px;border-radius:4px;color:var(--cyan)}
+
+    .topbar{position:sticky;top:0;z-index:50;background:rgba(4,7,13,0.86);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+    .topbar-row{display:flex;align-items:center;gap:18px;padding:14px 24px;max-width:1400px;margin:0 auto}
+    .brand{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:14px;letter-spacing:0.18em;color:var(--gold);text-transform:uppercase}
+    .brand b{color:var(--cyan)}
+    nav.nav{display:flex;gap:8px;flex:1;flex-wrap:nowrap;overflow-x:auto;scroll-padding-top:80px}
+    nav.nav a{font-size:13px;color:var(--ink-dim);padding:8px 12px;border-radius:8px;white-space:nowrap}
+    nav.nav a:hover{background:rgba(90,215,255,0.08);color:var(--ink);text-decoration:none}
+    nav.nav a.active{color:var(--gold);background:rgba(245,198,98,0.08)}
+    .topbar-cta{display:flex;gap:10px;align-items:center}
+    .pill-cta{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;
+      padding:8px 14px;border:1px solid var(--gold);color:var(--gold);border-radius:999px;cursor:pointer}
+    .pill-cta:hover{background:rgba(245,198,98,0.12);text-decoration:none}
+
+    .suite-row{display:grid;grid-template-columns:repeat(7,1fr);gap:10px;padding:14px 24px;max-width:1400px;margin:0 auto;border-bottom:1px solid var(--line)}
+    .suite-card{background:var(--glass);border:1px solid var(--line);border-radius:12px;padding:10px 12px;
+      display:flex;flex-direction:column;gap:4px;transition:all .2s ease;cursor:pointer}
+    .suite-card:hover{border-color:rgba(90,215,255,0.45);transform:translateY(-2px);text-decoration:none}
+    .suite-card .sc-eye{font-family:"IBM Plex Mono",monospace;font-size:9px;letter-spacing:0.16em;color:var(--ink-mute);text-transform:uppercase}
+    .suite-card .sc-h{font-size:13px;color:var(--ink);font-weight:600}
+    .suite-card .sc-d{font-size:11px;color:var(--ink-dim);line-height:1.35}
+    @media (max-width:980px){
+      .suite-row{grid-template-columns:repeat(2,1fr)}
+      nav.nav a{padding:6px 8px;font-size:12px}
+    }
+
+    .hero{padding:64px 0 48px;border-bottom:1px solid var(--line);position:relative;overflow:hidden}
+    .hero::before{content:"";position:absolute;inset:0;
+      background:radial-gradient(800px 400px at 30% 20%, rgba(90,215,255,0.12), transparent 60%),
+                 radial-gradient(600px 380px at 80% 60%, rgba(245,198,98,0.10), transparent 60%);pointer-events:none}
+    .hero .wrap{position:relative}
+    .eyebrow{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:0.22em;color:var(--gold);text-transform:uppercase;margin-bottom:16px}
+    .h1{font-size:clamp(36px,5.5vw,64px);line-height:1.04;letter-spacing:-0.01em;margin:0 0 18px;font-weight:700}
+    .h1 .glow{color:var(--cyan)}
+    .sub{font-size:18px;color:var(--ink-dim);max-width:780px;line-height:1.5}
+    .stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:36px}
+    .stat-box{background:var(--glass);border:1px solid var(--line);border-radius:14px;padding:18px}
+    .stat-box .lbl{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:0.18em;color:var(--ink-mute);text-transform:uppercase;margin-bottom:6px}
+    .stat-box .val{font-size:26px;color:var(--cyan);font-weight:700;font-variant-numeric:tabular-nums}
+    .stat-box .ann{font-size:12px;color:var(--ink-dim);margin-top:4px}
+    @media (max-width:860px){.stats-row{grid-template-columns:repeat(2,1fr)}}
+
+    section.section{padding:56px 0;border-bottom:1px solid var(--line)}
+    .section h2{font-size:28px;margin:0 0 8px;letter-spacing:-0.01em}
+    .section .lead{color:var(--ink-dim);max-width:680px;margin:0 0 28px}
+
+    /* timeline */
+    .timeline{position:relative;padding-left:30px}
+    .timeline::before{content:"";position:absolute;left:9px;top:8px;bottom:8px;width:2px;
+      background:linear-gradient(to bottom, rgba(245,198,98,0.5), rgba(90,215,255,0.3) 30%, rgba(110,140,180,0.18) 100%)}
+    .release{position:relative;background:var(--glass);border:1px solid var(--line);border-radius:16px;padding:24px;margin-bottom:18px;
+      transition:all .2s ease}
+    .release:hover{border-color:rgba(90,215,255,0.45);transform:translateY(-2px)}
+    .release::before{content:"";position:absolute;left:-30px;top:28px;width:14px;height:14px;border-radius:50%;
+      background:var(--cyan);border:3px solid #04070d;box-shadow:0 0 0 2px var(--cyan)}
+    .release.latest::before{background:var(--gold);box-shadow:0 0 0 2px var(--gold), 0 0 24px rgba(245,198,98,0.5)}
+    .release.future::before{background:transparent;border-color:var(--gold);box-shadow:0 0 0 2px rgba(245,198,98,0.3)}
+    .release.scanner::before{background:var(--cyan)}
+    .rel-hd{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;margin-bottom:14px}
+    .rel-l{display:flex;flex-direction:column;gap:6px}
+    .rel-pills{display:flex;gap:8px;flex-wrap:wrap}
+    .vpill{font-family:"JetBrains Mono",monospace;font-size:13px;padding:5px 12px;border-radius:8px;font-weight:600;background:rgba(90,215,255,0.08);color:var(--cyan);border:1px solid rgba(90,215,255,0.32)}
+    .vpill.gold{background:rgba(245,198,98,0.10);color:var(--gold);border-color:rgba(245,198,98,0.4)}
+    .scopepill{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;
+      padding:5px 10px;border-radius:8px;border:1px solid var(--line-strong);color:var(--ink-dim)}
+    .scopepill.sdk{border-color:rgba(124,109,242,0.4);color:#c792ea;background:rgba(124,109,242,0.08)}
+    .scopepill.scanner{border-color:rgba(90,215,255,0.32);color:var(--cyan);background:rgba(90,215,255,0.06)}
+    .latestbadge{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:0.2em;
+      padding:4px 10px;border-radius:999px;background:var(--gold);color:#1a1304;font-weight:700}
+    .rel-date{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:0.14em;color:var(--ink-mute);text-transform:uppercase;align-self:flex-start;padding-top:6px}
+    .rel-title{margin:6px 0 4px;font-size:18px;line-height:1.3;color:var(--ink)}
+    .rel-summary{margin:0 0 12px;color:var(--ink-dim);font-size:13.5px;line-height:1.55}
+    .rel-changes{display:flex;flex-direction:column;gap:6px;margin:8px 0 0;padding:0;list-style:none}
+    .rel-changes li{font-size:13px;color:var(--ink-dim);display:flex;gap:10px;align-items:flex-start;line-height:1.5}
+    .rel-changes li::before{content:"›";color:var(--cyan);font-weight:700;flex-shrink:0}
+    .rel-changes li b{color:var(--ink);font-weight:600}
+    .rel-foot{display:flex;gap:10px;align-items:center;margin-top:14px;padding-top:14px;border-top:1px dashed var(--line);flex-wrap:wrap}
+    .rel-foot a{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;
+      padding:6px 12px;border-radius:8px;border:1px solid var(--line-strong);color:var(--ink-dim)}
+    .rel-foot a:hover{border-color:var(--cyan);color:var(--cyan);text-decoration:none}
+
+    /* coming next */
+    .next-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    @media (max-width:760px){.next-grid{grid-template-columns:1fr}}
+    .next{background:var(--glass);border:1px dashed rgba(245,198,98,0.4);border-radius:14px;padding:20px;position:relative;overflow:hidden}
+    .next::before{content:"PLANNED";position:absolute;top:14px;right:-32px;background:rgba(245,198,98,0.16);color:var(--gold);
+      font-family:"IBM Plex Mono",monospace;font-size:9px;letter-spacing:0.2em;padding:3px 32px;transform:rotate(35deg);font-weight:700}
+    .next h4{margin:0 0 4px;color:var(--gold);font-size:17px}
+    .next .when{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:0.14em;color:var(--ink-mute);text-transform:uppercase;margin-bottom:12px}
+    .next ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px}
+    .next ul li{font-size:13px;color:var(--ink-dim);display:flex;gap:8px;align-items:flex-start;line-height:1.5}
+    .next ul li::before{content:"·";color:var(--gold);font-weight:700;flex-shrink:0;font-size:18px;line-height:1}
+
+    /* capture */
+    .capture{background:linear-gradient(135deg, rgba(90,215,255,0.10), rgba(245,198,98,0.08));
+      border:1px solid rgba(245,198,98,0.32);border-radius:18px;padding:32px;margin-top:8px}
+    .capture h3{margin:0 0 8px;font-size:22px}
+    .capture p{margin:0 0 18px;color:var(--ink-dim);font-size:14px;max-width:560px}
+    .capture-form{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+    .capture-form input[type=email]{flex:1;min-width:240px;background:#040a14;border:1px solid var(--line-strong);
+      color:var(--ink);font-size:15px;padding:13px 14px;border-radius:10px;font-family:inherit}
+    .capture-form input[type=email]:focus{outline:none;border-color:var(--cyan)}
+    .capture-form button{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;
+      padding:13px 22px;border-radius:10px;background:var(--gold);color:#1a1304;border:none;font-weight:700;cursor:pointer}
+    .capture-form button:hover{background:#ffd683}
+    .capture .micro{margin-top:10px;font-size:11px;color:var(--ink-mute);font-family:"IBM Plex Mono",monospace}
+
+    footer{padding:36px 0;color:var(--ink-mute);font-size:12px;border-top:1px solid var(--line);text-align:center}
+    footer .links{display:flex;gap:14px;justify-content:center;margin-top:8px;flex-wrap:wrap}
+  </style>
+<link rel="stylesheet" href="/lib/polish-tokens.css">
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-row">
+      <div class="brand"><b>Catalyst</b> · Edge</div>
+      <nav class="nav">
+        <a href="/scanner/">Scanner</a>
+        <a href="/international/">Global</a>
+        <a href="/dcf/">DCF</a>
+        <a href="/cross-border/">Cross-Border</a>
+        <a href="/alerts/">Alerts</a>
+        <a href="/data/api/">API</a>
+        <a href="/sdk/">SDK</a>
+        <a href="/benchmarks/">Benchmarks</a>
+        <a href="/trust/">Trust</a>
+        <a href="/community/">Community</a>
+        <a href="/case-studies/">Case Studies</a>
+        <a href="/releases/" class="active">Releases</a>
+        <a href="/changelog/">Changelog</a>
+        <a href="/pricing/">Pricing</a>
+      </nav>
+      <div class="topbar-cta">
+        <a class="pill-cta" href="#subscribe">Subscribe</a>
+      </div>
+    </div>
+    <div class="suite-row">
+      <a class="suite-card" href="/scanner/"><span class="sc-eye">US Scanner</span><span class="sc-h">Catalyst Edge</span><span class="sc-d">Live US gappers + flow</span></a>
+      <a class="suite-card" href="/international/"><span class="sc-eye">Global</span><span class="sc-h">43 markets</span><span class="sc-d">Cross-border tape</span></a>
+      <a class="suite-card" href="/dcf/"><span class="sc-eye">Valuation</span><span class="sc-h">DCF Engine</span><span class="sc-d">Audited fair-value grades</span></a>
+      <a class="suite-card" href="/cross-border/"><span class="sc-eye">Convergence</span><span class="sc-h">ADR ↔ Home</span><span class="sc-d">Foreign + US arb</span></a>
+      <a class="suite-card" href="/alerts/"><span class="sc-eye">Alerts</span><span class="sc-h">Pro Tape</span><span class="sc-d">Live triggers right now</span></a>
+      <a class="suite-card" href="/data/api/"><span class="sc-eye">Developers</span><span class="sc-h">JSON API</span><span class="sc-d">22 endpoints</span></a>
+      <a class="suite-card" href="/docs/quickstart/"><span class="sc-eye">Onboard</span><span class="sc-h">Quickstart</span><span class="sc-d">First DCF in 60 sec</span></a>
+    </div>
+  </div>
+
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow">📦 SDK + Scanner versioned releases · SemVer · No silent ship</div>
+      <h1 class="h1">Release notes — <span class="glow">every version, every change.</span></h1>
+      <p class="sub">SemVer for the SDK. Date-tagged scanner builds for the web. Every release links back to the corresponding phase in <a href="/changelog/">/changelog</a>. If we change behavior in production, the change shows up here within the same hour. No silent ship — that's the rule.</p>
+      <div class="stats-row">
+        <div class="stat-box"><div class="lbl">All-time phases shipped</div><div class="val">21</div><div class="ann">H.1 → I.21 · 30 days</div></div>
+        <div class="stat-box"><div class="lbl">SDK versions planned</div><div class="val">3</div><div class="ann">v0.1 · v0.2 · v1.0</div></div>
+        <div class="stat-box"><div class="lbl">Days since last release</div><div class="val">0</div><div class="ann">Today · 2026-04-25</div></div>
+        <div class="stat-box"><div class="lbl">Pending in v0.2</div><div class="val">12</div><div class="ann">Features queued · public roadmap</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>Releases</h2>
+      <p class="lead">Newest first. Each card links to the corresponding diff/phase. SDK uses SemVer; scanner uses calendar tags inside a v0.0.x line.</p>
+      <div class="timeline">
+
+        <article class="release latest">
+          <div class="rel-hd">
+            <div class="rel-l">
+              <div class="rel-pills">
+                <span class="vpill gold">v0.1.0</span>
+                <span class="scopepill sdk">SDK · Python + Node</span>
+                <span class="latestbadge">LATEST</span>
+              </div>
+              <div class="rel-title">Initial public SDK release — Python + Node clients</div>
+            </div>
+            <span class="rel-date">2026-04-25</span>
+          </div>
+          <p class="rel-summary">First publicly installable SDK. <code>pip install catalyst-edge</code> and <code>npm install @catalyst-edge/sdk</code>. 22 endpoints covered, sync and async clients, CLI bundled, webhook receiver middleware.</p>
+          <ul class="rel-changes">
+            <li><b>Python + Node clients</b> — both languages, generated from OpenAPI spec, type-safe end-to-end (Pydantic v2 / TypeScript types)</li>
+            <li><b>22 endpoints covered</b> — full surface of the public JSON API: tape, DCF, cross-border, alerts, scanner, international, sympathy</li>
+            <li><b>Sync + async clients</b> — async iterator for live alerts (<code>async for a in c.alerts.live()</code>); sync clients for one-shot scripts</li>
+            <li><b>CLI bundled</b> — <code>npx @catalyst-edge/cli scan --grade A</code> prints to stdout; jq-friendly</li>
+            <li><b>Webhook receiver middleware</b> — Express + FastAPI helpers verify HMAC signatures and decode events</li>
+            <li><b>Auto-retry with backoff</b> — exponential backoff on 429/5xx; respects Retry-After header</li>
+          </ul>
+          <div class="rel-foot">
+            <a href="/sdk/">SDK landing →</a>
+            <a href="/changelog/">Changelog phase I.16 →</a>
+            <a href="/data/api/">API reference →</a>
+          </div>
+        </article>
+
+        <article class="release scanner">
+          <div class="rel-hd">
+            <div class="rel-l">
+              <div class="rel-pills">
+                <span class="vpill">v0.0.4</span>
+                <span class="scopepill scanner">Scanner · Web</span>
+              </div>
+              <div class="rel-title">Trust + Community + Case-Studies + Benchmarks + Pricing pages</div>
+            </div>
+            <span class="rel-date">2026-04-25</span>
+          </div>
+          <p class="rel-summary">Public credibility surface complete: pricing with ROI calculator, head-to-head benchmarks vs Bloomberg/FactSet/Refinitiv, hit-rate audit + methodology, anonymized case studies, founder community page.</p>
+          <ul class="rel-changes">
+            <li><b>I.15</b> — <code>/pricing/</code> with 5 tiers + ROI calculator (Bloomberg vs Catalyst Edge per analyst-seat)</li>
+            <li><b>I.16</b> — <code>/sdk/</code> public landing with code samples Python+Node and email capture</li>
+            <li><b>I.17</b> — <code>/benchmarks/</code> head-to-head vs Bloomberg, FactSet, Refinitiv (12 dimensions, 5-year cost bars)</li>
+            <li><b>I.18</b> — <code>/trust/</code> hit-rate audit with 50 real catalyst calls + DCF audit + methodology formula</li>
+            <li><b>I.19</b> — <code>/community/</code> Discord RSVP + X/Twitter + GitHub + newsletter signup + lone-founder section</li>
+            <li><b>I.20</b> — <code>/case-studies/</code> 3 anonymized customer narratives (prop desk · quant fund · family office)</li>
+          </ul>
+          <div class="rel-foot">
+            <a href="/changelog/">Changelog phases I.15–I.20 →</a>
+            <a href="/pricing/">Pricing →</a>
+            <a href="/trust/">Trust →</a>
+          </div>
+        </article>
+
+        <article class="release scanner">
+          <div class="rel-hd">
+            <div class="rel-l">
+              <div class="rel-pills">
+                <span class="vpill">v0.0.3</span>
+                <span class="scopepill scanner">Scanner · Web</span>
+              </div>
+              <div class="rel-title">Pro-tier surface — alerts, API docs, enterprise, quickstart, public changelog</div>
+            </div>
+            <span class="rel-date">2026-04-25</span>
+          </div>
+          <p class="rel-summary">Pro-tier paywalled surface and developer onboarding shipped: live alerts list, JSON API documentation with 22 endpoints, enterprise pitch page, 60-second quickstart, public changelog.</p>
+          <ul class="rel-changes">
+            <li><b>I.10</b> — <code>/alerts/</code> Pro-tier-gated live trigger tape</li>
+            <li><b>I.11</b> — <code>/data/api/</code> JSON API documentation page (curl/Python/Node/R/Bash samples, 22 endpoints, 4 rate-limit tiers)</li>
+            <li><b>I.12</b> — <code>/enterprise/</code> hedge fund + prop desk pitch page with Bloomberg-vs-us math</li>
+            <li><b>I.13</b> — <code>/docs/quickstart/</code> "From zero to first DCF query in 60 seconds" with copy buttons</li>
+            <li><b>I.14</b> — <code>/changelog/</code> public ship log listing every phase H.1 → I.13</li>
+          </ul>
+          <div class="rel-foot">
+            <a href="/changelog/">Changelog phases I.10–I.14 →</a>
+            <a href="/data/api/">API reference →</a>
+          </div>
+        </article>
+
+        <article class="release scanner">
+          <div class="rel-hd">
+            <div class="rel-l">
+              <div class="rel-pills">
+                <span class="vpill">v0.0.2</span>
+                <span class="scopepill scanner">Scanner · Data</span>
+              </div>
+              <div class="rel-title">International expansion — 43 countries, 6 continents, global tape + heatmap</div>
+            </div>
+            <span class="rel-date">2026-04-25</span>
+          </div>
+          <p class="rel-summary">Global catalyst surface complete: per-country news feeds for 12 venues, unified tape, drill-down heatmap, cross-asset macro regimes. Africa added (JSE + ADR feed) — no continent left behind.</p>
+          <ul class="rel-changes">
+            <li><b>I.5</b> — <code>build_xasset_macro.py</code> — yield curve, DXY, oil/gold, VIX, crude/natgas regime calls</li>
+            <li><b>I.6</b> — India NSE catalyst news feed (top 25 .NS tickers via yfinance)</li>
+            <li><b>Africa fix</b> — JSE (.JO), Morocco, Kenya, Egypt, Botswana, Tunisia, Ghana — all 6 continents now wired</li>
+            <li><b>I.7</b> — Singapore SGX + Taiwan TWSE catalyst news feeds</li>
+            <li><b>I.8</b> — <code>/data/global_tape.json</code> — chronological merged tape across 12 country panels</li>
+            <li><b>I.9</b> — <code>/data/global_heatmap.json</code> — continent → country → sector → ticker drill-down</li>
+          </ul>
+          <div class="rel-foot">
+            <a href="/changelog/">Changelog phases I.5–I.9 →</a>
+            <a href="/international/">Global scanner →</a>
+          </div>
+        </article>
+
+        <article class="release scanner">
+          <div class="rel-hd">
+            <div class="rel-l">
+              <div class="rel-pills">
+                <span class="vpill">v0.0.1</span>
+                <span class="scopepill scanner">Scanner · Brand</span>
+              </div>
+              <div class="rel-title">International DCF + cross-border convergence + brand pass</div>
+            </div>
+            <span class="rel-date">2026-04-15</span>
+          </div>
+          <p class="rel-summary">First post-launch sprint: DCF universe goes international (yfinance), cross-border ADR↔home convergence picks ship, brand assets unified across all surfaces.</p>
+          <ul class="rel-changes">
+            <li><b>I.1</b> — VelocityDeck dismissable + click-through-to-ticker; HUD admin bypass v3</li>
+            <li><b>I.2</b> — <code>build_intl_dcf.py</code> — sector-aware DCF for 443 international tickers across 43 countries</li>
+            <li><b>I.3</b> — <code>build_intl_edge.py</code> — multi-scanner overlap + sector rotation + vol-price asymmetry</li>
+            <li><b>I.4</b> — Scanner-polish brand pass: animated digit reels, liquid-fill heatmap, pulse-glow tiles, brass-bordered nav</li>
+          </ul>
+          <div class="rel-foot">
+            <a href="/changelog/">Changelog phases I.1–I.4 →</a>
+            <a href="/dcf/international/">International DCF →</a>
+            <a href="/cross-border/">Cross-border picks →</a>
+          </div>
+        </article>
+
+        <article class="release scanner">
+          <div class="rel-hd">
+            <div class="rel-l">
+              <div class="rel-pills">
+                <span class="vpill">v0.0.0</span>
+                <span class="scopepill scanner">Scanner · Launch</span>
+              </div>
+              <div class="rel-title">Initial Catalyst Edge launch — US gappers + SEC XBRL DCF + $9 plan</div>
+            </div>
+            <span class="rel-date">2026-03-26</span>
+          </div>
+          <p class="rel-summary">Day-zero release. US-only catalyst scanner, daily 7am email, $9/mo Reader plan on Stripe, 1,001-name DCF universe sourced from SEC EDGAR XBRL companyfacts. First paying customer landed 2026-04-22.</p>
+          <ul class="rel-changes">
+            <li><b>US gappers</b> — daily SEC EDGAR pull, classification into top_gappers / top_value / top_moat</li>
+            <li><b>DCF engine v1</b> — Damodaran two-stage with SEC XBRL inputs, FCF = OCF − |CapEx| 3yr avg, 9% WACC, 2.5% terminal</li>
+            <li><b>Daily email</b> — HTML summary 7am ET, 89% audited hit rate over Q1</li>
+            <li><b>Reader plan</b> — $9/mo Stripe checkout, daily catalyst email + full DCF table</li>
+            <li><b>Tier-aware paywall</b> — free → reader → pro gating with admin bypass for founder</li>
+          </ul>
+          <div class="rel-foot">
+            <a href="/changelog/">Changelog phase H.1 →</a>
+            <a href="/dcf/">DCF →</a>
+            <a href="/scanner/">Scanner →</a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>Coming next</h2>
+      <p class="lead">Not promises — commitments with rough dates. If we slip, the slip shows up here before it shows up anywhere else.</p>
+      <div class="next-grid">
+        <div class="next">
+          <h4>SDK v0.2 — websocket + R + Go</h4>
+          <div class="when">Target · 2026-05 · ~30 days</div>
+          <ul>
+            <li>Websocket client for live tape (<code>c.tape.stream()</code>)</li>
+            <li>R package on CRAN</li>
+            <li>Go module on pkg.go.dev</li>
+            <li>Server-Sent Events helpers</li>
+            <li>Streaming JSON parser for large pulls</li>
+            <li>Pandas + Polars dataframe returns (Python)</li>
+          </ul>
+        </div>
+        <div class="next">
+          <h4>Scanner v0.0.5 — mobile PWA + Discord live</h4>
+          <div class="when">Target · 2026-05 · this sprint</div>
+          <ul>
+            <li>Mobile PWA installable from Safari + Chrome</li>
+            <li>Discord server live with founder-badge invites</li>
+            <li>Public security/privacy page (<code>/security</code>)</li>
+            <li>Bug-bounty NMR-payout pipeline</li>
+            <li>Slack webhook delivery for Team plan</li>
+            <li>Q2 trust audit (sympathy + intl hit rate)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="subscribe">
+    <div class="wrap">
+      <div class="capture">
+        <h3>Subscribe to release notifications</h3>
+        <p>One email per major release (about 1× / week). No marketing, no upsell sequence — just "v0.X.Y just shipped, here's the diff." Reply STOP to unsubscribe instantly.</p>
+        <form class="capture-form" action="mailto:opensource@example.com" method="POST" enctype="text/plain">
+          <input type="hidden" name="subject" value="Release notification subscribe" />
+          <input type="email" name="email" placeholder="you@desk.com" required />
+          <button type="submit">Notify me on releases →</button>
+        </form>
+        <div class="micro">~1 email/week · STOP to unsubscribe · founder reads every reply</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    Catalyst Edge Scanner · Versioned · No silent ship · Audited 89% hit rate
+    <div class="links">
+      <a href="/scanner/">Scanner</a>
+      <a href="/changelog/">Changelog</a>
+      <a href="/sdk/">SDK</a>
+      <a href="/trust/">Trust</a>
+      <a href="mailto:opensource@example.com">Contact</a>
+    </div>
+  </footer>
+
+  <script src="/lib/tier.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>📜 Changelog — Catalyst Edge ships daily</title>
+<meta name="description" content="Public ship log for Catalyst Edge. Every phase from foundation H.1 to the latest deploy I.13 — date, scope, ticker count delta, all auditable.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://catalystedgescanner.com/changelog/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/lib/cinematic.css">
+<style>
+.stats-row{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-top:30px}
+@media(max-width:1100px){.stats-row{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:560px){.stats-row{grid-template-columns:repeat(2,1fr)}}
+
+.compare-banner{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:40px 0}
+@media(max-width:880px){.compare-banner{grid-template-columns:1fr}}
+.cb-side{position:relative;padding:26px 26px;border-radius:14px;overflow:hidden}
+.cb-side.bbg{background:linear-gradient(180deg,rgba(244,63,94,.05),rgba(7,11,17,.86));border:1px solid rgba(244,63,94,.32)}
+.cb-side.bbg::before{content:'';position:absolute;left:0;top:0;height:3px;width:100%;background:var(--ce-rose)}
+.cb-side.us{background:linear-gradient(180deg,rgba(16,185,129,.05),rgba(7,11,17,.86));border:1px solid rgba(16,185,129,.32)}
+.cb-side.us::before{content:'';position:absolute;left:0;top:0;height:3px;width:100%;background:linear-gradient(90deg,var(--ce-green),var(--ce-cyan))}
+.cb-side h3{font-size:16px;margin-bottom:10px;font-weight:700;letter-spacing:-.005em}
+.cb-side.bbg h3{color:var(--ce-rose)}
+.cb-side.us h3{color:var(--ce-green)}
+.cb-stat{font-family:'IBM Plex Mono',monospace;font-size:32px;font-weight:700;letter-spacing:-.01em;margin-bottom:8px}
+.cb-side.bbg .cb-stat{color:var(--ce-rose)}
+.cb-side.us .cb-stat{color:var(--ce-green)}
+.cb-detail{color:#c4cdde;font-size:13.5px;line-height:1.6}
+
+.timeline{position:relative;margin-top:24px;padding-left:30px}
+.timeline::before{content:'';position:absolute;left:8px;top:0;bottom:0;width:2px;
+  background:linear-gradient(180deg,var(--ce-gold) 0%,var(--ce-cyan) 50%,var(--ce-purple) 100%);
+  opacity:.5}
+.entry{position:relative;margin-bottom:18px;padding:18px 22px 18px 18px;
+  background:rgba(12,16,24,.55);border:1px solid var(--ce-border);border-radius:10px;
+  display:grid;grid-template-columns:96px 1fr auto;gap:18px;align-items:start;
+  transition:all .3s}
+.entry::before{content:'';position:absolute;left:-30px;top:24px;width:14px;height:14px;border-radius:50%;
+  background:var(--ce-gold);box-shadow:0 0 12px var(--ce-gold);border:3px solid var(--ce-bg)}
+.entry.major::before{background:var(--ce-cyan);box-shadow:0 0 14px var(--ce-cyan);
+  animation:ce-nodePulse 2.6s ease-in-out infinite}
+.entry.platform::before{background:var(--ce-purple);box-shadow:0 0 12px var(--ce-purple)}
+.entry:hover{border-color:rgba(231,183,108,.32);transform:translateX(4px)}
+.entry .e-date{font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--ce-muted);
+  letter-spacing:.04em;padding-top:3px}
+.entry .e-body h3{font-size:15.5px;font-weight:700;margin-bottom:8px;letter-spacing:-.005em;
+  display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.entry .e-scope{color:#c4cdde;font-size:13.5px;line-height:1.55}
+.entry .e-scope a{color:var(--ce-cyan);text-decoration:none;border-bottom:1px solid rgba(114,229,255,.3)}
+.entry .e-scope a:hover{color:var(--ce-gold);border-bottom-color:var(--ce-gold)}
+.entry .e-delta{text-align:right;font-family:'IBM Plex Mono',monospace;font-size:11px;
+  letter-spacing:.04em;line-height:1.55;flex-shrink:0;min-width:130px}
+.entry .e-delta .green{color:var(--ce-green);display:block}
+.entry .e-delta .gold{color:var(--ce-gold);display:block}
+.phase-tag{display:inline-block;padding:2px 8px;background:rgba(231,183,108,.1);color:var(--ce-gold);
+  border:1px solid rgba(231,183,108,.32);border-radius:4px;font-family:'IBM Plex Mono',monospace;
+  font-size:10.5px;font-weight:700;letter-spacing:.04em}
+.entry.major .phase-tag{background:rgba(114,229,255,.1);color:var(--ce-cyan);border-color:rgba(114,229,255,.32)}
+.entry.platform .phase-tag{background:rgba(167,139,250,.1);color:var(--ce-purple);border-color:rgba(167,139,250,.32)}
+
+.upcoming{position:relative;padding:18px 22px 18px 18px;background:rgba(12,16,24,.4);
+  border:1px dashed var(--ce-border);border-radius:10px;display:flex;gap:14px;align-items:flex-start;
+  margin-bottom:14px}
+.upcoming::before{content:'';position:absolute;left:-30px;top:24px;width:10px;height:10px;border-radius:50%;
+  background:transparent;border:2px solid var(--ce-muted);box-sizing:border-box}
+.upcoming h3{color:var(--ce-text);font-weight:700}
+.upcoming .e-scope{color:var(--ce-muted);font-size:13.5px;line-height:1.55;margin-top:4px}
+
+@media(max-width:680px){
+  .entry{grid-template-columns:1fr;gap:8px}
+  .entry .e-delta{text-align:left;min-width:auto}
+}
+</style>
+</head>
+<body>
+
+<div class="ce-field" aria-hidden="true">
+  <div class="ce-field-orb a"></div><div class="ce-field-orb b"></div><div class="ce-field-orb c"></div>
+  <div class="ce-scanline"></div><div class="ce-scanline" style="animation-delay:-3s;opacity:.3"></div>
+  <div class="ce-vignette"></div>
+</div>
+<canvas id="ce-particles" aria-hidden="true"></canvas>
+
+<nav class="ce-nav">
+  <a href="https://catalystedge.agency/" class="ce-brand">
+    <span class="ce-brand-mark"></span>
+    <span class="ce-brand-text">CATALYST · CHANGELOG</span>
+  </a>
+  <a href="/scanner/">Scanner</a>
+  <a href="/short-scanner/">📉 Short</a>
+  <a href="/methodology/">Methodology</a>
+  <a href="/data/api/">API</a>
+  <a href="/trust/">Trust</a>
+  <a href="/enterprise/">Enterprise</a>
+  <a class="ce-cta-nav" href="/scanner/">Open Scanner →</a>
+</nav>
+
+<section class="ce-hero">
+  <div class="ce-eyebrow cyan"><span class="ce-dot"></span>Public ship log · always free · always current</div>
+  <h1 class="ce-h1">We ship <span class="ce-accent">daily</span>.<br>Bloomberg ships quarterly.</h1>
+  <p class="ce-lede">Every phase from foundation (H.1) to the latest deploy (I.13). Date, scope, ticker count delta —
+  all public, all auditable. <strong>We'll never paywall the changelog.</strong></p>
+
+  <div class="stats-row" style="max-width:1100px;margin:40px auto 0">
+    <div class="ce-stat"><div class="ce-stat-k">Phases</div><div class="ce-stat-v">17</div><div class="ce-stat-sub">shipped to date</div></div>
+    <div class="ce-stat"><div class="ce-stat-k">API</div><div class="ce-stat-v">22</div><div class="ce-stat-sub">live endpoints</div></div>
+    <div class="ce-stat"><div class="ce-stat-k">Tickers</div><div class="ce-stat-v">443</div><div class="ce-stat-sub">tracked</div></div>
+    <div class="ce-stat"><div class="ce-stat-k">Coverage</div><div class="ce-stat-v">43</div><div class="ce-stat-sub">countries / 6 continents</div></div>
+    <div class="ce-stat"><div class="ce-stat-k">Catalyst</div><div class="ce-stat-v">12</div><div class="ce-stat-sub">country feeds</div></div>
+    <div class="ce-stat"><div class="ce-stat-k">Pages</div><div class="ce-stat-v">152</div><div class="ce-stat-sub">universal admin bypass</div></div>
+  </div>
+</section>
+
+<section class="ce-section">
+  <div class="ce-chapter">
+    <div class="ce-chapter-num">CHAPTER 01</div>
+    <h2 class="ce-h2">Release <span class="ce-accent">cadence</span> — us vs them.</h2>
+  </div>
+  <div class="compare-banner">
+    <div class="cb-side bbg">
+      <h3>📺 Bloomberg release cycle</h3>
+      <div class="cb-stat">~4 / year</div>
+      <div class="cb-detail">Quarterly major releases. Feature requests sit in product backlog for 6-12 months.
+      Public changelog buried inside terminal help docs.</div>
+    </div>
+    <div class="cb-side us">
+      <h3>⚡ Catalyst Edge release cycle</h3>
+      <div class="cb-stat">17 phases / 30 days</div>
+      <div class="cb-detail">Every 2 hours the autonomous loop ships fresh data. Every wakeup deploys a new phase.
+      Public changelog at <code class="ce-code">/changelog/</code>.</div>
+    </div>
+  </div>
+</section>
+
+<section class="ce-section">
+  <div class="ce-chapter">
+    <div class="ce-chapter-num">CHAPTER 02</div>
+    <h2 class="ce-h2">Recent <span class="ce-accent">shipping log</span>.</h2>
+  </div>
+  <p style="color:#c4cdde;font-size:15px;line-height:1.6;max-width:680px;margin-bottom:24px">
+    Newest first. Each entry: date · phase tag · scope · key delta.
+  </p>
+
+  <div class="timeline">
+
+    <div class="entry major">
+      <div class="e-date">2026-04-25</div>
+      <div class="e-body">
+        <h3><span class="phase-tag">I.13</span> Developer Quickstart</h3>
+        <div class="e-scope">"Zero to first DCF query in 60 seconds" — six copy-paste steps (Python, Node, R, curl, jq) hitting public endpoints, with copy-buttons, expected outputs, time estimates. Live at <a href="/docs/quickstart/">/docs/quickstart/</a>.</div>
+      </div>
+      <div class="e-delta"><span class="green">+6 onboarding steps</span><span class="gold">+ Pro upsell</span></div>
+    </div>
+
+    <div class="entry major">
+      <div class="e-date">2026-04-25</div>
+      <div class="e-body">
+        <h3><span class="phase-tag">I.12</span> Enterprise landing page</h3>
+        <div class="e-scope">Hedge fund / prop desk pitch with $499/seat tier, 8 enterprise features (custom universe, webhooks, white-label, SLA, Python SDK), 4 pricing tiers, contact form. ROI math vs Bloomberg: $240K → $59,880 for 10 seats.</div>
+      </div>
+      <div class="e-delta"><span class="green">+1 page</span><span class="gold">$499/seat tier</span></div>
+    </div>
+
+    <div class="entry major">
+      <div class="e-date">2026-04-25</div>
+      <div class="e-body">
+        <h3><span class="phase-tag">I.11</span> Pro-tier API documentation</h3>
+        <div class="e-scope">22 endpoints documented at <a href="/data/api/">/data/api/</a> with curl + Python + Node + R + Bash code samples. 4 rate-limit tiers (Free 100/day, Reader 1k/day, Pro 10k/day, Enterprise unlimited). Pro-gated via /lib/tier.js.</div>
+      </div>
+      <div class="e-delta"><span class="green">+22 endpoints</span><span class="gold">5 code samples each</span></div>
+    </div>
+
+    <div class="entry major">
+      <div class="e-date">2026-04-25</div>
+      <div class="e-body">
+        <h3><span class="phase-tag">I.10</span> Pro-tier alerts page</h3>
+        <div class="e-scope">Live alert engine at <a href="/alerts/">/alerts/</a> with 6 categories: multi-scanner overlap, cross-border STRONG, DCF A-grade gap-up, sector rotation, macro regime shifts, cascade events. Free shows 3 blurred; Pro unlocks all + Telegram delivery.</div>
+      </div>
+      <div class="e-delta"><span class="green">+6 alert categories</span><span class="gold">+ Telegram pitch</span></div>
+    </div>
+
+    <div class="entry">
+      <div class="e-date">2026-04-25</div>
+      <div class="e-body">
+        <h3><span class="phase-tag">I.9</span> Global Heatmap + Winners Hall</h3>
+        <div class="e-scope">Continent → country → sector → ticker drill-down at /international/ + dedicated <a href="/international/winners/">/international/winners/</a> page with composite-scored cards (gap × scanner-count × DCF). Liquid-fill heatmap + pulse-glow on hot tiles.</div>
+      </div>
+      <div class="e-delta"><span class="green">+6 continents</span>+1 winners page</div>
+    </div>
+
+    <div class="entry">
+      <div class="e-date">2026-04-25</div>
+      <div class="e-body">
+        <h3><span class="phase-tag">I.8</span> Global Catalyst Tape</h3>
+        <div class="e-scope">600+ aggregated rows merged from 12 country feeds into one chronological wall on /international/. Filter chips by country and kind, load-more pagination, click-through to source URL.</div>
+      </div>
+      <div class="e-delta"><span class="green">+12 sources merged</span>1,500+ headlines/day</div>
+    </div>
+
+    <div class="entry">
+      <div class="e-date">2026-04-25</div>
+      <div class="e-body">
+        <h3><span class="phase-tag">I.7</span> SGX + TWSE catalyst feeds</h3>
+        <div class="e-scope">Singapore SGX (DBS, UOB, OCBC, ST Engineering — 92 headlines) + Taiwan TWSE (TSMC, Hon Hai, MediaTek — 53 headlines, 15 tagged semi_ai).</div>
+      </div>
+      <div class="e-delta"><span class="green">+2 country feeds</span>+145 headlines</div>
+    </div>
+
+    <div class="entry">
+      <div class="e-date">2026-04-25</div>
+      <div class="e-body">
+        <h3><span class="phase-tag">I.6</span> NSE + BMV catalyst feeds</h3>
+        <div class="e-scope">India NSE (Reliance, TCS, HDFC, Infosys — 192 headlines) + Mexico BMV (Walmex, América Móvil, Banorte — 83 headlines). Comprehensive live audit: 436 tickers / 43 countries / 277 DCF-scored.</div>
+      </div>
+      <div class="e-delta"><span class="green">+2 country feeds</span>+275 headlines</div>
+    </div>
+
+    <div class="entry">
+      <div class="e-date">2026-04-25</div>
+      <div class="e-body">
+        <h3><span class="phase-tag">I.5</span> Cross-asset macro + BaFin</h3>
+        <div class="e-scope">Yield curve (10Y/3M), DXY, Oil/Gold, VIX, Crude/NatGas regime detection with trade readthrough on /international/. Plus Germany BaFin equivalent (DAX names — 152 headlines, 34 ev_tech tagged).</div>
+      </div>
+      <div class="e-delta"><span class="green">+5 macro signals</span>+1 country feed</div>
+    </div>
+
+    <div class="entry">
+      <div class="e-date">2026-04-25</div>
+      <div class="e-body">
+        <h3><span class="phase-tag">I.4</span> Universe expansion</h3>
+        <div class="e-scope">Added Saudi (Aramco), UAE (Emaar, ADCB), Qatar, Egypt (CIB), Vietnam (Vingroup, Vinhomes), Hungary (OTP, MOL), Russia (Sberbank, Gazprom), plus 25 frontier ADRs. Continent-coverage gap closed.</div>
+      </div>
+      <div class="e-delta"><span class="green">+22 tickers</span><span class="gold">+5 countries (38→43)</span></div>
+    </div>
+
+    <div class="entry">
+      <div class="e-date">2026-04-25</div>
+      <div class="e-body">
+        <h3><span class="phase-tag">I.3</span> Visual brand polish</h3>
+        <div class="e-scope">Animated digit reels on every gap_pct + upside_pct cell. Liquid-fill sector heatmap. Pulse-glow on top-3 explosive tiles. Card hover lift + cyan accent. Brass-bordered nav + IBM Plex Mono labels.</div>
+      </div>
+      <div class="e-delta"><span class="green">+5 @keyframes</span>+2 lib files</div>
+    </div>
+
+    <div class="entry">
+      <div class="e-date">2026-04-25</div>
+      <div class="e-body">
+        <h3><span class="phase-tag">I.2</span> Asymmetric Edge Insights</h3>
+        <div class="e-scope">build_intl_edge.py spoke detecting (a) names firing in 3+ scanners simultaneously, (b) sector rotation events, (c) volume-vs-price asymmetry, (d) BTC ETF + miner divergence.</div>
+      </div>
+      <div class="e-delta"><span class="green">+1 spoke</span>18 multi-scanner names</div>
+    </div>
+
+    <div class="entry platform">
+      <div class="e-date">2026-04-25</div>
+      <div class="e-body">
+        <h3><span class="phase-tag">I.1</span> Cerebro HUD audit</h3>
+        <div class="e-scope">Velocity-shock z-index 255→60 (no longer blocks command/search). Each event card now clickable with onSelectTicker. New ✕ hide dismiss button. Admin token bypass restored at HUD shell.</div>
+      </div>
+      <div class="e-delta"><span class="green">3 HUD bugs fixed</span>+ admin bypass</div>
+    </div>
+
+    <div class="entry major">
+      <div class="e-date">2026-04-25</div>
+      <div class="e-body">
+        <h3><span class="phase-tag">H.4</span> Per-country catalyst feeds</h3>
+        <div class="e-scope">Real "8-K equivalent" feeds for Australia (ASX, 82 filings, 12 price-sensitive), UK (RNS, 240), Hong Kong (HKEX, 151), Japan (TDnet, 175), Brazil (CVM, 102), South Korea (KIND, 118 — 39 ev_ai_tech), plus Africa multi-country (72).</div>
+      </div>
+      <div class="e-delta"><span class="green">+7 country feeds</span>+940 headlines/day</div>
+    </div>
+
+    <div class="entry major">
+      <div class="e-date">2026-04-25</div>
+      <div class="e-body">
+        <h3><span class="phase-tag">H.3</span> International DCF</h3>
+        <div class="e-scope">Two-stage Damodaran DCF for 414 international equities via yfinance. FCF = OCF − |CapEx| 3yr avg, 5yr stage-1 at clamped revenue CAGR, Gordon terminal at 9% WACC / 2.5% growth, equity bridge. Live at <a href="/dcf/international/">/dcf/international/</a>.</div>
+      </div>
+      <div class="e-delta"><span class="green">+1 page</span>29 A-grade names</div>
+    </div>
+
+    <div class="entry major">
+      <div class="e-date">2026-04-25</div>
+      <div class="e-body">
+        <h3><span class="phase-tag">H.2</span> Scanner-clone UX</h3>
+        <div class="e-scope">/international/ rebuilt as a full scanner with hero stats, suite cards, market filter chips, top gainers/losers, sympathy chains, regional sector heatmap, cross-border embed, country leaderboard, paywall structure. Sortable column headers. Edge Insights panel.</div>
+      </div>
+      <div class="e-delta"><span class="green">+1 full scanner page</span></div>
+    </div>
+
+    <div class="entry major">
+      <div class="e-date">2026-04-25</div>
+      <div class="e-body">
+        <h3><span class="phase-tag">H.1</span> Universe foundation</h3>
+        <div class="e-scope">entity_master_intl.csv (65 ticker seed with country + ISO + currency + GICS sector + listing_type), reusable /lib/intl.js, /lib/market_filter.js. Plus full international plan doc.</div>
+      </div>
+      <div class="e-delta"><span class="green">3 lib files</span>+1 entity master</div>
+    </div>
+
+  </div>
+</section>
+
+<div class="ce-pull-quote">
+  17 phases. 30 days. <em>One operator. Public log.</em>
+</div>
+
+<section class="ce-section">
+  <div class="ce-chapter">
+    <div class="ce-chapter-num">CHAPTER 03</div>
+    <h2 class="ce-h2">What's <span class="ce-accent">next</span>.</h2>
+  </div>
+  <p style="color:#c4cdde;font-size:15px;line-height:1.6;max-width:680px;margin-bottom:20px">
+    Queued in the autonomous loop. Wakeups fire every 10 minutes; each ships, deploys, validates, and chains the next.
+  </p>
+  <div class="timeline">
+    <div class="upcoming">
+      <span class="phase-tag">I.14</span>
+      <div>
+        <h3 style="font-size:15.5px;margin-bottom:4px">📜 Public Changelog (this page)</h3>
+        <div class="e-scope">You're looking at it.</div>
+      </div>
+    </div>
+    <div class="upcoming">
+      <span class="phase-tag">I.15</span>
+      <div>
+        <h3 style="font-size:15.5px;margin-bottom:4px">💰 Pricing page upgrade + ROI calculator</h3>
+        <div class="e-scope">Clean comparison table (Free / Reader $9 / Pro $39 / Team $199 / Enterprise $499+) with Stripe checkout buttons, FAQ, and "Bloomberg vs you" ROI calculator.</div>
+      </div>
+    </div>
+    <div class="upcoming">
+      <span class="phase-tag">I.16+</span>
+      <div>
+        <h3 style="font-size:15.5px;margin-bottom:4px">🔁 Continuous loop</h3>
+        <div class="e-scope">Every wakeup ships another phase. Suggestions: SDK packaging (PyPI + npm), webhook delivery system, backtesting framework, options flow integration, mobile-app-style PWA wrapper.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ce-finale">
+  <h2 class="ce-h2">Public changelog. Always free.<br><span class="ce-accent">Always current.</span></h2>
+  <p>We'll never charge for transparency. The audit log is the product.</p>
+  <div style="display:inline-flex;gap:14px;flex-wrap:wrap;justify-content:center">
+    <a class="ce-btn ce-btn-primary" href="/scanner/">Open the Scanner <span class="ce-arrow">→</span></a>
+    <a class="ce-btn ce-btn-ghost" href="/data/api/">View API Docs <span class="ce-arrow">→</span></a>
+  </div>
+  <div class="ce-finale-sub">17 phases shipped · 22 endpoints live · public log · cancel any time</div>
+</section>
+
+<footer class="ce-footer">
+  <div class="ce-links">
+    <a href="https://catalystedge.agency/">Home</a>
+    <a href="/scanner/">Long Scanner</a>
+    <a href="/short-scanner/">Short Scanner</a>
+    <a href="/methodology/">Methodology</a>
+    <a href="/data/api/">API Docs</a>
+    <a href="/trust/">Trust Ledger</a>
+    <a href="/enterprise/">Enterprise</a>
+    <a href="/pricing/">Pricing</a>
+  </div>
+  <div class="ce-copy">
+    Public ship log · always free · always current · we'll never charge for transparency.
+    <br>© 2026 Catalyst Edge · catalystedgescanner.com
+  </div>
+</footer>
+
+<script src="/lib/cinematic.js"></script>
+</body>
+</html>

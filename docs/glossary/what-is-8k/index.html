@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>What is an 8-K Filing? SEC Catalyst Trading Guide | Catalyst Edge</title>
+<meta name="description" content="Learn what SEC 8-K filings are, why traders watch them for catalyst plays, and how Catalyst Edge scans 300+ filings daily to surface gap-up setups before the market opens.">
+<link rel="canonical" href="https://catalystedgescanner.com/glossary/what-is-8k/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is an 8-K filing?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "An 8-K is a form filed with the SEC to announce major unscheduled events at a public company. These events include earnings surprises, mergers, acquisitions, executive departures, bankruptcy filings, and other material changes that shareholders need to know about immediately."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why do traders care about 8-K filings?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "8-K filings disclose material events that frequently cause large price moves (gaps). Traders who spot these filings early — before the news hits mainstream financial media — can position ahead of the crowd and capture the initial momentum."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How quickly are 8-K filings published on EDGAR?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Companies must file an 8-K within four business days of the triggering event. Most filings appear on EDGAR within minutes of submission, often during after-hours or pre-market windows when retail traders are not watching."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does Catalyst Edge scan 8-K filings automatically?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Catalyst Edge monitors EDGAR RSS feeds continuously, parsing new 8-K filings for material event items, scoring them by catalyst potential, and firing alerts to subscribers before 4 AM ET — hours before most traders check the news."
+      }
+    }
+  ]
+}
+</script>
+<style>
+:root {
+  --bg: #05060b;
+  --surface: #0c1018;
+  --surface2: #12161f;
+  --surface3: #181d28;
+  --border: rgba(114,229,255,0.12);
+  --border-accent: rgba(215,180,106,0.22);
+  --text: #e8edf4;
+  --muted: #7a8899;
+  --cyan: #72e5ff;
+  --gold: #e7b76c;
+  --green: #10b981;
+  --red: #f43f5e;
+  --purple: #a78bfa;
+  --blue: #38bdf8;
+  --navy: #07111a;
+}
+* { box-sizing: border-box; margin: 0; padding: 0 }
+html { scroll-behavior: smooth }
+body {
+  font-family: 'Space Grotesk', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(114,229,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(114,229,255,0.025) 1px, transparent 1px);
+  background-size: 56px 56px;
+  opacity: 0.3;
+}
+.wrap { max-width: 800px; margin: 0 auto; padding: 0 24px }
+a { color: var(--cyan); text-decoration: none }
+a:hover { text-decoration: underline }
+
+/* ── NAV ── */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--border);
+}
+.nav-brand {
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 2px;
+  color: var(--gold);
+}
+.nav-links { display: flex; gap: 28px; }
+.nav-links a {
+  font-size: 13px;
+  color: var(--muted);
+  letter-spacing: 0.5px;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--text); text-decoration: none }
+
+/* ── HERO ── */
+.hero {
+  padding: 72px 0 24px;
+  text-align: center;
+}
+.hero-badge {
+  display: inline-block;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--cyan);
+  border: 1px solid rgba(114,229,255,0.2);
+  padding: 6px 16px;
+  border-radius: 20px;
+  margin-bottom: 24px;
+}
+.hero h1 {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -1px;
+  margin-bottom: 16px;
+}
+.hero h1 span { color: var(--gold) }
+.hero p {
+  color: var(--muted);
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* ── ARTICLE ── */
+.article {
+  padding: 48px 0;
+}
+.article h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 40px 0 16px;
+  letter-spacing: -0.5px;
+}
+.article h2:first-child { margin-top: 0 }
+.article h2 span { color: var(--cyan) }
+.article h3 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin: 28px 0 12px;
+  color: var(--gold);
+}
+.article p {
+  color: var(--muted);
+  font-size: 15px;
+  margin-bottom: 16px;
+  line-height: 1.75;
+}
+.article ul, .article ol {
+  color: var(--muted);
+  font-size: 15px;
+  margin: 0 0 16px 20px;
+  line-height: 1.75;
+}
+.article li { margin-bottom: 6px }
+.article strong { color: var(--text); font-weight: 600 }
+
+/* ── CALLOUT BOX ── */
+.callout {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--gold);
+  border-radius: 8px;
+  padding: 20px 24px;
+  margin: 24px 0;
+}
+.callout p { margin-bottom: 0 }
+.callout .label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+
+/* ── ITEM GRID ── */
+.item-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 20px 0 24px;
+}
+@media (max-width: 560px) { .item-grid { grid-template-columns: 1fr } }
+.item-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 18px 20px;
+}
+.item-card .tag {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin-bottom: 6px;
+}
+.item-card p {
+  font-size: 13px;
+  margin-bottom: 0;
+}
+
+/* ── CTA SECTION ── */
+.cta-section {
+  text-align: center;
+  padding: 48px 0;
+  border-top: 1px solid var(--border);
+}
+.cta-section h2 {
+  font-size: 1.6rem;
+  margin-bottom: 12px;
+}
+.cta-section p {
+  color: var(--muted);
+  font-size: 14px;
+  max-width: 500px;
+  margin: 0 auto 24px;
+}
+.cta-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.cta-btn {
+  display: inline-block;
+  text-align: center;
+  padding: 14px 36px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  transition: all 0.2s;
+  text-decoration: none;
+  cursor: pointer;
+}
+.cta-btn.cyan-fill {
+  background: linear-gradient(135deg, var(--cyan), #38a0d0);
+  color: var(--bg);
+  border: none;
+}
+.cta-btn.cyan-fill:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px rgba(114,229,255,0.3);
+  text-decoration: none;
+}
+.cta-btn.outline {
+  border: 1px solid var(--border);
+  color: var(--text);
+  background: transparent;
+}
+.cta-btn.outline:hover {
+  border-color: var(--cyan);
+  background: rgba(114,229,255,0.05);
+  text-decoration: none;
+}
+.cta-btn.filled {
+  background: linear-gradient(135deg, var(--gold), #c9923b);
+  color: var(--bg);
+  border: none;
+}
+.cta-btn.filled:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px rgba(215,180,106,0.3);
+  text-decoration: none;
+}
+
+/* ── TIP JAR ── */
+.tip-section {
+  text-align: center;
+  padding: 48px 0;
+  border-top: 1px solid var(--border);
+}
+.tip-section h3 {
+  font-size: 1.3rem;
+  margin-bottom: 12px;
+}
+.tip-section p {
+  color: var(--muted);
+  font-size: 14px;
+  max-width: 500px;
+  margin: 0 auto 20px;
+}
+.tip-btn {
+  display: inline-block;
+  padding: 12px 32px;
+  border: 1px solid var(--border-accent);
+  border-radius: 8px;
+  color: var(--gold);
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+.tip-btn:hover {
+  background: rgba(215,180,106,0.08);
+  border-color: var(--gold);
+  text-decoration: none;
+}
+
+/* ── FOOTER ── */
+.footer {
+  text-align: center;
+  padding: 40px 0;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 12px;
+}
+.footer a { color: var(--cyan) }
+.footer-links { margin-bottom: 8px }
+.footer-links a { margin: 0 12px }
+</style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@800;900&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/lib/cinematic-hero.css">
+  <link rel="stylesheet" href="/lib/cyber-shell.css">
+  <link rel="stylesheet" href="/lib/polish-tokens.css">
+</head>
+<body>
+  <div class="cy-bg" aria-hidden="true"></div>
+  <div class="cy-floor" aria-hidden="true"></div>
+  <div class="cy-vignette" aria-hidden="true"></div>
+  <div class="cy-scan" aria-hidden="true"></div>
+<div class="wrap">
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="/" class="nav-brand">CATALYST EDGE</a>
+  <div class="nav-links">
+    <a href="/scanner/">Scanner</a>
+    <a href="/cerebro/">Cerebro</a>
+    <a href="/cerebro/app/">HUD</a>
+    <a href="/pricing/">Pricing</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="cin-hero cy-neon-hero cy-narrow cy-shimmer">
+    <div class="cin-grid">
+      <div class="cin-stat-stack">
+        <div class="cin-eyebrow"><span class="cin-live-dot"></span>8-K · MATERIAL EVENT</div>
+        <div class="cin-colossal">
+          <div class="cin-num-row"><span class="cin-num">8-K</span></div>
+          <div class="cin-side">
+          <span class="cin-tag"><b>4-day</b> filing window</span>
+          <span class="cin-tag">material events</span>
+          <span class="cin-tag">gap-up trigger</span>
+          </div>
+        </div>
+        <div class="cin-stamp">GLOSSARY · WHAT IS AN 8-K FILING? · v1.0 · <b>LIVE</b></div>
+      </div>
+      <div class="cin-h1-block">
+        <div class="cin-h1-eyebrow">📚 What is an 8-K Filing?</div>
+        <h1 class="cin-headline"><em>Material events</em>—the <span class="cin-accent">current report that moves stocks</span>.</h1>
+        <p class="cin-lede">An 8-K is the SEC's current-report form for unscheduled material events: earnings surprises, M&A, executive changes, bankruptcy. Traders watch them because the price reaction is usually immediate.</p>
+        <div class="cin-cta-row">
+          <a href="#article-body" class="cin-btn-primary">Read article ↓</a>
+          <a href="/glossary/" class="cin-btn-ghost">Glossary index</a>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+<!-- ARTICLE -->
+<article class="article">
+
+  <h2>The <span>8-K</span> in Plain English</h2>
+
+  <p>An 8-K is a form that publicly traded companies file with the Securities and Exchange Commission whenever something <strong>big and unexpected</strong> happens. Think of it as a company's obligation to tell investors: "Hey, something material just changed."</p>
+
+  <p>Unlike the 10-K (annual report) or 10-Q (quarterly report) which follow a predictable schedule, 8-K filings are <strong>event-driven</strong>. A company files one within four business days of a material event. That urgency is exactly what makes them valuable to traders.</p>
+
+  <p>The SEC requires 8-K disclosure for events that a reasonable investor would consider important when making a buy or sell decision. That's the legal bar &mdash; and in practice, it covers everything from billion-dollar mergers to executive firings.</p>
+
+  <h2>What Triggers an <span>8-K?</span></h2>
+
+  <p>The SEC organizes 8-K events into numbered "items." Not all items are created equal. Some are routine. Others are the kind that send a stock gapping 15% at the open. Here are the ones that matter most to catalyst traders:</p>
+
+  <div class="item-grid">
+    <div class="item-card">
+      <div class="tag">ITEM 1.01</div>
+      <p><strong>Entry into a Material Agreement.</strong> New partnerships, licensing deals, or contracts that change the revenue picture. Biotech companies file these when they land pharma partnerships worth hundreds of millions.</p>
+    </div>
+    <div class="item-card">
+      <div class="tag">ITEM 2.01</div>
+      <p><strong>Completion of Acquisition or Disposition.</strong> The company just bought or sold a major asset. This is the M&A signal &mdash; confirmed, not rumored.</p>
+    </div>
+    <div class="item-card">
+      <div class="tag">ITEM 2.02</div>
+      <p><strong>Results of Operations (Earnings).</strong> Preliminary earnings or revenue figures released outside the normal quarterly cycle. Earnings surprises filed here can move a stock before the scheduled call.</p>
+    </div>
+    <div class="item-card">
+      <div class="tag">ITEM 5.02</div>
+      <p><strong>Departure/Appointment of Officers.</strong> CEO steps down. New CFO appointed. Leadership changes signal strategic pivots &mdash; or internal turmoil.</p>
+    </div>
+  </div>
+
+  <p>Other significant items include <strong>Item 1.02</strong> (termination of material agreements), <strong>Item 2.04</strong> (triggering events related to accelerating obligations), and <strong>Item 8.01</strong> (other events the company considers important enough to disclose). Each of these can represent a tradeable catalyst depending on the company's situation.</p>
+
+  <h2>Why Traders <span>Obsess</span> Over 8-Ks</h2>
+
+  <p>The edge is simple: <strong>8-K filings hit EDGAR before they hit the news.</strong> A company files an 8-K at 4:30 PM. Bloomberg picks it up at 4:45 PM. CNBC mentions it at 5:15 PM. By 9:30 AM the next morning, the stock has already gapped. Traders who scanned the filing at 4:31 PM had a 17-hour head start.</p>
+
+  <p>That window is everything. Catalyst traders use 8-Ks to:</p>
+
+  <ul>
+    <li><strong>Identify gap-up candidates</strong> &mdash; material agreements and earnings surprises filed after hours are the number one source of next-day gaps</li>
+    <li><strong>Confirm insider conviction</strong> &mdash; when an 8-K lands alongside a cluster of Form 4 insider buys, the convergence signal is powerful</li>
+    <li><strong>Spot short squeeze fuel</strong> &mdash; a positive 8-K on a heavily shorted stock can trigger a cascade of forced covering</li>
+    <li><strong>Filter out noise</strong> &mdash; not every 8-K matters. Knowing which items to watch and which to ignore separates signal from noise</li>
+  </ul>
+
+  <div class="callout">
+    <div class="label">REAL EXAMPLE</div>
+    <p>A biotech company files an 8-K at 5:12 PM announcing a material definitive agreement with a major pharma partner (Item 1.01). The stock closed at $3.40. By the next morning's open, it's trading at $5.80 &mdash; a <strong>70% gap</strong>. Traders scanning EDGAR in real time caught the filing before a single headline was published.</p>
+  </div>
+
+  <h2>How <span>Catalyst Edge</span> Scans 8-Ks Automatically</h2>
+
+  <p>Manually refreshing EDGAR at midnight is not a strategy. Catalyst Edge automates the entire pipeline:</p>
+
+  <ol>
+    <li><strong>Continuous EDGAR monitoring.</strong> Our scanner polls SEC RSS feeds around the clock, pulling new 8-K filings within minutes of publication.</li>
+    <li><strong>Item-level parsing.</strong> We don't just detect that an 8-K was filed &mdash; we parse the specific items (1.01, 2.02, 5.02, etc.) and weight them by historical catalyst impact.</li>
+    <li><strong>Catalyst scoring.</strong> Each filing gets a composite score based on item type, company float, short interest, recent insider activity, and sector momentum. High-scoring catalysts surface to the top.</li>
+    <li><strong>Pre-market delivery.</strong> Scored picks land in your inbox before 4 AM ET. You see the catalyst, the score, and the setup &mdash; hours before the market opens.</li>
+    <li><strong>Convergence detection.</strong> When an 8-K filing aligns with insider buying (Form 4), unusual options flow, or elevated short interest, Catalyst Edge fires a convergence alert &mdash; the highest-conviction signal in the system.</li>
+  </ol>
+
+  <h3>What You Get in Every 8-K Alert</h3>
+
+  <p>Each Catalyst Edge alert for an 8-K filing includes the ticker, the specific 8-K item(s) filed, a plain-English summary of the event, the catalyst score, the current short interest and float data, any related Form 4 insider activity in the past 14 days, and a direct link to the filing on EDGAR. No jargon walls. No 40-page document to parse. Just the signal that matters.</p>
+
+  <h2>8-K vs. Other <span>SEC Forms</span></h2>
+
+  <p>Traders sometimes confuse the 8-K with other SEC filings. Here's the quick breakdown:</p>
+
+  <ul>
+    <li><strong>8-K vs. 10-K:</strong> The 10-K is the annual report &mdash; comprehensive but predictable. The 8-K is event-driven and urgent. Traders watch 8-Ks for surprises; they read 10-Ks for due diligence.</li>
+    <li><strong>8-K vs. 10-Q:</strong> The 10-Q is the quarterly report. Similar to the 10-K but filed every quarter. Expected, scheduled, and already priced in by the time it drops.</li>
+    <li><strong>8-K vs. Form 4:</strong> Form 4 tracks insider transactions (buying and selling by officers and directors). When insiders buy shares and the company also files a positive 8-K, the combination is a strong catalyst signal. <a href="/glossary/how-to-read-form-4/">Read our Form 4 guide</a>.</li>
+  </ul>
+
+</article>
+
+<!-- CTA -->
+<section class="cta-section">
+  <h2>Stop missing 8-K catalysts.</h2>
+  <p>Catalyst Edge scans 300+ SEC filings daily and delivers scored picks before 4 AM ET. Start free.</p>
+  <div class="cta-buttons">
+    <a href="https://catalystedge.agency" class="cta-btn cyan-fill">Subscribe Free</a>
+    <a href="/scanner/" class="cta-btn outline">Open Scanner</a>
+    <a href="/pricing/" class="cta-btn filled">See Pricing</a>
+  </div>
+</section>
+
+<!-- TIP JAR -->
+<section class="tip-section">
+  <h3>Love the free tools? Buy us a coffee.</h3>
+  <p>Catalyst Edge is indie-built. Every dollar goes directly to data feeds, servers, and making the scanner faster. No VC, no ads, just us building.</p>
+  <a href="https://ko-fi.com/catalystedge" class="tip-btn" target="_blank" rel="noopener">Support on Ko-fi</a>
+</section>
+
+<div style="max-width:800px;margin:2rem auto;padding:1.5rem;border-top:1px solid #1e293b">
+  <h3 style="font-size:1rem;color:#94a3b8;margin-bottom:0.75rem">Related Topics</h3>
+  <p style="font-size:0.9rem"><a href="/glossary/what-is-10k-filing/" style="color:#3b82f6;text-decoration:none">What is a 10-K Filing?</a> &middot; <a href="/glossary/what-is-form-4/" style="color:#3b82f6;text-decoration:none">What is Form 4?</a> &middot; <a href="/glossary/how-to-trade-earnings-season/" style="color:#3b82f6;text-decoration:none">Earnings Season Guide</a> &middot; <a href="/glossary/what-is-spac/" style="color:#3b82f6;text-decoration:none">What is a SPAC?</a> &middot; <a href="/glossary/what-is-insider-trading/" style="color:#3b82f6;text-decoration:none">What is Insider Trading?</a> &middot; <a href="/glossary/what-is-options-flow/" style="color:#3b82f6;text-decoration:none">What is Options Flow?</a></p>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="/scanner/">Scanner</a>
+    <a href="/cerebro/">Cerebro</a>
+    <a href="/cerebro/app/">HUD</a>
+    <a href="/pricing/">Pricing</a>
+    <a href="https://catalystedge.agency">Newsletter</a>
+    <a href="https://www.catalystedge.agency/">Catalyst AI</a>
+  </div>
+  <p>&copy; 2026 Catalyst Edge. Built indie. No VC. No ads. Just signal.</p>
+</footer>
+
+</div>
+</body>
+</html>

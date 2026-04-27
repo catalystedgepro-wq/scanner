@@ -1,0 +1,148 @@
+#!/usr/bin/env python3
+"""build_sec_late_filing.py - EDGAR Form 12b-25 late-filing notifications.
+
+Form 12b-25 (filed as NT 10-K, NT 10-Q, NT-NSAR, NT 20-F) is the
+notification that an issuer cannot file its annual/quarterly report
+on time. SEC rules require filing within one business day of the
+original due date; extra 15 days for 10-K, 5 days for 10-Q.
+
+Covered form types:
+- NT 10-K: late annual report (most distressed)
+- NT 10-Q: late quarterly report
+- NT-NSAR: late N-SAR (fund)
+- NT 20-F: late foreign private issuer annual
+
+Economic readthrough:
+- Late-filing is a near-certain precursor to one of:
+  (a) going concern / audit dispute
+  (b) restatement (see sec_restatements)
+  (c) material weakness disclosure
+  (d) delisting (NYSE 12 months grace, Nasdaq shorter)
+- Small caps with NT 10-K have historically outsized tail-risk
+- Watch clusters (same auditor across multiple NT filings) for
+  audit-firm-level events (PwC, EY withdrawals)
+
+Source: SEC EDGAR full-text search (efts.sec.gov) 30d.
+Output: sec_late_filing.csv
+"""
+from __future__ import annotations
+import csv
+import datetime as dt
+import json
+import re
+import urllib.parse
+import urllib.request
+from pathlib import Path
+
+ROOT = Path("/home/operator/.openclaw/workspace")
+OUT_CSV = ROOT / "sec_late_filing.csv"
+UA = "CatalystEdge/1.0 (opensource@example.com)"
+
+FORMS = ["NT 10-K", "NT 10-Q", "NT 20-F", "NT-NSAR",
+         "NT 10-K/A", "NT 10-Q/A"]
+
+
+def _fetch(d_from: str, d_to: str, form: str) -> dict:
+    qs = urllib.parse.urlencode({
+        "q": "",
+        "dateRange": "custom",
+        "startdt": d_from,
+        "enddt": d_to,
+        "forms": form,
+    })
+    url = f"https://efts.sec.gov/LATEST/search-index?{qs}"
+    req = urllib.request.Request(url, headers={"User-Agent": UA})
+    try:
+        with urllib.request.urlopen(req, timeout=30) as r:
+            return json.loads(r.read())
+    except Exception as e:
+        print(f"sec_late_filing: fetch {form} failed: {e}")
+        return {}
+
+
+def main() -> None:
+    now_iso = (dt.datetime.now(dt.timezone.utc)
+               .isoformat(timespec="seconds").replace("+00:00", "Z"))
+    today = dt.date.today()
+    d_from = (today - dt.timedelta(days=30)).isoformat()
+    d_to = today.isoformat()
+
+    rows: list[dict] = []
+    for form in FORMS:
+        j = _fetch(d_from, d_to, form)
+        hits = j.get("hits", {}).get("hits", [])
+        for h in hits[:120]:
+            src = h.get("_source", {})
+            ciks = src.get("ciks") or []
+            names = src.get("display_names") or []
+            filed = src.get("file_date", "")
+            actual_form = src.get("form", form)
+            adsh = src.get("adsh", "")
+            ticker = ""
+            issuer = ""
+            for n in names:
+                m = re.search(r"\(([A-Z\.\-]{1,6})\)", n)
+                if m and not ticker:
+                    ticker = m.group(1)
+                if not issuer:
+                    issuer = n.split("  (")[0][:60]
+            rows.append({
+                "filed": filed,
+                "form": actual_form,
+                "ticker": ticker,
+                "issuer": issuer,
+                "ciks": "|".join(ciks[:2])[:50],
+                "accession": adsh[:25],
+            })
+
+    if not rows:
+        if OUT_CSV.exists() and OUT_CSV.stat().st_size > 200:
+            print(f"sec_late_filing: 0 rows, keeping {OUT_CSV.name}")
+        return
+
+    seen = set()
+    dedup = []
+    for r in rows:
+        k = r["accession"]
+        if k and k in seen:
+            continue
+        seen.add(k)
+        dedup.append(r)
+    rows = dedup
+
+    for r in rows:
+        r["captured_at"] = now_iso
+    rows.sort(key=lambda r: r["filed"], reverse=True)
+
+    cluster: dict[str, int] = {}
+    for r in rows:
+        t = r["ticker"]
+        if t:
+            cluster[t] = cluster.get(t, 0) + 1
+    for r in rows:
+        r["cluster_count"] = cluster.get(r["ticker"], 0)
+
+    fieldnames = ["filed", "form", "ticker", "issuer", "ciks",
+                  "accession", "cluster_count", "captured_at"]
+    with OUT_CSV.open("w", newline="") as f:
+        w = csv.DictWriter(f, fieldnames=fieldnames)
+        w.writeheader()
+        w.writerows(rows)
+
+    by_form: dict[str, int] = {}
+    for r in rows:
+        by_form[r["form"]] = by_form.get(r["form"], 0) + 1
+    fb = " ".join(f"{k}={v}" for k, v
+                  in sorted(by_form.items(), key=lambda kv: -kv[1]))
+    with_t = sum(1 for r in rows if r["ticker"])
+    repeats = sorted(
+        [(t, c) for t, c in cluster.items() if c >= 2],
+        key=lambda x: -x[1],
+    )[:5]
+    rb = " ".join(f"{t}={c}x" for t, c in repeats) or "no-clusters"
+    print(f"sec_late_filing: {len(rows)} 30d ({with_t} tagged) | "
+          f"{fb} | repeat-distress: [{rb}] -> {OUT_CSV.name}")
+
+
+if __name__ == "__main__":
+    main()

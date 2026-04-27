@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Catalyst Map — Visual Ticker Heatmap | Catalyst Edge</title>
+<meta name="description" content="Visual heatmap of every scanned ticker. Color-coded by catalyst score, sized by signal count. See the full market landscape at a glance.">
+<meta property="og:title" content="Catalyst Map — Catalyst Edge">
+<link rel="canonical" href="https://catalystedgescanner.com/map/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#070a12;--surface:#0f1420;--surface2:#151c2c;--gold:#d4a843;--green:#22c55e;--red:#ef4444;--cyan:#06b6d4;--text:#e2e8f0;--dim:#94a3b8;--muted:#64748b;--border:#1e293b}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
+.wrap{max-width:1200px;margin:0 auto;padding:1.5rem}
+.nav{position:sticky;top:0;z-index:100;background:rgba(7,10,18,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:.75rem 1.5rem;display:flex;align-items:center;gap:1rem}
+.nav a{color:var(--gold);font-weight:600;font-size:.95rem}
+.nav .sep{color:var(--muted)}
+.hero{text-align:center;padding:1.5rem 0 1rem;border-bottom:1px solid var(--border);margin-bottom:1rem}
+.hero h1{font-size:clamp(1.3rem,3.5vw,1.8rem);font-weight:800;margin-bottom:.3rem}
+.hero h1 em{font-style:normal;color:var(--green)}
+.hero .sub{color:var(--dim);font-size:.8rem}
+.controls{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:center;margin:.75rem 0}
+.ctrl-btn{padding:4px 10px;border-radius:6px;border:1px solid var(--border);background:var(--surface);color:var(--dim);font-size:.68rem;font-weight:600;cursor:pointer;font-family:'Space Grotesk',sans-serif;transition:all .2s}
+.ctrl-btn.active{border-color:var(--green);color:var(--green);background:rgba(34,197,94,.06)}
+.ctrl-btn:hover{border-color:var(--gold)}
+.legend{display:flex;justify-content:center;gap:.3rem;margin:.5rem 0;align-items:center}
+.legend-item{display:flex;align-items:center;gap:.2rem;font-size:.55rem;color:var(--muted)}
+.legend-swatch{width:14px;height:10px;border-radius:2px}
+.stats-row{display:flex;justify-content:center;gap:1.5rem;margin:.5rem 0;flex-wrap:wrap}
+.sr-item{font-size:.7rem;color:var(--dim)}
+.sr-item strong{color:var(--gold);font-family:'IBM Plex Mono',monospace}
+.heatmap{display:flex;flex-wrap:wrap;gap:2px;margin:1rem 0;justify-content:center}
+.hm-cell{border-radius:4px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:transform .1s,box-shadow .15s;position:relative;overflow:hidden}
+.hm-cell:hover{transform:scale(1.15);z-index:5;box-shadow:0 4px 12px rgba(0,0,0,.5)}
+.hm-cell .hm-ticker{font-size:.55rem;font-weight:800;color:rgba(255,255,255,.85);text-shadow:0 1px 2px rgba(0,0,0,.6);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:0 2px}
+.hm-cell .hm-score{display:none;position:absolute;bottom:1px;right:2px;font-size:.4rem;font-family:'IBM Plex Mono',monospace;color:rgba(255,255,255,.5)}
+.hm-cell:hover .hm-score{display:block}
+.tooltip{position:fixed;background:var(--surface);border:1px solid var(--gold);border-radius:8px;padding:.6rem .8rem;font-size:.75rem;pointer-events:none;z-index:1000;display:none;max-width:220px}
+.tooltip .tt-ticker{font-size:1rem;font-weight:800;color:var(--gold)}
+.tooltip .tt-score{font-family:'IBM Plex Mono',monospace;font-weight:700}
+.tooltip .tt-signals{font-size:.65rem;color:var(--dim);margin-top:.2rem}
+.cta-bar{background:var(--surface);border:1px solid var(--gold);border-radius:10px;padding:1.25rem;text-align:center;margin:2rem 0}
+.cta-bar h3{color:var(--gold);font-size:1rem;margin-bottom:.3rem}
+.cta-bar p{color:var(--dim);font-size:.8rem;margin-bottom:.75rem}
+.cta-bar a{display:inline-block;padding:.5rem 1.4rem;background:linear-gradient(135deg,var(--gold),#f1ce88);color:#070a12;font-weight:700;border-radius:6px;font-size:.85rem}
+.footer{text-align:center;padding:1.5rem;font-size:.72rem;color:var(--muted);border-top:1px solid var(--border);margin-top:2rem}
+.footer a{color:var(--muted)}
+.loading{text-align:center;padding:3rem;color:var(--muted)}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Catalyst Edge Ticker Map","url":"https://catalystedgescanner.com/map/","description":"Visual heatmap of all scanned tickers colored by catalyst score","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@800;900&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/lib/cinematic-hero.css">
+  <link rel="stylesheet" href="/lib/cyber-shell.css">
+  <link rel="stylesheet" href="/lib/polish-tokens.css">
+</head>
+<body>
+  <div class="cy-bg" aria-hidden="true"></div>
+  <div class="cy-floor" aria-hidden="true"></div>
+  <div class="cy-vignette" aria-hidden="true"></div>
+  <div class="cy-scan" aria-hidden="true"></div>
+<div class="nav">
+  <a href="/">Catalyst Edge</a>
+  <span class="sep">/</span>
+  <span style="color:var(--dim);font-size:.9rem">Catalyst Map</span>
+</div>
+<div class="wrap">
+<section class="cin-hero cy-neon-hero cy-shimmer">
+    <div class="cin-grid">
+      <div class="cin-stat-stack">
+        <div class="cin-eyebrow"><span class="cin-live-dot"></span>CATALYST MAP · TREEMAP · LIVE</div>
+        <div class="cin-colossal">
+          <div class="cin-num-row"><span class="cin-num">∞</span></div>
+          <div class="cin-side">
+          <span class="cin-tag"><b>treemap</b> visualization</span>
+          <span class="cin-tag">cell size = signals</span>
+          <span class="cin-tag">color = score</span>
+          </div>
+        </div>
+        <div class="cin-stamp">MAP//VISUAL · v1.0 · <b>LIVE</b></div>
+      </div>
+      <div class="cin-h1-block">
+        <div class="cin-h1-eyebrow">🗺️ Catalyst Map · Every Ticker, Visualized</div>
+        <h1 class="cin-headline">Every name in the universe on <em>one canvas</em>—cell size by signals, color by <span class="cin-accent">catalyst score</span>.</h1>
+        <p class="cin-lede">A treemap-style overview of where the catalyst flow is concentrating across the entire scanner universe. Click a cell to drill into that ticker.</p>
+        <div class="cin-cta-row">
+          <a href="#map-canvas" class="cin-btn-primary">See map ↓</a>
+          <a href="/scanner/" class="cin-btn-ghost">List view</a>
+        </div>
+        <div class="cin-strip">
+          <div class="cin-cell"><div class="cin-k">Universe</div><div class="cin-v" id="mp-uni">–</div></div>
+          <div class="cin-cell"><div class="cin-k">Cells shown</div><div class="cin-v gold" id="mp-cells">–</div></div>
+          <div class="cin-cell"><div class="cin-k">Hot zones</div><div class="cin-v bull" id="mp-hot">–</div></div>
+          <div class="cin-cell"><div class="cin-k">Updated</div><div class="cin-v cyan">live</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="controls" id="controls"></div>
+  <div class="legend">
+    <div class="legend-item"><div class="legend-swatch" style="background:#1e3a5f"></div>Low</div>
+    <div class="legend-item"><div class="legend-swatch" style="background:#0e7490"></div>Med</div>
+    <div class="legend-item"><div class="legend-swatch" style="background:#d4a843"></div>High</div>
+    <div class="legend-item"><div class="legend-swatch" style="background:#22c55e"></div>Top</div>
+    <div class="legend-item"><div class="legend-swatch" style="background:#ef4444"></div>Elite</div>
+  </div>
+  <div class="stats-row" id="stats-row"></div>
+  <div id="heatmap" class="heatmap">
+    <div class="loading">Rendering map...</div>
+  </div>
+  <div class="tooltip" id="tooltip"></div>
+  <div class="cta-bar">
+    <h3>See the map update daily</h3>
+    <p>Free daily email at 4 AM ET with ranked picks, signal alerts, and the full catalyst universe.</p>
+    <a href="/preview/">Subscribe Free</a>
+  </div>
+</div>
+<div class="footer">
+  &copy; 2026 Catalyst Edge &middot;
+  <a href="/">Scanner</a> &middot;
+  <a href="/rankings/">Rankings</a> &middot;
+  <a href="/screener/">Screener</a> &middot;
+  <a href="/signals/">Signals</a> &middot;
+  <a href="/spotlight/">Spotlight</a> &middot;
+  <a href="/lookup/">Lookup</a> &middot;
+  <a href="/winners/">Winners</a> &middot;
+  <a href="/correlation/">Correlation</a> &middot;
+  <a href="/digest/">Digest</a> &middot;
+  <a href="/glossary/">Glossary</a> &middot;
+  Not financial advice.
+</div>
+<script>
+(function(){
+  var heatmap = document.getElementById('heatmap');
+  var tooltip = document.getElementById('tooltip');
+  var controls = document.getElementById('controls');
+  var statsRow = document.getElementById('stats-row');
+  var allTickers = [];
+  var currentFilter = 'all';
+
+  function el(tag, cls, text) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text) e.textContent = text;
+    return e;
+  }
+
+  function scoreColor(score) {
+    if (score >= 18) return '#ef4444';
+    if (score >= 14) return '#22c55e';
+    if (score >= 10) return '#d4a843';
+    if (score >= 6) return '#0e7490';
+    if (score >= 3) return '#1e3a5f';
+    return '#162032';
+  }
+
+  function cellSize(signals) {
+    var base = 38;
+    if (signals >= 5) return base + 20;
+    if (signals >= 3) return base + 10;
+    if (signals >= 2) return base + 4;
+    return base;
+  }
+
+  function renderMap(tickers) {
+    heatmap.textContent = '';
+
+    if (tickers.length === 0) {
+      heatmap.appendChild(el('div', 'loading', 'No tickers match this filter.'));
+      return;
+    }
+
+    tickers.forEach(function(t) {
+      var score = parseFloat(t.total_score || 0);
+      var sigs = parseInt(t.signal_count || 0);
+      var size = cellSize(sigs);
+
+      var cell = document.createElement('a');
+      cell.href = '/lookup/#' + t.ticker;
+      cell.className = 'hm-cell';
+      cell.style.width = size + 'px';
+      cell.style.height = size + 'px';
+      cell.style.background = scoreColor(score);
+
+      cell.appendChild(el('span', 'hm-ticker', t.ticker));
+      cell.appendChild(el('span', 'hm-score', String(score)));
+
+      cell.addEventListener('mouseenter', function(e) {
+        tooltip.style.display = 'block';
+        tooltip.textContent = '';
+        tooltip.appendChild(el('div', 'tt-ticker', t.ticker));
+        var sc = el('div', 'tt-score', 'Score: ' + score + ' | Signals: ' + sigs);
+        sc.style.color = score >= 14 ? 'var(--green)' : 'var(--gold)';
+        tooltip.appendChild(sc);
+
+        // API returns t.signals as array — no is_X booleans. Build a fast-lookup set.
+        var sset = {}; (t.signals||[]).forEach(function(s){ sset[s]=true; });
+        var sigList = [];
+        if (sset.ranking) sigList.push('Ranked');
+        if (sset.squeeze) sigList.push('Squeeze');
+        if (sset.insider) sigList.push('Insider');
+        if (sset.deepvalue) sigList.push('Value');
+        if (sset.darkpool) sigList.push('DarkPool');
+        if (sset.convergence) sigList.push('Conv');
+        if (sset.smart_money) sigList.push('SmartMoney');
+        if (sset.merger) sigList.push('Merger');
+        if (sigList.length > 0) {
+          tooltip.appendChild(el('div', 'tt-signals', sigList.join(' \u00B7 ')));
+        }
+      });
+
+      cell.addEventListener('mousemove', function(e) {
+        tooltip.style.left = (e.clientX + 12) + 'px';
+        tooltip.style.top = (e.clientY - 10) + 'px';
+      });
+
+      cell.addEventListener('mouseleave', function() {
+        tooltip.style.display = 'none';
+      });
+
+      heatmap.appendChild(cell);
+    });
+
+    // Stats
+    statsRow.textContent = '';
+    var totalSigs = 0;
+    var maxScore = 0;
+    tickers.forEach(function(t) {
+      totalSigs += parseInt(t.signal_count || 0);
+      var s = parseFloat(t.total_score || 0);
+      if (s > maxScore) maxScore = s;
+    });
+    var items = [
+      {label: 'Tickers', val: tickers.length},
+      {label: 'Max Score', val: maxScore.toFixed(1)},
+      {label: 'Total Signals', val: totalSigs},
+      {label: 'Multi-Signal', val: tickers.filter(function(t){return (t.signal_count||0) >= 2}).length}
+    ];
+    items.forEach(function(item) {
+      var span = el('span', 'sr-item');
+      span.appendChild(el('strong', '', String(item.val)));
+      span.appendChild(document.createTextNode(' ' + item.label));
+      statsRow.appendChild(span);
+    });
+  }
+
+  function applyFilter(filter) {
+    currentFilter = filter;
+    var filtered;
+    if (filter === 'all') {
+      filtered = allTickers;
+    } else if (filter === 'multi') {
+      filtered = allTickers.filter(function(t){ return (t.signal_count||0) >= 2; });
+    } else if (filter === 'top50') {
+      filtered = allTickers.slice(0, 50);
+    } else if (filter === 'squeeze') {
+      filtered = allTickers.filter(function(t){ return (t.signals||[]).indexOf('squeeze') >= 0; });
+    } else if (filter === 'insider') {
+      filtered = allTickers.filter(function(t){ return (t.signals||[]).indexOf('insider') >= 0; });
+    } else if (filter === 'darkpool') {
+      filtered = allTickers.filter(function(t){ return (t.signals||[]).indexOf('darkpool') >= 0; });
+    } else if (filter === 'convergence') {
+      filtered = allTickers.filter(function(t){ return (t.signals||[]).indexOf('convergence') >= 0; });
+    } else {
+      filtered = allTickers;
+    }
+    renderMap(filtered);
+    Array.from(controls.children).forEach(function(btn) {
+      btn.className = 'ctrl-btn' + (btn.dataset.filter === filter ? ' active' : '');
+    });
+  }
+
+  var filters = [
+    {key:'all',label:'All Tickers'},
+    {key:'top50',label:'Top 50'},
+    {key:'multi',label:'Multi-Signal'},
+    {key:'squeeze',label:'Squeeze'},
+    {key:'insider',label:'Insider'},
+    {key:'darkpool',label:'Dark Pool'},
+    {key:'convergence',label:'Convergence'}
+  ];
+  filters.forEach(function(f) {
+    var btn = el('button', 'ctrl-btn' + (f.key === 'all' ? ' active' : ''), f.label);
+    btn.dataset.filter = f.key;
+    btn.addEventListener('click', function(){ applyFilter(f.key); });
+    controls.appendChild(btn);
+  });
+
+  // /api/screener returns total_score nested under t.ranking — hoist it so
+  // the existing t.total_score consumers (scoring, sorting, filters) work.
+  function readScore(t){
+    return parseFloat((t.ranking && t.ranking.total_score) || t.total_score || 0) || 0;
+  }
+  fetch('/api/screener').then(function(r){ return r.json(); }).then(function(d) {
+    allTickers = (d.tickers || [])
+      .map(function(t){ t.total_score = readScore(t); return t; })
+      .sort(function(a, b){ return b.total_score - a.total_score; });
+    applyFilter('all');
+  }).catch(function() {
+    heatmap.textContent = 'Could not load map data.';
+  });
+})();
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KV1VDK22VC"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-KV1VDK22VC');</script>
+</body>
+</html>

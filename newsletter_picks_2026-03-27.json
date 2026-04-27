@@ -1,0 +1,15 @@
+{
+  "date": "2026-03-27",
+  "top5_tickers": [
+    "CAR",
+    "BIPC",
+    "BUR",
+    "CMCL",
+    "AMRN"
+  ],
+  "gapper_count": 7,
+  "value_count": 2,
+  "moat_count": 1,
+  "total_combined": 140,
+  "top_pick": "CAR"
+}

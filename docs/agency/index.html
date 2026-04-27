@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Catalyst Edge — The Signal Console for Decentralized Catalyst Traders</title>
+<meta name="description" content="A utopian-cyberpunk signal console: 11 live dashboards scoring SEC filings, dark pool prints, insider clusters, M&A rumors, options sweeps, and on-chain crypto signals — converging on one ranked scanner board, refreshed before the bell.">
+<meta name="keywords" content="catalyst trading,SEC scanner,decentralized finance signals,cyberpunk trading dashboard,signal console,edge pro,catalyst edge">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://catalystedge.agency/">
+<meta property="og:title" content="Catalyst Edge — The Signal Console">
+<meta property="og:description" content="11 live dashboards · 7,325 entities · refreshed before the bell. Built for traders who want signal, not noise.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://catalystedge.agency/">
+<meta property="og:image" content="https://catalystedgescanner.com/og/default.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0a0d18">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#05060b; --surface:#0c1018; --surface2:#12161f; --surface3:#181d28;
+  --border:rgba(231,183,108,0.14); --border-cyan:rgba(114,229,255,0.18);
+  --text:#e8edf4; --muted:#7a8899;
+  --cyan:#72e5ff; --cyan-deep:#3fb5cf; --gold:#e7b76c; --gold-deep:#c89854;
+  --green:#10b981; --red:#f43f5e; --purple:#a78bfa;
+  --navy:#07111a;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--text);
+  line-height:1.65;overflow-x:hidden;font-feature-settings:"ss01" on,"cv11" on}
+a{color:inherit;text-decoration:none}
+.mono{font-family:'IBM Plex Mono',ui-monospace,Menlo,monospace}
+
+/* ───────────── ANIMATIONS ───────────── */
+@keyframes meshDrift{0%{transform:translate(0,0)}50%{transform:translate(2vw,-1vh)}100%{transform:translate(0,0)}}
+@keyframes scanlineGlide{0%{transform:translateY(-30vh)}100%{transform:translateY(130vh)}}
+@keyframes orbA{0%,100%{transform:translate(-30vw,-30vh) scale(1)}50%{transform:translate(20vw,10vh) scale(1.18)}}
+@keyframes orbB{0%,100%{transform:translate(30vw,30vh) scale(.95)}50%{transform:translate(-15vw,-10vh) scale(1.1)}}
+@keyframes orbC{0%,100%{transform:translate(-20vw,30vh) scale(1.05)}50%{transform:translate(25vw,-25vh) scale(.85)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulseRing{0%{box-shadow:0 0 0 0 rgba(231,183,108,.5)}70%{box-shadow:0 0 0 20px rgba(231,183,108,0)}100%{box-shadow:0 0 0 0 rgba(231,183,108,0)}}
+@keyframes ledgerScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+@keyframes flicker{0%,100%{opacity:1}50%{opacity:.92}}
+
+/* ───────────── BACKDROP — utopian cyberpunk mesh ───────────── */
+.field{position:fixed;inset:0;pointer-events:none;z-index:-50;overflow:hidden;
+  background:radial-gradient(ellipse at top,rgb(12,18,32) 0%,rgb(5,6,11) 60%,#000 100%)}
+.field::before{
+  content:'';position:absolute;inset:-10vw;
+  background-image:
+    linear-gradient(rgba(114,229,255,.038) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(114,229,255,.038) 1px,transparent 1px);
+  background-size:60px 60px;
+  animation:meshDrift 22s ease-in-out infinite;
+  mask-image:radial-gradient(ellipse at center,black 30%,transparent 75%);
+  -webkit-mask-image:radial-gradient(ellipse at center,black 30%,transparent 75%);
+}
+.field-orb{position:absolute;width:80vw;height:80vw;max-width:1100px;max-height:1100px;
+  border-radius:50%;filter:blur(120px);opacity:.42;mix-blend-mode:screen;left:50%;top:50%}
+.field-orb.a{background:radial-gradient(circle,rgba(231,183,108,.62),rgba(231,183,108,0) 70%);animation:orbA 38s ease-in-out infinite}
+.field-orb.b{background:radial-gradient(circle,rgba(114,229,255,.5),rgba(114,229,255,0) 70%);animation:orbB 32s ease-in-out infinite}
+.field-orb.c{background:radial-gradient(circle,rgba(167,139,250,.32),rgba(167,139,250,0) 70%);animation:orbC 44s ease-in-out infinite}
+.scanline{position:absolute;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(114,229,255,.18),transparent);
+  animation:scanlineGlide 8s linear infinite;opacity:.6;pointer-events:none}
+.vignette{position:absolute;inset:0;background:
+  radial-gradient(ellipse at top,transparent 30%,rgba(0,0,0,.4) 80%),
+  linear-gradient(180deg,transparent 50%,rgba(0,0,0,.6))}
+
+/* ───────────── NAV ───────────── */
+nav.top{position:sticky;top:0;z-index:80;background:rgba(7,11,17,.78);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;gap:18px;padding:12px 28px;font-size:13px;
+  flex-wrap:nowrap;overflow-x:auto}
+nav.top::-webkit-scrollbar{display:none}
+nav.top .brand{display:flex;align-items:center;gap:10px;flex-shrink:0;font-weight:700;letter-spacing:.06em}
+nav.top .brand-mark{width:28px;height:28px;border-radius:50%;
+  background:radial-gradient(circle at 30% 30%,var(--gold),var(--gold-deep) 60%,#5a3f1c);
+  box-shadow:0 0 18px rgba(231,183,108,.4),inset 0 0 10px rgba(255,220,140,.5);
+  position:relative;flex-shrink:0;animation:flicker 4s ease-in-out infinite}
+nav.top .brand-mark::after{content:'';position:absolute;inset:5px;border-radius:50%;
+  border:1px solid rgba(255,255,255,.5);opacity:.7}
+nav.top .brand-text .top{font-size:11px;color:var(--gold);font-family:'IBM Plex Mono',monospace;
+  letter-spacing:.2em;text-transform:uppercase;line-height:1}
+nav.top .brand-text .bot{font-size:14px;color:var(--text);font-weight:700;letter-spacing:.04em;line-height:1.2}
+nav.top a.nl{color:var(--muted);padding:8px 10px;border-radius:6px;
+  white-space:nowrap;flex-shrink:0;transition:color .18s,background .18s;font-size:12.5px}
+nav.top a.nl:hover{color:var(--text);background:rgba(255,255,255,.04)}
+nav.top a.nl-cta{margin-left:auto;background:linear-gradient(135deg,var(--gold),var(--gold-deep));
+  color:#0a0d18;padding:8px 16px;border-radius:6px;font-weight:700;letter-spacing:.04em;
+  flex-shrink:0;box-shadow:0 0 18px rgba(231,183,108,.32);
+  animation:pulseRing 3.4s ease-in-out infinite}
+nav.top a.nl-cta:hover{filter:brightness(1.1)}
+@media(max-width:680px){nav.top{padding:10px 14px;gap:10px}nav.top a.nl{display:none}nav.top a.nl.always{display:inline-block}}
+
+/* ───────────── LEDGER TICKER (decentralized currency motif) ───────────── */
+.ledger{border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  background:rgba(7,11,17,.6);overflow:hidden;position:relative;height:34px}
+.ledger::before,.ledger::after{content:'';position:absolute;top:0;bottom:0;width:80px;z-index:2;pointer-events:none}
+.ledger::before{left:0;background:linear-gradient(90deg,rgba(7,11,17,.95),transparent)}
+.ledger::after{right:0;background:linear-gradient(-90deg,rgba(7,11,17,.95),transparent)}
+.ledger-track{display:flex;align-items:center;gap:32px;height:100%;
+  font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--muted);
+  white-space:nowrap;animation:ledgerScroll 80s linear infinite;width:max-content}
+.ledger-tick{display:inline-flex;gap:6px;align-items:center}
+.ledger-tick .tk{color:var(--cyan);font-weight:600}
+.ledger-tick .v{color:var(--gold)}
+.ledger-tick .arrow.up{color:var(--green)}
+.ledger-tick .arrow.dn{color:var(--red)}
+.ledger-sep{color:rgba(231,183,108,.3)}
+
+/* ───────────── HERO ───────────── */
+.hero{position:relative;padding:120px 28px 100px;text-align:center;overflow:hidden}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;
+  font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.24em;
+  text-transform:uppercase;color:var(--gold);
+  background:rgba(231,183,108,.06);border:1px solid rgba(231,183,108,.22);
+  border-radius:999px;padding:7px 16px;margin-bottom:28px;
+  box-shadow:0 0 24px rgba(231,183,108,.14)}
+.hero-eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--gold);
+  animation:flicker 1.6s ease-in-out infinite;box-shadow:0 0 8px var(--gold)}
+.hero h1{font-size:clamp(38px,7vw,82px);font-weight:800;letter-spacing:-.025em;line-height:1.02;
+  max-width:980px;margin:0 auto;color:var(--text);
+  background:linear-gradient(180deg,#fff 30%,#a3afc4 100%);
+  -webkit-background-clip:text;background-clip:text;
+  animation:fadeUp .9s cubic-bezier(.18,.84,.2,1) both}
+.hero h1 .accent{
+  background:linear-gradient(120deg,var(--gold) 30%,var(--cyan) 70%);
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  position:relative;display:inline-block}
+.hero h1 .accent::after{content:'';position:absolute;left:0;right:0;bottom:-4px;height:2px;
+  background:linear-gradient(90deg,transparent,var(--gold),var(--cyan),transparent);
+  opacity:.7;animation:flicker 3s ease-in-out infinite}
+.hero p.lede{font-size:clamp(17px,1.6vw,21px);color:#c4cdde;max-width:720px;margin:24px auto 0;line-height:1.55;
+  animation:fadeUp 1s cubic-bezier(.18,.84,.2,1) .15s both}
+.hero p.lede strong{color:var(--gold);font-weight:600}
+.hero .cta-row{display:inline-flex;gap:14px;margin-top:38px;flex-wrap:wrap;justify-content:center;
+  animation:fadeUp 1.05s cubic-bezier(.18,.84,.2,1) .25s both}
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:'Space Grotesk',sans-serif;
+  font-weight:700;font-size:15px;padding:14px 26px;border-radius:8px;cursor:pointer;border:none;
+  letter-spacing:.02em;transition:all .25s cubic-bezier(.18,.84,.2,1);text-decoration:none}
+.btn-primary{background:linear-gradient(135deg,var(--gold) 0%,var(--gold-deep) 100%);
+  color:#0a0d18;box-shadow:0 0 30px rgba(231,183,108,.35),inset 0 1px 0 rgba(255,255,255,.4)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 0 50px rgba(231,183,108,.55),inset 0 1px 0 rgba(255,255,255,.4)}
+.btn-ghost{background:rgba(114,229,255,.06);border:1px solid var(--border-cyan);
+  color:var(--cyan);backdrop-filter:blur(8px)}
+.btn-ghost:hover{background:rgba(114,229,255,.1);border-color:var(--cyan);transform:translateY(-2px)}
+.btn .arrow{transition:transform .25s}
+.btn:hover .arrow{transform:translateX(4px)}
+
+.hero::before{content:'';position:absolute;left:50%;top:50%;width:120vw;height:50vh;transform:translate(-50%,-50%);
+  background:radial-gradient(ellipse at center,rgba(231,183,108,.18),transparent 60%);pointer-events:none;z-index:-1}
+
+.hero-trust{margin-top:54px;display:flex;justify-content:center;gap:32px;flex-wrap:wrap;
+  font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:.16em;
+  text-transform:uppercase;animation:fadeUp 1.2s cubic-bezier(.18,.84,.2,1) .4s both}
+.hero-trust span{display:inline-flex;align-items:center;gap:6px}
+.hero-trust .pulse{width:6px;height:6px;border-radius:50%;background:var(--green);animation:flicker 2s ease-in-out infinite}
+
+/* ───────────── SECTIONS ───────────── */
+section{position:relative;padding:90px 28px;max-width:1200px;margin:0 auto}
+section.full{max-width:none}
+.section-eyebrow{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.24em;
+  text-transform:uppercase;color:var(--cyan);margin-bottom:14px;display:inline-block}
+section h2{font-size:clamp(28px,4vw,48px);font-weight:700;letter-spacing:-.02em;line-height:1.1;
+  max-width:780px;color:var(--text);margin-bottom:18px}
+section h2 .accent{
+  background:linear-gradient(120deg,var(--gold),var(--cyan));
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+section .intro{font-size:17px;color:#c4cdde;max-width:640px;margin-bottom:48px}
+
+/* ───────────── PILLARS (manifesto) ───────────── */
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:24px}
+@media(max-width:880px){.pillars{grid-template-columns:1fr}}
+.pillar{position:relative;padding:32px 28px;background:linear-gradient(180deg,rgba(18,22,31,.86),rgba(7,11,17,.86));
+  border:1px solid var(--border);border-radius:16px;overflow:hidden;
+  transition:transform .35s,border-color .25s,box-shadow .35s}
+.pillar::before{content:'';position:absolute;inset:0;pointer-events:none;border-radius:inherit;
+  background:radial-gradient(circle at 100% 0%,rgba(231,183,108,.1),transparent 50%)}
+.pillar::after{content:'';position:absolute;left:0;top:0;height:3px;width:100%;
+  background:linear-gradient(90deg,var(--gold),var(--cyan),transparent);opacity:.6}
+.pillar:hover{transform:translateY(-6px);border-color:rgba(231,183,108,.35);
+  box-shadow:0 24px 60px rgba(231,183,108,.12)}
+.pillar > *{position:relative;z-index:1}
+.pillar .icon{width:46px;height:46px;display:flex;align-items:center;justify-content:center;
+  border-radius:10px;background:rgba(231,183,108,.08);border:1px solid rgba(231,183,108,.28);
+  font-size:22px;margin-bottom:18px}
+.pillar h3{font-size:20px;font-weight:700;letter-spacing:-.01em;margin-bottom:8px}
+.pillar p{color:var(--muted);font-size:14.5px;line-height:1.6}
+.pillar .stat{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--cyan);
+  letter-spacing:.12em;text-transform:uppercase;margin-top:18px;border-top:1px solid var(--border);
+  padding-top:14px;display:flex;justify-content:space-between}
+.pillar .stat b{color:var(--gold);font-weight:600}
+
+/* ───────────── LIVE INTEL ───────────── */
+.live-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:24px}
+@media(max-width:880px){.live-grid{grid-template-columns:1fr}}
+.live-card{position:relative;padding:24px;background:rgba(12,16,24,.7);
+  border:1px solid var(--border-cyan);border-radius:14px;overflow:hidden;
+  backdrop-filter:blur(8px);transition:all .3s}
+.live-card::before{content:'';position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,rgba(114,229,255,.06) 0%,transparent 60%)}
+.live-card:hover{border-color:var(--cyan);box-shadow:0 0 40px rgba(114,229,255,.18);transform:translateY(-3px)}
+.live-card > *{position:relative;z-index:1}
+.live-card .hud-row{display:flex;justify-content:space-between;align-items:center;
+  font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+.live-card .hud-row .live-pill{color:var(--green);display:inline-flex;align-items:center;gap:5px}
+.live-card .hud-row .live-pill::before{content:'';width:6px;height:6px;border-radius:50%;
+  background:var(--green);animation:flicker 1.4s ease-in-out infinite;box-shadow:0 0 8px var(--green)}
+.live-card h3{font-size:24px;font-weight:700;letter-spacing:-.01em;margin-bottom:6px}
+.live-card .sub{color:var(--muted);font-size:14px;margin-bottom:18px;line-height:1.5}
+.live-card a.go{display:inline-flex;align-items:center;gap:6px;color:var(--cyan);font-weight:600;
+  font-size:13px;font-family:'IBM Plex Mono',monospace;letter-spacing:.06em;
+  border-bottom:1px solid var(--cyan);padding-bottom:2px;transition:color .2s,border-color .2s}
+.live-card a.go:hover{color:var(--gold);border-bottom-color:var(--gold)}
+
+/* ───────────── SUITE ───────────── */
+.suite-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
+.suite-card{position:relative;padding:24px;background:rgba(12,16,24,.65);
+  border:1px solid var(--border);border-radius:12px;overflow:hidden;
+  transition:all .35s cubic-bezier(.18,.84,.2,1)}
+.suite-card::before{content:'';position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(circle at 0% 0%,rgba(114,229,255,.07),transparent 50%);opacity:0;transition:opacity .35s}
+.suite-card:hover::before{opacity:1}
+.suite-card:hover{transform:translateY(-4px);border-color:var(--border-cyan);
+  box-shadow:0 18px 44px rgba(114,229,255,.1)}
+.suite-card > *{position:relative;z-index:1}
+.suite-card .icon{font-size:26px;margin-bottom:10px;display:block}
+.suite-card h4{font-size:17px;font-weight:700;letter-spacing:-.01em;margin-bottom:8px}
+.suite-card p{color:var(--muted);font-size:13.5px;line-height:1.55;margin-bottom:14px;
+  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.suite-card .meta{display:flex;justify-content:space-between;align-items:center;
+  font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.1em;
+  border-top:1px solid var(--border);padding-top:12px;color:var(--muted);text-transform:uppercase}
+.suite-card .meta .open{color:var(--cyan);font-weight:600}
+.suite-card:hover .meta .open{color:var(--gold)}
+.suite-card.featured{border-color:rgba(231,183,108,.35)}
+.suite-card.featured::after{content:'★ FLAGSHIP';position:absolute;top:12px;right:12px;
+  font-size:9.5px;font-family:'IBM Plex Mono',monospace;font-weight:700;
+  background:linear-gradient(135deg,var(--gold),var(--gold-deep));color:#0a0d18;
+  padding:3px 7px;border-radius:4px;letter-spacing:.1em}
+.suite-card.short-card{border-color:rgba(244,63,94,.32);background:linear-gradient(180deg,rgba(40,12,18,.4),rgba(12,16,24,.65))}
+.suite-card.short-card::after{content:'BEAR';position:absolute;top:12px;right:12px;
+  font-size:9.5px;font-family:'IBM Plex Mono',monospace;font-weight:700;
+  background:rgba(244,63,94,.18);color:#fb7185;padding:3px 7px;border-radius:4px;
+  border:1px solid rgba(244,63,94,.4);letter-spacing:.1em}
+
+/* ───────────── METHODOLOGY ───────────── */
+.method{display:grid;grid-template-columns:1.05fr 1fr;gap:46px;align-items:center}
+@media(max-width:880px){.method{grid-template-columns:1fr}}
+.method-list{display:flex;flex-direction:column;gap:18px}
+.method-step{display:grid;grid-template-columns:auto 1fr;gap:18px;padding:20px;
+  background:rgba(12,16,24,.6);border:1px solid var(--border);border-radius:12px;transition:all .3s}
+.method-step:hover{border-color:var(--border-cyan);background:rgba(12,16,24,.8)}
+.method-num{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-family:'IBM Plex Mono',monospace;font-weight:700;font-size:15px;color:var(--gold);
+  background:radial-gradient(circle,rgba(231,183,108,.15),rgba(231,183,108,.04));
+  border:1px solid rgba(231,183,108,.4);flex-shrink:0;
+  box-shadow:0 0 14px rgba(231,183,108,.18)}
+.method-step h4{font-size:16px;margin-bottom:4px;letter-spacing:-.005em}
+.method-step p{color:var(--muted);font-size:14px;line-height:1.55}
+.method-art{position:relative;height:380px;display:flex;align-items:center;justify-content:center}
+.method-art .core{position:absolute;width:160px;height:160px;border-radius:50%;
+  background:radial-gradient(circle,rgba(231,183,108,.32),rgba(231,183,108,0) 70%);
+  filter:blur(2px);animation:flicker 5s ease-in-out infinite}
+.method-art .ring{position:absolute;border:1px solid rgba(114,229,255,.18);border-radius:50%;animation:flicker 4s ease-in-out infinite}
+.method-art .ring.r1{width:200px;height:200px}
+.method-art .ring.r2{width:280px;height:280px}
+.method-art .ring.r3{width:360px;height:360px}
+.method-art .node{position:absolute;width:10px;height:10px;border-radius:50%;
+  background:var(--cyan);box-shadow:0 0 12px var(--cyan)}
+.method-art .label{position:absolute;font-family:'IBM Plex Mono',monospace;font-size:10.5px;
+  color:var(--muted);text-transform:uppercase;letter-spacing:.16em}
+
+/* ───────────── PRICING ───────────── */
+.tier-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:stretch;margin-top:24px}
+@media(max-width:880px){.tier-grid{grid-template-columns:1fr}}
+.tier{position:relative;padding:36px 28px 30px;background:linear-gradient(180deg,rgba(18,22,31,.86),rgba(7,11,17,.86));
+  border:1px solid var(--border);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
+.tier::before{content:'';position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(circle at 100% 0%,rgba(231,183,108,.06),transparent 50%)}
+.tier > *{position:relative;z-index:1}
+.tier .pill{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.tier h3{font-size:24px;font-weight:700;letter-spacing:-.01em;margin-bottom:6px}
+.tier .price{display:flex;align-items:baseline;gap:6px;margin:14px 0 22px}
+.tier .price .amt{font-size:38px;font-weight:700;color:var(--gold);font-family:'IBM Plex Mono',monospace}
+.tier .price .per{color:var(--muted);font-size:13px;font-family:'IBM Plex Mono',monospace}
+.tier .lede{color:var(--muted);font-size:14px;margin-bottom:22px;line-height:1.6;flex:1}
+.tier ul{list-style:none;padding:0;margin:0 0 22px;display:flex;flex-direction:column;gap:9px}
+.tier li{font-size:13.5px;color:#c4cdde;display:flex;gap:8px;align-items:flex-start}
+.tier li::before{content:'◆';color:var(--cyan);font-size:11px;line-height:1.6;flex-shrink:0}
+.tier .cta{display:block;width:100%;padding:13px 18px;border-radius:8px;text-align:center;
+  font-weight:700;font-size:14px;letter-spacing:.04em;text-decoration:none;transition:all .25s}
+.tier .cta.cta-cyan{background:rgba(114,229,255,.1);border:1px solid var(--cyan);color:var(--cyan)}
+.tier .cta.cta-cyan:hover{background:var(--cyan);color:#0a0d18}
+.tier .cta.cta-gold{background:linear-gradient(135deg,var(--gold),var(--gold-deep));color:#0a0d18;
+  box-shadow:0 0 24px rgba(231,183,108,.32)}
+.tier .cta.cta-gold:hover{filter:brightness(1.1);transform:translateY(-1px)}
+.tier .cta.cta-ghost{background:transparent;border:1px solid var(--border);color:var(--muted)}
+.tier .cta.cta-ghost:hover{color:var(--text);border-color:var(--text)}
+.tier.featured{border-color:rgba(231,183,108,.4);box-shadow:0 0 60px rgba(231,183,108,.1)}
+.tier.featured::before{background:radial-gradient(circle at 50% 0%,rgba(231,183,108,.16),transparent 60%)}
+.tier.featured .ribbon{position:absolute;top:0;right:24px;background:linear-gradient(135deg,var(--gold),var(--gold-deep));
+  color:#0a0d18;padding:5px 14px;font-size:10px;letter-spacing:.2em;font-weight:700;
+  font-family:'IBM Plex Mono',monospace;border-radius:0 0 6px 6px}
+
+/* ───────────── FINAL CTA ───────────── */
+.finale{position:relative;padding:140px 28px;text-align:center;overflow:hidden;margin-top:80px;
+  background:linear-gradient(180deg,transparent,rgba(7,11,17,.6) 30%,rgba(7,11,17,.92))}
+.finale::before{content:'';position:absolute;left:50%;top:50%;width:140vw;height:140vh;transform:translate(-50%,-50%);
+  background:radial-gradient(ellipse at center,rgba(231,183,108,.16),transparent 50%);
+  pointer-events:none;z-index:-1}
+.finale h2{font-size:clamp(34px,5vw,64px);font-weight:800;letter-spacing:-.025em;line-height:1.05;
+  max-width:920px;margin:0 auto}
+.finale h2 .accent{
+  background:linear-gradient(120deg,var(--gold),var(--cyan));
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.finale p{font-size:18px;color:#c4cdde;max-width:640px;margin:24px auto 38px;line-height:1.6}
+.finale .btn-primary{font-size:17px;padding:18px 38px;animation:pulseRing 2.6s ease-in-out infinite}
+.finale-sub{margin-top:24px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--muted);
+  letter-spacing:.12em}
+
+/* ───────────── FOOTER ───────────── */
+footer{border-top:1px solid var(--border);padding:48px 28px 36px;
+  font-size:13px;color:var(--muted);text-align:center;background:rgba(5,6,11,.85)}
+footer .links{display:flex;justify-content:center;flex-wrap:wrap;gap:18px;margin-bottom:18px;
+  font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase}
+footer .links a{color:var(--muted);transition:color .2s}
+footer .links a:hover{color:var(--gold)}
+footer .copy{font-size:12px;line-height:1.55;max-width:600px;margin:0 auto;color:#6b7787}
+
+@media(max-width:680px){
+  section{padding:60px 18px}
+  .hero{padding:80px 18px 70px}
+  .finale{padding:80px 18px}
+  .pillars,.live-grid,.tier-grid{gap:14px}
+}
+</style>
+</head>
+<body>
+
+<div class="field" aria-hidden="true">
+  <div class="field-orb a"></div>
+  <div class="field-orb b"></div>
+  <div class="field-orb c"></div>
+  <div class="scanline" style="animation-delay:0s"></div>
+  <div class="scanline" style="animation-delay:-3s;opacity:.3"></div>
+  <div class="vignette"></div>
+</div>
+
+<nav class="top">
+  <a href="/" class="brand">
+    <span class="brand-mark"></span>
+    <span class="brand-text">
+      <span class="top mono">Catalyst</span>
+      <span class="bot">EDGE</span>
+    </span>
+  </a>
+  <a class="nl" href="#suite">Signal Suite</a>
+  <a class="nl" href="#method">Methodology</a>
+  <a class="nl" href="#pricing">Pricing</a>
+  <a class="nl" href="https://catalystedgescanner.com/trust/">Trust Ledger</a>
+  <a class="nl" href="https://catalystedgescanner.com/blog/why-our-bot-failed-validation/">Bot Audit</a>
+  <a class="nl-cta always" href="https://catalystedgescanner.com/scanner/">Open Scanner →</a>
+</nav>
+
+<div class="ledger" aria-hidden="true">
+  <div class="ledger-track">
+    <span class="ledger-tick"><span class="tk">SCAN</span><span class="v">300+</span><span>EDGAR filings</span></span>
+    <span class="ledger-sep">◆</span>
+    <span class="ledger-tick"><span class="tk">UNIVERSE</span><span class="v">7,325</span><span>entities</span></span>
+    <span class="ledger-sep">◆</span>
+    <span class="ledger-tick"><span class="tk">TICKERS</span><span class="v">1,600+</span><span>graded daily</span></span>
+    <span class="ledger-sep">◆</span>
+    <span class="ledger-tick"><span class="tk">JACKPOT</span><span class="v">89%</span><span class="arrow up">▲</span><span>audited hit rate</span></span>
+    <span class="ledger-sep">◆</span>
+    <span class="ledger-tick"><span class="tk">DCF</span><span class="v">36 markets</span></span>
+    <span class="ledger-sep">◆</span>
+    <span class="ledger-tick"><span class="tk">REFRESH</span><span class="v">04:00 ET</span><span>daily</span></span>
+    <span class="ledger-sep">◆</span>
+    <span class="ledger-tick"><span class="tk">BOT</span><span class="v">dual_momentum</span><span class="arrow up">▲</span><span>+1.87% net alpha</span></span>
+    <span class="ledger-sep">◆</span>
+    <span class="ledger-tick"><span class="tk">AUDIT</span><span>every trade · every halt · public</span></span>
+    <span class="ledger-sep">◆</span>
+    <span class="ledger-tick"><span class="tk">SCAN</span><span class="v">300+</span><span>EDGAR filings</span></span>
+    <span class="ledger-sep">◆</span>
+    <span class="ledger-tick"><span class="tk">UNIVERSE</span><span class="v">7,325</span><span>entities</span></span>
+    <span class="ledger-sep">◆</span>
+    <span class="ledger-tick"><span class="tk">TICKERS</span><span class="v">1,600+</span><span>graded daily</span></span>
+    <span class="ledger-sep">◆</span>
+    <span class="ledger-tick"><span class="tk">JACKPOT</span><span class="v">89%</span><span class="arrow up">▲</span><span>audited hit rate</span></span>
+    <span class="ledger-sep">◆</span>
+    <span class="ledger-tick"><span class="tk">DCF</span><span class="v">36 markets</span></span>
+    <span class="ledger-sep">◆</span>
+    <span class="ledger-tick"><span class="tk">REFRESH</span><span class="v">04:00 ET</span><span>daily</span></span>
+    <span class="ledger-sep">◆</span>
+    <span class="ledger-tick"><span class="tk">BOT</span><span class="v">dual_momentum</span><span class="arrow up">▲</span><span>+1.87% net alpha</span></span>
+    <span class="ledger-sep">◆</span>
+    <span class="ledger-tick"><span class="tk">AUDIT</span><span>every trade · every halt · public</span></span>
+  </div>
+</div>
+
+<section class="hero full">
+  <div class="hero-eyebrow"><span class="dot"></span>Signal Console · Operational</div>
+  <h1>The signal console for<br><span class="accent">decentralized catalyst traders</span></h1>
+  <p class="lede">Eleven live dashboards. <strong>7,325 tracked entities.</strong> One ranked board updated every night before the bell.
+  We score the SEC catalyst tape, dark-pool prints, insider clusters, M&amp;A rumors, options sweeps, and on-chain crypto signals — and we publish every win <em>and every halt</em> to a public audit ledger.</p>
+  <div class="cta-row">
+    <a class="btn btn-primary" href="https://catalystedgescanner.com/scanner/">Open the Scanner <span class="arrow">→</span></a>
+    <a class="btn btn-ghost" href="https://catalystedgescanner.com/blog/why-our-bot-failed-validation/">Watch us iterate live <span class="arrow">→</span></a>
+  </div>
+  <div class="hero-trust">
+    <span><span class="pulse"></span>API · live</span>
+    <span>$9 reader · $39 pro · always one click</span>
+    <span>Built by traders, audited in public</span>
+  </div>
+</section>
+
+<section id="pillars">
+  <div class="section-eyebrow">// the decentralized edge</div>
+  <h2>Most platforms sell you <span class="accent">noise</span>. We publish the receipt.</h2>
+  <p class="intro">A trader's edge isn't the strategy — it's the audit trail behind it. Three things this console does that hosted feeds don't:</p>
+  <div class="pillars">
+    <div class="pillar">
+      <div class="icon">⚙</div>
+      <h3>Every signal is engineered</h3>
+      <p>None of these dashboards are content scrapes. Each is a deterministic scorer running against EDGAR XBRL,
+         FINRA prints, Form 4s, options chains, and on-chain feeds. If a signal score moves, the math moved.</p>
+      <div class="stat"><span>Sources</span><span><b>11+ APIs</b></span></div>
+    </div>
+    <div class="pillar">
+      <div class="icon">⛓</div>
+      <h3>The ledger is public</h3>
+      <p>Every paper trade, every backtest, every halt — written to a public audit ledger before any subscriber decision.
+         When our crypto bot failed validation we wrote a blog post explaining why, then re-ran the lab until alpha appeared.</p>
+      <div class="stat"><span>Trust ledger</span><span><b>open to all</b></span></div>
+    </div>
+    <div class="pillar">
+      <div class="icon">◇</div>
+      <h3>You unlock with one click</h3>
+      <p>Stripe → magic link → device unlocked. No app, no onboarding wizard, no waitlist. The same console you saw demo'd
+         is the console you operate from. Cancel any time without an email.</p>
+      <div class="stat"><span>Sub time</span><span><b>~12 seconds</b></span></div>
+    </div>
+  </div>
+</section>
+
+<section id="live">
+  <div class="section-eyebrow">// hud feed · live</div>
+  <h2>What the board is saying <span class="accent">right now</span>.</h2>
+  <p class="intro">Straight from the production APIs — refreshes every page load. If these cards are blank,
+  we're between scan windows. If they show data, the console is hot.</p>
+  <div class="live-grid">
+    <div class="live-card">
+      <div class="hud-row"><span>Sector Leader</span><span class="live-pill">live</span></div>
+      <h3 id="lc-sector-name">—</h3>
+      <p class="sub" id="lc-sector-desc">Loading sector rotation feed…</p>
+      <a class="go" href="https://catalystedgescanner.com/scanner/#sectors">Open Heatmap →</a>
+    </div>
+    <div class="live-card">
+      <div class="hud-row"><span>Primary Target</span><span class="live-pill">live</span></div>
+      <h3 id="lc-target-ticker">—</h3>
+      <p class="sub" id="lc-target-desc">Loading top catalyst…</p>
+      <a class="go" href="https://catalystedgescanner.com/scanner/">See Full Thesis →</a>
+    </div>
+    <div class="live-card">
+      <div class="hud-row"><span>Bearish Mirror</span><span class="live-pill">live</span></div>
+      <h3 id="lc-bear-ticker">—</h3>
+      <p class="sub" id="lc-bear-desc">Loading short scanner…</p>
+      <a class="go" href="https://catalystedgescanner.com/short-scanner/">Open Short Scanner →</a>
+    </div>
+  </div>
+</section>
+
+<section id="suite">
+  <div class="section-eyebrow">// 11 dashboards · 1 ranked board</div>
+  <h2>Eleven dashboards. <span class="accent">One edge.</span></h2>
+  <p class="intro">Each card below is a tradable thesis with its own scoring engine. Click any one to drop into
+  the live console — every dashboard converges on the same ranked scanner.</p>
+  <div class="suite-grid">
+    <a href="https://catalystedgescanner.com/jackpot/" class="suite-card featured">
+      <span class="icon">🎯</span>
+      <h4>Jackpot</h4>
+      <p>SEC catalyst × gap confirmation overlap. 89% audited hit rate over 90 days. The high-conviction stack.</p>
+      <div class="meta"><span>89% · 90d</span><span class="open">enter →</span></div>
+    </a>
+    <a href="https://catalystedgescanner.com/scanner/#gaps" class="suite-card">
+      <span class="icon">📈</span>
+      <h4>Gap Plays</h4>
+      <p>Pre-market movers filtered by liquidity, float, and catalyst score. Not just random gappers — verified setups.</p>
+      <div class="meta"><span>SEC + price</span><span class="open">enter →</span></div>
+    </a>
+    <a href="https://catalystedgescanner.com/scanner/#squeeze" class="suite-card">
+      <span class="icon">🔥</span>
+      <h4>Squeeze Hunter</h4>
+      <p>Short interest × borrow rate × utilization × DTC, scored 0–110. Finds the real powder kegs.</p>
+      <div class="meta"><span>0–110 score</span><span class="open">enter →</span></div>
+    </a>
+    <a href="https://catalystedgescanner.com/scanner/#insider" class="suite-card">
+      <span class="icon">💼</span>
+      <h4>Insider Clusters</h4>
+      <p>Form 4 cluster detection — multiple insiders buying within the same window. Highest hit-rate signal historically.</p>
+      <div class="meta"><span>Form 4 · 48h</span><span class="open">enter →</span></div>
+    </a>
+    <a href="https://catalystedgescanner.com/short-scanner/" class="suite-card short-card">
+      <span class="icon">📉</span>
+      <h4>Short Scanner</h4>
+      <p>Bearish counterpart — dilution risk, restatements, bankruptcy, late filings, insider cluster sells.</p>
+      <div class="meta"><span>5 buckets</span><span class="open">enter →</span></div>
+    </a>
+    <a href="https://catalystedgescanner.com/dcf/" class="suite-card">
+      <span class="icon">💰</span>
+      <h4>DCF Intrinsic Value</h4>
+      <p>Damodaran two-stage on 1,600 US tickers. Every input traces back to SEC EDGAR XBRL — auditable from cap stack to growth assumption.</p>
+      <div class="meta"><span>1,600 US · 36 intl</span><span class="open">enter →</span></div>
+    </a>
+    <a href="https://catalystedgescanner.com/scanner/#convergence" class="suite-card">
+      <span class="icon">🎯</span>
+      <h4>Convergence</h4>
+      <p>Tickers flagged by 3+ scanners in the same window. Multi-signal stacks have measurably higher hit rates.</p>
+      <div class="meta"><span>≥3 stacks</span><span class="open">enter →</span></div>
+    </a>
+    <a href="https://catalystedgescanner.com/scanner/#darkpool" class="suite-card">
+      <span class="icon">🌑</span>
+      <h4>Dark Pool</h4>
+      <p>Block-volume surges vs 30-day average, anchored to a catalyst filing. 5×+ ratio = institutional positioning.</p>
+      <div class="meta"><span>vs 30d avg</span><span class="open">enter →</span></div>
+    </a>
+    <a href="https://catalystedgescanner.com/defi/" class="suite-card">
+      <span class="icon">⛓</span>
+      <h4>DeFi & BTC ETF Tape</h4>
+      <p>Eleven spot ETFs, three hundred protocols, cascade alerts. The decentralized rail of the console.</p>
+      <div class="meta"><span>11 ETFs · 300 protocols</span><span class="open">enter →</span></div>
+    </a>
+    <a href="https://catalystedgescanner.com/scanner/#smart-money" class="suite-card">
+      <span class="icon">🧠</span>
+      <h4>Smart Money</h4>
+      <p>13F overlap detection — tickers with ≥10 institutional holders increasing position. Crowded ≠ wrong.</p>
+      <div class="meta"><span>13F flow</span><span class="open">enter →</span></div>
+    </a>
+    <a href="https://catalystedgescanner.com/scanner/#sympathy" class="suite-card">
+      <span class="icon">🔗</span>
+      <h4>Sympathy Plays</h4>
+      <p>Lead-ticker move triggers sympathy bursts in correlated names. Captures the second-order alpha.</p>
+      <div class="meta"><span>correlation chain</span><span class="open">enter →</span></div>
+    </a>
+    <a href="https://catalystedgescanner.com/congress/" class="suite-card">
+      <span class="icon">🏛</span>
+      <h4>Congress Trades</h4>
+      <p>Capitol Hill disclosures cross-referenced with our scanner. Where political moves intersect catalyst flow.</p>
+      <div class="meta"><span>STOCK Act</span><span class="open">enter →</span></div>
+    </a>
+  </div>
+</section>
+
+<section id="method">
+  <div class="section-eyebrow">// the closed loop</div>
+  <h2>Research, deploy, audit, <span class="accent">re-engineer.</span></h2>
+  <p class="intro">The strategy lab runs every 24 hours. If a strategy clears +1% net alpha after fees, it auto-promotes
+  to live trading. If nothing clears the bar, the bot halts itself. We document every iteration in public.</p>
+  <div class="method">
+    <div class="method-list">
+      <div class="method-step">
+        <div class="method-num">01</div>
+        <div><h4>Scan</h4><p>EDGAR + FINRA + on-chain feeds wake up at 03:30 ET. 300+ filings get scored before the pre-market open.</p></div>
+      </div>
+      <div class="method-step">
+        <div class="method-num">02</div>
+        <div><h4>Validate</h4><p>Strategy lab backtests every candidate against 60 days of fee-included candles. Threshold to promote: +1% net alpha vs buy-and-hold.</p></div>
+      </div>
+      <div class="method-step">
+        <div class="method-num">03</div>
+        <div><h4>Deploy or halt</h4><p>If a strategy passes, the live bot adopts it automatically. If nothing passes, halt file engages and exits keep firing.</p></div>
+      </div>
+      <div class="method-step">
+        <div class="method-num">04</div>
+        <div><h4>Publish</h4><p>Every trade, halt, and strategy decision lands on the public Trust Ledger before subscribers see it. The audit IS the product.</p></div>
+      </div>
+    </div>
+    <div class="method-art" aria-hidden="true">
+      <div class="ring r1"></div>
+      <div class="ring r2"></div>
+      <div class="ring r3"></div>
+      <div class="core"></div>
+      <div class="node" style="top:50%;left:0;transform:translate(-50%,-50%)"></div>
+      <div class="node" style="top:0;left:50%;transform:translate(-50%,-50%);background:var(--gold);box-shadow:0 0 12px var(--gold)"></div>
+      <div class="node" style="top:50%;right:0;transform:translate(50%,-50%);background:var(--purple);box-shadow:0 0 12px var(--purple)"></div>
+      <div class="node" style="bottom:0;left:50%;transform:translate(-50%,50%);background:var(--green);box-shadow:0 0 12px var(--green)"></div>
+      <div class="label" style="top:10%;left:50%;transform:translate(-50%,-50%)">SCAN</div>
+      <div class="label" style="top:50%;right:6%;transform:translate(0,-50%)">VALIDATE</div>
+      <div class="label" style="bottom:10%;left:50%;transform:translate(-50%,50%)">DEPLOY</div>
+      <div class="label" style="top:50%;left:6%;transform:translate(0,-50%)">AUDIT</div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="section-eyebrow">// three tiers</div>
+  <h2>Pick your <span class="accent">seat at the console.</span></h2>
+  <p class="intro">Free tier is full preview. Reader unlocks the entire ranked board. Pro adds the Cerebro 3D HUD,
+  priority alerts, and the trading bot's live ledger. Cancel any time, no questions, no email loop.</p>
+  <div class="tier-grid">
+    <div class="tier">
+      <div class="pill">Free Tier</div>
+      <h3>Reconnaissance</h3>
+      <div class="price"><span class="amt">$0</span><span class="per">/mo</span></div>
+      <p class="lede">Top picks of the day, the heatmap, and the audit ledger. Enough to verify our claims before a credit card touches the table.</p>
+      <ul>
+        <li>Top 10 catalyst picks daily</li>
+        <li>Sector heatmap + GICS drill-down</li>
+        <li>Public audit ledger access</li>
+        <li>Bot halt &amp; promote events</li>
+      </ul>
+      <a class="cta cta-ghost" href="https://catalystedgescanner.com/scanner/">Open the scanner</a>
+    </div>
+    <div class="tier featured">
+      <span class="ribbon">MOST CHOSEN</span>
+      <div class="pill">Reader</div>
+      <h3>Edge Reader</h3>
+      <div class="price"><span class="amt">$9</span><span class="per">/mo</span></div>
+      <p class="lede">The full ranked board. Sortable across every signal class. Daily 4 AM email + Telegram + Discord push of every promoted pick.</p>
+      <ul>
+        <li>Every dashboard, fully unlocked</li>
+        <li>CSV export · sortable / searchable</li>
+        <li>Daily 4 AM ET email · Telegram · Discord</li>
+        <li>Bot trade alerts in real time</li>
+        <li>Cancel anytime · no email loop</li>
+      </ul>
+      <a class="cta cta-cyan" target="_blank" rel="noopener" href="https://buy.stripe.com/your-link">Get Edge Reader →</a>
+    </div>
+    <div class="tier">
+      <div class="pill">Pro</div>
+      <h3>Edge Pro</h3>
+      <div class="price"><span class="amt">$39</span><span class="per">/mo</span></div>
+      <p class="lede">Reader plus the Cerebro 3D HUD — a force-graph of 7,325 entities, 12,000 relationships, and 300 execution flows.
+      Used by the operator to make decisions in real time.</p>
+      <ul>
+        <li>Everything in Reader</li>
+        <li>Cerebro 3D HUD · live force graph</li>
+        <li>Priority pre-market alerts (3:30 ET)</li>
+        <li>Live trading bot decision ledger</li>
+        <li>Strategy lab read-access (every backtest run)</li>
+      </ul>
+      <a class="cta cta-gold" target="_blank" rel="noopener" href="https://buy.stripe.com/your-link">Get Edge Pro →</a>
+    </div>
+  </div>
+</section>
+
+<section class="finale full" id="subscribe">
+  <h2>The console is <span class="accent">already running.</span><br>You just haven't sat down at it yet.</h2>
+  <p>Three hundred SEC filings parsed since you started reading this page. Heatmap recalculating, scanner sorting,
+  bot watching every position. Open the live board and see what it caught.</p>
+  <a class="btn btn-primary" href="https://catalystedgescanner.com/scanner/">Enter the Scanner <span class="arrow">→</span></a>
+  <div class="finale-sub">No signup required for free tier · Stripe checkout takes 12 seconds for paid · cancel any time</div>
+</section>
+
+<footer>
+  <div class="links">
+    <a href="https://catalystedgescanner.com/scanner/">Long Scanner</a>
+    <a href="https://catalystedgescanner.com/short-scanner/">Short Scanner</a>
+    <a href="https://catalystedgescanner.com/jackpot/">Jackpot</a>
+    <a href="https://catalystedgescanner.com/dcf/">DCF</a>
+    <a href="https://catalystedgescanner.com/defi/">DeFi</a>
+    <a href="https://catalystedgescanner.com/trust/">Trust Ledger</a>
+    <a href="https://catalystedgescanner.com/blog/">Blog</a>
+    <a href="https://catalystedgescanner.com/blog/why-our-bot-failed-validation/">Bot Audit</a>
+    <a href="https://catalystedgescanner.com/pricing/">Pricing</a>
+  </div>
+  <div class="copy">
+    Catalyst Edge · independent signal publisher · we are not a registered investment advisor · all signals are reference only ·
+    audit ledger is public so you can verify every claim before subscribing.
+    <br>© 2026 Catalyst Edge · catalystedgescanner.com
+  </div>
+</footer>
+
+<script>
+(function(){
+  function set(id, v){ var n=document.getElementById(id); if(n) n.textContent = (v==null?'—':String(v)); }
+
+  fetch('https://catalystedgescanner.com/data/short_scanner.json',{cache:'no-store'})
+    .then(function(r){ return r.ok ? r.json() : null; })
+    .then(function(d){
+      if(!d) return;
+      var top = (d.top && d.top[0]) || null;
+      if(top){
+        set('lc-bear-ticker', top.ticker || '—');
+        var sigs = (top.signals||[]).slice(0,2).map(function(s){return s.split(' (')[0];}).join(' · ');
+        set('lc-bear-desc', 'Bear score ' + (top.score||0) + (sigs ? ' · ' + sigs : '') + ' · ' + (d.bearish_count||0) + ' tickers flagged');
+      }
+    }).catch(function(){});
+
+  fetch('https://catalystedgescanner.com/data/short_heatmap.json',{cache:'no-store'})
+    .then(function(r){ return r.ok ? r.json() : null; })
+    .then(function(d){
+      if(!d || !d.sectors || !d.sectors.length) return;
+      var top = d.sectors[0];
+      set('lc-sector-name', top.label || '—');
+      var bullW = top.bullishWeight||0, bearW = top.bearishWeight||0;
+      var posture = bearW > bullW ? 'bearish' : (bullW > bearW ? 'bullish' : 'neutral');
+      set('lc-sector-desc',
+        'Lead: ' + (top.topTicker||'—') + ' · ' + (top.bullish||0) + 'B / ' + (top.bearish||0) + 'Br · ' + posture + ' weight'
+        + (top.macroSignal && top.macroSignal !== 'neutral' ? ' · macro ' + top.macroSignal.replace('_',' ') : ''));
+    }).catch(function(){});
+
+  // For the Primary Target card, hit short_scanner JSON's universe_size as a proxy
+  // until we publish a dedicated long-scanner JSON; show the catalyst count on the
+  // board with a deep link.
+  fetch('https://catalystedgescanner.com/data/short_scanner.json',{cache:'no-store'})
+    .then(function(r){ return r.ok ? r.json() : null; })
+    .then(function(d){
+      if(!d) return;
+      set('lc-target-ticker', 'Live');
+      set('lc-target-desc', (d.universe_size||0) + ' SEC filings parsed today · ' + (d.bearish_count||0) + ' bearish-flagged · the long board has the bullish primary target.');
+    }).catch(function(){});
+})();
+</script>
+</body>
+</html>

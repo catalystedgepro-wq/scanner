@@ -1,0 +1,83 @@
+border,port_number,port_name,crossing_name,port_status,hours,cv_delay_min,cv_lanes_open,pv_delay_min,pv_lanes_open,pedestrian_delay_min,report_date,captured_at
+Mexican Border,230404,Laredo,World Trade Bridge,Open,7 am-Midnight,60,11,,,,4/27/2026 18:10:58,2026-04-27T23:11:22Z
+Mexican Border,240203,El Paso,Ysleta,Open,24 hrs/day,45,4,,,5,4/27/2026 17:10:57,2026-04-27T23:11:22Z
+Mexican Border,230502,Hidalgo/Pharr,Pharr,Open,6 am-Midnight,45,4,10,2,,4/27/2026 18:10:57,2026-04-27T23:11:22Z
+Mexican Border,260402,Nogales,Mariposa,Open,6 am-10 pm,40,5,45,5,0,4/27/2026 17:10:58,2026-04-27T23:11:22Z
+Canadian Border,380201,Port Huron,Bluewater Bridge,Open,24 hrs/day,35,6,0,1,,4/27/2026 19:10:57,2026-04-27T23:11:22Z
+Mexican Border,230403,Laredo,Colombia Solidarity,Open,8 am-Midnight,35,3,30,3,,4/27/2026 18:10:58,2026-04-27T23:11:22Z
+Canadian Border,010601,Houlton,,Open,24 hrs/day,20,1,1,1,,4/27/2026 19:10:57,2026-04-27T23:11:22Z
+Mexican Border,250301,Calexico,East,Open,6 am-10 pm,20,2,15,1,5,4/27/2026 16:10:57,2026-04-27T23:11:22Z
+Mexican Border,250602,Otay Mesa,Commercial,Open,6 am-10 pm,20,4,,,,4/27/2026 16:10:58,2026-04-27T23:11:22Z
+Canadian Border,380002,Detroit,Windsor Tunnel,Open,24 hrs/day,15,1,15,2,,4/27/2026 19:10:57,2026-04-27T23:11:22Z
+Mexican Border,240801,Santa Teresa,Santa Teresa Port of Entry,Open,6 am-10 pm,15,1,70,1,5,4/27/2026 17:10:58,2026-04-27T23:11:22Z
+Mexican Border,250501,Tecate,,Open,6 am-10 pm,15,2,100,2,5,4/27/2026 16:10:58,2026-04-27T23:11:22Z
+Mexican Border,535503,Brownsville,Los Indios,Open,6 am-10 pm,10,1,10,2,,4/27/2026 18:10:57,2026-04-27T23:11:22Z
+Canadian Border,300401,Blaine,Pacific Highway,Open,24 hrs/day,5,2,15,3,,4/27/2026 16:10:57,2026-04-27T23:11:22Z
+Canadian Border,380001,Detroit,Ambassador Bridge,Open,24 hrs/day,5,8,0,5,,4/27/2026 19:10:57,2026-04-27T23:11:22Z
+Canadian Border,302301,Lynden,,Open,8 am-Midnight,5,1,5,1,,4/27/2026 16:10:57,2026-04-27T23:11:22Z
+Canadian Border,300901,Sumas,,Open,24 hrs/day,5,1,15,2,,4/27/2026 16:10:57,2026-04-27T23:11:22Z
+Canadian Border,331001,Sweetgrass,,Open,24 hrs/day,5,1,5,1,,4/27/2026 17:10:57,2026-04-27T23:11:22Z
+Mexican Border,535502,Brownsville,Veterans International,Open,6 am-Midnight,5,1,30,3,1,4/27/2026 18:10:57,2026-04-27T23:11:22Z
+Mexican Border,231001,Roma,,Open,24 hrs/day,5,1,20,3,,4/27/2026 18:10:58,2026-04-27T23:11:22Z
+Canadian Border,340101,Pembina,,Open,24 hrs/day,4,1,0,1,,4/27/2026 18:10:57,2026-04-27T23:11:22Z
+Canadian Border,090104,Buffalo/Niagara Falls,Lewiston Bridge,Open,24 hrs/day,2,2,5,2,,4/27/2026 19:10:57,2026-04-27T23:11:22Z
+Mexican Border,230701,Rio Grande City,,Open,7 am-Midnight,2,1,10,2,,4/27/2026 18:10:58,2026-04-27T23:11:22Z
+Canadian Border,090101,Buffalo/Niagara Falls,Peace Bridge,Open,24 hrs/day,1,4,9,3,,4/27/2026 19:10:57,2026-04-27T23:11:22Z
+Mexican Border,230302,Eagle Pass,Bridge II,Open,24 hrs/day,1,1,60,2,,4/27/2026 18:10:57,2026-04-27T23:11:22Z
+Canadian Border,070801,Alexandria Bay,Thousand Islands Bridge,Open,24 hrs/day,0,2,0,2,,4/27/2026 19:10:57,2026-04-27T23:11:22Z
+Canadian Border,300402,Blaine,Peace Arch,Open,24 hrs/day,,,20,3,,4/27/2026 16:10:57,2026-04-27T23:11:22Z
+Canadian Border,300403,Blaine,Point Roberts,Open,24 hrs/day,,,,,,4/27/2026 16:10:57,2026-04-27T23:11:22Z
+Canadian Border,090102,Buffalo/Niagara Falls,Rainbow Bridge,Open,24 hrs/day,,,6,2,,4/27/2026 19:10:57,2026-04-27T23:11:22Z
+Canadian Border,090103,Buffalo/Niagara Falls,Whirlpool Bridge,Open,7 am-11 pm,,,,,,4/27/2026 19:10:57,2026-04-27T23:11:22Z
+Canadian Border,011501,Calais,Ferry Point,Open,24 hrs/day,,,0,1,,4/27/2026 19:10:57,2026-04-27T23:11:22Z
+Canadian Border,011503,Calais,International Avenue,Open,24 hrs/day,0,1,0,1,,4/27/2026 19:10:57,2026-04-27T23:11:22Z
+Canadian Border,011502,Calais,Milltown,Closed,8 am-4 pm,,,,,,4/27/2026 19:10:57,2026-04-27T23:11:22Z
+Canadian Border,071201,Champlain,,Open,24 hrs/day,0,2,0,1,,4/27/2026 19:10:57,2026-04-27T23:11:22Z
+Canadian Border,020901,Derby Line,Derby Line I-91,Open,24 hrs/day,0,1,5,1,,4/27/2026 19:10:57,2026-04-27T23:11:22Z
+Canadian Border,021201,Highgate Springs,,Open,24 hrs/day,,,10,1,,4/27/2026 19:10:57,2026-04-27T23:11:22Z
+Canadian Border,360401,International Falls,,Open,24 hrs/day,0,1,0,1,,4/27/2026 18:10:57,2026-04-27T23:11:22Z
+Canadian Border,010401,Jackman,,Open,24 hrs/day,0,1,0,1,,4/27/2026 19:10:57,2026-04-27T23:11:22Z
+Canadian Border,L01901,Madawaska,,Open,24 hrs/day,0,1,0,1,,4/27/2026 19:10:57,2026-04-27T23:11:22Z
+Canadian Border,070401,Massena,,Open,24 hrs/day,0,1,0,2,,4/27/2026 19:10:57,2026-04-27T23:11:22Z
+Canadian Border,021101,Norton,,Open,24 hrs/day,0,1,0,1,,4/27/2026 19:10:57,2026-04-27T23:11:22Z
+Canadian Border,070101,Ogdensburg,,Open,24 hrs/day,0,1,0,1,,4/27/2026 19:10:57,2026-04-27T23:11:22Z
+Canadian Border,380301,Sault Ste. Marie,International Bridge - SSM,Open,24 hrs/day,0,1,0,1,,4/27/2026 19:10:57,2026-04-27T23:11:22Z
+Mexican Border,250201,Andrade,,Open,6 am-10 pm,,,30,2,0,4/27/2026 16:10:57,2026-04-27T23:11:22Z
+Mexican Border,240215,BOTA CARGO FACILITY,BRIDGE OF AMERICAS CARGO FACILITY ,Closed,6 am-2 pm,,,,,,4/27/2026 17:10:57,2026-04-27T23:11:22Z
+Mexican Border,240207,Bridge of the Americas Port of Entry,,Open,24 hrs/day,,,,,,4/27/2026 17:10:57,2026-04-27T23:11:22Z
+Mexican Border,535501,Brownsville,B&M,Open,24 hrs/day,,,30,3,0,4/27/2026 18:10:57,2026-04-27T23:11:22Z
+Mexican Border,535504,Brownsville,Gateway,Open,24 hrs/day,,,30,2,10,4/27/2026 18:10:57,2026-04-27T23:11:22Z
+Mexican Border,250302,Calexico,West,Open,24 hrs/day,,,90,2,5,4/27/2026 16:10:57,2026-04-27T23:11:22Z
+Mexican Border,240601,Columbus,,Open,24 hrs/day,,,0,1,0,4/27/2026 17:10:57,2026-04-27T23:11:22Z
+Mexican Border,230201,Del Rio,,Open,24 hrs/day,0,1,1,1,,4/27/2026 18:10:57,2026-04-27T23:11:22Z
+Mexican Border,260101,Douglas (Raul Hector Castro),,Open,24 hrs/day,,,90,4,1,4/27/2026 16:10:57,2026-04-27T23:11:22Z
+Mexican Border,230301,Eagle Pass,Bridge I,Open,7 am-11 pm,,,,,,4/27/2026 18:10:57,2026-04-27T23:11:22Z
+Mexican Border,240221,El Paso,,Open,24 hrs/day,,,,,,4/27/2026 17:10:57,2026-04-27T23:11:22Z
+Mexican Border,240201,El Paso,Bridge of the Americas (BOTA),Open,24 hrs/day,,,85,3,4,4/27/2026 17:10:57,2026-04-27T23:11:22Z
+Mexican Border,240202,El Paso,Paso Del Norte (PDN),Open,24 hrs/day,,,63,1,1,4/27/2026 17:10:57,2026-04-27T23:11:22Z
+Mexican Border,240204,El Paso,Stanton DCL,Open,6 am-Midnight,,,,,,4/27/2026 17:10:57,2026-04-27T23:11:22Z
+Mexican Border,l24501,Fort Hancock,Fort Hancock,Open,6 am-6 pm,,,5,1,0,4/27/2026 17:10:57,2026-04-27T23:11:22Z
+Mexican Border,230103,Gateway,,Open,24 hrs/day,,,,,,4/27/2026 18:10:57,2026-04-27T23:11:22Z
+Mexican Border,230503,Hidalgo/Pharr,Anzalduas International Bridge,Open,6 am-10 pm,,,50,1,,4/27/2026 18:10:57,2026-04-27T23:11:22Z
+Mexican Border,230501,Hidalgo/Pharr,Hidalgo,Open,24 hrs/day,,,40,2,5,4/27/2026 18:10:57,2026-04-27T23:11:22Z
+Mexican Border,230401,Laredo,Bridge I,Open,24 hrs/day,,,,,0,4/27/2026 18:10:57,2026-04-27T23:11:22Z
+Mexican Border,230402,Laredo,Bridge II,Open,24 hrs/day,,,55,6,,4/27/2026 18:10:58,2026-04-27T23:11:22Z
+Mexican Border,260201,Lukeville,,Open,6 am-8 pm,,,20,1,,4/27/2026 17:10:58,2026-04-27T23:11:22Z
+Mexican Border,240401,Marcelino Serna,Tornillo,Open,6 am-10 pm,,,30,2,0,4/27/2026 17:10:58,2026-04-27T23:11:22Z
+Mexican Border,260305,Naco,,Open,24 hrs/day,,,,,,4/27/2026 16:10:58,2026-04-27T23:11:22Z
+Mexican Border,260301,Naco,,Open,6 am-10 pm,,,10,1,1,4/27/2026 16:10:58,2026-04-27T23:11:22Z
+Mexican Border,260401,Nogales,Deconcini,Open,24 hrs/day,,,90,3,0,4/27/2026 17:10:58,2026-04-27T23:11:22Z
+Mexican Border,260403,Nogales,Morley Gate,Open,10 am-6 pm,,,,,0,4/27/2026 17:10:58,2026-04-27T23:11:22Z
+Mexican Border,250609,Otay Mesa,,Open,24 hrs/day,,,,,,4/27/2026 16:10:58,2026-04-27T23:11:22Z
+Mexican Border,250601,Otay Mesa,Passenger,Open,24 hrs/day,,,90,2,30,4/27/2026 16:10:58,2026-04-27T23:11:22Z
+Mexican Border,250608,Otay Mesa Port of Entry,,Open,24 hrs/day,,,,,,4/27/2026 16:10:58,2026-04-27T23:11:22Z
+Mexican Border,202401,Paso Del Norte,,Open,24 hrs/day,,,,,,4/27/2026 18:10:58,2026-04-27T23:11:22Z
+Mexican Border,240301,Presidio,,Open,24 hrs/day,0,1,0,2,0,4/27/2026 18:10:58,2026-04-27T23:11:22Z
+Mexican Border,230902,Progreso,Donna International Bridge,Open,6 am-10 pm,,,40,2,,4/27/2026 18:10:58,2026-04-27T23:11:22Z
+Mexican Border,230901,Progreso,Progreso International Bridge,Open,24 hrs/day,,,45,1,10,4/27/2026 18:10:58,2026-04-27T23:11:22Z
+Mexican Border,231002,ROMA TEXAS,ROMA TEXAS ,Open,24 hrs/day,,,,,,4/27/2026 18:10:58,2026-04-27T23:11:22Z
+Mexican Border,260801,San Luis,San Luis I,Open,24 hrs/day,,,5,2,5,4/27/2026 17:10:58,2026-04-27T23:11:22Z
+Mexican Border,260802,San Luis,San Luis II,Open,9 am-7 pm,0,2,,,,4/27/2026 17:10:58,2026-04-27T23:11:22Z
+Mexican Border,250401,San Ysidro,,Open,24 hrs/day,,,130,5,30,4/27/2026 16:10:58,2026-04-27T23:11:22Z
+Mexican Border,250409,San Ysidro,Cross Border Express,Open,24 hrs/day,,,,,0,4/27/2026 16:10:58,2026-04-27T23:11:22Z
+Mexican Border,250407,San Ysidro,PedWest,Closed,6 am-2 pm,,,,,45,4/27/2026 16:10:58,2026-04-27T23:11:22Z

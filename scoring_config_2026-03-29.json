@@ -1,0 +1,64 @@
+{
+  "version": 13,
+  "precision": {
+    "require_explicit_ticker_news": true
+  },
+  "news": {
+    "combined_news_weight": 0.8,
+    "source_weight_overrides": {
+      "bloomberg": 1.2,
+      "reuters_business": 1.0,
+      "reuters_world": 1.0,
+      "marketwatch_top": 0.8,
+      "yahoo_finance": 0.7,
+      "noaa_nhc": 0.9,
+      "eia_today": 0.9
+    }
+  },
+  "investability": {
+    "min_price": 3.0,
+    "min_avg_vol": 250000,
+    "min_mcap": 300000000
+  },
+  "moat_core": {
+    "min_price": 5.0,
+    "min_avg_vol": 500000,
+    "min_mcap": 2000000000
+  },
+  "clean_presets": {
+    "max_rows": 40,
+    "severe_risks": [
+      "offering",
+      "private placement",
+      "default",
+      "bankruptcy",
+      "delist",
+      "going concern"
+    ],
+    "gappers": {
+      "min_score": 12,
+      "max_recency_min": 720
+    },
+    "value": {
+      "min_score": 12,
+      "min_price": 5.0,
+      "min_avg_vol": 500000
+    },
+    "moat_core": {
+      "min_score": 14
+    }
+  },
+  "auto_tune": {
+    "enabled": true,
+    "min_rows_required": 20,
+    "target_hit_rate_3pct": {
+      "sec_clean_gappers": 25.0,
+      "combined_priority": 20.0
+    },
+    "step_limits": {
+      "gappers_min_score": 1,
+      "gappers_max_recency_min": 60,
+      "combined_news_weight": 0.05
+    }
+  }
+}

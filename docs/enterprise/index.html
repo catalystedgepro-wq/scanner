@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>🏛 Catalyst Edge for Hedge Funds & Prop Desks — Enterprise</title>
+<meta name="description" content="Enterprise tier: audited 89% hit rate, Damodaran DCF on 443 international tickers, webhook delivery, custom universe, dedicated SLA. From $499/seat/month vs Bloomberg's $24K.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://catalystedgescanner.com/enterprise/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/lib/cinematic.css">
+<style>
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:24px}
+@media(max-width:880px){.compare{grid-template-columns:1fr}}
+.compare-side{position:relative;padding:30px 28px;background:linear-gradient(180deg,rgba(18,22,31,.86),rgba(7,11,17,.86));
+  border:1px solid var(--ce-border);border-radius:14px;overflow:hidden}
+.compare-side.bbg{border-color:rgba(244,63,94,.28)}
+.compare-side.bbg::before{content:'';position:absolute;left:0;top:0;height:3px;width:100%;background:var(--ce-rose)}
+.compare-side.us{border-color:rgba(16,185,129,.32)}
+.compare-side.us::before{content:'';position:absolute;left:0;top:0;height:3px;width:100%;
+  background:linear-gradient(90deg,var(--ce-green),var(--ce-cyan))}
+.compare-side h3{font-size:18px;margin-bottom:14px;font-weight:700}
+.compare-side.bbg h3{color:var(--ce-rose)}.compare-side.us h3{color:var(--ce-green)}
+.compare-side ul{list-style:none;padding:0;margin:0 0 18px;display:flex;flex-direction:column;gap:10px}
+.compare-side li{font-size:14px;color:#dde4ee;display:flex;gap:10px;align-items:flex-start;line-height:1.5}
+.compare-side.bbg li::before{content:'✗';color:var(--ce-rose);font-weight:700;flex-shrink:0}
+.compare-side.us li::before{content:'◆';color:var(--ce-cyan);flex-shrink:0}
+.compare-side .price{font-family:'IBM Plex Mono',monospace;font-size:28px;font-weight:700;letter-spacing:-.01em}
+.compare-side.bbg .price{color:var(--ce-rose)}
+.compare-side.us .price{color:var(--ce-green)}
+
+.tier-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:24px}
+@media(max-width:1100px){.tier-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.tier-grid{grid-template-columns:1fr}}
+.tier{position:relative;padding:28px 24px;background:linear-gradient(180deg,rgba(18,22,31,.86),rgba(7,11,17,.86));
+  border:1px solid var(--ce-border);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
+.tier::before{content:'';position:absolute;left:0;top:0;height:2px;width:100%;background:var(--ce-border)}
+.tier.featured{border-color:rgba(231,183,108,.4)}
+.tier.featured::before{background:linear-gradient(90deg,var(--ce-gold),var(--ce-cyan))}
+.tier.featured{box-shadow:0 0 50px rgba(231,183,108,.08)}
+.tier .name{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--ce-muted);margin-bottom:8px}
+.tier .tier-h{font-size:20px;font-weight:700;letter-spacing:-.005em;margin-bottom:8px}
+.tier .price{font-family:'IBM Plex Mono',monospace;font-size:28px;font-weight:700;color:var(--ce-gold);margin:8px 0 16px}
+.tier .price small{font-size:13px;color:var(--ce-muted)}
+.tier ul{list-style:none;padding:0;margin:0 0 18px;flex:1;display:flex;flex-direction:column;gap:7px}
+.tier li{font-size:13px;color:#c4cdde;display:flex;gap:8px;align-items:flex-start;line-height:1.5}
+.tier li::before{content:'◆';color:var(--ce-cyan);font-size:10px;flex-shrink:0}
+.tier .cta-tier{display:block;width:100%;padding:11px 16px;border-radius:7px;text-align:center;
+  font-weight:700;font-size:13.5px;letter-spacing:.04em;text-decoration:none;transition:all .25s}
+.tier .cta-tier.outline{background:transparent;border:1px solid var(--ce-border-cyan);color:var(--ce-cyan)}
+.tier .cta-tier.outline:hover{background:rgba(114,229,255,.08);border-color:var(--ce-cyan);color:var(--ce-cyan)}
+.tier .cta-tier.gold{background:linear-gradient(135deg,var(--ce-gold),var(--ce-gold-deep));color:#0a0d18;
+  box-shadow:0 0 22px rgba(231,183,108,.3)}
+.tier .cta-tier.gold:hover{filter:brightness(1.1)}
+
+.contact{display:grid;grid-template-columns:1fr 1.2fr;gap:30px;margin-top:24px}
+@media(max-width:880px){.contact{grid-template-columns:1fr}}
+.contact-side{padding:28px;background:rgba(12,16,24,.6);border:1px solid var(--ce-border-cyan);border-radius:14px}
+.form-stack{display:flex;flex-direction:column;gap:10px}
+.form-stack input,.form-stack textarea{background:rgba(7,11,17,.5);border:1px solid var(--ce-border);
+  color:var(--ce-text);padding:11px 14px;border-radius:7px;font-family:inherit;font-size:14px;transition:border-color .2s}
+.form-stack input:focus,.form-stack textarea:focus{outline:none;border-color:var(--ce-cyan);
+  box-shadow:0 0 14px rgba(114,229,255,.2)}
+.form-stack textarea{min-height:88px;resize:vertical}
+.form-stack button{padding:13px;border-radius:7px;font-weight:700;font-size:14px;
+  background:linear-gradient(135deg,var(--ce-gold),var(--ce-gold-deep));color:#0a0d18;border:none;
+  cursor:pointer;letter-spacing:.04em;transition:all .25s;
+  box-shadow:0 0 24px rgba(231,183,108,.32)}
+.form-stack button:hover{filter:brightness(1.1);transform:translateY(-1px)}
+
+.logo-wall{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-top:24px}
+.logo-tile{padding:22px 20px;background:rgba(12,16,24,.5);border:1px solid var(--ce-border);border-radius:10px;
+  text-align:center;font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--ce-muted);
+  letter-spacing:.04em;transition:all .25s}
+.logo-tile:hover{border-color:rgba(114,229,255,.32);color:var(--ce-text);transform:translateY(-2px)}
+
+.faq{background:rgba(12,16,24,.5);border:1px solid var(--ce-border);border-radius:10px;padding:18px 22px;margin-bottom:10px;
+  transition:border-color .2s}
+.faq:hover{border-color:rgba(231,183,108,.28)}
+.faq summary{font-weight:600;cursor:pointer;font-size:15px;color:var(--ce-text);list-style:none;
+  display:flex;justify-content:space-between;align-items:center;gap:12px}
+.faq summary::after{content:'+';color:var(--ce-gold);font-family:'IBM Plex Mono',monospace;font-size:18px;
+  transition:transform .2s;flex-shrink:0}
+.faq[open] summary::after{transform:rotate(45deg)}
+.faq p{margin-top:14px;color:#c4cdde;font-size:14px;line-height:1.65}
+.faq p code{font-family:'IBM Plex Mono',monospace;background:rgba(231,183,108,.1);color:var(--ce-gold);
+  padding:1px 6px;border-radius:4px;font-size:.92em}
+</style>
+</head>
+<body>
+
+<div class="ce-field" aria-hidden="true">
+  <div class="ce-field-orb a"></div><div class="ce-field-orb b"></div><div class="ce-field-orb c"></div>
+  <div class="ce-scanline"></div><div class="ce-scanline" style="animation-delay:-3s;opacity:.3"></div>
+  <div class="ce-vignette"></div>
+</div>
+<canvas id="ce-particles" aria-hidden="true"></canvas>
+
+<nav class="ce-nav">
+  <a href="https://catalystedge.agency/" class="ce-brand">
+    <span class="ce-brand-mark"></span>
+    <span class="ce-brand-text">CATALYST · ENTERPRISE</span>
+  </a>
+  <a href="/scanner/">Scanner</a>
+  <a href="/short-scanner/">📉 Short</a>
+  <a href="/methodology/">Methodology</a>
+  <a href="/data/api/">API Docs</a>
+  <a href="/trust/">Trust</a>
+  <a class="ce-cta-nav" href="#contact">Talk to Sales →</a>
+</nav>
+
+<section class="ce-hero">
+  <div class="ce-eyebrow"><span class="ce-dot"></span>For Hedge Funds · Prop Desks · RIAs</div>
+  <h1 class="ce-h1">The institutional layer<br>for <span class="ce-accent">catalyst trading</span></h1>
+  <p class="ce-lede">Audited <strong>89% hit rate</strong> on +2% intraday. Two-stage Damodaran DCF on 443 international tickers.
+  Cross-border ADR convergence Bloomberg can't surface in one screen. Webhook delivery, custom universe, dedicated SLA —
+  from <strong>$499/seat/month</strong>, vs Bloomberg's $24,000.</p>
+  <div style="display:inline-flex;gap:14px;margin-top:32px;flex-wrap:wrap;justify-content:center">
+    <a class="ce-btn ce-btn-primary" href="#contact">Talk to Sales <span class="ce-arrow">→</span></a>
+    <a class="ce-btn ce-btn-ghost" href="/data/api/">View API Docs <span class="ce-arrow">→</span></a>
+  </div>
+  <div class="ce-meta-line" style="margin-top:36px">
+    <span><span class="ce-live"></span>API · live</span>
+    <span>$499/seat · 99.9% SLA</span>
+    <span>10K req/day baseline</span>
+    <span>48h onboarding</span>
+  </div>
+</section>
+
+<section class="ce-section">
+  <div class="ce-chapter">
+    <div class="ce-chapter-num">CHAPTER 01</div>
+    <h2 class="ce-h2">The math is <span class="ce-accent">simple</span>.</h2>
+  </div>
+  <p style="color:#c4cdde;font-size:16px;line-height:1.65;max-width:680px">
+    For a 10-seat shop, Bloomberg is <strong style="color:var(--ce-rose)">$240,000/year</strong>.
+    Catalyst Edge Enterprise covers the same primary use case (catalyst trading + cross-border + DCF)
+    for <strong style="color:var(--ce-green)">$59,880/year</strong>. The gap pays for two more analysts.
+  </p>
+  <div class="compare">
+    <div class="compare-side bbg">
+      <h3>📺 Bloomberg Terminal · 10 seats</h3>
+      <ul>
+        <li>$24K/seat/year × 10 = $240K</li>
+        <li>Black-box DCF model (BFV)</li>
+        <li>No published hit rate</li>
+        <li>No webhook delivery</li>
+        <li>Locked to terminal hardware</li>
+        <li>Cross-border requires 8 windows</li>
+      </ul>
+      <div class="price">$240,000 / year</div>
+    </div>
+    <div class="compare-side us">
+      <h3>⚡ Catalyst Edge Enterprise · 10 seats</h3>
+      <ul>
+        <li>$499/seat/mo × 10 × 12 = $59,880</li>
+        <li>Audited 89% hit rate (90-day, public)</li>
+        <li>Damodaran DCF — every input traceable to SEC EDGAR XBRL</li>
+        <li>Webhooks: Slack / Teams / Telegram / Discord</li>
+        <li>API + Python SDK + R package</li>
+        <li>Cross-border ADR convergence on one screen</li>
+      </ul>
+      <div class="price">$59,880 / year</div>
+    </div>
+  </div>
+</section>
+
+<div class="ce-pull-quote">
+  Saves 10-seat firm <em>$180,120 per year</em>.<br>
+  Pays for two more analysts. Or one more strategy.
+</div>
+
+<section class="ce-section">
+  <div class="ce-chapter">
+    <div class="ce-chapter-num">CHAPTER 02</div>
+    <h2 class="ce-h2">What you <span class="ce-accent">get</span>.</h2>
+  </div>
+  <p style="color:#c4cdde;font-size:16px;line-height:1.6;max-width:640px;margin-bottom:24px">
+    Everything the public scanner has, plus the institutional layer.
+  </p>
+  <div class="ce-grid-auto">
+    <div class="ce-card"><div class="ce-card-icon">🌍</div><h4>Custom Universe</h4><p>Any 1,000 tickers. Add private tickers from your IM. Full international suffix support.</p></div>
+    <div class="ce-card"><div class="ce-card-icon">📡</div><h4>Webhook Delivery</h4><p>Slack, Teams, Telegram, Discord, custom HTTPS. JACKPOT alerts hit your channel within 30 seconds.</p></div>
+    <div class="ce-card"><div class="ce-card-icon">⚡</div><h4>Dedicated API Endpoint</h4><p>10K req/day baseline; burst to 100K. Stable URL. SLA-backed availability.</p></div>
+    <div class="ce-card"><div class="ce-card-icon">🏷️</div><h4>White-Label Option</h4><p>Catalyst Edge engine, your brand. Bring your colors, logo, domain. We handle the data plumbing.</p></div>
+    <div class="ce-card"><div class="ce-card-icon">🧮</div><h4>Custom DCF Parameters</h4><p>Override WACC, terminal growth, sector caps. Your house view, our compute.</p></div>
+    <div class="ce-card"><div class="ce-card-icon">📦</div><h4>Python SDK + R Package</h4><p>One-line drop into your model. <code class="ce-code">from catalyst_edge import scan</code></p></div>
+    <div class="ce-card"><div class="ce-card-icon">📈</div><h4>99.9% Uptime Guarantee</h4><p>Service-credits if we miss. Replicated across two regions.</p></div>
+    <div class="ce-card"><div class="ce-card-icon">📞</div><h4>Direct Engineering Line</h4><p>No tier-1 helpdesk. Slack channel direct to the team that built the engine. Onboarding under 48 hours.</p></div>
+  </div>
+</section>
+
+<section class="ce-section" id="pricing">
+  <div class="ce-chapter">
+    <div class="ce-chapter-num">CHAPTER 03</div>
+    <h2 class="ce-h2">Pick your <span class="ce-accent">seat at the console</span>.</h2>
+  </div>
+  <p style="color:#c4cdde;font-size:16px;line-height:1.6;max-width:640px;margin-bottom:24px">
+    From individual researchers to institutional desks.
+  </p>
+  <div class="tier-grid">
+    <div class="tier">
+      <div class="name">📡 Reader</div>
+      <div class="tier-h">Individual</div>
+      <div class="price">$9<small>/mo</small></div>
+      <ul>
+        <li>Full international scanner</li>
+        <li>JACKPOT picks unblurred</li>
+        <li>Cross-border setups</li>
+        <li>API: 1k req/day</li>
+      </ul>
+      <a class="cta-tier outline" href="/pricing/?plan=reader">Subscribe</a>
+    </div>
+    <div class="tier featured">
+      <div class="name">⚡ Pro</div>
+      <div class="tier-h">Power User</div>
+      <div class="price">$39<small>/mo</small></div>
+      <ul>
+        <li>Everything in Reader</li>
+        <li>Cerebro 3D HUD access</li>
+        <li>International DCF feed</li>
+        <li>Telegram + Discord alerts</li>
+        <li>API: 10k req/day</li>
+      </ul>
+      <a class="cta-tier gold" href="/pricing/?plan=pro&from=enterprise">Subscribe</a>
+    </div>
+    <div class="tier">
+      <div class="name">👥 Team</div>
+      <div class="tier-h">Small Desk</div>
+      <div class="price">$199<small>/mo</small></div>
+      <ul>
+        <li>5 seats included</li>
+        <li>Shared workspace</li>
+        <li>Slack channel integration</li>
+        <li>API: 25k req/day shared</li>
+      </ul>
+      <a class="cta-tier outline" href="#contact">Contact Sales</a>
+    </div>
+    <div class="tier featured">
+      <div class="name">🏛 Enterprise</div>
+      <div class="tier-h">Institution</div>
+      <div class="price">from $499<small>/seat/mo</small></div>
+      <ul>
+        <li>Everything in Team</li>
+        <li>Custom universe (1k tickers)</li>
+        <li>Webhook delivery</li>
+        <li>White-label option</li>
+        <li>Custom DCF parameters</li>
+        <li>99.9% uptime SLA</li>
+        <li>Direct engineering line</li>
+      </ul>
+      <a class="cta-tier gold" href="#contact">Contact Sales</a>
+    </div>
+  </div>
+</section>
+
+<section class="ce-section" id="contact">
+  <div class="ce-chapter">
+    <div class="ce-chapter-num">CHAPTER 04</div>
+    <h2 class="ce-h2">Talk to <span class="ce-accent">sales</span>.</h2>
+  </div>
+  <p style="color:#c4cdde;font-size:16px;line-height:1.6;max-width:640px;margin-bottom:24px">
+    Tell us your seat count and primary workflow. We'll respond within one business day with a custom quote.
+  </p>
+  <div class="contact">
+    <div class="contact-side">
+      <h3 class="ce-h3">📧 Direct line</h3>
+      <p style="color:var(--ce-muted);font-size:14.5px;line-height:1.6;margin:8px 0 18px">
+        Direct line to the founding team. No helpdesk gauntlet.
+      </p>
+      <a class="ce-btn ce-btn-primary" href="mailto:opensource@example.com?subject=Enterprise%20Inquiry%20%E2%80%94%20Catalyst%20Edge&body=Hi%20Catalyst%20Edge%20team%2C%0A%0ASeat%20count%3A%20%0AFirm%20type%3A%20%0APrimary%20workflow%3A%20%0AWebhook%20preference%3A%20%0A%0AThanks%2C">📧 Email Sales</a>
+    </div>
+    <form class="contact-side form-stack" action="mailto:opensource@example.com" method="POST" enctype="text/plain">
+      <input type="text" name="name" placeholder="Name" required>
+      <input type="email" name="email" placeholder="Work email" required>
+      <input type="text" name="firm" placeholder="Firm / fund name">
+      <input type="text" name="seats" placeholder="Seat count">
+      <textarea name="notes" placeholder="Primary workflow + any specific asks…"></textarea>
+      <button type="submit">Request Demo →</button>
+    </form>
+  </div>
+</section>
+
+<section class="ce-section">
+  <div class="ce-chapter">
+    <div class="ce-chapter-num">CHAPTER 05</div>
+    <h2 class="ce-h2">Used by <span class="ce-accent">quants at</span>…</h2>
+  </div>
+  <p style="color:var(--ce-muted);font-size:13px;font-style:italic;margin-bottom:14px">
+    Logos shown anonymously — most clients prefer not to disclose their tools.
+  </p>
+  <div class="logo-wall">
+    <div class="logo-tile">▲ Multi-strat fund · NYC</div>
+    <div class="logo-tile">◆ Prop desk · Chicago</div>
+    <div class="logo-tile">● RIA · Geneva</div>
+    <div class="logo-tile">■ Long/short · London</div>
+    <div class="logo-tile">▼ Macro fund · Singapore</div>
+    <div class="logo-tile">★ Family office · São Paulo</div>
+  </div>
+</section>
+
+<section class="ce-section">
+  <div class="ce-chapter">
+    <div class="ce-chapter-num">FINAL</div>
+    <h2 class="ce-h2"><span class="ce-accent">FAQ</span></h2>
+  </div>
+  <details class="faq">
+    <summary>What's actually different from Bloomberg?</summary>
+    <p>Three things: (1) audited hit rate — we publish 89% on +2% intraday over 90 days, Bloomberg publishes nothing. (2) DCF transparency — every cell traces back to a SEC EDGAR XBRL filing, Bloomberg's BFV is a black box. (3) Cross-border ADR convergence on one screen — Bloomberg requires 8 windows to surface this. We're not trying to replace your terminal for OMS, but for catalyst research, we beat it.</p>
+  </details>
+  <details class="faq">
+    <summary>Can we white-label?</summary>
+    <p>Yes — Enterprise includes a white-label option. Bring your domain, colors, and logo; we handle the underlying engine and data. Branding swap deploys in 24 hours after onboarding.</p>
+  </details>
+  <details class="faq">
+    <summary>Do you have an SDK?</summary>
+    <p>Python SDK ships at Enterprise tier (<code>pip install catalyst-edge</code>). R package is in beta. JavaScript via npm coming Q2. Today, every endpoint already has copy-paste curl/Python/Node/R/Bash samples on the <a class="ce-link" href="/data/api/">API docs</a>.</p>
+  </details>
+  <details class="faq">
+    <summary>What's the SLA?</summary>
+    <p>99.9% uptime measured at the API endpoint. Service credits issued automatically if we miss. Sub-second response time on cached panel JSON. Maximum 30-second delay between scanner generation and webhook delivery.</p>
+  </details>
+  <details class="faq">
+    <summary>How fast can we onboard?</summary>
+    <p>Under 48 hours from signed contract: dedicated endpoint provisioned, webhook URLs configured, custom universe loaded, Slack channel opened with engineering. White-label deployment adds 24 hours.</p>
+  </details>
+</section>
+
+<section class="ce-finale">
+  <h2 class="ce-h2">Built for institutions<br>that want <span class="ce-accent">Bloomberg-grade signals</span> without Bloomberg's lock-in.</h2>
+  <p>Catalyst Edge Enterprise — audited, white-labelable, webhook-delivered. Talk to sales when you're ready to compare side-by-side.</p>
+  <div style="display:inline-flex;gap:14px;flex-wrap:wrap;justify-content:center">
+    <a class="ce-btn ce-btn-primary" href="#contact">Talk to Sales <span class="ce-arrow">→</span></a>
+    <a class="ce-btn ce-btn-ghost" href="/trust/">See the Audit <span class="ce-arrow">→</span></a>
+  </div>
+  <div class="ce-finale-sub">Catalyst Edge Enterprise · 99.9% SLA · 48h onboarding · cancel any time</div>
+</section>
+
+<footer class="ce-footer">
+  <div class="ce-links">
+    <a href="https://catalystedge.agency/">Home</a>
+    <a href="/scanner/">Long Scanner</a>
+    <a href="/short-scanner/">Short Scanner</a>
+    <a href="/methodology/">Methodology</a>
+    <a href="/data/api/">API Docs</a>
+    <a href="/trust/">Trust Ledger</a>
+    <a href="/changelog/">Changelog</a>
+    <a href="/pricing/">Pricing</a>
+    <a href="mailto:opensource@example.com">Contact</a>
+  </div>
+  <div class="ce-copy">
+    Catalyst Edge Enterprise — built for institutions that want Bloomberg-grade signals without Bloomberg's lock-in.
+    <br>© 2026 Catalyst Edge · catalystedgescanner.com
+  </div>
+</footer>
+
+<script src="/lib/cinematic.js"></script>
+</body>
+</html>

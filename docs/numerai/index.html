@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Catalyst Edge on Numerai Signals — SEC Catalyst + DCF Predictions | Round 1253</title>
+<meta name="description" content="Live Numerai Signals submissions from Catalyst Edge. SEC catalyst convergence ranks + DCF intrinsic-value tilt. 1879 weekly predictions. Round 1253 scoring Apr 30 – Jul 23, 2026.">
+<meta name="keywords" content="numerai signals,numerai tournament,catalyst edge numerai,numerai catalystedge,SEC catalyst predictions,DCF signals,quant signals">
+<meta property="og:title" content="Catalyst Edge on Numerai Signals — Round 1253">
+<meta property="og:description" content="1879 weekly predictions submitted to the Meta Model. SEC catalyst + DCF intrinsic-value rank.">
+<link rel="canonical" href="https://catalystedgescanner.com/numerai/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#070a12;--surface:#0f1420;--gold:#d4a843;--green:#22c55e;--red:#ef4444;--cyan:#06b6d4;--navy:#0a1529;--text:#e2e8f0;--dim:#94a3b8;--muted:#64748b;--border:#1e293b}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--text);line-height:1.55}
+a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
+.nav{position:sticky;top:0;z-index:100;background:rgba(7,10,18,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:.75rem 1.5rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+.nav a{color:var(--gold);font-weight:600;font-size:.92rem}
+.wrap{max-width:1180px;margin:0 auto;padding:1.5rem}
+.hero{padding:2rem 0 1.75rem;border-bottom:1px solid var(--border);margin-bottom:1.5rem}
+.hero h1{font-size:clamp(1.6rem,3.2vw,2.2rem);font-weight:800;line-height:1.2;margin-bottom:.5rem}
+.hero h1 em{font-style:normal;color:var(--cyan)}
+.hero .sub{color:var(--dim);font-size:.92rem;max-width:780px;line-height:1.7}
+.hero .sub strong{color:var(--text)}
+.live-dot{display:inline-block;width:8px;height:8px;background:var(--green);border-radius:50%;margin-right:6px;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-bottom:1.5rem}
+.kpi{background:linear-gradient(180deg,rgba(10,21,41,.92),rgba(10,21,41,.55));border:1px solid var(--border);border-radius:8px;padding:1rem 1.1rem;position:relative}
+.kpi::before{content:'';position:absolute;inset:0;border-top:2px solid var(--cyan);opacity:.45}
+.kpi-val{font-size:1.7rem;font-weight:800;color:var(--cyan);font-family:'IBM Plex Mono',monospace;line-height:1;margin-bottom:.3rem}
+.kpi-lbl{font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-weight:700}
+.kpi-sub{font-size:.7rem;color:var(--dim);margin-top:.3rem}
+.section{background:var(--navy);border:1px solid var(--border);border-radius:8px;padding:1.25rem 1.4rem;margin-bottom:1.25rem}
+.section-title{font-size:.82rem;color:var(--gold);font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.7rem;padding-bottom:.4rem;border-bottom:1px solid var(--border)}
+.method-list{list-style:none;padding:0;font-size:.86rem;color:var(--dim);line-height:1.85}
+.method-list li::before{content:'▸ ';color:var(--cyan);font-weight:700}
+.method-list code{color:var(--gold);background:rgba(212,168,67,.08);padding:.08rem .35rem;border-radius:3px;font-family:'IBM Plex Mono',monospace;font-size:.78rem}
+.cta-row{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.5rem}
+.cta{display:inline-block;padding:.55rem 1.2rem;border-radius:999px;font-weight:700;font-size:.85rem;text-decoration:none}
+.cta-primary{background:linear-gradient(135deg,var(--gold),#f1ce88);color:#070a12}
+.cta-secondary{background:transparent;border:1px solid rgba(215,180,106,.4);color:var(--gold)}
+.signal-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;font-size:.83rem}
+.signal-grid h4{color:var(--text);font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.5rem}
+.signal-bullish h4{color:var(--green)}.signal-bearish h4{color:var(--red)}
+.signal-list{list-style:none;font-family:'IBM Plex Mono',monospace;font-size:.82rem;color:var(--dim);line-height:2}
+.timeline{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem;font-size:.8rem;margin-top:.4rem}
+.timeline div{background:rgba(212,168,67,.05);border:1px solid rgba(212,168,67,.18);border-radius:6px;padding:.7rem .8rem}
+.timeline strong{color:var(--gold);display:block;font-family:'IBM Plex Mono',monospace;font-size:.95rem}
+.footer{margin-top:2rem;padding-top:1rem;border-top:1px solid var(--border);color:var(--muted);font-size:.72rem;text-align:center}
+@media (max-width:680px){.signal-grid{grid-template-columns:1fr}.timeline{grid-template-columns:1fr}}
+</style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@800;900&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/lib/cinematic-hero.css">
+  <link rel="stylesheet" href="/lib/cyber-shell.css">
+  <link rel="stylesheet" href="/lib/polish-tokens.css">
+</head>
+<body>
+  <div class="cy-bg" aria-hidden="true"></div>
+  <div class="cy-floor" aria-hidden="true"></div>
+  <div class="cy-vignette" aria-hidden="true"></div>
+  <div class="cy-scan" aria-hidden="true"></div>
+<nav class="nav">
+  <a href="/">Catalyst Edge</a>
+  <a href="/jackpot/" style="color:#22c55e;font-weight:700">🎯 JACKPOT</a>
+  <a href="/dcf/" style="color:#06b6d4;font-weight:700">💰 DCF</a>
+  <a href="/numerai/" style="color:#a855f7;font-weight:700">🤖 Numerai</a>
+  <a href="/scanner/#gaps">Gap Plays</a>
+  <a href="/squeeze/">Squeeze</a>
+  <a href="/congress/">Congress</a>
+  <a href="/sectors/">Sectors</a>
+  <a href="/news/">News</a>
+  <a href="/pricing/" style="color:var(--gold);font-weight:600">Premium</a>
+</nav>
+<div class="wrap">
+
+<div class="ce-breadcrumb" style="max-width:1400px;margin:8px auto 0;padding:0 28px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-mute,#5a6c92);"><a href="/scanner/" style="color:var(--neon-cyan,#00ffff);text-decoration:none">&larr; Scanner</a><span style="color:var(--ink-mute,#5a6c92);margin:0 8px">&middot;</span><span>NUMERAI BOARD</span></div>
+
+<section class="cin-hero cy-neon-hero cy-shimmer">
+    <div class="cin-grid">
+      <div class="cin-stat-stack">
+        <div class="cin-eyebrow"><span class="cin-live-dot"></span>ROUND 1254 · LIVE SUBMISSION</div>
+        <div class="cin-colossal">
+          <div class="cin-num-row"><span class="cin-num">1,879</span></div><div class="cin-side">
+          <span class="cin-tag">predictions submitted</span>
+          <span class="cin-tag"><b>SEC catalyst</b> + <b>DCF tilt</b></span>
+          <span class="cin-tag">open-audit CSV</span>
+          </div>
+        </div>
+        <div class="cin-stamp">NUMERAI//SIGNALS · v1.2 · <b>LIVE</b></div>
+      </div>
+      <div class="cin-h1-block">
+        <div class="cin-h1-eyebrow">🤖 Numerai Signals · Round 1254 · LIVE</div>
+        <h1 class="cin-headline">
+ We submit weekly stock predictions to the world's <em>hardest hedge-fund tournament</em>—built from <span class="cin-accent">SEC catalyst convergence</span> + DCF tilt.
+ </h1>
+        <p class="cin-lede">Every signal is open-audit: download the CSV, run the math yourself. Round 1254 is contributing to the Numerai Meta Model. Built on SEC catalyst convergence rank + DCF intrinsic-value tilt — the exact same engine driving the Catalyst Edge scanner.</p>
+        <div class="cin-cta-row">
+          <a href="/data/numerai_signals.csv" class="cin-btn-primary">Download submission</a>
+          <a href="https://numer.ai/catalystedge_signals" class="cin-btn-ghost">View on Numerai ↗</a>
+        </div>
+        <div class="cin-strip">
+          <div class="cin-cell"><div class="cin-k">Active round</div><div class="cin-v" id="k-round">1254</div></div>
+          <div class="cin-cell"><div class="cin-k">Predictions</div><div class="cin-v bull" id="k-rows">–</div></div>
+          <div class="cin-cell"><div class="cin-k">DCF-enriched</div><div class="cin-v gold" id="k-dcf">–</div></div>
+          <div class="cin-cell"><div class="cin-k">Model</div><div class="cin-v cyan">catalystedge</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="kpi-grid" style="display:none">
+    <div class="kpi"><div class="kpi-val" id="k-status">–</div><div class="kpi-lbl">Round status</div></div>
+    <div class="kpi"><div class="kpi-val" id="k-model" style="font-size:.95rem">–</div><div class="kpi-lbl">Model name</div></div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">📅 Scoring timeline (Round 1253)</div>
+    <div class="timeline">
+      <div><strong id="t-submitted">–</strong>Submission accepted</div>
+      <div><strong id="t-start">–</strong>Scoring begins</div>
+      <div><strong id="t-resolve">–</strong>Round resolves</div>
+    </div>
+    <div class="cta-row" style="margin-top:1rem">
+      <a class="cta cta-primary" id="leaderboard-link" href="https://signals.numer.ai" target="_blank" rel="noopener">View on Numerai Leaderboard ↗</a>
+      <a class="cta cta-secondary" href="/data/numerai_signals.csv" target="_blank">Download CSV (open audit)</a>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">🧮 Methodology — full open-audit</div>
+    <ul class="method-list">
+      <li>Pull <strong>SEC EDGAR</strong> filings + <strong>convergence layer scoring</strong> (~30 catalyst signals: insider, squeeze, M&amp;A, FDA, dark-pool, congress, …)</li>
+      <li>Rank ~1,900 US tickers by <code>convergence_score</code> ascending — bottom rank = bearish, top = bullish</li>
+      <li>Convert rank → percentile in <code>[0, 1]</code></li>
+      <li>Apply <strong>DCF grade tilt</strong>: <code>A → +0.10</code> · <code>B → +0.05</code> · <code>C → 0</code> · <code>D → -0.05</code> · <code>F → -0.10</code></li>
+      <li>Clip to <code>[0.001, 0.999]</code> (Numerai requires non-extremes)</li>
+      <li>Format as <code>bloomberg_ticker, signal, friday_date</code> per Numerai spec</li>
+      <li>Auto-submit nightly via <code>numerapi 2.23.1</code> until Friday 14:30 UTC lock</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <div class="section-title">📊 This week's top signals</div>
+    <div class="signal-grid">
+      <div class="signal-bullish">
+        <h4>🟢 Top bullish (highest signal)</h4>
+        <ul class="signal-list" id="bullish-list"><li class="muted">Loading…</li></ul>
+      </div>
+      <div class="signal-bearish">
+        <h4>🔴 Top bearish (lowest signal)</h4>
+        <ul class="signal-list" id="bearish-list"><li class="muted">Loading…</li></ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">🔗 Why Numerai matters</div>
+    <ul class="method-list">
+      <li>Numerai is a <strong>hedge fund</strong> that aggregates signals from data scientists worldwide into one Meta Model — over $200M+ AUM</li>
+      <li>Submitting <strong>doesn't require capital</strong> — just signal accuracy. Top contributors earn NMR (cryptocurrency) based on rank correlation</li>
+      <li>Free entry. Open data. <strong>Real money</strong>. The cleanest test of whether a signal has alpha</li>
+      <li>Catalyst Edge submits the <em>same convergence rank</em> we publish on the JACKPOT scanner — pure transparency</li>
+    </ul>
+  </div>
+
+  <div class="footer">
+    Live data: <a href="/data/numerai_submit_status.json">numerai_submit_status.json</a> · <a href="/data/numerai_signals_manifest.json">numerai_signals_manifest.json</a> · Auto-resubmits every 2h until Friday lock
+  </div>
+</div>
+
+<script>
+(function(){
+  function setText(id, v){ var e=document.getElementById(id); if(e) e.textContent = v; }
+
+  Promise.all([
+    fetch('/data/numerai_submit_status.json', {cache:'no-store'}).then(function(r){return r.json()}).catch(function(){return {}}),
+    fetch('/data/numerai_signals_manifest.json', {cache:'no-store'}).then(function(r){return r.json()}).catch(function(){return {}})
+  ]).then(function(results){
+    var status = results[0] || {};
+    var manifest = results[1] || {};
+
+    setText('k-round', status.round || '–');
+    setText('k-status', status.round_status || '');
+    setText('k-rows', (manifest.total_signals || status.rows_submitted || 0).toLocaleString());
+    setText('k-dcf', manifest.dcf_enriched || 0);
+    setText('k-model', status.model_name || 'catalystedge_signals');
+
+    setText('t-submitted',
+      status.last_attempt_utc ? new Date(status.last_attempt_utc).toISOString().slice(0,10) : '–');
+    setText('t-start', status.scoring_starts || '–');
+    setText('t-resolve', status.scoring_resolves || '–');
+
+    if (status.leaderboard_url) {
+      var lb = document.getElementById('leaderboard-link');
+      if (lb) lb.href = status.leaderboard_url;
+    }
+
+    var bull = document.getElementById('bullish-list');
+    var bear = document.getElementById('bearish-list');
+    while (bull.firstChild) bull.removeChild(bull.firstChild);
+    while (bear.firstChild) bear.removeChild(bear.firstChild);
+    var b1 = manifest.top_10_bullish || [];
+    var b2 = manifest.top_10_bearish || [];
+    if (b1.length === 0 && b2.length === 0) {
+      var m = document.createElement('li'); m.textContent='Awaiting next signal build…';
+      bull.appendChild(m);
+    }
+    b1.forEach(function(t){ var li=document.createElement('li'); li.textContent='+ '+t; bull.appendChild(li); });
+    b2.forEach(function(t){ var li=document.createElement('li'); li.textContent='– '+t; bear.appendChild(li); });
+  });
+})();
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KV1VDK22VC"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-KV1VDK22VC');</script>
+</body></html>

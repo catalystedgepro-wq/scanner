@@ -1,0 +1,113 @@
+series_id,description,period,value,unit,pct_vs_12mo_prior,captured_at
+BREPUUS,Brent crude oil spot price,2025-07,71.0400,dollars per barrel,,2026-04-27T23:10:12Z
+BREPUUS,Brent crude oil spot price,2025-08,67.8700,dollars per barrel,,2026-04-27T23:10:12Z
+BREPUUS,Brent crude oil spot price,2025-09,67.9900,dollars per barrel,,2026-04-27T23:10:12Z
+BREPUUS,Brent crude oil spot price,2025-10,64.5400,dollars per barrel,,2026-04-27T23:10:12Z
+BREPUUS,Brent crude oil spot price,2025-11,63.8000,dollars per barrel,,2026-04-27T23:10:12Z
+BREPUUS,Brent crude oil spot price,2025-12,62.5400,dollars per barrel,,2026-04-27T23:10:12Z
+BREPUUS,Brent crude oil spot price,2026-01,66.6000,dollars per barrel,,2026-04-27T23:10:12Z
+BREPUUS,Brent crude oil spot price,2026-02,70.8900,dollars per barrel,,2026-04-27T23:10:12Z
+BREPUUS,Brent crude oil spot price,2026-03,103.1300,dollars per barrel,,2026-04-27T23:10:12Z
+BREPUUS,Brent crude oil spot price,2026-04,124.0000,dollars per barrel,,2026-04-27T23:10:12Z
+BREPUUS,Brent crude oil spot price,2026-05,112.0000,dollars per barrel,,2026-04-27T23:10:12Z
+BREPUUS,Brent crude oil spot price,2026-06,108.0000,dollars per barrel,,2026-04-27T23:10:12Z
+BREPUUS,Brent crude oil spot price,2026-07,104.0000,dollars per barrel,46.40,2026-04-27T23:10:12Z
+BREPUUS,Brent crude oil spot price,2026-08,100.0000,dollars per barrel,47.34,2026-04-27T23:10:12Z
+COPRPUS,U.S. Crude Oil Production,2025-07,13.7073,million barrels per day,,2026-04-27T23:10:12Z
+COPRPUS,U.S. Crude Oil Production,2025-08,13.8101,million barrels per day,,2026-04-27T23:10:12Z
+COPRPUS,U.S. Crude Oil Production,2025-09,13.8282,million barrels per day,,2026-04-27T23:10:12Z
+COPRPUS,U.S. Crude Oil Production,2025-10,13.8638,million barrels per day,,2026-04-27T23:10:12Z
+COPRPUS,U.S. Crude Oil Production,2025-11,13.7892,million barrels per day,,2026-04-27T23:10:12Z
+COPRPUS,U.S. Crude Oil Production,2025-12,13.6562,million barrels per day,,2026-04-27T23:10:12Z
+COPRPUS,U.S. Crude Oil Production,2026-01,13.2464,million barrels per day,,2026-04-27T23:10:12Z
+COPRPUS,U.S. Crude Oil Production,2026-02,13.5256,million barrels per day,,2026-04-27T23:10:12Z
+COPRPUS,U.S. Crude Oil Production,2026-03,13.5594,million barrels per day,,2026-04-27T23:10:12Z
+COPRPUS,U.S. Crude Oil Production,2026-04,13.6380,million barrels per day,,2026-04-27T23:10:12Z
+COPRPUS,U.S. Crude Oil Production,2026-05,13.5938,million barrels per day,,2026-04-27T23:10:12Z
+COPRPUS,U.S. Crude Oil Production,2026-06,13.5528,million barrels per day,,2026-04-27T23:10:12Z
+COPRPUS,U.S. Crude Oil Production,2026-07,13.4858,million barrels per day,-1.62,2026-04-27T23:10:12Z
+COPRPUS,U.S. Crude Oil Production,2026-08,13.4559,million barrels per day,-2.57,2026-04-27T23:10:12Z
+NGHHMCF,Natural Gas Henry Hub Spot Price ($/mcf),2025-07,3.3248,dollars per thousand cubic feet,,2026-04-27T23:10:12Z
+NGHHMCF,Natural Gas Henry Hub Spot Price ($/mcf),2025-08,3.0235,dollars per thousand cubic feet,,2026-04-27T23:10:12Z
+NGHHMCF,Natural Gas Henry Hub Spot Price ($/mcf),2025-09,3.0858,dollars per thousand cubic feet,,2026-04-27T23:10:12Z
+NGHHMCF,Natural Gas Henry Hub Spot Price ($/mcf),2025-10,3.3144,dollars per thousand cubic feet,,2026-04-27T23:10:12Z
+NGHHMCF,Natural Gas Henry Hub Spot Price ($/mcf),2025-11,3.9378,dollars per thousand cubic feet,,2026-04-27T23:10:12Z
+NGHHMCF,Natural Gas Henry Hub Spot Price ($/mcf),2025-12,4.4261,dollars per thousand cubic feet,,2026-04-27T23:10:12Z
+NGHHMCF,Natural Gas Henry Hub Spot Price ($/mcf),2026-01,8.0211,dollars per thousand cubic feet,,2026-04-27T23:10:12Z
+NGHHMCF,Natural Gas Henry Hub Spot Price ($/mcf),2026-02,3.7612,dollars per thousand cubic feet,,2026-04-27T23:10:12Z
+NGHHMCF,Natural Gas Henry Hub Spot Price ($/mcf),2026-03,3.1793,dollars per thousand cubic feet,,2026-04-27T23:10:12Z
+NGHHMCF,Natural Gas Henry Hub Spot Price ($/mcf),2026-04,3.0396,dollars per thousand cubic feet,,2026-04-27T23:10:12Z
+NGHHMCF,Natural Gas Henry Hub Spot Price ($/mcf),2026-05,3.0996,dollars per thousand cubic feet,,2026-04-27T23:10:12Z
+NGHHMCF,Natural Gas Henry Hub Spot Price ($/mcf),2026-06,3.2283,dollars per thousand cubic feet,,2026-04-27T23:10:12Z
+NGHHMCF,Natural Gas Henry Hub Spot Price ($/mcf),2026-07,3.3396,dollars per thousand cubic feet,0.45,2026-04-27T23:10:12Z
+NGHHMCF,Natural Gas Henry Hub Spot Price ($/mcf),2026-08,3.3690,dollars per thousand cubic feet,11.43,2026-04-27T23:10:12Z
+PAPR_NONOPEC,Total non-OPEC Liquids Petroleum Production,2025-07,73.5313,million barrels per day,,2026-04-27T23:10:12Z
+PAPR_NONOPEC,Total non-OPEC Liquids Petroleum Production,2025-08,74.0449,million barrels per day,,2026-04-27T23:10:12Z
+PAPR_NONOPEC,Total non-OPEC Liquids Petroleum Production,2025-09,73.9373,million barrels per day,,2026-04-27T23:10:12Z
+PAPR_NONOPEC,Total non-OPEC Liquids Petroleum Production,2025-10,73.8455,million barrels per day,,2026-04-27T23:10:12Z
+PAPR_NONOPEC,Total non-OPEC Liquids Petroleum Production,2025-11,74.0251,million barrels per day,,2026-04-27T23:10:12Z
+PAPR_NONOPEC,Total non-OPEC Liquids Petroleum Production,2025-12,73.4012,million barrels per day,,2026-04-27T23:10:12Z
+PAPR_NONOPEC,Total non-OPEC Liquids Petroleum Production,2026-01,71.4889,million barrels per day,,2026-04-27T23:10:12Z
+PAPR_NONOPEC,Total non-OPEC Liquids Petroleum Production,2026-02,72.6636,million barrels per day,,2026-04-27T23:10:12Z
+PAPR_NONOPEC,Total non-OPEC Liquids Petroleum Production,2026-03,71.5060,million barrels per day,,2026-04-27T23:10:12Z
+PAPR_NONOPEC,Total non-OPEC Liquids Petroleum Production,2026-04,71.6415,million barrels per day,,2026-04-27T23:10:12Z
+PAPR_NONOPEC,Total non-OPEC Liquids Petroleum Production,2026-05,72.0792,million barrels per day,,2026-04-27T23:10:12Z
+PAPR_NONOPEC,Total non-OPEC Liquids Petroleum Production,2026-06,72.7668,million barrels per day,,2026-04-27T23:10:12Z
+PAPR_NONOPEC,Total non-OPEC Liquids Petroleum Production,2026-07,73.2290,million barrels per day,-0.41,2026-04-27T23:10:12Z
+PAPR_NONOPEC,Total non-OPEC Liquids Petroleum Production,2026-08,73.5300,million barrels per day,-0.70,2026-04-27T23:10:12Z
+PAPR_WORLD,Total World Petroleum Production,2025-07,107.2435,million barrels per day,,2026-04-27T23:10:12Z
+PAPR_WORLD,Total World Petroleum Production,2025-08,107.7687,million barrels per day,,2026-04-27T23:10:12Z
+PAPR_WORLD,Total World Petroleum Production,2025-09,108.9135,million barrels per day,,2026-04-27T23:10:12Z
+PAPR_WORLD,Total World Petroleum Production,2025-10,108.5283,million barrels per day,,2026-04-27T23:10:12Z
+PAPR_WORLD,Total World Petroleum Production,2025-11,108.5249,million barrels per day,,2026-04-27T23:10:12Z
+PAPR_WORLD,Total World Petroleum Production,2025-12,107.9911,million barrels per day,,2026-04-27T23:10:12Z
+PAPR_WORLD,Total World Petroleum Production,2026-01,105.9932,million barrels per day,,2026-04-27T23:10:12Z
+PAPR_WORLD,Total World Petroleum Production,2026-02,107.9667,million barrels per day,,2026-04-27T23:10:12Z
+PAPR_WORLD,Total World Petroleum Production,2026-03,98.1602,million barrels per day,,2026-04-27T23:10:12Z
+PAPR_WORLD,Total World Petroleum Production,2026-04,96.2611,million barrels per day,,2026-04-27T23:10:12Z
+PAPR_WORLD,Total World Petroleum Production,2026-05,99.2186,million barrels per day,,2026-04-27T23:10:12Z
+PAPR_WORLD,Total World Petroleum Production,2026-06,102.0462,million barrels per day,,2026-04-27T23:10:12Z
+PAPR_WORLD,Total World Petroleum Production,2026-07,104.1969,million barrels per day,-2.84,2026-04-27T23:10:12Z
+PAPR_WORLD,Total World Petroleum Production,2026-08,105.6041,million barrels per day,-2.01,2026-04-27T23:10:12Z
+PATC_US,"Liquid Fuels Consumption, United States",2025-07,20.9843,million barrels per day,,2026-04-27T23:10:12Z
+PATC_US,"Liquid Fuels Consumption, United States",2025-08,21.1954,million barrels per day,,2026-04-27T23:10:12Z
+PATC_US,"Liquid Fuels Consumption, United States",2025-09,20.7201,million barrels per day,,2026-04-27T23:10:12Z
+PATC_US,"Liquid Fuels Consumption, United States",2025-10,20.8464,million barrels per day,,2026-04-27T23:10:12Z
+PATC_US,"Liquid Fuels Consumption, United States",2025-11,20.2266,million barrels per day,,2026-04-27T23:10:12Z
+PATC_US,"Liquid Fuels Consumption, United States",2025-12,20.8514,million barrels per day,,2026-04-27T23:10:12Z
+PATC_US,"Liquid Fuels Consumption, United States",2026-01,20.6496,million barrels per day,,2026-04-27T23:10:12Z
+PATC_US,"Liquid Fuels Consumption, United States",2026-02,20.5547,million barrels per day,,2026-04-27T23:10:12Z
+PATC_US,"Liquid Fuels Consumption, United States",2026-03,20.3444,million barrels per day,,2026-04-27T23:10:12Z
+PATC_US,"Liquid Fuels Consumption, United States",2026-04,20.3609,million barrels per day,,2026-04-27T23:10:12Z
+PATC_US,"Liquid Fuels Consumption, United States",2026-05,20.4496,million barrels per day,,2026-04-27T23:10:12Z
+PATC_US,"Liquid Fuels Consumption, United States",2026-06,20.8373,million barrels per day,,2026-04-27T23:10:12Z
+PATC_US,"Liquid Fuels Consumption, United States",2026-07,20.7485,million barrels per day,-1.12,2026-04-27T23:10:12Z
+PATC_US,"Liquid Fuels Consumption, United States",2026-08,21.0347,million barrels per day,-0.76,2026-04-27T23:10:12Z
+PATC_WORLD,"Liquid Fuels Consumption, Total World",2025-07,105.1178,million barrels per day,,2026-04-27T23:10:12Z
+PATC_WORLD,"Liquid Fuels Consumption, Total World",2025-08,104.1882,million barrels per day,,2026-04-27T23:10:12Z
+PATC_WORLD,"Liquid Fuels Consumption, Total World",2025-09,105.5459,million barrels per day,,2026-04-27T23:10:12Z
+PATC_WORLD,"Liquid Fuels Consumption, Total World",2025-10,104.1441,million barrels per day,,2026-04-27T23:10:12Z
+PATC_WORLD,"Liquid Fuels Consumption, Total World",2025-11,103.9384,million barrels per day,,2026-04-27T23:10:12Z
+PATC_WORLD,"Liquid Fuels Consumption, Total World",2025-12,105.8251,million barrels per day,,2026-04-27T23:10:12Z
+PATC_WORLD,"Liquid Fuels Consumption, Total World",2026-01,102.9312,million barrels per day,,2026-04-27T23:10:12Z
+PATC_WORLD,"Liquid Fuels Consumption, Total World",2026-02,104.7541,million barrels per day,,2026-04-27T23:10:12Z
+PATC_WORLD,"Liquid Fuels Consumption, Total World",2026-03,102.8934,million barrels per day,,2026-04-27T23:10:12Z
+PATC_WORLD,"Liquid Fuels Consumption, Total World",2026-04,103.4136,million barrels per day,,2026-04-27T23:10:12Z
+PATC_WORLD,"Liquid Fuels Consumption, Total World",2026-05,103.8542,million barrels per day,,2026-04-27T23:10:12Z
+PATC_WORLD,"Liquid Fuels Consumption, Total World",2026-06,105.5437,million barrels per day,,2026-04-27T23:10:12Z
+PATC_WORLD,"Liquid Fuels Consumption, Total World",2026-07,105.4108,million barrels per day,0.28,2026-04-27T23:10:12Z
+PATC_WORLD,"Liquid Fuels Consumption, Total World",2026-08,105.3326,million barrels per day,1.10,2026-04-27T23:10:12Z
+WTIPUUS,West Texas Intermediate Crude Oil Price,2025-07,68.3900,dollars per barrel,,2026-04-27T23:10:12Z
+WTIPUUS,West Texas Intermediate Crude Oil Price,2025-08,64.8600,dollars per barrel,,2026-04-27T23:10:12Z
+WTIPUUS,West Texas Intermediate Crude Oil Price,2025-09,63.9600,dollars per barrel,,2026-04-27T23:10:12Z
+WTIPUUS,West Texas Intermediate Crude Oil Price,2025-10,60.8900,dollars per barrel,,2026-04-27T23:10:12Z
+WTIPUUS,West Texas Intermediate Crude Oil Price,2025-11,60.0600,dollars per barrel,,2026-04-27T23:10:12Z
+WTIPUUS,West Texas Intermediate Crude Oil Price,2025-12,57.9700,dollars per barrel,,2026-04-27T23:10:12Z
+WTIPUUS,West Texas Intermediate Crude Oil Price,2026-01,60.0400,dollars per barrel,,2026-04-27T23:10:12Z
+WTIPUUS,West Texas Intermediate Crude Oil Price,2026-02,64.5100,dollars per barrel,,2026-04-27T23:10:12Z
+WTIPUUS,West Texas Intermediate Crude Oil Price,2026-03,91.3800,dollars per barrel,,2026-04-27T23:10:12Z
+WTIPUUS,West Texas Intermediate Crude Oil Price,2026-04,109.0000,dollars per barrel,,2026-04-27T23:10:12Z
+WTIPUUS,West Texas Intermediate Crude Oil Price,2026-05,99.0000,dollars per barrel,,2026-04-27T23:10:12Z
+WTIPUUS,West Texas Intermediate Crude Oil Price,2026-06,97.0000,dollars per barrel,,2026-04-27T23:10:12Z
+WTIPUUS,West Texas Intermediate Crude Oil Price,2026-07,94.0000,dollars per barrel,37.45,2026-04-27T23:10:12Z
+WTIPUUS,West Texas Intermediate Crude Oil Price,2026-08,91.0000,dollars per barrel,40.30,2026-04-27T23:10:12Z

@@ -1,0 +1,18 @@
+{
+  "last_checked_at": "2026-04-09T00:45:09Z",
+  "last_signature": "2026-04-08|financials|21|suppressed|BHR-PD,SSB,C-PR,SLNHP,DMII",
+  "last_active_burst": true,
+  "last_top_sector": "financials",
+  "last_top_count": 21,
+  "last_ui_density_mode": "suppressed",
+  "last_leaders": [
+    "BHR-PD",
+    "SSB",
+    "C-PR",
+    "SLNHP",
+    "DMII"
+  ],
+  "last_alert_signature": "2026-04-08|financials|21|suppressed|BHR-PD,SSB,C-PR,SLNHP,DMII",
+  "last_alert_at": "2026-04-09T00:45:09Z",
+  "last_alert_title": "Live Audit Required: Financials Sympathy Burst (21 Entities)"
+}

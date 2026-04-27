@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>What is Insider Trading? Legal vs Illegal Explained | Catalyst Edge</title>
+<meta name="description" content="Insider trading can be legal or illegal. Learn the difference, how SEC Form 4 tracks legal insider trades, and how traders use insider activity data to find high-conviction stock picks.">
+<link rel="canonical" href="https://catalystedgescanner.com/glossary/what-is-insider-trading/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is insider trading always illegal?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Corporate insiders legally buy and sell their own company's stock all the time. They must report these trades to the SEC on Form 4 within 2 business days. Insider trading only becomes illegal when someone trades on material, non-public information (MNPI) before it is disclosed to the market."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does the SEC detect illegal insider trading?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The SEC uses sophisticated surveillance systems that flag unusual trading patterns before major announcements — sudden volume spikes, options activity, or large position changes in accounts linked to company insiders or their associates. The SEC's Market Abuse Unit investigates roughly 50-60 cases per year."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are the penalties for illegal insider trading?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Criminal penalties can include up to 20 years in prison and fines up to $5 million for individuals ($25 million for firms). Civil penalties allow the SEC to seek disgorgement of profits plus a penalty of up to three times the profit gained or loss avoided."
+      }
+    }
+  ]
+}
+</script>
+<style>
+:root {
+  --bg: #0a0e1a;
+  --surface: #111827;
+  --surface-2: #1a2035;
+  --border: #1e293b;
+  --text: #e2e8f0;
+  --text-dim: #94a3b8;
+  --accent: #d4a853;
+  --accent-glow: rgba(212, 168, 83, 0.15);
+  --blue: #3b82f6;
+  --green: #10b981;
+  --red: #ef4444;
+  --font: 'Space Grotesk', system-ui, sans-serif;
+  --mono: 'IBM Plex Mono', monospace;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+.container { max-width: 800px; margin: 0 auto; padding: 2rem 1.5rem; }
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(10, 14, 26, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0.75rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+}
+nav a { color: var(--accent); text-decoration: none; font-weight: 600; font-size: 0.95rem; }
+nav a:hover { text-decoration: underline; }
+nav .sep { color: var(--text-dim); }
+.hero {
+  text-align: center;
+  padding: 4rem 0 3rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 2rem;
+}
+.hero h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 800;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+}
+.hero .subtitle {
+  font-size: 1.15rem;
+  color: var(--text-dim);
+  max-width: 600px;
+  margin: 0 auto;
+}
+.content-section { margin-bottom: 2.5rem; }
+.content-section h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--accent-glow);
+}
+.content-section p, .content-section li {
+  color: var(--text-dim);
+  font-size: 1.05rem;
+}
+.content-section ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 0.5rem;
+}
+.content-section li {
+  padding: 0.35rem 0 0.35rem 1.5rem;
+  position: relative;
+}
+.content-section li::before {
+  content: '\25B8';
+  color: var(--accent);
+  position: absolute;
+  left: 0;
+}
+.signal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin: 1rem 0;
+}
+.signal-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.25rem;
+}
+.signal-card h4 {
+  color: var(--accent);
+  font-size: 0.95rem;
+  margin-bottom: 0.4rem;
+}
+.signal-card p {
+  color: var(--text-dim);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 0.95rem;
+}
+.data-table th, .data-table td {
+  padding: 0.6rem 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+.data-table th {
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.data-table td { color: var(--text-dim); }
+.faq-section { margin-top: 3rem; }
+.faq-section h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--accent);
+}
+.faq-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
+  overflow: hidden;
+}
+.faq-item summary {
+  padding: 1rem 1.25rem;
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.faq-item summary::before {
+  content: '+';
+  font-family: var(--mono);
+  color: var(--accent);
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+.faq-item[open] summary::before { content: '\2212'; }
+.faq-item p {
+  padding: 0 1.25rem 1rem;
+  color: var(--text-dim);
+  line-height: 1.6;
+}
+.cta-box {
+  background: linear-gradient(135deg, var(--surface) 0%, var(--surface-2) 100%);
+  border: 1px solid var(--accent);
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  margin: 3rem 0;
+}
+.cta-box h3 { color: var(--accent); font-size: 1.3rem; margin-bottom: 0.5rem; }
+.cta-box p { color: var(--text-dim); margin-bottom: 1.25rem; }
+.cta-box a {
+  display: inline-block;
+  background: var(--accent);
+  color: var(--bg);
+  font-weight: 700;
+  padding: 0.75rem 2rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.cta-box a:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px var(--accent-glow);
+}
+.related {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+.related h3 { font-size: 1rem; color: var(--text-dim); margin-bottom: 0.75rem; }
+.related a { color: var(--blue); text-decoration: none; font-size: 0.9rem; }
+.related a:hover { text-decoration: underline; }
+footer {
+  text-align: center;
+  padding: 2rem 0;
+  color: var(--text-dim);
+  font-size: 0.85rem;
+  border-top: 1px solid var(--border);
+  margin-top: 2rem;
+}
+footer a { color: var(--accent); text-decoration: none; }
+</style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@800;900&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/lib/cinematic-hero.css">
+  <link rel="stylesheet" href="/lib/cyber-shell.css">
+  <link rel="stylesheet" href="/lib/polish-tokens.css">
+</head>
+<body>
+  <div class="cy-bg" aria-hidden="true"></div>
+  <div class="cy-floor" aria-hidden="true"></div>
+  <div class="cy-vignette" aria-hidden="true"></div>
+  <div class="cy-scan" aria-hidden="true"></div>
+<nav>
+  <a href="/">Catalyst Edge</a>
+  <span class="sep">/</span>
+  <a href="/glossary/">Glossary</a>
+  <span class="sep">/</span>
+  <span style="color:var(--text-dim);font-size:0.9rem">What is Insider Trading?</span>
+</nav>
+
+<div class="container">
+<section class="cin-hero cy-neon-hero cy-narrow cy-shimmer">
+    <div class="cin-grid">
+      <div class="cin-stat-stack">
+        <div class="cin-eyebrow"><span class="cin-live-dot"></span>INSIDER · LEGAL VS NOT</div>
+        <div class="cin-colossal">
+          <div class="cin-num-row"><span class="cin-num">Insider</span></div>
+          <div class="cin-side">
+          <span class="cin-tag"><b>Form 4</b> = legal</span>
+          <span class="cin-tag">MNPI = illegal</span>
+          <span class="cin-tag">disclosed only</span>
+          </div>
+        </div>
+        <div class="cin-stamp">GLOSSARY · WHAT IS INSIDER TRADING? · v1.0 · <b>LIVE</b></div>
+      </div>
+      <div class="cin-h1-block">
+        <div class="cin-h1-eyebrow">📚 What is Insider Trading?</div>
+        <h1 class="cin-headline"><em>Legal vs illegal</em>—the <span class="cin-accent">the distinction that matters</span>.</h1>
+        <p class="cin-lede">Officers buying their own stock = legal, disclosed via Form 4. Trading on material non-public info = illegal. The scanner only surfaces the legal, disclosed kind — and reads them for signal.</p>
+        <div class="cin-cta-row">
+          <a href="#article-body" class="cin-btn-primary">Read article ↓</a>
+          <a href="/glossary/" class="cin-btn-ghost">Glossary index</a>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <h2>The two types of insider trading</h2>
+    <p>Insider trading has two very different meanings. <strong>Legal insider trading</strong> happens every day: a CEO buys shares of their own company and reports it to the SEC on <a href="/glossary/what-is-form-4/" style="color:var(--blue)">Form 4</a>. <strong>Illegal insider trading</strong> is buying or selling securities based on material, non-public information (MNPI) &mdash; information the public doesn't have yet. The distinction is transparency: legal trades are disclosed; illegal trades are hidden.</p>
+  </section>
+
+  <section class="content-section">
+    <h2>Legal insider trading signals</h2>
+    <p>When corporate insiders spend their own money buying shares on the open market, it is one of the strongest bullish signals available. Research consistently shows insider purchases outperform the market by 7-10% annually.</p>
+    <div class="signal-grid">
+      <div class="signal-card">
+        <h4>Cluster Buy</h4>
+        <p>3+ insiders buying within 14 days. The strongest conviction signal &mdash; multiple people with deep company knowledge acting simultaneously.</p>
+      </div>
+      <div class="signal-card">
+        <h4>CEO/CFO Purchase</h4>
+        <p>C-suite open-market buys carry more weight than director purchases because executives have the most complete view of operations.</p>
+      </div>
+      <div class="signal-card">
+        <h4>Buy After Decline</h4>
+        <p>Insiders buying after a 20%+ stock drop signals they believe the market overreacted and the company's fundamentals remain intact.</p>
+      </div>
+      <div class="signal-card">
+        <h4>First-Time Buyer</h4>
+        <p>When an insider who has never purchased before makes their first open-market buy, it often indicates a major positive catalyst ahead.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <h2>How illegal insider trading works</h2>
+    <p>Illegal insider trading typically involves trading on material non-public information before it becomes public. Examples include:</p>
+    <ul>
+      <li>Buying shares before an unannounced merger or acquisition</li>
+      <li>Selling before a negative earnings surprise</li>
+      <li>Tipping friends or family about upcoming FDA decisions</li>
+      <li>Trading on advance knowledge of contract wins or losses</li>
+    </ul>
+    <p style="margin-top:0.75rem">The SEC's Division of Enforcement investigates suspicious patterns. Penalties include up to 20 years in prison and fines up to $5 million per violation for individuals.</p>
+  </section>
+
+  <section class="content-section">
+    <h2>Key SEC rules governing insider trading</h2>
+    <table class="data-table">
+      <thead>
+        <tr><th>Rule</th><th>What it does</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Section 10(b) &amp; Rule 10b-5</td><td>The primary anti-fraud provision prohibiting trading on MNPI</td></tr>
+        <tr><td>Section 16(a)</td><td>Requires insiders to file Form 3, 4, and 5 to disclose trades</td></tr>
+        <tr><td>Rule 10b5-1</td><td>Allows insiders to set up pre-planned trading schedules as an affirmative defense</td></tr>
+        <tr><td>Section 16(b)</td><td>Short-swing profit rule: insiders must return profits from buy-sell or sell-buy within 6 months</td></tr>
+        <tr><td><a href="/glossary/what-is-stock-act/" style="color:var(--blue)">STOCK Act</a></td><td>Extends insider trading rules to members of Congress and their staff</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <div class="cta-box">
+    <h3>Track Every Legal Insider Trade</h3>
+    <p>Catalyst Edge monitors Form 4 filings in real time and flags cluster buys, C-suite purchases, and high-conviction insider activity.</p>
+    <a href="https://catalystedgescanner.com/">Open Scanner</a>
+  </div>
+
+  <div class="faq-section">
+    <h2>Frequently Asked Questions</h2>
+    <details class="faq-item">
+      <summary>Is insider trading always illegal?</summary>
+      <p>No. Corporate insiders legally buy and sell their own company's stock all the time. They must report these trades to the SEC on Form 4 within 2 business days. Insider trading only becomes illegal when someone trades on material, non-public information (MNPI) before it is disclosed to the market.</p>
+    </details>
+    <details class="faq-item">
+      <summary>How does the SEC detect illegal insider trading?</summary>
+      <p>The SEC uses sophisticated surveillance systems that flag unusual trading patterns before major announcements &mdash; sudden volume spikes, options activity, or large position changes in accounts linked to company insiders or their associates. The SEC's Market Abuse Unit investigates roughly 50-60 cases per year.</p>
+    </details>
+    <details class="faq-item">
+      <summary>What are the penalties for illegal insider trading?</summary>
+      <p>Criminal penalties can include up to 20 years in prison and fines up to $5 million for individuals ($25 million for firms). Civil penalties allow the SEC to seek disgorgement of profits plus a penalty of up to three times the profit gained or loss avoided.</p>
+    </details>
+  </div>
+
+  <div class="related">
+    <h3>Related Topics</h3>
+    <p><a href="/glossary/what-is-form-4/">What is Form 4?</a> &middot; <a href="/glossary/insider-buying-signals/">Insider Buying Signals</a> &middot; <a href="/glossary/what-is-stock-act/">What is the STOCK Act?</a> &middot; <a href="/glossary/congressional-stock-trading/">Congressional Stock Trading</a> &middot; <a href="/glossary/what-is-form-13f/">What is Form 13F?</a> &middot; <a href="/glossary/what-is-sc-13d/">What is Schedule 13D?</a></p>
+  </div>
+</div>
+
+<footer>
+  <a href="https://catalystedgescanner.com/">Catalyst Edge Scanner</a> &middot;
+  <a href="https://catalystedge.agency">Daily Newsletter</a> &middot;
+  &copy; 2026 Catalyst Edge
+</footer>
+</body>
+</html>

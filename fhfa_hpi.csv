@@ -1,0 +1,11 @@
+place_name,place_id,yr,period,index_nsa,index_sa,yoy_pct,captured_at
+East North Central Division,DV_ENC,2026,1,372.50,378.55,+4.37,2026-04-27T23:12:07Z
+East South Central Division,DV_ESC,2026,1,417.31,420.93,+3.51,2026-04-27T23:12:07Z
+Middle Atlantic Division,DV_MA,2026,1,407.90,410.47,+4.27,2026-04-27T23:12:07Z
+Mountain Division,DV_MT,2026,1,603.95,612.15,+0.13,2026-04-27T23:12:07Z
+New England Division,DV_NE,2026,1,444.37,448.89,+3.43,2026-04-27T23:12:07Z
+Pacific Division,DV_PAC,2026,1,465.22,469.46,-0.54,2026-04-27T23:12:07Z
+South Atlantic Division,DV_SA,2026,1,461.92,464.42,+0.03,2026-04-27T23:12:07Z
+West North Central Division,DV_WNC,2026,1,423.76,427.44,+3.76,2026-04-27T23:12:07Z
+West South Central Division,DV_WSC,2026,1,420.05,422.75,-0.80,2026-04-27T23:12:07Z
+United States,USA,2026,1,437.33,440.99,+1.62,2026-04-27T23:12:07Z

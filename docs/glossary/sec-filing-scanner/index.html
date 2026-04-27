@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Best SEC Filing Scanner for Traders (2026) | Catalyst Edge</title>
+<meta name="description" content="Compare the best SEC filing scanners for traders in 2026. See how Catalyst Edge stacks up against EDGAR, Quiver Quant, and Unusual Whales for automated catalyst detection before 4 AM.">
+<link rel="canonical" href="https://catalystedgescanner.com/glossary/sec-filing-scanner/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is an SEC filing scanner?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "An SEC filing scanner is a tool that automatically monitors the SEC's EDGAR database for new filings (8-K, Form 4, S-3, 13F, etc.), parses them for trading-relevant information, and delivers alerts to traders. Instead of manually refreshing EDGAR, a scanner does the work 24/7 and surfaces the filings most likely to move stock prices."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does scanning before 4 AM matter for traders?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Many SEC filings are submitted after market close (4 PM ET) and during overnight hours. Companies often file material 8-K disclosures, insider transaction reports, and offering registrations between 5 PM and 3 AM. Traders who scan these filings before 4 AM can identify catalyst setups, build watchlists, and plan positions hours before the pre-market session begins at 4 AM and the regular session opens at 9:30 AM."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does Catalyst Edge compare to using EDGAR directly?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "EDGAR is the free, official SEC filing database. It provides raw filings with no scoring, no alerts, and no cross-referencing. Catalyst Edge uses EDGAR as its data source but adds automated monitoring, catalyst scoring, insider cluster detection, convergence analysis with short interest and options flow, and pre-market email delivery — transforming raw filings into actionable trading intelligence."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Catalyst Edge free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, Catalyst Edge has a free tier that includes a daily newsletter with the top 3 scored picks, a delayed scanner showing the top 10 tickers, 5 Catalyst AI queries per day, and squeeze alerts in email. Paid plans (starting at $12/month) unlock the full real-time scanner, unlimited tickers, and advanced features like convergence webhooks and the 3D market HUD."
+      }
+    }
+  ]
+}
+</script>
+<style>
+:root {
+  --bg: #05060b;
+  --surface: #0c1018;
+  --surface2: #12161f;
+  --surface3: #181d28;
+  --border: rgba(114,229,255,0.12);
+  --border-accent: rgba(215,180,106,0.22);
+  --text: #e8edf4;
+  --muted: #7a8899;
+  --cyan: #72e5ff;
+  --gold: #e7b76c;
+  --green: #10b981;
+  --red: #f43f5e;
+  --purple: #a78bfa;
+  --blue: #38bdf8;
+  --navy: #07111a;
+}
+* { box-sizing: border-box; margin: 0; padding: 0 }
+html { scroll-behavior: smooth }
+body {
+  font-family: 'Space Grotesk', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(114,229,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(114,229,255,0.025) 1px, transparent 1px);
+  background-size: 56px 56px;
+  opacity: 0.3;
+}
+.wrap { max-width: 800px; margin: 0 auto; padding: 0 24px }
+a { color: var(--cyan); text-decoration: none }
+a:hover { text-decoration: underline }
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--border);
+}
+.nav-brand {
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 2px;
+  color: var(--gold);
+}
+.nav-links { display: flex; gap: 28px; }
+.nav-links a {
+  font-size: 13px;
+  color: var(--muted);
+  letter-spacing: 0.5px;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--text); text-decoration: none }
+
+.hero {
+  padding: 72px 0 24px;
+  text-align: center;
+}
+.hero-badge {
+  display: inline-block;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--cyan);
+  border: 1px solid rgba(114,229,255,0.2);
+  padding: 6px 16px;
+  border-radius: 20px;
+  margin-bottom: 24px;
+}
+.hero h1 {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -1px;
+  margin-bottom: 16px;
+}
+.hero h1 span { color: var(--gold) }
+.hero p {
+  color: var(--muted);
+  font-size: 1.1rem;
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+.article { padding: 48px 0 }
+.article h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 40px 0 16px;
+  letter-spacing: -0.5px;
+}
+.article h2:first-child { margin-top: 0 }
+.article h2 span { color: var(--cyan) }
+.article h3 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin: 28px 0 12px;
+  color: var(--gold);
+}
+.article p {
+  color: var(--muted);
+  font-size: 15px;
+  margin-bottom: 16px;
+  line-height: 1.75;
+}
+.article ul, .article ol {
+  color: var(--muted);
+  font-size: 15px;
+  margin: 0 0 16px 20px;
+  line-height: 1.75;
+}
+.article li { margin-bottom: 6px }
+.article strong { color: var(--text); font-weight: 600 }
+
+.callout {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--gold);
+  border-radius: 8px;
+  padding: 20px 24px;
+  margin: 24px 0;
+}
+.callout p { margin-bottom: 0 }
+.callout .label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+
+/* ── COMPARISON TABLE ── */
+.compare-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  margin: 20px 0 24px;
+}
+.compare-table th {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--cyan);
+  padding: 12px 10px;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+}
+.compare-table th:first-child { text-align: left; color: var(--muted) }
+.compare-table th.gold { color: var(--gold) }
+.compare-table td {
+  padding: 10px;
+  text-align: center;
+  border-bottom: 1px solid rgba(114,229,255,0.05);
+  color: var(--muted);
+}
+.compare-table td:first-child {
+  text-align: left;
+  font-size: 12.5px;
+}
+.compare-table tr:hover td { background: rgba(114,229,255,0.02) }
+.check { color: var(--green); font-weight: 700 }
+.dash { color: rgba(255,255,255,0.15) }
+.limit { color: var(--muted); font-size: 11px }
+
+/* ── VS CARDS ── */
+.vs-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin: 20px 0 24px;
+}
+@media (max-width: 560px) { .vs-grid { grid-template-columns: 1fr } }
+.vs-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px;
+}
+.vs-card h4 {
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+.vs-card .price-tag {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  color: var(--red);
+  margin-bottom: 10px;
+}
+.vs-card p {
+  font-size: 12.5px;
+  line-height: 1.6;
+}
+.vs-card .edge {
+  font-size: 11px;
+  color: var(--green);
+  margin-top: 8px;
+  font-weight: 500;
+}
+
+/* ── WINNER CARD ── */
+.winner-card {
+  background: linear-gradient(168deg, rgba(215,180,106,0.06) 0%, var(--surface) 40%);
+  border: 1px solid var(--gold);
+  border-radius: 12px;
+  padding: 24px;
+  margin: 24px 0;
+  text-align: center;
+}
+.winner-card .badge {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+.winner-card h4 {
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+}
+.winner-card p {
+  font-size: 13px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.cta-section {
+  text-align: center;
+  padding: 48px 0;
+  border-top: 1px solid var(--border);
+}
+.cta-section h2 {
+  font-size: 1.6rem;
+  margin-bottom: 12px;
+}
+.cta-section p {
+  color: var(--muted);
+  font-size: 14px;
+  max-width: 500px;
+  margin: 0 auto 24px;
+}
+.cta-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.cta-btn {
+  display: inline-block;
+  text-align: center;
+  padding: 14px 36px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  transition: all 0.2s;
+  text-decoration: none;
+  cursor: pointer;
+}
+.cta-btn.cyan-fill {
+  background: linear-gradient(135deg, var(--cyan), #38a0d0);
+  color: var(--bg);
+  border: none;
+}
+.cta-btn.cyan-fill:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px rgba(114,229,255,0.3);
+  text-decoration: none;
+}
+.cta-btn.outline {
+  border: 1px solid var(--border);
+  color: var(--text);
+  background: transparent;
+}
+.cta-btn.outline:hover {
+  border-color: var(--cyan);
+  background: rgba(114,229,255,0.05);
+  text-decoration: none;
+}
+.cta-btn.filled {
+  background: linear-gradient(135deg, var(--gold), #c9923b);
+  color: var(--bg);
+  border: none;
+}
+.cta-btn.filled:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px rgba(215,180,106,0.3);
+  text-decoration: none;
+}
+
+.tip-section {
+  text-align: center;
+  padding: 48px 0;
+  border-top: 1px solid var(--border);
+}
+.tip-section h3 {
+  font-size: 1.3rem;
+  margin-bottom: 12px;
+}
+.tip-section p {
+  color: var(--muted);
+  font-size: 14px;
+  max-width: 500px;
+  margin: 0 auto 20px;
+}
+.tip-btn {
+  display: inline-block;
+  padding: 12px 32px;
+  border: 1px solid var(--border-accent);
+  border-radius: 8px;
+  color: var(--gold);
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+.tip-btn:hover {
+  background: rgba(215,180,106,0.08);
+  border-color: var(--gold);
+  text-decoration: none;
+}
+
+.footer {
+  text-align: center;
+  padding: 40px 0;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 12px;
+}
+.footer a { color: var(--cyan) }
+.footer-links { margin-bottom: 8px }
+.footer-links a { margin: 0 12px }
+</style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@800;900&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/lib/cinematic-hero.css">
+  <link rel="stylesheet" href="/lib/cyber-shell.css">
+  <link rel="stylesheet" href="/lib/polish-tokens.css">
+</head>
+<body>
+  <div class="cy-bg" aria-hidden="true"></div>
+  <div class="cy-floor" aria-hidden="true"></div>
+  <div class="cy-vignette" aria-hidden="true"></div>
+  <div class="cy-scan" aria-hidden="true"></div>
+<div class="wrap">
+
+<nav class="nav">
+  <a href="/" class="nav-brand">CATALYST EDGE</a>
+  <div class="nav-links">
+    <a href="/scanner/">Scanner</a>
+    <a href="/cerebro/">Cerebro</a>
+    <a href="/cerebro/app/">HUD</a>
+    <a href="/pricing/">Pricing</a>
+  </div>
+</nav>
+
+<section class="cin-hero cy-neon-hero cy-narrow cy-shimmer">
+    <div class="cin-grid">
+      <div class="cin-stat-stack">
+        <div class="cin-eyebrow"><span class="cin-live-dot"></span>SEC SCANNER · DIFF · LIVE</div>
+        <div class="cin-colossal">
+          <div class="cin-num-row"><span class="cin-num">EDGAR</span><span class="cin-pct">+</span></div>
+          <div class="cin-side">
+          <span class="cin-tag"><b>catalyst</b>-aware</span>
+          <span class="cin-tag">signal-layer overlays</span>
+          <span class="cin-tag">equity downstream</span>
+          </div>
+        </div>
+        <div class="cin-stamp">GLOSSARY · SEC FILING SCANNER GUIDE · v1.0 · <b>LIVE</b></div>
+      </div>
+      <div class="cin-h1-block">
+        <div class="cin-h1-eyebrow">📚 SEC Filing Scanner Guide</div>
+        <h1 class="cin-headline"><em>Beyond EDGAR search</em>—the <span class="cin-accent">catalyst-aware filter layer</span>.</h1>
+        <p class="cin-lede">Raw EDGAR search is fine for forms by date. Our scanner adds catalyst scoring, signal-layer overlays, and the equity-downstream context — turning filings into trades.</p>
+        <div class="cin-cta-row">
+          <a href="#article-body" class="cin-btn-primary">Read article ↓</a>
+          <a href="/glossary/" class="cin-btn-ghost">Glossary index</a>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+<article class="article">
+
+  <h2>What <span>SEC Filing Scanners</span> Do</h2>
+
+  <p>An SEC filing scanner monitors the EDGAR database &mdash; the SEC's public filing repository &mdash; and alerts traders when new filings appear that could move stock prices. Without a scanner, you're manually refreshing EDGAR or waiting for financial news outlets to digest filings and publish summaries, which can take minutes to hours.</p>
+
+  <p>The best scanners go beyond simple monitoring. They <strong>parse filing content</strong>, identify which items or disclosures are material, <strong>score the filing's catalyst potential</strong>, and deliver the information in a format that's immediately actionable. The difference between a raw EDGAR alert and a scored catalyst alert is the difference between a data dump and a trading signal.</p>
+
+  <p>Here's what separates a useful SEC filing scanner from a notification feed:</p>
+
+  <ul>
+    <li><strong>Form type filtering.</strong> Not all filings matter. A scanner should focus on catalyst-relevant forms: 8-K (material events), Form 4 (insider transactions), S-3/S-1 (offerings), SC 13D (activist positions), and selected others.</li>
+    <li><strong>Item-level parsing.</strong> An <a href="/glossary/what-is-8k/">8-K filing</a> can contain a dozen different items. A good scanner extracts the specific items and tells you whether it's a material agreement (Item 1.01) or an unregistered securities issuance (Item 3.02) &mdash; which have very different trading implications.</li>
+    <li><strong>Catalyst scoring.</strong> Raw filing notifications are noise. Scoring based on form type, company characteristics (float, sector, short interest), filing content sentiment, and historical patterns transforms noise into signal.</li>
+    <li><strong>Cross-referencing.</strong> The most powerful scanners don't just show filings in isolation. They cross-reference with <a href="/glossary/how-to-read-form-4/">insider transaction data</a>, <a href="/glossary/what-is-short-squeeze/">short interest</a>, options flow, and sector momentum to identify <a href="/glossary/convergence-alerts/">convergence setups</a>.</li>
+    <li><strong>Pre-market delivery.</strong> Filings submitted after hours are only valuable if you see them before the market opens. A scanner that delivers scored alerts before 4 AM ET gives you a critical head start.</li>
+  </ul>
+
+  <h2>Scanner <span>Comparison:</span> 2026</h2>
+
+  <p>Here's how the major SEC filing scanner options stack up for active traders:</p>
+
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th>Feature</th>
+        <th class="gold">Catalyst Edge</th>
+        <th>EDGAR Direct</th>
+        <th>Quiver Quant</th>
+        <th>Unusual Whales</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>SEC filing monitoring</td><td class="check">&#10003;</td><td class="check">&#10003;</td><td class="check">&#10003;</td><td class="limit">Limited</td></tr>
+      <tr><td>Item-level 8-K parsing</td><td class="check">&#10003;</td><td class="dash">&mdash;</td><td class="dash">&mdash;</td><td class="dash">&mdash;</td></tr>
+      <tr><td>Catalyst scoring</td><td class="check">&#10003;</td><td class="dash">&mdash;</td><td class="dash">&mdash;</td><td class="dash">&mdash;</td></tr>
+      <tr><td>Insider cluster detection</td><td class="check">&#10003;</td><td class="dash">&mdash;</td><td class="check">&#10003;</td><td class="dash">&mdash;</td></tr>
+      <tr><td>Short squeeze radar</td><td class="check">&#10003;</td><td class="dash">&mdash;</td><td class="dash">&mdash;</td><td class="check">&#10003;</td></tr>
+      <tr><td>Convergence alerts</td><td class="check">&#10003;</td><td class="dash">&mdash;</td><td class="dash">&mdash;</td><td class="dash">&mdash;</td></tr>
+      <tr><td>Options flow integration</td><td class="check">&#10003;</td><td class="dash">&mdash;</td><td class="dash">&mdash;</td><td class="check">&#10003;</td></tr>
+      <tr><td>Pre-4 AM email delivery</td><td class="check">&#10003;</td><td class="dash">&mdash;</td><td class="dash">&mdash;</td><td class="dash">&mdash;</td></tr>
+      <tr><td>3D market visualization</td><td class="check">&#10003;</td><td class="dash">&mdash;</td><td class="dash">&mdash;</td><td class="dash">&mdash;</td></tr>
+      <tr><td>AI co-pilot</td><td class="check">&#10003;</td><td class="dash">&mdash;</td><td class="dash">&mdash;</td><td class="dash">&mdash;</td></tr>
+      <tr><td>Free tier</td><td class="check">&#10003;</td><td class="check">Free</td><td class="limit">Freemium</td><td class="dash">&mdash;</td></tr>
+      <tr><td>Starting price</td><td style="color:var(--green);font-weight:600">$0/mo</td><td style="color:var(--green)">Free</td><td style="color:var(--muted)">$10/mo</td><td style="color:var(--red)">$48/mo</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Head-to-Head <span>Breakdown</span></h2>
+
+  <div class="vs-grid">
+    <div class="vs-card">
+      <h4>EDGAR Direct (SEC.gov)</h4>
+      <div class="price-tag">Free</div>
+      <p>The official source. Every filing is here. But it's a raw database &mdash; no scoring, no alerts, no cross-referencing, no way to separate signal from noise without manual work. You can set up RSS feeds for specific companies, but you can't scan the entire market or score filings automatically.</p>
+      <div class="edge">Catalyst Edge advantage: Scoring, alerts, convergence, pre-market delivery</div>
+    </div>
+    <div class="vs-card">
+      <h4>Quiver Quantitative</h4>
+      <div class="price-tag">$10-30/mo</div>
+      <p>Good alternative data dashboard with SEC filing coverage, insider tracking, and political trading data. Strong on data breadth but lacks real-time catalyst scoring, convergence detection, and pre-market email delivery. More of a research tool than a scanner.</p>
+      <div class="edge">Catalyst Edge advantage: Catalyst scoring, convergence, squeeze radar, 3D HUD</div>
+    </div>
+    <div class="vs-card">
+      <h4>Unusual Whales</h4>
+      <div class="price-tag">$48/mo</div>
+      <p>Strong options flow platform with some SEC filing coverage. Their core strength is unusual options activity detection. However, they don't parse 8-K items, don't score filings by catalyst potential, and don't run convergence detection across SEC filings + insider buys + short interest.</p>
+      <div class="edge">Catalyst Edge advantage: 8-K parsing, convergence, pre-market delivery, free tier</div>
+    </div>
+    <div class="vs-card">
+      <h4>SEC Filing Alert Services</h4>
+      <div class="price-tag">$20-50/mo</div>
+      <p>Various niche services offer SEC filing alerts via email or Slack. Most are simple notification pipes with no scoring, no cross-referencing, and no intelligence layer. They tell you a filing happened but don't tell you whether it matters or how it connects to other signals.</p>
+      <div class="edge">Catalyst Edge advantage: Intelligence layer, scoring, convergence, full platform</div>
+    </div>
+  </div>
+
+  <div class="winner-card">
+    <div class="badge">OUR TAKE</div>
+    <h4>Catalyst Edge is the only scanner that combines all four</h4>
+    <p>SEC filing parsing + insider cluster detection + squeeze radar + convergence alerts. Other platforms do one or two of these well. No other platform does all four and delivers scored picks before 4 AM.</p>
+  </div>
+
+  <h2>Why <span>Before 4 AM</span> Matters</h2>
+
+  <p>The pre-market session opens at 4:00 AM ET on most exchanges. Between the close at 4 PM and the next morning, companies file SEC documents, insiders report transactions, and news hits the wire. The traders who process this information first have the largest edge.</p>
+
+  <p>Here's the typical overnight timeline for a catalyst event:</p>
+
+  <ol>
+    <li><strong>5:00 PM - 11:00 PM:</strong> The bulk of after-hours SEC filings hit EDGAR. Companies often file material 8-Ks shortly after the close to allow overnight digestion.</li>
+    <li><strong>11:00 PM - 3:00 AM:</strong> A second wave of filings, often including Form 4 insider transactions and international issuer filings.</li>
+    <li><strong>3:00 AM - 3:45 AM:</strong> Catalyst Edge's scoring pipeline runs, cross-references all new filings with short interest and insider data, generates convergence scores, and compiles the daily newsletter.</li>
+    <li><strong>Before 4:00 AM:</strong> Scored picks land in subscriber inboxes. You can review catalysts, build a watchlist, and set alerts &mdash; all before a single pre-market trade executes.</li>
+    <li><strong>4:00 AM - 9:30 AM:</strong> Pre-market trading begins. Stocks with strong catalysts start moving. The edge belongs to those who prepared.</li>
+  </ol>
+
+  <p>Traders who rely on financial news websites or social media to surface SEC filings are typically seeing the information 2-6 hours after it was filed. By then, the pre-market move may already be in progress. A scanner that delivers before 4 AM closes that gap entirely.</p>
+
+  <h2>What to Look for <span>in a Scanner</span></h2>
+
+  <p>If you're evaluating SEC filing scanners, here's the checklist that matters:</p>
+
+  <ul>
+    <li><strong>Coverage breadth.</strong> Does it scan all EDGAR filings or just a subset? Catalyst Edge scans 300+ filings daily across all catalyst-relevant form types.</li>
+    <li><strong>Parsing depth.</strong> Does it just tell you a filing was submitted, or does it parse the content? Item-level 8-K parsing is the difference between "an 8-K was filed" and "a material definitive agreement was announced."</li>
+    <li><strong>Scoring intelligence.</strong> Raw alerts create information overload. A scoring system that weights filings by catalyst potential, float, short interest, and sector context reduces noise to signal.</li>
+    <li><strong>Cross-signal integration.</strong> The best setups involve multiple signals. A scanner that only shows filings without checking insider buys, short interest, or options flow is leaving conviction on the table.</li>
+    <li><strong>Delivery timing.</strong> If alerts arrive after the pre-market move has started, the edge is gone. Before 4 AM is the benchmark.</li>
+    <li><strong>Free tier.</strong> A scanner should prove its value before asking for payment. Catalyst Edge's free newsletter delivers the top 3 scored picks daily &mdash; enough to evaluate the signal quality before upgrading.</li>
+  </ul>
+
+</article>
+
+<section class="cta-section">
+  <h2>Try the scanner free. Decide later.</h2>
+  <p>Catalyst Edge delivers scored SEC filing picks before 4 AM. Start with the free newsletter. Upgrade when you're ready.</p>
+  <div class="cta-buttons">
+    <a href="https://catalystedge.agency" class="cta-btn cyan-fill">Subscribe Free</a>
+    <a href="/scanner/" class="cta-btn outline">Open Scanner</a>
+    <a href="/pricing/" class="cta-btn filled">See Pricing</a>
+  </div>
+</section>
+
+<section class="tip-section">
+  <h3>Love the free tools? Buy us a coffee.</h3>
+  <p>Catalyst Edge is indie-built. Every dollar goes directly to data feeds, servers, and making the scanner faster. No VC, no ads, just us building.</p>
+  <a href="https://ko-fi.com/catalystedge" class="tip-btn" target="_blank" rel="noopener">Support on Ko-fi</a>
+</section>
+
+<footer class="footer">
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="/scanner/">Scanner</a>
+    <a href="/cerebro/">Cerebro</a>
+    <a href="/cerebro/app/">HUD</a>
+    <a href="/pricing/">Pricing</a>
+    <a href="https://catalystedge.agency">Newsletter</a>
+    <a href="https://www.catalystedge.agency/">Catalyst AI</a>
+  </div>
+  <p>&copy; 2026 Catalyst Edge. Built indie. No VC. No ads. Just signal.</p>
+</footer>
+
+</div>
+</body>
+</html>

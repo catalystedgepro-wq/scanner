@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="en">
+<head>
+<script src="/lib/tier.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>🔔 Pro Alerts — Catalyst Edge</title>
+<meta name="description" content="Real-time Telegram-class alerts firing across 43 countries — multi-scanner overlap, cross-border convergence, DCF A-grade gaps, macro regime shifts.">
+<link rel="canonical" href="https://catalystedgescanner.com/alerts/">
+<link rel="stylesheet" href="/lib/nav-fix.css">
+<link rel="stylesheet" href="/lib/admin-unlock.css">
+<link rel="stylesheet" href="/lib/scanner-polish.css">
+<style>
+:root {
+  --bg:#07090f; --surface:#11141d; --surface-2:#181c27;
+  --border-soft:rgba(255,255,255,.07);
+  --text:#f6efe2; --dim:#9ea8ba;
+  --gold:#d7b46a; --green:#7fe8b3; --orange:#ffbf69;
+  --red:#ff8b86; --blue:#72e5ff; --cyan:#22d3ee; --purple:#d59cff;
+}
+* { box-sizing:border-box; margin:0; padding:0; }
+body { font-family:'Space Grotesk','Segoe UI',-apple-system,sans-serif; background:var(--bg); color:var(--text); line-height:1.5; }
+body::before {
+  content:''; position:fixed; inset:0; pointer-events:none;
+  background-image: linear-gradient(rgba(114,229,255,.025) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(114,229,255,.025) 1px, transparent 1px);
+  background-size:48px 48px; opacity:.32; z-index:0;
+}
+nav.nav { position:sticky; top:0; z-index:100; display:flex; gap:.45rem; padding:.7rem 1rem; background:rgba(10,12,18,.86); backdrop-filter:blur(10px); border-bottom:1px solid var(--border-soft); font-size:.82rem; }
+nav.nav a { color:var(--dim); padding:.25rem .5rem; border-radius:4px; text-decoration:none; flex-shrink:0; }
+nav.nav a:hover { color:var(--text); background:var(--surface-2); }
+nav.nav .brand { color:var(--gold); font-weight:700; }
+header.hero { padding:3rem 1.5rem 1rem; max-width:1180px; margin:0 auto; position:relative; z-index:1; }
+.hero-eyebrow { display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--gold); padding:.3rem .8rem; border:1px solid rgba(215,180,106,.35); border-radius:999px; margin-bottom:.85rem; animation:pulse-glow 3s ease-in-out infinite; }
+@keyframes pulse-glow { 0%,100%{box-shadow:0 0 0 0 rgba(215,180,106,0)} 50%{box-shadow:0 0 18px 0 rgba(215,180,106,.35)} }
+header.hero h1 { font-size:clamp(1.8rem,3.5vw,2.6rem); font-weight:800; letter-spacing:-.02em; line-height:1.15; margin-bottom:.4rem; background:linear-gradient(90deg,var(--gold),var(--red)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+header.hero p { color:var(--dim); max-width:46rem; font-size:1.05rem; }
+section.panel { max-width:1180px; margin:1.5rem auto; padding:0 1.5rem; position:relative; z-index:1; }
+.alert-cat { display:flex; align-items:center; gap:.55rem; margin:1.25rem 0 .65rem; }
+.alert-cat-icon { font-size:1.4rem; }
+.alert-cat-name { font-size:1.1rem; font-weight:600; }
+.alert-cat-count { font-family:'IBM Plex Mono',monospace; font-size:.75rem; padding:.18rem .55rem; border-radius:999px; background:rgba(215,180,106,.12); color:var(--gold); border:1px solid rgba(215,180,106,.3); }
+.alert-list { display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:.55rem; }
+.alert {
+  background:var(--surface); border:1px solid var(--border-soft);
+  border-radius:10px; padding:.85rem 1rem; position:relative; overflow:hidden;
+  transition:transform .15s ease,border-color .15s ease,box-shadow .18s ease;
+}
+.alert:hover { transform:translateY(-2px); border-color:var(--gold); box-shadow:0 8px 22px rgba(0,0,0,.28); }
+.alert.locked { opacity:.25; filter:blur(2.5px); pointer-events:none; }
+.alert.urgent { border-left:3px solid var(--red); }
+.alert.warning { border-left:3px solid var(--orange); }
+.alert.bullish { border-left:3px solid var(--green); }
+.alert.macro { border-left:3px solid var(--purple); }
+.alert-head { display:flex; align-items:center; gap:.55rem; margin-bottom:.4rem; }
+.a-flag { font-size:1.3rem; }
+.a-ticker { font-family:'IBM Plex Mono',monospace; font-weight:700; color:var(--blue); font-size:.95rem; min-width:5em; }
+.a-name { color:var(--dim); font-size:.85rem; flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.a-time { font-family:'IBM Plex Mono',monospace; font-size:.7rem; color:var(--dim); }
+.a-msg { font-size:.92rem; line-height:1.4; margin-bottom:.5rem; }
+.a-action { color:var(--gold); font-size:.85rem; font-weight:600; padding:.4rem .55rem; background:rgba(215,180,106,.06); border:1px solid rgba(215,180,106,.2); border-radius:6px; }
+.a-pills { display:flex; gap:.25rem; flex-wrap:wrap; margin-top:.4rem; }
+.a-pill { font-family:'IBM Plex Mono',monospace; font-size:.65rem; padding:.13rem .45rem; border-radius:999px; background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.1); color:var(--text); text-transform:uppercase; letter-spacing:.04em; }
+.empty { padding:2rem 1.5rem; text-align:center; color:var(--dim); background:var(--surface); border:1px dashed var(--border-soft); border-radius:10px; }
+.cta-banner {
+  background:linear-gradient(135deg,rgba(215,180,106,.1),rgba(213,156,255,.1));
+  border:2px solid var(--gold); border-radius:14px;
+  padding:1.5rem 1.75rem; margin:2rem auto; max-width:60rem;
+  position:relative; z-index:1; text-align:center;
+}
+.cta-banner h3 { color:var(--gold); margin-bottom:.45rem; font-size:1.3rem; }
+.cta-banner p { color:var(--dim); margin-bottom:1rem; }
+.cta-banner a { display:inline-block; background:var(--gold); color:var(--bg); padding:.7rem 1.6rem; border-radius:8px; font-weight:700; text-decoration:none; transition:transform .12s ease; font-size:1rem; }
+.cta-banner a:hover { transform:translateY(-1px); }
+.stats-row { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:.7rem; max-width:1180px; margin:1.5rem auto; padding:0 1.5rem; position:relative; z-index:1; }
+.stat { background:var(--surface); border:1px solid var(--border-soft); border-radius:8px; padding:.85rem 1rem; }
+.stat .v { font-family:'IBM Plex Mono',monospace; font-size:1.5rem; font-weight:700; color:var(--gold); }
+.stat .k { color:var(--dim); font-size:.78rem; margin-top:.15rem; }
+footer { text-align:center; padding:2rem; color:var(--dim); font-size:.85rem; border-top:1px solid var(--border-soft); position:relative; z-index:1; }
+footer a { color:var(--blue); }
+</style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@800;900&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/lib/cinematic-hero.css">
+  <link rel="stylesheet" href="/lib/cyber-shell.css">
+  <link rel="stylesheet" href="/lib/polish-tokens.css">
+</head>
+<body>
+  <div class="cy-bg" aria-hidden="true"></div>
+  <div class="cy-floor" aria-hidden="true"></div>
+  <div class="cy-vignette" aria-hidden="true"></div>
+  <div class="cy-scan" aria-hidden="true"></div>
+
+<nav class="nav">
+  <a class="brand" href="/">⚡ Catalyst Edge</a>
+  <a href="/jackpot/" style="color:#7fe8b3;font-weight:700">🎯 JACKPOT</a>
+  <a href="/dcf/" style="color:#22d3ee;font-weight:700">💰 DCF</a>
+  <a href="/dcf/international/" style="color:#22d3ee;font-weight:700">🌍 DCF (Intl)</a>
+  <a href="/numerai/" style="color:#d59cff;font-weight:700">🤖 Numerai</a>
+  <a href="/international/" style="color:#22d3ee;font-weight:700">🌍 Intl</a>
+  <a href="/international/winners/" style="color:#f5c443;font-weight:700">🏆 Winners</a>
+  <a href="/cross-border/" style="color:#d7b46a;font-weight:700">🔗 Cross-Border</a>
+  <a href="/defi/" style="color:#fb923c;font-weight:700">⛓ DeFi</a>
+  <a href="/alerts/" style="color:#ff8b86;font-weight:700">🔔 Alerts</a>
+  <a href="/scanner/">US Scanner</a>
+  <a href="/pricing/" style="color:var(--gold);font-weight:600">Premium</a>
+</nav>
+
+<section class="cin-hero cy-neon-hero cy-shimmer">
+    <div class="cin-grid">
+      <div class="cin-stat-stack">
+        <div class="cin-eyebrow"><span class="cin-live-dot"></span>ALERT WIRING · LIVE</div>
+        <div class="cin-colossal">
+          <div class="cin-num-row"><span class="cin-num">3</span><span class="cin-pct">channels</span></div>
+          <div class="cin-side">
+          <span class="cin-tag"><b>email</b> · push · webhook</span>
+          <span class="cin-tag">per-signal triggers</span>
+          <span class="cin-tag">rate-limited</span>
+          </div>
+        </div>
+        <div class="cin-stamp">ALERTS//SETUP · v1.0 · <b>LIVE</b></div>
+      </div>
+      <div class="cin-h1-block">
+        <div class="cin-h1-eyebrow">🔔 Alerts · Wire Any Signal To You</div>
+        <h1 class="cin-headline">Trigger an alert on <em>any signal</em>—email, push, or webhook—with the <span class="cin-accent">filtering you need</span>.</h1>
+        <p class="cin-lede">Wire alerts to any signal in the scanner. Set ticker filters, score thresholds, sector limits. Email + push + custom webhooks. Rate-limited so you don't drown in noise.</p>
+        <div class="cin-cta-row">
+          <a href="#alerts-form" class="cin-btn-primary">Configure ↓</a>
+          <a href="/preview/" class="cin-btn-ghost">Email preview</a>
+        </div>
+        <div class="cin-strip">
+          <div class="cin-cell"><div class="cin-k">Channels</div><div class="cin-v cyan">3</div></div>
+          <div class="cin-cell"><div class="cin-k">Triggers</div><div class="cin-v bull">9</div></div>
+          <div class="cin-cell"><div class="cin-k">Active</div><div class="cin-v gold" id="al-active">–</div></div>
+          <div class="cin-cell"><div class="cin-k">Per-day cap</div><div class="cin-v">20</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<div class="stats-row">
+  <div class="stat"><div class="v" id="hs-total">—</div><div class="k">total alerts</div></div>
+  <div class="stat"><div class="v" id="hs-urgent">—</div><div class="k">urgent (≥3 scanners)</div></div>
+  <div class="stat"><div class="v" id="hs-macro">—</div><div class="k">macro regime</div></div>
+  <div class="stat"><div class="v" id="hs-countries">—</div><div class="k">countries firing</div></div>
+  <div class="stat"><div class="v" id="hs-updated">—</div><div class="k">last refresh</div></div>
+</div>
+
+<section class="panel" id="alerts-host">
+  <div class="empty" id="loading">Loading…</div>
+</section>
+
+<div class="cta-banner">
+  <h3>📲 Want these as Telegram alerts the second they fire?</h3>
+  <p>Edge Pro pushes every alert on this page directly to Telegram + Discord + email — usually before the news hits Twitter. Plus the Cerebro 3D HUD, full DCF feed, and CSV/API access.</p>
+  <a href="/pricing/?plan=pro&from=alerts">Upgrade to Pro — $39/mo</a>
+</div>
+
+<footer>
+  <p>Refreshed every ~2 hours via the autonomous loop. Free tier shows top 3 alerts blurred. Pro unlocks the full feed + Telegram delivery.</p>
+  <p><a href="/international/">← back to international</a> · <a href="/methodology/">methodology</a> · <a href="/pricing/">pricing</a></p>
+</footer>
+
+<script src="/lib/intl.js"></script>
+<script>
+(function(){
+  var FREE_LIMIT = 3;
+  var FLAG = {USA:'🇺🇸',BRA:'🇧🇷',JPN:'🇯🇵',GBR:'🇬🇧',IND:'🇮🇳',MEX:'🇲🇽',KOR:'🇰🇷',HKG:'🇭🇰',CHN:'🇨🇳',TWN:'🇹🇼',
+              DEU:'🇩🇪',FRA:'🇫🇷',CHE:'🇨🇭',NLD:'🇳🇱',ESP:'🇪🇸',ITA:'🇮🇹',SWE:'🇸🇪',NOR:'🇳🇴',DNK:'🇩🇰',FIN:'🇫🇮',
+              BEL:'🇧🇪',AUT:'🇦🇹',IRL:'🇮🇪',PRT:'🇵🇹',GRC:'🇬🇷',POL:'🇵🇱',CZE:'🇨🇿',TUR:'🇹🇷',ISR:'🇮🇱',ZAF:'🇿🇦',
+              SGP:'🇸🇬',THA:'🇹🇭',IDN:'🇮🇩',MYS:'🇲🇾',PHL:'🇵🇭',ARG:'🇦🇷',CHL:'🇨🇱',AUS:'🇦🇺',CAN:'🇨🇦',NZL:'🇳🇿'};
+  function flagFor(iso) { return FLAG[iso] || ''; }
+  function clearChildren(el){ while (el.firstChild) el.removeChild(el.firstChild); }
+
+  function alertCard(a) {
+    var c = document.createElement('div');
+    c.className = 'alert ' + (a.severity || 'bullish');
+    var head = document.createElement('div'); head.className = 'alert-head';
+    var fl = document.createElement('span'); fl.className = 'a-flag'; fl.textContent = flagFor(a.country_iso || '');
+    var tk = document.createElement('span'); tk.className = 'a-ticker'; tk.textContent = a.ticker || a.scope || '';
+    var nm = document.createElement('span'); nm.className = 'a-name'; nm.textContent = a.name || '';
+    var tm = document.createElement('span'); tm.className = 'a-time'; tm.textContent = 'NOW';
+    head.appendChild(fl); head.appendChild(tk); head.appendChild(nm); head.appendChild(tm);
+    var msg = document.createElement('div'); msg.className = 'a-msg'; msg.textContent = a.message || '';
+    var act = document.createElement('div'); act.className = 'a-action'; act.textContent = '⚡ ' + (a.action || '');
+    c.appendChild(head); c.appendChild(msg); c.appendChild(act);
+    if (a.tags && a.tags.length) {
+      var pills = document.createElement('div'); pills.className = 'a-pills';
+      a.tags.forEach(function (t) {
+        var p = document.createElement('span'); p.className = 'a-pill'; p.textContent = t;
+        pills.appendChild(p);
+      });
+      c.appendChild(pills);
+    }
+    return c;
+  }
+
+  function renderCategory(host, category, alerts, tier) {
+    if (!alerts.length) return;
+    var cat = document.createElement('div'); cat.className = 'alert-cat';
+    var ic = document.createElement('span'); ic.className = 'alert-cat-icon'; ic.textContent = category.icon;
+    var nm = document.createElement('span'); nm.className = 'alert-cat-name'; nm.textContent = category.name;
+    var ct = document.createElement('span'); ct.className = 'alert-cat-count'; ct.textContent = alerts.length + ' firing';
+    cat.appendChild(ic); cat.appendChild(nm); cat.appendChild(ct);
+    host.appendChild(cat);
+    var list = document.createElement('div'); list.className = 'alert-list';
+    alerts.forEach(function (a) {
+      var card = alertCard(a);
+      if (tier === 'free' && window.__visibleSoFar >= FREE_LIMIT) {
+        card.classList.add('locked');
+      }
+      window.__visibleSoFar++;
+      list.appendChild(card);
+    });
+    host.appendChild(list);
+  }
+
+  Promise.all([
+    fetch('/data/intl_panels.json?cb=' + Date.now()).then(function(r){ return r.ok ? r.json() : {}; }).catch(function(){ return {}; }),
+    fetch('/data/intl_dcf.json?cb=' + Date.now()).then(function(r){ return r.ok ? r.json() : {}; }).catch(function(){ return {}; }),
+    fetch('/data/cross_border_convergence.json?cb=' + Date.now()).then(function(r){ return r.ok ? r.json() : {}; }).catch(function(){ return {}; }),
+    fetch('/data/intl_edge.json?cb=' + Date.now()).then(function(r){ return r.ok ? r.json() : {}; }).catch(function(){ return {}; }),
+    fetch('/data/xasset_macro.json?cb=' + Date.now()).then(function(r){ return r.ok ? r.json() : {}; }).catch(function(){ return {}; }),
+  ]).then(function(results) {
+    var panels = results[0], dcf = results[1], cb = results[2], edge = results[3], macro = results[4];
+
+    var multiScanner = [];
+    (edge.multi_scanner || []).forEach(function(r) {
+      if (r.scanner_count >= 3) {
+        multiScanner.push({
+          ticker: r.ticker, name: r.name, country_iso: r.country_iso,
+          severity: 'urgent',
+          message: 'Firing in ' + r.scanner_count + ' scanners simultaneously: ' + r.scanners.join(' + '),
+          action: 'Institutional positioning detected — cross-confirm with volume',
+          tags: r.scanners,
+        });
+      }
+    });
+    var crossBorder = [];
+    (cb.top_setups || []).forEach(function(s) {
+      if (s.score === 4 || s.conviction === 'STRONG') {
+        crossBorder.push({
+          ticker: s.foreign_ticker + ' / ' + s.us_ticker,
+          name: s.entity_name,
+          country_iso: '', severity: 'urgent',
+          message: 'Both ' + s.foreign_ticker + ' (' + s.foreign_gap_pct.toFixed(2) + '%) and ' + s.us_ticker + ' (' + s.us_gap_pct.toFixed(2) + '%) firing same direction with elevated volume',
+          action: 'STRONG cross-border setup — same entity gapping in two markets',
+          tags: ['cross-border', s.conviction.toLowerCase(), s.score + '/4'],
+        });
+      }
+    });
+    var dcfAlerts = [];
+    var topUpMap = {};
+    (panels.top_up || []).forEach(function(r) { topUpMap[r.ticker] = r; });
+    (dcf.top_undervalued || []).forEach(function(r) {
+      if (r.grade === 'A' && topUpMap[r.ticker] && topUpMap[r.ticker].gap_pct >= 1) {
+        var gap = topUpMap[r.ticker];
+        dcfAlerts.push({
+          ticker: r.ticker, name: r.name, country_iso: gap.country_iso,
+          severity: 'bullish',
+          message: 'A-grade DCF (' + Math.round(r.upside_pct) + '% upside) firing on gap up (' + gap.gap_pct.toFixed(2) + '%) today',
+          action: 'Fundamental + technical convergence — rare alpha pattern',
+          tags: ['dcf-a', 'gap-up', '+' + Math.round(r.upside_pct) + '% upside'],
+        });
+      }
+    });
+    var rotationAlerts = [];
+    (edge.rotations || []).forEach(function(r) {
+      if (r.count >= 4) {
+        rotationAlerts.push({
+          scope: r.sector, name: r.count + ' names ' + r.direction + ' globally',
+          country_iso: '',
+          severity: r.direction === 'down' ? 'warning' : 'bullish',
+          message: r.sector + ' sector rotation: ' + r.count + ' names moved ' + r.direction + ' simultaneously (avg ' + (r.avg_gap >= 0 ? '+' : '') + r.avg_gap.toFixed(2) + '%)',
+          action: 'Sector-wide catalyst likely — peers will follow if sustained',
+          tags: ['rotation', r.direction, r.sector.toLowerCase().replace(/ /g, '-')],
+        });
+      }
+    });
+    var macroAlerts = [];
+    (macro.signals || []).forEach(function (s) {
+      if (s.regime === 'inverted' || s.regime === 'panic' || s.regime === 'recession_signal' || s.regime === 'very_strong') {
+        macroAlerts.push({
+          scope: s.label, name: s.regime,
+          country_iso: '', severity: 'macro',
+          message: s.label + ' = ' + s.value + ' → ' + s.regime,
+          action: s.readthrough || 'Macro regime shift — adjust risk',
+          tags: ['macro', s.id, s.regime],
+        });
+      }
+    });
+    var cascadeAlerts = [];
+    var ca = edge.cross_asset || {};
+    if (ca.defi_cascade_count > 0) {
+      cascadeAlerts.push({
+        scope: 'DeFi', name: ca.defi_cascade_count + ' protocols in cascade',
+        country_iso: '', severity: 'warning',
+        message: ca.defi_cascade_count + ' DeFi protocols shedding 10%+ of TVL in 24h',
+        action: 'Watch crypto miners (RIOT/MARA/CLSK), COIN, MSTR for downstream liquidation',
+        tags: ['defi', 'cascade', 'crypto'],
+      });
+    }
+    if (ca.btc_etf_spike_funds >= 2) {
+      cascadeAlerts.push({
+        scope: 'BTC ETFs', name: ca.btc_etf_spike_funds + ' ETFs spiking',
+        country_iso: '', severity: 'urgent',
+        message: ca.btc_etf_spike_funds + ' BTC spot ETFs showing 2x+ volume vs 20d average',
+        action: 'Institutional BTC flow shift — equity miners likely to follow',
+        tags: ['btc-etf', 'spike'],
+      });
+    }
+
+    var host = document.getElementById('alerts-host');
+    clearChildren(host);
+    window.__visibleSoFar = 0;
+    var T = (window.CatalystTier && CatalystTier.get()) || 'free';
+    var totalAlerts = multiScanner.length + crossBorder.length + dcfAlerts.length + rotationAlerts.length + macroAlerts.length + cascadeAlerts.length;
+    document.getElementById('hs-total').textContent = totalAlerts;
+    document.getElementById('hs-urgent').textContent = multiScanner.length + crossBorder.length;
+    document.getElementById('hs-macro').textContent = macroAlerts.length;
+    var countries = new Set();
+    multiScanner.concat(dcfAlerts).forEach(function(a){ if (a.country_iso) countries.add(a.country_iso); });
+    document.getElementById('hs-countries').textContent = countries.size;
+    if (panels.generated_at) {
+      document.getElementById('hs-updated').textContent = new Date(panels.generated_at).toLocaleTimeString([], {hour:'numeric',minute:'2-digit'});
+    }
+    if (!totalAlerts) {
+      var e = document.createElement('div'); e.className = 'empty';
+      e.textContent = 'No alerts firing right now — quiet tape. Check back next 2h cycle.';
+      host.appendChild(e);
+      return;
+    }
+    renderCategory(host, {icon:'⚡', name:'Multi-Scanner Overlap'}, multiScanner, T);
+    renderCategory(host, {icon:'🔗', name:'Cross-Border STRONG Convergence'}, crossBorder, T);
+    renderCategory(host, {icon:'💰', name:'DCF A-Grade Gap-Up'}, dcfAlerts, T);
+    renderCategory(host, {icon:'🔄', name:'Sector Rotation Events'}, rotationAlerts, T);
+    renderCategory(host, {icon:'📊', name:'Macro Regime Shifts'}, macroAlerts, T);
+    renderCategory(host, {icon:'⛓', name:'Cascade Events'}, cascadeAlerts, T);
+  });
+})();
+</script>
+
+</body>
+</html>

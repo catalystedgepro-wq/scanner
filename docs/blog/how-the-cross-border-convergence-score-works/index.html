@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>How the cross-border convergence score works — Catalyst Edge blog</title>
+  <meta name="description" content="The 4-point composite signal we use to score ADR ↔ home-listing setups in real time. Math, worked example, and the edge cases we deliberately threw out." />
+  <meta property="og:title" content="How the cross-border convergence score works" />
+  <meta property="og:description" content="A 4-point composite signal for ADR ↔ home-listing setups." />
+  <link rel="alternate" type="application/rss+xml" title="Catalyst Edge blog" href="/blog/rss.xml" />
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/lib/admin-unlock.css" />
+  <link rel="stylesheet" href="/lib/scanner-polish.css" />
+  <link rel="stylesheet" href="/lib/nav-fix.css" />
+  <style>
+    :root{
+      --navy:#040a14; --navy2:#0a1424; --navy3:#0e1a2e;
+      --ink:#e6f1ff; --ink-dim:#9bb0c8; --ink-mute:#6e8198;
+      --cyan:#5ad7ff; --gold:#f5c662; --bull:#5cf2a4; --bear:#ff6b8b;
+      --line:rgba(110,140,180,0.18); --line-strong:rgba(110,140,180,0.32);
+      --glass: linear-gradient(180deg, rgba(15,28,48,0.78), rgba(7,14,28,0.78));
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;background:#04070d;color:var(--ink);
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      -webkit-font-smoothing:antialiased; font-feature-settings:"ss01","cv11";
+    }
+    a{color:var(--cyan);text-decoration:none}
+    a:hover{text-decoration:underline}
+    code{font-family:"JetBrains Mono","IBM Plex Mono",ui-monospace,monospace;font-size:0.92em;background:rgba(90,215,255,0.06);padding:1px 6px;border-radius:4px;color:var(--cyan)}
+
+    .topbar{position:sticky;top:0;z-index:50;background:rgba(4,7,13,0.86);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+    .topbar-row{display:flex;align-items:center;gap:18px;padding:14px 24px;max-width:1400px;margin:0 auto}
+    .brand{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:14px;letter-spacing:0.18em;color:var(--gold);text-transform:uppercase}
+    .brand b{color:var(--cyan)}
+    nav.nav{display:flex;gap:8px;flex:1;flex-wrap:nowrap;overflow-x:auto;scroll-padding-top:80px}
+    nav.nav a{font-size:13px;color:var(--ink-dim);padding:8px 12px;border-radius:8px;white-space:nowrap}
+    nav.nav a:hover{background:rgba(90,215,255,0.08);color:var(--ink);text-decoration:none}
+    nav.nav a.active{color:var(--gold);background:rgba(245,198,98,0.08)}
+
+    article.post{max-width:780px;margin:0 auto;padding:48px 24px 64px}
+    .crumbs{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:0.16em;color:var(--ink-mute);text-transform:uppercase;margin-bottom:24px}
+    .crumbs a{color:var(--ink-dim)}
+    .eyebrow{display:inline-flex;gap:14px;font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:0.18em;color:var(--gold);text-transform:uppercase;margin-bottom:14px;flex-wrap:wrap}
+    .eyebrow .read{color:var(--ink-mute)}
+    .eyebrow .tag{padding:3px 10px;border-radius:6px;background:rgba(245,198,98,0.08);border:1px solid rgba(245,198,98,0.32)}
+    h1.title{font-size:clamp(30px,4.5vw,46px);line-height:1.1;letter-spacing:-0.01em;margin:0 0 14px;font-weight:700}
+    .lede{font-size:18px;color:var(--ink-dim);line-height:1.55;margin:0 0 32px}
+
+    article.post h2{margin:36px 0 12px;font-size:22px;color:var(--cyan);letter-spacing:-0.005em}
+    article.post p{margin:0 0 14px;color:var(--ink);font-size:16px;line-height:1.7}
+    article.post ul, article.post ol{margin:0 0 18px;padding-left:24px;color:var(--ink-dim);font-size:15.5px;line-height:1.7}
+    article.post ul li, article.post ol li{margin-bottom:6px}
+    article.post ul li b, article.post ol li b{color:var(--ink)}
+
+    .pull{font-size:20px;line-height:1.5;color:var(--gold);font-style:italic;
+      padding:14px 22px;border-left:3px solid var(--gold);background:rgba(245,198,98,0.05);border-radius:0 10px 10px 0;margin:24px 0}
+
+    .formula{background:#04070d;border:1px solid var(--line);border-radius:10px;padding:16px 18px;
+      font-family:"JetBrains Mono",monospace;font-size:13px;line-height:1.7;color:var(--ink);overflow-x:auto;margin:18px 0;white-space:pre-wrap}
+    .formula .kw{color:#c792ea}
+    .formula .num{color:var(--bull)}
+    .formula .com{color:var(--ink-mute);font-style:italic}
+
+    .table{width:100%;border-collapse:collapse;margin:18px 0;font-size:14px}
+    .table th, .table td{padding:10px 14px;border-bottom:1px solid var(--line);text-align:left}
+    .table th{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:0.18em;color:var(--ink-mute);text-transform:uppercase}
+    .table td.pos{color:var(--bull)}
+    .table td.neg{color:var(--bear)}
+    .table td b{color:var(--ink)}
+    .table tbody tr:hover td{background:rgba(90,215,255,0.04)}
+
+    .byline{margin-top:48px;padding-top:24px;border-top:1px dashed var(--line);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px}
+    .byline .who{font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:0.14em;color:var(--ink-mute);text-transform:uppercase}
+    .byline .who b{color:var(--ink)}
+    .byline .share{display:flex;gap:8px;flex-wrap:wrap}
+    .byline .share a{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;
+      padding:8px 12px;border-radius:8px;border:1px solid var(--line-strong);color:var(--ink-dim)}
+    .byline .share a:hover{border-color:var(--cyan);color:var(--cyan);text-decoration:none}
+
+    .next-up{margin-top:32px;background:var(--glass);border:1px solid var(--line);border-radius:14px;padding:18px}
+    .next-up .eye{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:0.18em;color:var(--ink-mute);text-transform:uppercase}
+    .next-up h4{margin:6px 0 4px;font-size:16px;color:var(--cyan)}
+    .next-up p{margin:0;color:var(--ink-dim);font-size:13.5px}
+
+    footer{padding:36px 0;color:var(--ink-mute);font-size:12px;border-top:1px solid var(--line);text-align:center}
+    footer .links{display:flex;gap:14px;justify-content:center;margin-top:8px;flex-wrap:wrap}
+  </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "How the cross-border convergence score works",
+  "description": "The 4-point composite signal we use to score ADR ↔ home-listing setups in real time. Math, worked example, and the edge cases we deliberately threw out.",
+  "datePublished": "2026-04-23",
+  "dateModified": "2026-04-23",
+  "author": {
+    "@type": "Organization",
+    "name": "Catalyst Edge Scanner",
+    "url": "https://catalystedgescanner.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://catalystedgescanner.com/press/logo.png"
+    }
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Catalyst Edge Scanner",
+    "url": "https://catalystedgescanner.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://catalystedgescanner.com/press/logo.png"
+    }
+  },
+  "image": "https://catalystedgescanner.com/press/logo.png",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://catalystedgescanner.com/blog/how-the-cross-border-convergence-score-works/"
+  },
+  "url": "https://catalystedgescanner.com/blog/how-the-cross-border-convergence-score-works/"
+}
+</script>
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://catalystedgescanner.com/blog/how-the-cross-border-convergence-score-works/" />
+  <meta property="og:title" content="How the cross-border convergence score works — Catalyst Edge blog" />
+  <meta property="og:description" content="The 4-point composite signal we use to score ADR ↔ home-listing setups in real time. Math, worked example, and the edge cases we deliberately threw out." />
+  <meta property="og:image" content="https://catalystedgescanner.com/og/blog-cross-border.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name" content="Catalyst Edge Scanner" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@catalystEdgePro" />
+  <meta name="twitter:title" content="How the cross-border convergence score works — Catalyst Edge blog" />
+  <meta name="twitter:description" content="The 4-point composite signal we use to score ADR ↔ home-listing setups in real time. Math, worked example, and the edge cases we deliberately threw out." />
+  <meta name="twitter:image" content="https://catalystedgescanner.com/og/blog-cross-border.png" />
+<link rel="stylesheet" href="/lib/polish-tokens.css">
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-row">
+      <div class="brand"><b>Catalyst</b> · Edge</div>
+      <nav class="nav">
+        <a href="/scanner/">Scanner</a>
+        <a href="/international/">Global</a>
+        <a href="/dcf/">DCF</a>
+        <a href="/cross-border/">Cross-Border</a>
+        <a href="/sdk/">SDK</a>
+        <a href="/benchmarks/">Benchmarks</a>
+        <a href="/trust/">Trust</a>
+        <a href="/blog/" class="active">Blog</a>
+        <a href="/community/">Community</a>
+        <a href="/changelog/">Changelog</a>
+        <a href="/pricing/">Pricing</a>
+      </nav>
+    </div>
+  </div>
+
+  <article class="post">
+    <div class="crumbs"><a href="/blog/">← All posts</a></div>
+    <div class="eyebrow"><span>2026-04-23</span><span class="read">≈ 6 min read</span><span class="tag">Methodology</span></div>
+    <h1 class="title">How the cross-border convergence score works</h1>
+    <p class="lede">When BABA moves on the NYSE and 9988.HK doesn't budge in Hong Kong, one of two prices is wrong. The cross-border convergence score is the 4-point composite signal we use to flag those setups in real time across 43 markets. Here's the math, a worked example, and the edge cases we deliberately threw out.</p>
+
+    <h2>The setup</h2>
+    <p>An ADR is a US-listed proxy for a foreign company. BABA on the NYSE represents Alibaba shares that primarily trade as 9988.HK in Hong Kong. In a frictionless world, the ADR price equals the home-listing price times the share ratio times the FX conversion. In the actual world, those two prices drift apart minute by minute — and the spread is often a tradeable signal.</p>
+    <p>Most professional setups in this space need expensive cross-listing data, custom plumbing, or a multi-screen Bloomberg setup. We collapsed the entire decision into a 4-point integer score that you can read in 1 second.</p>
+
+    <h2>The four conditions</h2>
+    <p>Each condition either fires (1 point) or it doesn't (0 points). Total score is 0 to 4. We compute it on every dual-listed pair we cover, every cycle:</p>
+    <ol>
+      <li><b>Foreign gap ≥ 1.5%</b> — the home listing is moving today. Below that, you're looking at noise.</li>
+      <li><b>US gap ≥ 1.5%</b> — the ADR is also moving today. If only one leg is moving, the spread is just opening — you don't yet know which side is right.</li>
+      <li><b>Same direction</b> — both gaps share a sign. A foreign +3% and a US +2% is a tightly converging pair; a foreign +3% and a US -2% is two markets disagreeing about the same fact, which is a different (and noisier) trade.</li>
+      <li><b>Both vol-ratio ≥ 1.5×</b> — both legs are trading at least 1.5× their 30-day average volume. Spread movement on thin volume is mostly stale prints; you want size on both sides.</li>
+    </ol>
+
+    <div class="pull">"The 4-point convergence score is the only signal I now show my PM before pulling the trigger."<br><span style="color:var(--ink-mute);font-size:14px;font-style:normal">— Senior analyst, LATAM quant fund (anonymized — see /case-studies)</span></div>
+
+    <h2>The score → action mapping</h2>
+    <ul>
+      <li><b>4 / 4 — STRONG.</b> Both legs gapping in the same direction on heavy volume. Highest-conviction tier. Surfaces in the daily digest, the alerts tape, and the embed widgets.</li>
+      <li><b>3 / 4 — TRADE.</b> One condition missed (usually vol-ratio on one leg). Still actionable, but smaller size and tighter risk.</li>
+      <li><b>2 / 4 — Watch.</b> Either same direction without volume, or both legs gapping but in opposite directions. Worth a glance, not a trigger.</li>
+      <li><b>≤ 1 — Noise.</b> Don't even surface in the panel.</li>
+    </ul>
+
+    <h2>A worked example: BABA ↔ 9988.HK</h2>
+    <p>Pulled from yesterday's panel:</p>
+    <table class="table">
+      <thead><tr><th>Leg</th><th>Gap %</th><th>Vol ratio</th><th>Condition met?</th></tr></thead>
+      <tbody>
+        <tr><td><b>BABA (NYSE)</b></td><td class="pos">+1.2%</td><td>1.77×</td><td>Gap below 1.5% threshold ✕</td></tr>
+        <tr><td><b>9988.HK</b></td><td class="neg">−1.2%</td><td>1.41×</td><td>Vol ratio below 1.5× ✕</td></tr>
+        <tr><td><b>Same direction?</b></td><td colspan="2">No (one up, one down)</td><td>✕</td></tr>
+        <tr><td><b>Both vol ≥ 1.5×?</b></td><td colspan="2">No (HK side at 1.41×)</td><td>✕</td></tr>
+      </tbody>
+    </table>
+    <p>Final score: 0 / 4. This pair would not surface as either STRONG or TRADE, even though the headline news was identical on both legs. The score correctly downgraded a noisy pair that a less disciplined screen would have shown.</p>
+    <p>Compare that to a real STRONG firing earlier this month: PETR4.SA + 4.6% / NYSE PBR + 4.4%, both vol ratios 2.1× and 1.9×, same direction. All four conditions met, score = 4 / 4. STRONG. Surfaced in the digest. Closed +12% on a 2-day hold.</p>
+
+    <h2>What we deliberately threw out</h2>
+    <p>The score is intentionally simple. Things we tried and removed:</p>
+    <ul>
+      <li><b>FX-adjusted spread.</b> Useful for arb traders, but adds two more inputs and another failure mode (FX feed staleness). Added complexity, didn't improve hit rate. Cut.</li>
+      <li><b>Time-of-day weighting.</b> Pre-market US gaps don't behave like post-open gaps. We accept that lossy — the score is uniform across the trading day.</li>
+      <li><b>Sector-level normalization.</b> BABA's volatility differs from a Brazilian utility's. We don't normalize because the threshold (1.5%) is already low enough that almost everything qualifies on a real news day.</li>
+    </ul>
+
+    <p>The full math, the universe, and a live STRONG-only feed are at <a href="/cross-border/">/cross-border</a>. If you want the score on your own infra, the SDK exposes it as <code>c.crossborder.strong()</code> — see <a href="/sdk/">/sdk</a>.</p>
+
+    <div class="byline">
+      <span class="who">Founder · <b>Catalyst Edge Scanner</b> · 2026-04-23</span>
+      <div class="share">
+        <a href="https://x.com/intent/tweet?url=https%3A%2F%2Fcatalystedgescanner.com%2Fblog%2Fhow-the-cross-border-convergence-score-works%2F&text=How%20the%20cross-border%20convergence%20score%20works" target="_blank" rel="noopener">𝕏 share</a>
+        <a href="mailto:?subject=How%20the%20cross-border%20convergence%20score%20works&body=https%3A%2F%2Fcatalystedgescanner.com%2Fblog%2Fhow-the-cross-border-convergence-score-works%2F">Email</a>
+        <a href="/blog/">← All posts</a>
+      </div>
+    </div>
+
+    <div class="next-up">
+      <span class="eye">Up next · 2026-04-20</span>
+      <h4><a href="/blog/30-days-to-build-a-bloomberg-killer/">30 days to build a Bloomberg killer →</a></h4>
+      <p>Phase by phase. The week that everything broke. The first $9 customer. The misses I won't repeat.</p>
+    </div>
+  </article>
+
+  <footer>
+    Catalyst Edge Scanner · Build log · Audited 89% hit rate · Ships daily, not quarterly
+    <div class="links">
+      <a href="/scanner/">Scanner</a>
+      <a href="/cross-border/">Cross-border</a>
+      <a href="/changelog/">Changelog</a>
+      <a href="/blog/">Blog</a>
+      <a href="mailto:opensource@example.com">Contact</a>
+    </div>
+  </footer>
+
+  <script src="/lib/tier.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+/* docs/lib/nav-fix.css — global nav-bar override.
+ *
+ * Forces single-line nav with horizontal scroll on overflow. Adds
+ * scroll-padding-top so anchor links (#gaps, #sectors etc.) don't get hidden
+ * under the sticky nav. Loaded by every page so the design stays consistent.
+ */
+
+/* Anchor scroll offset: nav is ~52-60px tall on most pages */
+html { scroll-padding-top: 80px; scroll-behavior: smooth; }
+
+/* Universal nav single-line override */
+nav.nav,
+nav.primary-nav,
+nav#primary-nav,
+.scanner-nav {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  white-space: nowrap !important;
+  align-items: center !important;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(215, 180, 106, 0.3) transparent;
+  -webkit-overflow-scrolling: touch;
+  max-width: 100%;
+}
+
+nav.nav::-webkit-scrollbar,
+nav.primary-nav::-webkit-scrollbar,
+nav#primary-nav::-webkit-scrollbar {
+  height: 4px;
+}
+nav.nav::-webkit-scrollbar-thumb,
+nav.primary-nav::-webkit-scrollbar-thumb,
+nav#primary-nav::-webkit-scrollbar-thumb {
+  background: rgba(215, 180, 106, 0.3);
+  border-radius: 4px;
+}
+nav.nav::-webkit-scrollbar-track,
+nav.primary-nav::-webkit-scrollbar-track,
+nav#primary-nav::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+nav.nav > *,
+nav.primary-nav > *,
+nav#primary-nav > * {
+  flex-shrink: 0 !important;
+  white-space: nowrap !important;
+}
+
+/* Ensure section anchors don't get hidden under sticky nav when clicked */
+section[id], div[id^="suite"], header[id], h2[id], h3[id], a[name] {
+  scroll-margin-top: 80px;
+}
+
+/* Mobile tweaks: tighter padding so more items fit on narrow screens */
+@media (max-width: 768px) {
+  nav.nav,
+  nav.primary-nav,
+  nav#primary-nav {
+    padding-left: .65rem !important;
+    padding-right: .65rem !important;
+    gap: .35rem !important;
+    font-size: .8rem !important;
+  }
+  nav.nav a,
+  nav.primary-nav a,
+  nav#primary-nav a {
+    padding: .25rem .45rem !important;
+  }
+  html { scroll-padding-top: 70px; }
+  section[id], div[id^="suite"] {
+    scroll-margin-top: 70px;
+  }
+}
+
+/* Subtle fade hint at right edge so users see horizontal scroll exists */
+nav.nav::after,
+nav.primary-nav::after,
+nav#primary-nav::after {
+  content: '';
+  position: absolute;
+  right: 0; top: 0; bottom: 0;
+  width: 24px;
+  background: linear-gradient(to right, transparent, rgba(7, 9, 15, 0.85));
+  pointer-events: none;
+}
+
+nav.nav,
+nav.primary-nav,
+nav#primary-nav {
+  position: sticky !important;
+}

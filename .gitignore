@@ -1,0 +1,33 @@
+# Secrets
+.env
+.env.*
+!.env.example
+*.pem
+*_key
+*_token
+api_keys.json
+
+# Runtime state (never commit)
+.agent_*halted
+.position_hwm.json
+tradier_orders.csv
+tradier_positions.json
+tradier_status.json
+coinbase_pnl.json
+coinbase_fills*.csv
+*.bak
+*.bak-*
+
+# Daily archive CSVs (regenerated)
+*_2025-*.csv
+*_2026-*.csv
+
+# Python / Node
+__pycache__/
+*.pyc
+node_modules/
+.venv/
+
+# Local OS
+.DS_Store
+Thumbs.db

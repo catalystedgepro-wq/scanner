@@ -1,0 +1,46 @@
+port_name,state,border,date,trucks,prior_month,mom_delta_pct,captured_at
+Laredo,Texas,US-Mexico Border,2026-03,266808,236216,13.0,2026-04-27T23:03:51Z
+Detroit,Michigan,US-Canada Border,2026-03,104796,90794,15.4,2026-04-27T23:03:51Z
+Port Huron,Michigan,US-Canada Border,2026-03,91285,75193,21.4,2026-04-27T23:03:51Z
+Otay Mesa,California,US-Mexico Border,2026-03,85889,74440,15.4,2026-04-27T23:03:51Z
+Buffalo Niagara Falls,New York,US-Canada Border,2026-03,76213,64340,18.5,2026-04-27T23:03:51Z
+Hidalgo,Texas,US-Mexico Border,2026-03,61544,57219,7.6,2026-04-27T23:03:51Z
+Ysleta,Texas,US-Mexico Border,2026-03,56407,54043,4.4,2026-04-27T23:03:51Z
+Nogales,Arizona,US-Mexico Border,2026-03,43056,36960,16.5,2026-04-27T23:03:51Z
+Calexico East,California,US-Mexico Border,2026-03,40091,35461,13.1,2026-04-27T23:03:51Z
+Blaine,Washington,US-Canada Border,2026-03,28006,24140,16.0,2026-04-27T23:03:51Z
+Brownsville,Texas,US-Mexico Border,2026-03,25489,27471,-7.2,2026-04-27T23:03:51Z
+Eagle Pass,Texas,US-Mexico Border,2026-03,23163,27588,-16.0,2026-04-27T23:03:51Z
+Champlain Rouses Point,New York,US-Canada Border,2026-03,22347,18885,18.3,2026-04-27T23:03:51Z
+Pembina,North Dakota,US-Canada Border,2026-03,21364,18144,17.7,2026-04-27T23:03:51Z
+El Paso,Texas,US-Mexico Border,2026-03,15902,13879,14.6,2026-04-27T23:03:51Z
+Alexandria Bay,New York,US-Canada Border,2026-03,15746,13043,20.7,2026-04-27T23:03:51Z
+Santa Teresa,New Mexico,US-Mexico Border,2026-03,15600,14442,8.0,2026-04-27T23:03:51Z
+Sweetgrass,Montana,US-Canada Border,2026-03,13159,11190,17.6,2026-04-27T23:03:51Z
+Sumas,Washington,US-Canada Border,2026-03,11521,9218,25.0,2026-04-27T23:03:51Z
+Portal,North Dakota,US-Canada Border,2026-03,8399,7035,19.4,2026-04-27T23:03:51Z
+Highgate Springs,Vermont,US-Canada Border,2026-03,8263,7723,7.0,2026-04-27T23:03:51Z
+Del Rio,Texas,US-Mexico Border,2026-03,8142,7566,7.6,2026-04-27T23:03:51Z
+Progreso,Texas,US-Mexico Border,2026-03,7578,7435,1.9,2026-04-27T23:03:51Z
+Houlton,Maine,US-Canada Border,2026-03,6844,6233,9.8,2026-04-27T23:03:51Z
+Jackman,Maine,US-Canada Border,2026-03,6410,6163,4.0,2026-04-27T23:03:51Z
+Derby Line,Vermont,US-Canada Border,2026-03,6153,5531,11.2,2026-04-27T23:03:51Z
+San Luis,Arizona,US-Mexico Border,2026-03,5650,5025,12.4,2026-04-27T23:03:51Z
+Roma,Texas,US-Mexico Border,2026-03,4760,4258,11.8,2026-04-27T23:03:51Z
+Tecate,California,US-Mexico Border,2026-03,4456,3848,15.8,2026-04-27T23:03:51Z
+Eastport,Idaho,US-Canada Border,2026-03,4036,3456,16.8,2026-04-27T23:03:51Z
+Calais,Maine,US-Canada Border,2026-03,3973,3210,23.8,2026-04-27T23:03:51Z
+Tornillo,Texas,US-Mexico Border,2026-03,3082,2530,21.8,2026-04-27T23:03:51Z
+Rio Grande City,Texas,US-Mexico Border,2026-03,2958,1884,57.0,2026-04-27T23:03:51Z
+Ogdensburg,New York,US-Canada Border,2026-03,2778,2023,37.3,2026-04-27T23:03:51Z
+Kenneth G Ward,Washington,US-Canada Border,2026-03,2579,2050,25.8,2026-04-27T23:03:51Z
+Frontier,Washington,US-Canada Border,2026-03,2461,2236,10.1,2026-04-27T23:03:51Z
+Dunseith,North Dakota,US-Canada Border,2026-03,2267,1935,17.2,2026-04-27T23:03:51Z
+Sault Sainte Marie,Michigan,US-Canada Border,2026-03,2237,2163,3.4,2026-04-27T23:03:51Z
+Douglas,Arizona,US-Mexico Border,2026-03,2170,2107,3.0,2026-04-27T23:03:51Z
+Oroville,Washington,US-Canada Border,2026-03,1922,1785,7.7,2026-04-27T23:03:51Z
+Van Buren,Maine,US-Canada Border,2026-03,1518,1216,24.8,2026-04-27T23:03:51Z
+International Falls,Minnesota,US-Canada Border,2026-03,1400,1165,20.2,2026-04-27T23:03:51Z
+Massena,New York,US-Canada Border,2026-03,1395,1180,18.2,2026-04-27T23:03:51Z
+Raymond,Montana,US-Canada Border,2026-03,1220,1110,9.9,2026-04-27T23:03:51Z
+Madawaska,Maine,US-Canada Border,2026-03,1048,1184,-11.5,2026-04-27T23:03:51Z

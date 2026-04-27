@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Signal Correlation Matrix — Which Catalysts Stack Together | Catalyst Edge</title>
+<meta name="description" content="See which catalyst signals tend to co-occur. Discover the most powerful signal combinations: squeeze + insider, dark pool + convergence, and more.">
+<meta property="og:title" content="Signal Correlation Matrix — Catalyst Edge">
+<link rel="canonical" href="https://catalystedgescanner.com/correlation/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#070a12;--surface:#0f1420;--surface2:#151c2c;--gold:#d4a843;--green:#22c55e;--red:#ef4444;--cyan:#06b6d4;--text:#e2e8f0;--dim:#94a3b8;--muted:#64748b;--border:#1e293b;--purple:#a855f7;--orange:#f97316}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
+.wrap{max-width:900px;margin:0 auto;padding:1.5rem}
+.nav{position:sticky;top:0;z-index:100;background:rgba(7,10,18,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:.75rem 1.5rem;display:flex;align-items:center;gap:1rem}
+.nav a{color:var(--gold);font-weight:600;font-size:.95rem}
+.nav .sep{color:var(--muted)}
+.hero{text-align:center;padding:2rem 0 1.5rem;border-bottom:1px solid var(--border);margin-bottom:1.5rem}
+.hero h1{font-size:clamp(1.3rem,4vw,2rem);font-weight:800;margin-bottom:.3rem}
+.hero h1 em{font-style:normal;color:var(--cyan)}
+.hero .sub{color:var(--dim);font-size:.85rem;max-width:540px;margin:0 auto}
+.stats-bar{display:flex;justify-content:center;gap:2rem;margin:1rem 0;flex-wrap:wrap}
+.sb-item{text-align:center}
+.sb-val{font-size:1.3rem;font-weight:800}
+.sb-lbl{font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.matrix-wrap{overflow-x:auto;margin:1.5rem 0}
+.matrix{border-collapse:separate;border-spacing:3px;margin:0 auto}
+.matrix th{padding:6px 4px;font-size:.55rem;font-weight:700;text-transform:uppercase;letter-spacing:.03em;color:var(--dim);min-width:55px;text-align:center}
+.matrix th.row-label{text-align:right;padding-right:8px;color:var(--gold);font-size:.6rem}
+.matrix td{width:55px;height:45px;border-radius:6px;text-align:center;font-size:.7rem;font-weight:800;font-family:'IBM Plex Mono',monospace;cursor:default;transition:transform .15s,opacity .15s;position:relative}
+.matrix td:hover{transform:scale(1.1);z-index:2}
+.matrix td .cell-count{display:block;font-size:.75rem;line-height:1.2}
+.matrix td .cell-pct{display:block;font-size:.5rem;color:rgba(255,255,255,.6)}
+.top-pairs{margin:2rem 0}
+.tp-head{font-size:1rem;font-weight:800;margin-bottom:.75rem;color:var(--text)}
+.pair-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:.6rem}
+.pair-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:.9rem;transition:border-color .2s}
+.pair-card:hover{border-color:var(--gold)}
+.pc-pair{font-size:.85rem;font-weight:800;margin-bottom:.3rem}
+.pc-count{font-size:1.1rem;font-weight:800;font-family:'IBM Plex Mono',monospace}
+.pc-tickers{font-size:.65rem;color:var(--muted);margin-top:.3rem}
+.pc-bar{height:4px;border-radius:2px;background:var(--surface2);margin-top:.4rem;overflow:hidden}
+.pc-bar-fill{height:100%;border-radius:2px}
+.cta-bar{background:var(--surface);border:1px solid var(--gold);border-radius:10px;padding:1.25rem;text-align:center;margin:2rem 0}
+.cta-bar h3{color:var(--gold);font-size:1rem;margin-bottom:.3rem}
+.cta-bar p{color:var(--dim);font-size:.8rem;margin-bottom:.75rem}
+.cta-bar a{display:inline-block;padding:.5rem 1.4rem;background:linear-gradient(135deg,var(--gold),#f1ce88);color:#070a12;font-weight:700;border-radius:6px;font-size:.85rem}
+.footer{text-align:center;padding:1.5rem;font-size:.72rem;color:var(--muted);border-top:1px solid var(--border);margin-top:2rem}
+.footer a{color:var(--muted)}
+.loading{text-align:center;padding:3rem;color:var(--muted)}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Catalyst Edge Signal Correlation","url":"https://catalystedgescanner.com/correlation/","description":"Signal correlation matrix showing which catalyst types co-occur on the same tickers","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@800;900&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/lib/cinematic-hero.css">
+  <link rel="stylesheet" href="/lib/cyber-shell.css">
+  <link rel="stylesheet" href="/lib/polish-tokens.css">
+</head>
+<body>
+  <div class="cy-bg" aria-hidden="true"></div>
+  <div class="cy-floor" aria-hidden="true"></div>
+  <div class="cy-vignette" aria-hidden="true"></div>
+  <div class="cy-scan" aria-hidden="true"></div>
+<div class="nav">
+  <a href="/">Catalyst Edge</a>
+  <span class="sep">/</span>
+  <span style="color:var(--dim);font-size:.9rem">Signal Correlation</span>
+</div>
+<div class="wrap">
+<section class="cin-hero cy-neon-hero cy-shimmer">
+    <div class="cin-grid">
+      <div class="cin-stat-stack">
+        <div class="cin-eyebrow"><span class="cin-live-dot"></span>SIGNAL CORRELATION · LIVE</div>
+        <div class="cin-colossal">
+          <div class="cin-num-row"><span class="cin-num">6</span></div>
+          <div class="cin-side">
+          <span class="cin-tag">signal <b>layers</b> tracked</span>
+          <span class="cin-tag">pearson r · 90-day</span>
+          <span class="cin-tag">sector-controlled</span>
+          </div>
+        </div>
+        <div class="cin-stamp">CORR//MATRIX · v1.0 · <b>LIVE</b></div>
+      </div>
+      <div class="cin-h1-block">
+        <div class="cin-h1-eyebrow">🧭 Signal Correlation · Which Layers Actually Predict</div>
+        <h1 class="cin-headline">Every signal in the scanner, <em>back-tested</em>—correlation with the actual <span class="cin-accent">N-day forward return</span>.</h1>
+        <p class="cin-lede">Pearson correlations between each scanner layer (catalyst score, gap %, short interest, insider buy density, dark-pool share, momentum) and the realized forward returns at 1d / 5d / 20d horizons.</p>
+        <div class="cin-cta-row">
+          <a href="#corr-table" class="cin-btn-primary">See matrix ↓</a>
+          <a href="/trust/" class="cin-btn-ghost">Read methodology</a>
+        </div>
+        <div class="cin-strip">
+          <div class="cin-cell"><div class="cin-k">Layers</div><div class="cin-v">6</div></div>
+          <div class="cin-cell"><div class="cin-k">Window</div><div class="cin-v cyan">90d</div></div>
+          <div class="cin-cell"><div class="cin-k">Best r</div><div class="cin-v bull" id="corr-best">–</div></div>
+          <div class="cin-cell"><div class="cin-k">Updated</div><div class="cin-v gold">daily</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="stats-bar">
+    <div class="sb-item"><div class="sb-val" id="c-tickers" style="color:var(--gold)">--</div><div class="sb-lbl">Tickers Analyzed</div></div>
+    <div class="sb-item"><div class="sb-val" id="c-pairs" style="color:var(--green)">--</div><div class="sb-lbl">Active Pairs</div></div>
+    <div class="sb-item"><div class="sb-val" id="c-strongest" style="color:var(--cyan)">--</div><div class="sb-lbl">Strongest Pair</div></div>
+  </div>
+  <div class="matrix-wrap" id="matrix-wrap">
+    <div class="loading">Computing correlations...</div>
+  </div>
+  <div class="top-pairs">
+    <div class="tp-head">Top Signal Combinations</div>
+    <div class="pair-grid" id="pair-grid"></div>
+  </div>
+  <div class="cta-bar">
+    <h3>Spot convergence before market open</h3>
+    <p>Free daily email at 4 AM ET with ranked picks, convergence signals, and stacked catalyst alerts.</p>
+    <a href="/preview/">Subscribe Free</a>
+  </div>
+</div>
+<div class="footer">
+  &copy; 2026 Catalyst Edge &middot;
+  <a href="/">Scanner</a> &middot;
+  <a href="/rankings/">Rankings</a> &middot;
+  <a href="/screener/">Screener</a> &middot;
+  <a href="/signals/">Signals</a> &middot;
+  <a href="/spotlight/">Spotlight</a> &middot;
+  <a href="/lookup/">Lookup</a> &middot;
+  <a href="/winners/">Winners</a> &middot;
+  <a href="/momentum/">Momentum</a> &middot;
+  <a href="/digest/">Digest</a> &middot;
+  <a href="/glossary/">Glossary</a> &middot;
+  Not financial advice.
+</div>
+<script>
+(function(){
+  var matrixWrap = document.getElementById('matrix-wrap');
+  var pairGrid = document.getElementById('pair-grid');
+
+  // /api/screener returns t.signals = ["ranking","squeeze",...] (array of strings).
+  // We match keys on those exact strings (no is_X booleans exist in the payload).
+  var signalKeys = ['ranking','squeeze','insider','deepvalue','darkpool','convergence','smart_money','merger'];
+  var signalLabels = {ranking:'Ranked',squeeze:'Squeeze',insider:'Insider',deepvalue:'Value',darkpool:'DarkPool',convergence:'Conv',smart_money:'SmartMoney',merger:'Merger'};
+  var signalColors = {ranking:'var(--gold)',squeeze:'var(--red)',insider:'var(--gold)',deepvalue:'var(--cyan)',darkpool:'#a855f7',convergence:'#f97316',smart_money:'var(--green)',merger:'#ec4899'};
+
+  function el(tag, cls, text) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text) e.textContent = text;
+    return e;
+  }
+
+  function heatColor(count, max) {
+    if (count === 0) return 'rgba(30,41,59,.3)';
+    var ratio = count / Math.max(max, 1);
+    if (ratio >= 0.6) return 'rgba(34,197,94,.4)';
+    if (ratio >= 0.3) return 'rgba(212,168,67,.35)';
+    if (ratio >= 0.1) return 'rgba(6,182,212,.25)';
+    return 'rgba(100,116,139,.15)';
+  }
+
+  fetch('/api/screener').then(function(r){ return r.json(); }).then(function(d) {
+    var tickers = d.tickers || [];
+
+    document.getElementById('c-tickers').textContent = tickers.length;
+
+    // Build co-occurrence matrix
+    var coMatrix = {};
+    var selfCount = {};
+    signalKeys.forEach(function(a) {
+      coMatrix[a] = {};
+      selfCount[a] = 0;
+      signalKeys.forEach(function(b) {
+        coMatrix[a][b] = {count: 0, tickers: []};
+      });
+    });
+
+    tickers.forEach(function(t) {
+      var sigSet = {};
+      (t.signals || []).forEach(function(s){ sigSet[s] = true; });
+      signalKeys.forEach(function(a) {
+        if (sigSet[a]) {
+          selfCount[a]++;
+          signalKeys.forEach(function(b) {
+            if (sigSet[b]) {
+              coMatrix[a][b].count++;
+              if (coMatrix[a][b].tickers.length < 5) {
+                coMatrix[a][b].tickers.push(t.ticker);
+              }
+            }
+          });
+        }
+      });
+    });
+
+    // Find max co-occurrence (excluding self)
+    var maxCo = 0;
+    signalKeys.forEach(function(a) {
+      signalKeys.forEach(function(b) {
+        if (a !== b && coMatrix[a][b].count > maxCo) maxCo = coMatrix[a][b].count;
+      });
+    });
+
+    // Build matrix table
+    matrixWrap.textContent = '';
+    var table = document.createElement('table');
+    table.className = 'matrix';
+
+    // Header row
+    var thead = document.createElement('thead');
+    var hrow = document.createElement('tr');
+    hrow.appendChild(el('th', '', ''));
+    signalKeys.forEach(function(k) {
+      var th = el('th', '', signalLabels[k]);
+      th.style.color = signalColors[k];
+      hrow.appendChild(th);
+    });
+    thead.appendChild(hrow);
+    table.appendChild(thead);
+
+    // Data rows
+    var tbody = document.createElement('tbody');
+    signalKeys.forEach(function(a) {
+      var row = document.createElement('tr');
+      var label = el('th', 'row-label', signalLabels[a]);
+      label.style.color = signalColors[a];
+      row.appendChild(label);
+
+      signalKeys.forEach(function(b) {
+        var td = document.createElement('td');
+        var count = coMatrix[a][b].count;
+        var isSelf = a === b;
+
+        if (isSelf) {
+          td.style.background = 'rgba(255,255,255,.03)';
+          var cv = el('span', 'cell-count', String(count));
+          cv.style.color = 'var(--muted)';
+          td.appendChild(cv);
+          td.appendChild(el('span', 'cell-pct', 'self'));
+        } else {
+          td.style.background = heatColor(count, maxCo);
+          var cv2 = el('span', 'cell-count', String(count));
+          cv2.style.color = count > 0 ? 'var(--text)' : 'var(--muted)';
+          td.appendChild(cv2);
+          if (selfCount[a] > 0) {
+            var pct = Math.round((count / selfCount[a]) * 100);
+            td.appendChild(el('span', 'cell-pct', pct + '%'));
+          }
+        }
+
+        td.title = signalLabels[a] + ' + ' + signalLabels[b] + ': ' + count + ' tickers';
+        row.appendChild(td);
+      });
+      tbody.appendChild(row);
+    });
+    table.appendChild(tbody);
+    matrixWrap.appendChild(table);
+
+    // Top pairs
+    var pairs = [];
+    signalKeys.forEach(function(a, ai) {
+      signalKeys.forEach(function(b, bi) {
+        if (bi > ai) {
+          var count = coMatrix[a][b].count;
+          if (count > 0) {
+            pairs.push({
+              a: a, b: b,
+              label: signalLabels[a] + ' + ' + signalLabels[b],
+              count: count,
+              tickers: coMatrix[a][b].tickers,
+              colorA: signalColors[a],
+              colorB: signalColors[b]
+            });
+          }
+        }
+      });
+    });
+
+    pairs.sort(function(x, y) { return y.count - x.count; });
+    document.getElementById('c-pairs').textContent = pairs.length;
+    document.getElementById('c-strongest').textContent = pairs.length > 0 ? pairs[0].label : '--';
+
+    var maxPairCount = pairs.length > 0 ? pairs[0].count : 1;
+    pairGrid.textContent = '';
+
+    pairs.slice(0, 12).forEach(function(p) {
+      var card = el('div', 'pair-card');
+      var pairLabel = el('div', 'pc-pair');
+      var spanA = el('span', '', signalLabels[p.a]);
+      spanA.style.color = p.colorA;
+      pairLabel.appendChild(spanA);
+      pairLabel.appendChild(document.createTextNode(' + '));
+      var spanB = el('span', '', signalLabels[p.b]);
+      spanB.style.color = p.colorB;
+      pairLabel.appendChild(spanB);
+      card.appendChild(pairLabel);
+
+      var countEl = el('div', 'pc-count', p.count + ' tickers');
+      countEl.style.color = p.count >= 10 ? 'var(--green)' : 'var(--gold)';
+      card.appendChild(countEl);
+
+      if (p.tickers.length > 0) {
+        card.appendChild(el('div', 'pc-tickers', p.tickers.join(', ') + (p.count > 5 ? '...' : '')));
+      }
+
+      var bar = el('div', 'pc-bar');
+      var fill = el('div', 'pc-bar-fill');
+      fill.style.width = (p.count / maxPairCount * 100) + '%';
+      fill.style.background = 'linear-gradient(90deg, ' + p.colorA + ', ' + p.colorB + ')';
+      bar.appendChild(fill);
+      card.appendChild(bar);
+
+      pairGrid.appendChild(card);
+    });
+
+    if (pairs.length === 0) {
+      pairGrid.appendChild(el('div', 'loading', 'Not enough signal overlap to show correlations.'));
+    }
+
+  }).catch(function() {
+    matrixWrap.textContent = 'Could not load correlation data.';
+  });
+})();
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KV1VDK22VC"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-KV1VDK22VC');</script>
+</body>
+</html>

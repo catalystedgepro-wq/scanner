@@ -1,0 +1,14 @@
+name,section,code,date,value,up_down,captured_at
+Rand per British Pound,Exchange rates,EXCZ001D,2026-04-24,22.4116,1,2026-04-27T22:58:18Z
+Rand per Euro,Exchange rates,EXCZ002D,2026-04-24,19.4385,1,2026-04-27T22:58:18Z
+Rand per Japanese Yen,Exchange rates,EXCZ120D,2026-04-24,0.1041,1,2026-04-27T22:58:18Z
+Rand per US Dollar,Exchange rates,EXCX135D,2026-04-24,16.6276,1,2026-04-27T22:58:18Z
+CPI,Inflation rates,CPI1000F,2026-03-31,3.1,1,2026-04-27T22:58:18Z
+PPI,Inflation rates,PPI1000F,2026-02-28,1.7717,-1,2026-04-27T22:58:18Z
+6.25% 2036 (R209) (closing yields),Interest rates,MMRD709A,2026-04-23,8.76,1,2026-04-27T22:58:18Z
+8.00% 2030 (R2030) (closing yields),Interest rates,MMRD708A,2026-04-23,7.98,1,2026-04-27T22:58:18Z
+Prime lending rate,Interest rates,MMRD000A,2026-04-24,10.25,0,2026-04-27T22:58:18Z
+SARB Policy Rate,Interest rates,MMRD002A,2026-04-24,6.75,0,2026-04-27T22:58:18Z
+Sabor,Interest rates,MMRD851A,2026-04-23,6.675,-1,2026-04-27T22:58:18Z
+Zaronia,Interest rates,MMRD855A,2026-04-23,6.608,1,2026-04-27T22:58:18Z
+Nominal effective exchange rate,Nominal Effective,EER4504A,2026-04-24,83.3532,-1,2026-04-27T22:58:18Z

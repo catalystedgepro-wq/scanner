@@ -1,0 +1,51 @@
+symbol,issue_name,halt_date,halt_time,reason_code,reason,market_category,resumption_date,resumption_time,captured_at
+MAGH,Magnitude International Ltd OS,12/04/2025,19:50:00,T12,Additional Info Requested,,,,2026-04-27T23:11:01Z
+MAMK,MaxsMaking Inc.,11/14/2025,19:50:00,T12,Additional Info Requested,,,,2026-04-27T23:11:01Z
+MCTA,Charming Medical Limit Cl A OS,11/11/2025,19:50:00,T12,Additional Info Requested,,,,2026-04-27T23:11:01Z
+LAWR,Robot Consulting ADS,10/22/2025,19:50:00,T12,Additional Info Requested,,,,2026-04-27T23:11:01Z
+PC,Premium Catering Hold Ltd OS,10/16/2025,19:50:00,T12,Additional Info Requested,,,,2026-04-27T23:11:01Z
+NUTR,Nusatrip Incorporated Comm Stk,10/08/2025,19:50:00,T12,Additional Info Requested,,,,2026-04-27T23:11:01Z
+EMPG,Empro Group Inc.,10/08/2025,19:50:00,T12,Additional Info Requested,,,,2026-04-27T23:11:01Z
+PTNM,Pitanium Ltd Ord A,10/03/2025,19:50:00,T12,Additional Info Requested,,,,2026-04-27T23:11:01Z
+PLTS,Platinum Analytics Cymn Ord A,10/03/2025,19:50:00,T12,Additional Info Requested,,,,2026-04-27T23:11:01Z
+EFTY,Etoiles Capital Group Cl A OS,10/03/2025,19:50:00,T12,Additional Info Requested,,,,2026-04-27T23:11:01Z
+UCFI,CN Healthy Food Tech Group CS,10/01/2025,11:28:10,T12,Additional Info Requested,,,,2026-04-27T23:11:01Z
+UCFIW,CN Healthy Food Tech Warrant,10/01/2025,11:28:10,T12,Additional Info Requested,,,,2026-04-27T23:11:01Z
+SDM,Smart Digital Group Limited OS,09/26/2025,19:50:00,T12,Additional Info Requested,,,,2026-04-27T23:11:01Z
+QMMM,QMMM Hldgs Ord Shs A,09/26/2025,19:50:00,T12,Additional Info Requested,,,,2026-04-27T23:11:01Z
+OST,Ostin Tech Grp Co Ord Cl A Ord,09/12/2025,12:24:23,T12,Additional Info Requested,,,,2026-04-27T23:11:01Z
+BMM,Blue Moon Metals Inc. CS,04/27/2026,16:07:39.296,T3,T3,,04/27/2026,16:50:00,2026-04-27T23:11:01Z
+AREB,American Rebel Holdings Cm,04/27/2026,15:51:55.146,LUDP,Volatility Trading Pause,,04/27/2026,16:00:00,2026-04-27T23:11:01Z
+VSA,VisionSys AI Inc ADS,04/27/2026,15:45:26.833,LUDP,Volatility Trading Pause,,04/27/2026,16:00:00,2026-04-27T23:11:01Z
+AREB,American Rebel Holdings Cm,04/27/2026,15:44:56.086,LUDP,Volatility Trading Pause,,04/27/2026,15:49:56,2026-04-27T23:11:01Z
+AREB,American Rebel Holdings Cm,04/27/2026,15:39:18.530,LUDP,Volatility Trading Pause,,04/27/2026,15:44:18,2026-04-27T23:11:01Z
+HTCO,High-Trend Internation Cl A OS,04/27/2026,15:24:26.746,LUDP,Volatility Trading Pause,,04/27/2026,15:29:26,2026-04-27T23:11:01Z
+HTCO,High-Trend Internation Cl A OS,04/27/2026,15:10:46.043,LUDP,Volatility Trading Pause,,04/27/2026,15:15:46,2026-04-27T23:11:01Z
+YAAS,Youxin Tech Ord A,04/27/2026,15:01:44.900,LUDP,Volatility Trading Pause,,04/27/2026,15:06:44,2026-04-27T23:11:01Z
+HTCO,High-Trend Internation Cl A OS,04/27/2026,14:58:55.976,LUDP,Volatility Trading Pause,,04/27/2026,15:03:55,2026-04-27T23:11:01Z
+AREB,American Rebel Holdings Cm,04/27/2026,14:48:39.296,LUDP,Volatility Trading Pause,,04/27/2026,14:53:39,2026-04-27T23:11:01Z
+HTCO,High-Trend Internation Cl A OS,04/27/2026,14:48:15.876,LUDP,Volatility Trading Pause,,04/27/2026,14:53:15,2026-04-27T23:11:01Z
+AREB,American Rebel Holdings Cm,04/27/2026,14:41:19.033,LUDP,Volatility Trading Pause,,04/27/2026,14:46:19,2026-04-27T23:11:01Z
+HTCO,High-Trend Internation Cl A OS,04/27/2026,14:39:37.236,LUDP,Volatility Trading Pause,,04/27/2026,14:44:37,2026-04-27T23:11:01Z
+AREB,American Rebel Holdings Cm,04/27/2026,14:35:46.563,LUDP,Volatility Trading Pause,,04/27/2026,14:40:46,2026-04-27T23:11:01Z
+HTCO,High-Trend Internation Cl A OS,04/27/2026,14:24:29.473,LUDP,Volatility Trading Pause,,04/27/2026,14:29:29,2026-04-27T23:11:01Z
+HTCO,High-Trend Internation Cl A OS,04/27/2026,14:16:55.413,LUDP,Volatility Trading Pause,,04/27/2026,14:21:55,2026-04-27T23:11:01Z
+ZSQR,Z Squared Inc. Common Stock,04/27/2026,13:27:37.730,LUDP,Volatility Trading Pause,,04/27/2026,13:32:37,2026-04-27T23:11:01Z
+UBXG,U-BX Tech Ltd Ord A,04/27/2026,13:26:58.726,LUDP,Volatility Trading Pause,,04/27/2026,13:31:58,2026-04-27T23:11:01Z
+UBXG,U-BX Tech Ltd Ord A,04/27/2026,13:20:54.056,LUDP,Volatility Trading Pause,,04/27/2026,13:25:54,2026-04-27T23:11:01Z
+UBXG,U-BX Tech Ltd Ord A,04/27/2026,13:13:50.560,LUDP,Volatility Trading Pause,,04/27/2026,13:18:50,2026-04-27T23:11:01Z
+UBXG,U-BX Tech Ltd Ord A,04/27/2026,13:08:35.560,LUDP,Volatility Trading Pause,,04/27/2026,13:13:35,2026-04-27T23:11:01Z
+ZSQR,Z Squared Inc. Common Stock,04/27/2026,13:01:39.736,LUDP,Volatility Trading Pause,,04/27/2026,13:26:50,2026-04-27T23:11:01Z
+HTCO,High-Trend Internation Cl A OS,04/27/2026,12:43:48.763,LUDP,Volatility Trading Pause,,04/27/2026,12:48:48,2026-04-27T23:11:01Z
+HTCO,High-Trend Internation Cl A OS,04/27/2026,12:25:43.573,LUDP,Volatility Trading Pause,,04/27/2026,12:30:43,2026-04-27T23:11:01Z
+AREB,American Rebel Holdings Cm,04/27/2026,12:13:38.440,LUDP,Volatility Trading Pause,,04/27/2026,12:18:38,2026-04-27T23:11:01Z
+HTCO,High-Trend Internation Cl A OS,04/27/2026,12:13:29.086,LUDP,Volatility Trading Pause,,04/27/2026,12:18:29,2026-04-27T23:11:01Z
+CPRX,"Catalyst Pharmaceuticals, Inc.",04/27/2026,12:03:55.580,LUDP,Volatility Trading Pause,,04/27/2026,12:08:55,2026-04-27T23:11:01Z
+HTCO,High-Trend Internation Cl A OS,04/27/2026,12:03:37.536,LUDP,Volatility Trading Pause,,04/27/2026,12:08:37,2026-04-27T23:11:01Z
+AREB,American Rebel Holdings Cm,04/27/2026,11:54:32.776,LUDP,Volatility Trading Pause,,04/27/2026,11:59:32,2026-04-27T23:11:01Z
+AREB,American Rebel Holdings Cm,04/27/2026,11:48:29.066,LUDP,Volatility Trading Pause,,04/27/2026,11:53:29,2026-04-27T23:11:01Z
+AREB,American Rebel Holdings Cm,04/27/2026,11:42:19.140,LUDP,Volatility Trading Pause,,04/27/2026,11:47:19,2026-04-27T23:11:01Z
+AREB,American Rebel Holdings Cm,04/27/2026,11:36:50.490,LUDP,Volatility Trading Pause,,04/27/2026,11:41:50,2026-04-27T23:11:01Z
+AREB,American Rebel Holdings Cm,04/27/2026,11:30:36.796,LUDP,Volatility Trading Pause,,04/27/2026,11:35:36,2026-04-27T23:11:01Z
+AREB,American Rebel Holdings Cm,04/27/2026,11:15:17.406,LUDP,Volatility Trading Pause,,04/27/2026,11:30:18,2026-04-27T23:11:01Z
+HTCO,High-Trend Internation Cl A OS,04/27/2026,10:56:08.763,LUDP,Volatility Trading Pause,,04/27/2026,11:01:08,2026-04-27T23:11:01Z

@@ -1,0 +1,15 @@
+{
+  "date": "2026-03-12",
+  "top5_tickers": [
+    "CROX",
+    "AEIS",
+    "CSTM",
+    "FDX",
+    "CVGW"
+  ],
+  "gapper_count": 10,
+  "value_count": 7,
+  "moat_count": 5,
+  "total_combined": 132,
+  "top_pick": "CROX"
+}

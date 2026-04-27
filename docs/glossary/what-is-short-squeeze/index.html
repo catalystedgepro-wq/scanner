@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>What is a Short Squeeze? How to Find Squeeze Setups | Catalyst Edge</title>
+<meta name="description" content="Understand short squeezes in plain language. Learn the key metrics — short interest, days to cover, float — and how Catalyst Edge's squeeze radar detects COILED and IGNITION stages automatically.">
+<link rel="canonical" href="https://catalystedgescanner.com/glossary/what-is-short-squeeze/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is a short squeeze?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A short squeeze occurs when a heavily shorted stock's price rises sharply, forcing short sellers to buy back shares to limit their losses. This forced buying creates additional upward pressure, driving the price even higher in a self-reinforcing cycle that can produce dramatic gains in a short time."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What metrics indicate a potential short squeeze?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The key metrics are short interest as a percentage of float (above 20% is elevated), days to cover (shares shorted divided by average daily volume — above 5 days is significant), free float size (smaller floats squeeze harder), and cost to borrow (high borrow fees indicate crowded short positions). A catalyst — like a positive 8-K filing or insider buying — is usually the trigger."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does Catalyst Edge detect short squeeze setups?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Catalyst Edge's squeeze radar monitors short interest, days to cover, cost to borrow, and float data across its universe. It classifies setups into stages: COILED (conditions are building but no trigger yet), IGNITION (a catalyst has appeared and buying pressure is starting), and SQUEEZE (active squeeze in progress with forced covering). Alerts fire at the COILED and IGNITION stages — before the move is obvious."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between short interest and days to cover?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Short interest is the total number of shares currently sold short. Days to cover divides that short interest by the stock's average daily trading volume — it estimates how many days it would take all short sellers to close their positions. A stock with high short interest AND high days to cover is the most dangerous setup for shorts, because they can't exit quickly when the price moves against them."
+      }
+    }
+  ]
+}
+</script>
+<style>
+:root {
+  --bg: #05060b;
+  --surface: #0c1018;
+  --surface2: #12161f;
+  --surface3: #181d28;
+  --border: rgba(114,229,255,0.12);
+  --border-accent: rgba(215,180,106,0.22);
+  --text: #e8edf4;
+  --muted: #7a8899;
+  --cyan: #72e5ff;
+  --gold: #e7b76c;
+  --green: #10b981;
+  --red: #f43f5e;
+  --purple: #a78bfa;
+  --blue: #38bdf8;
+  --navy: #07111a;
+}
+* { box-sizing: border-box; margin: 0; padding: 0 }
+html { scroll-behavior: smooth }
+body {
+  font-family: 'Space Grotesk', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(114,229,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(114,229,255,0.025) 1px, transparent 1px);
+  background-size: 56px 56px;
+  opacity: 0.3;
+}
+.wrap { max-width: 800px; margin: 0 auto; padding: 0 24px }
+a { color: var(--cyan); text-decoration: none }
+a:hover { text-decoration: underline }
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--border);
+}
+.nav-brand {
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 2px;
+  color: var(--gold);
+}
+.nav-links { display: flex; gap: 28px; }
+.nav-links a {
+  font-size: 13px;
+  color: var(--muted);
+  letter-spacing: 0.5px;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--text); text-decoration: none }
+
+.hero {
+  padding: 72px 0 24px;
+  text-align: center;
+}
+.hero-badge {
+  display: inline-block;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--cyan);
+  border: 1px solid rgba(114,229,255,0.2);
+  padding: 6px 16px;
+  border-radius: 20px;
+  margin-bottom: 24px;
+}
+.hero h1 {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -1px;
+  margin-bottom: 16px;
+}
+.hero h1 span { color: var(--gold) }
+.hero p {
+  color: var(--muted);
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.article { padding: 48px 0 }
+.article h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 40px 0 16px;
+  letter-spacing: -0.5px;
+}
+.article h2:first-child { margin-top: 0 }
+.article h2 span { color: var(--cyan) }
+.article h3 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin: 28px 0 12px;
+  color: var(--gold);
+}
+.article p {
+  color: var(--muted);
+  font-size: 15px;
+  margin-bottom: 16px;
+  line-height: 1.75;
+}
+.article ul, .article ol {
+  color: var(--muted);
+  font-size: 15px;
+  margin: 0 0 16px 20px;
+  line-height: 1.75;
+}
+.article li { margin-bottom: 6px }
+.article strong { color: var(--text); font-weight: 600 }
+
+.callout {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--gold);
+  border-radius: 8px;
+  padding: 20px 24px;
+  margin: 24px 0;
+}
+.callout p { margin-bottom: 0 }
+.callout .label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+
+.stage-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+  margin: 20px 0 24px;
+}
+@media (max-width: 600px) { .stage-grid { grid-template-columns: 1fr } }
+.stage-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+}
+.stage-card .stage-name {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.stage-card.coiled .stage-name { color: var(--blue) }
+.stage-card.ignition .stage-name { color: var(--gold) }
+.stage-card.squeeze .stage-name { color: var(--red) }
+.stage-card.coiled { border-color: rgba(56,189,248,0.25) }
+.stage-card.ignition { border-color: rgba(215,180,106,0.25) }
+.stage-card.squeeze { border-color: rgba(244,63,94,0.25) }
+.stage-card p {
+  font-size: 13px;
+  margin-bottom: 0;
+}
+
+.metric-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 20px 0 24px;
+}
+@media (max-width: 560px) { .metric-grid { grid-template-columns: 1fr } }
+.metric-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 18px 20px;
+}
+.metric-card .tag {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin-bottom: 6px;
+}
+.metric-card p {
+  font-size: 13px;
+  margin-bottom: 0;
+}
+
+.cta-section {
+  text-align: center;
+  padding: 48px 0;
+  border-top: 1px solid var(--border);
+}
+.cta-section h2 {
+  font-size: 1.6rem;
+  margin-bottom: 12px;
+}
+.cta-section p {
+  color: var(--muted);
+  font-size: 14px;
+  max-width: 500px;
+  margin: 0 auto 24px;
+}
+.cta-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.cta-btn {
+  display: inline-block;
+  text-align: center;
+  padding: 14px 36px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  transition: all 0.2s;
+  text-decoration: none;
+  cursor: pointer;
+}
+.cta-btn.cyan-fill {
+  background: linear-gradient(135deg, var(--cyan), #38a0d0);
+  color: var(--bg);
+  border: none;
+}
+.cta-btn.cyan-fill:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px rgba(114,229,255,0.3);
+  text-decoration: none;
+}
+.cta-btn.outline {
+  border: 1px solid var(--border);
+  color: var(--text);
+  background: transparent;
+}
+.cta-btn.outline:hover {
+  border-color: var(--cyan);
+  background: rgba(114,229,255,0.05);
+  text-decoration: none;
+}
+.cta-btn.filled {
+  background: linear-gradient(135deg, var(--gold), #c9923b);
+  color: var(--bg);
+  border: none;
+}
+.cta-btn.filled:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px rgba(215,180,106,0.3);
+  text-decoration: none;
+}
+
+.tip-section {
+  text-align: center;
+  padding: 48px 0;
+  border-top: 1px solid var(--border);
+}
+.tip-section h3 {
+  font-size: 1.3rem;
+  margin-bottom: 12px;
+}
+.tip-section p {
+  color: var(--muted);
+  font-size: 14px;
+  max-width: 500px;
+  margin: 0 auto 20px;
+}
+.tip-btn {
+  display: inline-block;
+  padding: 12px 32px;
+  border: 1px solid var(--border-accent);
+  border-radius: 8px;
+  color: var(--gold);
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+.tip-btn:hover {
+  background: rgba(215,180,106,0.08);
+  border-color: var(--gold);
+  text-decoration: none;
+}
+
+.footer {
+  text-align: center;
+  padding: 40px 0;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 12px;
+}
+.footer a { color: var(--cyan) }
+.footer-links { margin-bottom: 8px }
+.footer-links a { margin: 0 12px }
+</style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@800;900&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/lib/cinematic-hero.css">
+  <link rel="stylesheet" href="/lib/cyber-shell.css">
+  <link rel="stylesheet" href="/lib/polish-tokens.css">
+</head>
+<body>
+  <div class="cy-bg" aria-hidden="true"></div>
+  <div class="cy-floor" aria-hidden="true"></div>
+  <div class="cy-vignette" aria-hidden="true"></div>
+  <div class="cy-scan" aria-hidden="true"></div>
+<div class="wrap">
+
+<nav class="nav">
+  <a href="/" class="nav-brand">CATALYST EDGE</a>
+  <div class="nav-links">
+    <a href="/scanner/">Scanner</a>
+    <a href="/cerebro/">Cerebro</a>
+    <a href="/cerebro/app/">HUD</a>
+    <a href="/pricing/">Pricing</a>
+  </div>
+</nav>
+
+<section class="cin-hero cy-neon-hero cy-narrow cy-shimmer">
+    <div class="cin-grid">
+      <div class="cin-stat-stack">
+        <div class="cin-eyebrow"><span class="cin-live-dot"></span>SHORT SQUEEZE · MECHANICS</div>
+        <div class="cin-colossal">
+          <div class="cin-num-row"><span class="cin-num">≥30%</span></div>
+          <div class="cin-side">
+          <span class="cin-tag"><b>30%+</b> short interest</span>
+          <span class="cin-tag">days-to-cover ≥ 5</span>
+          <span class="cin-tag">borrow-rate spike</span>
+          </div>
+        </div>
+        <div class="cin-stamp">GLOSSARY · WHAT IS A SHORT SQUEEZE? · v1.0 · <b>LIVE</b></div>
+      </div>
+      <div class="cin-h1-block">
+        <div class="cin-h1-eyebrow">📚 What is a Short Squeeze?</div>
+        <h1 class="cin-headline"><em>Squeeze mechanics</em>—the <span class="cin-accent">anatomy of a forced cover</span>.</h1>
+        <p class="cin-lede">When 30%+ of float is short and the stock starts moving up, shorts are forced to cover, creating a feedback loop of buying. Catalyst filings are the spark that lights the powder.</p>
+        <div class="cin-cta-row">
+          <a href="#article-body" class="cin-btn-primary">Read article ↓</a>
+          <a href="/glossary/" class="cin-btn-ghost">Glossary index</a>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+<article class="article">
+
+  <h2>Short Squeezes <span>Explained</span></h2>
+
+  <p>A short squeeze happens when a stock that many traders have bet against suddenly rises in price. Short sellers &mdash; who borrowed shares and sold them, hoping to buy them back cheaper later &mdash; start losing money. As the price climbs, their losses grow and their brokers demand more collateral. Eventually, they're <strong>forced to buy back shares</strong> to close their positions and stop the bleeding.</p>
+
+  <p>Here's where it gets explosive: that forced buying pushes the price even higher, which puts more shorts underwater, which forces more buying. It's a <strong>self-reinforcing feedback loop</strong> that can send a stock up 50%, 100%, or more in a matter of days.</p>
+
+  <p>The most famous example is GameStop (GME) in January 2021, which went from roughly $20 to $483 in less than three weeks. But smaller, less publicized squeezes happen regularly in mid-cap and small-cap stocks &mdash; and they're tradeable if you know what to look for.</p>
+
+  <h2>The <span>Key Metrics</span></h2>
+
+  <p>Not every heavily shorted stock squeezes. You need the right combination of conditions. These are the metrics that separate a potential squeeze from a stock that's shorted for good reason:</p>
+
+  <div class="metric-grid">
+    <div class="metric-card">
+      <div class="tag">SHORT INTEREST % OF FLOAT</div>
+      <p><strong>What it is:</strong> The percentage of a stock's available shares (float) that are currently sold short. <strong>Threshold:</strong> Above 20% is elevated. Above 30% is danger zone for shorts. This is the fuel &mdash; the more shorts, the more potential forced buying.</p>
+    </div>
+    <div class="metric-card">
+      <div class="tag">DAYS TO COVER</div>
+      <p><strong>What it is:</strong> Short interest divided by average daily volume. It estimates how many trading days it would take for all shorts to cover. <strong>Threshold:</strong> Above 5 days is significant. Above 10 means shorts are trapped &mdash; they literally can't exit fast enough.</p>
+    </div>
+    <div class="metric-card">
+      <div class="tag">FREE FLOAT</div>
+      <p><strong>What it is:</strong> The number of shares available for public trading (total shares minus restricted/insider shares). <strong>Why it matters:</strong> Smaller floats squeeze harder. With fewer shares available, buying pressure has an outsized impact on price.</p>
+    </div>
+    <div class="metric-card">
+      <div class="tag">COST TO BORROW</div>
+      <p><strong>What it is:</strong> The annualized interest rate shorts pay to borrow shares. <strong>Threshold:</strong> Above 20% is expensive. Above 50% is extreme. High borrow costs increase the pain for shorts and accelerate the timeline for forced covering.</p>
+    </div>
+  </div>
+
+  <h3>The Missing Ingredient: A Catalyst</h3>
+
+  <p>Metrics alone don't trigger a squeeze. You need a <strong>catalyst</strong> &mdash; an event that pushes the stock price up enough to start the chain reaction. Common triggers include:</p>
+
+  <ul>
+    <li><strong>Positive 8-K filing</strong> &mdash; a material event like a new contract, acquisition, or earnings surprise (<a href="/glossary/what-is-8k/">learn about 8-K filings</a>)</li>
+    <li><strong>Insider buying</strong> &mdash; a cluster of <a href="/glossary/how-to-read-form-4/">Form 4 purchases</a> by executives signals confidence and draws attention</li>
+    <li><strong>Earnings beat</strong> &mdash; better-than-expected results force shorts to reassess their thesis</li>
+    <li><strong>Social media momentum</strong> &mdash; retail attention from Reddit, Twitter/X, or StockTwits can accelerate buying pressure</li>
+    <li><strong>Analyst upgrade</strong> &mdash; institutional endorsement gives bulls a reason to pile in</li>
+  </ul>
+
+  <p>The highest-probability squeeze setups combine <strong>high short interest + low float + high cost to borrow + a fundamental catalyst</strong>. When all four align, the probability of a significant move increases dramatically.</p>
+
+  <h2>Catalyst Edge's <span>Squeeze Radar</span></h2>
+
+  <p>The squeeze radar is one of Catalyst Edge's core detection engines. Instead of just showing you a list of heavily shorted stocks, it classifies setups into stages based on how close they are to triggering:</p>
+
+  <div class="stage-grid">
+    <div class="stage-card coiled">
+      <div class="stage-name">COILED</div>
+      <p>The conditions are building. Short interest is elevated, float is tight, cost to borrow is rising &mdash; but no trigger event has appeared yet. This is the watchlist stage. The spring is compressed.</p>
+    </div>
+    <div class="stage-card ignition">
+      <div class="stage-name">IGNITION</div>
+      <p>A catalyst has appeared. A positive 8-K, an insider buy cluster, or an earnings surprise hit a COILED stock. Buying pressure is starting and shorts are beginning to feel pain. This is the action stage.</p>
+    </div>
+    <div class="stage-card squeeze">
+      <div class="stage-name">SQUEEZE</div>
+      <p>Active squeeze in progress. Forced covering is visible in the order flow. Volume is spiking, price is accelerating, and the feedback loop is running. Momentum is king &mdash; manage risk accordingly.</p>
+    </div>
+  </div>
+
+  <p>The real value of the squeeze radar is catching setups at the <strong>COILED and IGNITION stages</strong> &mdash; before the squeeze is obvious to everyone. By the time financial media runs the "short squeeze" headline, most of the move has already happened.</p>
+
+  <h2>How to <span>Trade</span> Squeeze Setups</h2>
+
+  <h3>Entry Timing</h3>
+
+  <p>The best entries come at the IGNITION stage &mdash; when a catalyst appears on a COILED stock. The catalyst gives you a fundamental reason to enter, and the short squeeze mechanics give you the potential for outsized moves. Entering at the COILED stage means you're early but may wait a long time for the trigger. Entering during an active SQUEEZE means you're buying into momentum with higher risk.</p>
+
+  <h3>Risk Management</h3>
+
+  <p>Short squeezes can reverse just as violently as they rally. When the forced covering ends, there's often no natural buyer to support the elevated price. Key rules for squeeze trading:</p>
+
+  <ul>
+    <li><strong>Size positions conservatively.</strong> Squeezes are high-reward but high-risk. Never go all-in on a squeeze setup.</li>
+    <li><strong>Scale out on the way up.</strong> Take partial profits at predetermined levels. Don't try to sell at the exact top.</li>
+    <li><strong>Set hard stops.</strong> If the catalyst fails to trigger covering, exit quickly. A heavily shorted stock that fails to squeeze often resumes its downtrend.</li>
+    <li><strong>Monitor cost to borrow.</strong> If borrow rates start declining, shorts may be covering quietly without a visible squeeze. The setup is deteriorating.</li>
+  </ul>
+
+  <div class="callout">
+    <div class="label">KEY INSIGHT</div>
+    <p>The most reliable squeeze setups are those where the catalyst is <strong>fundamental</strong>, not just hype-driven. A heavily shorted stock that files a positive 8-K (new contract, acquisition, or earnings beat) has a genuine reason to re-rate. That combination &mdash; fundamental catalyst plus forced covering &mdash; produces the most sustained moves. Catalyst Edge's <a href="/glossary/convergence-alerts/">convergence engine</a> is built to detect exactly this overlap.</p>
+  </div>
+
+  <h2>Squeeze Setups <span>vs. Value Traps</span></h2>
+
+  <p>Not every heavily shorted stock is a squeeze candidate. Sometimes the shorts are right &mdash; the company is burning cash, diluting shares, or facing a deteriorating business. A high short interest on a fundamentally weak company without a catalyst is not a squeeze setup. It's a value trap.</p>
+
+  <p>The difference is the catalyst. Without a positive event to change the narrative and force covering, high short interest is just the market's collective bet that the stock is going lower. Catalyst Edge's scoring model accounts for this by requiring a catalyst signal (8-K, insider buy, options flow) before elevating a shorted stock to IGNITION stage. Metrics alone are never enough.</p>
+
+</article>
+
+<section class="cta-section">
+  <h2>Find squeeze setups before ignition.</h2>
+  <p>Catalyst Edge's squeeze radar monitors short interest, float, and catalysts across thousands of tickers. Get COILED alerts before the crowd.</p>
+  <div class="cta-buttons">
+    <a href="/scanner/" class="cta-btn cyan-fill">Open Squeeze Radar</a>
+    <a href="https://catalystedge.agency" class="cta-btn outline">Subscribe Free</a>
+    <a href="/pricing/" class="cta-btn filled">See Pricing</a>
+  </div>
+</section>
+
+<section class="tip-section">
+  <h3>Love the free tools? Buy us a coffee.</h3>
+  <p>Catalyst Edge is indie-built. Every dollar goes directly to data feeds, servers, and making the scanner faster. No VC, no ads, just us building.</p>
+  <a href="https://ko-fi.com/catalystedge" class="tip-btn" target="_blank" rel="noopener">Support on Ko-fi</a>
+</section>
+
+<footer class="footer">
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="/scanner/">Scanner</a>
+    <a href="/cerebro/">Cerebro</a>
+    <a href="/cerebro/app/">HUD</a>
+    <a href="/pricing/">Pricing</a>
+    <a href="https://catalystedge.agency">Newsletter</a>
+    <a href="https://www.catalystedge.agency/">Catalyst AI</a>
+  </div>
+  <p>&copy; 2026 Catalyst Edge. Built indie. No VC. No ads. Just signal.</p>
+</footer>
+
+</div>
+</body>
+</html>

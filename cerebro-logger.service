@@ -1,0 +1,19 @@
+[Unit]
+Description=Cerebro Silent Logger — Historical Data Lake
+After=network.target redis-server.service cerebro.service
+Wants=redis-server.service
+
+[Service]
+User=root
+WorkingDirectory=/home/operator/.openclaw/workspace
+Environment="CEREBRO_ROOT=/home/operator/.openclaw/workspace"
+Environment="PATH=/opt/cerebro-venv/bin:/usr/local/bin:/usr/bin:/bin"
+ExecStart=/opt/cerebro-venv/bin/python3 /home/operator/.openclaw/workspace/silent_logger.py
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=cerebro-logger
+
+[Install]
+WantedBy=multi-user.target

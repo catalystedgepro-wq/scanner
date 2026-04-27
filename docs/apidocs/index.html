@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="en">
+<head>
+<script src="/lib/tier.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>📡 JSON API v1 — Catalyst Edge</title>
+<meta name="description" content="Programmatic access to Catalyst Edge — 20+ JSON endpoints covering gap scanner, DCF, cross-border, edge, macro, country feeds. Curl + Python + Node + R + Bash samples.">
+<link rel="canonical" href="https://catalystedgescanner.com/api/v1/">
+<link rel="stylesheet" href="/lib/nav-fix.css">
+<link rel="stylesheet" href="/lib/admin-unlock.css">
+<link rel="stylesheet" href="/lib/scanner-polish.css">
+<style>
+:root {
+  --bg:#07090f; --surface:#11141d; --surface-2:#181c27;
+  --border-soft:rgba(255,255,255,.07);
+  --text:#f6efe2; --dim:#9ea8ba;
+  --gold:#d7b46a; --green:#7fe8b3; --orange:#ffbf69;
+  --red:#ff8b86; --blue:#72e5ff; --cyan:#22d3ee; --purple:#d59cff;
+}
+* { box-sizing:border-box; margin:0; padding:0; }
+body { font-family:'Space Grotesk','Segoe UI',-apple-system,sans-serif; background:var(--bg); color:var(--text); line-height:1.55; }
+body::before {
+  content:''; position:fixed; inset:0; pointer-events:none;
+  background-image: linear-gradient(rgba(114,229,255,.025) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(114,229,255,.025) 1px, transparent 1px);
+  background-size:48px 48px; opacity:.32; z-index:0;
+}
+nav.nav { position:sticky; top:0; z-index:100; display:flex; gap:.45rem; padding:.7rem 1rem; background:rgba(10,12,18,.86); backdrop-filter:blur(10px); border-bottom:1px solid var(--border-soft); font-size:.82rem; }
+nav.nav a { color:var(--dim); padding:.25rem .5rem; border-radius:4px; text-decoration:none; flex-shrink:0; }
+nav.nav a:hover { color:var(--text); background:var(--surface-2); }
+nav.nav .brand { color:var(--gold); font-weight:700; }
+header.hero { padding:3rem 1.5rem 1rem; max-width:1180px; margin:0 auto; position:relative; z-index:1; }
+.hero-eyebrow { display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--gold); padding:.3rem .8rem; border:1px solid rgba(215,180,106,.35); border-radius:999px; margin-bottom:.85rem; }
+header.hero h1 { font-size:clamp(1.8rem,3.5vw,2.6rem); font-weight:800; letter-spacing:-.02em; line-height:1.15; margin-bottom:.4rem; background:linear-gradient(90deg,var(--cyan),var(--blue)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+header.hero p { color:var(--dim); max-width:50rem; font-size:1.05rem; }
+section.panel { max-width:1180px; margin:1.5rem auto; padding:0 1.5rem; position:relative; z-index:1; }
+.endpoint {
+  background:var(--surface); border:1px solid var(--border-soft);
+  border-radius:12px; padding:1.25rem 1.5rem; margin-bottom:1rem;
+  position:relative; overflow:hidden;
+}
+.endpoint.locked { opacity:.25; filter:blur(2.5px); pointer-events:none; }
+.endpoint .ep-head { display:flex; gap:.6rem; align-items:center; margin-bottom:.45rem; flex-wrap:wrap; }
+.ep-method { font-family:'IBM Plex Mono',monospace; font-size:.72rem; padding:.2rem .55rem; border-radius:5px; background:rgba(127,232,179,.12); color:var(--green); border:1px solid var(--green); font-weight:700; }
+.ep-path { font-family:'IBM Plex Mono',monospace; font-size:1rem; color:var(--blue); font-weight:600; }
+.ep-desc { color:var(--dim); font-size:.92rem; margin-bottom:.85rem; }
+.tabs { display:flex; gap:.3rem; margin-bottom:.5rem; flex-wrap:wrap; }
+.tab { font-family:'IBM Plex Mono',monospace; font-size:.72rem; padding:.3rem .7rem; border-radius:6px 6px 0 0; background:transparent; color:var(--dim); border:1px solid var(--border-soft); border-bottom:none; cursor:pointer; text-transform:uppercase; letter-spacing:.05em; }
+.tab.active { color:var(--gold); border-color:rgba(215,180,106,.4); background:rgba(215,180,106,.06); }
+pre.code { background:#04060a; border:1px solid var(--border-soft); border-radius:0 8px 8px 8px; padding:1rem 1.1rem; overflow-x:auto; font-family:'IBM Plex Mono','Menlo',monospace; font-size:.82rem; color:var(--text); line-height:1.55; margin:0; max-height:480px; overflow-y:auto; }
+pre.code .c-key { color:#72e5ff; }
+pre.code .c-str { color:#7fe8b3; }
+pre.code .c-num { color:#ffbf69; }
+pre.code .c-comment { color:#65788a; }
+.tab-content { display:none; }
+.tab-content.active { display:block; }
+.rate-limit { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:.65rem; margin-top:1rem; }
+.rate-tier { background:var(--surface-2); border:1px solid var(--border-soft); border-radius:10px; padding:1rem 1.15rem; }
+.rate-tier .name { font-weight:700; font-size:1rem; }
+.rate-tier .price { font-family:'IBM Plex Mono',monospace; color:var(--gold); font-weight:700; margin-top:.2rem; }
+.rate-tier .quota { color:var(--dim); font-size:.85rem; margin-top:.4rem; }
+.rate-tier.featured { border-color:var(--gold); }
+.cta-banner {
+  background:linear-gradient(135deg,rgba(215,180,106,.08),rgba(34,211,238,.08));
+  border:2px solid var(--gold); border-radius:14px;
+  padding:1.5rem 1.75rem; margin:2rem auto; max-width:60rem;
+  position:relative; z-index:1; text-align:center;
+}
+.cta-banner h3 { color:var(--gold); margin-bottom:.45rem; font-size:1.3rem; }
+.cta-banner a { display:inline-block; background:var(--gold); color:var(--bg); padding:.7rem 1.6rem; border-radius:8px; font-weight:700; text-decoration:none; }
+.endpoint-toc { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:.4rem; margin:1rem 0 2rem; }
+.endpoint-toc a { display:block; padding:.45rem .65rem; background:var(--surface); border:1px solid var(--border-soft); border-radius:6px; color:var(--cyan); font-family:'IBM Plex Mono',monospace; font-size:.75rem; text-decoration:none; }
+.endpoint-toc a:hover { border-color:var(--gold); color:var(--text); }
+footer { text-align:center; padding:2rem; color:var(--dim); font-size:.85rem; border-top:1px solid var(--border-soft); position:relative; z-index:1; }
+footer a { color:var(--blue); }
+</style>
+<link rel="stylesheet" href="/lib/polish-tokens.css">
+</head>
+<body>
+
+<nav class="nav">
+  <a class="brand" href="/">⚡ Catalyst Edge</a>
+  <a href="/jackpot/" style="color:#7fe8b3;font-weight:700">🎯 JACKPOT</a>
+  <a href="/dcf/" style="color:#22d3ee;font-weight:700">💰 DCF</a>
+  <a href="/dcf/international/" style="color:#22d3ee;font-weight:700">🌍 DCF (Intl)</a>
+  <a href="/numerai/" style="color:#d59cff;font-weight:700">🤖 Numerai</a>
+  <a href="/international/" style="color:#22d3ee;font-weight:700">🌍 Intl</a>
+  <a href="/international/winners/" style="color:#f5c443;font-weight:700">🏆 Winners</a>
+  <a href="/cross-border/" style="color:#d7b46a;font-weight:700">🔗 Cross-Border</a>
+  <a href="/defi/" style="color:#fb923c;font-weight:700">⛓ DeFi</a>
+  <a href="/alerts/" style="color:#ff8b86;font-weight:700">🔔 Alerts</a>
+  <a href="/api/v1/" style="color:#22d3ee;font-weight:700">📡 API</a>
+  <a href="/scanner/">US Scanner</a>
+  <a href="/pricing/" style="color:var(--gold);font-weight:600">Premium</a>
+</nav>
+
+<header class="hero">
+  <span class="hero-eyebrow">📡 JSON API v1 · Pro tier · 20+ endpoints</span>
+  <h1>Programmatic access to every signal</h1>
+  <p>The same data that powers <a href="/international/" style="color:var(--cyan)">/international/</a>, <a href="/scanner/" style="color:var(--cyan)">/scanner/</a>, and <a href="/alerts/" style="color:var(--cyan)">/alerts/</a> — exposed as JSON endpoints with curl, Python, Node, R, and Bash samples. <strong>Refreshed every 2 hours via the autonomous loop.</strong></p>
+</header>
+
+<section class="panel">
+  <h2>📋 Endpoint Index</h2>
+  <div class="endpoint-toc">
+    <a href="#intl_panels">/data/intl_panels.json</a>
+    <a href="#intl_dcf">/data/intl_dcf.json</a>
+    <a href="#crossborder">/data/cross_border_convergence.json</a>
+    <a href="#intl_edge">/data/intl_edge.json</a>
+    <a href="#xasset">/data/xasset_macro.json</a>
+    <a href="#tape">/data/global_tape.json</a>
+    <a href="#heatmap">/data/global_heatmap.json</a>
+    <a href="#numerai">/data/numerai_submit_status.json</a>
+    <a href="#asx">/data/asx_panels.json</a>
+    <a href="#rns">/data/rns_panels.json</a>
+    <a href="#hkex">/data/hkex_panels.json</a>
+    <a href="#tdnet">/data/tdnet_panels.json</a>
+    <a href="#cvm">/data/cvm_panels.json</a>
+    <a href="#kind">/data/kind_panels.json</a>
+    <a href="#bafin">/data/bafin_panels.json</a>
+    <a href="#nse">/data/nse_panels.json</a>
+    <a href="#bmv">/data/bmv_panels.json</a>
+    <a href="#africa">/data/africa_panels.json</a>
+    <a href="#sgx">/data/sgx_panels.json</a>
+    <a href="#twse">/data/twse_panels.json</a>
+    <a href="#etfflows">/btc_etf_flows.csv</a>
+    <a href="#defi">/defi_liquidations.csv</a>
+  </div>
+</section>
+
+<section class="panel">
+  <h2>💵 Rate Limits</h2>
+  <div class="rate-limit">
+    <div class="rate-tier"><div class="name">🆓 Free</div><div class="price">$0/mo</div><div class="quota">100 req/day per IP. 2 endpoints visible. Ideal for one-off curl tests.</div></div>
+    <div class="rate-tier featured"><div class="name">📡 Edge Reader</div><div class="price">$9/mo</div><div class="quota">1,000 req/day. All 20+ endpoints unlocked. CSV downloads.</div></div>
+    <div class="rate-tier featured"><div class="name">⚡ Edge Pro</div><div class="price">$39/mo</div><div class="quota">10,000 req/day. JSON + CSV + custom polling. Webhook delivery.</div></div>
+    <div class="rate-tier"><div class="name">🏛 Enterprise</div><div class="price">contact</div><div class="quota">Unlimited. SLA. Custom universe. Dedicated endpoints.</div></div>
+  </div>
+</section>
+
+<section class="panel" id="endpoints-host"></section>
+
+<div class="cta-banner">
+  <h3>🐍 Drop into your model in 60 seconds</h3>
+  <p>One <code style="color:var(--cyan)">requests.get()</code> = 414 international tickers + DCF grades + sympathy chains + cross-asset macro regime. No Bloomberg license, no terminal seat, no scraping required.</p>
+  <a href="/pricing/?plan=pro&from=api">Get API access — $39/mo</a>
+</div>
+
+<footer>
+  <p>All endpoints free for Pro subscribers. Free tier IP-rate-limited at 100/day.</p>
+  <p><a href="/international/">← back to international</a> · <a href="/methodology/">methodology</a> · <a href="/pricing/">pricing</a></p>
+</footer>
+
+<script>
+(function(){
+  var ENDPOINTS = [
+    {id:'intl_panels',  path:'/data/intl_panels.json',
+     desc:'Global gap scanner panel — 414+ tickers across 43 countries with overnight gap %, regime, sector heatmap, country leaderboard, sympathy chains.',
+     free:true},
+    {id:'intl_dcf',     path:'/data/intl_dcf.json',
+     desc:'Two-stage Damodaran DCF intrinsic value — A/B/C/D/F grades + upside %, country and sector aggregations.',
+     free:true},
+    {id:'crossborder',  path:'/data/cross_border_convergence.json',
+     desc:'50 ADR↔home-listing pairs with conviction scoring (STRONG/TRADE/watch/noise).'},
+    {id:'intl_edge',    path:'/data/intl_edge.json',
+     desc:'Asymmetric Edge Insights — multi-scanner overlap, sector rotation, vol-price asymmetry, cross-asset divergence.'},
+    {id:'xasset',       path:'/data/xasset_macro.json',
+     desc:'Cross-asset macro regimes — yield curve, DXY, oil/gold, VIX, crude/natgas with trade readthrough.'},
+    {id:'tape',         path:'/data/global_tape.json',
+     desc:'1,500+ headline tape merged from 12 country catalyst feeds, sorted chronologically.'},
+    {id:'heatmap',      path:'/data/global_heatmap.json',
+     desc:'Continent → country → sector → ticker drill-down aggregation.'},
+    {id:'numerai',      path:'/data/numerai_submit_status.json',
+     desc:'Latest Numerai Signals submission status — round, predictions, scoring window.'},
+    {id:'asx',          path:'/data/asx_panels.json', desc:'🇦🇺 ASX announcements — price-sensitive flag included.'},
+    {id:'rns',          path:'/data/rns_panels.json', desc:'🇬🇧 LSE RNS announcements aggregated via yfinance per .L ticker.'},
+    {id:'hkex',         path:'/data/hkex_panels.json', desc:'🇭🇰 HKEX news per ticker.'},
+    {id:'tdnet',        path:'/data/tdnet_panels.json', desc:'🇯🇵 TSE/TDnet news per .T ticker.'},
+    {id:'cvm',          path:'/data/cvm_panels.json', desc:'🇧🇷 B3/CVM news per .SA ticker.'},
+    {id:'kind',         path:'/data/kind_panels.json', desc:'🇰🇷 KRX/KIND news per .KS ticker.'},
+    {id:'bafin',        path:'/data/bafin_panels.json', desc:'🇩🇪 XETRA/BaFin news per .DE ticker.'},
+    {id:'nse',          path:'/data/nse_panels.json', desc:'🇮🇳 NSE news per .NS ticker.'},
+    {id:'bmv',          path:'/data/bmv_panels.json', desc:'🇲🇽 BMV news per .MX ticker.'},
+    {id:'africa',       path:'/data/africa_panels.json', desc:'🌍 JSE + African ADRs catalyst feed.'},
+    {id:'sgx',          path:'/data/sgx_panels.json', desc:'🇸🇬 SGX news per .SI ticker.'},
+    {id:'twse',         path:'/data/twse_panels.json', desc:'🇹🇼 TWSE news per .TW ticker (TSMC, Hon Hai, MediaTek).'},
+    {id:'etfflows',     path:'/btc_etf_flows.csv', desc:'BTC spot ETF dollar volume proxy — IBIT, FBTC, BITB, ARKB, GBTC, etc. CSV format.'},
+    {id:'defi',         path:'/defi_liquidations.csv', desc:'DeFi protocol stress map — 300 protocols by TVL with 1d/7d change + cascade label.'},
+  ];
+
+  var BASE = 'https://catalystedgescanner.com';
+
+  function makeSamples(path) {
+    var url = BASE + path;
+    return {
+      curl: 'curl -s ' + JSON.stringify(url) + ' | jq .',
+      python:
+'import urllib.request, json\n' +
+'with urllib.request.urlopen(' + JSON.stringify(url) + ') as r:\n' +
+'    data = json.loads(r.read())\n' +
+'print(data)\n',
+      node:
+'const res = await fetch(' + JSON.stringify(url) + ');\n' +
+'const data = await res.json();\n' +
+'console.log(data);\n',
+      r:
+'library(jsonlite)\n' +
+'data <- fromJSON(' + JSON.stringify(url) + ')\n' +
+'str(data)\n',
+      bash:
+'#!/usr/bin/env bash\n' +
+'curl -s ' + JSON.stringify(url) + ' \\\n' +
+'  -H "Accept: application/json" \\\n' +
+'  -o response.json && jq . response.json\n',
+    };
+  }
+
+  function buildEndpoint(ep) {
+    var card = document.createElement('div');
+    card.className = 'endpoint';
+    card.id = ep.id;
+    var head = document.createElement('div'); head.className = 'ep-head';
+    var method = document.createElement('span'); method.className = 'ep-method'; method.textContent = ep.path.endsWith('.csv') ? 'GET CSV' : 'GET';
+    var path = document.createElement('span'); path.className = 'ep-path'; path.textContent = ep.path;
+    head.appendChild(method); head.appendChild(path);
+    if (ep.free) {
+      var fp = document.createElement('span');
+      fp.style.cssText = 'font-family:"IBM Plex Mono",monospace;font-size:.65rem;padding:.18rem .5rem;border-radius:999px;background:rgba(127,232,179,.12);color:var(--green);border:1px solid var(--green);text-transform:uppercase;letter-spacing:.05em;font-weight:700';
+      fp.textContent = 'free';
+      head.appendChild(fp);
+    } else {
+      var pp = document.createElement('span');
+      pp.style.cssText = 'font-family:"IBM Plex Mono",monospace;font-size:.65rem;padding:.18rem .5rem;border-radius:999px;background:rgba(215,180,106,.12);color:var(--gold);border:1px solid var(--gold);text-transform:uppercase;letter-spacing:.05em;font-weight:700';
+      pp.textContent = 'pro';
+      head.appendChild(pp);
+    }
+    card.appendChild(head);
+    var d = document.createElement('div'); d.className = 'ep-desc'; d.textContent = ep.desc;
+    card.appendChild(d);
+
+    var tabs = document.createElement('div'); tabs.className = 'tabs';
+    var samples = makeSamples(ep.path);
+    var tabKeys = ['curl', 'python', 'node', 'r', 'bash'];
+    var tabBlocks = {};
+    tabKeys.forEach(function(k, i) {
+      var t = document.createElement('button');
+      t.type = 'button';
+      t.className = 'tab' + (i === 0 ? ' active' : '');
+      t.textContent = k;
+      t.onclick = function () {
+        Object.values(tabBlocks).forEach(function(b){ b.classList.remove('active'); });
+        Array.from(tabs.children).forEach(function(el){ el.classList.remove('active'); });
+        t.classList.add('active');
+        tabBlocks[k].classList.add('active');
+      };
+      tabs.appendChild(t);
+    });
+    card.appendChild(tabs);
+    tabKeys.forEach(function(k, i) {
+      var pre = document.createElement('pre');
+      pre.className = 'code tab-content' + (i === 0 ? ' active' : '');
+      pre.textContent = samples[k];
+      tabBlocks[k] = pre;
+      card.appendChild(pre);
+    });
+    return card;
+  }
+
+  var host = document.getElementById('endpoints-host');
+  var T = (window.CatalystTier && window.CatalystTier.get()) || 'free';
+  ENDPOINTS.forEach(function(ep, i) {
+    var card = buildEndpoint(ep);
+    if (T === 'free' && !ep.free) {
+      card.classList.add('locked');
+    }
+    host.appendChild(card);
+  });
+
+  if (window.CatalystTier && window.CatalystTier.onResolved) {
+    window.CatalystTier.onResolved(function(t) {
+      if (t === 'pro' || t === 'reader') {
+        Array.from(host.querySelectorAll('.endpoint.locked')).forEach(function(el){ el.classList.remove('locked'); });
+      }
+    });
+  }
+})();
+</script>
+
+</body>
+</html>

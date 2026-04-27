@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Short Squeeze Scanner — Find Squeeze Setups Before They Trigger | Catalyst Edge</title>
+<meta name="description" content="Free short squeeze scanner tracking squeeze pressure across 1,600+ tickers. Short interest, days-to-cover, utilization rate, and SEC catalyst triggers scored daily.">
+<meta property="og:title" content="Short Squeeze Scanner — Catalyst Edge">
+<meta property="og:description" content="Find squeeze setups before they trigger. Free scanner tracks short interest, DTC, and catalyst signals across 1,600+ tickers.">
+<meta property="og:url" content="https://catalystedgescanner.com/glossary/short-squeeze-scanner/">
+<link rel="canonical" href="https://catalystedgescanner.com/glossary/short-squeeze-scanner/">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Short Squeeze Scanner: Find Squeeze Setups Before They Trigger",
+  "description": "How to identify short squeeze setups using short interest, days-to-cover, and SEC filing catalysts.",
+  "author": {"@type": "Organization", "name": "Catalyst Edge"},
+  "publisher": {"@type": "Organization", "name": "Catalyst Edge"},
+  "url": "https://catalystedgescanner.com/glossary/short-squeeze-scanner/",
+  "datePublished": "2026-04-13",
+  "dateModified": "2026-04-13"
+}
+</script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#070a12;--surface:#0f1420;--surface2:#161d2e;--gold:#d4a843;--green:#22c55e;
+  --cyan:#06b6d4;--red:#ef4444;--text:#e2e8f0;--dim:#94a3b8;--muted:#64748b;--border:#1e293b}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);
+  color:var(--text);line-height:1.7;-webkit-font-smoothing:antialiased}
+a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
+.wrap{max-width:720px;margin:0 auto;padding:3rem 1.5rem 4rem}
+.breadcrumb{font-size:.75rem;color:var(--muted);margin-bottom:2rem}
+.breadcrumb a{color:var(--dim)}
+h1{font-size:clamp(1.8rem,4vw,2.4rem);font-weight:800;line-height:1.15;margin-bottom:1rem}
+h2{font-size:1.3rem;font-weight:700;margin:2.5rem 0 .8rem;color:var(--text);
+  padding-bottom:.4rem;border-bottom:1px solid var(--border)}
+h3{font-size:1.05rem;font-weight:600;margin:1.5rem 0 .5rem;color:var(--cyan)}
+p{color:var(--dim);margin-bottom:1rem;font-size:.94rem}
+ul,ol{color:var(--dim);margin:0 0 1rem 1.5rem;font-size:.94rem}
+li{margin-bottom:.4rem}
+.callout{background:var(--surface);border-left:3px solid var(--green);padding:1rem 1.2rem;
+  border-radius:0 8px 8px 0;margin:1.5rem 0;font-size:.9rem}
+.callout strong{color:var(--green)}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin:1.5rem 0}
+.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px;text-align:center}
+.stat-n{font-size:1.6rem;font-weight:800;color:var(--green)}
+.stat-l{font-size:.72rem;color:var(--muted);margin-top:4px;text-transform:uppercase;letter-spacing:.08em}
+table{width:100%;border-collapse:collapse;font-size:.88rem;margin:1.2rem 0}
+th{background:var(--surface);color:var(--muted);padding:8px 12px;text-align:left;
+  border-bottom:1px solid var(--border);font-weight:600;font-size:.76rem;text-transform:uppercase;letter-spacing:.06em}
+td{padding:8px 12px;border-bottom:1px solid rgba(255,255,255,.04);color:var(--dim)}
+td:first-child{color:var(--cyan);font-weight:600}
+code{background:var(--surface2);padding:2px 6px;border-radius:4px;font-size:.85em;color:var(--green)}
+.cta{background:var(--surface);border:2px solid var(--green);border-radius:12px;padding:2rem;
+  text-align:center;margin:2.5rem 0}
+.cta h3{color:var(--green);margin:0 0 .5rem;font-size:1.2rem}
+.cta p{margin-bottom:1rem}
+.cta-btn{display:inline-block;padding:.7rem 2rem;background:var(--green);
+  color:#070a12;font-weight:700;border-radius:8px;text-decoration:none}
+.footer{text-align:center;padding:1.5rem;font-size:.72rem;color:var(--muted);border-top:1px solid var(--border)}
+</style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@800;900&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/lib/cinematic-hero.css">
+  <link rel="stylesheet" href="/lib/cyber-shell.css">
+  <link rel="stylesheet" href="/lib/polish-tokens.css">
+</head>
+<body>
+  <div class="cy-bg" aria-hidden="true"></div>
+  <div class="cy-floor" aria-hidden="true"></div>
+  <div class="cy-vignette" aria-hidden="true"></div>
+  <div class="cy-scan" aria-hidden="true"></div>
+<div class=\"wrap\">
+<section class="cin-hero cy-neon-hero cy-narrow cy-shimmer">
+    <div class="cin-grid">
+      <div class="cin-stat-stack">
+        <div class="cin-eyebrow"><span class="cin-live-dot"></span>SQUEEZE SCANNER · USAGE</div>
+        <div class="cin-colossal">
+          <div class="cin-num-row"><span class="cin-num">Live</span></div>
+          <div class="cin-side">
+          <span class="cin-tag">filter <b>thresholds</b></span>
+          <span class="cin-tag">sort logic explained</span>
+          <span class="cin-tag">real example walkthroughs</span>
+          </div>
+        </div>
+        <div class="cin-stamp">GLOSSARY · SHORT SQUEEZE SCANNER GU · v1.0 · <b>LIVE</b></div>
+      </div>
+      <div class="cin-h1-block">
+        <div class="cin-h1-eyebrow">📚 Short Squeeze Scanner Guide</div>
+        <h1 class="cin-headline"><em>How to use it</em>—the <span class="cin-accent">high-conviction squeeze setups</span>.</h1>
+        <p class="cin-lede">The squeeze scanner ranks names by short interest, days-to-cover, and recent gap behavior. We show you exactly how to filter, sort, and prioritize the live setups.</p>
+        <div class="cin-cta-row">
+          <a href="#article-body" class="cin-btn-primary">Read article ↓</a>
+          <a href="/glossary/" class="cin-btn-ghost">Glossary index</a>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+</div>
+<div class="wrap">
+  <div class="breadcrumb"><a href="/">Scanner</a> / <a href="/glossary/short-squeeze-scanner/">Short Squeeze Scanner</a></div>
+
+  <h1>Short Squeeze Scanner</h1>
+  <p style="font-size:1.05rem;color:var(--text)">
+    A short squeeze occurs when heavily shorted stocks spike upward, forcing short sellers to cover —
+    which drives the price even higher. Our scanner identifies these setups before they trigger by combining
+    short interest data with SEC filing catalysts.
+  </p>
+
+  <div class="stat-grid">
+    <div class="stat-card"><div class="stat-n">0-100</div><div class="stat-l">Squeeze pressure score</div></div>
+    <div class="stat-card"><div class="stat-n">1,600+</div><div class="stat-l">Tickers monitored</div></div>
+    <div class="stat-card"><div class="stat-n">Daily</div><div class="stat-l">Updated before market</div></div>
+    <div class="stat-card"><div class="stat-n">Free</div><div class="stat-l">Scanner access</div></div>
+  </div>
+
+  <h2>What Makes a Squeeze Setup?</h2>
+  <p>Three conditions must align for a squeeze to trigger:</p>
+  <ol>
+    <li><strong>High short interest</strong> — 15%+ of float held short means significant bearish positioning</li>
+    <li><strong>Low days-to-cover (DTC)</strong> — When DTC compresses, shorts have less room to exit gracefully</li>
+    <li><strong>Catalyst trigger</strong> — A positive SEC filing, earnings beat, or news event forces covering</li>
+  </ol>
+
+  <div class="callout">
+    <strong>The catalyst is the key.</strong> Many stocks sit at high short interest for months without squeezing.
+    It's the SEC filing catalyst — an 8-K material event, a Form 4 insider buy cluster, or a 13D activist stake —
+    that lights the fuse. Our scanner scores both squeeze pressure AND catalyst quality.
+  </div>
+
+  <h2>Squeeze Score Breakdown</h2>
+  <p>The <code>squeeze_score</code> field (0-100) in our scanner combines multiple inputs:</p>
+  <table>
+    <thead><tr><th>Component</th><th>Weight</th><th>What It Measures</th></tr></thead>
+    <tbody>
+      <tr><td>Short Float %</td><td>30%</td><td>Percentage of tradable shares held short</td></tr>
+      <tr><td>Days to Cover</td><td>25%</td><td>Short interest / avg daily volume. Lower = more pressure</td></tr>
+      <tr><td>DTC Acceleration</td><td>15%</td><td>Rate of change in DTC (compressing = bullish)</td></tr>
+      <tr><td>Utilization Rate</td><td>15%</td><td>% of lendable shares currently on loan</td></tr>
+      <tr><td>Cost to Borrow</td><td>15%</td><td>Annual fee to borrow shares for shorting. High = painful</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Squeeze + Catalyst Combos</h2>
+  <p>The most explosive moves happen when high squeeze scores coincide with catalyst filings:</p>
+  <table>
+    <thead><tr><th>Squeeze Score</th><th>+ Filing</th><th>Expected Move</th></tr></thead>
+    <tbody>
+      <tr><td>&gt;70</td><td>8-K positive</td><td>Explosive gap + continuation</td></tr>
+      <tr><td>50-70</td><td>Form 4 cluster</td><td>Multi-day grind higher</td></tr>
+      <tr><td>40-60</td><td>13D new stake</td><td>Activist-forced revaluation</td></tr>
+      <tr><td>&gt;80</td><td>S-3 (bearish)</td><td>Dilution kills squeeze thesis</td></tr>
+    </tbody>
+  </table>
+
+  <h2>How to Use the Scanner for Squeeze Plays</h2>
+  <ol>
+    <li>Open the <a href="/">Catalyst Edge Scanner</a></li>
+    <li>Sort by squeeze score (descending) to find highest pressure setups</li>
+    <li>Filter for gap score &gt; 14 to ensure a catalyst is present</li>
+    <li>Check the filing type — 8-K and Form 4 are the strongest squeeze triggers</li>
+    <li>Verify the stock has adequate volume (avg &gt; 500K) for clean entries</li>
+  </ol>
+
+  <h2>Common Squeeze Traps to Avoid</h2>
+  <ul>
+    <li><strong>High SI alone isn't enough</strong> — Without a catalyst, shorts can hold indefinitely</li>
+    <li><strong>Watch for shelf registrations</strong> — An S-3 filing kills squeeze setups by creating dilution overhang</li>
+    <li><strong>Low float traps</strong> — Micro-caps with tiny floats can spike and reverse within minutes</li>
+    <li><strong>Late entries</strong> — If the squeeze already ran 50%+, the risk/reward has flipped</li>
+  </ul>
+
+  <div class="cta">
+    <h3>Find Squeeze Setups Now</h3>
+    <p>Our scanner scores squeeze pressure across 1,600+ tickers daily, combined with SEC filing catalysts.</p>
+    <a href="/" class="cta-btn">Open Scanner</a>
+  </div>
+
+  <h2>Related</h2>
+  <ul>
+    <li><a href="/glossary/dark-pool-signals/">Dark Pool Signals</a></li>
+    <li><a href="/glossary/insider-buying-signals/">Insider Buying Signals</a></li>
+    <li><a href="/glossary/premarket-gap-scanner/">Premarket Gap Scanner</a></li>
+    <li><a href="/cheat-sheet/">SEC Filing Cheat Sheet (Free)</a></li>
+    <li><a href="/alerts/">Free SEC Filing Alerts</a></li>
+  </ul>
+</div>
+
+<div class="footer">
+  &copy; 2026 Catalyst Edge &middot;
+  <a href="/">Scanner</a> &middot;
+  <a href="/cheat-sheet/">Cheat Sheet</a> &middot;
+  <a href="/api/">API</a> &middot;
+  Not financial advice. SEC data from EDGAR.
+</div>
+</body>
+</html>

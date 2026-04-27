@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+<title>Catalyst Edge Arcade — SEC Signal Defense</title>
+<meta name="description" content="Defend your portfolio from bad trades. Real SEC filing data powers this arcade shooter. Mobile-first, play free.">
+<meta property="og:title" content="Catalyst Edge Arcade — SEC Signal Defense">
+<meta property="og:description" content="Arcade shooter powered by real SEC filing data. Defend your portfolio.">
+<meta property="og:url" content="https://catalystedgescanner.com/arcade/">
+<link rel="canonical" href="https://catalystedgescanner.com/arcade/">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:100%;height:100%;overflow:hidden;background:#050810;touch-action:none;-webkit-tap-highlight-color:transparent}
+canvas{display:block;width:100%;height:100%}
+#ui-overlay{position:fixed;top:0;left:0;right:0;bottom:0;pointer-events:none;z-index:10;font-family:'SF Mono',SFMono-Regular,Consolas,monospace}
+#hud-bar{position:absolute;top:0;left:0;right:0;display:flex;justify-content:space-between;padding:12px 16px;
+  background:linear-gradient(180deg,rgba(5,8,16,.92) 0%,transparent 100%)}
+.hud-stat{text-align:center}
+.hud-label{font-size:.56rem;letter-spacing:.18em;text-transform:uppercase;color:#64748b}
+.hud-val{font-size:1.1rem;font-weight:800;color:#e2e8f0}
+.hud-val.green{color:#22c55e}
+.hud-val.gold{color:#d4a843}
+.hud-val.red{color:#ef4444}
+.hud-val.cyan{color:#06b6d4}
+#score-val{font-variant-numeric:tabular-nums}
+#wave-banner{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  font-size:clamp(2rem,6vw,4rem);font-weight:900;color:#d4a843;text-align:center;
+  text-shadow:0 0 40px rgba(212,168,67,.4);opacity:0;transition:opacity .4s;pointer-events:none}
+#game-over{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;
+  background:rgba(5,8,16,.88);pointer-events:auto}
+#game-over h1{font-size:2.4rem;font-weight:900;color:#ef4444;margin-bottom:8px}
+#game-over .final-score{font-size:1.4rem;color:#d4a843;margin-bottom:24px}
+#game-over button{padding:14px 36px;background:#22c55e;color:#050810;border:none;border-radius:12px;
+  font-size:1rem;font-weight:800;cursor:pointer;font-family:inherit}
+#game-over button:active{transform:scale(.95)}
+#game-over .cta-link{margin-top:16px;font-size:.82rem;color:#64748b;pointer-events:auto}
+#game-over .cta-link a{color:#d4a843;text-decoration:none}
+#start-screen{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  background:rgba(5,8,16,.92);pointer-events:auto}
+#start-screen h1{font-size:clamp(1.6rem,4vw,2.8rem);font-weight:900;color:#d4a843;margin-bottom:6px;text-align:center}
+#start-screen .tagline{font-size:.88rem;color:#64748b;margin-bottom:28px;text-align:center;max-width:300px}
+#start-screen button{padding:16px 48px;background:linear-gradient(135deg,#d4a843,#f1ce88);color:#050810;border:none;
+  border-radius:14px;font-size:1.1rem;font-weight:800;cursor:pointer;font-family:inherit;
+  box-shadow:0 8px 28px rgba(212,168,67,.3)}
+#start-screen button:active{transform:scale(.95)}
+#start-screen .controls{font-size:.72rem;color:#475569;margin-top:20px;text-align:center;line-height:1.8}
+#touch-zone{position:fixed;bottom:0;left:0;right:0;height:30vh;pointer-events:auto;z-index:5}
+</style>
+<link rel="stylesheet" href="/lib/polish-tokens.css">
+</head>
+<body>
+<canvas id="game"></canvas>
+
+<div id="ui-overlay">
+  <div id="hud-bar">
+    <div class="hud-stat"><div class="hud-label">Score</div><div class="hud-val gold" id="score-val">0</div></div>
+    <div class="hud-stat"><div class="hud-label">Wave</div><div class="hud-val cyan" id="wave-val">1</div></div>
+    <div class="hud-stat"><div class="hud-label">Combo</div><div class="hud-val green" id="combo-val">0x</div></div>
+    <div class="hud-stat"><div class="hud-label">Shield</div><div class="hud-val" id="shield-val">100</div></div>
+  </div>
+  <div id="wave-banner"></div>
+  <div id="start-screen">
+    <h1>SEC Signal Defense</h1>
+    <div class="tagline">Destroy bad filings. Collect catalysts. Defend your portfolio. Powered by real SEC data.</div>
+    <button onclick="startGame()">LAUNCH</button>
+    <div class="controls">
+      Touch/Mouse: Move ship &middot; Auto-fire<br>
+      Desktop: Arrow keys or WASD
+    </div>
+  </div>
+  <div id="game-over">
+    <h1>LIQUIDATED</h1>
+    <div class="final-score" id="final-score">Score: 0</div>
+    <button onclick="startGame()">RETRY</button>
+    <div class="cta-link">Want real signals? <a href="/">Open Scanner</a></div>
+  </div>
+</div>
+<div id="touch-zone"></div>
+
+<script>
+(function(){
+"use strict";
+
+// ── Canvas Setup ─────────────────────────────────────────────────────────────
+var canvas = document.getElementById("game");
+var ctx = canvas.getContext("2d");
+var W, H, dpr;
+
+function resize() {
+  dpr = Math.min(window.devicePixelRatio || 1, 2);
+  W = window.innerWidth;
+  H = window.innerHeight;
+  canvas.width = W * dpr;
+  canvas.height = H * dpr;
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+}
+window.addEventListener("resize", resize);
+resize();
+
+// ── Game State ───────────────────────────────────────────────────────────────
+var state = "start"; // start | playing | over
+var score = 0;
+var wave = 1;
+var combo = 0;
+var maxCombo = 0;
+var shield = 100;
+var frameCount = 0;
+var lastTime = 0;
+
+// ── SEC Filing Types (enemies) ───────────────────────────────────────────────
+var FILING_TYPES = [
+  {form:"S-3",   color:"#ef4444", size:18, speed:1.2, points:50,  hp:1, desc:"Dilution"},
+  {form:"424B",  color:"#f97316", size:20, speed:1.0, points:80,  hp:2, desc:"Shelf Offering"},
+  {form:"SC 13D",color:"#a855f7", size:22, speed:0.8, points:100, hp:2, desc:"Activist"},
+  {form:"NT",    color:"#64748b", size:16, speed:1.5, points:30,  hp:1, desc:"Late Filing"},
+  {form:"8-K",   color:"#3b82f6", size:24, speed:0.7, points:120, hp:3, desc:"Material Event"},
+  {form:"DEF14A",color:"#ec4899", size:26, speed:0.6, points:150, hp:4, desc:"Proxy Fight"},
+];
+
+// ── Catalyst Pickups (green = good) ──────────────────────────────────────────
+var CATALYSTS = [
+  {type:"insider_buy", color:"#22c55e", label:"INS", points:200, shield:10},
+  {type:"squeeze",     color:"#06b6d4", label:"SQZ", points:150, shield:5},
+  {type:"gap_score",   color:"#d4a843", label:"GAP", points:300, shield:15},
+  {type:"dark_pool",   color:"#8b5cf6", label:"DPL", points:100, shield:8},
+];
+
+// ── Player Ship ──────────────────────────────────────────────────────────────
+var ship = {x:0, y:0, w:28, h:32, fireRate:8, fireCd:0};
+
+// ── Entity arrays ────────────────────────────────────────────────────────────
+var bullets = [];
+var enemies = [];
+var pickups = [];
+var particles = [];
+var stars = [];
+
+// Init starfield
+for (var si = 0; si < 120; si++) {
+  stars.push({x:Math.random()*2000, y:Math.random()*2000, s:Math.random()*1.5+0.3, sp:Math.random()*0.8+0.2});
+}
+
+// ── Input ────────────────────────────────────────────────────────────────────
+var inputX = 0, inputY = 0;
+var keys = {};
+
+document.addEventListener("keydown", function(e){ keys[e.key] = true; });
+document.addEventListener("keyup", function(e){ keys[e.key] = false; });
+
+canvas.addEventListener("mousemove", function(e){ inputX = e.clientX; inputY = e.clientY; });
+canvas.addEventListener("touchmove", function(e){
+  e.preventDefault();
+  var t = e.touches[0];
+  inputX = t.clientX;
+  inputY = t.clientY;
+}, {passive:false});
+canvas.addEventListener("touchstart", function(e){
+  e.preventDefault();
+  var t = e.touches[0];
+  inputX = t.clientX;
+  inputY = t.clientY;
+}, {passive:false});
+document.getElementById("touch-zone").addEventListener("touchmove", function(e){
+  e.preventDefault();
+  var t = e.touches[0];
+  inputX = t.clientX;
+}, {passive:false});
+
+// ── Spawn ────────────────────────────────────────────────────────────────────
+function spawnEnemy() {
+  var ft = FILING_TYPES[Math.floor(Math.random() * FILING_TYPES.length)];
+  var waveMultiplier = 1 + (wave - 1) * 0.15;
+  enemies.push({
+    x: Math.random() * (W - 60) + 30,
+    y: -40,
+    vx: (Math.random() - 0.5) * 1.2,
+    vy: ft.speed * waveMultiplier * (0.8 + Math.random() * 0.4),
+    size: ft.size,
+    color: ft.color,
+    form: ft.form,
+    points: ft.points,
+    hp: ft.hp + Math.floor(wave / 3),
+    maxHp: ft.hp + Math.floor(wave / 3),
+    desc: ft.desc,
+    flash: 0,
+  });
+}
+
+function spawnPickup() {
+  var cat = CATALYSTS[Math.floor(Math.random() * CATALYSTS.length)];
+  pickups.push({
+    x: Math.random() * (W - 40) + 20,
+    y: -30,
+    vy: 1.2 + Math.random() * 0.5,
+    size: 14,
+    color: cat.color,
+    label: cat.label,
+    points: cat.points,
+    shield: cat.shield,
+    pulse: 0,
+  });
+}
+
+function spawnParticles(x, y, color, count) {
+  for (var i = 0; i < count; i++) {
+    var angle = Math.random() * Math.PI * 2;
+    var speed = Math.random() * 3 + 1;
+    particles.push({
+      x: x, y: y,
+      vx: Math.cos(angle) * speed,
+      vy: Math.sin(angle) * speed,
+      life: 1,
+      decay: 0.02 + Math.random() * 0.03,
+      size: Math.random() * 3 + 1,
+      color: color,
+    });
+  }
+}
+
+// ── Collision ────────────────────────────────────────────────────────────────
+function dist(a, b) {
+  var dx = a.x - b.x, dy = a.y - b.y;
+  return Math.sqrt(dx*dx + dy*dy);
+}
+
+// ── Update ───────────────────────────────────────────────────────────────────
+function update(dt) {
+  frameCount++;
+
+  // Ship movement
+  var targetX = inputX || W/2;
+  var targetY = inputY || H * 0.8;
+  var kspeed = 5;
+  if (keys["ArrowLeft"] || keys["a"]) targetX = ship.x - 20;
+  if (keys["ArrowRight"]|| keys["d"]) targetX = ship.x + 20;
+  if (keys["ArrowUp"]   || keys["w"]) targetY = ship.y - 20;
+  if (keys["ArrowDown"] || keys["s"]) targetY = ship.y + 20;
+
+  ship.x += (targetX - ship.x) * 0.12;
+  ship.y += (targetY - ship.y) * 0.12;
+  ship.x = Math.max(20, Math.min(W - 20, ship.x));
+  ship.y = Math.max(40, Math.min(H - 20, ship.y));
+
+  // Auto-fire
+  ship.fireCd--;
+  if (ship.fireCd <= 0) {
+    bullets.push({x: ship.x - 6, y: ship.y - 16, vy: -8});
+    bullets.push({x: ship.x + 6, y: ship.y - 16, vy: -8});
+    ship.fireCd = ship.fireRate;
+  }
+
+  // Bullets
+  for (var bi = bullets.length - 1; bi >= 0; bi--) {
+    var b = bullets[bi];
+    b.y += b.vy;
+    if (b.y < -10) { bullets.splice(bi, 1); continue; }
+
+    // Hit test enemies
+    for (var ei = enemies.length - 1; ei >= 0; ei--) {
+      var e = enemies[ei];
+      if (dist(b, e) < e.size + 4) {
+        bullets.splice(bi, 1);
+        e.hp--;
+        e.flash = 6;
+        if (e.hp <= 0) {
+          combo++;
+          if (combo > maxCombo) maxCombo = combo;
+          var comboMult = Math.min(combo, 10);
+          score += e.points * comboMult;
+          spawnParticles(e.x, e.y, e.color, 12);
+          enemies.splice(ei, 1);
+        }
+        break;
+      }
+    }
+  }
+
+  // Enemies
+  var spawnRate = Math.max(20, 60 - wave * 4);
+  if (frameCount % spawnRate === 0) spawnEnemy();
+  if (frameCount % 180 === 0) spawnPickup();
+
+  for (var ei2 = enemies.length - 1; ei2 >= 0; ei2--) {
+    var en = enemies[ei2];
+    en.x += en.vx;
+    en.y += en.vy;
+    if (en.flash > 0) en.flash--;
+
+    // Bounce off walls
+    if (en.x < en.size || en.x > W - en.size) en.vx *= -1;
+
+    // Hit player
+    if (dist(en, ship) < en.size + 14) {
+      shield -= 15;
+      combo = 0;
+      spawnParticles(ship.x, ship.y, "#ef4444", 8);
+      enemies.splice(ei2, 1);
+      if (shield <= 0) { gameOver(); return; }
+      continue;
+    }
+
+    // Off screen
+    if (en.y > H + 40) {
+      combo = 0; // miss resets combo
+      enemies.splice(ei2, 1);
+    }
+  }
+
+  // Pickups
+  for (var pi = pickups.length - 1; pi >= 0; pi--) {
+    var pk = pickups[pi];
+    pk.y += pk.vy;
+    pk.pulse += 0.08;
+    if (pk.y > H + 30) { pickups.splice(pi, 1); continue; }
+    if (dist(pk, ship) < pk.size + 16) {
+      score += pk.points;
+      shield = Math.min(shield + pk.shield, 100);
+      spawnParticles(pk.x, pk.y, pk.color, 10);
+      pickups.splice(pi, 1);
+    }
+  }
+
+  // Particles
+  for (var qi = particles.length - 1; qi >= 0; qi--) {
+    var q = particles[qi];
+    q.x += q.vx;
+    q.y += q.vy;
+    q.life -= q.decay;
+    if (q.life <= 0) particles.splice(qi, 1);
+  }
+
+  // Wave progression
+  if (frameCount % 600 === 0 && frameCount > 0) {
+    wave++;
+    showWaveBanner("WAVE " + wave);
+  }
+
+  // Update HUD
+  document.getElementById("score-val").textContent = score.toLocaleString();
+  document.getElementById("wave-val").textContent = wave;
+  document.getElementById("combo-val").textContent = combo + "x";
+  var shieldEl = document.getElementById("shield-val");
+  shieldEl.textContent = Math.max(0, shield);
+  shieldEl.className = "hud-val " + (shield > 60 ? "green" : shield > 30 ? "gold" : "red");
+}
+
+// ── Draw ─────────────────────────────────────────────────────────────────────
+function draw() {
+  ctx.fillStyle = "#050810";
+  ctx.fillRect(0, 0, W, H);
+
+  // Starfield
+  ctx.fillStyle = "rgba(255,255,255,0.6)";
+  for (var si2 = 0; si2 < stars.length; si2++) {
+    var st = stars[si2];
+    st.y += st.sp;
+    if (st.y > H) { st.y = 0; st.x = Math.random() * W; }
+    ctx.fillRect(st.x % W, st.y, st.s, st.s);
+  }
+
+  // Bullets
+  ctx.fillStyle = "#d4a843";
+  ctx.shadowColor = "#d4a843";
+  ctx.shadowBlur = 6;
+  for (var bi2 = 0; bi2 < bullets.length; bi2++) {
+    var bl = bullets[bi2];
+    ctx.fillRect(bl.x - 1.5, bl.y - 5, 3, 10);
+  }
+  ctx.shadowBlur = 0;
+
+  // Enemies
+  for (var ei3 = 0; ei3 < enemies.length; ei3++) {
+    var en2 = enemies[ei3];
+    ctx.save();
+    ctx.translate(en2.x, en2.y);
+
+    // Glow
+    ctx.shadowColor = en2.color;
+    ctx.shadowBlur = en2.flash > 0 ? 20 : 8;
+
+    // Hexagon shape
+    ctx.beginPath();
+    for (var hi = 0; hi < 6; hi++) {
+      var ang = (Math.PI / 3) * hi - Math.PI / 2;
+      var px = Math.cos(ang) * en2.size;
+      var py = Math.sin(ang) * en2.size;
+      if (hi === 0) ctx.moveTo(px, py);
+      else ctx.lineTo(px, py);
+    }
+    ctx.closePath();
+    ctx.fillStyle = en2.flash > 0 ? "#fff" : en2.color;
+    ctx.globalAlpha = 0.85;
+    ctx.fill();
+    ctx.globalAlpha = 1;
+
+    // HP bar
+    if (en2.maxHp > 1) {
+      var hpW = en2.size * 1.4;
+      var hpPct = en2.hp / en2.maxHp;
+      ctx.fillStyle = "rgba(0,0,0,0.5)";
+      ctx.fillRect(-hpW/2, -en2.size - 8, hpW, 3);
+      ctx.fillStyle = hpPct > 0.5 ? "#22c55e" : "#ef4444";
+      ctx.fillRect(-hpW/2, -en2.size - 8, hpW * hpPct, 3);
+    }
+
+    // Label
+    ctx.shadowBlur = 0;
+    ctx.fillStyle = "#fff";
+    ctx.font = "bold " + Math.max(8, en2.size * 0.42) + "px monospace";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.fillText(en2.form, 0, 0);
+
+    ctx.restore();
+  }
+  ctx.shadowBlur = 0;
+
+  // Pickups
+  for (var pi2 = 0; pi2 < pickups.length; pi2++) {
+    var pk2 = pickups[pi2];
+    var pulseScale = 1 + Math.sin(pk2.pulse) * 0.15;
+    ctx.save();
+    ctx.translate(pk2.x, pk2.y);
+    ctx.scale(pulseScale, pulseScale);
+    ctx.shadowColor = pk2.color;
+    ctx.shadowBlur = 12;
+
+    // Diamond shape
+    ctx.beginPath();
+    ctx.moveTo(0, -pk2.size);
+    ctx.lineTo(pk2.size, 0);
+    ctx.lineTo(0, pk2.size);
+    ctx.lineTo(-pk2.size, 0);
+    ctx.closePath();
+    ctx.fillStyle = pk2.color;
+    ctx.globalAlpha = 0.9;
+    ctx.fill();
+    ctx.globalAlpha = 1;
+    ctx.shadowBlur = 0;
+
+    ctx.fillStyle = "#fff";
+    ctx.font = "bold 8px monospace";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.fillText(pk2.label, 0, 0);
+    ctx.restore();
+  }
+  ctx.shadowBlur = 0;
+
+  // Player ship
+  ctx.save();
+  ctx.translate(ship.x, ship.y);
+  ctx.shadowColor = "#d4a843";
+  ctx.shadowBlur = 14;
+
+  // Ship body — angular wedge
+  ctx.beginPath();
+  ctx.moveTo(0, -ship.h / 2);
+  ctx.lineTo(-ship.w / 2, ship.h / 2);
+  ctx.lineTo(-ship.w / 4, ship.h / 3);
+  ctx.lineTo(0, ship.h / 2.5);
+  ctx.lineTo(ship.w / 4, ship.h / 3);
+  ctx.lineTo(ship.w / 2, ship.h / 2);
+  ctx.closePath();
+  ctx.fillStyle = "#d4a843";
+  ctx.fill();
+
+  // Engine glow
+  ctx.shadowBlur = 0;
+  ctx.fillStyle = "rgba(34,197,94,0.6)";
+  var engineFlicker = 4 + Math.sin(frameCount * 0.3) * 2;
+  ctx.beginPath();
+  ctx.moveTo(-6, ship.h / 3);
+  ctx.lineTo(0, ship.h / 3 + engineFlicker);
+  ctx.lineTo(6, ship.h / 3);
+  ctx.fill();
+
+  ctx.restore();
+  ctx.shadowBlur = 0;
+
+  // Particles
+  for (var qi2 = 0; qi2 < particles.length; qi2++) {
+    var q2 = particles[qi2];
+    ctx.globalAlpha = q2.life;
+    ctx.fillStyle = q2.color;
+    ctx.fillRect(q2.x - q2.size/2, q2.y - q2.size/2, q2.size, q2.size);
+  }
+  ctx.globalAlpha = 1;
+}
+
+// ── Wave Banner ──────────────────────────────────────────────────────────────
+function showWaveBanner(text) {
+  var banner = document.getElementById("wave-banner");
+  banner.textContent = text;
+  banner.style.opacity = "1";
+  setTimeout(function(){ banner.style.opacity = "0"; }, 2000);
+}
+
+// ── Game Over ────────────────────────────────────────────────────────────────
+function gameOver() {
+  state = "over";
+  document.getElementById("final-score").textContent =
+    "Score: " + score.toLocaleString() + " | Best Combo: " + maxCombo + "x | Wave: " + wave;
+  document.getElementById("game-over").style.display = "flex";
+
+  // Track in GA
+  if (typeof gtag === "function") {
+    gtag("event", "arcade_game_over", {event_category:"engagement", event_label:"wave_" + wave, value: score});
+  }
+}
+
+// ── Start Game ───────────────────────────────────────────────────────────────
+window.startGame = function() {
+  score = 0; wave = 1; combo = 0; maxCombo = 0; shield = 100; frameCount = 0;
+  bullets = []; enemies = []; pickups = []; particles = [];
+  ship.x = W / 2;
+  ship.y = H * 0.8;
+  ship.fireCd = 0;
+  inputX = W / 2;
+  inputY = H * 0.8;
+  state = "playing";
+  document.getElementById("start-screen").style.display = "none";
+  document.getElementById("game-over").style.display = "none";
+  showWaveBanner("WAVE 1");
+  lastTime = performance.now();
+  loop();
+};
+
+// ── Game Loop ────────────────────────────────────────────────────────────────
+function loop() {
+  if (state !== "playing") return;
+  var now = performance.now();
+  var dt = Math.min((now - lastTime) / 16.67, 3); // cap at 3x speed
+  lastTime = now;
+  update(dt);
+  draw();
+  requestAnimationFrame(loop);
+}
+
+})();
+</script>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KV1VDK22VC"></script>
+<script>
+window.dataLayer=window.dataLayer||[];
+function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());
+gtag('config','G-KV1VDK22VC');
+</script>
+</body>
+</html>

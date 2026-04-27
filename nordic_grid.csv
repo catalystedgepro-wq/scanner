@@ -1,0 +1,19 @@
+dataset,price_area,metric_name,value,unit,ts,captured_at
+elspot,DE,spot_price_eur_mwh,92.54,EUR_per_MWh,2025-09-30T21:00:00,2026-04-27T23:11:50Z
+elspot,DK1,spot_price_eur_mwh,92.54,EUR_per_MWh,2025-09-30T21:00:00,2026-04-27T23:11:50Z
+elspot,DK2,spot_price_eur_mwh,92.48,EUR_per_MWh,2025-09-30T21:00:00,2026-04-27T23:11:50Z
+elspot,NO2,spot_price_eur_mwh,67.62,EUR_per_MWh,2025-09-30T21:00:00,2026-04-27T23:11:50Z
+elspot,SE3,spot_price_eur_mwh,63.18,EUR_per_MWh,2025-09-30T21:00:00,2026-04-27T23:11:50Z
+elspot,SE4,spot_price_eur_mwh,73.62,EUR_per_MWh,2025-09-30T21:00:00,2026-04-27T23:11:50Z
+co2_emis,DK1,grid_co2_intensity,124.0,gCO2_per_kWh,2026-04-27T23:05:00,2026-04-27T23:11:50Z
+co2_emis,DK2,grid_co2_intensity,42.0,gCO2_per_kWh,2026-04-27T23:05:00,2026-04-27T23:11:50Z
+prod_mix_dk1,DK1,share_Wood,97.13,percent_grid,2026-04-27T21:00:00,2026-04-27T23:11:50Z
+prod_mix_dk1,DK1,share_Coal,44.08,percent_grid,2026-04-27T21:00:00,2026-04-27T23:11:50Z
+prod_mix_dk1,DK1,share_WindOffshore,24.72,percent_grid,2026-04-27T21:00:00,2026-04-27T23:11:50Z
+prod_mix_dk1,DK1,share_Waste,19.64,percent_grid,2026-04-27T21:00:00,2026-04-27T23:11:50Z
+prod_mix_dk1,DK1,share_WindOnshore,17.43,percent_grid,2026-04-27T21:00:00,2026-04-27T23:11:50Z
+prod_mix_dk1,DK1,share_Straw,10.04,percent_grid,2026-04-27T21:00:00,2026-04-27T23:11:50Z
+prod_mix_dk1,DK1,share_FossilGas,2.76,percent_grid,2026-04-27T21:00:00,2026-04-27T23:11:50Z
+prod_mix_dk1,DK1,share_Fossil Oil,1.11,percent_grid,2026-04-27T21:00:00,2026-04-27T23:11:50Z
+prod_mix_dk1,DK1,share_Solar,0.18,percent_grid,2026-04-27T21:00:00,2026-04-27T23:11:50Z
+prod_mix_dk1,DK1,share_BioGas,-1.78,percent_grid,2026-04-27T21:00:00,2026-04-27T23:11:50Z

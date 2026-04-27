@@ -1,0 +1,16 @@
+{
+  "last_run_utc": "2026-04-27T14:46:24.005302+00:00",
+  "scoops_written_this_run": 1,
+  "groq_enabled": false,
+  "model": "llama-3.1-8b-instant",
+  "items": [
+    {
+      "ticker": "ACI",
+      "slug": "2026-04-27-ACI",
+      "score": "41",
+      "signals": "5",
+      "date": "2026-04-27",
+      "validation": "model_returned_insufficient"
+    }
+  ]
+}

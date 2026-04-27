@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Convergence Alerts — Multi-Signal Stock Triggers | Catalyst Edge</title>
+<meta name="description" content="When insider buys, squeeze pressure, dark pool flow, and SEC filings converge on one ticker — that's a convergence alert. Track them live.">
+<meta property="og:title" content="Convergence Alerts — Catalyst Edge">
+<link rel="canonical" href="https://catalystedgescanner.com/convergence/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#070a12;--surface:#0f1420;--gold:#d4a843;--green:#22c55e;--red:#ef4444;--cyan:#06b6d4;--purple:#a78bfa;--text:#e2e8f0;--dim:#94a3b8;--muted:#64748b;--border:#1e293b}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
+.wrap{max-width:1100px;margin:0 auto;padding:1.5rem}
+.nav{position:sticky;top:0;z-index:100;background:rgba(7,10,18,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:.75rem 1.5rem;display:flex;align-items:center;gap:1rem}
+.nav a{color:var(--gold);font-weight:600;font-size:.95rem}
+.nav .sep{color:var(--muted)}
+.hero{text-align:center;padding:2.5rem 0 2rem;border-bottom:1px solid var(--border);margin-bottom:1.5rem}
+.hero h1{font-size:clamp(1.5rem,4vw,2.2rem);font-weight:800;line-height:1.2;margin-bottom:.4rem}
+.hero h1 em{font-style:normal;color:var(--purple)}
+.hero .sub{color:var(--dim);font-size:.9rem;max-width:580px;margin:0 auto}
+.live-dot{display:inline-block;width:8px;height:8px;background:var(--green);border-radius:50%;margin-right:6px;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.stats-bar{display:flex;justify-content:center;gap:2rem;margin:1rem 0;flex-wrap:wrap}
+.sb-item{text-align:center}
+.sb-val{font-size:1.3rem;font-weight:800;color:var(--gold)}
+.sb-lbl{font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.filters{display:flex;gap:8px;margin:1.5rem 0 1rem;flex-wrap:wrap}
+.fbtn{padding:6px 14px;background:var(--surface);border:1px solid var(--border);border-radius:6px;color:var(--dim);font-size:.78rem;font-weight:600;cursor:pointer;font-family:inherit;transition:all .2s}
+.fbtn:hover{border-color:var(--purple);color:var(--purple)}
+.fbtn.active{background:rgba(167,139,250,.12);border-color:var(--purple);color:var(--purple)}
+.alert-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px;margin:1rem 0}
+.alert-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.2rem;transition:border-color .2s}
+.alert-card:hover{border-color:var(--purple)}
+.ac-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:.6rem}
+.ac-ticker{font-size:1.3rem;font-weight:800}
+.ac-score{font-family:'IBM Plex Mono',monospace;font-size:1.1rem;font-weight:800}
+.score-high{color:var(--green)}
+.score-elevated{color:var(--gold)}
+.score-moderate{color:var(--cyan)}
+.ac-conviction{display:inline-block;padding:3px 10px;border-radius:12px;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+.conv-high{background:rgba(34,197,94,.12);color:var(--green)}
+.conv-elevated{background:rgba(212,168,67,.12);color:var(--gold)}
+.conv-moderate{background:rgba(6,182,212,.12);color:var(--cyan)}
+.conv-low{background:rgba(100,116,139,.12);color:var(--muted)}
+.ac-signals{display:flex;gap:4px;flex-wrap:wrap;margin-top:.6rem}
+.signal-tag{padding:3px 8px;border-radius:4px;font-size:.65rem;font-weight:600;background:rgba(167,139,250,.1);color:var(--purple)}
+.signal-tag.squeeze{background:rgba(239,68,68,.1);color:var(--red)}
+.signal-tag.insider{background:rgba(34,197,94,.1);color:var(--green)}
+.signal-tag.darkpool{background:rgba(6,182,212,.1);color:var(--cyan)}
+.signal-tag.smart{background:rgba(212,168,67,.1);color:var(--gold)}
+.signal-tag.sec{background:rgba(59,130,246,.1);color:#3b82f6}
+.ac-meta{font-size:.75rem;color:var(--muted);margin-top:.5rem}
+.cta-bar{background:var(--surface);border:1px solid var(--gold);border-radius:10px;padding:1.25rem;text-align:center;margin:2rem 0}
+.cta-bar h3{color:var(--gold);font-size:1rem;margin-bottom:.3rem}
+.cta-bar p{color:var(--dim);font-size:.8rem;margin-bottom:.75rem}
+.cta-bar a{display:inline-block;padding:.5rem 1.4rem;background:linear-gradient(135deg,var(--gold),#f1ce88);color:#070a12;font-weight:700;border-radius:6px;font-size:.85rem}
+.explainer{margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border)}
+.explainer h2{font-size:1.1rem;margin-bottom:.8rem}
+.explainer p{color:var(--dim);font-size:.85rem;margin-bottom:.8rem}
+.signal-legend{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px;margin:1rem 0}
+.sl-item{display:flex;align-items:center;gap:8px;font-size:.78rem;color:var(--dim)}
+.sl-dot{width:8px;height:8px;border-radius:2px;flex-shrink:0}
+.footer{text-align:center;padding:1.5rem;font-size:.72rem;color:var(--muted);border-top:1px solid var(--border);margin-top:2rem}
+.footer a{color:var(--muted)}
+</style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@800;900&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/lib/cinematic-hero.css">
+  <link rel="stylesheet" href="/lib/cyber-shell.css">
+  <link rel="stylesheet" href="/lib/polish-tokens.css">
+</head>
+<body>
+  <div class="cy-bg" aria-hidden="true"></div>
+  <div class="cy-floor" aria-hidden="true"></div>
+  <div class="cy-vignette" aria-hidden="true"></div>
+  <div class="cy-scan" aria-hidden="true"></div>
+<div class="nav">
+  <a href="/">Catalyst Edge</a>
+  <span class="sep">/</span>
+  <span style="color:var(--dim);font-size:.9rem">Convergence Alerts</span>
+</div>
+
+<div class="wrap">
+<div class="ce-breadcrumb" style="max-width:1400px;margin:8px auto 0;padding:0 28px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-mute,#5a6c92);"><a href="/scanner/" style="color:var(--neon-cyan,#00ffff);text-decoration:none">&larr; Scanner</a><span style="color:var(--ink-mute,#5a6c92);margin:0 8px">&middot;</span><span>CONVERGENCE</span></div>
+
+<section class="cin-hero cy-neon-hero cy-shimmer">
+    <div class="cin-grid">
+      <div class="cin-stat-stack">
+        <div class="cin-eyebrow"><span class="cin-live-dot"></span>MULTI-SIGNAL CONVERGENCE · LIVE</div>
+        <div class="cin-colossal">
+          <div class="cin-num-row"><span class="cin-num">3+</span></div>
+          <div class="cin-side">
+          <span class="cin-tag">signal layers <b>aligned</b></span>
+          <span class="cin-tag">cross-validated</span>
+          <span class="cin-tag">highest conviction</span>
+          </div>
+        </div>
+        <div class="cin-stamp">CONVERGENCE//FILTER · v1.6 · <b>LIVE</b></div>
+      </div>
+      <div class="cin-h1-block">
+        <div class="cin-h1-eyebrow">🎯 Convergence · Where Signals Stack</div>
+        <h1 class="cin-headline">Names where <em>three or more</em> independent signals point the same way—the <span class="cin-accent">highest-conviction</span> layer in the scanner.</h1>
+        <p class="cin-lede">Catalyst score + gap + insider buys + short squeeze + dark pool + momentum — when multiple signals align on the same ticker, that's where edge concentrates. Same convergence engine feeding /jackpot/.</p>
+        <div class="cin-cta-row">
+          <a href="#conv-table" class="cin-btn-primary">See aligned names ↓</a>
+          <a href="/jackpot/" class="cin-btn-ghost">Open JACKPOT</a>
+        </div>
+        <div class="cin-strip">
+          <div class="cin-cell"><div class="cin-k">Aligned (3+)</div><div class="cin-v bull" id="cv-3">–</div></div>
+          <div class="cin-cell"><div class="cin-k">Aligned (4+)</div><div class="cin-v gold" id="cv-4">–</div></div>
+          <div class="cin-cell"><div class="cin-k">Top score</div><div class="cin-v cyan" id="cv-top">–</div></div>
+          <div class="cin-cell"><div class="cin-k">Updated</div><div class="cin-v">live</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <div class="filters" id="filters"></div>
+  <div class="alert-grid" id="alert-grid"></div>
+
+  <div class="cta-bar">
+    <h3>Get convergence alerts before market open</h3>
+    <p>Free daily email with convergence triggers, squeeze candidates, and SEC catalysts at 4 AM ET.</p>
+    <a href="/preview/">Subscribe Free</a>
+  </div>
+
+  <div class="explainer">
+    <h2>What is a Convergence Alert?</h2>
+    <p>A convergence alert fires when multiple independent signals point to the same stock at the same time. Each signal alone is noise. When 3+ fire together, it becomes a high-conviction setup.</p>
+
+    <div class="signal-legend">
+      <div class="sl-item"><span class="sl-dot" style="background:var(--red)"></span>Squeeze — High short interest + volume surge</div>
+      <div class="sl-item"><span class="sl-dot" style="background:var(--green)"></span>Insider — Form 4 cluster buys</div>
+      <div class="sl-item"><span class="sl-dot" style="background:var(--cyan)"></span>Dark Pool — Large block volume</div>
+      <div class="sl-item"><span class="sl-dot" style="background:var(--gold)"></span>Smart Money — Institutional signals</div>
+      <div class="sl-item"><span class="sl-dot" style="background:#3b82f6"></span>SEC Filing — 8-K, S-3, Form 4 catalysts</div>
+      <div class="sl-item"><span class="sl-dot" style="background:var(--purple)"></span>Deep Value — Fundamentally undervalued</div>
+    </div>
+
+    <p>Our convergence engine cross-references 7 independent data streams and assigns a conviction score from 0-100. Scores above 40 are ELEVATED. Above 50 is HIGH conviction.</p>
+  </div>
+</div>
+
+<div class="footer">
+  &copy; 2026 Catalyst Edge &middot;
+  <a href="/">Scanner</a> &middot;
+  <a href="/gaps/">Gaps</a> &middot;
+  <a href="/jackpot/" style="color:#22c55e">🎯 JACKPOT</a>
+  <a href="/dcf/" style="color:#06b6d4">💰 DCF</a> &middot;
+  <a href="/squeeze/">Squeeze</a> &middot;
+  <a href="/insiders/">Insiders</a> &middot;
+  <a href="/lockups/">Lockups</a> &middot;
+  <a href="/congress/">Congress</a> &middot;
+  <a href="/glossary/">Glossary</a> &middot;
+  Not financial advice.
+</div>
+
+<script>
+(function(){
+  var allAlerts = [];
+  var activeFilter = 'all';
+
+  var filterNames = ['All','HIGH','ELEVATED','3+ Signals'];
+  var filtersDiv = document.getElementById('filters');
+  filterNames.forEach(function(name){
+    var btn = document.createElement('button');
+    btn.className = 'fbtn' + (name === 'All' ? ' active' : '');
+    btn.textContent = name;
+    btn.addEventListener('click', function(){
+      activeFilter = name;
+      var btns = filtersDiv.querySelectorAll('.fbtn');
+      for(var i=0;i<btns.length;i++) btns[i].className='fbtn';
+      btn.className='fbtn active';
+      renderGrid(filterAlerts(allAlerts));
+    });
+    filtersDiv.appendChild(btn);
+  });
+
+  function filterAlerts(alerts){
+    if(activeFilter==='All') return alerts;
+    if(activeFilter==='HIGH') return alerts.filter(function(a){return a.conviction==='HIGH'});
+    if(activeFilter==='ELEVATED') return alerts.filter(function(a){return a.conviction==='ELEVATED'});
+    if(activeFilter==='3+ Signals') return alerts.filter(function(a){return parseInt(a.signal_count)>=3});
+    return alerts;
+  }
+
+  function signalClass(sig){
+    var s=sig.toLowerCase();
+    if(s==='squeeze') return 'signal-tag squeeze';
+    if(s==='insider') return 'signal-tag insider';
+    if(s==='darkpool') return 'signal-tag darkpool';
+    if(s==='smart') return 'signal-tag smart';
+    if(s.indexOf('sec')!==-1) return 'signal-tag sec';
+    return 'signal-tag';
+  }
+
+  function convictionClass(c){
+    var v=(c||'').toUpperCase();
+    if(v==='HIGH') return 'conv-high';
+    if(v==='ELEVATED') return 'conv-elevated';
+    if(v==='MODERATE') return 'conv-moderate';
+    return 'conv-low';
+  }
+
+  function scoreColorClass(s){
+    var n=parseInt(s)||0;
+    if(n>=50) return 'score-high';
+    if(n>=35) return 'score-elevated';
+    return 'score-moderate';
+  }
+
+  function renderGrid(alerts){
+    var grid = document.getElementById('alert-grid');
+    while(grid.firstChild) grid.removeChild(grid.firstChild);
+
+    alerts.forEach(function(a){
+      var card = document.createElement('div');
+      card.className = 'alert-card';
+
+      var header = document.createElement('div');
+      header.className = 'ac-header';
+      var ticker = document.createElement('span');
+      ticker.className = 'ac-ticker';
+      ticker.textContent = a.ticker;
+      var score = document.createElement('span');
+      score.className = 'ac-score ' + scoreColorClass(a.score);
+      score.textContent = a.score;
+      header.appendChild(ticker);
+      header.appendChild(score);
+      card.appendChild(header);
+
+      var badge = document.createElement('span');
+      badge.className = 'ac-conviction ' + convictionClass(a.conviction);
+      badge.textContent = a.conviction + ' CONVICTION';
+      card.appendChild(badge);
+
+      if(a.signals){
+        var sigDiv = document.createElement('div');
+        sigDiv.className = 'ac-signals';
+        a.signals.split(';').forEach(function(s){
+          if(s.trim()){
+            var tag = document.createElement('span');
+            tag.className = signalClass(s.trim());
+            tag.textContent = s.trim();
+            sigDiv.appendChild(tag);
+          }
+        });
+        card.appendChild(sigDiv);
+      }
+
+      var meta = document.createElement('div');
+      meta.className = 'ac-meta';
+      var parts = [];
+      if(a.signal_count) parts.push(a.signal_count + ' signals');
+      if(a.price) parts.push('$' + parseFloat(a.price).toFixed(2));
+      meta.textContent = parts.join(' · ');
+      card.appendChild(meta);
+
+      grid.appendChild(card);
+    });
+  }
+
+  function setText(id, val) { var n = document.getElementById(id); if (n) n.textContent = val; }
+  fetch('/api/convergence').then(function(r){return r.json()}).then(function(d){
+    allAlerts = d.alerts || [];
+    setText('c-total', allAlerts.length);
+    var high=0, elevated=0, totalScore=0;
+    allAlerts.forEach(function(a){
+      if(a.conviction==='HIGH') high++;
+      if(a.conviction==='ELEVATED') elevated++;
+      totalScore += parseInt(a.score)||0;
+    });
+    setText('c-high', high);
+    setText('c-elevated', elevated);
+    setText('c-avg', allAlerts.length ? Math.round(totalScore/allAlerts.length) : 0);
+    renderGrid(allAlerts);
+  });
+})();
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KV1VDK22VC"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-KV1VDK22VC');</script>
+<script>
+(function(){
+  var f=function(id,v){var n=document.getElementById(id); if(n && v!=null) n.textContent=v;};
+  fetch('/api/convergence').then(function(r){return r.json();}).then(function(d){
+    var alerts=(d&&d.alerts)||[];
+    var c3=0, c4=0, top=0;
+    alerts.forEach(function(a){
+      var sc=parseInt(a.signal_count||'0',10);
+      var sv=parseInt(a.score||'0',10);
+      if(sc>=3) c3++;
+      if(sc>=4) c4++;
+      if(sv>top) top=sv;
+    });
+    f('cv-3', c3.toLocaleString());
+    f('cv-4', c4.toLocaleString());
+    f('cv-top', top>0 ? String(top) : 'live');
+  }).catch(function(){});
+})();
+</script>
+</body>
+</html>

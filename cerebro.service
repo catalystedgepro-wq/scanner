@@ -1,0 +1,21 @@
+[Unit]
+Description=Cerebro FastAPI Server — Physics Engine Live Feed
+After=network.target redis-server.service
+Wants=redis-server.service
+
+[Service]
+User=root
+WorkingDirectory=/opt/catalyst
+Environment="CEREBRO_ROOT=/opt/catalyst"
+Environment="PATH=/usr/local/bin:/usr/bin:/bin"
+EnvironmentFile=-/opt/catalyst/.sec_email_env
+EnvironmentFile=-/opt/catalyst/.env
+ExecStart=/opt/cerebro-venv/bin/uvicorn api_server:app --host 0.0.0.0 --port 8000 --workers 1
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=cerebro
+
+[Install]
+WantedBy=multi-user.target

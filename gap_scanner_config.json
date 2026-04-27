@@ -1,0 +1,10 @@
+{
+  "gap_threshold_pct": 1.0,
+  "min_volume": 50000,
+  "min_vol_ratio": 1.5,
+  "fade_floor": 0.85,
+  "min_price": 0.50,
+  "max_price": 10.00,
+  "last_tuned": null,
+  "tuning_note": "Default parameters — no outcome data yet"
+}

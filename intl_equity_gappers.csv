@@ -1,0 +1,65 @@
+captured_at,ticker,market,country_full,country_iso,currency,exchange,sector_gics,listing_type,name,close,prev_close,gap_pct,volume,vol_ratio_20d,regime
+2026-04-25T03:28:48+00:00,INFY.NS,IN,India,IND,INR,NSE,Information Technology,dual_listed,Infosys,1154.6,1240.6,-6.93,42078914,2.85,explosive
+2026-04-25T03:28:48+00:00,SAP.DE,DE,Germany,DEU,EUR,XETRA,Information Technology,ordinary,SAP,140.7,149.82,-6.09,4391607,1.41,alert
+2026-04-25T03:28:48+00:00,TCS.NS,IN,India,IND,INR,NSE,Information Technology,ordinary,Tata Consultancy,2396.8999,2521.8,-4.95,5107719,1.11,alert
+2026-04-25T03:28:48+00:00,AZN.L,UK,United Kingdom,GBR,GBP,LSE,Health Care,ordinary,AstraZeneca,13956.0,14492.0,-3.7,2457044,1.16,alert
+2026-04-25T03:28:48+00:00,MGLU3.SA,BR,Brazil,BRA,BRL,B3,Consumer Discretionary,ordinary,Magazine Luiza,8.65,8.95,-3.35,9872400,0.64,alert
+2026-04-25T03:28:48+00:00,6098.T,JP,Japan,JPN,JPY,TSE,Industrials,ordinary,Recruit Holdings,7308.0,7561.0,-3.35,5591600,1.0,alert
+2026-04-25T03:28:48+00:00,7974.T,JP,Japan,JPN,JPY,TSE,Communication Services,ordinary,Nintendo,7953.0,8220.0,-3.25,14057800,1.66,tradable
+2026-04-25T03:28:48+00:00,373220.KS,KR,South Korea,KOR,KRW,KRX,Industrials,ordinary,LG Energy Solution,481000.0,466500.0,3.11,402718,0.82,alert
+2026-04-25T03:28:48+00:00,GSK.L,UK,United Kingdom,GBR,GBP,LSE,Health Care,ordinary,GSK,2020.0,2076.0,-2.7,4690234,0.64,alert
+2026-04-25T03:28:48+00:00,005930.KS,KR,South Korea,KOR,KRW,KRX,Information Technology,ordinary,Samsung Electronics,219500.0,224500.0,-2.23,19626666,0.77,alert
+2026-04-25T03:28:48+00:00,RENT3.SA,BR,Brazil,BRA,BRL,B3,Industrials,ordinary,Localiza,49.39,50.5,-2.2,5635600,0.64,alert
+2026-04-25T03:28:48+00:00,BBDC4.SA,BR,Brazil,BRA,BRL,B3,Financials,ordinary,Bradesco,19.97,20.41,-2.16,21372000,0.61,alert
+2026-04-25T03:28:48+00:00,9984.T,JP,Japan,JPN,JPY,TSE,Communication Services,ordinary,SoftBank Group,5963.0,5837.0,2.16,87686800,1.29,alert
+2026-04-25T03:28:48+00:00,AMXB.MX,MX,Mexico,MEX,MXN,BMV,Communication Services,ordinary,America Movil,23.19,22.73,2.02,46616564,0.9,alert
+2026-04-25T03:28:48+00:00,RAIL3.SA,BR,Brazil,BRA,BRL,B3,Industrials,ordinary,Rumo,15.92,16.23,-1.91,20341000,1.33,drift
+2026-04-25T03:28:48+00:00,ITUB4.SA,BR,Brazil,BRA,BRL,B3,Financials,ordinary,Itau Unibanco,44.18,45.03,-1.89,18227700,0.74,drift
+2026-04-25T03:28:48+00:00,7203.T,JP,Japan,JPN,JPY,TSE,Consumer Discretionary,ordinary,Toyota,3067.0,3123.0,-1.79,22659400,1.16,drift
+2026-04-25T03:28:48+00:00,GMEXICOB.MX,MX,Mexico,MEX,MXN,BMV,Materials,ordinary,Grupo Mexico,199.99,196.54,1.76,3858928,0.57,drift
+2026-04-25T03:28:48+00:00,CEMEXCPO.MX,MX,Mexico,MEX,MXN,BMV,Materials,ordinary,Cemex,21.48,21.86,-1.74,27301330,0.78,drift
+2026-04-25T03:28:48+00:00,ABEV3.SA,BR,Brazil,BRA,BRL,B3,Consumer Staples,ordinary,Ambev,14.74,15.0,-1.73,24139400,0.95,drift
+2026-04-25T03:28:48+00:00,BBAS3.SA,BR,Brazil,BRA,BRL,B3,Financials,ordinary,Banco do Brasil,23.0,23.4,-1.71,20207700,0.88,drift
+2026-04-25T03:28:48+00:00,6758.T,JP,Japan,JPN,JPY,TSE,Information Technology,ordinary,Sony Group,3208.0,3263.0,-1.69,14835500,1.0,drift
+2026-04-25T03:28:48+00:00,ICICIBANK.NS,IN,India,IND,INR,NSE,Financials,dual_listed,ICICI Bank,1326.2,1348.0,-1.62,14056743,0.66,drift
+2026-04-25T03:28:48+00:00,035420.KS,KR,South Korea,KOR,KRW,KRX,Communication Services,ordinary,Naver,214000.0,217500.0,-1.61,476096,0.66,drift
+2026-04-25T03:28:48+00:00,VALE3.SA,BR,Brazil,BRA,BRL,B3,Materials,ordinary,Vale,85.97,87.22,-1.43,11430000,0.62,drift
+2026-04-25T03:28:48+00:00,SUZB3.SA,BR,Brazil,BRA,BRL,B3,Materials,ordinary,Suzano,46.69,47.35,-1.39,7904500,0.91,drift
+2026-04-25T03:28:48+00:00,BAS.DE,DE,Germany,DEU,EUR,XETRA,Materials,ordinary,BASF,54.24,53.51,1.36,2610786,0.78,drift
+2026-04-25T03:28:48+00:00,0939.HK,HK,Hong Kong,HKG,HKD,HKEX,Financials,ordinary,China Construction Bank,8.95,8.83,1.36,247086931,0.94,drift
+2026-04-25T03:28:48+00:00,HSBA.L,UK,United Kingdom,GBR,GBP,LSE,Financials,ordinary,HSBC,1321.0,1338.0,-1.27,18198943,0.82,drift
+2026-04-25T03:28:48+00:00,BIMBOA.MX,MX,Mexico,MEX,MXN,BMV,Consumer Staples,ordinary,Grupo Bimbo,54.8,54.13,1.24,1465920,0.78,drift
+2026-04-25T03:28:48+00:00,RELIANCE.NS,IN,India,IND,INR,NSE,Energy,ordinary,Reliance Industries,1327.8,1343.4,-1.16,11744802,0.58,drift
+2026-04-25T03:28:48+00:00,ULVR.L,UK,United Kingdom,GBR,GBP,LSE,Consumer Staples,ordinary,Unilever,4280.5,4232.0,1.15,5116846,0.72,drift
+2026-04-25T03:28:48+00:00,LLOY.L,UK,United Kingdom,GBR,GBP,LSE,Financials,ordinary,Lloyds Banking,97.77,98.88,-1.12,126546373,0.62,drift
+2026-04-25T03:28:48+00:00,GFNORTEO.MX,MX,Mexico,MEX,MXN,BMV,Financials,ordinary,Banorte,194.62,192.53,1.09,2336159,0.36,drift
+2026-04-25T03:28:48+00:00,9988.HK,HK,Hong Kong,HKG,HKD,HKEX,Consumer Discretionary,dual_listed,Alibaba,131.8,130.4,1.07,63648525,0.77,drift
+2026-04-25T03:28:48+00:00,BMW.DE,DE,Germany,DEU,EUR,XETRA,Consumer Discretionary,ordinary,BMW,81.08,81.88,-0.98,1307477,1.38,quiet
+2026-04-25T03:28:48+00:00,SHOP.TO,CA,Canada,CAN,CAD,TSX,Information Technology,dual_listed,Shopify,171.88,170.27,0.95,1151166,0.64,quiet
+2026-04-25T03:28:48+00:00,207940.KS,KR,South Korea,KOR,KRW,KRX,Health Care,ordinary,Samsung Biologics,1528000.0,1514000.0,0.92,59422,1.2,quiet
+2026-04-25T03:28:48+00:00,NWG.L,UK,United Kingdom,GBR,GBP,LSE,Financials,ordinary,NatWest,579.4,584.6,-0.89,12684615,0.45,quiet
+2026-04-25T03:28:48+00:00,BARC.L,UK,United Kingdom,GBR,GBP,LSE,Financials,ordinary,Barclays,424.1,427.8,-0.86,61778014,1.02,quiet
+2026-04-25T03:28:48+00:00,3690.HK,HK,Hong Kong,HKG,HKD,HKEX,Consumer Discretionary,ordinary,Meituan,82.45,83.1,-0.78,36155043,0.6,quiet
+2026-04-25T03:28:48+00:00,CSL.AX,AU,Australia,AUS,AUD,ASX,Health Care,ordinary,CSL,130.0,129.0,0.78,1626734,1.28,quiet
+2026-04-25T03:28:48+00:00,SIE.DE,DE,Germany,DEU,EUR,XETRA,Industrials,ordinary,Siemens,243.4,241.65,0.72,1316819,0.95,quiet
+2026-04-25T03:28:48+00:00,CBA.AX,AU,Australia,AUS,AUD,ASX,Financials,ordinary,Commonwealth Bank,174.49,173.38,0.64,1721446,0.93,quiet
+2026-04-25T03:28:48+00:00,RIO.L,UK,United Kingdom,GBR,GBP,LSE,Materials,ordinary,Rio Tinto,7381.0,7424.0,-0.58,1047651,0.42,quiet
+2026-04-25T03:28:48+00:00,6861.T,JP,Japan,JPN,JPY,TSE,Information Technology,ordinary,Keyence,63180.0,63470.0,-0.46,735200,1.09,quiet
+2026-04-25T03:28:48+00:00,DGE.L,UK,United Kingdom,GBR,GBP,LSE,Consumer Staples,ordinary,Diageo,1469.0,1475.6,-0.45,2412488,0.34,quiet
+2026-04-25T03:28:48+00:00,SHEL.L,UK,United Kingdom,GBR,GBP,LSE,Energy,ordinary,Shell,3307.5,3293.5,0.43,6008122,0.53,quiet
+2026-04-25T03:28:48+00:00,DTE.DE,DE,Germany,DEU,EUR,XETRA,Communication Services,ordinary,Deutsche Telekom,27.53,27.42,0.4,7081136,0.86,quiet
+2026-04-25T03:28:48+00:00,0700.HK,HK,Hong Kong,HKG,HKD,HKEX,Communication Services,ordinary,Tencent,493.4,495.2,-0.36,18566187,0.84,quiet
+2026-04-25T03:28:48+00:00,BP.L,UK,United Kingdom,GBR,GBP,LSE,Energy,ordinary,BP,571.8,570.3,0.26,22417593,0.43,quiet
+2026-04-25T03:28:48+00:00,000660.KS,KR,South Korea,KOR,KRW,KRX,Information Technology,ordinary,SK Hynix,1222000.0,1225000.0,-0.24,3127857,0.73,quiet
+2026-04-25T03:28:48+00:00,PETR4.SA,BR,Brazil,BRA,BRL,B3,Energy,ordinary,Petrobras,47.77,47.67,0.21,34837100,0.63,quiet
+2026-04-25T03:28:48+00:00,B3SA3.SA,BR,Brazil,BRA,BRL,B3,Financials,ordinary,B3 Exchange,19.03,19.07,-0.21,41676200,1.06,quiet
+2026-04-25T03:28:48+00:00,FEMSAUBD.MX,MX,Mexico,MEX,MXN,BMV,Consumer Staples,ordinary,FEMSA,197.75,198.11,-0.18,938176,0.49,quiet
+2026-04-25T03:28:48+00:00,WALMEX.MX,MX,Mexico,MEX,MXN,BMV,Consumer Staples,ordinary,Walmart Mexico,54.23,54.14,0.17,19814488,0.86,quiet
+2026-04-25T03:28:48+00:00,TD.TO,CA,Canada,CAN,CAD,TSX,Financials,dual_listed,TD Bank,143.57,143.82,-0.17,4337934,0.59,quiet
+2026-04-25T03:28:48+00:00,8306.T,JP,Japan,JPN,JPY,TSE,Financials,ordinary,Mitsubishi UFJ,2755.5,2752.0,0.13,22067000,0.59,quiet
+2026-04-25T03:28:48+00:00,BHP.AX,AU,Australia,AUS,AUD,ASX,Materials,dual_listed,BHP Group,56.1,56.03,0.12,5869805,0.7,quiet
+2026-04-25T03:28:48+00:00,RY.TO,CA,Canada,CAN,CAD,TSX,Financials,dual_listed,Royal Bank of Canada,239.83,239.56,0.11,5143933,1.2,quiet
+2026-04-25T03:28:48+00:00,ALV.DE,DE,Germany,DEU,EUR,XETRA,Financials,ordinary,Allianz,390.1,389.8,0.08,653708,1.05,quiet
+2026-04-25T03:28:48+00:00,9432.T,JP,Japan,JPN,JPY,TSE,Communication Services,ordinary,NTT,151.5,151.4,0.07,176730900,1.01,quiet
+2026-04-25T03:28:48+00:00,HDFCBANK.NS,IN,India,IND,INR,NSE,Financials,ordinary,HDFC Bank,784.85,784.35,0.06,27720358,0.53,quiet
+2026-04-25T03:28:48+00:00,VOD.L,UK,United Kingdom,GBR,GBP,LSE,Communication Services,ordinary,Vodafone,116.3,116.25,0.04,28026186,0.36,quiet

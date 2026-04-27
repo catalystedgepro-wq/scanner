@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Short squeeze setup checklist: the DTC + SI + borrow-rate triple filter, with /squeeze/ as the live tool — Catalyst Edge blog</title>
+  <meta name="description" content="Most retail squeeze plays die because the trader looked at one number — short interest — and called it a setup. The professional read is a triple filter:…" />
+  <meta name="keywords" content="short squeeze setup, short squeeze checklist, days to cover, borrow rate squeeze, short interest screener, high short interest stocks" />
+  <link rel="alternate" type="application/rss+xml" title="Catalyst Edge blog" href="/blog/rss.xml" />
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/lib/admin-unlock.css" />
+  <link rel="stylesheet" href="/lib/scanner-polish.css" />
+  <link rel="stylesheet" href="/lib/nav-fix.css" />
+  <link rel="stylesheet" href="/lib/cinematic-hero.css" />
+  <link rel="stylesheet" href="/lib/cyber-shell.css" />
+  <link rel="stylesheet" href="/lib/polish-tokens.css" />
+  <link rel="canonical" href="https://catalystedgescanner.com/blog/short-squeeze-setup-checklist/" />
+  <style>
+    :root{
+      --navy:#040a14; --navy2:#0a1424; --navy3:#0e1a2e;
+      --ink:#e6f1ff; --ink-dim:#9bb0c8; --ink-mute:#6e8198;
+      --cyan:#5ad7ff; --gold:#f5c662; --bull:#5cf2a4; --bear:#ff6b8b;
+      --line:rgba(110,140,180,0.18); --line-strong:rgba(110,140,180,0.32);
+      --glass: linear-gradient(180deg, rgba(15,28,48,0.78), rgba(7,14,28,0.78));
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;background:#04070d;color:var(--ink);
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      -webkit-font-smoothing:antialiased; font-feature-settings:"ss01","cv11";
+    }
+    a{color:var(--cyan);text-decoration:none}
+    a:hover{text-decoration:underline}
+    code{font-family:"JetBrains Mono","IBM Plex Mono",ui-monospace,monospace;font-size:0.92em;background:rgba(90,215,255,0.06);padding:1px 6px;border-radius:4px;color:var(--cyan)}
+
+    .topbar{position:sticky;top:0;z-index:50;background:rgba(4,7,13,0.86);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+    .topbar-row{display:flex;align-items:center;gap:18px;padding:14px 24px;max-width:1400px;margin:0 auto}
+    .brand{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:14px;letter-spacing:0.18em;color:var(--gold);text-transform:uppercase}
+    .brand b{color:var(--cyan)}
+    nav.nav{display:flex;gap:8px;flex:1;flex-wrap:nowrap;overflow-x:auto;scroll-padding-top:80px}
+    nav.nav a{font-size:13px;color:var(--ink-dim);padding:8px 12px;border-radius:8px;white-space:nowrap}
+    nav.nav a:hover{background:rgba(90,215,255,0.08);color:var(--ink);text-decoration:none}
+    nav.nav a.active{color:var(--gold);background:rgba(245,198,98,0.08)}
+
+    /* Cinematic post hero — drawn from /lib/cinematic-hero.css tokens */
+    .post-hero{position:relative;padding:96px 0 56px;border-bottom:1px solid var(--line);overflow:hidden}
+    .post-hero::before{content:"";position:absolute;inset:0;
+      background:
+        radial-gradient(900px 500px at 18% 10%, rgba(90,215,255,0.13), transparent 60%),
+        radial-gradient(700px 400px at 82% 100%, rgba(245,198,98,0.10), transparent 65%);
+      pointer-events:none}
+    .post-hero::after{content:"";position:absolute;inset:0;
+      background-image:linear-gradient(to right,rgba(90,215,255,0.04) 1px,transparent 1px),linear-gradient(to bottom,rgba(90,215,255,0.04) 1px,transparent 1px);
+      background-size:48px 48px;mask-image:radial-gradient(closest-side at 50% 35%,#000 60%,transparent 100%);pointer-events:none}
+    .post-hero .wrap{max-width:1080px;margin:0 auto;padding:0 24px;position:relative;z-index:2}
+    .crumbs{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:0.16em;color:var(--ink-mute);text-transform:uppercase;margin-bottom:24px}
+    .crumbs a{color:var(--ink-dim)}
+    .post-eyebrow{display:inline-flex;gap:14px;align-items:center;font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:0.22em;color:var(--gold);text-transform:uppercase;margin-bottom:18px;flex-wrap:wrap}
+    .post-eyebrow .read{color:var(--ink-mute)}
+    .post-eyebrow .tag{padding:4px 12px;border-radius:6px;background:rgba(245,198,98,0.10);border:1px solid rgba(245,198,98,0.36)}
+    h1.post-title{font-size:clamp(34px,5vw,58px);line-height:1.04;letter-spacing:-0.012em;margin:0 0 22px;font-weight:700;max-width:18ch}
+    h1.post-title .glow{color:var(--cyan)}
+    .lede{font-size:19px;color:var(--ink-dim);line-height:1.55;max-width:60ch;margin:0 0 14px}
+
+    /* Article body — sticky TOC at lg+ */
+    .article-shell{display:grid;grid-template-columns:1fr;gap:48px;max-width:1080px;margin:0 auto;padding:48px 24px 56px}
+    @media (min-width: 980px) {
+      .article-shell{grid-template-columns:240px minmax(0,1fr);gap:64px;padding:56px 24px 80px}
+    }
+
+    .toc{position:sticky;top:88px;align-self:start;display:none}
+    @media (min-width: 980px) { .toc{display:block} }
+    .toc .toc-eyebrow{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:0.20em;color:var(--ink-mute);text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+    .toc ol{list-style:none;margin:0;padding:0;counter-reset:toc}
+    .toc li{counter-increment:toc;margin-bottom:6px}
+    .toc li a{display:block;font-size:13px;color:var(--ink-dim);padding:6px 0;line-height:1.4;border-left:2px solid transparent;padding-left:10px;transition:all 160ms cubic-bezier(0.16,1,0.3,1)}
+    .toc li a:hover{color:var(--cyan);border-left-color:var(--cyan);text-decoration:none}
+    .toc li a::before{content:counter(toc, decimal-leading-zero) "  ";font-family:"IBM Plex Mono",monospace;font-size:10px;color:var(--ink-mute);margin-right:6px}
+
+    article.post{max-width:760px}
+    article.post h2{margin:48px 0 14px;font-size:24px;color:var(--cyan);letter-spacing:-0.005em;line-height:1.25;scroll-margin-top:96px}
+    article.post h2:first-of-type{margin-top:0}
+    article.post h3{margin:28px 0 10px;font-size:17px;color:var(--ink);letter-spacing:-0.005em}
+    article.post p{margin:0 0 14px;color:var(--ink);font-size:16.5px;line-height:1.72}
+    article.post ul, article.post ol{margin:0 0 18px;padding-left:24px;color:var(--ink-dim);font-size:15.5px;line-height:1.72}
+    article.post ul li, article.post ol li{margin-bottom:6px}
+    article.post ul li b, article.post ol li b{color:var(--ink)}
+
+    .pull{font-size:21px;line-height:1.5;color:var(--gold);font-style:italic;
+      padding:16px 24px;border-left:3px solid var(--gold);background:rgba(245,198,98,0.06);
+      border-radius:0 12px 12px 0;margin:28px 0}
+
+    /* CTA blocks — mid-post and bottom */
+    .cta-block{margin:36px 0;padding:24px 26px;border:1px solid var(--line-strong);border-radius:14px;
+      background:linear-gradient(135deg,rgba(90,215,255,0.06),rgba(245,198,98,0.04));
+      display:flex;flex-direction:column;gap:14px}
+    .cta-block .eye{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:0.20em;color:var(--gold);text-transform:uppercase}
+    .cta-block h3{margin:0;font-size:21px;color:var(--ink);letter-spacing:-0.005em}
+    .cta-block p{margin:0;color:var(--ink-dim);font-size:14.5px;line-height:1.55}
+    .cta-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:4px}
+    .cta-pill{font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:0.16em;text-transform:uppercase;padding:10px 16px;border-radius:999px;border:1px solid var(--cyan);color:var(--cyan);transition:all 180ms cubic-bezier(0.16,1,0.3,1)}
+    .cta-pill:hover{background:rgba(90,215,255,0.12);text-decoration:none;transform:translateY(-1px)}
+    .cta-pill.primary{border-color:var(--gold);color:#04070d;background:var(--gold)}
+    .cta-pill.primary:hover{background:#ffd47a;color:#04070d}
+
+    .byline{margin-top:48px;padding-top:24px;border-top:1px dashed var(--line);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px}
+    .byline .who{font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:0.14em;color:var(--ink-mute);text-transform:uppercase}
+    .byline .who b{color:var(--ink)}
+    .byline .share{display:flex;gap:8px;flex-wrap:wrap}
+    .byline .share a{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;
+      padding:8px 12px;border-radius:8px;border:1px solid var(--line-strong);color:var(--ink-dim)}
+    .byline .share a:hover{border-color:var(--cyan);color:var(--cyan);text-decoration:none}
+
+    .related{margin-top:42px;padding:24px;border:1px solid var(--line);border-radius:14px;background:var(--glass)}
+    .related .eye{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:0.22em;color:var(--ink-mute);text-transform:uppercase;margin-bottom:14px}
+    .related ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr;gap:10px}
+    .related ul li a{display:block;padding:12px 14px;border-radius:10px;border:1px solid transparent;color:var(--ink);transition:all 160ms cubic-bezier(0.16,1,0.3,1)}
+    .related ul li a:hover{border-color:var(--cyan);background:rgba(90,215,255,0.05);text-decoration:none;transform:translateX(2px)}
+
+    footer{padding:36px 0;color:var(--ink-mute);font-size:12px;border-top:1px solid var(--line);text-align:center}
+    footer .links{display:flex;gap:14px;justify-content:center;margin-top:8px;flex-wrap:wrap}
+  </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Short squeeze setup checklist: the DTC + SI + borrow-rate triple filter, with /squeeze/ as the live tool",
+  "description": "Most retail squeeze plays die because the trader looked at one number — short interest — and called it a setup. The professional read is a triple filter:…",
+  "datePublished": "2026-04-26",
+  "dateModified": "2026-04-26",
+  "author": {"@type":"Organization","name":"Catalyst Edge Scanner","url":"https://catalystedgescanner.com"},
+  "publisher": {"@type":"Organization","name":"Catalyst Edge Scanner","url":"https://catalystedgescanner.com","logo":{"@type":"ImageObject","url":"https://catalystedgescanner.com/press/logo.png"}},
+  "url": "https://catalystedgescanner.com/blog/short-squeeze-setup-checklist/",
+  "keywords": "short squeeze setup, short squeeze checklist, days to cover, borrow rate squeeze, short interest screener, high short interest stocks"
+}
+</script>
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://catalystedgescanner.com/blog/short-squeeze-setup-checklist/" />
+  <meta property="og:title" content="Short squeeze setup checklist: the DTC + SI + borrow-rate triple filter, with /squeeze/ as the live tool" />
+  <meta property="og:description" content="Most retail squeeze plays die because the trader looked at one number — short interest — and called it a setup. The professional read is a triple filter:…" />
+  <meta property="og:image" content="https://catalystedgescanner.com/press/logo.png" />
+  <meta property="og:site_name" content="Catalyst Edge Scanner" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@catalystEdgePro" />
+  <meta name="twitter:title" content="Short squeeze setup checklist: the DTC + SI + borrow-rate triple filter, with /squeeze/ as the live tool" />
+  <meta name="twitter:description" content="Most retail squeeze plays die because the trader looked at one number — short interest — and called it a setup. The professional read is a triple filter:…" />
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-row">
+      <div class="brand"><b>Catalyst</b> · Edge</div>
+      <nav class="nav">
+        <a href="/scanner/">Scanner</a>
+        <a href="/jackpot/">Jackpot</a>
+        <a href="/insiders/">Insiders</a>
+        <a href="/squeeze/">Squeeze</a>
+        <a href="/dcf/">DCF</a>
+        <a href="/trust/">Trust</a>
+        <a href="/blog/" class="active">Blog</a>
+        <a href="/pricing/">Pricing</a>
+      </nav>
+    </div>
+  </div>
+
+  <section class="post-hero">
+    <div class="wrap">
+      <div class="crumbs"><a href="/blog/">← All posts</a></div>
+      <div class="post-eyebrow">
+        <span>SHORT SQUEEZE SETUP</span>
+        <span class="read">≈ 7 min read</span>
+        <span class="tag">Commercial</span>
+      </div>
+      <h1 class="post-title">The short squeeze setup checklist (DTC × SI × borrow-rate)</h1>
+      <p class="lede">Most retail squeeze plays die because the trader looked at one number — short interest — and called it a setup. The professional read is a <strong>triple filter</strong>: Days-to-Cover (DTC) above 5, Short Interest (SI) above 20% of float, Borrow Rate above 30% annualized. All three have to fire simultaneously. <a href="/squeeze/">/squeeze/</a> ranks every US-listed name on the triple every morning. Here's how to read it.</p>
+      <div class="cta-row" style="margin-top:22px">
+        <a class="cta-pill primary" href="/preview/?utm_source=blog&utm_campaign=short-squeeze-setup-checklist">Get the daily catalyst tape →</a>
+        <a class="cta-pill" href="/scanner/">Open /scanner/</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="article-shell">
+    <aside class="toc" aria-label="Table of contents">
+      <div class="toc-eyebrow">Sections</div>
+      <ol>
+        <li><a href="#s1">Why one number isn't a squeeze setup</a></li>
+        <li><a href="#s2">Filter 1 — Days-to-Cover (DTC) &amp;gt; 5</a></li>
+        <li><a href="#s3">Filter 2 — Short Interest &amp;gt; 20% of float</a></li>
+        <li><a href="#s4">Filter 3 — Borrow Rate &amp;gt; 30% annualized</a></li>
+        <li><a href="#s5">The catalyst trigger</a></li>
+        <li><a href="#s6">How to use /squeeze/</a></li>
+      </ol>
+    </aside>
+
+    <article class="post">
+    <h2 id="s1">Why one number isn't a squeeze setup</h2>
+    <!-- TODO: LLM-FILL · upgrade-pass when GROQ_API_KEY set -->
+    <p>Short Interest alone is a participation metric, not a setup. Tesla had 30%+ SI for years and never squeezed. The reason: high SI without a borrow constraint is just a popular short. Shorts roll the position and grind. You need the borrow side to be on fire too — that's what forces the cover.</p>
+    <p>Days-to-Cover (DTC) measures how many average daily volumes the open short interest represents. DTC above 5 means even a moderate up-move forces shorts to chase liquidity that isn't there. DTC under 3 — they cover in an afternoon and the squeeze fizzles.</p>
+    <p>Borrow Rate is the annualized cost to short. Anything above 30% APR signals the locate is scarce; above 100% APR and shorts are bleeding daily just to hold the position. That's the gunpowder.</p>
+    <div class="pull">"Short Interest alone is a popular-short metric. The triple filter is the actual squeeze setup."</div>
+
+    <h2 id="s2">Filter 1 — Days-to-Cover (DTC) &gt; 5</h2>
+    <!-- TODO: LLM-FILL · upgrade-pass when GROQ_API_KEY set -->
+    <p>Pull DTC weekly from the FINRA bi-monthly short interest report (free, public). Divide reported short interest by the 20-day average daily volume. The output is the number of trading days it would take all shorts to cover at average pace. Above 5 = squeeze candidate. Above 10 = primed gunpowder.</p>
+
+    <h2 id="s3">Filter 2 — Short Interest &gt; 20% of float</h2>
+    <!-- TODO: LLM-FILL · upgrade-pass when GROQ_API_KEY set -->
+    <p>Float-adjusted, not market-cap-adjusted. SI as a percent of tradeable float is the right denominator — insider blocks and locked stock don't matter to the short side, only the actual liquid float does. Above 20% is the participation floor.</p>
+
+    <h2 id="s4">Filter 3 — Borrow Rate &gt; 30% annualized</h2>
+    <!-- TODO: LLM-FILL · upgrade-pass when GROQ_API_KEY set -->
+    <p>Borrow rate is sourced from broker-locate desks and consolidated by services like S3 Partners and Ortex. We publish the rate on /squeeze/ refreshed daily. Above 30% APR = shorts are paying to wait. Above 100% APR = shorts are bleeding. That's when a single catalyst lights the fuse.</p>
+    <p>Why borrow rate is the most-overlooked of the three: it's not free. Most retail trackers don't surface it. The pros — Citadel, Renaissance, every prop short desk — track it in real time. The reason WSB squeezes blow up is they look at SI and DTC and miss the borrow side.</p>
+
+    <h2 id="s5">The catalyst trigger</h2>
+    <!-- TODO: LLM-FILL · upgrade-pass when GROQ_API_KEY set -->
+    <p>The triple filter is the powder. The catalyst is the spark. Without a spark, the powder sits. The two most reliable sparks for a squeeze: an 8-K Item 1.01 (material agreement, frequently M&A or partnership) or an FDA approval / Type B meeting outcome on a biotech.</p>
+    <p>Layer the triple-filter screen against the live <a href="/scanner/">/scanner/</a> catalyst feed. Any ticker showing all three squeeze rails AND a same-day catalyst is the highest-conviction setup the screener can produce. <a href="/jackpot/">/jackpot/</a> ranks convergence picks like this every morning.</p>
+
+    <h2 id="s6">How to use /squeeze/</h2>
+    <!-- TODO: LLM-FILL · upgrade-pass when GROQ_API_KEY set -->
+    <p>Open <a href="/squeeze/">/squeeze/</a> daily — the table is sorted by composite squeeze score (the geometric mean of DTC, SI%, borrow APR, normalized). Top 5 are the squeeze candidates of the day. Cross-check the catalyst column for an 8-K or 4 in the past 7 days. That's the trade.</p>
+    <p><a href="/preview/?utm_source=blog&utm_campaign=short-squeeze-setup-checklist">/preview/</a> drops you into the free tier — top 3 of /squeeze/ free, full list at $9/month. If you're paying $30/month for an Ortex subscription, this is the cheaper version with the catalyst feed bolted on.</p>
+
+      <div class="cta-block">
+        <span class="eye">Daily catalyst tape · 4 AM ET</span>
+        <h3>Get the same picks our paying readers get — free</h3>
+        <p>Top 3 of /scanner/ and /jackpot/, the audited /trust/ log, and the daily catalyst email. No drip campaigns, no upsell sequences — one note per trading day.</p>
+        <div class="cta-row">
+          <a class="cta-pill primary" href="/preview/?utm_source=blog&utm_campaign=short-squeeze-setup-checklist">Get the free tier →</a>
+          <a class="cta-pill" href="/pricing/">See Reader / Pro pricing</a>
+        </div>
+      </div>
+
+      <div class="byline">
+        <span class="who">Founder · <b>Catalyst Edge Scanner</b> · 2026-04-26</span>
+        <div class="share">
+          <a href="https://x.com/intent/tweet?url=https%3A%2F%2Fcatalystedgescanner.com%2Fblog%2Fshort-squeeze-setup-checklist%2F&text=Short%20squeeze%20setup%20checklist:%20the%20DTC%20+%20SI%20+%20borrow-rate%20triple%20filter,%20with%20/squeeze/%20as%20the%20live%20tool" target="_blank" rel="noopener">𝕏 share</a>
+          <a href="mailto:?subject=Short%20squeeze%20setup%20checklist:%20the%20DTC%20+%20SI%20+%20borrow-rate%20triple%20filter,%20with%20/squeeze/%20as%20the%20live%20tool&body=https%3A%2F%2Fcatalystedgescanner.com%2Fblog%2Fshort-squeeze-setup-checklist%2F">Email</a>
+          <a href="/blog/">← All posts</a>
+        </div>
+      </div>
+
+      <div class="related">
+        <div class="eye">Related reads</div>
+        <ul>
+          <li><a href="/blog/free-sec-catalyst-scanner/">Free SEC catalyst scanner that replaces $89/mo tools</a></li>
+          <li><a href="/blog/how-to-trade-8k-filings/">How to trade 8-K filings (the 5-form-type playbook)</a></li>
+          <li><a href="/blog/insider-buying-signal-explained/">Insider buying signal: CEO+CFO clusters explained</a></li>
+        </ul>
+      </div>
+    </article>
+  </div>
+
+  <footer>
+    Catalyst Edge Scanner · Build log · Audited 89% hit rate · Ships daily, not quarterly
+    <div class="links">
+      <a href="/scanner/">Scanner</a>
+      <a href="/changelog/">Changelog</a>
+      <a href="/trust/">Trust</a>
+      <a href="/blog/">Blog</a>
+      <a href="mailto:opensource@example.com">Contact</a>
+    </div>
+  </footer>
+
+  <script src="/lib/tier.js" defer></script>
+</body>
+</html>

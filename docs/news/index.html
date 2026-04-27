@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>News Momentum — Scored Market-Moving Headlines | Catalyst Edge</title>
+<meta name="description" content="Every market-moving headline scored by impact potential. Aggregated from MarketWatch, Bloomberg, NOAA, and 9 international newswires. Sector + event tagged.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://catalystedgescanner.com/news/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/lib/cinematic.css">
+<style>
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:30px}
+@media(max-width:880px){.stats-row{grid-template-columns:repeat(2,1fr)}}
+
+.tape-strip{position:relative;height:40px;overflow:hidden;
+  border-top:1px solid var(--ce-border);border-bottom:1px solid var(--ce-border);
+  background:rgba(7,11,17,.6);margin:30px 0 20px}
+.tape-strip::before,.tape-strip::after{content:'';position:absolute;top:0;bottom:0;width:80px;z-index:2;pointer-events:none}
+.tape-strip::before{left:0;background:linear-gradient(90deg,rgba(7,11,17,.95),transparent)}
+.tape-strip::after{right:0;background:linear-gradient(-90deg,rgba(7,11,17,.95),transparent)}
+@keyframes tapeSlide{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.tape-track{display:flex;align-items:center;gap:32px;height:100%;
+  font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--ce-muted);
+  white-space:nowrap;animation:tapeSlide 80s linear infinite;width:max-content;padding:0 24px}
+.tape-tick{display:inline-flex;gap:6px;align-items:center}
+.tape-tick .src{color:var(--ce-cyan);font-weight:600;background:rgba(114,229,255,.06);padding:2px 7px;border-radius:4px;border:1px solid rgba(114,229,255,.18)}
+.tape-tick .src.gold{color:var(--ce-gold);background:rgba(231,183,108,.06);border-color:rgba(231,183,108,.22)}
+.tape-sep{color:rgba(231,183,108,.3)}
+
+/* TIMELINE — same shape as /changelog/ */
+.timeline{position:relative;margin-top:24px;padding-left:30px}
+.timeline::before{content:'';position:absolute;left:8px;top:0;bottom:0;width:2px;
+  background:linear-gradient(180deg,var(--ce-gold) 0%,var(--ce-cyan) 50%,var(--ce-purple) 100%);
+  opacity:.5}
+.news-item{position:relative;margin-bottom:14px;padding:16px 20px 16px 18px;
+  background:rgba(12,16,24,.55);border:1px solid var(--ce-border);border-radius:10px;
+  display:grid;grid-template-columns:74px 1fr;gap:18px;align-items:start;
+  transition:all .3s}
+.news-item::before{content:'';position:absolute;left:-30px;top:22px;width:14px;height:14px;border-radius:50%;
+  background:var(--ce-cyan);box-shadow:0 0 12px var(--ce-cyan);border:3px solid var(--ce-bg)}
+.news-item.tier-1::before{background:var(--ce-gold);box-shadow:0 0 14px var(--ce-gold);
+  animation:ce-nodePulse 2.6s ease-in-out infinite}
+.news-item.score-hot::before{background:var(--ce-rose);box-shadow:0 0 14px var(--ce-rose)}
+.news-item.score-warm::before{background:var(--ce-gold);box-shadow:0 0 12px var(--ce-gold)}
+.news-item.score-cool::before{background:var(--ce-cyan);box-shadow:0 0 10px var(--ce-cyan)}
+.news-item:hover{border-color:rgba(231,183,108,.32);transform:translateX(4px)}
+
+.ni-score{font-family:'IBM Plex Mono',monospace;font-weight:800;font-size:22px;
+  text-align:center;letter-spacing:-.01em;align-self:center}
+.ni-score.score-hot{color:var(--ce-rose);text-shadow:0 0 14px rgba(244,63,94,.4)}
+.ni-score.score-warm{color:var(--ce-gold);text-shadow:0 0 12px rgba(231,183,108,.4)}
+.ni-score.score-cool{color:var(--ce-cyan);text-shadow:0 0 10px rgba(114,229,255,.32)}
+
+.ni-body{min-width:0}
+.ni-headline{font-size:15.5px;font-weight:600;color:var(--ce-text);margin-bottom:8px;line-height:1.4;
+  letter-spacing:-.005em;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.ni-headline a{color:var(--ce-text);text-decoration:none;border-bottom:1px solid rgba(255,255,255,.08);transition:all .2s}
+.ni-headline a:hover{color:var(--ce-gold);border-bottom-color:var(--ce-gold)}
+
+.ni-meta{display:flex;flex-wrap:wrap;gap:14px;align-items:center;
+  font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--ce-muted);
+  letter-spacing:.04em}
+.ni-source{color:var(--ce-cyan);text-transform:uppercase;letter-spacing:.1em}
+.ni-time{color:var(--ce-muted)}
+.ni-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.ni-tag{font-family:'IBM Plex Mono',monospace;font-size:10px;padding:2px 7px;border-radius:4px;
+  background:rgba(231,183,108,.08);border:1px solid rgba(231,183,108,.22);color:var(--ce-gold);
+  letter-spacing:.04em;text-transform:lowercase}
+.ni-tag.tier-1{background:rgba(244,63,94,.1);border-color:rgba(244,63,94,.32);color:var(--ce-rose);
+  text-transform:uppercase;font-weight:700;letter-spacing:.08em}
+.ni-tag.evt{background:rgba(114,229,255,.06);border-color:rgba(114,229,255,.22);color:var(--ce-cyan)}
+
+.compare-banner{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:40px 0}
+@media(max-width:880px){.compare-banner{grid-template-columns:1fr}}
+.cb-side{position:relative;padding:26px 26px;border-radius:14px;overflow:hidden}
+.cb-side.tier1{background:linear-gradient(180deg,rgba(244,63,94,.05),rgba(7,11,17,.86));border:1px solid rgba(244,63,94,.32)}
+.cb-side.tier1::before{content:'';position:absolute;left:0;top:0;height:3px;width:100%;background:var(--ce-rose)}
+.cb-side.cov{background:linear-gradient(180deg,rgba(16,185,129,.05),rgba(7,11,17,.86));border:1px solid rgba(16,185,129,.32)}
+.cb-side.cov::before{content:'';position:absolute;left:0;top:0;height:3px;width:100%;
+  background:linear-gradient(90deg,var(--ce-green),var(--ce-cyan))}
+.cb-side h3{font-size:16px;margin-bottom:10px;font-weight:700}
+.cb-side.tier1 h3{color:var(--ce-rose)}
+.cb-side.cov h3{color:var(--ce-green)}
+.cb-stat{font-family:'IBM Plex Mono',monospace;font-size:32px;font-weight:700;letter-spacing:-.01em;margin-bottom:8px}
+.cb-side.tier1 .cb-stat{color:var(--ce-rose)}
+.cb-side.cov .cb-stat{color:var(--ce-green)}
+.cb-detail{color:#c4cdde;font-size:13.5px;line-height:1.6}
+
+.empty-state{padding:60px 24px;text-align:center;color:var(--ce-muted);
+  font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.06em}
+.empty-state .em-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--ce-cyan);
+  margin-right:10px;animation:ce-flicker 1.6s ease-in-out infinite;box-shadow:0 0 10px var(--ce-cyan);vertical-align:middle}
+</style>
+</head>
+<body>
+
+<div class="ce-field" aria-hidden="true">
+  <div class="ce-field-orb a"></div><div class="ce-field-orb b"></div><div class="ce-field-orb c"></div>
+  <div class="ce-scanline"></div><div class="ce-scanline" style="animation-delay:-3s;opacity:.3"></div>
+  <div class="ce-vignette"></div>
+</div>
+<canvas id="ce-particles" aria-hidden="true"></canvas>
+
+<nav class="ce-nav">
+  <a href="https://catalystedge.agency/" class="ce-brand">
+    <span class="ce-brand-mark"></span>
+    <span class="ce-brand-text">CATALYST · NEWS</span>
+  </a>
+  <a href="/scanner/">Scanner</a>
+  <a href="/short-scanner/">📉 Short</a>
+  <a href="/methodology/">Methodology</a>
+  <a href="/data/api/">API</a>
+  <a href="/trust/">Trust</a>
+  <a href="/changelog/">Changelog</a>
+  <a class="ce-cta-nav" href="/scanner/">Open Scanner →</a>
+</nav>
+
+<section class="ce-hero">
+  <div class="ce-eyebrow cyan"><span class="ce-dot"></span>News Momentum · 12 country feeds · live</div>
+  <h1 class="ce-h1">Every market-moving headline,<br><span class="ce-accent">scored by impact</span>.</h1>
+  <p class="ce-lede">Aggregated from MarketWatch, Bloomberg, NOAA weather alerts, and 9 international newswires —
+  tagged by sector and event type. <strong>Tier 1 headlines</strong> are the high-impact ones our scanner uses
+  to confirm catalyst convergence.</p>
+
+  <div class="stats-row" style="max-width:900px;margin:36px auto 0">
+    <div class="ce-stat"><div class="ce-stat-k">Headlines</div><div class="ce-stat-v" id="ns-total">—</div><div class="ce-stat-sub">in current scan</div></div>
+    <div class="ce-stat"><div class="ce-stat-k">Tier 1</div><div class="ce-stat-v" id="ns-t1" style="color:var(--ce-rose)">—</div><div class="ce-stat-sub">high-impact</div></div>
+    <div class="ce-stat"><div class="ce-stat-k">Avg score</div><div class="ce-stat-v" id="ns-avg" style="color:var(--ce-green)">—</div><div class="ce-stat-sub">signal strength</div></div>
+    <div class="ce-stat"><div class="ce-stat-k">Refresh</div><div class="ce-stat-v" style="color:var(--ce-cyan)">5m</div><div class="ce-stat-sub">live cycle</div></div>
+  </div>
+</section>
+
+<!-- Source tape — scrolling marquee of feeds -->
+<div class="tape-strip" aria-hidden="true">
+  <div class="tape-track">
+    <span class="tape-tick"><span class="src">MarketWatch</span></span><span class="tape-sep">◆</span>
+    <span class="tape-tick"><span class="src">Bloomberg</span></span><span class="tape-sep">◆</span>
+    <span class="tape-tick"><span class="src">NOAA</span><span>weather alerts</span></span><span class="tape-sep">◆</span>
+    <span class="tape-tick"><span class="src gold">RNS</span><span>UK</span></span><span class="tape-sep">◆</span>
+    <span class="tape-tick"><span class="src">ASX</span><span>Australia</span></span><span class="tape-sep">◆</span>
+    <span class="tape-tick"><span class="src gold">HKEX</span><span>Hong Kong</span></span><span class="tape-sep">◆</span>
+    <span class="tape-tick"><span class="src">TDnet</span><span>Japan</span></span><span class="tape-sep">◆</span>
+    <span class="tape-tick"><span class="src">CVM</span><span>Brazil</span></span><span class="tape-sep">◆</span>
+    <span class="tape-tick"><span class="src gold">KIND</span><span>South Korea</span></span><span class="tape-sep">◆</span>
+    <span class="tape-tick"><span class="src">NSE</span><span>India</span></span><span class="tape-sep">◆</span>
+    <span class="tape-tick"><span class="src">BMV</span><span>Mexico</span></span><span class="tape-sep">◆</span>
+    <span class="tape-tick"><span class="src gold">SGX</span><span>Singapore</span></span><span class="tape-sep">◆</span>
+    <span class="tape-tick"><span class="src">TWSE</span><span>Taiwan</span></span><span class="tape-sep">◆</span>
+    <span class="tape-tick"><span class="src gold">BaFin</span><span>Germany</span></span><span class="tape-sep">◆</span>
+    <!-- duplicate for seamless loop -->
+    <span class="tape-tick"><span class="src">MarketWatch</span></span><span class="tape-sep">◆</span>
+    <span class="tape-tick"><span class="src">Bloomberg</span></span><span class="tape-sep">◆</span>
+    <span class="tape-tick"><span class="src">NOAA</span><span>weather alerts</span></span><span class="tape-sep">◆</span>
+    <span class="tape-tick"><span class="src gold">RNS</span><span>UK</span></span><span class="tape-sep">◆</span>
+    <span class="tape-tick"><span class="src">ASX</span><span>Australia</span></span><span class="tape-sep">◆</span>
+    <span class="tape-tick"><span class="src gold">HKEX</span><span>Hong Kong</span></span><span class="tape-sep">◆</span>
+    <span class="tape-tick"><span class="src">TDnet</span><span>Japan</span></span><span class="tape-sep">◆</span>
+    <span class="tape-tick"><span class="src">CVM</span><span>Brazil</span></span><span class="tape-sep">◆</span>
+    <span class="tape-tick"><span class="src gold">KIND</span><span>South Korea</span></span><span class="tape-sep">◆</span>
+    <span class="tape-tick"><span class="src">NSE</span><span>India</span></span><span class="tape-sep">◆</span>
+    <span class="tape-tick"><span class="src">BMV</span><span>Mexico</span></span><span class="tape-sep">◆</span>
+    <span class="tape-tick"><span class="src gold">SGX</span><span>Singapore</span></span><span class="tape-sep">◆</span>
+    <span class="tape-tick"><span class="src">TWSE</span><span>Taiwan</span></span><span class="tape-sep">◆</span>
+    <span class="tape-tick"><span class="src gold">BaFin</span><span>Germany</span></span>
+  </div>
+</div>
+
+<section class="ce-section">
+  <div class="ce-chapter">
+    <div class="ce-chapter-num">CHAPTER 01</div>
+    <h2 class="ce-h2">How impact is <span class="ce-accent">scored</span>.</h2>
+  </div>
+  <div class="compare-banner">
+    <div class="cb-side tier1">
+      <h3>🔴 Tier 1 · high impact</h3>
+      <div class="cb-stat">≥ 15</div>
+      <div class="cb-detail">Catalyst-grade. Earnings surprises, M&amp;A announcements, FDA decisions, central bank policy shifts.
+      The scanner uses these to confirm convergence with SEC filing signals.</div>
+    </div>
+    <div class="cb-side cov">
+      <h3>🟢 Coverage</h3>
+      <div class="cb-stat">12 countries</div>
+      <div class="cb-detail">US (MarketWatch + Bloomberg + NOAA) plus 9 international newswires
+      (UK · Australia · HK · Japan · Brazil · Korea · India · Mexico · Singapore · Taiwan · Germany).
+      ~1,500 headlines/day.</div>
+    </div>
+  </div>
+</section>
+
+<section class="ce-section">
+  <div class="ce-chapter">
+    <div class="ce-chapter-num">CHAPTER 02</div>
+    <h2 class="ce-h2">Today's <span class="ce-accent">tape</span>.</h2>
+  </div>
+  <p style="color:#c4cdde;font-size:15px;line-height:1.6;max-width:680px;margin-bottom:20px">
+    Newest first. Each entry: score · headline · source · sector + event tags.
+    <strong style="color:var(--ce-rose)">Red dots</strong> = score ≥ 15 (catalyst-grade).
+    <strong style="color:var(--ce-gold)">Gold dots</strong> = 10–14 (warm).
+    <strong style="color:var(--ce-cyan)">Cyan dots</strong> = below 10 (cool watch).
+  </p>
+
+  <div class="timeline" id="news-list">
+    <div class="empty-state"><span class="em-dot"></span>Loading scored headlines from the live feed…</div>
+  </div>
+</section>
+
+<section class="ce-finale">
+  <h2 class="ce-h2">News momentum, <span class="ce-accent">before the bell</span>.</h2>
+  <p>Free daily email at 4 AM ET — scored headlines, SEC catalysts, and convergence alerts.
+  Edge Reader unlocks the live filter; Edge Pro adds Telegram + Discord push.</p>
+  <div style="display:inline-flex;gap:14px;flex-wrap:wrap;justify-content:center">
+    <a class="ce-btn ce-btn-primary" href="/preview/">Subscribe Free <span class="ce-arrow">→</span></a>
+    <a class="ce-btn ce-btn-ghost" href="/scanner/">Open the Scanner <span class="ce-arrow">→</span></a>
+  </div>
+  <div class="ce-finale-sub">12 country feeds · 1,500+ headlines/day · 5-min refresh · always free preview</div>
+</section>
+
+<footer class="ce-footer">
+  <div class="ce-links">
+    <a href="https://catalystedge.agency/">Home</a>
+    <a href="/scanner/">Scanner</a>
+    <a href="/short-scanner/">Short</a>
+    <a href="/methodology/">Methodology</a>
+    <a href="/changelog/">Changelog</a>
+    <a href="/data/api/">API</a>
+    <a href="/trust/">Trust</a>
+    <a href="/glossary/">Glossary</a>
+    <a href="/pricing/">Pricing</a>
+  </div>
+  <div class="ce-copy">
+    Catalyst Edge News Momentum · 12 country feeds · 1,500+ headlines/day · scored by impact potential.
+    Aggregated from public newswires. Not financial advice.
+  </div>
+</footer>
+
+<script>
+(function(){
+  function timeAgo(iso){
+    if(!iso) return '';
+    var d = new Date(iso); var now = new Date();
+    var diff = Math.floor((now-d)/60000);
+    if(diff<1) return 'just now';
+    if(diff<60) return diff+'m ago';
+    if(diff<1440) return Math.floor(diff/60)+'h ago';
+    return Math.floor(diff/1440)+'d ago';
+  }
+  function setText(id, v){ var n=document.getElementById(id); if(n) n.textContent=(v==null?'—':String(v)); }
+
+  fetch('/api/news', {cache:'no-store'}).then(function(r){return r.json()}).then(function(d){
+    var signals = d.signals || [];
+    setText('ns-total', signals.length);
+    var t1=0, totalScore=0;
+    signals.forEach(function(s){
+      if(String(s.tier)==='1') t1++;
+      totalScore += parseFloat(s.news_score||0);
+    });
+    setText('ns-t1', t1);
+    setText('ns-avg', signals.length ? (totalScore/signals.length).toFixed(1) : '0');
+
+    var list = document.getElementById('news-list');
+    list.replaceChildren();
+
+    if(!signals.length){
+      var empty = document.createElement('div');
+      empty.className = 'empty-state';
+      var dot = document.createElement('span'); dot.className='em-dot'; empty.appendChild(dot);
+      empty.appendChild(document.createTextNode('No headlines in the current scan window — clean tape.'));
+      list.appendChild(empty);
+      return;
+    }
+
+    signals.forEach(function(s){
+      var sc = parseFloat(s.news_score||0);
+      var scoreClass = sc>=15?'score-hot':sc>=10?'score-warm':'score-cool';
+      var tier1 = String(s.tier)==='1';
+
+      var item = document.createElement('div');
+      item.className = 'news-item ' + scoreClass + (tier1 ? ' tier-1' : '');
+
+      var scoreDiv = document.createElement('div');
+      scoreDiv.className = 'ni-score ' + scoreClass;
+      scoreDiv.textContent = sc.toFixed(1);
+      item.appendChild(scoreDiv);
+
+      var body = document.createElement('div');
+      body.className = 'ni-body';
+
+      var headline = document.createElement('div');
+      headline.className = 'ni-headline';
+      if(s.link){
+        var a = document.createElement('a');
+        a.href = s.link;
+        a.target = '_blank';
+        a.rel = 'noopener nofollow';
+        a.textContent = s.headline||'Untitled';
+        headline.appendChild(a);
+      } else {
+        headline.textContent = s.headline||'Untitled';
+      }
+      body.appendChild(headline);
+
+      var meta = document.createElement('div');
+      meta.className = 'ni-meta';
+      var src = document.createElement('span');
+      src.className = 'ni-source';
+      src.textContent = (s.source||'unknown').replace(/_/g,' ');
+      meta.appendChild(src);
+      if(s.published_utc){
+        var time = document.createElement('span');
+        time.className = 'ni-time';
+        time.textContent = timeAgo(s.published_utc);
+        meta.appendChild(time);
+      }
+      body.appendChild(meta);
+
+      var tagsRow = document.createElement('div');
+      tagsRow.className = 'ni-tags';
+      if(tier1){
+        var tt = document.createElement('span'); tt.className='ni-tag tier-1'; tt.textContent='Tier 1'; tagsRow.appendChild(tt);
+      }
+      var sectorRaw = s.sector || s.sector_tag || '';
+      if(sectorRaw){
+        String(sectorRaw).split(/[;,]/).slice(0,3).forEach(function(t){
+          t = t.trim(); if(!t) return;
+          var span = document.createElement('span'); span.className='ni-tag'; span.textContent=t.toLowerCase();
+          tagsRow.appendChild(span);
+        });
+      }
+      var eventRaw = s.event_type || s.event_tag || '';
+      if(eventRaw){
+        String(eventRaw).split(/[;,]/).slice(0,2).forEach(function(t){
+          t = t.trim(); if(!t) return;
+          var span = document.createElement('span'); span.className='ni-tag evt'; span.textContent=t.toLowerCase();
+          tagsRow.appendChild(span);
+        });
+      }
+      if(tagsRow.children.length){ body.appendChild(tagsRow); }
+
+      item.appendChild(body);
+      list.appendChild(item);
+    });
+  }).catch(function(e){
+    var list = document.getElementById('news-list');
+    if(!list) return;
+    list.replaceChildren();
+    var empty = document.createElement('div');
+    empty.className = 'empty-state';
+    empty.style.color = 'var(--ce-rose)';
+    empty.appendChild(document.createTextNode('Could not load news feed — ' + (e.message||'fetch failed')));
+    list.appendChild(empty);
+  });
+})();
+</script>
+<script src="/lib/cinematic.js"></script>
+</body>
+</html>

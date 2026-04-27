@@ -1,0 +1,17 @@
+# Catalyst Edge Scanner refresh contract (America/New_York)
+# Install this file to /etc/cron.d/cerebro-scanner.
+SHELL=/bin/bash
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+CRON_TZ=America/New_York
+
+# Full premarket pipeline: scanner build, verification, free newsletter, and marketing distribution.
+0 3 * * 1-5 root cd /opt/catalyst && CEREBRO_RUN_MODE=daily ./run_daily_sec_catalyst.sh >> /var/log/catalyst.log 2>&1
+
+# Premium newsletter runs separately against the same freshly-built artifact surface.
+40 3 * * 1-5 root cd /opt/catalyst && ./send_premium_newsletter.sh >> /var/log/catalyst.log 2>&1
+
+# Free/public newsletter retry window if the primary daily send did not complete cleanly.
+5 4 * * 1-5 root cd /opt/catalyst && ./send_free_newsletter.sh >> /var/log/catalyst.log 2>&1
+
+# Public Scanner-only refreshes during market hours. Safe mode: updates site + manifest, then exits before git/newsletter/social work.
+5 10-16 * * 1-5 root cd /opt/catalyst && CEREBRO_RUN_MODE=intraday ./run_daily_sec_catalyst.sh >> /var/log/catalyst.log 2>&1

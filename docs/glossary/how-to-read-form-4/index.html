@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How to Read SEC Form 4: Insider Buying & Selling Explained | Catalyst Edge</title>
+<meta name="description" content="Learn how to read SEC Form 4 insider transaction filings. Understand insider buying vs selling, cluster buys as bullish signals, and how Catalyst Edge tracks insider activity automatically.">
+<link rel="canonical" href="https://catalystedgescanner.com/glossary/how-to-read-form-4/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is SEC Form 4?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "SEC Form 4 is a filing that corporate insiders — officers, directors, and shareholders owning more than 10% of a company — must submit within two business days of buying or selling company stock. It provides public transparency into insider transactions."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is insider buying a bullish signal?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, insider buying is generally considered a bullish signal. Insiders have the deepest knowledge of their company's prospects. When they spend their own money buying shares on the open market, it suggests they believe the stock is undervalued. Cluster buying — multiple insiders buying within a short window — is an even stronger signal."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between insider buying and insider selling?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Insider buying (open-market purchases) is almost always a conviction signal — insiders are risking their own money. Insider selling is more nuanced: it can indicate bearishness, but insiders also sell for routine reasons like diversification, tax planning, or pre-planned 10b5-1 schedules. Context matters."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is cluster insider buying?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Cluster buying occurs when three or more insiders at the same company buy shares within a 14-day window. Academic research shows that cluster buying is one of the strongest predictive signals for future stock outperformance, because it represents consensus conviction among people with the best information about the company."
+      }
+    }
+  ]
+}
+</script>
+<style>
+:root {
+  --bg: #05060b;
+  --surface: #0c1018;
+  --surface2: #12161f;
+  --surface3: #181d28;
+  --border: rgba(114,229,255,0.12);
+  --border-accent: rgba(215,180,106,0.22);
+  --text: #e8edf4;
+  --muted: #7a8899;
+  --cyan: #72e5ff;
+  --gold: #e7b76c;
+  --green: #10b981;
+  --red: #f43f5e;
+  --purple: #a78bfa;
+  --blue: #38bdf8;
+  --navy: #07111a;
+}
+* { box-sizing: border-box; margin: 0; padding: 0 }
+html { scroll-behavior: smooth }
+body {
+  font-family: 'Space Grotesk', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(114,229,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(114,229,255,0.025) 1px, transparent 1px);
+  background-size: 56px 56px;
+  opacity: 0.3;
+}
+.wrap { max-width: 800px; margin: 0 auto; padding: 0 24px }
+a { color: var(--cyan); text-decoration: none }
+a:hover { text-decoration: underline }
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--border);
+}
+.nav-brand {
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 2px;
+  color: var(--gold);
+}
+.nav-links { display: flex; gap: 28px; }
+.nav-links a {
+  font-size: 13px;
+  color: var(--muted);
+  letter-spacing: 0.5px;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--text); text-decoration: none }
+
+.hero {
+  padding: 72px 0 24px;
+  text-align: center;
+}
+.hero-badge {
+  display: inline-block;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--cyan);
+  border: 1px solid rgba(114,229,255,0.2);
+  padding: 6px 16px;
+  border-radius: 20px;
+  margin-bottom: 24px;
+}
+.hero h1 {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -1px;
+  margin-bottom: 16px;
+}
+.hero h1 span { color: var(--gold) }
+.hero p {
+  color: var(--muted);
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.article { padding: 48px 0 }
+.article h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 40px 0 16px;
+  letter-spacing: -0.5px;
+}
+.article h2:first-child { margin-top: 0 }
+.article h2 span { color: var(--cyan) }
+.article h3 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin: 28px 0 12px;
+  color: var(--gold);
+}
+.article p {
+  color: var(--muted);
+  font-size: 15px;
+  margin-bottom: 16px;
+  line-height: 1.75;
+}
+.article ul, .article ol {
+  color: var(--muted);
+  font-size: 15px;
+  margin: 0 0 16px 20px;
+  line-height: 1.75;
+}
+.article li { margin-bottom: 6px }
+.article strong { color: var(--text); font-weight: 600 }
+
+.callout {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--gold);
+  border-radius: 8px;
+  padding: 20px 24px;
+  margin: 24px 0;
+}
+.callout p { margin-bottom: 0 }
+.callout .label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+
+.signal-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  margin: 20px 0 24px;
+}
+.signal-table th {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--cyan);
+  padding: 12px 10px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+.signal-table td {
+  padding: 10px;
+  border-bottom: 1px solid rgba(114,229,255,0.05);
+  color: var(--muted);
+}
+.signal-table tr:hover td { background: rgba(114,229,255,0.02) }
+.bullish { color: var(--green); font-weight: 600 }
+.bearish { color: var(--red); font-weight: 600 }
+.neutral { color: var(--muted) }
+
+.cta-section {
+  text-align: center;
+  padding: 48px 0;
+  border-top: 1px solid var(--border);
+}
+.cta-section h2 {
+  font-size: 1.6rem;
+  margin-bottom: 12px;
+}
+.cta-section p {
+  color: var(--muted);
+  font-size: 14px;
+  max-width: 500px;
+  margin: 0 auto 24px;
+}
+.cta-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.cta-btn {
+  display: inline-block;
+  text-align: center;
+  padding: 14px 36px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  transition: all 0.2s;
+  text-decoration: none;
+  cursor: pointer;
+}
+.cta-btn.cyan-fill {
+  background: linear-gradient(135deg, var(--cyan), #38a0d0);
+  color: var(--bg);
+  border: none;
+}
+.cta-btn.cyan-fill:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px rgba(114,229,255,0.3);
+  text-decoration: none;
+}
+.cta-btn.outline {
+  border: 1px solid var(--border);
+  color: var(--text);
+  background: transparent;
+}
+.cta-btn.outline:hover {
+  border-color: var(--cyan);
+  background: rgba(114,229,255,0.05);
+  text-decoration: none;
+}
+.cta-btn.filled {
+  background: linear-gradient(135deg, var(--gold), #c9923b);
+  color: var(--bg);
+  border: none;
+}
+.cta-btn.filled:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px rgba(215,180,106,0.3);
+  text-decoration: none;
+}
+
+.tip-section {
+  text-align: center;
+  padding: 48px 0;
+  border-top: 1px solid var(--border);
+}
+.tip-section h3 {
+  font-size: 1.3rem;
+  margin-bottom: 12px;
+}
+.tip-section p {
+  color: var(--muted);
+  font-size: 14px;
+  max-width: 500px;
+  margin: 0 auto 20px;
+}
+.tip-btn {
+  display: inline-block;
+  padding: 12px 32px;
+  border: 1px solid var(--border-accent);
+  border-radius: 8px;
+  color: var(--gold);
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+.tip-btn:hover {
+  background: rgba(215,180,106,0.08);
+  border-color: var(--gold);
+  text-decoration: none;
+}
+
+.footer {
+  text-align: center;
+  padding: 40px 0;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 12px;
+}
+.footer a { color: var(--cyan) }
+.footer-links { margin-bottom: 8px }
+.footer-links a { margin: 0 12px }
+</style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@800;900&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/lib/cinematic-hero.css">
+  <link rel="stylesheet" href="/lib/cyber-shell.css">
+  <link rel="stylesheet" href="/lib/polish-tokens.css">
+</head>
+<body>
+  <div class="cy-bg" aria-hidden="true"></div>
+  <div class="cy-floor" aria-hidden="true"></div>
+  <div class="cy-vignette" aria-hidden="true"></div>
+  <div class="cy-scan" aria-hidden="true"></div>
+<div class="wrap">
+
+<nav class="nav">
+  <a href="/" class="nav-brand">CATALYST EDGE</a>
+  <div class="nav-links">
+    <a href="/scanner/">Scanner</a>
+    <a href="/cerebro/">Cerebro</a>
+    <a href="/cerebro/app/">HUD</a>
+    <a href="/pricing/">Pricing</a>
+  </div>
+</nav>
+
+<section class="cin-hero cy-neon-hero cy-narrow cy-shimmer">
+    <div class="cin-grid">
+      <div class="cin-stat-stack">
+        <div class="cin-eyebrow"><span class="cin-live-dot"></span>FORM 4 · DEEP READ · LIVE</div>
+        <div class="cin-colossal">
+          <div class="cin-num-row"><span class="cin-num">Form 4</span></div>
+          <div class="cin-side">
+          <span class="cin-tag">transaction <b>codes</b></span>
+          <span class="cin-tag">direct vs indirect</span>
+          <span class="cin-tag">10b5-1 flag</span>
+          </div>
+        </div>
+        <div class="cin-stamp">GLOSSARY · HOW TO READ FORM 4 · v1.0 · <b>LIVE</b></div>
+      </div>
+      <div class="cin-h1-block">
+        <div class="cin-h1-eyebrow">📚 How to Read Form 4</div>
+        <h1 class="cin-headline"><em>Step by step</em>—the <span class="cin-accent">fields that actually matter</span>.</h1>
+        <p class="cin-lede">The Form 4 fields most traders ignore: transaction code, ownership-form direct vs indirect, plan vs open-market. Read this once and you'll never misread an insider filing again.</p>
+        <div class="cin-cta-row">
+          <a href="#article-body" class="cin-btn-primary">Read article ↓</a>
+          <a href="/glossary/" class="cin-btn-ghost">Glossary index</a>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+<article class="article">
+
+  <h2>What is <span>Form 4?</span></h2>
+
+  <p>SEC Form 4 is the disclosure form that corporate insiders must file whenever they buy or sell shares of their own company's stock. "Insiders" under SEC rules include <strong>officers</strong> (CEO, CFO, COO), <strong>directors</strong> (board members), and <strong>beneficial owners</strong> holding more than 10% of the company's shares.</p>
+
+  <p>The filing deadline is tight: insiders must submit Form 4 within <strong>two business days</strong> of the transaction. That speed makes Form 4 one of the most timely signals available to retail traders. By the time a quarterly 13F filing reveals what a hedge fund bought three months ago, the trade is ancient history. Form 4 gives you the data in 48 hours.</p>
+
+  <p>Every Form 4 is publicly available on EDGAR the moment it's accepted. The filing shows who traded, what they traded, how many shares, at what price, and whether it was a purchase, sale, or option exercise.</p>
+
+  <h2>How to <span>Interpret</span> the Filing</h2>
+
+  <h3>The Key Fields</h3>
+
+  <p>When you open a Form 4 on EDGAR, focus on these fields:</p>
+
+  <ul>
+    <li><strong>Reporting Person:</strong> Who is the insider? The CEO buying $2M of stock carries more weight than a director buying $15K. Titles matter.</li>
+    <li><strong>Transaction Code:</strong> "P" means open-market purchase (bullish). "S" means open-market sale. "A" means an award or grant (often routine). "M" means option exercise (context-dependent).</li>
+    <li><strong>Shares Transacted:</strong> Size relative to the insider's existing position is more important than the absolute number. A CEO doubling their position is a stronger signal than a board member adding 1%.</li>
+    <li><strong>Price Per Share:</strong> Compare to the current market price. Are they buying at the current price? Near 52-week lows? After a recent drop? The context tells the story.</li>
+    <li><strong>Ownership Nature:</strong> Direct ownership (the insider personally holds the shares) is a stronger signal than indirect ownership (through a trust, family member, or entity).</li>
+  </ul>
+
+  <h3>Insider Buying vs. Selling: The Asymmetry</h3>
+
+  <p>This is the single most important concept in Form 4 analysis: <strong>buying and selling are not symmetric signals.</strong></p>
+
+  <table class="signal-table">
+    <thead>
+      <tr>
+        <th>Signal</th>
+        <th>Meaning</th>
+        <th>Strength</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Open-market purchase (P)</td>
+        <td>Insider is spending their own money. Almost always a conviction signal.</td>
+        <td class="bullish">STRONG BULLISH</td>
+      </tr>
+      <tr>
+        <td>Cluster buying (3+ insiders)</td>
+        <td>Multiple insiders buying within 14 days. Consensus conviction.</td>
+        <td class="bullish">VERY STRONG BULLISH</td>
+      </tr>
+      <tr>
+        <td>Open-market sale (S)</td>
+        <td>Could be bearish, but often routine: diversification, taxes, 10b5-1 plans.</td>
+        <td class="neutral">CONTEXT-DEPENDENT</td>
+      </tr>
+      <tr>
+        <td>Large-block insider sale</td>
+        <td>Insider selling a significant portion of holdings outside a 10b5-1 plan.</td>
+        <td class="bearish">BEARISH</td>
+      </tr>
+      <tr>
+        <td>Option exercise + immediate sale</td>
+        <td>Cashless exercise. Usually routine compensation, not a directional signal.</td>
+        <td class="neutral">LOW SIGNAL</td>
+      </tr>
+      <tr>
+        <td>Option exercise + hold</td>
+        <td>Insider exercised options and kept the shares. Bullish on future price.</td>
+        <td class="bullish">MODERATE BULLISH</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>There's a Wall Street saying: <em>"Insiders sell for many reasons, but they only buy for one."</em> That reason is conviction that the stock is going higher. When a CEO writes a personal check for $500K in company stock, they're not doing it for tax planning.</p>
+
+  <h2>Cluster Buying: <span>The Ultimate</span> Insider Signal</h2>
+
+  <p>A single insider buying shares is interesting. <strong>Three or more insiders buying within a 14-day window</strong> is a pattern that academic research has consistently linked to future outperformance.</p>
+
+  <p>Cluster buying works because it represents <strong>independent conviction from multiple people with asymmetric information</strong>. The CEO, the CFO, and a board member all independently decided the stock is cheap enough to buy with their own money. They each see different slices of the business &mdash; operations, financials, strategy &mdash; and they all reached the same conclusion.</p>
+
+  <div class="callout">
+    <div class="label">CLUSTER BUY EXAMPLE</div>
+    <p>Over a 10-day span in March, a small-cap company's CEO purchases $340K in shares, the CFO buys $125K, and two directors each buy $50K+. The stock was trading near 52-week lows after a sector-wide selloff. Within 60 days, the stock rallied 45% as the next earnings report confirmed the insiders' conviction. <strong>Catalyst Edge flagged this cluster on Day 2.</strong></p>
+  </div>
+
+  <h3>How to Spot Cluster Buys</h3>
+
+  <p>Manually tracking cluster buys is tedious. You'd need to monitor every Form 4 filing on EDGAR, cross-reference insiders by company, track the rolling 14-day window, and filter out option exercises and routine compensation. This is exactly the kind of signal that's impossible to catch by hand but trivial for software.</p>
+
+  <p>Catalyst Edge's scanner automatically detects cluster buying patterns and elevates them in the daily newsletter with a dedicated "CLUSTER" tag. When a cluster buy aligns with other signals &mdash; a positive <a href="/glossary/what-is-8k/">8-K filing</a>, elevated short interest, or unusual options activity &mdash; the system fires a <a href="/glossary/convergence-alerts/">convergence alert</a>.</p>
+
+  <h2>Common <span>Mistakes</span> to Avoid</h2>
+
+  <ul>
+    <li><strong>Treating all insider sales as bearish.</strong> Most insider selling is routine. Look for 10b5-1 plan disclosures (pre-scheduled sales) before drawing conclusions.</li>
+    <li><strong>Ignoring the insider's title.</strong> A CEO's purchase carries more signal than a director's. The CEO has the most complete picture of the company's trajectory.</li>
+    <li><strong>Looking at absolute share counts.</strong> An insider buying 10,000 shares of a $2 stock ($20K total) is not the same signal as buying 10,000 shares of a $200 stock ($2M total). Dollar value and percentage of holdings matter.</li>
+    <li><strong>Missing the timing context.</strong> Insider buying after a stock has already rallied 50% is weaker than buying after a 40% decline. The best signal comes when insiders buy into weakness.</li>
+  </ul>
+
+  <h2>How <span>Catalyst Edge</span> Tracks Form 4</h2>
+
+  <p>Our pipeline monitors EDGAR for new Form 4 filings daily, parsing each filing to extract the transaction code, dollar value, insider title, and whether the transaction falls within a cluster window. The scanner cross-references every Form 4 with the company's current short interest, recent 8-K filings, and sector momentum to build a composite catalyst score.</p>
+
+  <p>High-scoring insider buys &mdash; especially cluster patterns &mdash; are surfaced in the daily newsletter with full context: who bought, how much, at what price, and what other signals are active on the same ticker. You get the signal without having to parse a single EDGAR page yourself.</p>
+
+</article>
+
+<section class="cta-section">
+  <h2>Never miss another insider cluster buy.</h2>
+  <p>Catalyst Edge detects Form 4 cluster buying patterns automatically and delivers them to your inbox before the market opens.</p>
+  <div class="cta-buttons">
+    <a href="https://catalystedge.agency" class="cta-btn cyan-fill">Subscribe Free</a>
+    <a href="/scanner/" class="cta-btn outline">Open Scanner</a>
+    <a href="/pricing/" class="cta-btn filled">See Pricing</a>
+  </div>
+</section>
+
+<section class="tip-section">
+  <h3>Love the free tools? Buy us a coffee.</h3>
+  <p>Catalyst Edge is indie-built. Every dollar goes directly to data feeds, servers, and making the scanner faster. No VC, no ads, just us building.</p>
+  <a href="https://ko-fi.com/catalystedge" class="tip-btn" target="_blank" rel="noopener">Support on Ko-fi</a>
+</section>
+
+<footer class="footer">
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="/scanner/">Scanner</a>
+    <a href="/cerebro/">Cerebro</a>
+    <a href="/cerebro/app/">HUD</a>
+    <a href="/pricing/">Pricing</a>
+    <a href="https://catalystedge.agency">Newsletter</a>
+    <a href="https://www.catalystedge.agency/">Catalyst AI</a>
+  </div>
+  <p>&copy; 2026 Catalyst Edge. Built indie. No VC. No ads. Just signal.</p>
+</footer>
+
+</div>
+</body>
+</html>

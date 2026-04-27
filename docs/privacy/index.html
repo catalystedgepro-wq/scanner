@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Privacy Policy — Catalyst Edge Scanner</title>
+  <meta name="description" content="Short-form, plain-English, GDPR-aligned privacy policy for Catalyst Edge Scanner. What we collect, why, retention, your rights." />
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/lib/admin-unlock.css" />
+  <link rel="stylesheet" href="/lib/scanner-polish.css" />
+  <link rel="stylesheet" href="/lib/nav-fix.css" />
+  <style>
+    :root{
+      --navy:#040a14; --navy2:#0a1424; --navy3:#0e1a2e;
+      --ink:#e6f1ff; --ink-dim:#9bb0c8; --ink-mute:#6e8198;
+      --cyan:#5ad7ff; --gold:#f5c662; --bull:#5cf2a4; --bear:#ff6b8b;
+      --line:rgba(110,140,180,0.18); --line-strong:rgba(110,140,180,0.32);
+      --glass: linear-gradient(180deg, rgba(15,28,48,0.78), rgba(7,14,28,0.78));
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;background:#04070d;color:var(--ink);
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      -webkit-font-smoothing:antialiased; font-feature-settings:"ss01","cv11";
+    }
+    a{color:var(--cyan);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+    code{font-family:"JetBrains Mono","IBM Plex Mono",ui-monospace,monospace;font-size:0.92em;background:rgba(90,215,255,0.06);padding:1px 6px;border-radius:4px;color:var(--cyan)}
+
+    .topbar{position:sticky;top:0;z-index:50;background:rgba(4,7,13,0.86);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+    .topbar-row{display:flex;align-items:center;gap:18px;padding:14px 24px;max-width:1400px;margin:0 auto}
+    .brand{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:14px;letter-spacing:0.18em;color:var(--gold);text-transform:uppercase}
+    .brand b{color:var(--cyan)}
+    nav.nav{display:flex;gap:8px;flex:1;flex-wrap:nowrap;overflow-x:auto;scroll-padding-top:80px}
+    nav.nav a{font-size:13px;color:var(--ink-dim);padding:8px 12px;border-radius:8px;white-space:nowrap}
+    nav.nav a:hover{background:rgba(90,215,255,0.08);color:var(--ink);text-decoration:none}
+    nav.nav a.active{color:var(--gold);background:rgba(245,198,98,0.08)}
+
+    .hero{padding:56px 0 36px;border-bottom:1px solid var(--line);position:relative;overflow:hidden}
+    .hero::before{content:"";position:absolute;inset:0;
+      background:radial-gradient(700px 360px at 30% 20%, rgba(90,215,255,0.10), transparent 60%);pointer-events:none}
+    .hero .wrap{position:relative}
+    .eyebrow{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:0.22em;color:var(--gold);text-transform:uppercase;margin-bottom:14px}
+    .h1{font-size:clamp(32px,5vw,52px);line-height:1.05;letter-spacing:-0.01em;margin:0 0 14px;font-weight:700}
+    .h1 .glow{color:var(--cyan)}
+    .sub{font-size:16px;color:var(--ink-dim);max-width:720px;line-height:1.55}
+
+    .layout{display:grid;grid-template-columns:240px 1fr;gap:36px;padding:48px 0}
+    @media (max-width:860px){.layout{grid-template-columns:1fr;gap:24px}}
+    .toc{position:sticky;top:88px;align-self:flex-start;background:var(--glass);border:1px solid var(--line);border-radius:14px;padding:18px}
+    .toc h4{margin:0 0 10px;font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink-mute)}
+    .toc ol{margin:0;padding-left:22px;display:flex;flex-direction:column;gap:6px;font-size:13px;color:var(--ink-dim)}
+    .toc ol li::marker{color:var(--gold);font-family:"IBM Plex Mono",monospace}
+    .toc a{color:var(--ink-dim)}
+    .toc a:hover{color:var(--cyan)}
+    @media (max-width:860px){.toc{position:static}}
+
+    .body section{margin-bottom:28px;background:var(--glass);border:1px solid var(--line);border-radius:14px;padding:24px;scroll-margin-top:90px}
+    .body section h2{margin:0 0 10px;font-size:20px;color:var(--ink);display:flex;align-items:center;gap:10px}
+    .body section h2 .num{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:0.16em;color:var(--gold);
+      padding:4px 10px;border-radius:8px;background:rgba(245,198,98,0.10);border:1px solid rgba(245,198,98,0.32)}
+    .body section p{margin:0 0 10px;color:var(--ink-dim);font-size:14px;line-height:1.65}
+    .body section ul{margin:6px 0 0;padding-left:22px;color:var(--ink-dim);font-size:14px;line-height:1.7}
+    .body section ul li{margin-bottom:4px}
+    .body section ul li b{color:var(--ink)}
+    .body section a{font-weight:500}
+
+    .updated-bar{display:inline-flex;gap:10px;align-items:center;background:var(--glass);border:1px solid var(--line);
+      border-radius:999px;padding:8px 14px;font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:0.14em;color:var(--ink-dim)}
+    .updated-bar b{color:var(--gold)}
+
+    footer{padding:36px 0;color:var(--ink-mute);font-size:12px;border-top:1px solid var(--line);text-align:center}
+    footer .links{display:flex;gap:14px;justify-content:center;margin-top:8px;flex-wrap:wrap}
+  </style>
+<link rel="stylesheet" href="/lib/polish-tokens.css">
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-row">
+      <div class="brand"><b>Catalyst</b> · Edge</div>
+      <nav class="nav">
+        <a href="/scanner/">Scanner</a>
+        <a href="/international/">Global</a>
+        <a href="/dcf/">DCF</a>
+        <a href="/security/">Security</a>
+        <a href="/privacy/" class="active">Privacy</a>
+        <a href="/terms/">Terms</a>
+        <a href="/changelog/">Changelog</a>
+        <a href="/community/">Community</a>
+        <a href="/pricing/">Pricing</a>
+      </nav>
+    </div>
+  </div>
+
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow">📜 Last updated 2026-04-25 · Plain language · Email <a href="mailto:opensource@example.com" style="color:var(--gold)">opensource@example.com</a> for any data request</div>
+      <h1 class="h1">Privacy policy — short, plain, <span class="glow">GDPR-aligned.</span></h1>
+      <p class="sub">No legalese, no dark patterns. We collect almost nothing, never sell what we collect, and respond to deletion or export requests within 14 days. The full surface is below — and described in plainer English on <a href="/security/">/security</a>.</p>
+      <div style="margin-top:18px"><span class="updated-bar">Effective date · <b>2026-04-25</b></span></div>
+    </div>
+  </section>
+
+  <div class="wrap layout">
+    <aside class="toc">
+      <h4>On this page</h4>
+      <ol>
+        <li><a href="#s1">What we collect</a></li>
+        <li><a href="#s2">Why we collect it</a></li>
+        <li><a href="#s3">Retention</a></li>
+        <li><a href="#s4">Third parties</a></li>
+        <li><a href="#s5">Your rights</a></li>
+        <li><a href="#s6">Cookies</a></li>
+        <li><a href="#s7">International transfers</a></li>
+        <li><a href="#s8">Children's data</a></li>
+        <li><a href="#s9">Changes to this policy</a></li>
+        <li><a href="#s10">Contact</a></li>
+      </ol>
+    </aside>
+
+    <div class="body">
+      <section id="s1">
+        <h2><span class="num">01</span>What we collect</h2>
+        <p>We collect the minimum needed to run the service. The full surface is documented on <a href="/security/">/security</a>. In short:</p>
+        <ul>
+          <li><b>Email address</b> — for login, Stripe receipts, and the optional newsletter.</li>
+          <li><b>Stripe customer ID</b> — billing reference; we never see your card number.</li>
+          <li><b>API key</b> — bcrypt-hashed at rest, rotatable any time.</li>
+          <li><b>Server logs</b> — IP, User-Agent, request path, timestamp. Used solely for rate-limiting and abuse prevention.</li>
+        </ul>
+      </section>
+
+      <section id="s2">
+        <h2><span class="num">02</span>Why we collect it</h2>
+        <p>Three reasons, all narrow:</p>
+        <ul>
+          <li><b>Authentication</b> — to know you are you.</li>
+          <li><b>Billing</b> — to keep your subscription active via Stripe.</li>
+          <li><b>Abuse prevention</b> — so a single bad actor doesn't degrade the service for everyone else.</li>
+        </ul>
+        <p>Legal basis under GDPR: contract performance (auth + billing) and legitimate interests (abuse prevention). For the optional newsletter, the legal basis is your explicit consent — opt out by replying STOP at any time.</p>
+      </section>
+
+      <section id="s3">
+        <h2><span class="num">03</span>Retention</h2>
+        <ul>
+          <li><b>Server logs</b> — rotated and deleted after <code>30 days</code>. No long-term archive.</li>
+          <li><b>Account data</b> (email, hashed API key, Stripe customer ID) — kept while your account is active.</li>
+          <li><b>Post-cancellation</b> — retained for <code>90 days</code> in case of accidental cancellation or audit, then permanently deleted.</li>
+          <li><b>Newsletter list</b> — until you unsubscribe. Unsubscribe purges your address within 7 days.</li>
+          <li><b>Stripe invoices</b> — kept by Stripe per their own retention policy (typically 7 years for tax compliance).</li>
+        </ul>
+      </section>
+
+      <section id="s4">
+        <h2><span class="num">04</span>Third parties</h2>
+        <p>We use exactly one third party for primary operations:</p>
+        <ul>
+          <li><b>Stripe</b> — payment processing only. Stripe receives your email, payment method, and billing address. <a href="https://stripe.com/privacy" target="_blank" rel="noopener">Stripe privacy policy</a>.</li>
+        </ul>
+        <p>That's it. No ad networks. No data brokers. No analytics SaaS (no Google Analytics, no Facebook Pixel, no Hotjar). We do not sell, license, or share your data with anyone for marketing or any other purpose, ever.</p>
+      </section>
+
+      <section id="s5">
+        <h2><span class="num">05</span>Your rights</h2>
+        <p>Under GDPR, CCPA, and similar regimes you have the right to:</p>
+        <ul>
+          <li><b>Access</b> — request a copy of all data we hold on you.</li>
+          <li><b>Deletion</b> — request permanent deletion of your account and associated data.</li>
+          <li><b>Export</b> — request a machine-readable export (JSON) of your account data.</li>
+          <li><b>Rectification</b> — correct inaccurate data we hold.</li>
+          <li><b>Object / restrict</b> — limit processing of your data.</li>
+          <li><b>Withdraw consent</b> — for the newsletter at any time.</li>
+        </ul>
+        <p>Email any of these requests to:</p>
+        <ul>
+          <li><a href="mailto:opensource@example.com?subject=GDPR%20deletion%20request">Request deletion</a></li>
+          <li><a href="mailto:opensource@example.com?subject=GDPR%20data%20export%20request">Request data export</a></li>
+          <li><a href="mailto:opensource@example.com?subject=GDPR%20rectification%20or%20objection">Rectification / object / restrict</a></li>
+        </ul>
+        <p>We acknowledge within 24 hours and complete within 14 days for most requests. Exports are delivered as a single JSON file via the email address on your account.</p>
+      </section>
+
+      <section id="s6">
+        <h2><span class="num">06</span>Cookies</h2>
+        <ul>
+          <li><b>One first-party cookie</b>: <code>tier_token</code> — keeps you logged in. <code>HttpOnly</code>, <code>SameSite=Lax</code>, expires after 1 year.</li>
+          <li><b>Zero third-party cookies</b> — no advertising or tracking cookies of any kind.</li>
+          <li>The site works identically if you block all cookies; you'll just need to log in on every visit.</li>
+        </ul>
+      </section>
+
+      <section id="s7">
+        <h2><span class="num">07</span>International transfers</h2>
+        <p>Our servers are located in the United States (DigitalOcean, NYC region). If you are in the EU/EEA or UK, your data is transferred to the US under the Standard Contractual Clauses (SCCs) approved by the European Commission. Stripe handles its own SCC framework for billing data.</p>
+      </section>
+
+      <section id="s8">
+        <h2><span class="num">08</span>Children's data</h2>
+        <p>Catalyst Edge is not directed at children under 18, and we do not knowingly collect data from anyone under 18. If you become aware that a minor has created an account, please email <a href="mailto:opensource@example.com?subject=Underage%20account%20notice">opensource@example.com</a> and we will delete it within 7 days.</p>
+      </section>
+
+      <section id="s9">
+        <h2><span class="num">09</span>Changes to this policy</h2>
+        <p>We version this page. The <b>Last updated</b> date at the top is the source of truth. For material changes (retention windows, new third parties, scope of data collected) we email all paying customers and post a notice on <a href="/changelog/">/changelog</a> at least 14 days before the change takes effect. You can object and request deletion before the new terms apply.</p>
+      </section>
+
+      <section id="s10">
+        <h2><span class="num">10</span>Contact</h2>
+        <p>Email <a href="mailto:opensource@example.com">opensource@example.com</a> for any privacy question — the founder reads every message and replies within 24 hours. For security vulnerabilities specifically, see <a href="/security/#bounty">the bounty program on /security</a>.</p>
+      </section>
+    </div>
+  </div>
+
+  <footer>
+    Catalyst Edge Scanner · Privacy by default · Audited 89% hit rate
+    <div class="links">
+      <a href="/scanner/">Scanner</a>
+      <a href="/security/">Security</a>
+      <a href="/terms/">Terms</a>
+      <a href="/changelog/">Changelog</a>
+      <a href="mailto:opensource@example.com">Contact</a>
+    </div>
+  </footer>
+
+  <script src="/lib/tier.js" defer></script>
+</body>
+</html>

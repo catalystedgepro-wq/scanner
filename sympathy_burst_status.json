@@ -1,0 +1,176 @@
+{
+  "generated_at": "2026-04-27T22:52:04Z",
+  "today": "2026-04-27",
+  "lookback_days": 5,
+  "source_file": "sympathy_events.csv",
+  "active_burst": true,
+  "ui_density_mode": "suppressed",
+  "thresholds": {
+    "grouped_labels": 4,
+    "suppressed_labels": 8,
+    "active_burst_min_sector_count": 2
+  },
+  "totals": {
+    "rows": 151,
+    "new_entries": 0,
+    "resolved_entries": 0,
+    "open_recent_setups": 91,
+    "watch_sectors": 11
+  },
+  "top_sector": {
+    "sector": "financials",
+    "count": 45,
+    "new_today": 45,
+    "avg_gap_score": 19.56,
+    "leaders": [
+      "STRD",
+      "TMP",
+      "MMTX",
+      "LKFN",
+      "DEA"
+    ],
+    "forms": [
+      "8-K",
+      "6-K"
+    ],
+    "density_mode": "suppressed",
+    "level": "active"
+  },
+  "sectors": [
+    {
+      "sector": "financials",
+      "count": 45,
+      "new_today": 45,
+      "avg_gap_score": 19.56,
+      "leaders": [
+        "STRD",
+        "TMP",
+        "MMTX",
+        "LKFN",
+        "DEA"
+      ],
+      "forms": [
+        "8-K",
+        "6-K"
+      ],
+      "density_mode": "suppressed",
+      "level": "active"
+    },
+    {
+      "sector": "industrials",
+      "count": 18,
+      "new_today": 18,
+      "avg_gap_score": 18.11,
+      "leaders": [
+        "LGIH",
+        "GRC",
+        "FCUV",
+        "SEER",
+        "ASTE"
+      ],
+      "forms": [
+        "8-K"
+      ],
+      "density_mode": "suppressed",
+      "level": "active"
+    },
+    {
+      "sector": "materials",
+      "count": 9,
+      "new_today": 9,
+      "avg_gap_score": 18.44,
+      "leaders": [
+        "YHGJ",
+        "RNGR",
+        "MLM",
+        "SKY",
+        "NUE"
+      ],
+      "forms": [
+        "8-K"
+      ],
+      "density_mode": "suppressed",
+      "level": "active"
+    },
+    {
+      "sector": "consumer",
+      "count": 7,
+      "new_today": 7,
+      "avg_gap_score": 18.29,
+      "leaders": [
+        "DPZ",
+        "CMG",
+        "LEVI",
+        "CHEV",
+        "PK"
+      ],
+      "forms": [
+        "8-K"
+      ],
+      "density_mode": "grouped",
+      "level": "active"
+    },
+    {
+      "sector": "tech",
+      "count": 3,
+      "new_today": 3,
+      "avg_gap_score": 18.0,
+      "leaders": [
+        "AEYE",
+        "BSY",
+        "YEXT"
+      ],
+      "forms": [
+        "8-K"
+      ],
+      "density_mode": "full",
+      "level": "active"
+    },
+    {
+      "sector": "staples",
+      "count": 2,
+      "new_today": 2,
+      "avg_gap_score": 19.0,
+      "leaders": [
+        "UTZ",
+        "SBEV"
+      ],
+      "forms": [
+        "8-K"
+      ],
+      "density_mode": "full",
+      "level": "active"
+    },
+    {
+      "sector": "unknown",
+      "count": 2,
+      "new_today": 2,
+      "avg_gap_score": 18.0,
+      "leaders": [
+        "MSDL",
+        "GECCO"
+      ],
+      "forms": [
+        "8-K"
+      ],
+      "density_mode": "full",
+      "level": "active"
+    },
+    {
+      "sector": "biotech",
+      "count": 2,
+      "new_today": 2,
+      "avg_gap_score": 16.5,
+      "leaders": [
+        "OGN",
+        "XOMAP"
+      ],
+      "forms": [
+        "8-K",
+        "8-K/A"
+      ],
+      "density_mode": "full",
+      "level": "active"
+    }
+  ]
+}

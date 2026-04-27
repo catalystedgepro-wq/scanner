@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>What Is a Catalyst Score? SEC Filing Signal Explained | Catalyst Edge</title>
+<meta name="description" content="Learn how the Catalyst Edge scoring engine works. Catalyst scores combine SEC filing type, insider activity, options flow, short interest, and momentum into a single actionable number.">
+<link rel="canonical" href="https://catalystedgescanner.com/glossary/what-is-catalyst-score/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is a catalyst score?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A catalyst score is a composite numerical rating that quantifies the strength of trading signals associated with a stock's SEC filing activity. It combines filing type importance, insider buying patterns, options flow sentiment, short interest dynamics, and price momentum into a single actionable number. Higher scores indicate stronger catalyst setups."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What catalyst score should I trade?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Scores above 14 are considered high-conviction setups with strong alignment across multiple signals. Scores between 8-14 are moderate setups worth monitoring. Scores below 8 indicate weaker or mixed signals. The scoring weights are auto-tuned daily based on historical outcome data."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How is the catalyst score calculated?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The score aggregates weighted inputs including: SEC filing type and recency, insider transaction clusters (Form 4), options flow sentiment and unusual volume, short float percentage and squeeze potential, price momentum and gap percentage, sector momentum, and news sentiment. Weights are auto-calibrated using 60-day outcome analysis."
+      }
+    }
+  ]
+}
+</script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#070a12;--surface:#0f1420;--gold:#d4a843;--green:#22c55e;--cyan:#06b6d4;
+  --red:#ef4444;--text:#e2e8f0;--dim:#94a3b8;--muted:#64748b;--border:#1e293b}
+body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--text);line-height:1.8;-webkit-font-smoothing:antialiased}
+a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
+.wrap{max-width:720px;margin:0 auto;padding:2.5rem 1.5rem}
+.breadcrumb{font-size:.75rem;color:var(--muted);margin-bottom:1.5rem}
+.breadcrumb a{color:var(--muted)}
+h1{font-size:clamp(1.6rem,3.5vw,2.2rem);font-weight:800;line-height:1.2;margin-bottom:1rem}
+h2{font-size:1.15rem;font-weight:700;margin:2rem 0 .8rem;color:var(--gold)}
+h3{font-size:1rem;font-weight:600;margin:1.5rem 0 .5rem}
+p{margin-bottom:1rem;color:var(--dim);font-size:.92rem}
+ul,ol{margin:0 0 1.2rem 1.5rem;color:var(--dim);font-size:.92rem}
+li{margin-bottom:.4rem}
+strong{color:var(--text)}
+.highlight{background:var(--surface);border-left:3px solid var(--green);padding:1rem 1.2rem;border-radius:0 8px 8px 0;margin:1.5rem 0}
+.highlight p{margin:0;color:var(--text);font-size:.9rem}
+.score-breakdown{display:grid;grid-template-columns:1fr;gap:8px;margin:1.5rem 0}
+.score-factor{display:flex;align-items:center;gap:12px;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px 16px}
+.score-factor .weight{font-family:'IBM Plex Mono',monospace;font-size:.78rem;color:var(--cyan);min-width:50px;font-weight:600}
+.score-factor .label{font-size:.88rem;font-weight:600;color:var(--text)}
+.score-factor .desc{font-size:.78rem;color:var(--muted);margin-left:auto}
+.tier-table{width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:.85rem}
+.tier-table th{background:var(--surface);color:var(--muted);padding:10px;text-align:left;border-bottom:1px solid var(--border);font-size:.72rem;text-transform:uppercase}
+.tier-table td{padding:10px;border-bottom:1px solid rgba(255,255,255,.04)}
+.tier-high{color:var(--green);font-weight:700}
+.tier-mid{color:var(--gold);font-weight:700}
+.tier-low{color:var(--muted);font-weight:700}
+.cta{background:var(--surface);border:2px solid var(--gold);border-radius:12px;padding:2rem;text-align:center;margin:2.5rem 0}
+.cta h3{color:var(--gold);margin:0 0 .5rem;font-size:1.1rem}
+.cta p{color:var(--dim);font-size:.88rem;margin-bottom:1rem}
+.cta-btn{display:inline-block;padding:.6rem 1.8rem;background:linear-gradient(135deg,var(--gold),#f1ce88);color:#070a12;font-weight:700;border-radius:8px}
+.footer{text-align:center;padding:1.5rem;font-size:.72rem;color:var(--muted);border-top:1px solid var(--border);margin-top:2rem}
+code{font-family:'IBM Plex Mono',monospace;background:rgba(212,168,67,.1);padding:2px 6px;border-radius:4px;font-size:.85rem;color:var(--gold)}
+</style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@800;900&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/lib/cinematic-hero.css">
+  <link rel="stylesheet" href="/lib/cyber-shell.css">
+  <link rel="stylesheet" href="/lib/polish-tokens.css">
+</head>
+<body>
+  <div class="cy-bg" aria-hidden="true"></div>
+  <div class="cy-floor" aria-hidden="true"></div>
+  <div class="cy-vignette" aria-hidden="true"></div>
+  <div class="cy-scan" aria-hidden="true"></div>
+<div class=\"wrap\">
+<section class="cin-hero cy-neon-hero cy-narrow cy-shimmer">
+    <div class="cin-grid">
+      <div class="cin-stat-stack">
+        <div class="cin-eyebrow"><span class="cin-live-dot"></span>CATALYST SCORE · LIVE</div>
+        <div class="cin-colossal">
+          <div class="cin-num-row"><span class="cin-num">9</span><span class="cin-pct">layers</span></div>
+          <div class="cin-side">
+          <span class="cin-tag"><b>0-100</b> scale</span>
+          <span class="cin-tag">auto-tuned weekly</span>
+          <span class="cin-tag">open-audit weights</span>
+          </div>
+        </div>
+        <div class="cin-stamp">GLOSSARY · WHAT IS THE CATALYST SCO · v1.0 · <b>LIVE</b></div>
+      </div>
+      <div class="cin-h1-block">
+        <div class="cin-h1-eyebrow">📚 What is the Catalyst Score?</div>
+        <h1 class="cin-headline"><em>9 signal layers</em>—the <span class="cin-accent">composite score driving the rank</span>.</h1>
+        <p class="cin-lede">The catalyst score blends 9 layers — filing recency, form type, insider density, short interest, gap, dark-pool share, sympathy beta, sector momentum, options skew — into a single 0-100 conviction number.</p>
+        <div class="cin-cta-row">
+          <a href="#article-body" class="cin-btn-primary">Read article ↓</a>
+          <a href="/glossary/" class="cin-btn-ghost">Glossary index</a>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+</div>
+<div class="wrap">
+  <div class="breadcrumb"><a href="/">Scanner</a> / <a href="/glossary/what-is-catalyst-score/">Glossary</a> / Catalyst Score</div>
+
+  <h1>What Is a Catalyst Score? How We Score SEC Filing Signals</h1>
+
+  <p>A <strong>catalyst score</strong> is a composite numerical rating that quantifies the trading signal strength of a stock based on its SEC filing activity, insider behavior, options flow, short interest dynamics, and price momentum. It distills multiple data sources into a single number that traders use to prioritize setups.</p>
+
+  <div class="highlight">
+    <p>Catalyst Edge scans 300+ SEC filings daily and scores each ticker automatically. Scores above 14.0 are considered high-conviction setups. The scoring weights are auto-calibrated every 24 hours using 60-day outcome analysis.</p>
+  </div>
+
+  <h2>Score Components</h2>
+  <p>The catalyst score is a weighted sum of these factors:</p>
+
+  <div class="score-breakdown">
+    <div class="score-factor">
+      <span class="weight">30%</span>
+      <span class="label">Filing Type</span>
+      <span class="desc">8-K, Form 4, S-3, SC 13D weight differently</span>
+    </div>
+    <div class="score-factor">
+      <span class="weight">20%</span>
+      <span class="label">Insider Activity</span>
+      <span class="desc">Form 4 cluster density and dollar volume</span>
+    </div>
+    <div class="score-factor">
+      <span class="weight">15%</span>
+      <span class="label">Options Flow</span>
+      <span class="desc">Put/call ratio, unusual volume, sweep orders</span>
+    </div>
+    <div class="score-factor">
+      <span class="weight">15%</span>
+      <span class="label">Short Interest</span>
+      <span class="desc">Short float %, days to cover, squeeze potential</span>
+    </div>
+    <div class="score-factor">
+      <span class="weight">10%</span>
+      <span class="label">Price Momentum</span>
+      <span class="desc">Gap %, relative volume, pre-market activity</span>
+    </div>
+    <div class="score-factor">
+      <span class="weight">10%</span>
+      <span class="label">Sector + News</span>
+      <span class="desc">Sector momentum, headline sentiment, novelty</span>
+    </div>
+  </div>
+
+  <p><strong>Note:</strong> Exact weights are auto-tuned daily by <code>tune_scoring_config.py</code>, which analyzes 60-day outcome data to optimize for forward returns. The percentages above are approximate starting weights.</p>
+
+  <h2>Score Tiers</h2>
+  <table class="tier-table">
+    <tr><th>Score Range</th><th>Tier</th><th>Interpretation</th><th>Action</th></tr>
+    <tr><td class="tier-high">14.0+</td><td>High Conviction</td><td>Multiple signals aligning strongly</td><td>Primary watchlist, active trading candidate</td></tr>
+    <tr><td class="tier-mid">8.0 - 13.9</td><td>Moderate</td><td>Some signals present but incomplete alignment</td><td>Monitor for development, set alerts</td></tr>
+    <tr><td class="tier-low">Below 8.0</td><td>Low / Noise</td><td>Weak or mixed signals</td><td>Research only, not actionable</td></tr>
+  </table>
+
+  <h2>How Filing Types Affect Scores</h2>
+  <p>Not all SEC filings carry equal weight. The scoring engine ranks filing types by their historical impact on price:</p>
+  <ul>
+    <li><strong><a href="/glossary/what-is-8k/">8-K (Material Event)</a>:</strong> Highest base weight — these announce acquisitions, earnings surprises, management changes</li>
+    <li><strong><a href="/glossary/what-is-form-4/">Form 4 (Insider Trade)</a>:</strong> High weight when multiple insiders buy within 7 days (cluster signal)</li>
+    <li><strong><a href="/glossary/what-is-sc-13d/">SC 13D (Activist Position)</a>:</strong> High weight — signals activist investor involvement</li>
+    <li><strong><a href="/glossary/what-is-s3-shelf-registration/">S-3 (Shelf Registration)</a>:</strong> Negative weight — signals potential dilution</li>
+    <li><strong>S-1 (IPO Registration):</strong> Context-dependent — lockup expiration creates secondary catalyst</li>
+  </ul>
+
+  <h2>Self-Calibrating Weights</h2>
+  <p>Unlike static scoring systems, our weights adapt to market conditions. Every 24 hours, the scoring engine:</p>
+  <ol>
+    <li>Analyzes the last 60 days of scored picks and their actual price outcomes</li>
+    <li>Measures which factors contributed most to winning trades</li>
+    <li>Adjusts weights to amplify factors with strong predictive power</li>
+    <li>Dampens factors that showed weak correlation with outcomes</li>
+  </ol>
+  <p>This means the scoring engine gets smarter over time and adapts to regime changes in the market.</p>
+
+  <h2>Using Catalyst Scores in Practice</h2>
+  <ul>
+    <li><strong>Screen:</strong> Filter the <a href="/">scanner</a> for scores above 14.0 to find the day's highest-conviction setups</li>
+    <li><strong>Prioritize:</strong> Sort by score to allocate attention to the strongest signals first</li>
+    <li><strong>Validate:</strong> Cross-reference high scores with the <a href="/heatmap/">sector heatmap</a> and <a href="/options-flow/">options flow</a></li>
+    <li><strong>Alert:</strong> Set <a href="/alerts/">filing alerts</a> on tickers near your score threshold</li>
+    <li><strong>Track:</strong> Add high-scoring tickers to your <a href="/watchlist/">watchlist</a> for daily monitoring</li>
+  </ul>
+
+  <div class="cta">
+    <h3>See today's highest-scoring catalysts</h3>
+    <p>Our scanner updates daily with fresh catalyst scores across 1,600+ tickers.</p>
+    <a href="/" class="cta-btn">Open Scanner</a>
+  </div>
+
+  <h2>Related Glossary</h2>
+  <ul>
+    <li><a href="/glossary/what-is-8k/">What Is an 8-K Filing?</a> — The highest-impact catalyst filing type</li>
+    <li><a href="/glossary/what-is-form-4/">What Is Form 4?</a> — Insider trading disclosures</li>
+    <li><a href="/glossary/short-squeeze-scanner/">Short Squeeze Scanner</a> — How squeeze potential factors into the score</li>
+    <li><a href="/glossary/dark-pool-signals/">Dark Pool Signals</a> — Off-exchange volume as a scoring input</li>
+    <li><a href="/methodology/">Methodology</a> — Full scoring methodology documentation</li>
+  </ul>
+</div>
+
+<div class="footer">
+  &copy; 2026 Catalyst Edge &middot;
+  <a href="/">Scanner</a> &middot;
+  <a href="/heatmap/">Heatmap</a> &middot;
+  <a href="/watchlist/">Watchlist</a> &middot;
+  <a href="/options-flow/">Options Flow</a> &middot;
+  Not financial advice.
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KV1VDK22VC"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-KV1VDK22VC');</script>
+</body>
+</html>

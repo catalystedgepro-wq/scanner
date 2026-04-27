@@ -1,0 +1,2 @@
+source,tier,ticker_explicit,published_utc,recency_min,news_score,sector_tags,event_tags,ticker_candidates,headline,link
+bloomberg,1,1,2026-03-04T08:40:00+00:00,78621.2,5.000,energy,policy_macro,LNG,Example headline from Bloomberg,https://example.com

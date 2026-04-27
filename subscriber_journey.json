@@ -1,0 +1,76 @@
+{
+  "opensource@example.com": {
+    "subscribed_date": "2026-03-10",
+    "steps_sent": [
+      0,
+      3,
+      14
+    ]
+  },
+  "shekerah@gmail.com": {
+    "subscribed_date": "2026-03-11",
+    "steps_sent": [
+      0,
+      3,
+      7,
+      14
+    ]
+  },
+  "leteztus@gmail.com": {
+    "subscribed_date": "2026-03-11",
+    "steps_sent": [
+      0,
+      3,
+      7,
+      14
+    ]
+  },
+  "opensource@example.com": {
+    "subscribed_date": "2026-03-12",
+    "steps_sent": [
+      0,
+      3,
+      7,
+      14
+    ]
+  },
+  "mfilsaim@alumni.nd.edu": {
+    "subscribed_date": "2026-03-18",
+    "steps_sent": [
+      0,
+      3,
+      7
+    ]
+  },
+  "pozanda@gmail.com": {
+    "subscribed_date": "2026-03-18",
+    "steps_sent": [
+      0,
+      3,
+      7
+    ]
+  },
+  "suzettpierre@aol.com": {
+    "subscribed_date": "2026-03-19",
+    "steps_sent": [
+      0,
+      7,
+      14
+    ]
+  },
+  "xraygarden@aol.com": {
+    "subscribed_date": "2026-03-19",
+    "steps_sent": [
+      0,
+      7,
+      14
+    ]
+  },
+  "tacomell446@gmail.com": {
+    "subscribed_date": "2026-03-31",
+    "steps_sent": [
+      0,
+      3
+    ]
+  }
+}

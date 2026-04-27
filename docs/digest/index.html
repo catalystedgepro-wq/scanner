@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Daily Digest — Market Catalyst Summary | Catalyst Edge</title>
+<meta name="description" content="Today's catalyst market summary in one view. Top pick, signal strength, hottest sectors, recent filings, and hot streaks — all on one page.">
+<meta property="og:title" content="Daily Digest — Catalyst Edge">
+<link rel="canonical" href="https://catalystedgescanner.com/digest/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#070a12;--surface:#0f1420;--surface2:#151c2c;--gold:#d4a843;--green:#22c55e;--red:#ef4444;--cyan:#06b6d4;--text:#e2e8f0;--dim:#94a3b8;--muted:#64748b;--border:#1e293b}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
+.wrap{max-width:900px;margin:0 auto;padding:1.5rem}
+.nav{position:sticky;top:0;z-index:100;background:rgba(7,10,18,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:.75rem 1.5rem;display:flex;align-items:center;gap:1rem}
+.nav a{color:var(--gold);font-weight:600;font-size:.95rem}
+.nav .sep{color:var(--muted)}
+.hero{text-align:center;padding:2rem 0 1.5rem;border-bottom:1px solid var(--border);margin-bottom:1.5rem}
+.hero h1{font-size:clamp(1.5rem,4vw,2.2rem);font-weight:800;margin-bottom:.3rem}
+.hero h1 em{font-style:normal;color:var(--gold)}
+.hero .date{color:var(--muted);font-size:.85rem;font-family:'IBM Plex Mono',monospace}
+.section{margin:1.5rem 0}
+.section-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:.75rem}
+.section-head h2{font-size:1.1rem;font-weight:800;color:var(--text)}
+.section-head a{font-size:.75rem;color:var(--gold)}
+.temp-banner{background:var(--surface);border:2px solid var(--border);border-radius:14px;padding:1.2rem;display:flex;align-items:center;gap:1.5rem;margin-bottom:1.5rem}
+.temp-badge{width:80px;height:80px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0}
+.temp-badge .tb-val{font-size:1.5rem;font-weight:800;line-height:1}
+.temp-badge .tb-word{font-size:.55rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em}
+.temp-info{flex:1}
+.temp-info .ti-count{font-size:.85rem;color:var(--dim)}
+.temp-info .ti-tickers{font-size:.8rem;color:var(--muted)}
+.pick-card{background:linear-gradient(135deg,var(--surface),rgba(212,168,67,.04));border:2px solid var(--gold);border-radius:14px;padding:1.2rem;display:flex;align-items:center;gap:1.2rem;flex-wrap:wrap}
+.pick-ticker{font-size:2rem;font-weight:800;background:linear-gradient(135deg,var(--gold),#f1ce88);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.pick-meta{flex:1;min-width:150px}
+.pick-meta .pm-score{font-size:1.2rem;font-weight:800}
+.pick-meta .pm-signals{font-size:.75rem;color:var(--dim)}
+.pick-meta .pm-form{font-size:.7rem;color:var(--muted);margin-top:.2rem}
+.mini-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.6rem}
+.mini-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:.8rem;transition:border-color .2s}
+.mini-card:hover{border-color:var(--gold)}
+.mini-card .mc-name{font-size:.85rem;font-weight:700;color:var(--text);margin-bottom:.2rem}
+.mini-card .mc-val{font-size:1.1rem;font-weight:800;font-family:'IBM Plex Mono',monospace}
+.mini-card .mc-sub{font-size:.6rem;color:var(--muted)}
+.streak-row{display:flex;gap:.5rem;flex-wrap:wrap}
+.streak-pill{padding:4px 10px;border-radius:6px;font-size:.72rem;font-weight:700;background:var(--surface);border:1px solid var(--border);display:flex;align-items:center;gap:.3rem}
+.streak-pill .sp-ticker{color:var(--gold)}
+.streak-pill .sp-days{color:var(--muted)}
+.filing-mini{display:grid;grid-template-columns:55px 50px 1fr 50px;gap:.5rem;padding:.4rem 0;border-bottom:1px solid rgba(30,41,59,.4);font-size:.75rem;align-items:center}
+.filing-mini .fm-time{color:var(--muted);font-family:'IBM Plex Mono',monospace;font-size:.65rem}
+.filing-mini .fm-form{font-weight:700;font-family:'IBM Plex Mono',monospace;font-size:.7rem}
+.filing-mini .fm-ticker{font-weight:800;color:var(--gold)}
+.filing-mini .fm-score{font-family:'IBM Plex Mono',monospace;color:var(--dim);text-align:right}
+.cta-bar{background:var(--surface);border:1px solid var(--gold);border-radius:10px;padding:1.25rem;text-align:center;margin:2rem 0}
+.cta-bar h3{color:var(--gold);font-size:1rem;margin-bottom:.3rem}
+.cta-bar p{color:var(--dim);font-size:.8rem;margin-bottom:.75rem}
+.cta-bar a{display:inline-block;padding:.5rem 1.4rem;background:linear-gradient(135deg,var(--gold),#f1ce88);color:#070a12;font-weight:700;border-radius:6px;font-size:.85rem}
+.footer{text-align:center;padding:1.5rem;font-size:.72rem;color:var(--muted);border-top:1px solid var(--border);margin-top:2rem}
+.footer a{color:var(--muted)}
+.loading{text-align:center;padding:2rem;color:var(--muted);font-size:.85rem}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Catalyst Edge Daily Digest","url":"https://catalystedgescanner.com/digest/","description":"Daily market catalyst summary with top pick, signal strength, sectors, and streaks","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@800;900&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/lib/cinematic-hero.css">
+  <link rel="stylesheet" href="/lib/cyber-shell.css">
+  <link rel="stylesheet" href="/lib/polish-tokens.css">
+</head>
+<body>
+  <div class="cy-bg" aria-hidden="true"></div>
+  <div class="cy-floor" aria-hidden="true"></div>
+  <div class="cy-vignette" aria-hidden="true"></div>
+  <div class="cy-scan" aria-hidden="true"></div>
+<div class="nav">
+  <a href="/">Catalyst Edge</a>
+  <span class="sep">/</span>
+  <span style="color:var(--dim);font-size:.9rem">Daily Digest</span>
+</div>
+<div class="wrap">
+<section class="cin-hero cy-neon-hero cy-shimmer">
+    <div class="cin-grid">
+      <div class="cin-stat-stack">
+        <div class="cin-eyebrow"><span class="cin-live-dot"></span>DAILY DIGEST · 4 AM ET</div>
+        <div class="cin-colossal">
+          <div class="cin-num-row"><span class="cin-num">4 AM</span><span class="cin-pct">ET</span></div>
+          <div class="cin-side">
+          <span class="cin-tag"><b>morning</b> briefing</span>
+          <span class="cin-tag">top pick + sector</span>
+          <span class="cin-tag">free email</span>
+          </div>
+        </div>
+        <div class="cin-stamp">DIGEST//MORNING · v1.0 · <b>LIVE</b></div>
+      </div>
+      <div class="cin-h1-block">
+        <div class="cin-h1-eyebrow">✉️ Daily Digest · Pre-Market Briefing</div>
+        <h1 class="cin-headline">The morning digest—every <em>signal</em>, every <span class="cin-accent">top pick</span>, sector-tagged, in your inbox at <span class="lime">4 AM ET</span>.</h1>
+        <p class="cin-lede">A free morning briefing with the day's top scorer, the hottest sector, the convergence alerts, and the relevant filings overnight. No upsell, no ads — just the tape.</p>
+        <div class="cin-cta-row">
+          <a href="/preview/" class="cin-btn-primary">Subscribe free ↓</a>
+          <a href="#digest-archive" class="cin-btn-ghost">Past issues</a>
+        </div>
+        <div class="cin-strip">
+          <div class="cin-cell"><div class="cin-k">Send time</div><div class="cin-v cyan">4 AM ET</div></div>
+          <div class="cin-cell"><div class="cin-k">Issues</div><div class="cin-v" id="dg-issues">–</div></div>
+          <div class="cin-cell"><div class="cin-k">Subscribers</div><div class="cin-v bull" id="dg-subs">–</div></div>
+          <div class="cin-cell"><div class="cin-k">Updated</div><div class="cin-v gold">daily</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div id="digest-content">
+    <div class="loading">Building today's digest...</div>
+  </div>
+  <div class="cta-bar">
+    <h3>Get this digest by email at 4 AM ET</h3>
+    <p>Free daily email with the full digest, ranked picks, and convergence signals.</p>
+    <a href="/preview/">Subscribe Free</a>
+  </div>
+</div>
+<div class="footer">
+  &copy; 2026 Catalyst Edge &middot;
+  <a href="/">Scanner</a> &middot;
+  <a href="/rankings/">Rankings</a> &middot;
+  <a href="/screener/">Screener</a> &middot;
+  <a href="/spotlight/">Spotlight</a> &middot;
+  <a href="/lookup/">Lookup</a> &middot;
+  <a href="/watchlist-app/">Watchlist</a> &middot;
+  <a href="/hot-streaks/">Hot Streaks</a> &middot;
+  <a href="/calendar/">Calendar</a> &middot;
+  <a href="/glossary/">Glossary</a> &middot;
+  Not financial advice.
+</div>
+<script>
+(function(){
+  var content = document.getElementById('digest-content');
+  var dateEl = document.getElementById('d-date');
+
+  function el(tag, cls, text) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text) e.textContent = text;
+    return e;
+  }
+
+  function sectionHead(title, linkText, linkHref) {
+    var div = el('div','section-head');
+    div.appendChild(el('h2','',title));
+    if (linkText) {
+      var a = document.createElement('a');
+      a.href = linkHref;
+      a.textContent = linkText + ' \u2192';
+      div.appendChild(a);
+    }
+    return div;
+  }
+
+  function relativeTime(min) {
+    var m = parseFloat(min||0);
+    if (m < 60) return Math.round(m) + 'm';
+    if (m < 1440) return Math.round(m/60) + 'h';
+    return Math.round(m/1440) + 'd';
+  }
+
+  var tempColors = {COLD:'#3b82f6',WARM:'var(--gold)',HOT:'#f97316',EXTREME:'var(--red)'};
+
+  Promise.all([
+    fetch('/api/signal-strength').then(function(r){return r.json()}).catch(function(){return null}),
+    fetch('/api/stock-of-the-day').then(function(r){return r.json()}).catch(function(){return null}),
+    fetch('/api/sector-heatmap').then(function(r){return r.json()}).catch(function(){return null}),
+    fetch('/api/hot-streaks').then(function(r){return r.json()}).catch(function(){return null}),
+    fetch('/api/filings-feed?limit=8').then(function(r){return r.json()}).catch(function(){return null})
+  ]).then(function(results){
+    var sig = results[0];
+    var pick = results[1];
+    var sectors = results[2];
+    var streaks = results[3];
+    var filings = results[4];
+
+    content.textContent = '';
+    dateEl.textContent = (sig && sig.date) || new Date().toISOString().slice(0,10);
+
+    // Signal strength banner
+    if (sig) {
+      var banner = el('div','temp-banner');
+      var tc = tempColors[sig.temperature] || tempColors.WARM;
+      banner.style.borderColor = tc;
+
+      var badge = el('div','temp-badge');
+      badge.style.background = 'rgba(0,0,0,.3)';
+      badge.style.border = '3px solid ' + tc;
+      var bv = el('div','tb-val',String(sig.total_signals));
+      bv.style.color = tc;
+      badge.appendChild(bv);
+      var bw = el('div','tb-word',sig.temperature);
+      bw.style.color = tc;
+      badge.appendChild(bw);
+      banner.appendChild(badge);
+
+      var info = el('div','temp-info');
+      info.appendChild(el('div','ti-count',sig.total_signals + ' signals across ' + sig.unique_tickers + ' tickers'));
+      var srcStr = sig.sources.filter(function(s){return s.count>0}).map(function(s){return s.label+': '+s.count}).join(' \u00B7 ');
+      info.appendChild(el('div','ti-tickers',srcStr));
+      banner.appendChild(info);
+
+      content.appendChild(banner);
+    }
+
+    // Top pick
+    if (pick && pick.pick) {
+      var sec = el('div','section');
+      sec.appendChild(sectionHead('Stock of the Day','Full profile','/spotlight/'));
+      var pc = el('div','pick-card');
+      pc.appendChild(el('div','pick-ticker',pick.pick.ticker));
+      var meta = el('div','pick-meta');
+      var sc = el('div','pm-score');
+      sc.textContent = 'Score: ' + parseFloat(pick.pick.total_score||0).toFixed(1);
+      sc.style.color = 'var(--gold)';
+      meta.appendChild(sc);
+      meta.appendChild(el('div','pm-signals',pick.pick.signal_count + ' signals detected'));
+      if (pick.pick.sec_form) meta.appendChild(el('div','pm-form','Latest: ' + pick.pick.sec_form));
+      pc.appendChild(meta);
+      sec.appendChild(pc);
+      content.appendChild(sec);
+    }
+
+    // Top sectors
+    if (sectors && sectors.sectors && sectors.sectors.length > 0) {
+      var sec2 = el('div','section');
+      sec2.appendChild(sectionHead('Hottest Sectors','All sectors','/sectors/'));
+      var mg = el('div','mini-grid');
+      sectors.sectors.slice(0,6).forEach(function(s){
+        var card = el('div','mini-card');
+        card.appendChild(el('div','mc-name',s.sector));
+        var v = el('div','mc-val',String(s.count) + ' picks');
+        v.style.color = s.count > 10 ? 'var(--green)' : 'var(--gold)';
+        card.appendChild(v);
+        card.appendChild(el('div','mc-sub','Top: ' + s.top_ticker + ' (' + s.top_score + ')'));
+        mg.appendChild(card);
+      });
+      sec2.appendChild(mg);
+      content.appendChild(sec2);
+    }
+
+    // Hot streaks
+    if (streaks && streaks.streaks && streaks.streaks.length > 0) {
+      var sec3 = el('div','section');
+      sec3.appendChild(sectionHead('Hot Streaks','All streaks','/hot-streaks/'));
+      var sr = el('div','streak-row');
+      streaks.streaks.slice(0,12).forEach(function(s){
+        var pill = el('div','streak-pill');
+        pill.appendChild(el('span','sp-ticker',s.ticker));
+        pill.appendChild(el('span','sp-days',s.appearances + 'd'));
+        sr.appendChild(pill);
+      });
+      sec3.appendChild(sr);
+      content.appendChild(sec3);
+    }
+
+    // Recent filings
+    if (filings && filings.filings && filings.filings.length > 0) {
+      var sec4 = el('div','section');
+      sec4.appendChild(sectionHead('Latest Filings','All filings','/filings-feed/'));
+      filings.filings.forEach(function(f){
+        var row = el('div','filing-mini');
+        row.appendChild(el('span','fm-time',relativeTime(f.recency_min) + ' ago'));
+        var form = el('span','fm-form',f.form);
+        form.style.color = f.form === '8-K' ? 'var(--green)' : f.form === '4' ? 'var(--gold)' : 'var(--cyan)';
+        row.appendChild(form);
+        var tlink = document.createElement('a');
+        tlink.href = '/lookup/#' + f.ticker;
+        tlink.className = 'fm-ticker';
+        tlink.textContent = f.ticker;
+        var tcell = el('span','');
+        tcell.appendChild(tlink);
+        row.appendChild(tcell);
+        row.appendChild(el('span','fm-score',f.priority_score));
+        sec4.appendChild(row);
+      });
+      content.appendChild(sec4);
+    }
+
+  }).catch(function(){
+    content.textContent = 'Could not load digest.';
+  });
+})();
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KV1VDK22VC"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-KV1VDK22VC');</script>
+</body>
+</html>

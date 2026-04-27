@@ -1,0 +1,15 @@
+{
+  "date": "2026-03-30",
+  "top5_tickers": [
+    "AEM",
+    "ASND",
+    "BMNR",
+    "CGAU",
+    "DNN"
+  ],
+  "gapper_count": 8,
+  "value_count": 5,
+  "moat_count": 5,
+  "total_combined": 186,
+  "top_pick": "AEM"
+}

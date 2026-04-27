@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Signal Explorer — Drill Into Every Catalyst Signal | Catalyst Edge</title>
+<meta name="description" content="Explore every catalyst signal type: squeeze plays, insider clusters, dark pool flags, convergence alerts, deep value, smart money, and merger signals. See which tickers are active in each.">
+<meta property="og:title" content="Signal Explorer — Catalyst Edge">
+<link rel="canonical" href="https://catalystedgescanner.com/signals/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#070a12;--surface:#0f1420;--surface2:#151c2c;--gold:#d4a843;--green:#22c55e;--red:#ef4444;--cyan:#06b6d4;--text:#e2e8f0;--dim:#94a3b8;--muted:#64748b;--border:#1e293b;--purple:#a855f7;--orange:#f97316}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
+.wrap{max-width:1000px;margin:0 auto;padding:1.5rem}
+.nav{position:sticky;top:0;z-index:100;background:rgba(7,10,18,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:.75rem 1.5rem;display:flex;align-items:center;gap:1rem}
+.nav a{color:var(--gold);font-weight:600;font-size:.95rem}
+.nav .sep{color:var(--muted)}
+.hero{text-align:center;padding:2rem 0 1.5rem;border-bottom:1px solid var(--border);margin-bottom:1.5rem}
+.hero h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:800;margin-bottom:.4rem}
+.hero h1 em{font-style:normal;color:var(--cyan)}
+.hero .sub{color:var(--dim);font-size:.85rem;max-width:560px;margin:0 auto}
+.signal-summary{display:flex;justify-content:center;gap:.5rem;flex-wrap:wrap;margin:1rem 0}
+.ss-chip{padding:6px 14px;border-radius:8px;border:2px solid var(--border);background:var(--surface);cursor:pointer;font-family:'Space Grotesk',sans-serif;font-size:.75rem;font-weight:700;transition:all .2s;display:flex;align-items:center;gap:.4rem}
+.ss-chip:hover{border-color:var(--gold)}
+.ss-chip.active{border-color:var(--cyan);background:rgba(6,182,212,.06)}
+.ss-chip .ss-count{font-family:'IBM Plex Mono',monospace;font-size:.65rem;padding:1px 5px;border-radius:4px;background:rgba(255,255,255,.05)}
+.signal-panel{margin:1.5rem 0}
+.sp-header{background:var(--surface);border:2px solid var(--border);border-radius:12px 12px 0 0;padding:1.2rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+.sp-icon{width:48px;height:48px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0}
+.sp-info{flex:1;min-width:200px}
+.sp-name{font-size:1.1rem;font-weight:800}
+.sp-desc{font-size:.75rem;color:var(--dim)}
+.sp-count{font-size:1.5rem;font-weight:800;font-family:'IBM Plex Mono',monospace;text-align:right}
+.sp-tickers{background:var(--surface2);border:1px solid var(--border);border-top:none;border-radius:0 0 12px 12px;padding:1rem}
+.sp-grid{display:flex;flex-wrap:wrap;gap:.4rem}
+.sp-ticker{padding:5px 10px;border-radius:6px;border:1px solid var(--border);background:var(--surface);font-size:.75rem;font-weight:700;color:var(--gold);transition:all .15s;cursor:pointer}
+.sp-ticker:hover{border-color:var(--gold);background:rgba(212,168,67,.06);transform:translateY(-1px)}
+.sp-empty{color:var(--muted);font-size:.8rem;text-align:center;padding:.5rem}
+.cta-bar{background:var(--surface);border:1px solid var(--gold);border-radius:10px;padding:1.25rem;text-align:center;margin:2rem 0}
+.cta-bar h3{color:var(--gold);font-size:1rem;margin-bottom:.3rem}
+.cta-bar p{color:var(--dim);font-size:.8rem;margin-bottom:.75rem}
+.cta-bar a{display:inline-block;padding:.5rem 1.4rem;background:linear-gradient(135deg,var(--gold),#f1ce88);color:#070a12;font-weight:700;border-radius:6px;font-size:.85rem}
+.footer{text-align:center;padding:1.5rem;font-size:.72rem;color:var(--muted);border-top:1px solid var(--border);margin-top:2rem}
+.footer a{color:var(--muted)}
+.loading{text-align:center;padding:3rem;color:var(--muted)}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Catalyst Edge Signal Explorer","url":"https://catalystedgescanner.com/signals/","description":"Explore every catalyst signal type and see which tickers are active in each","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@800;900&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/lib/cinematic-hero.css">
+  <link rel="stylesheet" href="/lib/cyber-shell.css">
+  <link rel="stylesheet" href="/lib/polish-tokens.css">
+</head>
+<body>
+  <div class="cy-bg" aria-hidden="true"></div>
+  <div class="cy-floor" aria-hidden="true"></div>
+  <div class="cy-vignette" aria-hidden="true"></div>
+  <div class="cy-scan" aria-hidden="true"></div>
+<div class="nav">
+  <a href="/">Catalyst Edge</a>
+  <span class="sep">/</span>
+  <span style="color:var(--dim);font-size:.9rem">Signal Explorer</span>
+</div>
+<div class="wrap">
+<section class="cin-hero cy-neon-hero cy-shimmer">
+    <div class="cin-grid">
+      <div class="cin-stat-stack">
+        <div class="cin-eyebrow"><span class="cin-live-dot"></span>ALL SIGNALS · UNIFIED</div>
+        <div class="cin-colossal">
+          <div class="cin-num-row"><span class="cin-num">9</span></div>
+          <div class="cin-side">
+          <span class="cin-tag"><b>signal layers</b></span>
+          <span class="cin-tag">one-page overview</span>
+          <span class="cin-tag">count + leader per layer</span>
+          </div>
+        </div>
+        <div class="cin-stamp">SIGNALS//OVERVIEW · v1.0 · <b>LIVE</b></div>
+      </div>
+      <div class="cin-h1-block">
+        <div class="cin-h1-eyebrow">⚡ All Signals · The Unified Overview</div>
+        <h1 class="cin-headline">Every <em>signal layer</em> on one page—<span class="cin-accent">count, leader, today's firing names</span>.</h1>
+        <p class="cin-lede">Squeeze, insider, dark pool, convergence, smart money, M&A, gaps, sympathy, lockups — all 9 layers of the scanner, with the count of names firing on each and the day's leader on each.</p>
+        <div class="cin-cta-row">
+          <a href="#signals-grid" class="cin-btn-primary">See all 9 ↓</a>
+          <a href="/scanner/" class="cin-btn-ghost">Live scanner</a>
+        </div>
+        <div class="cin-strip">
+          <div class="cin-cell"><div class="cin-k">Layers</div><div class="cin-v">9</div></div>
+          <div class="cin-cell"><div class="cin-k">Total signals</div><div class="cin-v gold" id="si-hot">–</div></div>
+          <div class="cin-cell"><div class="cin-k">Unique tickers</div><div class="cin-v bull" id="si-conv">–</div></div>
+          <div class="cin-cell"><div class="cin-k">Temperature</div><div class="cin-v cyan" id="si-temp">live</div></div>
+        </div>
+        <script>
+        (function(){
+          fetch('/api/signal-strength').then(function(r){return r.json()}).then(function(d){
+            var f = function(id, v){ var n=document.getElementById(id); if(n && v!=null) n.textContent = v; };
+            f('si-hot', (d.total_signals||0).toLocaleString());
+            f('si-conv', (d.unique_tickers||0).toLocaleString());
+            f('si-temp', d.temperature || 'live');
+          }).catch(function(){});
+        })();
+        </script>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="signal-summary" id="sig-summary"></div>
+  <div id="panels" class="signal-panels">
+    <div class="loading">Scanning signals...</div>
+  </div>
+  <div class="cta-bar">
+    <h3>Get signal alerts before market open</h3>
+    <p>Free daily email at 4 AM ET with ranked picks, all active signals, and convergence alerts.</p>
+    <a href="/preview/">Subscribe Free</a>
+  </div>
+</div>
+<div class="footer">
+  &copy; 2026 Catalyst Edge &middot;
+  <a href="/">Scanner</a> &middot;
+  <a href="/rankings/">Rankings</a> &middot;
+  <a href="/screener/">Screener</a> &middot;
+  <a href="/spotlight/">Spotlight</a> &middot;
+  <a href="/lookup/">Lookup</a> &middot;
+  <a href="/winners/">Winners</a> &middot;
+  <a href="/momentum/">Momentum</a> &middot;
+  <a href="/digest/">Digest</a> &middot;
+  <a href="/watchlist-app/">Watchlist</a> &middot;
+  <a href="/glossary/">Glossary</a> &middot;
+  Not financial advice.
+</div>
+<script>
+(function(){
+  var panels = document.getElementById('panels');
+  var summary = document.getElementById('sig-summary');
+
+  var signalDefs = [
+    {key:'squeeze', label:'Squeeze Plays', desc:'Short-squeeze and gamma-squeeze candidates under pressure', icon:'\uD83D\uDCA5', color:'var(--red)'},
+    {key:'insider', label:'Insider Clusters', desc:'Significant insider buying activity detected from SEC Form 4 filings', icon:'\uD83D\uDD75\uFE0F', color:'var(--gold)'},
+    {key:'darkpool', label:'Dark Pool Flags', desc:'Unusual dark pool volume or block trade activity', icon:'\uD83C\uDF11', color:'var(--purple)'},
+    {key:'deepvalue', label:'Deep Value', desc:'Fundamentally undervalued stocks with catalyst triggers', icon:'\uD83D\uDC8E', color:'var(--cyan)'},
+    {key:'convergence', label:'Convergence Alerts', desc:'Multiple independent signals converging on the same ticker', icon:'\u26A1', color:'var(--orange)'},
+    {key:'smart_money', label:'Smart Money', desc:'Institutional and hedge fund accumulation signals', icon:'\uD83E\uDDE0', color:'var(--green)'},
+    {key:'merger', label:'Merger Signals', desc:'M&A activity indicators from SEC filings and news flow', icon:'\uD83E\uDD1D', color:'#ec4899'},
+    {key:'gappers', label:'Gap Plays', desc:'Pre-market gappers with catalyst backing from overnight filings', icon:'\uD83D\uDE80', color:'var(--gold)'},
+    {key:'rankings', label:'Ranked Picks', desc:'Today\'s full ranked universe from the daily catalyst pipeline', icon:'\uD83C\uDFC6', color:'var(--gold)'}
+  ];
+
+  function el(tag, cls, text) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text) e.textContent = text;
+    return e;
+  }
+
+  fetch('/api/signal-strength').then(function(r){ return r.json(); }).then(function(d) {
+    var sources = d.sources || [];
+    var sourceMap = {};
+    sources.forEach(function(s){ sourceMap[s.source] = s; });
+
+    panels.textContent = '';
+    summary.textContent = '';
+
+    var totalSignals = d.total_signals || 0;
+
+    signalDefs.forEach(function(def) {
+      var src = sourceMap[def.key] || {count:0, unique_tickers:0};
+
+      // Summary chip
+      var chip = el('button', 'ss-chip');
+      chip.style.color = def.color;
+      chip.textContent = def.label + ' ';
+      var cnt = el('span', 'ss-count', String(src.count));
+      cnt.style.color = src.count > 0 ? def.color : 'var(--muted)';
+      chip.appendChild(cnt);
+      chip.addEventListener('click', function() {
+        var panel = document.getElementById('panel-' + def.key);
+        if (panel) panel.scrollIntoView({behavior:'smooth', block:'start'});
+      });
+      summary.appendChild(chip);
+
+      // Panel
+      var section = el('div', 'signal-panel');
+      section.id = 'panel-' + def.key;
+
+      var header = el('div', 'sp-header');
+      header.style.borderColor = src.count > 0 ? def.color : 'var(--border)';
+
+      var icon = el('div', 'sp-icon', def.icon);
+      icon.style.background = src.count > 0 ? def.color.replace(')', ',.12)').replace('var(','rgba(').replace('--','') : 'var(--surface2)';
+      // Simplified: just set background with opacity
+      icon.style.background = 'rgba(255,255,255,.04)';
+      header.appendChild(icon);
+
+      var info = el('div', 'sp-info');
+      var name = el('div', 'sp-name', def.label);
+      name.style.color = def.color;
+      info.appendChild(name);
+      info.appendChild(el('div', 'sp-desc', def.desc));
+      header.appendChild(info);
+
+      var count = el('div', 'sp-count', String(src.count));
+      count.style.color = src.count > 0 ? def.color : 'var(--muted)';
+      header.appendChild(count);
+
+      section.appendChild(header);
+
+      // Ticker area (will be filled async)
+      var tickerArea = el('div', 'sp-tickers');
+      tickerArea.id = 'tickers-' + def.key;
+      if (src.count === 0) {
+        tickerArea.appendChild(el('div', 'sp-empty', 'No active ' + def.label.toLowerCase() + ' signals today'));
+      } else {
+        tickerArea.appendChild(el('div', 'sp-empty', 'Loading tickers...'));
+      }
+      section.appendChild(tickerArea);
+
+      panels.appendChild(section);
+    });
+
+    // Now fetch screener data to get ticker-signal mappings
+    fetch('/api/screener').then(function(r){ return r.json(); }).then(function(sd) {
+      var tickers = sd.tickers || [];
+
+      // Build signal -> ticker lists
+      var signalTickers = {};
+      signalDefs.forEach(function(def){ signalTickers[def.key] = []; });
+
+      tickers.forEach(function(t) {
+        if (t.is_ranked) signalTickers.rankings.push(t);
+        if (t.is_gapper) signalTickers.gappers.push(t);
+        if (t.is_squeeze) signalTickers.squeeze.push(t);
+        if (t.is_insider) signalTickers.insider.push(t);
+        if (t.is_deepvalue) signalTickers.deepvalue.push(t);
+        if (t.is_darkpool) signalTickers.darkpool.push(t);
+        if (t.is_convergence) signalTickers.convergence.push(t);
+        if (t.is_smart_money) signalTickers.smart_money.push(t);
+        if (t.is_merger) signalTickers.merger.push(t);
+      });
+
+      signalDefs.forEach(function(def) {
+        var area = document.getElementById('tickers-' + def.key);
+        var list = signalTickers[def.key] || [];
+
+        if (list.length === 0) return;
+
+        area.textContent = '';
+        var grid = el('div', 'sp-grid');
+
+        list.sort(function(a, b) { return (parseFloat(b.total_score)||0) - (parseFloat(a.total_score)||0); });
+
+        list.forEach(function(t) {
+          var link = document.createElement('a');
+          link.href = '/lookup/#' + t.ticker;
+          link.className = 'sp-ticker';
+          link.textContent = t.ticker;
+          link.title = 'Score: ' + (t.total_score || '?') + ' | Signals: ' + (t.signal_count || '?');
+          grid.appendChild(link);
+        });
+
+        area.appendChild(grid);
+      });
+    });
+
+  }).catch(function() {
+    panels.textContent = 'Could not load signal data.';
+  });
+})();
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KV1VDK22VC"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-KV1VDK22VC');</script>
+</body>
+</html>

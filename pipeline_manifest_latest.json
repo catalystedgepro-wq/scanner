@@ -1,0 +1,92 @@
+{
+  "generated_at": "2026-04-27T23:14:10.602591+00:00",
+  "git_branch": "main",
+  "git_commit": "0e85e6ae33c0ab14fd8fc8d82148a242661d99a7",
+  "git_short_commit": "0e85e6a",
+  "hud_assets": [
+    "docs/hud/assets/index-BTWyv6rR.js"
+  ],
+  "kind": "cerebro_pipeline_manifest",
+  "outputs": {
+    "api_server": {
+      "exists": true,
+      "mtime": 1776485172,
+      "path": "api_server.py",
+      "sha256": "b86903a0bb29af228ebec679595bc0292dd152456b55dae90ab64e67cac8645a",
+      "size": 210048
+    },
+    "combined_priority": {
+      "exists": true,
+      "mtime": 1777330871,
+      "path": "combined_priority.csv",
+      "sha256": "bae51fad5214498731dd3bf660c1c399e5ed1198195048f8d7fe9e99d2b79233",
+      "size": 27039
+    },
+    "entity_master": {
+      "exists": true,
+      "mtime": 1777331545,
+      "path": "entity_master.json",
+      "sha256": "a3e9666e80cd498d29f88591e92bf10a99a8991151d49b33d1a8ad44a398996e",
+      "size": 10666706
+    },
+    "hud_index": {
+      "exists": true,
+      "mtime": 1777287993,
+      "path": "docs/hud/index.html",
+      "sha256": "aa300f563165249e70d2fba85c51a89be47a52cec65c7edb6137db8287f25ec8",
+      "size": 5377
+    },
+    "macro_layer": {
+      "exists": true,
+      "mtime": 1777330287,
+      "path": "macro_layer.json",
+      "sha256": "384f81ff13c8761d95b62c7d5eae95e12f465969df07d5741dd1cdefb8e07945",
+      "size": 1872
+    },
+    "newsletter_body": {
+      "exists": true,
+      "mtime": 1777330347,
+      "path": "newsletter_body.html",
+      "sha256": "dd869f4ce5dde5cdf498f3332e0b2bc68773a3ae25b33c1baff7d4bd4a194bab",
+      "size": 126721
+    },
+    "scanner_artifact_status": {
+      "exists": true,
+      "mtime": 1777331642,
+      "path": "scanner_artifact_status.json",
+      "sha256": "ed1927bf8d67c077c7dc7fa27b8742335f3bf18b7ac6d0d6280731ab5948f4e1",
+      "size": 402
+    },
+    "scanner_index": {
+      "exists": true,
+      "mtime": 1777331642,
+      "path": "docs/index.html",
+      "sha256": "ca0331bf4403c8e2cf2a4e2d5a29ca6bf42fed2de1176bf241376ed53aa2a084",
+      "size": 496390
+    },
+    "sec_catalyst_latest": {
+      "exists": true,
+      "mtime": 1777330853,
+      "path": "sec_catalyst_latest.csv",
+      "sha256": "675c99028953e8732701d33eec0fb7a437118728d78a5c9591422c0c0f7239b8",
+      "size": 123616
+    },
+    "sec_catalyst_ranked": {
+      "exists": true,
+      "mtime": 1777330853,
+      "path": "sec_catalyst_ranked.csv",
+      "sha256": "71ca024cd3bd87989a2c645c0ed5d8bf7f167a7d4b9c61b163792a78895c4075",
+      "size": 88627
+    },
+    "sec_fetch_status": {
+      "exists": true,
+      "mtime": 1777330853,
+      "path": "sec_catalyst_fetch_status.json",
+      "sha256": "abbcfa78ba4a70491dfa67f131dce0aebe3f70a60d27064b2818a58c5e53ebbf",
+      "size": 257
+    }
+  },
+  "root": "/home/operator/.openclaw/workspace",
+  "stamp": "2026-04-27",
+  "status": "complete"
+}

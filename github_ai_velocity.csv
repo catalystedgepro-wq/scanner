@@ -1,0 +1,13 @@
+topic,window_days,repo_count,top_repo,top_stars,top_pushed,captured_at
+llm,30,8488,MemPalace/mempalace,50008,2026-04-27,2026-04-27T22:47:19Z
+agents,30,1362,TencentCloud/CubeSandbox,4370,2026-04-27,2026-04-27T22:47:19Z
+rag,30,2527,FlowElement-ai/m_flow,1957,2026-04-20,2026-04-27T22:47:19Z
+llamaindex,30,43,run-llama/ParseBench,446,2026-04-24,2026-04-27T22:47:19Z
+langchain,30,1212,416rehman/DeepZero,305,2026-04-27,2026-04-27T22:47:19Z
+fine-tuning,30,230,R6410418/Jackrong-llm-finetuning-guide,1028,2026-04-23,2026-04-27T22:47:19Z
+inference,30,262,HJCheng0602/nanoPD,164,2026-04-15,2026-04-27T22:47:19Z
+diffusion-models,30,90,CIntellifusion/MultiWorld,163,2026-04-21,2026-04-27T22:47:19Z
+computer-vision,30,1562,simoncirstoiu/alice,292,2026-04-26,2026-04-27T22:47:19Z
+reinforcement-learning,30,487,Holiday-Robot/FlashSAC,230,2026-04-09,2026-04-27T22:47:19Z
+mcp,30,6235,MemPalace/mempalace,50008,2026-04-27,2026-04-27T22:47:19Z
+trending_1,30,1,Significant-Gravitas/AutoGPT,183828,2026-04-27,2026-04-27T22:47:19Z

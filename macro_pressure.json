@@ -1,0 +1,139 @@
+{
+  "timestamp": "2026-04-27T23:01:12.145892+00:00",
+  "tnx_live": 4.336,
+  "tnx_baseline": 4.21,
+  "tnx_delta": 0.126,
+  "dxy_live": 98.496,
+  "dxy_baseline": null,
+  "dxy_delta_pct": -4.373,
+  "yield_curve_spread": null,
+  "yield_curve_inverted": false,
+  "real_rate": 1.236,
+  "recession_warning": false,
+  "small_cap_velocity_cap": 1.0,
+  "spike_alert": false,
+  "pressures": {
+    "real_estate": {
+      "multiplier": 0.7268,
+      "base": 0.726,
+      "live_adj": 1.001,
+      "tnx_adj": 0.9989,
+      "dxy_adj": 1.0022,
+      "signal": "strong_headwind",
+      "rate_beta": 0.9,
+      "dxy_beta": 0.05
+    },
+    "tech": {
+      "multiplier": 0.7771,
+      "base": 0.758,
+      "live_adj": 1.0251,
+      "tnx_adj": 0.9989,
+      "dxy_adj": 1.0262,
+      "signal": "strong_headwind",
+      "rate_beta": 0.85,
+      "dxy_beta": 0.6
+    },
+    "utilities": {
+      "multiplier": 0.7339,
+      "base": 0.732,
+      "live_adj": 1.0025,
+      "tnx_adj": 0.9991,
+      "dxy_adj": 1.0035,
+      "signal": "strong_headwind",
+      "rate_beta": 0.75,
+      "dxy_beta": 0.08
+    },
+    "biotech": {
+      "multiplier": 0.8889,
+      "base": 0.882,
+      "live_adj": 1.0079,
+      "tnx_adj": 0.9991,
+      "dxy_adj": 1.0087,
+      "signal": "headwind",
+      "rate_beta": 0.7,
+      "dxy_beta": 0.2
+    },
+    "semis": {
+      "multiplier": 0.8114,
+      "base": 0.793,
+      "live_adj": 1.0232,
+      "tnx_adj": 0.9992,
+      "dxy_adj": 1.0241,
+      "signal": "strong_headwind",
+      "rate_beta": 0.65,
+      "dxy_beta": 0.55
+    },
+    "comms": {
+      "multiplier": 0.8951,
+      "base": 0.886,
+      "live_adj": 1.0103,
+      "tnx_adj": 0.9994,
+      "dxy_adj": 1.0109,
+      "signal": "headwind",
+      "rate_beta": 0.5,
+      "dxy_beta": 0.25
+    },
+    "consumer": {
+      "multiplier": 0.9377,
+      "base": 0.922,
+      "live_adj": 1.017,
+      "tnx_adj": 0.9996,
+      "dxy_adj": 1.0175,
+      "signal": "neutral",
+      "rate_beta": 0.35,
+      "dxy_beta": 0.4
+    },
+    "industrials": {
+      "multiplier": 0.9561,
+      "base": 0.942,
+      "live_adj": 1.0149,
+      "tnx_adj": 0.9996,
+      "dxy_adj": 1.0153,
+      "signal": "neutral",
+      "rate_beta": 0.3,
+      "dxy_beta": 0.35
+    },
+    "materials": {
+      "multiplier": 0.9961,
+      "base": 0.975,
+      "live_adj": 1.0216,
+      "tnx_adj": 0.9997,
+      "dxy_adj": 1.0219,
+      "signal": "neutral",
+      "rate_beta": 0.2,
+      "dxy_beta": 0.5
+    },
+    "energy": {
+      "multiplier": 1.0348,
+      "base": 1.015,
+      "live_adj": 1.0195,
+      "tnx_adj": 0.9998,
+      "dxy_adj": 1.0197,
+      "signal": "tailwind",
+      "rate_beta": 0.15,
+      "dxy_beta": 0.45
+    },
+    "staples": {
+      "multiplier": 0.9702,
+      "base": 0.964,
+      "live_adj": 1.0064,
+      "tnx_adj": 0.9999,
+      "dxy_adj": 1.0066,
+      "signal": "neutral",
+      "rate_beta": 0.1,
+      "dxy_beta": 0.15
+    },
+    "financials": {
+      "multiplier": 1.1879,
+      "base": 1.203,
+      "live_adj": 0.9874,
+      "tnx_adj": 1.0006,
+      "dxy_adj": 0.9869,
+      "signal": "strong_tailwind",
+      "rate_beta": -0.45,
+      "dxy_beta": -0.3
+    }
+  },
+  "alerts": [],
+  "source": "live_tnx"
+}

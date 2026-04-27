@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How to Trade Earnings Season with SEC Filings | Catalyst Edge</title>
+<meta name="description" content="Use SEC filings to trade earnings season smarter. Learn which filings predict earnings surprises, how insider activity signals results, and how to build a pre-earnings watchlist.">
+<link rel="canonical" href="https://catalystedgescanner.com/glossary/how-to-trade-earnings-season/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "When is earnings season?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Earnings season happens four times a year, starting about two weeks after each quarter ends. The busiest weeks are typically mid-January through mid-February (Q4), mid-April through mid-May (Q1), mid-July through mid-August (Q2), and mid-October through mid-November (Q3). About 70% of S&P 500 companies report within a 3-week window each season."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which SEC filings predict earnings surprises?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Form 4 insider buying in the 30 days before earnings is the strongest predictor. If a CEO buys shares weeks before reporting, they likely know the numbers are strong. 8-K filings about contract wins, product launches, or partnership announcements filed during the quiet period also signal positive results. Conversely, S-3 shelf registrations filed right before earnings often precede weak results followed by dilution."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do you trade earnings with SEC filing data?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Build a pre-earnings watchlist by scanning for companies with recent insider buying (Form 4), positive 8-K catalysts, and high catalyst scores. Avoid stocks with recent S-3 registrations or insider selling. Use options flow data to confirm institutional positioning, and look for convergence between insider buying and unusual call activity. This approach identifies stocks most likely to beat expectations."
+      }
+    }
+  ]
+}
+</script>
+<style>
+:root {
+  --bg: #0a0e1a;
+  --surface: #111827;
+  --surface-2: #1a2035;
+  --border: #1e293b;
+  --text: #e2e8f0;
+  --text-dim: #94a3b8;
+  --accent: #d4a853;
+  --accent-glow: rgba(212, 168, 83, 0.15);
+  --blue: #3b82f6;
+  --green: #10b981;
+  --red: #ef4444;
+  --font: 'Space Grotesk', system-ui, sans-serif;
+  --mono: 'IBM Plex Mono', monospace;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+.container { max-width: 800px; margin: 0 auto; padding: 2rem 1.5rem; }
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(10, 14, 26, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0.75rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+}
+nav a { color: var(--accent); text-decoration: none; font-weight: 600; font-size: 0.95rem; }
+nav a:hover { text-decoration: underline; }
+nav .sep { color: var(--text-dim); }
+.hero {
+  text-align: center;
+  padding: 4rem 0 3rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 2rem;
+}
+.hero h1 {
+  font-size: clamp(1.8rem, 4.5vw, 2.8rem);
+  font-weight: 800;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+}
+.hero .subtitle {
+  font-size: 1.15rem;
+  color: var(--text-dim);
+  max-width: 600px;
+  margin: 0 auto;
+}
+.content-section { margin-bottom: 2.5rem; }
+.content-section h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--accent-glow);
+}
+.content-section p, .content-section li {
+  color: var(--text-dim);
+  font-size: 1.05rem;
+}
+.content-section ul, .content-section ol {
+  padding-left: 0;
+  list-style: none;
+  margin-top: 0.5rem;
+}
+.content-section li {
+  padding: 0.35rem 0 0.35rem 1.5rem;
+  position: relative;
+}
+.content-section li::before {
+  color: var(--accent);
+  position: absolute;
+  left: 0;
+}
+.content-section ul li::before { content: '\25B8'; }
+.content-section ol { counter-reset: step; }
+.content-section ol li { counter-increment: step; }
+.content-section ol li::before { content: counter(step) '.'; font-weight: 700; }
+.timeline {
+  position: relative;
+  padding-left: 2rem;
+  margin: 1rem 0;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 8px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--border);
+}
+.tl-item {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+.tl-item::before {
+  content: '';
+  position: absolute;
+  left: -2rem;
+  top: 6px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 2px solid var(--bg);
+}
+.tl-item h4 {
+  color: var(--text);
+  font-size: 1rem;
+  margin-bottom: 0.2rem;
+}
+.tl-item p {
+  color: var(--text-dim);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+.signal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin: 1rem 0;
+}
+.signal-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.25rem;
+}
+.signal-card h4 {
+  color: var(--accent);
+  font-size: 0.95rem;
+  margin-bottom: 0.4rem;
+}
+.signal-card p {
+  color: var(--text-dim);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+.signal-card .bullish { color: var(--green); font-weight: 600; font-size: 0.75rem; text-transform: uppercase; }
+.signal-card .bearish { color: var(--red); font-weight: 600; font-size: 0.75rem; text-transform: uppercase; }
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 0.95rem;
+}
+.data-table th, .data-table td {
+  padding: 0.6rem 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+.data-table th {
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.data-table td { color: var(--text-dim); }
+.faq-section { margin-top: 3rem; }
+.faq-section h2 { font-size: 1.4rem; font-weight: 700; margin-bottom: 1rem; color: var(--accent); }
+.faq-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
+  overflow: hidden;
+}
+.faq-item summary {
+  padding: 1rem 1.25rem;
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+  display: flex; align-items: center; gap: 0.5rem;
+}
+.faq-item summary::before {
+  content: '+'; font-family: var(--mono); color: var(--accent); font-size: 1.2rem; flex-shrink: 0;
+}
+.faq-item[open] summary::before { content: '\2212'; }
+.faq-item p { padding: 0 1.25rem 1rem; color: var(--text-dim); line-height: 1.6; }
+.cta-box {
+  background: linear-gradient(135deg, var(--surface) 0%, var(--surface-2) 100%);
+  border: 1px solid var(--accent);
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  margin: 3rem 0;
+}
+.cta-box h3 { color: var(--accent); font-size: 1.3rem; margin-bottom: 0.5rem; }
+.cta-box p { color: var(--text-dim); margin-bottom: 1.25rem; }
+.cta-box a {
+  display: inline-block; background: var(--accent); color: var(--bg);
+  font-weight: 700; padding: 0.75rem 2rem; border-radius: 8px;
+  text-decoration: none; font-size: 1rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.cta-box a:hover { transform: translateY(-2px); box-shadow: 0 4px 20px var(--accent-glow); }
+.related { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+.related h3 { font-size: 1rem; color: var(--text-dim); margin-bottom: 0.75rem; }
+.related a { color: var(--blue); text-decoration: none; font-size: 0.9rem; }
+.related a:hover { text-decoration: underline; }
+footer {
+  text-align: center; padding: 2rem 0; color: var(--text-dim);
+  font-size: 0.85rem; border-top: 1px solid var(--border); margin-top: 2rem;
+}
+footer a { color: var(--accent); text-decoration: none; }
+</style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@800;900&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/lib/cinematic-hero.css">
+  <link rel="stylesheet" href="/lib/cyber-shell.css">
+  <link rel="stylesheet" href="/lib/polish-tokens.css">
+</head>
+<body>
+  <div class="cy-bg" aria-hidden="true"></div>
+  <div class="cy-floor" aria-hidden="true"></div>
+  <div class="cy-vignette" aria-hidden="true"></div>
+  <div class="cy-scan" aria-hidden="true"></div>
+<nav>
+  <a href="/">Catalyst Edge</a>
+  <span class="sep">/</span>
+  <a href="/glossary/">Glossary</a>
+  <span class="sep">/</span>
+  <span style="color:var(--text-dim);font-size:0.9rem">Earnings Season Guide</span>
+</nav>
+
+<div class="container">
+<section class="cin-hero cy-neon-hero cy-narrow cy-shimmer">
+    <div class="cin-grid">
+      <div class="cin-stat-stack">
+        <div class="cin-eyebrow"><span class="cin-live-dot"></span>EARNINGS SEASON · STRATEGY</div>
+        <div class="cin-colossal">
+          <div class="cin-num-row"><span class="cin-num">EPS</span></div>
+          <div class="cin-side">
+          <span class="cin-tag"><b>pre-earnings</b> filter</span>
+          <span class="cin-tag">gap × catalyst entry</span>
+          <span class="cin-tag">post-earnings drift</span>
+          </div>
+        </div>
+        <div class="cin-stamp">GLOSSARY · HOW TO TRADE EARNINGS SE · v1.0 · <b>LIVE</b></div>
+      </div>
+      <div class="cin-h1-block">
+        <div class="cin-h1-eyebrow">📚 How to Trade Earnings Season</div>
+        <h1 class="cin-headline"><em>Pre-earnings</em>—the <span class="cin-accent">post-earnings drift playbook</span>.</h1>
+        <p class="cin-lede">The earnings season playbook: filter by catalyst score going in, use the gap × catalyst overlay for pre-market entries, and ride the post-earnings drift for 3-5 days when the surprise is real.</p>
+        <div class="cin-cta-row">
+          <a href="#article-body" class="cin-btn-primary">Read article ↓</a>
+          <a href="/glossary/" class="cin-btn-ghost">Glossary index</a>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <h2>Why SEC filings matter more during earnings</h2>
+    <p>Every quarter, roughly 4,000 companies report earnings within a 6-week window. Most traders watch analyst estimates and options implied moves. Few look at what insiders were doing in the weeks before the report. SEC filings filed during the "quiet period" (typically 2-4 weeks before earnings) contain signals that the market hasn't priced in yet.</p>
+    <p style="margin-top:0.75rem">Companies can't talk publicly during the quiet period, but insiders can still buy and sell stock. <a href="/glossary/what-is-form-4/" style="color:var(--blue)">Form 4</a> filings during this window are among the strongest earnings predictors available to retail traders.</p>
+  </section>
+
+  <section class="content-section">
+    <h2>Earnings season calendar</h2>
+    <table class="data-table">
+      <thead>
+        <tr><th>Quarter</th><th>Reporting window</th><th>Peak weeks</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Q4 (Oct-Dec)</td><td>Mid-January to mid-February</td><td>Last week of Jan, first week of Feb</td></tr>
+        <tr><td>Q1 (Jan-Mar)</td><td>Mid-April to mid-May</td><td>Last week of Apr, first week of May</td></tr>
+        <tr><td>Q2 (Apr-Jun)</td><td>Mid-July to mid-August</td><td>Last week of Jul, first week of Aug</td></tr>
+        <tr><td>Q3 (Jul-Sep)</td><td>Mid-October to mid-November</td><td>Last week of Oct, first week of Nov</td></tr>
+      </tbody>
+    </table>
+    <p style="margin-top:0.75rem">About 70% of S&P 500 companies report within a 3-week window. The densest days typically see 50-100 reports before market open.</p>
+  </section>
+
+  <section class="content-section">
+    <h2>SEC filing signals before earnings</h2>
+    <div class="signal-grid">
+      <div class="signal-card">
+        <span class="bullish">Bullish</span>
+        <h4>Insider Buying (Form 4)</h4>
+        <p>CEO or CFO open-market purchases 2-6 weeks before earnings. They know the numbers. Studies show pre-earnings insider buys precede beats 70%+ of the time.</p>
+      </div>
+      <div class="signal-card">
+        <span class="bullish">Bullish</span>
+        <h4>Positive 8-K Catalysts</h4>
+        <p>Contract wins, FDA approvals, or partnership announcements filed during the quiet period. These events will likely boost the upcoming quarterly results.</p>
+      </div>
+      <div class="signal-card">
+        <span class="bearish">Bearish</span>
+        <h4>S-3 Shelf Registration</h4>
+        <p>Filing a shelf offering right before earnings often means management expects weak results and is preparing to raise cash through dilution.</p>
+      </div>
+      <div class="signal-card">
+        <span class="bearish">Bearish</span>
+        <h4>Insider Selling Clusters</h4>
+        <p>Multiple insiders filing Form 4 sells in the weeks before earnings. Especially bearish when the selling is from C-suite officers, not just directors.</p>
+      </div>
+      <div class="signal-card">
+        <span class="bullish">Bullish</span>
+        <h4>13D Accumulation</h4>
+        <p>An activist investor crossing the 5% threshold (<a href="/glossary/what-is-sc-13d/" style="color:var(--blue)">Schedule 13D</a>) before earnings signals they expect a catalyst event.</p>
+      </div>
+      <div class="signal-card">
+        <span class="bullish">Bullish</span>
+        <h4>Unusual Options Flow</h4>
+        <p>Large call sweeps or block trades in the days before earnings, especially at strike prices well above current price, suggest informed bullish positioning.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <h2>Pre-earnings watchlist workflow</h2>
+    <div class="timeline">
+      <div class="tl-item">
+        <h4>4 weeks before earnings</h4>
+        <p>Scan for <a href="/glossary/what-is-form-4/" style="color:var(--blue)">Form 4</a> insider purchases at companies reporting in the upcoming season. Build initial watchlist from cluster buys and C-suite purchases.</p>
+      </div>
+      <div class="tl-item">
+        <h4>2 weeks before earnings</h4>
+        <p>Cross-reference insider buying with <a href="/glossary/what-is-catalyst-score/" style="color:var(--blue)">Catalyst Score</a>. Filter for stocks scoring 10+ with recent insider activity. Check for recent positive 8-K filings.</p>
+      </div>
+      <div class="tl-item">
+        <h4>1 week before earnings</h4>
+        <p>Layer in <a href="/glossary/what-is-options-flow/" style="color:var(--blue)">options flow</a> data. Look for unusual call buying or bullish sweeps that confirm the insider signal. Check <a href="/glossary/what-is-dark-pool/" style="color:var(--blue)">dark pool</a> prints for institutional accumulation.</p>
+      </div>
+      <div class="tl-item">
+        <h4>Day before earnings</h4>
+        <p>Finalize position sizing. Review implied move from options market. Set stop losses. Know the reporting time (before open vs after close).</p>
+      </div>
+      <div class="tl-item">
+        <h4>Post-earnings</h4>
+        <p>Read the 8-K earnings release and 10-Q. Watch for <a href="/glossary/what-is-sympathy-play/" style="color:var(--blue)">sympathy plays</a> in the same sector. Strong beats often lift the entire industry group.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <h2>Common earnings season mistakes</h2>
+    <ul>
+      <li><strong>Ignoring the quiet period:</strong> Filings during this window are more significant because management can't use PR to move the stock.</li>
+      <li><strong>Only watching one signal:</strong> Insider buying alone is good. Insider buying + unusual options flow + high catalyst score = much better. <a href="/glossary/what-is-convergence-alert/" style="color:var(--blue)">Convergence</a> is the edge.</li>
+      <li><strong>Holding through earnings without a thesis:</strong> Unless SEC filings confirm directional conviction, earnings plays are coin flips with elevated IV premiums working against you.</li>
+      <li><strong>Missing the post-earnings window:</strong> The best trades often happen 2-5 days after earnings as the market digests the report and SEC filings. The initial gap isn't always the final move.</li>
+      <li><strong>Overlooking the 10-K/10-Q:</strong> The actual <a href="/glossary/what-is-10k-filing/" style="color:var(--blue)">10-K</a> filing follows the earnings press release by days or weeks. Risk factor changes and management discussion shifts create secondary catalysts.</li>
+    </ul>
+  </section>
+
+  <div class="cta-box">
+    <h3>Get Earnings Season Watchlists Before 4 AM</h3>
+    <p>Catalyst Edge scans every filing overnight and delivers a scored watchlist before pre-market. Don't miss the insider signal.</p>
+    <a href="https://catalystedgescanner.com/">Open Scanner</a>
+  </div>
+
+  <div class="faq-section">
+    <h2>Frequently Asked Questions</h2>
+    <details class="faq-item">
+      <summary>When is earnings season?</summary>
+      <p>Earnings season happens four times a year, starting about two weeks after each quarter ends. The busiest weeks are typically mid-January through mid-February (Q4), mid-April through mid-May (Q1), mid-July through mid-August (Q2), and mid-October through mid-November (Q3). About 70% of S&P 500 companies report within a 3-week window each season.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Which SEC filings predict earnings surprises?</summary>
+      <p>Form 4 insider buying in the 30 days before earnings is the strongest predictor. If a CEO buys shares weeks before reporting, they likely know the numbers are strong. 8-K filings about contract wins, product launches, or partnership announcements filed during the quiet period also signal positive results. Conversely, S-3 shelf registrations filed right before earnings often precede weak results followed by dilution.</p>
+    </details>
+    <details class="faq-item">
+      <summary>How do you trade earnings with SEC filing data?</summary>
+      <p>Build a pre-earnings watchlist by scanning for companies with recent insider buying (Form 4), positive 8-K catalysts, and high catalyst scores. Avoid stocks with recent S-3 registrations or insider selling. Use options flow data to confirm institutional positioning, and look for convergence between insider buying and unusual call activity. This approach identifies stocks most likely to beat expectations.</p>
+    </details>
+  </div>
+
+  <div class="related">
+    <h3>Related Topics</h3>
+    <p><a href="/glossary/what-is-form-4/">What is Form 4?</a> &middot; <a href="/glossary/what-is-8k/">What is an 8-K?</a> &middot; <a href="/glossary/what-is-10k-filing/">What is a 10-K Filing?</a> &middot; <a href="/glossary/what-is-catalyst-score/">What is Catalyst Score?</a> &middot; <a href="/glossary/insider-buying-signals/">Insider Buying Signals</a> &middot; <a href="/glossary/what-is-options-flow/">What is Options Flow?</a></p>
+  </div>
+</div>
+
+<footer>
+  <a href="https://catalystedgescanner.com/">Catalyst Edge Scanner</a> &middot;
+  <a href="https://catalystedge.agency">Daily Newsletter</a> &middot;
+  &copy; 2026 Catalyst Edge
+</footer>
+</body>
+</html>

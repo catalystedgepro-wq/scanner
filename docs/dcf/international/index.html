@@ -1,0 +1,563 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>International DCF Intrinsic Value — Catalyst Edge</title>
+<meta name="description" content="Two-stage Damodaran DCF intrinsic value for 38 international markets and 370+ blue chips. Same math as the SEC EDGAR DCF, applied globally via free Yahoo fundamentals.">
+<link rel="canonical" href="https://catalystedgescanner.com/dcf/international/">
+<link rel="alternate" hreflang="x-default" href="https://catalystedgescanner.com/dcf/international/">
+<link rel="alternate" hreflang="en" href="https://catalystedgescanner.com/dcf/international/">
+<meta property="og:title" content="International DCF — Catalyst Edge">
+<meta property="og:description" content="Damodaran DCF for global equities. Free for top 5 names, Reader unlocks all, Pro adds Telegram alerts.">
+<meta property="og:type" content="website">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FinancialProduct",
+  "name": "Catalyst Edge International DCF",
+  "description": "Two-stage Damodaran DCF intrinsic value computed daily for 370+ international equities across 38 markets.",
+  "provider": {"@type":"Organization","name":"Catalyst Edge","url":"https://catalystedgescanner.com/"}
+}
+</script>
+<style>
+:root {
+  --bg: #07090f; --surface: #11141d; --surface-2: #181c27;
+  --border-soft: rgba(255,255,255,.07);
+  --text: #f6efe2; --dim: #9ea8ba;
+  --gold: #d7b46a; --green: #7fe8b3; --orange: #ffbf69;
+  --red: #ff8b86; --blue: #72e5ff; --cyan: #22d3ee;
+  --purple: #d59cff;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Space Grotesk', 'Segoe UI', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  background: var(--bg); color: var(--text); line-height: 1.55;
+}
+body::before {
+  content: ''; position: fixed; inset: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(114,229,255,.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(114,229,255,.03) 1px, transparent 1px);
+  background-size: 48px 48px; opacity: .28; z-index: 0;
+}
+a { color: var(--blue); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.nav {
+  position: sticky; top: 0; z-index: 100;
+  display: flex; flex-wrap: nowrap; gap: .45rem;
+  padding: .7rem 1rem; background: rgba(10,12,18,.86);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border-soft);
+  font-size: .82rem; overflow-x: auto;
+  white-space: nowrap; align-items: center;
+  scrollbar-width: thin;
+}
+.nav::-webkit-scrollbar { height: 4px; }
+.nav::-webkit-scrollbar-thumb { background: rgba(215,180,106,.25); border-radius: 4px; }
+.nav a { color: var(--dim); padding: .25rem .5rem; border-radius: 4px; flex-shrink: 0; }
+.nav a:hover { color: var(--text); background: var(--surface-2); text-decoration: none; }
+.nav .brand { color: var(--gold); font-weight: 700; }
+.hero {
+  max-width: 1180px; margin: 1.5rem auto 1rem; padding: 2.25rem 1.5rem 1rem;
+  position: relative; z-index: 1;
+}
+.hero-eyebrow {
+  display: inline-block; font-family: 'IBM Plex Mono', monospace;
+  font-size: .75rem; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--gold); padding: .35rem .8rem;
+  border: 1px solid rgba(215,180,106,.35); border-radius: 999px;
+  background: rgba(215,180,106,.06); margin-bottom: 1rem;
+}
+.hero h1 {
+  font-size: clamp(1.85rem, 3.8vw, 3rem); font-weight: 800;
+  letter-spacing: -.02em; line-height: 1.1; margin-bottom: .5rem;
+  background: linear-gradient(90deg, var(--gold), var(--cyan));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero p.lede {
+  color: var(--dim); max-width: 50rem;
+  font-size: clamp(.98rem, 1.4vw, 1.12rem);
+}
+.hero-stats {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: .75rem; margin-top: 1.5rem;
+}
+.hero-stat {
+  background: var(--surface); border: 1px solid var(--border-soft);
+  border-radius: 8px; padding: .9rem 1rem;
+}
+.hero-stat .v {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 1.6rem; color: var(--cyan); font-weight: 700;
+}
+.hero-stat .k { color: var(--dim); font-size: .78rem; margin-top: .15rem; }
+section.panel {
+  max-width: 1180px; margin: 1.25rem auto; padding: 0 1.5rem;
+  position: relative; z-index: 1;
+}
+section.panel h2 {
+  display: flex; align-items: center; gap: .5rem;
+  font-size: 1.25rem; margin-bottom: .85rem;
+}
+section.panel h2 .badge {
+  background: rgba(215,180,106,.12); border: 1px solid rgba(215,180,106,.3);
+  color: var(--gold); font-size: .7rem; padding: .15rem .5rem;
+  border-radius: 999px; font-weight: 600; letter-spacing: .04em;
+  text-transform: uppercase; font-family: 'IBM Plex Mono', monospace;
+}
+section.panel .sub {
+  color: var(--dim); font-size: .9rem; margin-bottom: .85rem;
+}
+.grade-strip {
+  display: grid; grid-template-columns: repeat(5, 1fr);
+  gap: .5rem; margin-bottom: 1rem;
+}
+.gpill {
+  background: var(--surface); border: 1px solid var(--border-soft);
+  border-radius: 8px; padding: .8rem 1rem; text-align: center;
+}
+.gpill .grade {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 2rem; font-weight: 800; line-height: 1;
+}
+.gpill.A .grade { color: var(--green); }
+.gpill.B .grade { color: var(--cyan); }
+.gpill.C .grade { color: var(--gold); }
+.gpill.D .grade { color: var(--orange); }
+.gpill.F .grade { color: var(--red); }
+.gpill .label { color: var(--dim); font-size: .75rem; margin-top: .25rem; }
+.gpill .count { font-family: 'IBM Plex Mono', monospace; font-size: 1.05rem; margin-top: .15rem; }
+table.tbl {
+  width: 100%; border-collapse: collapse; background: var(--surface);
+  border: 1px solid var(--border-soft); border-radius: 10px;
+  overflow: hidden; font-size: .88rem;
+}
+table.tbl th, table.tbl td {
+  padding: .55rem .75rem; text-align: left;
+  border-bottom: 1px solid var(--border-soft);
+}
+table.tbl th {
+  background: var(--surface-2); color: var(--dim);
+  font-weight: 600; font-size: .72rem;
+  text-transform: uppercase; letter-spacing: .05em;
+}
+table.tbl tr:last-child td { border-bottom: none; }
+table.tbl tr.locked td { opacity: .25; filter: blur(2.5px); pointer-events: none; }
+.grade-A { color: var(--green); font-weight: 700; }
+.grade-B { color: var(--cyan); font-weight: 700; }
+.grade-C { color: var(--gold); font-weight: 600; }
+.grade-D { color: var(--orange); font-weight: 600; }
+.grade-F { color: var(--red); font-weight: 700; }
+.up-pos { color: var(--green); font-weight: 600; }
+.up-neg { color: var(--red); font-weight: 600; }
+.country-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: .55rem;
+}
+.country-tile {
+  background: var(--surface); border: 1px solid var(--border-soft);
+  border-radius: 8px; padding: .7rem .9rem;
+}
+.country-tile .row1 {
+  display: flex; align-items: center; gap: .4rem; margin-bottom: .15rem;
+}
+.country-tile .name { font-weight: 600; font-size: .92rem; }
+.country-tile .meta {
+  display: flex; gap: .9rem; font-size: .76rem; color: var(--dim);
+  margin-top: .35rem; flex-wrap: wrap;
+}
+.country-tile .meta strong { color: var(--text); }
+.paywall {
+  background: linear-gradient(135deg, rgba(215,180,106,.08), rgba(213,156,255,.08));
+  border: 1px solid var(--gold); border-radius: 12px;
+  padding: 1.3rem 1.5rem; margin-top: 1rem;
+}
+.paywall h3 {
+  color: var(--gold); margin-bottom: .35rem;
+  display: flex; align-items: center; gap: .5rem;
+}
+.paywall p { color: var(--dim); margin-bottom: .85rem; }
+.paywall .tier-row {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: .8rem; margin-top: 1rem;
+}
+.tier-card {
+  background: var(--surface); border: 1px solid var(--border-soft);
+  border-radius: 8px; padding: .9rem 1rem;
+}
+.tier-card.featured { border-color: var(--gold); }
+.tier-card .price {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 1.5rem; font-weight: 700; color: var(--gold);
+}
+.tier-card .price small { color: var(--dim); font-size: .8rem; font-weight: 400; }
+.tier-card .tier-name { font-weight: 600; font-size: 1.05rem; margin-bottom: .2rem; }
+.tier-card ul { list-style: none; margin: .7rem 0 1rem; font-size: .87rem; color: var(--dim); }
+.tier-card ul li { padding: .15rem 0; }
+.tier-card ul li::before { content: '✓ '; color: var(--green); }
+.tier-card .cta {
+  display: block; text-align: center; background: var(--gold); color: var(--bg);
+  padding: .6rem 1rem; border-radius: 6px; font-weight: 700; text-decoration: none;
+}
+.tier-card .cta.outline {
+  background: transparent; color: var(--text); border: 1px solid var(--border-soft);
+}
+.method-block {
+  background: var(--surface); border: 1px solid var(--border-soft);
+  border-radius: 12px; padding: 1.25rem 1.5rem;
+}
+.method-block h3 { color: var(--gold); margin-bottom: .65rem; }
+.method-block ol { padding-left: 1.5rem; color: var(--dim); }
+.method-block ol li { padding: .15rem 0; }
+.method-block ol li strong { color: var(--text); }
+footer {
+  max-width: 1180px; margin: 2.5rem auto 1.5rem;
+  padding: 1.5rem; text-align: center; color: var(--dim); font-size: .85rem;
+  border-top: 1px solid var(--border-soft); position: relative; z-index: 1;
+}
+footer a { color: var(--blue); }
+@media (max-width: 700px) {
+  .grade-strip { grid-template-columns: repeat(5, 1fr); }
+  .gpill .grade { font-size: 1.5rem; }
+}
+</style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@800;900&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/lib/cinematic-hero.css">
+  <link rel="stylesheet" href="/lib/cyber-shell.css">
+  <link rel="stylesheet" href="/lib/polish-tokens.css">
+</head>
+<body>
+  <div class="cy-bg" aria-hidden="true"></div>
+  <div class="cy-floor" aria-hidden="true"></div>
+  <div class="cy-vignette" aria-hidden="true"></div>
+  <div class="cy-scan" aria-hidden="true"></div>
+
+<nav class="nav">
+  <a class="brand" href="/">⚡ Catalyst Edge</a>
+  <a href="/jackpot/" style="color:#7fe8b3;font-weight:700">🎯 JACKPOT</a>
+  <a href="/dcf/" style="color:#22d3ee;font-weight:700">💰 DCF (US)</a>
+  <a href="/dcf/international/" style="color:#22d3ee;font-weight:700">🌍 DCF (Intl)</a>
+  <a href="/numerai/" style="color:#d59cff;font-weight:700">🤖 Numerai</a>
+  <a href="/cross-border/" style="color:#d7b46a;font-weight:700">🔗 Cross-Border</a>
+  <a href="/international/" style="color:#22d3ee;font-weight:700">🌍 International</a>
+  <a href="/defi/" style="color:#ffbf69;font-weight:700">⛓ DeFi</a>
+  <a href="/scanner/">US Scanner</a>
+  <a href="/scanner/#gaps">Gap Plays</a>
+  <a href="/squeeze/">Squeeze</a>
+  <a href="/scanner/#insider">Insider Buys</a>
+  <a href="/congress/">Congress</a>
+  <a href="/sectors/">Sectors</a>
+  <a href="/news/">News</a>
+  <a href="/predict/">Predict ▸</a>
+  <a href="/pricing/" style="color:var(--gold);font-weight:600">Premium</a>
+</nav>
+
+<section class="cin-hero cy-neon-hero cy-shimmer">
+    <div class="cin-grid">
+      <div class="cin-stat-stack">
+        <div class="cin-eyebrow"><span class="cin-live-dot"></span>GLOBAL DCF · 38 MARKETS · LIVE</div>
+        <div class="cin-colossal">
+          <div class="cin-num-row"><span class="cin-num">443</span></div><div class="cin-side">
+          <span class="cin-tag">across <b>43 countries</b></span>
+          <span class="cin-tag"><b>6 continents</b> · same math</span>
+          <span class="cin-tag">free Yahoo fundamentals</span>
+          </div>
+        </div>
+        <div class="cin-stamp">DCF//INTL · v1.4 · <b>LIVE</b></div>
+      </div>
+      <div class="cin-h1-block">
+        <div class="cin-h1-eyebrow">🌍 International DCF · Two-Stage Damodaran</div>
+        <h1 class="cin-headline">
+ Wall Street's intrinsic-value math, applied <span class="cin-accent">globally</span>—no Bloomberg, <em>no $24K/yr fee</em>.
+ </h1>
+        <p class="cin-lede">FCF → 5-year stage-1 projection at clamped revenue CAGR → Gordon terminal at 9% WACC and 2.5% perpetual growth → equity bridge via cash and debt → intrinsic per share. Same math as our SEC DCF, applied across 38 markets.</p>
+        <div class="cin-cta-row">
+          <a href="#dcf-table" class="cin-btn-primary">See A-grade names ↓</a>
+          <a href="/data/dcf_international.json" class="cin-btn-ghost">Inspect dataset</a>
+        </div>
+        <div class="cin-strip">
+          <div class="cin-cell"><div class="cin-k">Tickers scored</div><div class="cin-v" id="hs-scored">–</div></div>
+          <div class="cin-cell"><div class="cin-k">A-grade (≥+100%)</div><div class="cin-v bull" id="hs-a" data-mirror="g-a">–</div></div>
+          <div class="cin-cell"><div class="cin-k">B-grade (≥+40%)</div><div class="cin-v gold" id="hs-b" data-mirror="g-b">–</div></div>
+          <div class="cin-cell"><div class="cin-k">Countries</div><div class="cin-v cyan" id="hs-countries">–</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- Suite cards (parity with /scanner/ + /international/ + /cross-border/ + /defi/) -->
+<div style="max-width:1180px;margin:1rem auto;padding:0 1.5rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.65rem">
+  <a href="/dcf/" style="background:var(--surface);border:1px solid var(--border-soft);border-radius:8px;padding:.9rem 1rem;text-decoration:none;color:var(--text);display:flex;flex-direction:column;gap:.25rem;transition:transform .12s ease,border-color .12s ease" onmouseover="this.style.transform='translateY(-2px)';this.style.borderColor='var(--gold)'" onmouseout="this.style.transform='';this.style.borderColor='var(--border-soft)'"><span style="font-size:1.4rem">💰</span><span style="font-weight:600">US DCF</span><span style="color:var(--dim);font-size:.8rem">SEC EDGAR XBRL · 1,600 tickers</span><span style="color:var(--gold);margin-top:.25rem;font-size:.85rem">›</span></a>
+  <a href="/international/" style="background:var(--surface);border:1px solid var(--border-soft);border-radius:8px;padding:.9rem 1rem;text-decoration:none;color:var(--text);display:flex;flex-direction:column;gap:.25rem;transition:transform .12s ease,border-color .12s ease" onmouseover="this.style.transform='translateY(-2px)';this.style.borderColor='var(--gold)'" onmouseout="this.style.transform='';this.style.borderColor='var(--border-soft)'"><span style="font-size:1.4rem">🌍</span><span style="font-weight:600">Intl Scanner</span><span style="color:var(--dim);font-size:.8rem">Gap, sympathy, cross-border</span><span style="color:var(--gold);margin-top:.25rem;font-size:.85rem">›</span></a>
+  <a href="/cross-border/" style="background:var(--surface);border:1px solid var(--border-soft);border-radius:8px;padding:.9rem 1rem;text-decoration:none;color:var(--text);display:flex;flex-direction:column;gap:.25rem;transition:transform .12s ease,border-color .12s ease" onmouseover="this.style.transform='translateY(-2px)';this.style.borderColor='var(--gold)'" onmouseout="this.style.transform='';this.style.borderColor='var(--border-soft)'"><span style="font-size:1.4rem">🔗</span><span style="font-weight:600">Cross-Border</span><span style="color:var(--dim);font-size:.8rem">ADR ↔ home convergence</span><span style="color:var(--gold);margin-top:.25rem;font-size:.85rem">›</span></a>
+  <a href="/jackpot/" style="background:var(--surface);border:1px solid var(--border-soft);border-radius:8px;padding:.9rem 1rem;text-decoration:none;color:var(--text);display:flex;flex-direction:column;gap:.25rem;transition:transform .12s ease,border-color .12s ease" onmouseover="this.style.transform='translateY(-2px)';this.style.borderColor='var(--gold)'" onmouseout="this.style.transform='';this.style.borderColor='var(--border-soft)'"><span style="font-size:1.4rem">🎯</span><span style="font-weight:600">JACKPOT</span><span style="color:var(--dim);font-size:.8rem">89% audited hit rate</span><span style="color:var(--gold);margin-top:.25rem;font-size:.85rem">›</span></a>
+</div>
+
+<section class="panel">
+  <h2>📊 Grade Distribution <span class="badge">live</span></h2>
+  <p class="sub">Every DCF score gets a letter grade based on upside vs current price. <strong style="color:var(--green)">A</strong> ≥ 100% upside · <strong style="color:var(--cyan)">B</strong> ≥ 40% · <strong style="color:var(--gold)">C</strong> ≥ 10% · <strong style="color:var(--orange)">D</strong> ≥ −15% · <strong style="color:var(--red)">F</strong> &lt; −15%.</p>
+  <div class="grade-strip">
+    <div class="gpill A"><div class="grade">A</div><div class="count" id="g-a">—</div><div class="label">≥100% upside</div></div>
+    <div class="gpill B"><div class="grade">B</div><div class="count" id="g-b">—</div><div class="label">≥40% upside</div></div>
+    <div class="gpill C"><div class="grade">C</div><div class="count" id="g-c">—</div><div class="label">≥10% upside</div></div>
+    <div class="gpill D"><div class="grade">D</div><div class="count" id="g-d">—</div><div class="label">≥−15%</div></div>
+    <div class="gpill F"><div class="grade">F</div><div class="count" id="g-f">—</div><div class="label">overvalued</div></div>
+  </div>
+</section>
+
+<section class="panel">
+  <h2>💎 Top Undervalued Internationally <span class="badge" id="badge-top">—</span></h2>
+  <p class="sub">Largest upside vs current price across 38 markets. Free tier shows top 5; Reader unlocks all 30; Pro adds Telegram alerts when an A-grade fires globally.</p>
+  <table class="tbl">
+    <thead><tr><th>#</th><th>Grade</th><th>Ticker</th><th>Name</th><th>Country</th><th>Sector</th><th>Price</th><th>Intrinsic</th><th>Upside</th></tr></thead>
+    <tbody id="top-body"></tbody>
+  </table>
+</section>
+
+<section class="panel">
+  <h2>🌍 Country Leaderboard <span class="badge" id="badge-country">—</span></h2>
+  <p class="sub">Average upside per country (DCF-graded names only). Higher = market is on average more undervalued by the model.</p>
+  <div class="country-grid" id="country-grid"></div>
+</section>
+
+<section class="panel">
+  <h2>🧮 Methodology — every input traceable</h2>
+  <div class="method-block">
+    <h3>Two-stage Damodaran DCF, computed in the company's reporting currency</h3>
+    <ol>
+      <li><strong>Free cash flow:</strong> FCF = Operating Cash Flow − |CapEx|. We average the last 3 fiscal years to dampen working-capital noise.</li>
+      <li><strong>Stage 1:</strong> 5 years of growth at the company's clamped revenue CAGR (capped 0–25% — no fantasy numbers).</li>
+      <li><strong>Stage 2 (Terminal Value):</strong> Gordon growth at 2.5% perpetual, discounted at 9% WACC.</li>
+      <li><strong>Equity bridge:</strong> Enterprise Value + Cash − Total Debt = Equity Value. Divided by shares outstanding gives intrinsic per share.</li>
+      <li><strong>Sanity guards:</strong> reject when FCF ≤ 0, shares &lt; 1M, or intrinsic &gt; 20× current price (those are model failures, not signals).</li>
+      <li><strong>Data source:</strong> Yahoo Finance v10 quoteSummary endpoint (free, no Bloomberg required). Refreshed every ~2 hours.</li>
+    </ol>
+  </div>
+</section>
+
+<section class="panel">
+  <div class="paywall">
+    <h3>🚀 Unlock the full international DCF feed</h3>
+    <p>Free shows top 5 names. Reader $9 unlocks the full 30-name leaderboard plus the country breakdown. Pro $39 adds Telegram alerts when a fresh A-grade DCF fires AND that name also appears in the JACKPOT scanner the same day.</p>
+    <div class="tier-row">
+      <div class="tier-card">
+        <div class="tier-name">🆓 Free</div>
+        <div class="price">$0<small>/mo</small></div>
+        <ul>
+          <li>Top 5 undervalued globally</li>
+          <li>Grade distribution</li>
+          <li>4 AM ET email</li>
+        </ul>
+        <a class="cta outline" href="/">You're here</a>
+      </div>
+      <div class="tier-card featured">
+        <div class="tier-name">📡 Edge Reader</div>
+        <div class="price">$9<small>/mo</small></div>
+        <ul>
+          <li>All 30 top names</li>
+          <li>Full country leaderboard</li>
+          <li>Sector breakdown</li>
+          <li>Cross-border DCF + JACKPOT overlay</li>
+          <li>Premium morning newsletter</li>
+        </ul>
+        <a class="cta" href="/pricing/">Unlock Reader</a>
+      </div>
+      <div class="tier-card">
+        <div class="tier-name">⚡ Edge Pro</div>
+        <div class="price">$39<small>/mo</small></div>
+        <ul>
+          <li>Everything in Reader</li>
+          <li>Telegram + Discord alerts</li>
+          <li>Cerebro 3D HUD access</li>
+          <li>Full audit math (CSV download)</li>
+          <li>API access</li>
+        </ul>
+        <a class="cta" href="/pricing/">Go Pro</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Live data: Yahoo Finance v10 quoteSummary · two-stage Damodaran DCF · refreshed every ~2 hours.</p>
+  <p><a href="/">← back to scanner</a> · <a href="/dcf/">US DCF</a> · <a href="/international/">international scanner</a> · <a href="/methodology/">methodology</a></p>
+</footer>
+
+<link rel="stylesheet" href="/lib/scanner-polish.css">
+<script src="/lib/tier.js"></script>
+<script src="/lib/intl.js"></script>
+<script src="/lib/digit-reel.js"></script>
+<script>
+(function(){
+  if (window.CatalystIntl && CatalystIntl.setupLanguageBanner) CatalystIntl.setupLanguageBanner();
+
+  var STATE = { tier: (window.CatalystTier && CatalystTier.get()) || 'free',
+                data: null };
+  var FREE_LIMIT = 5;
+
+  var FLAGS = {USA:'🇺🇸','United States':'🇺🇸',Brazil:'🇧🇷',Japan:'🇯🇵','United Kingdom':'🇬🇧',
+               India:'🇮🇳',Mexico:'🇲🇽','South Korea':'🇰🇷','Hong Kong':'🇭🇰',China:'🇨🇳',
+               Taiwan:'🇹🇼',Germany:'🇩🇪',France:'🇫🇷',Switzerland:'🇨🇭',Netherlands:'🇳🇱',
+               Spain:'🇪🇸',Italy:'🇮🇹',Sweden:'🇸🇪',Norway:'🇳🇴',Denmark:'🇩🇰',
+               Finland:'🇫🇮',Belgium:'🇧🇪',Austria:'🇦🇹',Ireland:'🇮🇪',Portugal:'🇵🇹',
+               Greece:'🇬🇷',Poland:'🇵🇱','Czech Republic':'🇨🇿',Turkey:'🇹🇷',Israel:'🇮🇱',
+               'South Africa':'🇿🇦',Singapore:'🇸🇬',Thailand:'🇹🇭',Indonesia:'🇮🇩',
+               Malaysia:'🇲🇾',Philippines:'🇵🇭',Argentina:'🇦🇷',Chile:'🇨🇱',
+               Australia:'🇦🇺',Canada:'🇨🇦','New Zealand':'🇳🇿'};
+  function flagFor(c){ return FLAGS[c] || ''; }
+
+  function clearChildren(el){ while (el.firstChild) el.removeChild(el.firstChild); }
+  function fmtCcy(v, ccy){
+    if (window.CatalystIntl && CatalystIntl.formatCurrency)
+      return CatalystIntl.formatCurrency(v, ccy || 'USD');
+    return (parseFloat(v) || 0).toFixed(2) + ' ' + (ccy || '');
+  }
+
+  function tdText(t, cls){
+    var td = document.createElement('td');
+    td.textContent = t == null ? '—' : t;
+    if (cls) td.className = cls;
+    return td;
+  }
+
+  function renderTop(rows) {
+    var body = document.getElementById('top-body');
+    var badge = document.getElementById('badge-top');
+    clearChildren(body);
+    badge.textContent = rows.length + ' graded';
+    var visible = STATE.tier === 'free' ? FREE_LIMIT : rows.length;
+    var hostTable = body.parentNode;
+    if (hostTable) {
+      hostTable.style.position = 'relative';
+      var prev = hostTable.querySelector('.tier-unlock-host');
+      if (prev) prev.remove();
+    }
+    rows.forEach(function (r, i) {
+      var tr = document.createElement('tr');
+      if (i >= visible) { tr.className = 'locked'; tr.style.position = 'relative'; }
+      tr.appendChild(tdText(String(i + 1).padStart(2, '0')));
+      tr.appendChild(tdText(r.grade, 'grade-' + r.grade));
+      var tk = document.createElement('td');
+      tk.style.fontFamily = "'IBM Plex Mono', monospace";
+      tk.style.color = 'var(--blue)'; tk.textContent = r.ticker;
+      tr.appendChild(tk);
+      tr.appendChild(tdText(r.name));
+      tr.appendChild(tdText((flagFor(r.country) || '') + ' ' + (r.country || '')));
+      tr.appendChild(tdText(r.sector || '—'));
+      tr.appendChild(tdText(fmtCcy(r.current_price, r.currency)));
+      tr.appendChild(tdText(fmtCcy(r.intrinsic_per_share, r.currency)));
+      var up = parseFloat(r.upside_pct) || 0;
+      var upTd = document.createElement('td');
+      upTd.className = up >= 0 ? 'up-pos' : 'up-neg';
+      var reelHost = document.createElement('span');
+      upTd.appendChild(reelHost);
+      tr.appendChild(upTd);
+      if (window.CatalystReels) {
+        CatalystReels.render(reelHost, up, { decimals: 1, suffix: '%', signed: true });
+      } else {
+        reelHost.textContent = (up >= 0 ? '+' : '') + up.toFixed(1) + '%';
+      }
+      body.appendChild(tr);
+    });
+    if (visible < rows.length && window.CatalystTier && hostTable) {
+      var firstLocked = body.children[visible];
+      if (firstLocked) {
+        var overlayHost = document.createElement('div');
+        overlayHost.className = 'tier-unlock-host';
+        overlayHost.style.cssText =
+          'position:absolute;left:0;right:0;'
+          + 'top:' + (firstLocked.offsetTop) + 'px;bottom:0;'
+          + 'pointer-events:none;border-radius:0 0 10px 10px;overflow:hidden';
+        hostTable.appendChild(overlayHost);
+        CatalystTier.attachUnlockOverlay(overlayHost, { minTier: 'reader' });
+      }
+    }
+  }
+
+  function renderCountryBoard(byCountry) {
+    var grid = document.getElementById('country-grid');
+    var badge = document.getElementById('badge-country');
+    clearChildren(grid);
+    var entries = Object.keys(byCountry).map(function(c){ return [c, byCountry[c]]; });
+    entries.sort(function(a, b){ return b[1].avg_upside - a[1].avg_upside; });
+    badge.textContent = entries.length + ' countries';
+    entries.forEach(function (entry) {
+      var c = entry[0]; var v = entry[1];
+      var t = document.createElement('div'); t.className = 'country-tile';
+      var r1 = document.createElement('div'); r1.className = 'row1';
+      var f = document.createElement('span');
+      f.style.fontSize = '1.2rem'; f.textContent = flagFor(c);
+      var n = document.createElement('span');
+      n.className = 'name'; n.textContent = c || 'Unknown';
+      r1.appendChild(f); r1.appendChild(n);
+      var meta = document.createElement('div');
+      meta.className = 'meta';
+      var s1 = document.createElement('span');
+      s1.appendChild(document.createTextNode('avg upside '));
+      var b1 = document.createElement('strong');
+      b1.textContent = (v.avg_upside >= 0 ? '+' : '') + v.avg_upside.toFixed(1) + '%';
+      b1.style.color = v.avg_upside >= 0 ? 'var(--green)' : 'var(--red)';
+      s1.appendChild(b1);
+      var s2 = document.createElement('span');
+      s2.appendChild(document.createTextNode(v.count + ' graded'));
+      meta.appendChild(s1); meta.appendChild(s2);
+      t.appendChild(r1); t.appendChild(meta);
+      var meta2 = document.createElement('div');
+      meta2.className = 'meta';
+      var ag = document.createElement('strong');
+      ag.style.color = 'var(--green)';
+      ag.textContent = v.a_grade + ' A-grade';
+      meta2.appendChild(ag);
+      var top = document.createElement('span');
+      top.appendChild(document.createTextNode(' · top: '));
+      var b2 = document.createElement('strong'); b2.textContent = v.top || '—';
+      top.appendChild(b2);
+      meta2.appendChild(top);
+      t.appendChild(meta2);
+      grid.appendChild(t);
+    });
+  }
+
+  function rerender() {
+    var d = STATE.data;
+    if (!d) return;
+    renderTop(d.top_undervalued || []);
+    renderCountryBoard(d.by_country || {});
+  }
+
+  fetch('/data/intl_dcf.json?cb=' + Date.now(), { cache: 'no-store' })
+    .then(function (r) { if (!r.ok) throw new Error('no data'); return r.json(); })
+    .then(function (d) {
+      STATE.data = d;
+      document.getElementById('hs-attempted').textContent = d.total_attempted;
+      document.getElementById('hs-scored').textContent = d.scored;
+      document.getElementById('hs-a').textContent = d.grade_counts.A;
+      document.getElementById('hs-b').textContent = d.grade_counts.B;
+      document.getElementById('hs-countries').textContent = Object.keys(d.by_country || {}).length;
+      if (d.generated_at) {
+        var dt = new Date(d.generated_at);
+        document.getElementById('hs-updated').textContent =
+          new Intl.DateTimeFormat(navigator.language || 'en-US',
+            { hour: 'numeric', minute: '2-digit' }).format(dt);
+      }
+      document.getElementById('g-a').textContent = d.grade_counts.A;
+      document.getElementById('g-b').textContent = d.grade_counts.B;
+      document.getElementById('g-c').textContent = d.grade_counts.C;
+      document.getElementById('g-d').textContent = d.grade_counts.D;
+      document.getElementById('g-f').textContent = d.grade_counts.F;
+      rerender();
+    });
+
+  if (window.CatalystTier) {
+    CatalystTier.onResolved(function (t) {
+      if (t !== STATE.tier) { STATE.tier = t; rerender(); }
+    });
+  }
+})();
+</script>
+
+  <script src="/lib/cy-strip-mirror.js" defer></script>
+</body>
+</html>

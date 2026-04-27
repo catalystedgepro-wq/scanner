@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Blog — Catalyst Edge Scanner</title>
+  <meta name="description" content="The Catalyst Edge build log. Why we publish our hit rate, how the cross-border convergence score works, what 30 days of solo building looks like." />
+  <link rel="alternate" type="application/rss+xml" title="Catalyst Edge blog" href="/blog/rss.xml" />
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/lib/admin-unlock.css" />
+  <link rel="stylesheet" href="/lib/scanner-polish.css" />
+  <link rel="stylesheet" href="/lib/nav-fix.css" />
+  <style>
+    :root{
+      --navy:#040a14; --navy2:#0a1424; --navy3:#0e1a2e;
+      --ink:#e6f1ff; --ink-dim:#9bb0c8; --ink-mute:#6e8198;
+      --cyan:#5ad7ff; --gold:#f5c662; --bull:#5cf2a4; --bear:#ff6b8b;
+      --line:rgba(110,140,180,0.18); --line-strong:rgba(110,140,180,0.32);
+      --glass: linear-gradient(180deg, rgba(15,28,48,0.78), rgba(7,14,28,0.78));
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;background:#04070d;color:var(--ink);
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      -webkit-font-smoothing:antialiased; font-feature-settings:"ss01","cv11";
+    }
+    a{color:var(--cyan);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+    code{font-family:"JetBrains Mono","IBM Plex Mono",ui-monospace,monospace;font-size:0.92em;background:rgba(90,215,255,0.06);padding:1px 6px;border-radius:4px;color:var(--cyan)}
+
+    .topbar{position:sticky;top:0;z-index:50;background:rgba(4,7,13,0.86);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+    .topbar-row{display:flex;align-items:center;gap:18px;padding:14px 24px;max-width:1400px;margin:0 auto}
+    .brand{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:14px;letter-spacing:0.18em;color:var(--gold);text-transform:uppercase}
+    .brand b{color:var(--cyan)}
+    nav.nav{display:flex;gap:8px;flex:1;flex-wrap:nowrap;overflow-x:auto;scroll-padding-top:80px}
+    nav.nav a{font-size:13px;color:var(--ink-dim);padding:8px 12px;border-radius:8px;white-space:nowrap}
+    nav.nav a:hover{background:rgba(90,215,255,0.08);color:var(--ink);text-decoration:none}
+    nav.nav a.active{color:var(--gold);background:rgba(245,198,98,0.08)}
+    .topbar-cta{display:flex;gap:10px;align-items:center}
+    .pill-cta{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;
+      padding:8px 14px;border:1px solid var(--gold);color:var(--gold);border-radius:999px}
+    .pill-cta:hover{background:rgba(245,198,98,0.12);text-decoration:none}
+
+    .hero{padding:56px 0 32px;border-bottom:1px solid var(--line);position:relative;overflow:hidden}
+    .hero::before{content:"";position:absolute;inset:0;
+      background:radial-gradient(700px 360px at 30% 20%, rgba(90,215,255,0.10), transparent 60%);pointer-events:none}
+    .hero .wrap{position:relative}
+    .eyebrow{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:0.22em;color:var(--gold);text-transform:uppercase;margin-bottom:14px}
+    .h1{font-size:clamp(36px,5.5vw,56px);line-height:1.05;letter-spacing:-0.01em;margin:0 0 14px;font-weight:700}
+    .h1 .glow{color:var(--cyan)}
+    .sub{font-size:17px;color:var(--ink-dim);max-width:740px;line-height:1.55}
+
+    section.section{padding:48px 0;border-bottom:1px solid var(--line)}
+    .section h2{font-size:24px;margin:0 0 8px;letter-spacing:-0.01em}
+    .section .lead{color:var(--ink-dim);max-width:680px;margin:0 0 22px;font-size:14px}
+
+    .post-list{display:flex;flex-direction:column;gap:14px}
+    .post{display:grid;grid-template-columns:140px 1fr;gap:24px;
+      background:var(--glass);border:1px solid var(--line);border-radius:14px;padding:22px;
+      transition:all .2s ease;text-decoration:none;color:inherit}
+    @media (max-width:760px){.post{grid-template-columns:1fr;gap:8px}}
+    .post:hover{border-color:rgba(90,215,255,0.45);transform:translateY(-2px);text-decoration:none}
+    .post .date{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:0.16em;color:var(--gold);text-transform:uppercase;align-self:flex-start}
+    .post .date .read{display:block;color:var(--ink-mute);font-size:10.5px;letter-spacing:0.14em;margin-top:4px}
+    .post .body h3{margin:0 0 6px;font-size:20px;color:var(--ink);line-height:1.3}
+    .post .body p{margin:0;color:var(--ink-dim);font-size:14px;line-height:1.6}
+    .post .body .arrow{display:inline-block;margin-top:10px;font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:0.18em;color:var(--cyan);text-transform:uppercase}
+
+    .capture{background:linear-gradient(135deg, rgba(90,215,255,0.10), rgba(245,198,98,0.08));
+      border:1px solid rgba(245,198,98,0.32);border-radius:18px;padding:28px}
+    .capture h3{margin:0 0 8px;font-size:22px}
+    .capture p{margin:0 0 18px;color:var(--ink-dim);font-size:14px;max-width:600px;line-height:1.55}
+    .capture-form{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+    .capture-form input[type=email]{flex:1;min-width:240px;background:#040a14;border:1px solid var(--line-strong);
+      color:var(--ink);font-size:15px;padding:13px 14px;border-radius:10px;font-family:inherit}
+    .capture-form input[type=email]:focus{outline:none;border-color:var(--cyan)}
+    .capture-form button{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;
+      padding:13px 22px;border-radius:10px;background:var(--gold);color:#1a1304;border:none;font-weight:700;cursor:pointer}
+    .capture-form button:hover{background:#ffd683}
+    .capture .micro{margin-top:10px;font-size:11px;color:var(--ink-mute);font-family:"IBM Plex Mono",monospace;display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+    .capture .micro a{color:var(--cyan)}
+
+    footer{padding:36px 0;color:var(--ink-mute);font-size:12px;border-top:1px solid var(--line);text-align:center}
+    footer .links{display:flex;gap:14px;justify-content:center;margin-top:8px;flex-wrap:wrap}
+  </style>
+<link rel="stylesheet" href="/lib/polish-tokens.css">
+<link rel="stylesheet" href="/lib/cinematic.css">
+</head>
+<body>
+<!-- CINEMATIC SHELL — utopian-cyberpunk atmosphere overlay -->
+<div class="ce-field" aria-hidden="true">
+  <div class="ce-field-orb a"></div><div class="ce-field-orb b"></div><div class="ce-field-orb c"></div>
+  <div class="ce-scanline"></div><div class="ce-scanline" style="animation-delay:-3s;opacity:.3"></div>
+  <div class="ce-vignette"></div>
+</div>
+<canvas id="ce-particles" aria-hidden="true"></canvas>
+
+  <div class="topbar">
+    <div class="topbar-row">
+      <div class="brand"><b>Catalyst</b> · Edge</div>
+      <nav class="nav">
+        <a href="/scanner/">Scanner</a>
+        <a href="/international/">Global</a>
+        <a href="/dcf/">DCF</a>
+        <a href="/cross-border/">Cross-Border</a>
+        <a href="/sdk/">SDK</a>
+        <a href="/benchmarks/">Benchmarks</a>
+        <a href="/trust/">Trust</a>
+        <a href="/blog/" class="active">Blog</a>
+        <a href="/community/">Community</a>
+        <a href="/changelog/">Changelog</a>
+        <a href="/pricing/">Pricing</a>
+      </nav>
+      <div class="topbar-cta">
+        <a class="pill-cta" href="/blog/rss.xml">RSS feed</a>
+      </div>
+    </div>
+  </div>
+
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow">✍️ Public blog · Updated when something interesting ships · <a href="/blog/rss.xml" style="color:var(--gold)">RSS</a></div>
+      <h1 class="h1">The <span class="glow">Catalyst Edge</span> build log.</h1>
+      <p class="sub">Three or four posts a month, written when there's something real to say. Methodology deep-dives, postmortems on misses, and what it actually looks like to ship a Bloomberg-killer alone in 30 days. No engagement-baiting threads, no AI-slop content marketing.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>Latest posts</h2>
+      <p class="lead">Newest first. Each post links to in-product pages where the math/data is live.</p>
+      <div class="post-list">
+
+        <a class="post" href="/blog/dark-pool-prints-explained/">
+          <div class="date">2026-04-27<span class="read">≈ 9 min read</span></div>
+          <div class="body">
+            <h3>Dark pool prints — what FINRA ATS data tells you 4 hours early</h3>
+            <p>Dark-pool searches are high-intent. /darkpool/ is one of our strongest free tools. Drives /preview/ conversions.</p>
+            <span class="arrow">Read post →</span>
+          </div>
+        </a>
+<a class="post" href="/blog/form-4-cluster-buying/">
+          <div class="date">2026-04-27<span class="read">≈ 8 min read</span></div>
+          <div class="body">
+            <h3>Form 4 cluster buying — the 3-insider rule</h3>
+            <p>ICP search &quot;form 4 cluster&quot; — beats OpenInsider for de-noised signal. Drives /insiders/ engagement.</p>
+            <span class="arrow">Read post →</span>
+          </div>
+        </a>
+<a class="post" href="/blog/dcf-intrinsic-value-explained/">
+          <div class="date">2026-04-27<span class="read">≈ 9 min read</span></div>
+          <div class="body">
+            <h3>DCF intrinsic value, explained: the two-stage Damodaran model in 8 minutes</h3>
+            <p>/dcf/ is the Pro-tier upgrade lead. Bloomberg charges $24K/yr for the same calc. This post walks through Damodaran two-stage with one ticker, then routes to /preview/ → /pricing/ → Pro upgrade. High-LTV reader.…</p>
+            <span class="arrow">Read post →</span>
+          </div>
+        </a>
+<a class="post" href="/blog/short-squeeze-setup-checklist/">
+          <div class="date">2026-04-26<span class="read">≈ 7 min read</span></div>
+          <div class="body">
+            <h3>The short squeeze setup checklist (DTC × SI × borrow-rate)</h3>
+            <p>Squeeze plays are pure ICP — high-volatility, catalyst-adjacent. The DTC + SI + borrow-rate triple filter is the actual professional read, not the WSB single-metric meme. Shows /squeeze/ as the live screener. Strong…</p>
+            <span class="arrow">Read post →</span>
+          </div>
+        </a>
+<a class="post" href="/blog/insider-buying-signal-explained/">
+          <div class="date">2026-04-26<span class="read">≈ 8 min read</span></div>
+          <div class="body">
+            <h3>The insider buying signal that actually predicts moves</h3>
+            <p>Insider buying is a high-intent search. Most ICP traders track it via OpenInsider or generic Form 4 feeds, which are noisy. We rank clusters (CEO + CFO same period &gt; 1 random VP) and show why /insiders/ is the…</p>
+            <span class="arrow">Read post →</span>
+          </div>
+        </a>
+<a class="post" href="/blog/how-to-trade-8k-filings/">
+          <div class="date">2026-04-26<span class="read">≈ 11 min read</span></div>
+          <div class="body">
+            <h3>How to trade 8-K filings (the 5 form-type playbook)</h3>
+            <p>Educational + commercial bridge. ICP knows 8-Ks matter but doesn't have a structured playbook. Walks through Items 1.01, 2.02, 5.02, 7.01, 8.01 with 5 real recent setups, then shows how /scanner/ surfaces them by 8 AM…</p>
+            <span class="arrow">Read post →</span>
+          </div>
+        </a>
+<a class="post" href="/blog/free-sec-catalyst-scanner/">
+          <div class="date">2026-04-26<span class="read">≈ 9 min read</span></div>
+          <div class="body">
+            <h3>The free SEC catalyst scanner that replaces FlyOnTheWall and BamSEC</h3>
+            <p>ICP top-of-funnel kw. The exact phrase a $50–150K self-directed catalyst trader googles when they're sick of paying $89/mo for FlyOnTheWall but want a real scanner. Lead-magnet post. Positions free tier as the wedge…</p>
+            <span class="arrow">Read post →</span>
+          </div>
+        </a>
+<a class="post" href="/blog/why-we-publish-our-hit-rate/">
+          <div class="date">2026-04-25<span class="read">≈ 5 min read</span></div>
+          <div class="body">
+            <h3>Why we publish our hit rate (and Bloomberg never will)</h3>
+            <p>Bloomberg, FactSet, and Refinitiv won't publish theirs. Here's why we do — and how to read ours without confusing accuracy for skill.</p>
+            <span class="arrow">Read post →</span>
+          </div>
+        </a>
+
+        <a class="post" href="/blog/how-the-cross-border-convergence-score-works/">
+          <div class="date">2026-04-23<span class="read">≈ 6 min read</span></div>
+          <div class="body">
+            <h3>How the cross-border convergence score works</h3>
+            <p>The 4-point composite signal we use to score ADR ↔ home-listing setups in real time. Math, worked example, and the edge cases we deliberately threw out.</p>
+            <span class="arrow">Read post →</span>
+          </div>
+        </a>
+
+        <a class="post" href="/blog/30-days-to-build-a-bloomberg-killer/">
+          <div class="date">2026-04-20<span class="read">≈ 7 min read</span></div>
+          <div class="body">
+            <h3>30 days to build a Bloomberg killer</h3>
+            <p>What 30 days of solo building looks like, phase by phase. The week that everything broke. The first $9 customer. The misses I won't repeat.</p>
+            <span class="arrow">Read post →</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="capture">
+        <h3>Subscribe to the blog</h3>
+        <p>Drop your email — you get one note per new post, no drip campaigns. RSS users can grab <a href="/blog/rss.xml">/blog/rss.xml</a> instead.</p>
+        <form class="capture-form" action="mailto:opensource@example.com" method="POST" enctype="text/plain">
+          <input type="hidden" name="subject" value="Blog subscribe" />
+          <input type="email" name="email" placeholder="you@desk.com" required />
+          <button type="submit">Subscribe →</button>
+        </form>
+        <div class="micro">
+          <span>~1 email per post</span>
+          <a href="/blog/rss.xml">RSS feed</a>
+          <a href="/community/">Community + Discord</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    Catalyst Edge Scanner · Build log · Audited 89% hit rate · Ships daily, not quarterly
+    <div class="links">
+      <a href="/scanner/">Scanner</a>
+      <a href="/trust/">Trust</a>
+      <a href="/changelog/">Changelog</a>
+      <a href="/community/">Community</a>
+      <a href="mailto:opensource@example.com">Contact</a>
+    </div>
+  </footer>
+
+  <script src="/lib/tier.js" defer></script>
+<script src="/lib/cinematic.js"></script>
+</body>
+</html>

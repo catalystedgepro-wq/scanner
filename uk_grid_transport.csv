@@ -1,0 +1,113 @@
+domain,region_or_line,metric_name,value,unit,status,captured_at
+grid_national,UK,carbon_intensity_actual,130,gCO2_per_kWh,moderate,2026-04-27T23:11:45Z
+grid_national,UK,carbon_intensity_forecast,144,gCO2_per_kWh,moderate,2026-04-27T23:11:45Z
+grid_mix_national,UK,pct_biomass,12.9,percent,,2026-04-27T23:11:45Z
+grid_mix_national,UK,pct_coal,0,percent,,2026-04-27T23:11:45Z
+grid_mix_national,UK,pct_imports,23,percent,,2026-04-27T23:11:45Z
+grid_mix_national,UK,pct_gas,25.4,percent,,2026-04-27T23:11:45Z
+grid_mix_national,UK,pct_nuclear,22,percent,,2026-04-27T23:11:45Z
+grid_mix_national,UK,pct_other,0,percent,,2026-04-27T23:11:45Z
+grid_mix_national,UK,pct_hydro,0,percent,,2026-04-27T23:11:45Z
+grid_mix_national,UK,pct_solar,0,percent,,2026-04-27T23:11:45Z
+grid_mix_national,UK,pct_wind,16.6,percent,,2026-04-27T23:11:45Z
+grid_regional,North Scotland,carbon_intensity_forecast,5,gCO2_per_kWh,very low,2026-04-27T23:11:45Z
+grid_regional_mix,North Scotland,pct_gas,0.2,percent,,2026-04-27T23:11:45Z
+grid_regional_mix,North Scotland,pct_nuclear,39.3,percent,,2026-04-27T23:11:45Z
+grid_regional_mix,North Scotland,pct_solar,0,percent,,2026-04-27T23:11:45Z
+grid_regional_mix,North Scotland,pct_wind,47.6,percent,,2026-04-27T23:11:45Z
+grid_regional,South Scotland,carbon_intensity_forecast,7,gCO2_per_kWh,very low,2026-04-27T23:11:45Z
+grid_regional_mix,South Scotland,pct_gas,0.3,percent,,2026-04-27T23:11:45Z
+grid_regional_mix,South Scotland,pct_nuclear,56,percent,,2026-04-27T23:11:45Z
+grid_regional_mix,South Scotland,pct_solar,0,percent,,2026-04-27T23:11:45Z
+grid_regional_mix,South Scotland,pct_wind,25.1,percent,,2026-04-27T23:11:45Z
+grid_regional,North West England,carbon_intensity_forecast,38,gCO2_per_kWh,low,2026-04-27T23:11:45Z
+grid_regional_mix,North West England,pct_gas,6.1,percent,,2026-04-27T23:11:45Z
+grid_regional_mix,North West England,pct_nuclear,63,percent,,2026-04-27T23:11:45Z
+grid_regional_mix,North West England,pct_solar,0,percent,,2026-04-27T23:11:45Z
+grid_regional_mix,North West England,pct_wind,6.9,percent,,2026-04-27T23:11:45Z
+grid_regional,North East England,carbon_intensity_forecast,19,gCO2_per_kWh,very low,2026-04-27T23:11:45Z
+grid_regional_mix,North East England,pct_gas,0,percent,,2026-04-27T23:11:45Z
+grid_regional_mix,North East England,pct_nuclear,36.6,percent,,2026-04-27T23:11:45Z
+grid_regional_mix,North East England,pct_solar,0,percent,,2026-04-27T23:11:45Z
+grid_regional_mix,North East England,pct_wind,2.6,percent,,2026-04-27T23:11:45Z
+grid_regional,Yorkshire,carbon_intensity_forecast,103,gCO2_per_kWh,moderate,2026-04-27T23:11:45Z
+grid_regional_mix,Yorkshire,pct_gas,8.2,percent,,2026-04-27T23:11:45Z
+grid_regional_mix,Yorkshire,pct_nuclear,2.9,percent,,2026-04-27T23:11:45Z
+grid_regional_mix,Yorkshire,pct_solar,0,percent,,2026-04-27T23:11:45Z
+grid_regional_mix,Yorkshire,pct_wind,25.6,percent,,2026-04-27T23:11:45Z
+grid_regional,North Wales & Merseyside,carbon_intensity_forecast,90,gCO2_per_kWh,moderate,2026-04-27T23:11:45Z
+grid_regional_mix,North Wales & Merseyside,pct_gas,20.5,percent,,2026-04-27T23:11:45Z
+grid_regional_mix,North Wales & Merseyside,pct_nuclear,45.6,percent,,2026-04-27T23:11:45Z
+grid_regional_mix,North Wales & Merseyside,pct_solar,0,percent,,2026-04-27T23:11:45Z
+grid_regional_mix,North Wales & Merseyside,pct_wind,16.6,percent,,2026-04-27T23:11:45Z
+grid_regional,South Wales,carbon_intensity_forecast,335,gCO2_per_kWh,very high,2026-04-27T23:11:45Z
+grid_regional_mix,South Wales,pct_gas,84.9,percent,,2026-04-27T23:11:45Z
+grid_regional_mix,South Wales,pct_nuclear,0,percent,,2026-04-27T23:11:45Z
+grid_regional_mix,South Wales,pct_solar,0,percent,,2026-04-27T23:11:45Z
+grid_regional_mix,South Wales,pct_wind,15.1,percent,,2026-04-27T23:11:45Z
+grid_regional,West Midlands,carbon_intensity_forecast,179,gCO2_per_kWh,high,2026-04-27T23:11:45Z
+grid_regional_mix,West Midlands,pct_gas,39.3,percent,,2026-04-27T23:11:45Z
+grid_regional_mix,West Midlands,pct_nuclear,18.7,percent,,2026-04-27T23:11:45Z
+grid_regional_mix,West Midlands,pct_solar,0,percent,,2026-04-27T23:11:45Z
+grid_regional_mix,West Midlands,pct_wind,14.3,percent,,2026-04-27T23:11:45Z
+grid_regional,East Midlands,carbon_intensity_forecast,174,gCO2_per_kWh,high,2026-04-27T23:11:45Z
+grid_regional_mix,East Midlands,pct_gas,31.8,percent,,2026-04-27T23:11:45Z
+grid_regional_mix,East Midlands,pct_nuclear,3.6,percent,,2026-04-27T23:11:45Z
+grid_regional_mix,East Midlands,pct_solar,0,percent,,2026-04-27T23:11:45Z
+grid_regional_mix,East Midlands,pct_wind,22.3,percent,,2026-04-27T23:11:45Z
+grid_regional,East England,carbon_intensity_forecast,175,gCO2_per_kWh,high,2026-04-27T23:11:45Z
+grid_regional_mix,East England,pct_gas,9.9,percent,,2026-04-27T23:11:45Z
+grid_regional_mix,East England,pct_nuclear,30.9,percent,,2026-04-27T23:11:45Z
+grid_regional_mix,East England,pct_solar,0,percent,,2026-04-27T23:11:45Z
+grid_regional_mix,East England,pct_wind,23.6,percent,,2026-04-27T23:11:45Z
+grid_regional,South West England,carbon_intensity_forecast,356,gCO2_per_kWh,very high,2026-04-27T23:11:45Z
+grid_regional_mix,South West England,pct_gas,90.4,percent,,2026-04-27T23:11:45Z
+grid_regional_mix,South West England,pct_nuclear,0,percent,,2026-04-27T23:11:45Z
+grid_regional_mix,South West England,pct_solar,0,percent,,2026-04-27T23:11:45Z
+grid_regional_mix,South West England,pct_wind,9.6,percent,,2026-04-27T23:11:45Z
+grid_regional,South England,carbon_intensity_forecast,162,gCO2_per_kWh,moderate,2026-04-27T23:11:45Z
+grid_regional_mix,South England,pct_gas,30.1,percent,,2026-04-27T23:11:45Z
+grid_regional_mix,South England,pct_nuclear,0,percent,,2026-04-27T23:11:45Z
+grid_regional_mix,South England,pct_solar,0,percent,,2026-04-27T23:11:45Z
+grid_regional_mix,South England,pct_wind,2.9,percent,,2026-04-27T23:11:45Z
+grid_regional,London,carbon_intensity_forecast,170,gCO2_per_kWh,high,2026-04-27T23:11:45Z
+grid_regional_mix,London,pct_gas,28.8,percent,,2026-04-27T23:11:45Z
+grid_regional_mix,London,pct_nuclear,0,percent,,2026-04-27T23:11:45Z
+grid_regional_mix,London,pct_solar,0,percent,,2026-04-27T23:11:45Z
+grid_regional_mix,London,pct_wind,7.4,percent,,2026-04-27T23:11:45Z
+grid_regional,South East England,carbon_intensity_forecast,170,gCO2_per_kWh,high,2026-04-27T23:11:45Z
+grid_regional_mix,South East England,pct_gas,28.9,percent,,2026-04-27T23:11:45Z
+grid_regional_mix,South East England,pct_nuclear,0,percent,,2026-04-27T23:11:45Z
+grid_regional_mix,South East England,pct_solar,0,percent,,2026-04-27T23:11:45Z
+grid_regional_mix,South East England,pct_wind,7.4,percent,,2026-04-27T23:11:45Z
+grid_regional,England,carbon_intensity_forecast,138,gCO2_per_kWh,moderate,2026-04-27T23:11:45Z
+grid_regional_mix,England,pct_gas,21.3,percent,,2026-04-27T23:11:45Z
+grid_regional_mix,England,pct_nuclear,21.3,percent,,2026-04-27T23:11:45Z
+grid_regional_mix,England,pct_solar,0,percent,,2026-04-27T23:11:45Z
+grid_regional_mix,England,pct_wind,14.5,percent,,2026-04-27T23:11:45Z
+grid_regional,Scotland,carbon_intensity_forecast,83,gCO2_per_kWh,low,2026-04-27T23:11:45Z
+grid_regional_mix,Scotland,pct_gas,19.4,percent,,2026-04-27T23:11:45Z
+grid_regional_mix,Scotland,pct_nuclear,42.1,percent,,2026-04-27T23:11:45Z
+grid_regional_mix,Scotland,pct_solar,0,percent,,2026-04-27T23:11:45Z
+grid_regional_mix,Scotland,pct_wind,33.4,percent,,2026-04-27T23:11:45Z
+grid_regional,Wales,carbon_intensity_forecast,326,gCO2_per_kWh,very high,2026-04-27T23:11:45Z
+grid_regional_mix,Wales,pct_gas,82.8,percent,,2026-04-27T23:11:45Z
+grid_regional_mix,Wales,pct_nuclear,0.1,percent,,2026-04-27T23:11:45Z
+grid_regional_mix,Wales,pct_solar,0,percent,,2026-04-27T23:11:45Z
+grid_regional_mix,Wales,pct_wind,17.2,percent,,2026-04-27T23:11:45Z
+grid_regional,GB,carbon_intensity_forecast,145,gCO2_per_kWh,moderate,2026-04-27T23:11:45Z
+grid_regional_mix,GB,pct_gas,25.4,percent,,2026-04-27T23:11:45Z
+grid_regional_mix,GB,pct_nuclear,22,percent,,2026-04-27T23:11:45Z
+grid_regional_mix,GB,pct_solar,0,percent,,2026-04-27T23:11:45Z
+grid_regional_mix,GB,pct_wind,16.6,percent,,2026-04-27T23:11:45Z
+tfl_tube,Bakerloo,line_status,10,severity_0_20,Good Service,2026-04-27T23:11:45Z
+tfl_tube,Central,line_status,9,severity_0_20,Minor Delays,2026-04-27T23:11:45Z
+tfl_tube,Circle,line_status,9,severity_0_20,Minor Delays,2026-04-27T23:11:45Z
+tfl_tube,District,line_status,10,severity_0_20,Good Service,2026-04-27T23:11:45Z
+tfl_tube,Hammersmith & City,line_status,10,severity_0_20,Good Service,2026-04-27T23:11:45Z
+tfl_tube,Jubilee,line_status,10,severity_0_20,Good Service,2026-04-27T23:11:45Z
+tfl_tube,Metropolitan,line_status,10,severity_0_20,Good Service,2026-04-27T23:11:45Z
+tfl_tube,Northern,line_status,5,severity_0_20,Part Closure,2026-04-27T23:11:45Z
+tfl_tube,Piccadilly,line_status,10,severity_0_20,Good Service,2026-04-27T23:11:45Z
+tfl_tube,Victoria,line_status,10,severity_0_20,Good Service,2026-04-27T23:11:45Z
+tfl_tube,Waterloo & City,line_status,10,severity_0_20,Good Service,2026-04-27T23:11:45Z

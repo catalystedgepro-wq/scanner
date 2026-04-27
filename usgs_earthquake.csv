@@ -1,0 +1,41 @@
+event_id,time_utc,magnitude,location,lat,lon,depth_km,region_tag,tickers_affected,url,captured_at
+us6000st1m,2026-04-26T20:23:55Z,6.1,"18 km W of Sarabetsu, Japan",42.631,142.962,81.0,japan,"TM,HMC,SONY,NTDOY,MUFG,SMFG",https://earthquake.usgs.gov/earthquakes/eventpage/us6000st1m,2026-04-27T23:12:22Z
+us6000ssxt,2026-04-26T04:23:24Z,5.5,"163 km SE of Khovd, Mongolia",46.864,93.012,11.0,other,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000ssxt,2026-04-27T23:12:22Z
+us6000sshc,2026-04-24T03:18:53Z,5.8,"11 km SE of Ierápetra, Greece",34.934,25.827,12.8,other,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000sshc,2026-04-27T23:12:22Z
+us6000srvu,2026-04-21T18:44:12Z,5.6,"140 km E of Noda, Japan",40.156,143.460,35.0,japan,"TM,HMC,SONY,NTDOY,MUFG,SMFG",https://earthquake.usgs.gov/earthquakes/eventpage/us6000srvu,2026-04-27T23:12:22Z
+us6000srtd,2026-04-21T10:30:27Z,5.7,Balleny Islands region,-62.012,164.998,10.0,other,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000srtd,2026-04-27T23:12:22Z
+us6000srrc,2026-04-21T03:17:07Z,5.5,"35 km WNW of Pante Makasar, Timor Leste",-9.068,124.086,77.2,other,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000srrc,2026-04-27T23:12:22Z
+us6000srih,2026-04-20T08:32:46Z,5.6,"113 km E of Miyako, Japan",39.639,143.259,24.5,japan,"TM,HMC,SONY,NTDOY,MUFG,SMFG",https://earthquake.usgs.gov/earthquakes/eventpage/us6000srih,2026-04-27T23:12:22Z
+us6000sri7,2026-04-20T07:53:00Z,7.4,"100 km ENE of Miyako, Japan",39.953,143.046,35.0,japan,"TM,HMC,SONY,NTDOY,MUFG,SMFG",https://earthquake.usgs.gov/earthquakes/eventpage/us6000sri7,2026-04-27T23:12:22Z
+us6000sred,2026-04-19T17:34:47Z,6.1,"93 km NNE of Hihifo, Tonga",-15.126,-173.616,36.0,other,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000sred,2026-04-27T23:12:22Z
+us6000sr5z,2026-04-18T20:06:51Z,5.7,"45 km W of Gunungsitoli, Indonesia",1.253,97.207,18.0,indonesia,"ICCH,TLK,GRAB",https://earthquake.usgs.gov/earthquakes/eventpage/us6000sr5z,2026-04-27T23:12:22Z
+us6000sr4k,2026-04-18T15:02:58Z,5.8,"40 km WSW of Kirakira, Solomon Islands",-10.644,161.600,32.0,other,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000sr4k,2026-04-27T23:12:22Z
+us6000sr3l,2026-04-18T10:47:54Z,5.9,south of the Kermadec Islands,-32.088,-178.063,10.0,other,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000sr3l,2026-04-27T23:12:22Z
+us6000sr2n,2026-04-18T05:59:58Z,5.5,Carlsberg Ridge,6.409,60.218,10.0,other,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000sr2n,2026-04-27T23:12:22Z
+us6000sqjb,2026-04-16T13:30:01Z,6.0,south of the Kermadec Islands,-32.210,-178.054,10.0,other,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000sqjb,2026-04-27T23:12:22Z
+us6000sq5z,2026-04-15T06:56:02Z,5.7,"72 km SW of Tamarindo, Costa Rica",9.915,-86.380,20.0,other,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000sq5z,2026-04-27T23:12:22Z
+us6000spye,2026-04-14T10:13:16Z,5.7,south of Africa,-49.309,30.400,10.0,other,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000spye,2026-04-27T23:12:22Z
+us6000spva,2026-04-14T03:04:21Z,5.5,"Pagan region, Northern Mariana Islands",18.934,145.499,220.0,other,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000spva,2026-04-27T23:12:22Z
+nn00914068,2026-04-14T01:29:12Z,5.7,"20 km ESE of Silver Springs, Nevada",39.334,-119.007,5.0,other,,https://earthquake.usgs.gov/earthquakes/eventpage/nn00914068,2026-04-27T23:12:22Z
+us6000spk9,2026-04-13T02:15:01Z,5.5,"154 km W of Neiafu, Tonga",-18.405,-175.426,254.6,other,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000spk9,2026-04-27T23:12:22Z
+us7000sbau,2026-04-08T09:05:38Z,5.6,"63 km SSE of Sovetabad, Azerbaijan",38.848,49.606,21.0,other,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000sbau,2026-04-27T23:12:22Z
+us6000sn11,2026-04-06T11:18:37Z,5.9,Pacific-Antarctic Ridge,-54.994,-129.111,10.0,other,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000sn11,2026-04-27T23:12:22Z
+us6000smui,2026-04-05T13:22:15Z,5.5,south of the Kermadec Islands,-32.053,-177.909,13.0,other,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000smui,2026-04-27T23:12:22Z
+us6000smm5,2026-04-04T18:26:13Z,5.5,"81 km S of Yulara, Australia",-25.964,130.843,10.0,other,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000smm5,2026-04-27T23:12:22Z
+us6000smj4,2026-04-04T10:34:28Z,6.0,"95 km SE of Sarangani, Philippines",4.873,126.139,67.0,philippines,"PLDT,NILE",https://earthquake.usgs.gov/earthquakes/eventpage/us6000smj4,2026-04-27T23:12:22Z
+us6000smhl,2026-04-04T04:55:32Z,5.5,Mid-Indian Ridge,-21.808,68.877,10.0,other,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000smhl,2026-04-27T23:12:22Z
+us6000smgy,2026-04-04T01:35:00Z,5.6,"112 km ESE of Bitung, Indonesia",1.088,126.076,41.5,indonesia,"ICCH,TLK,GRAB",https://earthquake.usgs.gov/earthquakes/eventpage/us6000smgy,2026-04-27T23:12:22Z
+us6000smda,2026-04-03T16:12:58Z,5.8,"37 km S of Jurm, Afghanistan",36.532,70.797,188.0,other,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000smda,2026-04-27T23:12:22Z
+us6000smbl,2026-04-03T10:26:42Z,5.5,"49 km ESE of Rasht, Tajikistan",38.897,70.917,10.0,other,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000smbl,2026-04-27T23:12:22Z
+us6000sm9y,2026-04-03T03:37:16Z,5.5,"112 km W of Ternate, Indonesia",0.849,126.374,35.0,indonesia,"ICCH,TLK,GRAB",https://earthquake.usgs.gov/earthquakes/eventpage/us6000sm9y,2026-04-27T23:12:22Z
+us6000sm8g,2026-04-03T00:22:20Z,5.6,"122 km WNW of Ternate, Indonesia",1.324,126.424,35.0,indonesia,"ICCH,TLK,GRAB",https://earthquake.usgs.gov/earthquakes/eventpage/us6000sm8g,2026-04-27T23:12:22Z
+us6000sm21,2026-04-02T14:34:59Z,5.8,"119 km WNW of Ternate, Indonesia",1.248,126.407,35.0,indonesia,"ICCH,TLK,GRAB",https://earthquake.usgs.gov/earthquakes/eventpage/us6000sm21,2026-04-27T23:12:22Z
+us6000sm1v,2026-04-02T14:13:49Z,5.9,"123 km WNW of Ternate, Indonesia",1.301,126.398,35.0,indonesia,"ICCH,TLK,GRAB",https://earthquake.usgs.gov/earthquakes/eventpage/us6000sm1v,2026-04-27T23:12:22Z
+us6000slwy,2026-04-02T03:23:53Z,6.2,"111 km WNW of Ternate, Indonesia",1.203,126.474,35.0,indonesia,"ICCH,TLK,GRAB",https://earthquake.usgs.gov/earthquakes/eventpage/us6000slwy,2026-04-27T23:12:22Z
+us6000slww,2026-04-02T03:17:52Z,5.7,"121 km WNW of Ternate, Indonesia",1.250,126.388,35.0,indonesia,"ICCH,TLK,GRAB",https://earthquake.usgs.gov/earthquakes/eventpage/us6000slww,2026-04-27T23:12:22Z
+us6000slue,2026-04-01T23:13:28Z,5.5,"116 km ESE of Bitung, Indonesia",1.132,126.131,35.0,indonesia,"ICCH,TLK,GRAB",https://earthquake.usgs.gov/earthquakes/eventpage/us6000slue,2026-04-27T23:12:22Z
+us6000slss,2026-04-01T22:48:13Z,7.4,"129 km ESE of Bitung, Indonesia",1.093,126.235,35.0,indonesia,"ICCH,TLK,GRAB",https://earthquake.usgs.gov/earthquakes/eventpage/us6000slss,2026-04-27T23:12:22Z
+us7000s9cg,2026-04-01T11:20:27Z,6.0,"18 km SE of Picota, Peru",-7.020,-76.193,126.0,peru,"SCCO,FCX",https://earthquake.usgs.gov/earthquakes/eventpage/us7000s9cg,2026-04-27T23:12:22Z
+us7000s9ay,2026-04-01T06:08:26Z,5.7,Fiji region,-21.725,-179.214,578.0,other,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000s9ay,2026-04-27T23:12:22Z
+us7000s963,2026-03-31T19:24:55Z,5.7,"Kermadec Islands, New Zealand",-30.189,-178.742,197.5,other,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000s963,2026-04-27T23:12:22Z
+us7000s8q0,2026-03-30T08:44:13Z,7.3,"52 km ENE of Luganville, Vanuatu",-15.286,167.583,120.7,other,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000s8q0,2026-04-27T23:12:22Z

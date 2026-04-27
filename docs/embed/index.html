@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Embed widgets — Catalyst Edge Scanner</title>
+  <meta name="description" content="Embeddable Catalyst Edge widgets — DCF top picks, cross-border tape, powered-by badge. One iframe, copy-paste integration." />
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/lib/admin-unlock.css" />
+  <link rel="stylesheet" href="/lib/scanner-polish.css" />
+  <link rel="stylesheet" href="/lib/nav-fix.css" />
+  <style>
+    :root{
+      --navy:#040a14; --navy2:#0a1424; --navy3:#0e1a2e;
+      --ink:#e6f1ff; --ink-dim:#9bb0c8; --ink-mute:#6e8198;
+      --cyan:#5ad7ff; --gold:#f5c662; --bull:#5cf2a4; --bear:#ff6b8b;
+      --line:rgba(110,140,180,0.18); --line-strong:rgba(110,140,180,0.32);
+      --glass: linear-gradient(180deg, rgba(15,28,48,0.78), rgba(7,14,28,0.78));
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;background:#04070d;color:var(--ink);
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      -webkit-font-smoothing:antialiased; font-feature-settings:"ss01","cv11";
+    }
+    a{color:var(--cyan);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+    code{font-family:"JetBrains Mono","IBM Plex Mono",ui-monospace,monospace;font-size:0.92em;background:rgba(90,215,255,0.06);padding:1px 6px;border-radius:4px;color:var(--cyan)}
+
+    .topbar{position:sticky;top:0;z-index:50;background:rgba(4,7,13,0.86);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+    .topbar-row{display:flex;align-items:center;gap:18px;padding:14px 24px;max-width:1400px;margin:0 auto}
+    .brand{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:14px;letter-spacing:0.18em;color:var(--gold);text-transform:uppercase}
+    .brand b{color:var(--cyan)}
+    nav.nav{display:flex;gap:8px;flex:1;flex-wrap:nowrap;overflow-x:auto;scroll-padding-top:80px}
+    nav.nav a{font-size:13px;color:var(--ink-dim);padding:8px 12px;border-radius:8px;white-space:nowrap}
+    nav.nav a:hover{background:rgba(90,215,255,0.08);color:var(--ink);text-decoration:none}
+    nav.nav a.active{color:var(--gold);background:rgba(245,198,98,0.08)}
+
+    .hero{padding:48px 0 32px;border-bottom:1px solid var(--line);position:relative;overflow:hidden}
+    .hero::before{content:"";position:absolute;inset:0;
+      background:radial-gradient(700px 360px at 30% 20%, rgba(90,215,255,0.10), transparent 60%);pointer-events:none}
+    .hero .wrap{position:relative}
+    .eyebrow{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:0.22em;color:var(--gold);text-transform:uppercase;margin-bottom:14px}
+    .h1{font-size:clamp(32px,5vw,52px);line-height:1.05;letter-spacing:-0.01em;margin:0 0 14px;font-weight:700}
+    .h1 .glow{color:var(--cyan)}
+    .sub{font-size:16px;color:var(--ink-dim);max-width:720px;line-height:1.55}
+
+    section.section{padding:48px 0;border-bottom:1px solid var(--line)}
+    .section h2{font-size:24px;margin:0 0 8px;letter-spacing:-0.01em}
+    .section .lead{color:var(--ink-dim);max-width:720px;margin:0 0 22px;font-size:14px}
+
+    .demo-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:flex-start}
+    @media (max-width:980px){.demo-grid{grid-template-columns:1fr}}
+    .demo{background:var(--glass);border:1px solid var(--line);border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:14px}
+    .demo h3{margin:0;font-size:18px;color:var(--cyan)}
+    .demo .desc{margin:0;font-size:13.5px;color:var(--ink-dim);line-height:1.55}
+    .demo .frame-wrap{background:#04070d;border:1px dashed var(--line-strong);border-radius:10px;padding:14px;display:flex;justify-content:center}
+    .demo iframe{border:0;background:transparent;width:100%;max-width:440px}
+    .snippet{background:#040a14;border:1px solid var(--line);border-radius:10px;padding:12px;
+      font-family:"JetBrains Mono",ui-monospace,monospace;font-size:11.5px;color:var(--ink);overflow-x:auto;white-space:pre;line-height:1.55}
+    .snippet .kw{color:#c792ea}
+    .snippet .str{color:var(--bull)}
+    .snippet .attr{color:var(--cyan)}
+    .copy{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;
+      padding:6px 10px;border:1px solid var(--line-strong);color:var(--ink-dim);border-radius:6px;background:transparent;cursor:pointer;align-self:flex-end}
+    .copy:hover{border-color:var(--cyan);color:var(--cyan)}
+
+    .info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    @media (max-width:880px){.info-grid{grid-template-columns:1fr}}
+    .info{background:var(--glass);border:1px solid var(--line);border-radius:12px;padding:18px}
+    .info .ico{font-size:22px;margin-bottom:6px}
+    .info h4{margin:0 0 6px;color:var(--cyan);font-size:15px}
+    .info p{margin:0;color:var(--ink-dim);font-size:13px;line-height:1.55}
+
+    .badge-mock{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;background:rgba(245,198,98,0.06);
+      border:1px solid rgba(245,198,98,0.32);border-radius:10px;font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--gold);align-self:center}
+
+    footer{padding:36px 0;color:var(--ink-mute);font-size:12px;border-top:1px solid var(--line);text-align:center}
+    footer .links{display:flex;gap:14px;justify-content:center;margin-top:8px;flex-wrap:wrap}
+  </style>
+<link rel="stylesheet" href="/lib/polish-tokens.css">
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-row">
+      <div class="brand"><b>Catalyst</b> · Edge</div>
+      <nav class="nav">
+        <a href="/scanner/">Scanner</a>
+        <a href="/sdk/">SDK</a>
+        <a href="/data/api/">API</a>
+        <a href="/partners/">Partners</a>
+        <a href="/embed/" class="active">Embed</a>
+        <a href="/enterprise/">Enterprise</a>
+        <a href="/resources/">Resources</a>
+        <a href="/pricing/">Pricing</a>
+      </nav>
+    </div>
+  </div>
+
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow">🧩 Iframe-friendly · One-line install · Self-contained</div>
+      <h1 class="h1">Embed widgets — <span class="glow">drop Catalyst Edge into your dashboard.</span></h1>
+      <p class="sub">Copy one iframe, ship live A-grade DCF picks or cross-border setups inside your product. No build step, no auth handshake, no CORS dance. Free to embed with a "Powered by" badge — strip the badge with the Enterprise white-label tier.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>Live demos</h2>
+      <p class="lead">Each widget below is the actual production iframe. Copy the snippet, paste it anywhere — Notion, Webflow, your React app, raw HTML.</p>
+      <div class="demo-grid">
+
+        <div class="demo">
+          <h3>Today's top DCF picks</h3>
+          <p class="desc">Top 5 A-grade DCF picks by upside %. Refreshes every 5 minutes. Sourced from <code>/data/intl_dcf.json</code>. ~440px wide × auto height.</p>
+          <div class="frame-wrap">
+            <iframe src="/embed/dcf-top/?partner=demo" title="DCF top picks widget" height="380" loading="lazy"></iframe>
+          </div>
+          <div class="snippet" id="snippet-dcf">&lt;<span class="kw">iframe</span> <span class="attr">src</span>=<span class="str">"https://catalystedgescanner.com/embed/dcf-top/?partner=YOUR_ID"</span>
+        <span class="attr">width</span>=<span class="str">"440"</span> <span class="attr">height</span>=<span class="str">"380"</span>
+        <span class="attr">style</span>=<span class="str">"border:0;background:transparent"</span>
+        <span class="attr">loading</span>=<span class="str">"lazy"</span>
+        <span class="attr">title</span>=<span class="str">"DCF top picks · Catalyst Edge"</span>&gt;&lt;/<span class="kw">iframe</span>&gt;</div>
+          <button class="copy" data-copy="snippet-dcf">📋 Copy snippet</button>
+        </div>
+
+        <div class="demo">
+          <h3>Live cross-border tape <span class="badge-mock" style="font-size:10px;padding:3px 8px;margin-left:8px">coming v0.0.5</span></h3>
+          <p class="desc">Top STRONG-graded cross-border setups (4-point convergence score). Refreshes every 60 seconds. Same iframe shape, swap the path.</p>
+          <div class="frame-wrap" style="min-height:200px;align-items:center">
+            <div style="text-align:center;color:var(--ink-mute);font-size:13px;padding:24px">
+              <div style="font-size:28px;margin-bottom:8px">🛠️</div>
+              In active development · ships next sprint
+            </div>
+          </div>
+          <div class="snippet" id="snippet-cb">&lt;<span class="kw">iframe</span> <span class="attr">src</span>=<span class="str">"https://catalystedgescanner.com/embed/crossborder/?partner=YOUR_ID"</span>
+        <span class="attr">width</span>=<span class="str">"440"</span> <span class="attr">height</span>=<span class="str">"380"</span>
+        <span class="attr">style</span>=<span class="str">"border:0;background:transparent"</span>
+        <span class="attr">loading</span>=<span class="str">"lazy"</span>&gt;&lt;/<span class="kw">iframe</span>&gt;</div>
+          <button class="copy" data-copy="snippet-cb">📋 Copy snippet</button>
+        </div>
+
+        <div class="demo">
+          <h3>"Powered by Catalyst Edge" badge</h3>
+          <p class="desc">Required wherever you display widget output (unless on the Enterprise white-label tier). Style it however you want — keep the link.</p>
+          <div class="frame-wrap" style="padding:32px;align-items:center;justify-content:center">
+            <span class="badge-mock">⚡ Powered by Catalyst Edge</span>
+          </div>
+          <div class="snippet" id="snippet-badge">&lt;<span class="kw">a</span> <span class="attr">href</span>=<span class="str">"https://catalystedgescanner.com/?ref=YOUR_ID"</span>
+   <span class="attr">target</span>=<span class="str">"_blank"</span> <span class="attr">rel</span>=<span class="str">"noopener"</span>
+   <span class="attr">style</span>=<span class="str">"font-family:monospace;color:#f5c662;..."</span>&gt;
+  ⚡ Powered by Catalyst Edge
+&lt;/<span class="kw">a</span>&gt;</div>
+          <button class="copy" data-copy="snippet-badge">📋 Copy snippet</button>
+        </div>
+
+        <div class="demo">
+          <h3>Catalyst tape — 24h headlines <span class="badge-mock" style="font-size:10px;padding:3px 8px;margin-left:8px">roadmap</span></h3>
+          <p class="desc">Rolling 24h merged catalyst tape across 43 countries. Filter by country, kind, or ticker. Lightweight (~120kb gzipped).</p>
+          <div class="frame-wrap" style="min-height:200px;align-items:center">
+            <div style="text-align:center;color:var(--ink-mute);font-size:13px;padding:24px">
+              <div style="font-size:28px;margin-bottom:8px">🌐</div>
+              Queued for v0.0.5 · subscribe via /releases
+            </div>
+          </div>
+          <div class="snippet" id="snippet-tape">&lt;<span class="kw">iframe</span> <span class="attr">src</span>=<span class="str">"https://catalystedgescanner.com/embed/tape/?partner=YOUR_ID&amp;country=ALL"</span>
+        <span class="attr">width</span>=<span class="str">"560"</span> <span class="attr">height</span>=<span class="str">"460"</span>&gt;&lt;/<span class="kw">iframe</span>&gt;</div>
+          <button class="copy" data-copy="snippet-tape">📋 Copy snippet</button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>Integration notes</h2>
+      <p class="lead">Three small things to know before shipping. Most embeds are a single iframe — no JS bundle, no auth flow.</p>
+      <div class="info-grid">
+        <div class="info">
+          <div class="ico">🔌</div>
+          <h4>Zero-build install</h4>
+          <p>Drop the iframe anywhere — Webflow, Notion, your React/Vue/Svelte app, raw HTML. No script tag, no npm install, no CORS work. The iframe is fully self-contained.</p>
+        </div>
+        <div class="info">
+          <div class="ico">🏷️</div>
+          <h4>Partner attribution</h4>
+          <p>Pass <code>?partner=YOUR_ID</code> in the iframe URL. Every outbound click on the widget badge is tagged with your ID for the affiliate program — see <a href="/partners/">/partners</a> for details.</p>
+        </div>
+        <div class="info">
+          <div class="ico">⚡</div>
+          <h4>Performance budget</h4>
+          <p>Widgets are &lt; 8 KB gzipped HTML+CSS+JS. Lazy-loaded fonts, no third-party deps, no tracking pixels. They render in &lt; 100ms on a cold visitor and refresh every 5 minutes thereafter.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    Catalyst Edge Scanner · Embeddable widgets · Audited 89% hit rate · Ships daily, not quarterly
+    <div class="links">
+      <a href="/partners/">Partners</a>
+      <a href="/enterprise/">Enterprise (white-label)</a>
+      <a href="/sdk/">SDK</a>
+      <a href="/data/api/">API</a>
+      <a href="mailto:opensource@example.com">Contact</a>
+    </div>
+  </footer>
+
+  <script src="/lib/tier.js" defer></script>
+  <script>
+    document.querySelectorAll('button[data-copy]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = document.getElementById(btn.dataset.copy);
+        if (!target) return;
+        const text = target.textContent;
+        navigator.clipboard.writeText(text).then(() => {
+          const orig = btn.textContent;
+          btn.textContent = '✓ Copied';
+          setTimeout(() => { btn.textContent = orig; }, 1400);
+        });
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+{
+  "name": "Cerebro Operator Intelligence Webhook",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "cerebro-operator-intelligence",
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1.1,
+      "position": [
+        0,
+        220
+      ],
+      "id": "d5bf37f1-2b1c-4bc8-bf5c-a2bd7d9f0001",
+      "name": "Webhook",
+      "webhookId": "cerebro-operator-intelligence"
+    },
+    {
+      "parameters": {
+        "jsCode": "const body = $json.body || {};\nconst query = $json.query || {};\nconst ticker = String(body.ticker || query.ticker || 'SPY').toUpperCase();\nreturn [{\n  ticker,\n  base_url: String(body.base_url || query.base_url || 'http://127.0.0.1:8000'),\n  requested_by: body.requested_by || query.requested_by || 'n8n-operator',\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        240,
+        220
+      ],
+      "id": "d5bf37f1-2b1c-4bc8-bf5c-a2bd7d9f0002",
+      "name": "Normalize Request"
+    },
+    {
+      "parameters": {
+        "url": "={{ $('Normalize Request').item.json.base_url + '/api/ticker/' + $('Normalize Request').item.json.ticker }}",
+        "options": {
+          "allowUnauthorizedCerts": true
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        480,
+        220
+      ],
+      "id": "d5bf37f1-2b1c-4bc8-bf5c-a2bd7d9f0003",
+      "name": "Fetch Ticker Intelligence"
+    },
+    {
+      "parameters": {
+        "jsCode": "return [{\n  workflow_status: 'ticker_intelligence_ready',\n  ticker: $('Normalize Request').item.json.ticker,\n  requested_by: $('Normalize Request').item.json.requested_by,\n  packet: $json,\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        720,
+        220
+      ],
+      "id": "d5bf37f1-2b1c-4bc8-bf5c-a2bd7d9f0004",
+      "name": "Build Operator Packet"
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Normalize Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Normalize Request": {
+      "main": [
+        [
+          {
+            "node": "Fetch Ticker Intelligence",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Ticker Intelligence": {
+      "main": [
+        [
+          {
+            "node": "Build Operator Packet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "d5bf37f1-2b1c-4bc8-bf5c-a2bd7d9f0005",
+  "id": "cerebro-operator-intelligence-webhook",
+  "meta": {
+    "templateCredsSetupCompleted": false
+  },
+  "tags": []
+}

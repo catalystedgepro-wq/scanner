@@ -1,0 +1,352 @@
+/* docs/lib/polish-tokens.css — canonical design tokens + polish overlay.
+ * Loaded on every page to retrofit the "vibe-coded" surface area with a
+ * disciplined system: 8px card radius, soft cyan shadow on hover, generous
+ * spacing, 200ms ease-out transitions, subtle translateY lift on interactives.
+ *
+ * Defined in tokens, applied via .ce-* utility classes plus a global overlay
+ * that catches the existing .panel/.card/.suite-card/etc. selectors so we get
+ * coverage without hand-editing 100+ pages of markup.
+ */
+
+/* ===== Tokens ============================================================ */
+:root {
+  /* Radii */
+  --radius-sm: 6px;
+  --radius-md: 8px;        /* canonical card radius */
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-pill: 999px;
+
+  /* Shadows — soft cyan/magenta plus depth */
+  --shadow-soft: 0 8px 24px -8px rgba(0, 255, 255, 0.15);
+  --shadow-soft-magenta: 0 8px 24px -8px rgba(255, 42, 138, 0.15);
+  --shadow-soft-amber: 0 8px 24px -8px rgba(245, 196, 67, 0.18);
+  --shadow-elev: 0 12px 32px -12px rgba(0, 0, 0, 0.6);
+  --shadow-elev-lg: 0 24px 56px -16px rgba(0, 0, 0, 0.7);
+  --shadow-glow-cyan: 0 0 24px rgba(0, 255, 255, 0.32);
+  --shadow-glow-magenta: 0 0 24px rgba(255, 42, 138, 0.32);
+  --shadow-glow-amber: 0 0 24px rgba(245, 196, 67, 0.28);
+  --shadow-inset-hi: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+
+  /* Spacing — 4 -> 72px scale */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 72px;
+  --space-4xl: 96px;
+
+  /* Motion */
+  --motion-fast: 120ms;
+  --motion-base: 200ms;
+  --motion-slow: 320ms;
+  --motion-slower: 520ms;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-spring: cubic-bezier(0.22, 0.68, 0, 1.2);
+
+  /* Surface fallbacks (used if a page lacks its own tokens) */
+  --polish-panel: rgba(13, 19, 38, 0.62);
+  --polish-panel-hi: rgba(20, 26, 48, 0.78);
+  --polish-border: rgba(255, 255, 255, 0.08);
+  --polish-border-hi: rgba(34, 211, 238, 0.42);
+  --polish-text: #f6efe2;
+  --polish-text-dim: rgba(246, 239, 226, 0.66);
+  --polish-cyan: #22d3ee;
+  --polish-magenta: #ff2a8a;
+  --polish-amber: #f5c443;
+}
+
+/* ===== Utility: cards ==================================================== */
+.ce-card {
+  background: var(--panel, var(--polish-panel));
+  border: 1px solid var(--border-soft, var(--polish-border));
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  box-shadow: var(--shadow-inset-hi);
+  transition:
+    transform var(--motion-base) var(--ease-out),
+    box-shadow var(--motion-base) var(--ease-out),
+    border-color var(--motion-base) var(--ease-out);
+}
+.ce-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-soft), var(--shadow-inset-hi);
+  border-color: var(--neon-cyan, var(--polish-cyan));
+}
+.ce-card-lg { padding: var(--space-lg); border-radius: var(--radius-lg); }
+.ce-card-elev {
+  box-shadow: var(--shadow-elev), var(--shadow-inset-hi);
+}
+.ce-card-elev:hover {
+  box-shadow: var(--shadow-elev-lg), var(--shadow-soft), var(--shadow-inset-hi);
+}
+
+/* ===== Utility: buttons ================================================== */
+.ce-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: var(--space-sm);
+  padding: 10px 18px;
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  background: linear-gradient(180deg, var(--polish-cyan), #0ea5b7);
+  color: #021014;
+  font-weight: 700;
+  font-size: 0.92rem;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    transform var(--motion-base) var(--ease-out),
+    box-shadow var(--motion-base) var(--ease-out),
+    filter var(--motion-base) var(--ease-out);
+}
+.ce-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-glow-cyan);
+  filter: brightness(1.08);
+}
+.ce-btn:active { transform: translateY(0); filter: brightness(0.95); }
+.ce-btn:focus-visible {
+  outline: 2px solid var(--polish-cyan);
+  outline-offset: 3px;
+}
+
+.ce-btn-ghost {
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: var(--space-sm);
+  padding: 9px 16px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--polish-border);
+  background: transparent;
+  color: var(--polish-text);
+  font-weight: 600;
+  font-size: 0.88rem;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    transform var(--motion-base) var(--ease-out),
+    border-color var(--motion-base) var(--ease-out),
+    background var(--motion-base) var(--ease-out),
+    box-shadow var(--motion-base) var(--ease-out);
+}
+.ce-btn-ghost:hover {
+  transform: translateY(-1px);
+  border-color: var(--polish-cyan);
+  background: rgba(34, 211, 238, 0.06);
+  box-shadow: var(--shadow-soft);
+}
+.ce-btn-ghost:focus-visible {
+  outline: 2px solid var(--polish-cyan);
+  outline-offset: 3px;
+}
+
+.ce-btn-magenta {
+  background: linear-gradient(180deg, var(--polish-magenta), #b81e64);
+  color: #fff;
+}
+.ce-btn-magenta:hover { box-shadow: var(--shadow-glow-magenta); }
+
+/* ===== Utility: layout ==================================================== */
+.ce-section { padding: var(--space-2xl) 0; }
+.ce-section-tight { padding: var(--space-xl) 0; }
+.ce-section-loose { padding: var(--space-3xl) 0; }
+
+.ce-stack-sm > * + * { margin-top: var(--space-sm); }
+.ce-stack-md > * + * { margin-top: var(--space-md); }
+.ce-stack-lg > * + * { margin-top: var(--space-lg); }
+
+.ce-grid-md { display: grid; gap: var(--space-md); }
+.ce-grid-lg { display: grid; gap: var(--space-lg); }
+.ce-grid-xl { display: grid; gap: var(--space-xl); }
+
+.ce-grid-auto-md {
+  display: grid;
+  gap: var(--space-md);
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+.ce-grid-auto-lg {
+  display: grid;
+  gap: var(--space-lg);
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+/* ===== Utility: chips / pills ============================================ */
+.ce-pill {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--polish-border);
+  background: rgba(255, 255, 255, 0.03);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--polish-text-dim);
+  transition:
+    color var(--motion-base) var(--ease-out),
+    border-color var(--motion-base) var(--ease-out),
+    background var(--motion-base) var(--ease-out);
+}
+.ce-pill:hover {
+  color: var(--polish-text);
+  border-color: var(--polish-cyan);
+  background: rgba(34, 211, 238, 0.08);
+}
+
+/* ===== Global polish overlay ============================================== */
+/* Retrofit existing selectors site-wide. We intentionally keep these gentle
+   so they layer on top of cyber-shell / cinematic-hero / scanner-polish
+   without clobbering bespoke hover treatments. */
+
+.panel,
+.card,
+.suite-card,
+.equity-card,
+.pair-card,
+.coin-card,
+.merger-card,
+.country-card,
+.country-tile,
+.cb-card,
+.feed-card,
+.alert-card,
+.tier-card,
+.sample-card,
+.preview-card {
+  border-radius: var(--radius-md);
+  transition:
+    transform var(--motion-base) var(--ease-out),
+    box-shadow var(--motion-base) var(--ease-out),
+    border-color var(--motion-base) var(--ease-out);
+}
+
+.panel:hover,
+.card:hover,
+.suite-card:hover,
+.equity-card:hover,
+.pair-card:hover,
+.coin-card:hover,
+.merger-card:hover,
+.country-card:hover,
+.feed-card:hover,
+.alert-card:hover,
+.tier-card:hover,
+.sample-card:hover,
+.preview-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-soft);
+}
+
+/* Buttons site-wide — additive, doesn't fight existing styling */
+button,
+.btn,
+.cta,
+.filter-btn,
+.fbtn,
+.sec-filter-btn,
+.tab,
+.tab-btn,
+.pill-btn {
+  transition:
+    transform var(--motion-base) var(--ease-out),
+    box-shadow var(--motion-base) var(--ease-out),
+    border-color var(--motion-base) var(--ease-out),
+    background var(--motion-base) var(--ease-out),
+    filter var(--motion-base) var(--ease-out);
+}
+button:hover,
+.btn:hover,
+.cta:hover,
+.filter-btn:hover,
+.fbtn:hover,
+.sec-filter-btn:hover {
+  transform: translateY(-1px);
+}
+button:active,
+.btn:active,
+.cta:active,
+.filter-btn:active {
+  transform: translateY(0);
+}
+
+/* Focus polish — keyboard nav looks designed, not default browser */
+button:focus-visible,
+.btn:focus-visible,
+.cta:focus-visible,
+a:focus-visible,
+.filter-btn:focus-visible,
+.fbtn:focus-visible,
+.sec-filter-btn:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--polish-cyan);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* Sticky surfaces — give them a sense of being lifted off the page */
+.sticky,
+[class*="sticky-"],
+.scanner-grade-nav,
+.nav-fix,
+.site-nav,
+.app-nav {
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.04),
+    var(--shadow-soft);
+}
+
+/* Inputs — same spacing/radius treatment as cards */
+input[type="text"],
+input[type="search"],
+input[type="email"],
+input[type="number"],
+select,
+textarea {
+  border-radius: var(--radius-sm);
+  transition:
+    border-color var(--motion-base) var(--ease-out),
+    box-shadow var(--motion-base) var(--ease-out),
+    background var(--motion-base) var(--ease-out);
+}
+input[type="text"]:focus,
+input[type="search"]:focus,
+input[type="email"]:focus,
+input[type="number"]:focus,
+select:focus,
+textarea:focus {
+  box-shadow: var(--shadow-soft);
+}
+
+/* Tables — cohesion with cards */
+table.polished,
+.table-polish {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-inset-hi);
+}
+
+/* Reduced-motion respect */
+@media (prefers-reduced-motion: reduce) {
+  .ce-card,
+  .ce-btn,
+  .ce-btn-ghost,
+  .ce-pill,
+  .panel, .card, .suite-card, .equity-card, .pair-card, .coin-card,
+  .merger-card, .country-card, .country-tile, .cb-card, .feed-card,
+  .alert-card, .tier-card, .sample-card, .preview-card,
+  button, .btn, .cta, .filter-btn, .fbtn, .sec-filter-btn,
+  .tab, .tab-btn, .pill-btn {
+    transition: none !important;
+  }
+  .ce-card:hover, .ce-btn:hover, .ce-btn-ghost:hover,
+  .panel:hover, .card:hover, .suite-card:hover,
+  button:hover, .btn:hover, .cta:hover {
+    transform: none !important;
+  }
+}

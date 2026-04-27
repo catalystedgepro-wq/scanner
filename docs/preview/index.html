@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>This Week's SEC Catalyst Preview — Free Sample | Catalyst Edge</title>
+<meta name="description" content="Preview this week's top SEC catalyst picks before subscribing. See real scored tickers, sector heatmap, and insider buying signals from the Catalyst Edge daily scanner.">
+<meta property="og:title" content="This Week's SEC Catalyst Preview — Catalyst Edge">
+<meta property="og:description" content="See what the scanner found this week. Top 3 picks revealed, premium picks gated.">
+<meta property="og:url" content="https://catalystedgescanner.com/preview/">
+<link rel="canonical" href="https://catalystedgescanner.com/preview/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #070a12;
+  --surface: #0f1420;
+  --surface2: #161d2e;
+  --gold: #d4a843;
+  --green: #22c55e;
+  --red: #ef4444;
+  --cyan: #06b6d4;
+  --text: #e2e8f0;
+  --dim: #94a3b8;
+  --muted: #64748b;
+  --border: #1e293b;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;-webkit-font-smoothing:antialiased}
+a{color:var(--gold);text-decoration:none}
+a:hover{text-decoration:underline}
+
+.wrap{max-width:860px;margin:0 auto;padding:2rem 1.5rem}
+
+.nav{position:sticky;top:0;z-index:100;background:rgba(7,10,18,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:.75rem 1.5rem;display:flex;align-items:center;gap:1rem}
+.nav a{color:var(--gold);font-weight:600;font-size:.95rem}
+.nav .sep{color:var(--muted)}
+
+.hero{text-align:center;padding:3rem 0 2.5rem;border-bottom:1px solid var(--border);margin-bottom:2rem}
+.hero h1{font-size:clamp(1.6rem,4vw,2.4rem);font-weight:800;line-height:1.2;margin-bottom:.5rem}
+.hero h1 em{font-style:normal;color:var(--gold)}
+.hero .sub{color:var(--dim);font-size:1rem;max-width:560px;margin:0 auto}
+.live-badge{display:inline-block;padding:3px 10px;background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.3);border-radius:20px;font-size:.72rem;font-weight:600;color:var(--green);margin-bottom:1rem;letter-spacing:.05em;text-transform:uppercase}
+.live-badge::before{content:'';display:inline-block;width:6px;height:6px;background:var(--green);border-radius:50%;margin-right:6px;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:1.5rem 0}
+.stat{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1rem;text-align:center}
+.stat .val{font-size:1.4rem;font-weight:800;color:var(--gold)}
+.stat .lbl{font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-top:2px}
+
+.section-title{font-size:1.1rem;font-weight:700;margin:2rem 0 1rem;color:var(--gold);padding-bottom:.5rem;border-bottom:1px solid var(--border)}
+.pick-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.2rem;margin-bottom:.75rem;display:flex;align-items:center;gap:1rem}
+.pick-rank{font-size:1.6rem;font-weight:800;color:var(--gold);min-width:32px;text-align:center}
+.pick-body{flex:1}
+.pick-ticker{font-size:1.1rem;font-weight:700;color:var(--text)}
+.pick-meta{font-size:.78rem;color:var(--muted);margin-top:2px}
+.pick-score{font-size:1.3rem;font-weight:800;color:var(--green);min-width:50px;text-align:right}
+
+.gated{position:relative;overflow:hidden;border-radius:10px;margin:1rem 0}
+.gated-inner{filter:blur(6px);pointer-events:none;user-select:none;opacity:.5}
+.gated-overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(7,10,18,.6);z-index:2;border-radius:10px}
+.gated-overlay h3{color:var(--gold);font-size:1.1rem;margin-bottom:.5rem}
+.gated-overlay p{color:var(--dim);font-size:.85rem;max-width:340px;text-align:center;margin-bottom:1rem}
+.gated-overlay .unlock-btn{display:inline-block;padding:.6rem 1.6rem;background:linear-gradient(135deg,var(--gold),#f1ce88);color:#070a12;font-weight:700;border-radius:8px;font-size:.9rem;transition:transform .2s}
+.gated-overlay .unlock-btn:hover{transform:translateY(-2px);text-decoration:none}
+
+.heatmap-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:6px;margin:1rem 0}
+.hm-cell{border-radius:6px;padding:.6rem .5rem;text-align:center;font-size:.75rem;font-weight:600;border:1px solid var(--border)}
+
+.cta-section{background:var(--surface);border:2px solid var(--gold);border-radius:12px;padding:2rem;text-align:center;margin:2.5rem 0}
+.cta-section h2{color:var(--gold);font-size:1.3rem;margin-bottom:.5rem}
+.cta-section p{color:var(--dim);font-size:.9rem;margin-bottom:1.25rem;max-width:480px;margin-left:auto;margin-right:auto}
+.cta-form{display:flex;gap:8px;max-width:420px;margin:0 auto}
+.cta-input{flex:1;padding:.6rem .8rem;background:var(--bg);border:1px solid var(--border);border-radius:6px;color:var(--text);font-family:inherit;font-size:.9rem}
+.cta-input:focus{border-color:var(--gold);outline:none}
+.cta-btn{padding:.6rem 1.4rem;background:linear-gradient(135deg,var(--gold),#f1ce88);color:#070a12;font-weight:700;border:none;border-radius:6px;cursor:pointer;font-family:inherit;font-size:.9rem;white-space:nowrap}
+.cta-btn:hover{opacity:.9}
+.cta-msg{margin-top:.5rem;font-size:.78rem;color:var(--green);display:none}
+.cta-note{margin-top:.75rem;font-size:.7rem;color:var(--muted)}
+
+.proof{display:flex;justify-content:center;gap:2rem;margin:1.5rem 0;flex-wrap:wrap}
+.proof-item{text-align:center}
+.proof-item .p-val{font-size:1.1rem;font-weight:700;color:var(--text)}
+.proof-item .p-lbl{font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+
+.footer{text-align:center;padding:1.5rem;font-size:.72rem;color:var(--muted);border-top:1px solid var(--border);margin-top:2rem}
+.footer a{color:var(--muted)}
+
+@media(max-width:640px){
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .cta-form{flex-direction:column}
+  .heatmap-grid{grid-template-columns:repeat(3,1fr)}
+}
+</style>
+<link rel="stylesheet" href="/lib/polish-tokens.css">
+</head>
+<body>
+
+<div class="nav">
+  <a href="/">Catalyst Edge</a>
+  <span class="sep">/</span>
+  <span style="color:var(--dim);font-size:.9rem">Weekly Preview</span>
+</div>
+
+<div class="wrap">
+
+  <div class="hero">
+    <span class="live-badge">Live Data</span>
+    <h1>This Week's <em>SEC Catalyst</em> Preview</h1>
+    <p class="sub">A free sample of what the scanner finds daily. Top 3 picks revealed, premium picks gated. Subscribe to get the full list at 4 AM ET every trading day.</p>
+  </div>
+
+  <div class="stats" id="stats-row">
+    <div class="stat"><div class="val" id="stat-tickers">--</div><div class="lbl">Tickers Scanned</div></div>
+    <div class="stat"><div class="val" id="stat-sectors">--</div><div class="lbl">Active Sectors</div></div>
+    <div class="stat"><div class="val" id="stat-filings">--</div><div class="lbl">Filings Today</div></div>
+    <div class="stat"><div class="val" id="stat-catalysts">--</div><div class="lbl">Catalysts Found</div></div>
+  </div>
+
+  <div class="section-title">Top 3 Picks — Free Preview</div>
+  <div id="free-picks">
+    <div class="pick-card">
+      <div class="pick-rank">1</div>
+      <div class="pick-body">
+        <div class="pick-ticker" id="p1-ticker">Loading...</div>
+        <div class="pick-meta" id="p1-meta">Scanning latest filings...</div>
+      </div>
+      <div class="pick-score" id="p1-score">--</div>
+    </div>
+    <div class="pick-card">
+      <div class="pick-rank">2</div>
+      <div class="pick-body">
+        <div class="pick-ticker" id="p2-ticker">Loading...</div>
+        <div class="pick-meta" id="p2-meta">Scanning latest filings...</div>
+      </div>
+      <div class="pick-score" id="p2-score">--</div>
+    </div>
+    <div class="pick-card">
+      <div class="pick-rank">3</div>
+      <div class="pick-body">
+        <div class="pick-ticker" id="p3-ticker">Loading...</div>
+        <div class="pick-meta" id="p3-meta">Scanning latest filings...</div>
+      </div>
+      <div class="pick-score" id="p3-score">--</div>
+    </div>
+  </div>
+
+  <div class="section-title">Picks #4-15 — Subscribe to Unlock</div>
+  <div class="gated">
+    <div class="gated-inner">
+      <div class="pick-card"><div class="pick-rank">4</div><div class="pick-body"><div class="pick-ticker">●●●●</div><div class="pick-meta">8-K Material Event &middot; Insider cluster buy</div></div><div class="pick-score">14.2</div></div>
+      <div class="pick-card"><div class="pick-rank">5</div><div class="pick-body"><div class="pick-ticker">●●●●</div><div class="pick-meta">Form 4 CEO Purchase &middot; High short interest</div></div><div class="pick-score">13.8</div></div>
+      <div class="pick-card"><div class="pick-rank">6</div><div class="pick-body"><div class="pick-ticker">●●●●</div><div class="pick-meta">SC 13D Activist stake &middot; Options flow bullish</div></div><div class="pick-score">12.5</div></div>
+      <div class="pick-card"><div class="pick-rank">7</div><div class="pick-body"><div class="pick-ticker">●●●●</div><div class="pick-meta">S-3 Shelf + Insider buy convergence</div></div><div class="pick-score">11.9</div></div>
+      <div class="pick-card"><div class="pick-rank">8</div><div class="pick-body"><div class="pick-ticker">●●●●</div><div class="pick-meta">8-K Partnership announcement</div></div><div class="pick-score">11.2</div></div>
+    </div>
+    <div class="gated-overlay">
+      <h3>12 more picks available</h3>
+      <p>Free email gets the full top 15 daily. Reader unlocks the full 25-row table + sympathy chains + DCF grades.</p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:.6rem">
+        <a href="#subscribe" class="unlock-btn">Unlock Free email &rarr;</a>
+        <a href="https://buy.stripe.com/your-link" target="_blank" rel="noopener" data-utm="preview-gated-paid"
+           style="display:inline-block;background:linear-gradient(135deg,#3fb950,#2ea043);color:#0d1117;padding:.55rem 1rem;border-radius:6px;font-weight:700;text-decoration:none;font-size:.92rem">Reader $9/mo &rarr;</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-title">Sector Catalyst Heatmap</div>
+  <div class="heatmap-grid" id="heatmap"></div>
+
+  <div class="proof">
+    <div class="proof-item"><div class="p-val">1,600+</div><div class="p-lbl">Tickers Scanned Daily</div></div>
+    <div class="proof-item"><div class="p-val">4:00 AM</div><div class="p-lbl">Delivery Time ET</div></div>
+    <div class="proof-item"><div class="p-val">300+</div><div class="p-lbl">SEC Filings / Day</div></div>
+    <div class="proof-item"><div class="p-val">$0</div><div class="p-lbl">Free Tier</div></div>
+  </div>
+
+  <div class="cta-section" id="subscribe">
+    <h2>Get the Full Scanner at 4 AM</h2>
+    <p>Join traders who read the catalyst report before pre-market opens. Free forever &mdash; no credit card, no trial expiration.</p>
+    <form class="cta-form" onsubmit="handleSub(event)">
+      <input type="email" class="cta-input" id="sub-email" placeholder="you@email.com" required>
+      <button type="submit" class="cta-btn">Subscribe Free</button>
+    </form>
+    <div class="cta-msg" id="sub-msg">You're in! Check your inbox tomorrow at 4 AM ET.</div>
+    <div class="cta-note">No spam. Unsubscribe anytime. We send one email per trading day.</div>
+    <div style="margin-top:1.25rem;padding-top:1.25rem;border-top:1px solid var(--border);display:flex;gap:10px;justify-content:center;align-items:center;flex-wrap:wrap">
+      <span style="font-size:.82rem;color:var(--dim)">Want it all? Reader unlocks the full 25-row scanner, DCF grades, and sympathy chains.</span>
+      <a href="https://buy.stripe.com/your-link" target="_blank" rel="noopener" data-utm="preview-cta-paid"
+         style="display:inline-block;background:linear-gradient(135deg,#3fb950,#2ea043);color:#0d1117;padding:.55rem 1.1rem;border-radius:6px;font-weight:700;text-decoration:none;font-size:.92rem">Reader $9/mo &rarr;</a>
+    </div>
+  </div>
+  <script>
+  /* Persist email so a Reader $9 click later prefills Stripe checkout. */
+  (function() {
+    var input = document.getElementById('sub-email');
+    if (input) {
+      input.addEventListener('change', function() {
+        try { if (input.value && input.value.includes('@')) localStorage.setItem('ce_email', input.value); } catch (e) {}
+      });
+    }
+    document.addEventListener('click', function(ev) {
+      var a = ev.target && ev.target.closest && ev.target.closest('a[href*="buy.stripe.com"]');
+      if (!a) return;
+      var email; try { email = localStorage.getItem('ce_email'); } catch (e) { email = null; }
+      if (!email) return;
+      var href = a.getAttribute('href');
+      if (!href || href.indexOf('prefilled_email=') !== -1) return;
+      a.setAttribute('href', href + (href.indexOf('?') === -1 ? '?' : '&') + 'prefilled_email=' + encodeURIComponent(email));
+    }, true);
+  })();
+  </script>
+
+  <div style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border)">
+    <h3 style="font-size:1rem;color:var(--dim);margin-bottom:.75rem">Learn More</h3>
+    <p style="font-size:.9rem">
+      <a href="/glossary/what-is-catalyst-score/" style="color:#3b82f6">What is Catalyst Score?</a> &middot;
+      <a href="/glossary/what-is-form-4/" style="color:#3b82f6">What is Form 4?</a> &middot;
+      <a href="/glossary/what-is-8k/" style="color:#3b82f6">What is an 8-K?</a> &middot;
+      <a href="/glossary/how-to-trade-earnings-season/" style="color:#3b82f6">Earnings Season Guide</a> &middot;
+      <a href="/glossary/what-is-options-flow/" style="color:#3b82f6">Options Flow</a> &middot;
+      <a href="/glossary/" style="color:#3b82f6">Full Glossary</a>
+    </p>
+  </div>
+</div>
+
+<div class="footer">
+  &copy; 2026 Catalyst Edge &middot;
+  <a href="/">Scanner</a> &middot;
+  <a href="/glossary/">Glossary</a> &middot;
+  <a href="/congress/">Congress</a> &middot;
+  <a href="/heatmap/">Heatmap</a> &middot;
+  Not financial advice.
+</div>
+
+<script>
+(function(){
+  var API = '';
+  fetch(API + '/api/sectors').then(function(r){return r.json()}).then(function(d){
+    var sectors = d.sectors || [];
+    var maxB = 0;
+    sectors.forEach(function(s){ if((s.avg_brightness||0)>maxB) maxB=s.avg_brightness; });
+    var totalTickers = 0;
+    sectors.forEach(function(s){ totalTickers += s.ticker_count||0; });
+    document.getElementById('stat-tickers').textContent = totalTickers.toLocaleString();
+    document.getElementById('stat-sectors').textContent = sectors.length;
+    var grid = document.getElementById('heatmap');
+    sectors.sort(function(a,b){return (b.avg_brightness||0)-(a.avg_brightness||0)});
+    sectors.forEach(function(s){
+      var b = s.avg_brightness||0;
+      var pct = maxB>0 ? b/maxB : 0;
+      var r = Math.round(20 + pct*40);
+      var g = Math.round(80 + pct*120);
+      var bl = Math.round(30 + pct*30);
+      var cell = document.createElement('div');
+      cell.className = 'hm-cell';
+      cell.style.background = 'rgba('+r+','+g+','+bl+',0.15)';
+      var nameEl = document.createElement('div');
+      nameEl.className = 'hm-name';
+      nameEl.style.cssText = 'color:var(--text);margin-bottom:2px;font-size:.7rem;letter-spacing:.03em';
+      nameEl.textContent = s.sector;
+      var valEl = document.createElement('div');
+      valEl.className = 'hm-val';
+      valEl.style.cssText = 'font-size:.85rem;font-weight:800;color:rgb('+r+','+g+','+bl+')';
+      valEl.textContent = b.toFixed(1);
+      cell.appendChild(nameEl);
+      cell.appendChild(valEl);
+      grid.appendChild(cell);
+    });
+  }).catch(function(){});
+
+  fetch(API + '/api/scanner?limit=3').then(function(r){return r.json()}).then(function(d){
+    var picks = d.tickers || d.picks || [];
+    for(var i=0;i<3&&i<picks.length;i++){
+      var p = picks[i];
+      var n = i+1;
+      document.getElementById('p'+n+'-ticker').textContent = p.ticker||p.symbol||'--';
+      document.getElementById('p'+n+'-meta').textContent = (p.form_type||p.catalyst||'SEC Filing')+' \u00b7 '+(p.category||'Catalyst');
+      document.getElementById('p'+n+'-score').textContent = p.score||p.catalyst_score||'--';
+    }
+    document.getElementById('stat-filings').textContent = d.total_filings || picks.length || '--';
+    document.getElementById('stat-catalysts').textContent = d.total_catalysts || picks.length || '--';
+  }).catch(function(){
+    document.getElementById('p1-ticker').textContent = 'Scanner loading...';
+    document.getElementById('p2-ticker').textContent = 'Check back soon';
+    document.getElementById('p3-ticker').textContent = '';
+  });
+})();
+
+function handleSub(e){
+  e.preventDefault();
+  var email = document.getElementById('sub-email').value;
+  if(!email) return;
+  fetch('/api/subscribe',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({email:email,source:'preview-page'})
+  }).then(function(){
+    document.getElementById('sub-msg').style.display='block';
+    document.getElementById('sub-email').value='';
+  }).catch(function(){
+    var msg = document.getElementById('sub-msg');
+    msg.textContent='Added! You will receive the next newsletter.';
+    msg.style.display='block';
+  });
+}
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KV1VDK22VC"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-KV1VDK22VC');</script>
+</body>
+</html>

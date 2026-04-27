@@ -1,0 +1,6 @@
+date=2026-04-21
+subject=SEC Catalyst Daily — 2026-04-21 | Top Pick: ALK
+html_size=124,598 bytes
+sent_ok=1
+sent_fail=0
+  OK  [free] opensource@example.com

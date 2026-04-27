@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>30 days to build a Bloomberg killer — Catalyst Edge blog</title>
+  <meta name="description" content="What 30 days of solo building looks like, phase by phase. The week everything broke. The first $9 customer. The misses I won't repeat." />
+  <meta property="og:title" content="30 days to build a Bloomberg killer" />
+  <meta property="og:description" content="Phase by phase. Misses included." />
+  <link rel="alternate" type="application/rss+xml" title="Catalyst Edge blog" href="/blog/rss.xml" />
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/lib/admin-unlock.css" />
+  <link rel="stylesheet" href="/lib/scanner-polish.css" />
+  <link rel="stylesheet" href="/lib/nav-fix.css" />
+  <style>
+    :root{
+      --navy:#040a14; --navy2:#0a1424; --navy3:#0e1a2e;
+      --ink:#e6f1ff; --ink-dim:#9bb0c8; --ink-mute:#6e8198;
+      --cyan:#5ad7ff; --gold:#f5c662; --bull:#5cf2a4; --bear:#ff6b8b;
+      --line:rgba(110,140,180,0.18); --line-strong:rgba(110,140,180,0.32);
+      --glass: linear-gradient(180deg, rgba(15,28,48,0.78), rgba(7,14,28,0.78));
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;background:#04070d;color:var(--ink);
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      -webkit-font-smoothing:antialiased; font-feature-settings:"ss01","cv11";
+    }
+    a{color:var(--cyan);text-decoration:none}
+    a:hover{text-decoration:underline}
+    code{font-family:"JetBrains Mono","IBM Plex Mono",ui-monospace,monospace;font-size:0.92em;background:rgba(90,215,255,0.06);padding:1px 6px;border-radius:4px;color:var(--cyan)}
+
+    .topbar{position:sticky;top:0;z-index:50;background:rgba(4,7,13,0.86);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+    .topbar-row{display:flex;align-items:center;gap:18px;padding:14px 24px;max-width:1400px;margin:0 auto}
+    .brand{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:14px;letter-spacing:0.18em;color:var(--gold);text-transform:uppercase}
+    .brand b{color:var(--cyan)}
+    nav.nav{display:flex;gap:8px;flex:1;flex-wrap:nowrap;overflow-x:auto;scroll-padding-top:80px}
+    nav.nav a{font-size:13px;color:var(--ink-dim);padding:8px 12px;border-radius:8px;white-space:nowrap}
+    nav.nav a:hover{background:rgba(90,215,255,0.08);color:var(--ink);text-decoration:none}
+    nav.nav a.active{color:var(--gold);background:rgba(245,198,98,0.08)}
+
+    article.post{max-width:780px;margin:0 auto;padding:48px 24px 64px}
+    .crumbs{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:0.16em;color:var(--ink-mute);text-transform:uppercase;margin-bottom:24px}
+    .crumbs a{color:var(--ink-dim)}
+    .eyebrow{display:inline-flex;gap:14px;font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:0.18em;color:var(--gold);text-transform:uppercase;margin-bottom:14px;flex-wrap:wrap}
+    .eyebrow .read{color:var(--ink-mute)}
+    .eyebrow .tag{padding:3px 10px;border-radius:6px;background:rgba(245,198,98,0.08);border:1px solid rgba(245,198,98,0.32)}
+    h1.title{font-size:clamp(30px,4.5vw,46px);line-height:1.1;letter-spacing:-0.01em;margin:0 0 14px;font-weight:700}
+    .lede{font-size:18px;color:var(--ink-dim);line-height:1.55;margin:0 0 32px}
+
+    article.post h2{margin:36px 0 12px;font-size:22px;color:var(--cyan);letter-spacing:-0.005em}
+    article.post p{margin:0 0 14px;color:var(--ink);font-size:16px;line-height:1.7}
+    article.post ul, article.post ol{margin:0 0 18px;padding-left:24px;color:var(--ink-dim);font-size:15.5px;line-height:1.7}
+    article.post ul li, article.post ol li{margin-bottom:6px}
+    article.post ul li b, article.post ol li b{color:var(--ink)}
+
+    .pull{font-size:20px;line-height:1.5;color:var(--gold);font-style:italic;
+      padding:14px 22px;border-left:3px solid var(--gold);background:rgba(245,198,98,0.05);border-radius:0 10px 10px 0;margin:24px 0}
+
+    .timeline{margin:18px 0 28px;border-left:2px solid var(--line);padding-left:22px}
+    .ph{margin-bottom:18px}
+    .ph .when{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:0.16em;color:var(--gold);text-transform:uppercase}
+    .ph h4{margin:4px 0 4px;font-size:16px;color:var(--ink)}
+    .ph p{margin:0;color:var(--ink-dim);font-size:14.5px;line-height:1.6}
+
+    .miss{background:rgba(255,107,139,0.06);border:1px solid rgba(255,107,139,0.4);border-radius:10px;padding:14px 18px;margin:18px 0;font-size:14.5px;color:var(--ink-dim);line-height:1.6}
+    .miss b{color:var(--bear)}
+
+    .byline{margin-top:48px;padding-top:24px;border-top:1px dashed var(--line);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px}
+    .byline .who{font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:0.14em;color:var(--ink-mute);text-transform:uppercase}
+    .byline .who b{color:var(--ink)}
+    .byline .share{display:flex;gap:8px;flex-wrap:wrap}
+    .byline .share a{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;
+      padding:8px 12px;border-radius:8px;border:1px solid var(--line-strong);color:var(--ink-dim)}
+    .byline .share a:hover{border-color:var(--cyan);color:var(--cyan);text-decoration:none}
+
+    .next-up{margin-top:32px;background:var(--glass);border:1px solid var(--line);border-radius:14px;padding:18px}
+    .next-up .eye{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:0.18em;color:var(--ink-mute);text-transform:uppercase}
+    .next-up h4{margin:6px 0 4px;font-size:16px;color:var(--cyan)}
+    .next-up p{margin:0;color:var(--ink-dim);font-size:13.5px}
+
+    footer{padding:36px 0;color:var(--ink-mute);font-size:12px;border-top:1px solid var(--line);text-align:center}
+    footer .links{display:flex;gap:14px;justify-content:center;margin-top:8px;flex-wrap:wrap}
+  </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "30 days to build a Bloomberg killer",
+  "description": "What 30 days of solo building looks like, phase by phase. The week everything broke. The first $9 customer. The misses I won't repeat.",
+  "datePublished": "2026-04-20",
+  "dateModified": "2026-04-20",
+  "author": {
+    "@type": "Organization",
+    "name": "Catalyst Edge Scanner",
+    "url": "https://catalystedgescanner.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://catalystedgescanner.com/press/logo.png"
+    }
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Catalyst Edge Scanner",
+    "url": "https://catalystedgescanner.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://catalystedgescanner.com/press/logo.png"
+    }
+  },
+  "image": "https://catalystedgescanner.com/press/logo.png",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://catalystedgescanner.com/blog/30-days-to-build-a-bloomberg-killer/"
+  },
+  "url": "https://catalystedgescanner.com/blog/30-days-to-build-a-bloomberg-killer/"
+}
+</script>
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://catalystedgescanner.com/blog/30-days-to-build-a-bloomberg-killer/" />
+  <meta property="og:title" content="30 days to build a Bloomberg killer — Catalyst Edge blog" />
+  <meta property="og:description" content="What 30 days of solo building looks like, phase by phase. The week everything broke. The first $9 customer. The misses I won" />
+  <meta property="og:image" content="https://catalystedgescanner.com/og/blog-30-days.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name" content="Catalyst Edge Scanner" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@catalystEdgePro" />
+  <meta name="twitter:title" content="30 days to build a Bloomberg killer — Catalyst Edge blog" />
+  <meta name="twitter:description" content="What 30 days of solo building looks like, phase by phase. The week everything broke. The first $9 customer. The misses I won" />
+  <meta name="twitter:image" content="https://catalystedgescanner.com/og/blog-30-days.png" />
+<link rel="stylesheet" href="/lib/polish-tokens.css">
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-row">
+      <div class="brand"><b>Catalyst</b> · Edge</div>
+      <nav class="nav">
+        <a href="/scanner/">Scanner</a>
+        <a href="/international/">Global</a>
+        <a href="/dcf/">DCF</a>
+        <a href="/cross-border/">Cross-Border</a>
+        <a href="/sdk/">SDK</a>
+        <a href="/benchmarks/">Benchmarks</a>
+        <a href="/trust/">Trust</a>
+        <a href="/blog/" class="active">Blog</a>
+        <a href="/community/">Community</a>
+        <a href="/changelog/">Changelog</a>
+        <a href="/pricing/">Pricing</a>
+      </nav>
+    </div>
+  </div>
+
+  <article class="post">
+    <div class="crumbs"><a href="/blog/">← All posts</a></div>
+    <div class="eyebrow"><span>2026-04-20</span><span class="read">≈ 7 min read</span><span class="tag">Build log</span></div>
+    <h1 class="title">30 days to build a Bloomberg killer</h1>
+    <p class="lede">2026-03-26: an empty repo and a stubborn opinion that one person could replace a $24,000-a-year terminal. 30 days later: 21 product phases shipped, 1 paying customer, an audited 89% hit rate published in public, and a 43-country catalyst tape that no incumbent surfaces in a single panel. This is what the calendar actually looked like, week by week, with the misses.</p>
+
+    <h2>Week 1 — the spine</h2>
+    <p>The first week is always the hardest because the surface area is infinite. I picked one constraint: <strong>everything has to ship from a single laptop with stdlib only</strong>. No microservices, no Docker, no Kubernetes, no fancy dependency tree. Pip-install nothing, debug something every hour, deploy at 2 AM.</p>
+    <p>What landed: SEC EDGAR RSS pull (8-K, 4, S-3, 13D, 13G, 6-K — every catalyst form type), a CIK→ticker mapper, the first quality+momentum scoring, and the daily 7am email that was the entire user-facing surface. Sent the first email to one person — me. Pretended it was working in production. It mostly was.</p>
+
+    <div class="pull">"You don't need 12 microservices. You need one laptop, one cron, and one email."</div>
+
+    <h2>Week 2 — first real DCF</h2>
+    <p>The DCF engine was the moment the project stopped being a glorified RSS reader. The two-stage Damodaran model is conceptually simple: 5 years of explicit FCF growth, terminal Gordon at 2.5%, discount at WACC, equity bridge. The hard part wasn't the math — it was wiring SEC EDGAR XBRL companyfacts to actually feed it. Three days of <code>us-gaap:NetCashProvidedByOperatingActivities</code> tag-name archaeology. By the end, 1,001 names had a fair value, a grade, and a public methodology page.</p>
+
+    <div class="miss">
+      <b>Miss #1:</b> First DCF I shipped had FCF inflated for the financials sector — banks' OCF includes deposit float, which compounds the model into nonsense. Ping An valued at +1,717% upside. Fixed by adding a sector-aware sanity cap (3× for Financials/Insurance, 20× otherwise). Took 90 minutes to spot, 15 minutes to patch, ten years off my life.
+    </div>
+
+    <h2>Week 3 — the international expansion</h2>
+    <p>This is the week that I most underestimated. Going from US-only to 43 countries sounds like 43× work. It's actually 43× <em>edge cases</em> — every market has its own ticker suffix, its own news feed shape, its own missing-data conventions. yfinance handles most of it; for the rest, hand-rolled HTTP wrappers per venue. JSE for South Africa, .NS for India NSE, .SI for Singapore SGX, .T for TDnet Japan. Africa was deliberately not skipped: <a href="/international/">/international</a> covers the JSE and ADR feeds for a continent that incumbents routinely shrug off.</p>
+    <p>The cross-border convergence score (full math: <a href="/blog/how-the-cross-border-convergence-score-works/">in this post</a>) shipped at the end of the week. Four points: foreign gap ≥ 1.5%, US gap ≥ 1.5%, same direction, both vol ratios ≥ 1.5×. STRONG = 4/4. The signal that justified the entire international rebuild in one panel.</p>
+
+    <div class="miss">
+      <b>Miss #2:</b> First shipping version of the international top-gappers had a country-coverage bug — only 26 of 43 countries showed up because top_up/top_down sampled the wrong rows. The "43 countries" claim was directionally right but the panel didn't reflect it. Fixed by adding a coverage-guaranteed bucket. Lesson: always render the live panel from the live data, never trust your own staging.
+    </div>
+
+    <h2>Week 4 — the unglamorous infrastructure</h2>
+    <p>Most of week 4 was the stuff nobody screenshots: a public changelog, a /trust audit page with 50 real catalyst calls, a /benchmarks head-to-head against Bloomberg/FactSet/Refinitiv, a /pricing page with an ROI calculator, a 22-endpoint JSON API doc, a Python+Node SDK landing page, a privacy policy, a terms of service, a security page with a NMR-paid bug bounty, a 12-term financial glossary, a partners program (10% recurring), a press kit, and this blog.</p>
+    <p>That last sentence is exhausting to read. It was more exhausting to write. But every single one of those pages closed a sales objection that an incumbent had baked into their pricing model. "Where's your security page?" — there. "Where's the methodology?" — there. "Where do I see a real customer?" — there. By the end of the week, the only valid objection left was "I don't trust a 30-day-old company." And that one is fair — for now.</p>
+
+    <h2>The first $9</h2>
+    <p>2026-04-22, 7:43 PM ET. Stripe webhook fires. <code>cwbrab@gmail.com</code> just paid $9 for the Catalyst Edge Reader plan. I'm staring at the laptop, half-expecting a typo or a test charge. It's real. The first nine dollars on a roadmap that targets $24,000-a-year terminals.</p>
+    <p>Nine bucks is a rounding error against the prize. But it validated the entire stack: a stranger on the internet found the scanner, decided the daily email was worth more than nine dollars, and clicked through Stripe Checkout without an onboarding call. Most B2B SaaS founders never get to test that hypothesis directly — they're locked into demo-and-quote sales motion from day one. We didn't, because we didn't know any better.</p>
+
+    <h2>What 30 days taught me</h2>
+    <ol>
+      <li><b>Constraints are accelerators.</b> "Stdlib only" forced every shortcut to be conscious. The whole pipeline still has zero pip dependencies on the SEC side. Boring is fast.</li>
+      <li><b>Audit yourself in public, on day one.</b> The /trust page was easier to write at 0 customers than it'll be at 1,000. By the time someone asks where the methodology is, the answer is already a URL.</li>
+      <li><b>Coverage is a moat, not a feature.</b> Africa, Mexico, Brazil, India, Japan, Korea, Australia — every market an incumbent skips is a market we own by default.</li>
+      <li><b>Ship quarterly tasks weekly. Ship weekly tasks daily. Ship daily tasks hourly.</b> The /changelog is the proof. Bloomberg ships 4x a year. We ship 30x a month.</li>
+      <li><b>Misses are content, too.</b> Every public miss above buys more credibility than five vague case studies. If the audit is real, it includes the embarrassing rows.</li>
+    </ol>
+
+    <h2>What's next</h2>
+    <p>v0.0.5 (this sprint): mobile PWA, Discord live, Alpaca/Tradier wired for live options, daily digest email automated. v0.1 SDK on PyPI + npm. v0.2 R + Go + websocket. By month 90 the goal is one of two things: enough recurring revenue to sustain a small team, or the first acquisition offer. Neither is guaranteed; both are way more interesting than the alternative.</p>
+    <p>If you want to follow along: <a href="/blog/">subscribe to the blog</a>, <a href="/community/">join the community</a>, or <a href="/scanner/">use the free scanner</a> — that's the most useful feedback you can give.</p>
+
+    <div class="byline">
+      <span class="who">Founder · <b>Catalyst Edge Scanner</b> · 2026-04-20</span>
+      <div class="share">
+        <a href="https://x.com/intent/tweet?url=https%3A%2F%2Fcatalystedgescanner.com%2Fblog%2F30-days-to-build-a-bloomberg-killer%2F&text=30%20days%20to%20build%20a%20Bloomberg%20killer" target="_blank" rel="noopener">𝕏 share</a>
+        <a href="mailto:?subject=30%20days%20to%20build%20a%20Bloomberg%20killer&body=https%3A%2F%2Fcatalystedgescanner.com%2Fblog%2F30-days-to-build-a-bloomberg-killer%2F">Email</a>
+        <a href="/blog/">← All posts</a>
+      </div>
+    </div>
+
+    <div class="next-up">
+      <span class="eye">Earlier · 2026-04-25</span>
+      <h4><a href="/blog/why-we-publish-our-hit-rate/">Why we publish our hit rate (and Bloomberg never will) →</a></h4>
+      <p>The case for publishing accuracy in public, and how to read a hit rate without fooling yourself.</p>
+    </div>
+  </article>
+
+  <footer>
+    Catalyst Edge Scanner · Build log · Audited 89% hit rate · Ships daily, not quarterly
+    <div class="links">
+      <a href="/scanner/">Scanner</a>
+      <a href="/changelog/">Changelog</a>
+      <a href="/trust/">Trust</a>
+      <a href="/blog/">Blog</a>
+      <a href="mailto:opensource@example.com">Contact</a>
+    </div>
+  </footer>
+
+  <script src="/lib/tier.js" defer></script>
+</body>
+</html>

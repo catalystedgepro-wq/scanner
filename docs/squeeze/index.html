@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Short Squeeze Tracker — Live Squeeze Candidates | Catalyst Edge</title>
+<meta name="description" content="Track short squeeze candidates in real time. See squeeze scores, short interest, days to cover, gamma scores, and stage indicators. Updated daily.">
+<meta property="og:title" content="Short Squeeze Tracker — Catalyst Edge">
+<link rel="canonical" href="https://catalystedgescanner.com/squeeze/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#070a12;--surface:#0f1420;--gold:#d4a843;--green:#22c55e;--red:#ef4444;--cyan:#06b6d4;--text:#e2e8f0;--dim:#94a3b8;--muted:#64748b;--border:#1e293b}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
+.wrap{max-width:1080px;margin:0 auto;padding:1.5rem}
+.nav{position:sticky;top:0;z-index:100;background:rgba(7,10,18,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:.75rem 1.5rem;display:flex;align-items:center;gap:1rem}
+.nav a{color:var(--gold);font-weight:600;font-size:.95rem}
+.nav .sep{color:var(--muted)}
+
+.hero{text-align:center;padding:2.5rem 0 2rem;border-bottom:1px solid var(--border);margin-bottom:1.5rem}
+.hero h1{font-size:clamp(1.5rem,4vw,2.2rem);font-weight:800;line-height:1.2;margin-bottom:.4rem}
+.hero h1 em{font-style:normal;color:var(--cyan)}
+.hero .sub{color:var(--dim);font-size:.9rem;max-width:560px;margin:0 auto}
+.live-dot{display:inline-block;width:8px;height:8px;background:var(--green);border-radius:50%;margin-right:6px;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+
+.stats-bar{display:flex;justify-content:center;gap:2rem;margin:1rem 0}
+.sb-item{text-align:center}
+.sb-val{font-size:1.3rem;font-weight:800;color:var(--gold)}
+.sb-lbl{font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+
+.legend{display:flex;gap:16px;margin:1.5rem 0 1rem;flex-wrap:wrap;justify-content:center}
+.legend-item{display:flex;align-items:center;gap:5px;font-size:.72rem;color:var(--dim)}
+.legend-dot{width:10px;height:10px;border-radius:3px}
+.dot-coiled{background:var(--gold)}
+.dot-loaded{background:#f97316}
+.dot-firing{background:var(--red)}
+
+.squeeze-table{width:100%;border-collapse:collapse;margin:1rem 0}
+.squeeze-table th{text-align:left;padding:8px 10px;font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;border-bottom:1px solid var(--border);position:sticky;top:52px;background:var(--bg)}
+.squeeze-table td{padding:8px 10px;font-size:.82rem;border-bottom:1px solid rgba(30,41,59,.5)}
+.squeeze-table tr:hover{background:rgba(212,168,67,.04)}
+.ticker-cell{font-weight:800;color:var(--text);font-size:.9rem}
+.score-cell{font-weight:700;font-family:'IBM Plex Mono',monospace}
+.score-high{color:var(--green)}
+.score-med{color:var(--gold)}
+.score-low{color:var(--muted)}
+.stage-badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:.68rem;font-weight:700;text-transform:uppercase}
+.stage-coiled{background:rgba(212,168,67,.12);color:var(--gold)}
+.stage-loaded{background:rgba(249,115,22,.12);color:#f97316}
+.stage-firing{background:rgba(239,68,68,.12);color:var(--red)}
+.mono{font-family:'IBM Plex Mono',monospace;font-size:.78rem}
+
+.cta-bar{background:var(--surface);border:1px solid var(--gold);border-radius:10px;padding:1.25rem;text-align:center;margin:2rem 0}
+.cta-bar h3{color:var(--gold);font-size:1rem;margin-bottom:.3rem}
+.cta-bar p{color:var(--dim);font-size:.8rem;margin-bottom:.75rem}
+.cta-bar a{display:inline-block;padding:.5rem 1.4rem;background:linear-gradient(135deg,var(--gold),#f1ce88);color:#070a12;font-weight:700;border-radius:6px;font-size:.85rem}
+
+.learn{margin-top:1.5rem;padding-top:1rem;border-top:1px solid var(--border)}
+.learn h3{font-size:.9rem;color:var(--dim);margin-bottom:.5rem}
+.learn a{color:#3b82f6;font-size:.82rem}
+.footer{text-align:center;padding:1.5rem;font-size:.72rem;color:var(--muted);border-top:1px solid var(--border);margin-top:2rem}
+.footer a{color:var(--muted)}
+.table-wrap{overflow-x:auto}
+</style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@800;900&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/lib/cinematic-hero.css">
+  <link rel="stylesheet" href="/lib/cyber-shell.css">
+  <link rel="stylesheet" href="/lib/polish-tokens.css">
+</head>
+<body>
+  <div class="cy-bg" aria-hidden="true"></div>
+  <div class="cy-floor" aria-hidden="true"></div>
+  <div class="cy-vignette" aria-hidden="true"></div>
+  <div class="cy-scan" aria-hidden="true"></div>
+<div class="nav">
+  <a href="/">Catalyst Edge</a> <a href="/jackpot/" style="color:#22c55e;font-weight:700">🎯 JACKPOT</a>
+  <a href="/dcf/" style="color:#06b6d4;font-weight:700">💰 DCF</a>
+  <span class="sep">/</span>
+  <span style="color:var(--dim);font-size:.9rem">Squeeze Tracker</span>
+</div>
+
+<div class="wrap">
+<div class="ce-breadcrumb" style="max-width:1400px;margin:8px auto 0;padding:0 28px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-mute,#5a6c92);"><a href="/scanner/" style="color:var(--neon-cyan,#00ffff);text-decoration:none">&larr; Scanner</a><span style="color:var(--ink-mute,#5a6c92);margin:0 8px">&middot;</span><span>SQUEEZE TRACKER</span></div>
+
+<section class="cin-hero cy-neon-hero cy-shimmer">
+    <div class="cin-grid">
+      <div class="cin-stat-stack">
+        <div class="cin-eyebrow"><span class="cin-live-dot"></span>SHORT SQUEEZE · LIVE</div>
+        <div class="cin-colossal">
+          <div class="cin-num-row"><span class="cin-num">≥30%</span></div>
+          <div class="cin-side">
+          <span class="cin-tag"><b>short interest</b> floor</span>
+          <span class="cin-tag">days-to-cover ≥ 5</span>
+          <span class="cin-tag">borrow rate spike</span>
+          </div>
+        </div>
+        <div class="cin-stamp">SQUEEZE//HUNTER · v1.2 · <b>LIVE</b></div>
+      </div>
+      <div class="cin-h1-block">
+        <div class="cin-h1-eyebrow">🔥 Short Squeeze Tracker · Days-to-Cover + Borrow Spike</div>
+        <h1 class="cin-headline">Where the <em>shorts are trapped</em>—high short interest, thin float, and <span class="cin-accent">spiking borrow rates</span> all in one rail.</h1>
+        <p class="cin-lede">We rank every name with ≥30% short interest by days-to-cover, borrow-rate change, and recent gap behavior. The intersection of all three is where squeezes actually happen — not just on the headlines.</p>
+        <div class="cin-cta-row">
+          <a href="#squeeze-table" class="cin-btn-primary">See squeeze list ↓</a>
+          <a href="/scanner/" class="cin-btn-ghost">Open scanner</a>
+        </div>
+        <div class="cin-strip">
+          <div class="cin-cell"><div class="cin-k">Tracked</div><div class="cin-v" id="sq-total" data-mirror="s-total">–</div></div>
+          <div class="cin-cell"><div class="cin-k">High SI (≥30%)</div><div class="cin-v gold" id="sq-high" data-mirror="s-loaded">–</div></div>
+          <div class="cin-cell"><div class="cin-k">DTC ≥ 5 days</div><div class="cin-v bull" id="sq-dtc" data-mirror="s-avg">–</div></div>
+          <div class="cin-cell"><div class="cin-k">Avg borrow</div><div class="cin-v cyan" id="sq-borrow">–</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission-control telemetry panel (SpaceX-grade) -->
+  <div class="cy-telemetry" role="region" aria-label="Squeeze telemetry" style="max-width:1180px;margin:18px auto 0;">
+    <div class="cyt-head">
+      <span class="cyt-title">SQUEEZE // TELEMETRY</span>
+      <span class="cyt-stamp" id="st-stamp">awaiting data</span>
+    </div>
+    <div class="cyt-row"><span class="cyt-lbl">Tracked names</span><span class="cyt-val cyan" id="st-tracked">—</span></div>
+    <div class="cyt-row"><span class="cyt-lbl">High SI (≥30%)</span><span class="cyt-val amber" id="st-hi">—</span></div>
+    <div class="cyt-row"><span class="cyt-lbl">Squeezed today</span><span class="cyt-val bull" id="st-fired">—</span></div>
+    <div class="cyt-row"><span class="cyt-lbl">Top pressure</span><span class="cyt-val live"><span class="cyt-dot"></span><span id="st-top">—</span></span></div>
+    <div class="cyt-row"><span class="cyt-lbl">Signal density</span><span class="cyt-val" id="st-density">—</span></div>
+  </div>
+  <script>
+  (function(){
+    var f = function(id, v){ var n=document.getElementById(id); if(n && v!=null) n.textContent = v; };
+    fetch('/data/squeeze_candidates.csv?cb=' + Date.now()).then(function(r){return r.text()}).then(function(txt){
+      var lines = txt.trim().split('\n');
+      if (lines.length < 2) return;
+      var hdr = lines[0].split(',');
+      var idx = {};
+      hdr.forEach(function(h,i){ idx[h.trim().toLowerCase()] = i; });
+      var rows = lines.slice(1).map(function(l){ return l.split(','); });
+      var hi = rows.filter(function(r){ return parseFloat(r[idx.short_interest_pct]||r[idx.si_pct]||0) >= 30; }).length;
+      var fired = rows.filter(function(r){ return parseFloat(r[idx.score]||r[idx.squeeze_score]||0) >= 30; }).length;
+      var top = rows[0] ? (rows[0][idx.ticker] || rows[0][1] || '—') : '—';
+      f('st-tracked', rows.length.toLocaleString());
+      f('st-hi', hi.toLocaleString());
+      f('st-fired', fired.toLocaleString());
+      f('st-top', top);
+      f('st-density', (fired && rows.length) ? Math.round((fired/rows.length)*100) + '%' : '—');
+      f('st-stamp', new Date().toUTCString().slice(17, 25) + ' UTC');
+    }).catch(function(){
+      f('st-stamp', 'feed offline');
+    });
+  })();
+  </script>
+
+
+
+  <div class="legend">
+    <div class="legend-item"><span class="legend-dot dot-coiled"></span>COILED — Building pressure</div>
+    <div class="legend-item"><span class="legend-dot dot-loaded"></span>LOADED — Ready to pop</div>
+    <div class="legend-item"><span class="legend-dot dot-firing"></span>FIRING — Squeeze active</div>
+  </div>
+
+  <div class="table-wrap">
+    <table class="squeeze-table">
+      <thead>
+        <tr>
+          <th>Ticker</th>
+          <th>Score</th>
+          <th>Stage</th>
+          <th>Short %</th>
+          <th>Days to Cover</th>
+          <th>SI Trend</th>
+          <th>Gamma</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody id="squeeze-body"></tbody>
+    </table>
+  </div>
+
+  <div class="cta-bar">
+    <h3>Get squeeze alerts before they fire</h3>
+    <p>Free daily email with squeeze candidates, insider clusters, and SEC catalyst picks at 4 AM ET.</p>
+    <a href="/preview/">Subscribe Free</a>
+  </div>
+
+  <div class="learn">
+    <h3>Learn More</h3>
+    <p style="font-size:.82rem">
+      <a href="/glossary/what-is-short-squeeze/">What is a Short Squeeze?</a> &middot;
+      <a href="/glossary/what-is-short-interest/">What is Short Interest?</a> &middot;
+      <a href="/glossary/what-is-options-flow/">Options Flow</a> &middot;
+      <a href="/glossary/what-is-insider-trading/">Insider Trading</a> &middot;
+      <a href="/glossary/what-is-dark-pool/">Dark Pool</a>
+    </p>
+  </div>
+</div>
+
+<div class="footer">
+  &copy; 2026 Catalyst Edge &middot;
+  <a href="/">Scanner</a> &middot;
+  <a href="/insiders/">Insiders</a> &middot;
+  <a href="/congress/">Congress</a> &middot;
+  <a href="/lockups/">Lockups</a> &middot;
+  <a href="/glossary/">Glossary</a> &middot;
+  Not financial advice.
+</div>
+
+<script>
+(function(){
+  function scoreClass(s){
+    s = parseFloat(s)||0;
+    if(s >= 30) return 'score-high';
+    if(s >= 15) return 'score-med';
+    return 'score-low';
+  }
+  function stageClass(stage){
+    var s = (stage||'').toUpperCase();
+    if(s === 'FIRING') return 'stage-firing';
+    if(s === 'LOADED') return 'stage-loaded';
+    return 'stage-coiled';
+  }
+
+  function setText(id, val) { var n = document.getElementById(id); if (n) n.textContent = val; }
+  fetch('/api/squeeze').then(function(r){return r.json()}).then(function(d){
+    var candidates = d.candidates || [];
+    setText('s-total', candidates.length);
+
+    var loaded = 0, totalScore = 0;
+    candidates.forEach(function(c){
+      var stage = (c.stage||'').toUpperCase();
+      if(stage === 'LOADED' || stage === 'FIRING') loaded++;
+      totalScore += parseFloat(c.squeeze_score)||0;
+    });
+    setText('s-loaded', loaded);
+    setText('s-avg', candidates.length ? Math.round(totalScore / candidates.length) : 0);
+
+    var tbody = document.getElementById('squeeze-body');
+    candidates.forEach(function(c){
+      var tr = document.createElement('tr');
+
+      var tdTicker = document.createElement('td');
+      tdTicker.className = 'ticker-cell';
+      tdTicker.textContent = c.ticker || '';
+      tr.appendChild(tdTicker);
+
+      var tdScore = document.createElement('td');
+      tdScore.className = 'score-cell ' + scoreClass(c.squeeze_score);
+      tdScore.textContent = c.squeeze_score || '0';
+      tr.appendChild(tdScore);
+
+      var tdStage = document.createElement('td');
+      var badge = document.createElement('span');
+      badge.className = 'stage-badge ' + stageClass(c.stage);
+      badge.textContent = (c.stage||'COILED').toUpperCase();
+      tdStage.appendChild(badge);
+      tr.appendChild(tdStage);
+
+      var tdShort = document.createElement('td');
+      tdShort.className = 'mono';
+      tdShort.textContent = c.short_pct_float ? c.short_pct_float + '%' : '--';
+      tr.appendChild(tdShort);
+
+      var tdDays = document.createElement('td');
+      tdDays.className = 'mono';
+      tdDays.textContent = c.days_to_cover || '--';
+      tr.appendChild(tdDays);
+
+      var tdSI = document.createElement('td');
+      tdSI.className = 'mono';
+      var siVal = parseFloat(c.si_trend_pct)||0;
+      tdSI.textContent = siVal > 0 ? '+' + siVal + '%' : siVal + '%';
+      tdSI.style.color = siVal > 0 ? 'var(--red)' : 'var(--green)';
+      tr.appendChild(tdSI);
+
+      var tdGamma = document.createElement('td');
+      tdGamma.className = 'mono';
+      tdGamma.textContent = c.gamma_score || '--';
+      tr.appendChild(tdGamma);
+
+      var tdPrice = document.createElement('td');
+      tdPrice.className = 'mono';
+      tdPrice.textContent = c.price ? '$' + c.price : '--';
+      tr.appendChild(tdPrice);
+
+      tbody.appendChild(tr);
+    });
+  });
+})();
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KV1VDK22VC"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-KV1VDK22VC');</script>
+  <script src="/lib/cy-strip-mirror.js" defer></script>
+</body>
+</html>

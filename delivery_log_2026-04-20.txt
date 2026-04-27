@@ -1,0 +1,6 @@
+date=2026-04-20
+subject=SEC Catalyst Daily — 2026-04-20 | Top Pick: ASPI
+html_size=126,548 bytes
+sent_ok=1
+sent_fail=0
+  OK  [free] opensource@example.com

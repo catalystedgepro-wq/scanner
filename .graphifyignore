@@ -1,0 +1,17 @@
+.git/
+.venv/
+.venv-graphify/
+__pycache__/
+.playwright-cli/
+node_modules/
+vendor/
+graphify-out/
+output/
+docs/hud/
+docs/index.html
+entity_master.json
+spark_velocities.json
+options_activity.json
+sympathy_events.csv
+delivery_log_*.txt
+*.pyc

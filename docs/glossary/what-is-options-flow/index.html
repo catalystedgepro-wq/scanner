@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>What is Options Flow? Unusual Activity Trading Guide | Catalyst Edge</title>
+<meta name="description" content="Options flow tracks large institutional options trades in real time. Learn how to read unusual options activity, spot smart money positioning, and combine flow data with SEC filing signals.">
+<link rel="canonical" href="https://catalystedgescanner.com/glossary/what-is-options-flow/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is options flow?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Options flow is the real-time stream of options trades executed across all exchanges. By filtering for large, aggressive trades — sweeps, blocks, and trades above open interest — traders can identify institutional positioning before it shows up in stock price movement. High-premium call sweeps often precede bullish moves; put sweeps can signal institutional hedging or bearish bets."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a sweep order in options?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A sweep order is a large options order that is split across multiple exchanges simultaneously to get filled as fast as possible. Sweeps signal urgency — the buyer wants the position immediately and is willing to pay the ask price across multiple venues. Sweeps at the ask are considered the highest-conviction bullish (for calls) or bearish (for puts) signals in options flow."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do you combine options flow with SEC filings?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "When unusual call buying appears in a stock that also has recent Form 4 insider purchases, the convergence creates a high-conviction signal. The insider knows the company fundamentals; the options trader is positioning for a near-term move. Catalyst Edge combines these signals automatically and flags convergence alerts when multiple independent indicators align on the same ticker."
+      }
+    }
+  ]
+}
+</script>
+<style>
+:root {
+  --bg: #0a0e1a;
+  --surface: #111827;
+  --surface-2: #1a2035;
+  --border: #1e293b;
+  --text: #e2e8f0;
+  --text-dim: #94a3b8;
+  --accent: #d4a853;
+  --accent-glow: rgba(212, 168, 83, 0.15);
+  --blue: #3b82f6;
+  --green: #10b981;
+  --red: #ef4444;
+  --font: 'Space Grotesk', system-ui, sans-serif;
+  --mono: 'IBM Plex Mono', monospace;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+.container { max-width: 800px; margin: 0 auto; padding: 2rem 1.5rem; }
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(10, 14, 26, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0.75rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+}
+nav a { color: var(--accent); text-decoration: none; font-weight: 600; font-size: 0.95rem; }
+nav a:hover { text-decoration: underline; }
+nav .sep { color: var(--text-dim); }
+.hero {
+  text-align: center;
+  padding: 4rem 0 3rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 2rem;
+}
+.hero h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 800;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+}
+.hero .subtitle {
+  font-size: 1.15rem;
+  color: var(--text-dim);
+  max-width: 600px;
+  margin: 0 auto;
+}
+.content-section { margin-bottom: 2.5rem; }
+.content-section h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--accent-glow);
+}
+.content-section p, .content-section li {
+  color: var(--text-dim);
+  font-size: 1.05rem;
+}
+.content-section ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 0.5rem;
+}
+.content-section li {
+  padding: 0.35rem 0 0.35rem 1.5rem;
+  position: relative;
+}
+.content-section li::before {
+  content: '\25B8';
+  color: var(--accent);
+  position: absolute;
+  left: 0;
+}
+.signal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin: 1rem 0;
+}
+.signal-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.25rem;
+}
+.signal-card h4 {
+  color: var(--accent);
+  font-size: 0.95rem;
+  margin-bottom: 0.4rem;
+}
+.signal-card p {
+  color: var(--text-dim);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 0.95rem;
+}
+.data-table th, .data-table td {
+  padding: 0.6rem 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+.data-table th {
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.data-table td { color: var(--text-dim); }
+.faq-section { margin-top: 3rem; }
+.faq-section h2 { font-size: 1.4rem; font-weight: 700; margin-bottom: 1rem; color: var(--accent); }
+.faq-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
+  overflow: hidden;
+}
+.faq-item summary {
+  padding: 1rem 1.25rem;
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+  display: flex; align-items: center; gap: 0.5rem;
+}
+.faq-item summary::before {
+  content: '+'; font-family: var(--mono); color: var(--accent); font-size: 1.2rem; flex-shrink: 0;
+}
+.faq-item[open] summary::before { content: '\2212'; }
+.faq-item p { padding: 0 1.25rem 1rem; color: var(--text-dim); line-height: 1.6; }
+.cta-box {
+  background: linear-gradient(135deg, var(--surface) 0%, var(--surface-2) 100%);
+  border: 1px solid var(--accent);
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  margin: 3rem 0;
+}
+.cta-box h3 { color: var(--accent); font-size: 1.3rem; margin-bottom: 0.5rem; }
+.cta-box p { color: var(--text-dim); margin-bottom: 1.25rem; }
+.cta-box a {
+  display: inline-block; background: var(--accent); color: var(--bg);
+  font-weight: 700; padding: 0.75rem 2rem; border-radius: 8px;
+  text-decoration: none; font-size: 1rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.cta-box a:hover { transform: translateY(-2px); box-shadow: 0 4px 20px var(--accent-glow); }
+.related { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+.related h3 { font-size: 1rem; color: var(--text-dim); margin-bottom: 0.75rem; }
+.related a { color: var(--blue); text-decoration: none; font-size: 0.9rem; }
+.related a:hover { text-decoration: underline; }
+footer {
+  text-align: center; padding: 2rem 0; color: var(--text-dim);
+  font-size: 0.85rem; border-top: 1px solid var(--border); margin-top: 2rem;
+}
+footer a { color: var(--accent); text-decoration: none; }
+</style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@800;900&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/lib/cinematic-hero.css">
+  <link rel="stylesheet" href="/lib/cyber-shell.css">
+  <link rel="stylesheet" href="/lib/polish-tokens.css">
+</head>
+<body>
+  <div class="cy-bg" aria-hidden="true"></div>
+  <div class="cy-floor" aria-hidden="true"></div>
+  <div class="cy-vignette" aria-hidden="true"></div>
+  <div class="cy-scan" aria-hidden="true"></div>
+<nav>
+  <a href="/">Catalyst Edge</a>
+  <span class="sep">/</span>
+  <a href="/glossary/">Glossary</a>
+  <span class="sep">/</span>
+  <span style="color:var(--text-dim);font-size:0.9rem">What is Options Flow?</span>
+</nav>
+
+<div class="container">
+<section class="cin-hero cy-neon-hero cy-narrow cy-shimmer">
+    <div class="cin-grid">
+      <div class="cin-stat-stack">
+        <div class="cin-eyebrow"><span class="cin-live-dot"></span>OPTIONS FLOW · UNUSUAL</div>
+        <div class="cin-colossal">
+          <div class="cin-num-row"><span class="cin-num">2x+</span></div>
+          <div class="cin-side">
+          <span class="cin-tag"><b>2x</b> volume vs OI</span>
+          <span class="cin-tag">sweeps + blocks</span>
+          <span class="cin-tag">IV percentile tag</span>
+          </div>
+        </div>
+        <div class="cin-stamp">GLOSSARY · WHAT IS OPTIONS FLOW? · v1.0 · <b>LIVE</b></div>
+      </div>
+      <div class="cin-h1-block">
+        <div class="cin-h1-eyebrow">📚 What is Options Flow?</div>
+        <h1 class="cin-headline"><em>Volume vs OI</em>—the <span class="cin-accent">smart-money positioning leak</span>.</h1>
+        <p class="cin-lede">When today's options volume runs 2x the open interest, someone with conviction is positioning aggressively. Pair the flow with the underlying's catalyst score and you have a real edge.</p>
+        <div class="cin-cta-row">
+          <a href="#article-body" class="cin-btn-primary">Read article ↓</a>
+          <a href="/glossary/" class="cin-btn-ghost">Glossary index</a>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <h2>Options flow basics</h2>
+    <p>Options flow is the real-time feed of all options trades executed across exchanges. Every call and put traded by anyone &mdash; from retail traders to billion-dollar hedge funds &mdash; hits the tape. Options flow analysis focuses on filtering this firehose for the trades that matter: large, aggressive, institutional-sized orders that reveal directional conviction.</p>
+    <p style="margin-top:0.75rem">When a fund manager buys $2 million in short-dated call options at the ask, that is a strong bullish bet with a ticking clock. Options flow tools capture these trades and present them as actionable signals.</p>
+  </section>
+
+  <section class="content-section">
+    <h2>Key options flow signals</h2>
+    <div class="signal-grid">
+      <div class="signal-card">
+        <h4>Sweep at Ask</h4>
+        <p>Large order split across multiple exchanges, filled at the ask price. The buyer wants speed over price. The strongest conviction signal in options flow.</p>
+      </div>
+      <div class="signal-card">
+        <h4>Block Trade</h4>
+        <p>Single large transaction negotiated off-exchange and printed to the tape. Blocks over $500K in premium signal institutional activity.</p>
+      </div>
+      <div class="signal-card">
+        <h4>Unusual Volume</h4>
+        <p>Options volume exceeding 3x the average daily volume at a specific strike. Often precedes news events or earnings surprises.</p>
+      </div>
+      <div class="signal-card">
+        <h4>Above Open Interest</h4>
+        <p>When daily volume at a strike exceeds the existing open interest, it means new positions are being opened &mdash; not existing ones being closed.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <h2>How to read an options flow entry</h2>
+    <table class="data-table">
+      <thead>
+        <tr><th>Field</th><th>What it tells you</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Type (Call/Put)</td><td>Directional bet. Calls = bullish, Puts = bearish (usually)</td></tr>
+        <tr><td>Strike price</td><td>Where the buyer expects the stock to go. Far OTM = aggressive bet</td></tr>
+        <tr><td>Expiration</td><td>Timeframe. Short-dated = near-term catalyst. LEAPs = long-term thesis</td></tr>
+        <tr><td>Premium</td><td>Total dollar amount spent. $500K+ = institutional. $50K = could be anyone</td></tr>
+        <tr><td>Side (Ask/Bid/Mid)</td><td>Ask = buyer initiated (bullish for calls). Bid = seller initiated</td></tr>
+        <tr><td>Order type</td><td>Sweep = urgency. Block = negotiated. Single = standard</td></tr>
+        <tr><td>Volume vs OI</td><td>Volume &gt; OI = new positions being opened</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="content-section">
+    <h2>Options flow + SEC filings = convergence</h2>
+    <p>Options flow alone can be noisy. The real edge comes from combining it with SEC filing signals:</p>
+    <ul>
+      <li><strong>Call sweeps + insider buying:</strong> The insider knows fundamentals; the options trader is timing a near-term move. Together they create a high-conviction long signal.</li>
+      <li><strong>Put buying + S-3 shelf filing:</strong> The company is preparing to dilute. Large put flow confirms the market expects the stock to drop.</li>
+      <li><strong>Unusual volume + 8-K filing:</strong> A material event was just disclosed. Options traders are pricing in the impact before the stock moves.</li>
+      <li><strong>Call sweeps + <a href="/glossary/what-is-sc-13d/" style="color:var(--blue)">13D accumulation</a>:</strong> An activist is building a position while options traders bet on a catalyst. Often precedes proxy fights or buyout offers.</li>
+    </ul>
+    <p style="margin-top:0.75rem">Catalyst Edge automatically detects these <a href="/glossary/what-is-convergence-alert/" style="color:var(--blue)">convergence patterns</a> and flags them in the daily scanner.</p>
+  </section>
+
+  <section class="content-section">
+    <h2>Common options flow mistakes</h2>
+    <ul>
+      <li><strong>Assuming every large trade is bullish:</strong> A large call sell could be a covered call (neutral/bearish). Always check the side (ask vs bid).</li>
+      <li><strong>Ignoring the spread context:</strong> What looks like a bullish call buy might be one leg of a multi-leg strategy. Single-leg flow is more actionable.</li>
+      <li><strong>Chasing stale flow:</strong> By the time retail sees a 30-minute-old sweep, the stock may have already moved. Real-time data matters.</li>
+      <li><strong>Not filtering by premium:</strong> A $5K options trade is noise. Filter for $100K+ premium to find institutional activity.</li>
+    </ul>
+  </section>
+
+  <div class="cta-box">
+    <h3>See Options Flow + SEC Filings in One View</h3>
+    <p>Catalyst Edge combines options flow data with SEC filing alerts and insider activity for convergence detection you can't get anywhere else.</p>
+    <a href="/options-flow/">Open Options Flow</a>
+  </div>
+
+  <div class="faq-section">
+    <h2>Frequently Asked Questions</h2>
+    <details class="faq-item">
+      <summary>What is options flow?</summary>
+      <p>Options flow is the real-time stream of options trades executed across all exchanges. By filtering for large, aggressive trades &mdash; sweeps, blocks, and trades above open interest &mdash; traders can identify institutional positioning before it shows up in stock price movement. High-premium call sweeps often precede bullish moves; put sweeps can signal institutional hedging or bearish bets.</p>
+    </details>
+    <details class="faq-item">
+      <summary>What is a sweep order in options?</summary>
+      <p>A sweep order is a large options order that is split across multiple exchanges simultaneously to get filled as fast as possible. Sweeps signal urgency &mdash; the buyer wants the position immediately and is willing to pay the ask price across multiple venues. Sweeps at the ask are considered the highest-conviction bullish (for calls) or bearish (for puts) signals in options flow.</p>
+    </details>
+    <details class="faq-item">
+      <summary>How do you combine options flow with SEC filings?</summary>
+      <p>When unusual call buying appears in a stock that also has recent Form 4 insider purchases, the convergence creates a high-conviction signal. The insider knows the company fundamentals; the options trader is positioning for a near-term move. Catalyst Edge combines these signals automatically and flags convergence alerts when multiple independent indicators align on the same ticker.</p>
+    </details>
+  </div>
+
+  <div class="related">
+    <h3>Related Topics</h3>
+    <p><a href="/options-flow/">Options Flow Tool</a> &middot; <a href="/glossary/what-is-convergence-alert/">Convergence Alerts</a> &middot; <a href="/glossary/what-is-form-4/">What is Form 4?</a> &middot; <a href="/glossary/insider-buying-signals/">Insider Buying Signals</a> &middot; <a href="/glossary/what-is-dark-pool/">What is a Dark Pool?</a> &middot; <a href="/glossary/how-to-trade-earnings-season/">Earnings Season Guide</a></p>
+  </div>
+</div>
+
+<footer>
+  <a href="https://catalystedgescanner.com/">Catalyst Edge Scanner</a> &middot;
+  <a href="https://catalystedge.agency">Daily Newsletter</a> &middot;
+  &copy; 2026 Catalyst Edge
+</footer>
+</body>
+</html>

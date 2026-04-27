@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>IPO Lockup Expiration Calendar — When Insiders Can Sell | Catalyst Edge</title>
+<meta name="description" content="Track IPO lockup expirations in real time. Know exactly when insiders can dump shares. Filter by date, see which insiders are buying instead of selling.">
+<meta property="og:title" content="IPO Lockup Expiration Calendar — Catalyst Edge">
+<link rel="canonical" href="https://catalystedgescanner.com/lockups/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#070a12;--surface:#0f1420;--gold:#d4a843;--green:#22c55e;--red:#ef4444;--cyan:#06b6d4;--text:#e2e8f0;--dim:#94a3b8;--muted:#64748b;--border:#1e293b}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
+.wrap{max-width:1080px;margin:0 auto;padding:1.5rem}
+.nav{position:sticky;top:0;z-index:100;background:rgba(7,10,18,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:.75rem 1.5rem;display:flex;align-items:center;gap:1rem}
+.nav a{color:var(--gold);font-weight:600;font-size:.95rem}
+.nav .sep{color:var(--muted)}
+
+.hero{text-align:center;padding:2.5rem 0 2rem;border-bottom:1px solid var(--border);margin-bottom:1.5rem}
+.hero h1{font-size:clamp(1.5rem,4vw,2.2rem);font-weight:800;line-height:1.2;margin-bottom:.4rem}
+.hero h1 em{font-style:normal;color:var(--red)}
+.hero .sub{color:var(--dim);font-size:.9rem;max-width:560px;margin:0 auto}
+.live-dot{display:inline-block;width:8px;height:8px;background:var(--green);border-radius:50%;margin-right:6px;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+
+.stats-bar{display:flex;justify-content:center;gap:2rem;margin:1rem 0}
+.sb-item{text-align:center}
+.sb-val{font-size:1.3rem;font-weight:800;color:var(--gold)}
+.sb-lbl{font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+
+.filters{display:flex;gap:8px;margin:1.5rem 0 1rem;flex-wrap:wrap}
+.filter-btn{padding:6px 14px;background:var(--surface);border:1px solid var(--border);border-radius:6px;color:var(--dim);font-size:.78rem;font-weight:600;cursor:pointer;font-family:inherit;transition:all .2s}
+.filter-btn:hover{border-color:var(--gold);color:var(--gold)}
+.filter-btn.active{background:rgba(212,168,67,.12);border-color:var(--gold);color:var(--gold)}
+
+.lockup-table{width:100%;border-collapse:collapse;margin:1rem 0}
+.lockup-table th{text-align:left;padding:8px 10px;font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;border-bottom:1px solid var(--border);position:sticky;top:52px;background:var(--bg)}
+.lockup-table td{padding:8px 10px;font-size:.82rem;border-bottom:1px solid rgba(30,41,59,.5)}
+.lockup-table tr:hover{background:rgba(212,168,67,.04)}
+.ticker-cell{font-weight:800;color:var(--text);font-size:.9rem}
+.company-cell{color:var(--dim);max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.date-cell{font-family:'IBM Plex Mono',monospace;font-size:.78rem}
+.days-cell{font-weight:700;font-family:'IBM Plex Mono',monospace}
+.days-urgent{color:var(--red)}
+.days-soon{color:var(--gold)}
+.days-safe{color:var(--green)}
+.status-badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:.68rem;font-weight:700;text-transform:uppercase}
+.status-expiring{background:rgba(239,68,68,.12);color:var(--red)}
+.status-upcoming{background:rgba(212,168,67,.12);color:var(--gold)}
+.status-expired{background:rgba(100,116,139,.12);color:var(--muted)}
+.insider-yes{color:var(--green);font-weight:700;font-size:.78rem}
+.insider-no{color:var(--muted);font-size:.78rem}
+
+.cta-bar{background:var(--surface);border:1px solid var(--gold);border-radius:10px;padding:1.25rem;text-align:center;margin:2rem 0}
+.cta-bar h3{color:var(--gold);font-size:1rem;margin-bottom:.3rem}
+.cta-bar p{color:var(--dim);font-size:.8rem;margin-bottom:.75rem}
+.cta-bar a{display:inline-block;padding:.5rem 1.4rem;background:linear-gradient(135deg,var(--gold),#f1ce88);color:#070a12;font-weight:700;border-radius:6px;font-size:.85rem}
+
+.learn{margin-top:1.5rem;padding-top:1rem;border-top:1px solid var(--border)}
+.learn h3{font-size:.9rem;color:var(--dim);margin-bottom:.5rem}
+.learn a{color:#3b82f6;font-size:.82rem}
+.footer{text-align:center;padding:1.5rem;font-size:.72rem;color:var(--muted);border-top:1px solid var(--border);margin-top:2rem}
+.footer a{color:var(--muted)}
+.table-wrap{overflow-x:auto}
+</style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@800;900&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/lib/cinematic-hero.css">
+  <link rel="stylesheet" href="/lib/cyber-shell.css">
+  <link rel="stylesheet" href="/lib/polish-tokens.css">
+</head>
+<body>
+  <div class="cy-bg" aria-hidden="true"></div>
+  <div class="cy-floor" aria-hidden="true"></div>
+  <div class="cy-vignette" aria-hidden="true"></div>
+  <div class="cy-scan" aria-hidden="true"></div>
+<div class="nav">
+  <a href="/">Catalyst Edge</a>
+  <span class="sep">/</span>
+  <span style="color:var(--dim);font-size:.9rem">Lockup Calendar</span>
+</div>
+
+<div class="wrap">
+<section class="cin-hero cy-neon-hero cy-shimmer">
+    <div class="cin-grid">
+      <div class="cin-stat-stack">
+        <div class="cin-eyebrow"><span class="cin-live-dot"></span>IPO LOCKUP EXPIRATION · LIVE</div>
+        <div class="cin-colossal">
+          <div class="cin-num-row"><span class="cin-num">180d</span></div>
+          <div class="cin-side">
+          <span class="cin-tag">IPO <b>lockup window</b></span>
+          <span class="cin-tag">insider supply unlock</span>
+          <span class="cin-tag">overhang risk</span>
+          </div>
+        </div>
+        <div class="cin-stamp">LOCKUP//CALENDAR · v1.0 · <b>LIVE</b></div>
+      </div>
+      <div class="cin-h1-block">
+        <div class="cin-h1-eyebrow">🔒 IPO Lockup Calendar · Supply Unlock Schedule</div>
+        <h1 class="cin-headline">Every IPO whose <em>180-day lockup</em> is about to expire—where <span class="cin-accent">insider supply</span> hits the open market.</h1>
+        <p class="cin-lede">Lockup expirations across the next 90 days, with the original IPO date, current price vs IPO price, and the % of float that becomes free-trading. Names with a 50%+ supply unlock are tagged as overhang risk.</p>
+        <div class="cin-cta-row">
+          <a href="#lk-table" class="cin-btn-primary">See expiration calendar ↓</a>
+          <a href="/scanner/" class="cin-btn-ghost">Open scanner</a>
+        </div>
+        <div class="cin-strip">
+          <div class="cin-cell"><div class="cin-k">Next 30d</div><div class="cin-v gold" id="lk-30">–</div></div>
+          <div class="cin-cell"><div class="cin-k">Next 90d</div><div class="cin-v" id="lk-90">–</div></div>
+          <div class="cin-cell"><div class="cin-k">Heavy unlocks</div><div class="cin-v bear" id="lk-heavy">–</div></div>
+          <div class="cin-cell"><div class="cin-k">Updated</div><div class="cin-v cyan">daily</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <div class="filters" id="filters"></div>
+
+  <div class="table-wrap">
+    <table class="lockup-table">
+      <thead>
+        <tr>
+          <th>Ticker</th>
+          <th>Company</th>
+          <th>Expiry Date</th>
+          <th>Days</th>
+          <th>Status</th>
+          <th>Insider Bought</th>
+        </tr>
+      </thead>
+      <tbody id="lockup-body"></tbody>
+    </table>
+  </div>
+
+  <div class="cta-bar">
+    <h3>Get lockup alerts before they expire</h3>
+    <p>Free daily email with lockup expirations, insider clusters, and SEC catalyst picks at 4 AM ET.</p>
+    <a href="/preview/">Subscribe Free</a>
+  </div>
+
+  <div class="learn">
+    <h3>Learn More</h3>
+    <p style="font-size:.82rem">
+      <a href="/glossary/what-is-ipo-lockup/">What is IPO Lockup?</a> &middot;
+      <a href="/glossary/what-is-form-4/">What is Form 4?</a> &middot;
+      <a href="/glossary/what-is-insider-trading/">What is Insider Trading?</a> &middot;
+      <a href="/glossary/insider-buying-signals/">Insider Buying Signals</a> &middot;
+      <a href="/glossary/what-is-spac/">What is a SPAC?</a>
+    </p>
+  </div>
+</div>
+
+<div class="footer">
+  &copy; 2026 Catalyst Edge &middot;
+  <a href="/">Scanner</a> &middot;
+  <a href="/jackpot/" style="color:#22c55e">🎯 JACKPOT</a>
+  <a href="/dcf/" style="color:#06b6d4">💰 DCF</a> &middot;
+  <a href="/squeeze/">Squeeze</a> &middot;
+  <a href="/insiders/">Insiders</a> &middot;
+  <a href="/congress/">Congress</a> &middot;
+  <a href="/glossary/">Glossary</a> &middot;
+  Not financial advice.
+</div>
+
+<script>
+(function(){
+  var filterNames = ['All','This Week','Next Week','Upcoming','Expired'];
+  var activeFilter = 'All';
+  var allEvents = [];
+
+  var filtersDiv = document.getElementById('filters');
+  filterNames.forEach(function(name){
+    var btn = document.createElement('button');
+    btn.className = 'filter-btn' + (name === 'All' ? ' active' : '');
+    btn.textContent = name;
+    btn.addEventListener('click', function(){
+      activeFilter = name;
+      var btns = filtersDiv.querySelectorAll('.filter-btn');
+      for(var i=0;i<btns.length;i++) btns[i].className = 'filter-btn';
+      btn.className = 'filter-btn active';
+      renderTable(filterEvents(allEvents, name));
+    });
+    filtersDiv.appendChild(btn);
+  });
+
+  function filterEvents(events, filter){
+    if(filter === 'All') return events;
+    var now = new Date();
+    var endOfWeek = new Date(now);
+    endOfWeek.setDate(now.getDate() + (7 - now.getDay()));
+    var endOfNextWeek = new Date(endOfWeek);
+    endOfNextWeek.setDate(endOfWeek.getDate() + 7);
+
+    return events.filter(function(e){
+      var days = parseInt(e.days_until_expiry) || 0;
+      if(filter === 'This Week') return days >= 0 && days <= 7;
+      if(filter === 'Next Week') return days > 7 && days <= 14;
+      if(filter === 'Upcoming') return days > 0;
+      if(filter === 'Expired') return days <= 0;
+      return true;
+    });
+  }
+
+  function getStatusClass(days){
+    if(days <= 0) return 'status-expired';
+    if(days <= 7) return 'status-expiring';
+    return 'status-upcoming';
+  }
+
+  function getStatusText(days){
+    if(days <= 0) return 'EXPIRED';
+    if(days <= 7) return 'EXPIRING';
+    return 'UPCOMING';
+  }
+
+  function getDaysClass(days){
+    if(days <= 3) return 'days-urgent';
+    if(days <= 14) return 'days-soon';
+    return 'days-safe';
+  }
+
+  function renderTable(events){
+    var tbody = document.getElementById('lockup-body');
+    while(tbody.firstChild) tbody.removeChild(tbody.firstChild);
+
+    events.forEach(function(e){
+      var tr = document.createElement('tr');
+
+      var tdTicker = document.createElement('td');
+      tdTicker.className = 'ticker-cell';
+      tdTicker.textContent = e.ticker || '';
+      tr.appendChild(tdTicker);
+
+      var tdCompany = document.createElement('td');
+      tdCompany.className = 'company-cell';
+      tdCompany.textContent = e.company_name || '';
+      tdCompany.title = e.company_name || '';
+      tr.appendChild(tdCompany);
+
+      var tdDate = document.createElement('td');
+      tdDate.className = 'date-cell';
+      tdDate.textContent = e.lockup_expiry_date || '';
+      tr.appendChild(tdDate);
+
+      var days = parseInt(e.days_until_expiry) || 0;
+      var tdDays = document.createElement('td');
+      tdDays.className = 'days-cell ' + getDaysClass(days);
+      tdDays.textContent = days <= 0 ? 'Expired' : days + 'd';
+      tr.appendChild(tdDays);
+
+      var tdStatus = document.createElement('td');
+      var badge = document.createElement('span');
+      badge.className = 'status-badge ' + getStatusClass(days);
+      badge.textContent = getStatusText(days);
+      tdStatus.appendChild(badge);
+      tr.appendChild(tdStatus);
+
+      var tdInsider = document.createElement('td');
+      var bought = (e.insider_bought_after || '').toString().toLowerCase();
+      if(bought === 'true' || bought === 'yes' || bought === '1'){
+        tdInsider.className = 'insider-yes';
+        tdInsider.textContent = 'YES';
+      } else {
+        tdInsider.className = 'insider-no';
+        tdInsider.textContent = '--';
+      }
+      tr.appendChild(tdInsider);
+
+      tbody.appendChild(tr);
+    });
+  }
+
+  fetch('/api/lockups').then(function(r){return r.json()}).then(function(d){
+    // /api/lockups returns {lockups: [...], count} — older code read d.events (wrong key).
+    allEvents = d.lockups || d.events || [];
+    var setIfPresent = function(id, value) {
+      var node = document.getElementById(id);
+      if (node) node.textContent = value;
+    };
+    setIfPresent('l-total', allEvents.length);
+
+    var thisWeek = 0, insiderBought = 0;
+    allEvents.forEach(function(e){
+      var days = parseInt(e.days_until_expiry) || 0;
+      if(days >= 0 && days <= 7) thisWeek++;
+      var bought = (e.insider_bought_after || '').toString().toLowerCase();
+      if(bought === 'true' || bought === 'yes' || bought === '1') insiderBought++;
+    });
+    setIfPresent('l-thisweek', thisWeek);
+    setIfPresent('l-insider', insiderBought);
+
+    renderTable(allEvents);
+  }).catch(function(err){ console.error('lockups fetch failed:', err); });
+})();
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KV1VDK22VC"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-KV1VDK22VC');</script>
+<script>
+(function(){
+  var f=function(id,v){var n=document.getElementById(id); if(n && v!=null) n.textContent=v;};
+  fetch('/api/lockups').then(function(r){return r.json();}).then(function(d){
+    var l=(d&&d.lockups)||[];
+    var d30=0, d90=0, heavy=0;
+    l.forEach(function(x){
+      var dy=parseInt(x.days_until_expiry||'0',10);
+      if(dy>=0 && dy<=30) d30++;
+      if(dy>=0 && dy<=90) d90++;
+      if((x.status||'').toUpperCase().indexOf('EXPIRES_THIS_WEEK')>=0) heavy++;
+    });
+    f('lk-30', d30.toLocaleString());
+    f('lk-90', d90.toLocaleString());
+    f('lk-heavy', heavy.toLocaleString());
+  }).catch(function(){});
+})();
+</script>
+</body>
+</html>

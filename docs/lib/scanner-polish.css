@@ -1,0 +1,161 @@
+/* docs/lib/scanner-polish.css — port the /scanner/ visual brand to other
+ * pages. Animated digit reels, glass-fill heatmap, pulse-glow on hot tiles,
+ * and the cyan-on-hover card lift. Loaded by /international/ and
+ * /dcf/international/ to bring brand consistency.
+ */
+
+/* ───────── Animated digit reels (live-tick numeric values) ─────── */
+.ph-reels {
+  display: inline-flex; align-items: baseline; gap: 2px;
+  font-variant-numeric: tabular-nums;
+  font-family: 'IBM Plex Mono', 'Menlo', monospace;
+  font-weight: 700;
+}
+.ph-reel {
+  display: inline-block; overflow: hidden;
+  height: 1.1em; line-height: 1.1em;
+  background: rgba(0, 0, 0, 0.38);
+  border: 1px solid rgba(88, 166, 255, 0.16);
+  border-radius: 5px;
+  padding: 0 0.18em;
+  min-width: 0.65em; text-align: center;
+  position: relative;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.28),
+              inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+.ph-reel span { display: block; color: var(--text, #f6efe2); }
+.ph-reel span.spinning { animation: phSlot 0.18s cubic-bezier(.22, .68, 0, 1.2); }
+@keyframes phSlot {
+  from { transform: translateY(-110%); opacity: 0.2; }
+  to   { transform: translateY(0); opacity: 1; }
+}
+
+/* ───────── Liquid-fill heatmap cells (rising fill = gap intensity) ───── */
+.heat-cell-liquid {
+  position: relative; overflow: hidden;
+  background: rgba(13, 19, 38, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 10px;
+  padding: 0.7rem 0.85rem 0.85rem;
+  isolation: isolate;
+  transition: transform 0.18s ease, border-color 0.18s ease;
+}
+.heat-cell-liquid::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    transparent calc(100% - var(--liquid-fill, 50%)),
+    var(--liquid-color, rgba(127, 232, 179, 0.32)) calc(100% - var(--liquid-fill, 50%)),
+    var(--liquid-color, rgba(127, 232, 179, 0.32)) 100%
+  );
+  z-index: -1;
+  transition: background 0.6s ease;
+}
+.heat-cell-liquid::after {
+  /* shimmer overlay */
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent, rgba(255, 255, 255, 0.04), transparent
+  );
+  animation: hmShimmer 4s ease-in-out infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+.heat-cell-liquid:hover {
+  transform: translateY(-2px);
+  border-color: rgba(215, 180, 106, 0.5);
+}
+.heat-cell-liquid.bull {
+  --liquid-color: rgba(127, 232, 179, 0.32);
+}
+.heat-cell-liquid.bear {
+  --liquid-color: rgba(255, 139, 134, 0.32);
+}
+
+@keyframes hmShimmer {
+  0%, 100% { opacity: 0.12; transform: scaleX(0.65); }
+  50%      { opacity: 0.4;  transform: scaleX(1); }
+}
+
+/* ───────── Pulse-glow for top-3 explosive tiles ─────────────────── */
+.tile-pulse-bull {
+  animation: hmPulseBull 2.4s ease-in-out infinite;
+  border-color: rgba(127, 232, 179, 0.5) !important;
+}
+.tile-pulse-bear {
+  animation: hmPulseBear 2.4s ease-in-out infinite;
+  border-color: rgba(255, 139, 134, 0.5) !important;
+}
+@keyframes hmPulseBull {
+  0%, 100% { box-shadow: 0 0 16px rgba(16, 185, 129, 0.30),
+                          0 12px 32px rgba(0, 0, 0, 0.24); }
+  50%      { box-shadow: 0 0 26px rgba(16, 185, 129, 0.48),
+                          0 18px 40px rgba(0, 0, 0, 0.28); }
+}
+@keyframes hmPulseBear {
+  0%, 100% { box-shadow: 0 0 16px rgba(244, 63, 94, 0.30),
+                          0 12px 32px rgba(0, 0, 0, 0.24); }
+  50%      { box-shadow: 0 0 26px rgba(244, 63, 94, 0.48),
+                          0 18px 40px rgba(0, 0, 0, 0.28); }
+}
+
+/* ───────── Brass-bordered nav (matches /scanner/) ────────────────── */
+.scanner-grade-nav {
+  background: rgba(10, 12, 18, 0.86);
+  border: 1px solid rgba(215, 180, 106, 0.18);
+  border-radius: 14px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.28),
+              inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  padding: 0 16px;
+}
+.scanner-grade-nav .brand {
+  font-family: 'IBM Plex Mono', 'Menlo', monospace;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+.scanner-grade-nav a.nav-link {
+  font-family: 'IBM Plex Mono', 'Menlo', monospace;
+  font-size: 0.72em;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* ───────── Card hover lift + cyan accent (matches scanner suite cards) ─ */
+.suite-card-grade,
+.cb-card,
+.country-tile,
+.heat-cell {
+  transition: transform 0.15s ease, border-color 0.15s ease,
+              box-shadow 0.18s ease;
+}
+.suite-card-grade:hover,
+.cb-card:hover,
+.country-tile:hover,
+.heat-cell:hover {
+  transform: translateY(-2px);
+  border-color: rgba(34, 211, 238, 0.4);
+  box-shadow: 0 0 20px rgba(34, 211, 238, 0.08),
+              0 8px 22px rgba(0, 0, 0, 0.28);
+}
+
+/* ───────── Number-reel ticker (price/percent live tick) ──────────── */
+.live-tick-positive { color: #7fe8b3; transition: color 0.3s ease; }
+.live-tick-negative { color: #ff8b86; transition: color 0.3s ease; }
+.live-tick-flash { animation: tickFlash 0.6s ease; }
+@keyframes tickFlash {
+  0%   { background: rgba(245, 196, 67, 0.22); }
+  100% { background: transparent; }
+}
+
+/* ───────── Subtle grid overlay (matches scanner backdrop) ──────── */
+body.scanner-grade-bg::before {
+  content: ''; position: fixed; inset: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(114, 229, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(114, 229, 255, 0.025) 1px, transparent 1px);
+  background-size: 48px 48px;
+  opacity: 0.32; z-index: 0;
+}

@@ -1,0 +1,528 @@
+name: Daily SEC Catalyst Pipeline
+
+# Allow the pipeline job to push docs/ back to the repo for GitHub Pages
+permissions:
+  contents: write
+
+on:
+  schedule:
+    # ── Morning pipeline (premium delivery at 3:00 AM ET) ─────────────────────
+    # Start at 1:00 AM ET = 05:00 UTC (EDT) to allow 2 hrs before 3 AM delivery
+    - cron: '0 5 * * 1-5'
+
+    # ── Free email delivery (3:35 AM ET) ──────────────────────────────────────
+    # 35 min after premium — 3:35 AM ET = 07:35 UTC (EDT)
+    - cron: '35 7 * * 1-5'
+
+    # ── Market open recap (9:30am ET) ─────────────────────────────────────────
+    # 9:30 AM ET = 13:30 UTC (EDT) / 14:30 UTC (EST) — use 14:30 to cover both
+    - cron: '30 14 * * 1-5'
+
+    # ── Pre-market gap alerts (every 30 min, 4:00–9:30 AM ET) ────────────────
+    # 4:00 AM ET = 08:00 UTC (EDT). Run 08:00–13:00 UTC to cover 4–9 AM ET.
+    - cron: '0,30 8-13 * * 1-5'
+
+    # ── Real-time price alerts (every 30 min, market + extended hours) ────────
+    # 9:30 AM ET = 13:30 UTC, 8:00 PM ET = 00:00 UTC next day.
+    # Split into two crons to cover 14:00–23:30 UTC (10am–7:30pm ET).
+    - cron: '0,30 14-21 * * 1-5'
+    - cron: '0,30 22-23 * * 1-5'
+
+    # ── Midday performance update (1:30pm ET) ─────────────────────────────────
+    # 1:30 PM ET = 17:30 UTC (EDT) / 18:30 UTC (EST)
+    - cron: '30 18 * * 1-5'
+
+    # ── EOD recap (4:15pm ET) ─────────────────────────────────────────────────
+    # 4:15 PM ET = 20:15 UTC (EDT) / 21:15 UTC (EST)
+    - cron: '15 20 * * 1-5'
+
+  workflow_dispatch:   # Manual trigger from GitHub UI
+
+# ── Shared env block (referenced in each job) ─────────────────────────────────
+env:
+  NEWSLETTER_URL: "https://catalystedge.beehiiv.com"
+
+# ── Reusable secrets shortcut (can't truly DRY in GHA, but comment helps) ─────
+# Each job that posts tweets includes: TWITTER_API_KEY/SECRET/ACCESS_TOKEN/SECRET
+
+jobs:
+
+  # ════════════════════════════════════════════════════════════════════════════
+  # MORNING PIPELINE — runs at 3:30am ET, sends PREMIUM email immediately
+  # ════════════════════════════════════════════════════════════════════════════
+  pipeline:
+    if: >
+      github.event_name == 'workflow_dispatch' ||
+      github.event.schedule == '0 5 * * 1-5'
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Restore pipeline state cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            scoring_config.json
+            sec_outcome_rows.csv
+            sec_outcome_summary.csv
+            scoring_tuning_log.csv
+          key: pipeline-state-${{ runner.os }}-${{ github.run_number }}
+          restore-keys: |
+            pipeline-state-${{ runner.os }}-
+
+      - name: Run pipeline
+        env:
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASS: ${{ secrets.SMTP_PASS }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+          EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
+          SMTP_USE_TLS: "true"
+          NEWSLETTER_MODE: "1"
+          SEC_USER_AGENT: ${{ secrets.SEC_USER_AGENT }}
+          BEEHIIV_API_KEY: ${{ secrets.BEEHIIV_API_KEY }}
+          BEEHIIV_PUB_ID: ${{ secrets.BEEHIIV_PUB_ID }}
+          TWITTER_API_KEY: ${{ secrets.TWITTER_API_KEY }}
+          TWITTER_API_SECRET: ${{ secrets.TWITTER_API_SECRET }}
+          TWITTER_ACCESS_TOKEN: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+          TWITTER_ACCESS_SECRET: ${{ secrets.TWITTER_ACCESS_SECRET }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHANNEL: ${{ secrets.TELEGRAM_CHANNEL }}
+          DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          REDDIT_CLIENT_ID: ${{ secrets.REDDIT_CLIENT_ID }}
+          REDDIT_CLIENT_SECRET: ${{ secrets.REDDIT_CLIENT_SECRET }}
+          REDDIT_USERNAME: ${{ secrets.REDDIT_USERNAME }}
+          REDDIT_PASSWORD: ${{ secrets.REDDIT_PASSWORD }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+          ELEVENLABS_AGENT_ID: ${{ secrets.ELEVENLABS_AGENT_ID }}
+          D_ID_API_KEY: ${{ secrets.D_ID_API_KEY }}
+          D_ID_AGENT_ID: ${{ secrets.D_ID_AGENT_ID }}
+          REPLICATE_API_KEY: ${{ secrets.REPLICATE_API_KEY }}
+          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+          X_HANDLE: ${{ secrets.X_HANDLE }}
+          INSTAGRAM_HANDLE: ${{ secrets.INSTAGRAM_HANDLE }}
+          TIKTOK_HANDLE: ${{ secrets.TIKTOK_HANDLE }}
+          YOUTUBE_HANDLE: ${{ secrets.YOUTUBE_HANDLE }}
+          YOUTUBE_URL: ${{ secrets.YOUTUBE_URL }}
+          PREMIUM_EMAIL_TO: ${{ secrets.PREMIUM_EMAIL_TO }}
+          PREMIUM_ONLY: "1"
+
+        run: |
+          set -euo pipefail
+          echo "=== $(date '+%F %T %Z') pipeline_start ==="
+
+          # ── PHASE 1: Core data — must complete before email ───────────────
+          python3 evaluate_sec_outcomes.py --days 60  || echo "evaluate_outcomes skipped"
+          python3 tune_scoring_config.py              || echo "tune_scoring skipped"
+
+          python3 sec_catalyst_list.py --limit 300 > sec_catalyst_latest.csv
+          tail -n +2 sec_catalyst_latest.csv | cut -d, -f1 | awk '!seen[$1]++' > sec_catalyst_tickers.txt
+
+          python3 rank_sec_catalysts.py               || echo "rank_sec_catalysts skipped"
+          # classify fetches Stooq prices — GitHub IPs may be rate-limited; non-fatal
+          python3 classify_sec_catalysts.py           || echo "classify_sec_catalysts skipped"
+          python3 build_news_momentum.py              || echo "build_news_momentum skipped"
+          python3 build_macro_context.py              || echo "macro_context skipped"
+          python3 build_polymarket_signals.py         || echo "polymarket_signals skipped"
+          python3 build_performance_breakdown.py      || echo "performance_breakdown skipped"
+
+          # gap_scanner_top.csv loaded from yesterday's cache for {{PENNY_GAPPERS}}
+          python3 build_newsletter_picks.py
+          python3 build_compelling_subject.py             || echo "subject skipped"
+
+          echo "=== $(date '+%F %T %Z') sending_premium_email ==="
+          # ── PREMIUM EMAIL — target delivery 3:00 AM ET ────────────────────
+          PREMIUM_ONLY=1 python3 send_sec_catalyst_email.py || echo "premium_email failed"
+          python3 publish_to_beehiiv.py               || echo "beehiiv_publish skipped"
+          python3 cleanup_beehiiv_posts.py            || echo "beehiiv_cleanup skipped"
+          echo "=== $(date '+%F %T %Z') premium_email_sent ==="
+
+          # ── PHASE 2: Slow optional scanners — run after email is out ──────
+          python3 classify_sec_income.py              || echo "income_classify skipped"
+          python3 detect_insider_clusters.py          || echo "insider_clusters skipped"
+          python3 build_keyword_hits.py               || echo "keyword_hits skipped"
+          python3 build_short_interest.py             || echo "short_interest skipped"
+          python3 build_short_data.py                 || echo "short_data skipped"
+          python3 fetch_options_flow.py               || echo "options_flow skipped"
+          python3 reddit_wsb_pulse.py                 || echo "wsb_pulse skipped"
+          python3 build_squeeze_hunter.py             || echo "squeeze_hunter skipped"
+          python3 build_deepvalue_screen.py           || echo "deepvalue skipped"
+          python3 build_smart_money.py                || echo "smart_money skipped"
+          python3 build_dark_pool.py                  || echo "dark_pool skipped"
+          python3 build_merger_radar.py               || echo "merger_radar skipped"
+          python3 build_lockup_calendar.py            || echo "lockup_calendar skipped"
+          python3 build_nt_radar.py                   || echo "nt_radar skipped"
+          python3 build_revenue_inflection.py         || echo "revenue_inflection skipped"
+          python3 build_convergence_score.py          || echo "convergence_score skipped"
+
+          # Gap scanner — cached result used in today's newsletter,
+          # fresh scan cached here for tomorrow's {{PENNY_GAPPERS}}
+          python3 build_penny_universe.py             || echo "penny_universe skipped"
+          python3 build_gap_scanner.py                || echo "gap_scanner skipped"
+          python3 tune_gap_scanner.py                 || echo "tune_gap_scanner skipped"
+
+          python3 update_agent_knowledge.py           || echo "agent_knowledge skipped"
+
+          # ── Scanner site — rebuild with fresh data and push to GitHub Pages ──
+          python3 generate_seo_site.py                || echo "seo_site skipped"
+          git config user.email "actions@github.com"
+          git config user.name "GitHub Actions"
+          git add docs/
+          git diff --cached --quiet || git commit -m "chore: daily scanner update $(date '+%F') [skip ci]"
+          git push || echo "docs_push_failed"
+
+          # ── PHASE 3: Social posting ────────────────────────────────────────
+          python3 post_to_telegram.py                 || echo "telegram failed"
+          python3 post_to_twitter.py                  || echo "twitter_api failed"
+          python3 post_to_linkedin.py                 || echo "linkedin skipped"
+          python3 post_to_discord.py                  || echo "discord failed"
+          python3 post_to_reddit.py                   || echo "reddit failed"
+          python3 welcome_journey.py                  || echo "welcome_journey skipped"
+          python3 social_post.py                      || echo "social_post failed"
+          python3 build_reddit_comments.py            || echo "reddit_comments skipped"
+          python3 post_discord_daily_picks.py         || echo "discord_picks skipped"
+          python3 build_compelling_subject.py         || echo "subject skipped"
+          python3 send_partner_followup.py            || echo "partner_followup skipped"
+
+          echo "=== $(date '+%F %T %Z') pipeline_end ==="
+
+      - name: Alert on pipeline failure
+        if: failure()
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHANNEL: ${{ secrets.TELEGRAM_CHANNEL }}
+        run: python3 alert_pipeline_failure.py "GitHub Actions pipeline failed — newsletter and scanner may not have updated" || true
+
+      - name: Save picks + newsletter for intraday jobs
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            newsletter_picks.json
+            newsletter_body.html
+            newsletter_body_premium.html
+            polymarket_signals.json
+            gap_scanner_top.csv
+            sec_catalyst_tickers.txt
+            penny_universe.txt
+            gap_outcome_summary.json
+          key: picks-${{ runner.os }}-${{ github.run_id }}
+
+      - name: Upload newsletter artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: newsletter-${{ github.run_number }}
+          path: |
+            newsletter_body.html
+            newsletter_picks.json
+            sec_top_gappers.csv
+            combined_priority.csv
+            social/
+          retention-days: 7
+
+  # ════════════════════════════════════════════════════════════════════════════
+  # FREE EMAIL DELIVERY — 4:05am ET (35 min after premium)
+  # ════════════════════════════════════════════════════════════════════════════
+  free-email:
+    if: github.event.schedule == '35 7 * * 1-5'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Restore newsletter cache
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            newsletter_picks.json
+            newsletter_body.html
+            newsletter_body_premium.html
+            polymarket_signals.json
+          key: picks-${{ runner.os }}-
+          restore-keys: picks-${{ runner.os }}-
+
+      - name: Check newsletter freshness
+        run: |
+          TODAY=$(date -u +%Y-%m-%d)
+          if [ ! -f newsletter_body.html ]; then
+            echo "ABORT: newsletter_body.html not found in cache — pipeline must have failed."
+            echo "SKIP_EMAIL=true" >> "$GITHUB_ENV"
+          elif ! grep -q "$TODAY" newsletter_body.html; then
+            echo "ABORT: newsletter_body.html does not contain today's date ($TODAY)."
+            echo "  This means the cached newsletter is from a prior day — refusing to send stale content."
+            echo "SKIP_EMAIL=true" >> "$GITHUB_ENV"
+          else
+            echo "newsletter_body.html freshness verified — contains $TODAY"
+            echo "SKIP_EMAIL=false" >> "$GITHUB_ENV"
+          fi
+
+      - name: Send free newsletter to all subscribers
+        if: env.SKIP_EMAIL != 'true'
+        env:
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASS: ${{ secrets.SMTP_PASS }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+          EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
+          SMTP_USE_TLS: "true"
+          NEWSLETTER_MODE: "1"
+          BEEHIIV_API_KEY: ${{ secrets.BEEHIIV_API_KEY }}
+          BEEHIIV_PUB_ID: ${{ secrets.BEEHIIV_PUB_ID }}
+          PREMIUM_EMAIL_TO: ${{ secrets.PREMIUM_EMAIL_TO }}
+          FREE_ONLY: "1"
+        run: python3 send_sec_catalyst_email.py || echo "free_email failed"
+
+  # ════════════════════════════════════════════════════════════════════════════
+  # MARKET OPEN RECAP — 9:30am ET
+  # ════════════════════════════════════════════════════════════════════════════
+  open-recap:
+    if: github.event.schedule == '30 14 * * 1-5'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Restore picks cache
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            newsletter_picks.json
+            polymarket_signals.json
+          key: picks-${{ runner.os }}-
+          restore-keys: picks-${{ runner.os }}-
+
+      - name: Post market open recap + refresh agent
+        env:
+          TWITTER_API_KEY: ${{ secrets.TWITTER_API_KEY }}
+          TWITTER_API_SECRET: ${{ secrets.TWITTER_API_SECRET }}
+          TWITTER_ACCESS_TOKEN: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+          TWITTER_ACCESS_SECRET: ${{ secrets.TWITTER_ACCESS_SECRET }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHANNEL: ${{ secrets.TELEGRAM_CHANNEL }}
+          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+          ELEVENLABS_AGENT_ID: ${{ secrets.ELEVENLABS_AGENT_ID }}
+          NEWSLETTER_URL: "https://catalystedge.beehiiv.com"
+        run: |
+          python3 post_open_recap.py || echo "open_recap skipped"
+
+  # ════════════════════════════════════════════════════════════════════════════
+  # REAL-TIME PRICE ALERTS — every 30 min during market hours
+  # ════════════════════════════════════════════════════════════════════════════
+  price-alert:
+    if: >
+      github.event.schedule == '0,30 8-13 * * 1-5' ||
+      github.event.schedule == '0,30 14-21 * * 1-5' ||
+      github.event.schedule == '0,30 22-23 * * 1-5'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Restore picks + alert flags cache
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            newsletter_picks.json
+            polymarket_signals.json
+          key: picks-${{ runner.os }}-
+          restore-keys: picks-${{ runner.os }}-
+
+      - name: Restore alert flags (prevent duplicate alerts)
+        uses: actions/cache@v4
+        with:
+          path: |
+            .alert_*
+            gap_alerts_fired.json
+            gap_alert_log.csv
+          key: alerts-${{ runner.os }}-${{ github.run_number }}
+          restore-keys: alerts-${{ runner.os }}-
+
+      - name: Restore gap scanner morning pre-filter
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            gap_scanner_top.csv
+            sec_catalyst_tickers.txt
+            penny_universe.txt
+          key: picks-${{ runner.os }}-
+          restore-keys: picks-${{ runner.os }}-
+
+      - name: Run price alert check
+        env:
+          TWITTER_API_KEY: ${{ secrets.TWITTER_API_KEY }}
+          TWITTER_API_SECRET: ${{ secrets.TWITTER_API_SECRET }}
+          TWITTER_ACCESS_TOKEN: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+          TWITTER_ACCESS_SECRET: ${{ secrets.TWITTER_ACCESS_SECRET }}
+          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+          ELEVENLABS_AGENT_ID: ${{ secrets.ELEVENLABS_AGENT_ID }}
+          NEWSLETTER_URL: "https://catalystedge.beehiiv.com"
+        run: python3 post_price_alert.py || echo "price_alert skipped"
+
+      - name: Run penny gap alert
+        env:
+          TWITTER_API_KEY: ${{ secrets.TWITTER_API_KEY }}
+          TWITTER_API_SECRET: ${{ secrets.TWITTER_API_SECRET }}
+          TWITTER_ACCESS_TOKEN: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+          TWITTER_ACCESS_SECRET: ${{ secrets.TWITTER_ACCESS_SECRET }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHANNEL: ${{ secrets.TELEGRAM_CHANNEL }}
+          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+          D_ID_API_KEY: ${{ secrets.D_ID_API_KEY }}
+          NEWSLETTER_URL: "https://catalystedge.beehiiv.com"
+        run: |
+          python3 post_penny_gap_alert.py || echo "penny_gap_alert skipped"
+          python3 post_gap_alert_twitter_thread.py || echo "gap_thread skipped"
+
+      - name: Update Discord live watchlist
+        env:
+          DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
+        run: |
+          python3 post_discord_live_message.py || echo "discord_live_message skipped"
+          python3 post_discord_watchlist.py || echo "discord_watchlist skipped"
+
+  # ════════════════════════════════════════════════════════════════════════════
+  # MIDDAY PERFORMANCE UPDATE — 1:30pm ET
+  # ════════════════════════════════════════════════════════════════════════════
+  midday-update:
+    if: github.event.schedule == '30 18 * * 1-5'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Restore picks cache
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            newsletter_picks.json
+            polymarket_signals.json
+          key: picks-${{ runner.os }}-
+          restore-keys: picks-${{ runner.os }}-
+
+      - name: Post midday update + refresh agent
+        env:
+          TWITTER_API_KEY: ${{ secrets.TWITTER_API_KEY }}
+          TWITTER_API_SECRET: ${{ secrets.TWITTER_API_SECRET }}
+          TWITTER_ACCESS_TOKEN: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+          TWITTER_ACCESS_SECRET: ${{ secrets.TWITTER_ACCESS_SECRET }}
+          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+          ELEVENLABS_AGENT_ID: ${{ secrets.ELEVENLABS_AGENT_ID }}
+          NEWSLETTER_URL: "https://catalystedge.beehiiv.com"
+        run: python3 post_midday_update.py || echo "midday_update skipped"
+
+  # ════════════════════════════════════════════════════════════════════════════
+  # END-OF-DAY RECAP — 4:15pm ET
+  # ════════════════════════════════════════════════════════════════════════════
+  eod-recap:
+    if: github.event.schedule == '15 20 * * 1-5'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Restore picks cache
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            newsletter_picks.json
+            polymarket_signals.json
+          key: picks-${{ runner.os }}-
+          restore-keys: picks-${{ runner.os }}-
+
+      - name: Restore alert log + outcome data
+        uses: actions/cache@v4
+        with:
+          path: |
+            gap_alert_log.csv
+            gap_outcome_log.csv
+            gap_outcome_summary.json
+            gap_scanner_config.json
+            gap_tuning_log.csv
+            social/gap_winners/
+          key: gap-outcomes-${{ runner.os }}-${{ github.run_number }}
+          restore-keys: gap-outcomes-${{ runner.os }}-
+
+      - name: Evaluate gap alert outcomes
+        env:
+          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+          D_ID_API_KEY: ${{ secrets.D_ID_API_KEY }}
+        run: |
+          python3 evaluate_gap_outcomes.py          || echo "gap_outcomes skipped"
+          python3 tune_gap_scanner.py               || echo "tune_gap_scanner skipped"
+          python3 build_winner_content.py           || echo "winner_content skipped"
+          python3 generate_gap_winner_video.py      || echo "winner_video skipped"
+
+      - name: Post EOD recap + refresh agent
+        env:
+          TWITTER_API_KEY: ${{ secrets.TWITTER_API_KEY }}
+          TWITTER_API_SECRET: ${{ secrets.TWITTER_API_SECRET }}
+          TWITTER_ACCESS_TOKEN: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+          TWITTER_ACCESS_SECRET: ${{ secrets.TWITTER_ACCESS_SECRET }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHANNEL: ${{ secrets.TELEGRAM_CHANNEL }}
+          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+          ELEVENLABS_AGENT_ID: ${{ secrets.ELEVENLABS_AGENT_ID }}
+          NEWSLETTER_URL: "https://catalystedge.beehiiv.com"
+        run: |
+          python3 post_eod_recap.py || echo "eod_recap skipped"
+          python3 post_eod_telegram_recap.py || echo "eod_telegram skipped"
+
+
+  # ════════════════════════════════════════════════════════════════════════════
+  # REVENUE OUTREACH — runs once daily, gates prevent re-sends
+  # ════════════════════════════════════════════════════════════════════════════
+  revenue-outreach:
+    if: github.event.schedule == '0 5 * * 1-5' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.11" }
+      - name: Run revenue outreach scripts
+        env:
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASS: ${{ secrets.SMTP_PASS }}
+          EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
+          SMTP_USE_TLS: "true"
+          BEEHIIV_API_KEY: ${{ secrets.BEEHIIV_API_KEY }}
+          BEEHIIV_PUB_ID: ${{ secrets.BEEHIIV_PUB_ID }}
+          REDDIT_CLIENT_ID: ${{ secrets.REDDIT_CLIENT_ID }}
+          REDDIT_CLIENT_SECRET: ${{ secrets.REDDIT_CLIENT_SECRET }}
+          REDDIT_USERNAME: ${{ secrets.REDDIT_USERNAME }}
+          REDDIT_PASSWORD: ${{ secrets.REDDIT_PASSWORD }}
+          GA4_ID: ${{ secrets.GA4_ID }}
+        run: |
+          python3 build_options_activity.py       || echo "options skipped"
+          python3 generate_seo_site.py            || echo "seo_site skipped"
+          python3 send_affiliate_outreach.py      || echo "affiliate skipped"
+          python3 send_b2b_outreach.py            || echo "b2b skipped"
+          python3 send_partner_outreach.py        || echo "partner_outreach skipped"
+          python3 send_partner_followup.py        || echo "partner_followup skipped"
+          python3 send_newsletter_directories.py  || echo "directories skipped"
+          python3 discover_trader_contacts.py     || echo "discover_traders skipped"
+          python3 send_trader_outreach.py         || echo "trader_outreach skipped"
+          python3 post_reddit_engagement.py       || echo "reddit skipped"
+          python3 send_welcome_sequence.py        || echo "welcome_seq skipped"
+          python3 send_premium_reply.py           || echo "premium_reply skipped"
+          # Commit state files + SEO site back to repo for persistence
+          git config user.email "actions@github.com"
+          git config user.name "GitHub Actions"
+          # docs/ is pushed by the main pipeline job (with fresh data) — skip here
+          git add options_activity.csv .welcome_*.json .dir_submit_* .trader_outreach_* .discovered_channels.json trader_contacts.csv .affiliate_outreach_* .b2b_outreach_* .partner_outreach_* .partner_followup_* .bounced_* || true
+          git diff --cached --quiet || git commit -m "chore: persist pipeline state [skip ci]"
+          git push || true

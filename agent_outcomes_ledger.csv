@@ -1,0 +1,3 @@
+client_order_id,order_id,ticker,signal,side,qty,asset_class,underlying,entry_price,entry_ts_utc,fill_ts_utc,exit_price,exit_ts_utc,exit_reason,pl_usd,pl_pct,hold_days,p1d_pct,p5d_pct,p30d_pct,vs_spy_5d_pct,vs_spy_30d_pct,hit_2pct,big_move_5pct,lost_3pct
+ce_2026-04-25_ACI_combined_priority,c28d7136-5507-4e70-8f81-f23f04b30222,ACI,combined_priority,buy,3,,,16.63,2026-04-25T18:33:27+00:00,,,,,,,,,,,,,,,
+ce_2026-04-25_BCML_combined_priority,adc967cd-997a-4d86-9909-b3fc3d45d6f9,BCML,combined_priority,buy,1,,,29.26,2026-04-25T18:33:27+00:00,,,,,,,,,,,,,,,

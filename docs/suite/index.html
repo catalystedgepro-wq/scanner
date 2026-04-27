@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tool Suite — Every Catalyst Edge Tool in One Place | Catalyst Edge</title>
+<meta name="description" content="All 60+ Catalyst Edge tools organized in one hub. Scanner, screener, signal dashboards, analytics, research tools, simulators, and educational resources.">
+<meta property="og:title" content="Tool Suite — Catalyst Edge">
+<meta property="og:description" content="Every scanner, signal dashboard, analytics tool, and research resource — one page.">
+<link rel="canonical" href="https://catalystedgescanner.com/suite/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#070a12;--surface:#0f1420;--surface2:#151c2c;--surface3:#1a2235;--gold:#d4a843;--green:#22c55e;--red:#ef4444;--cyan:#06b6d4;--purple:#a855f7;--orange:#f97316;--pink:#ec4899;--text:#e2e8f0;--dim:#94a3b8;--muted:#64748b;--border:#1e293b}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.nav{position:sticky;top:0;z-index:100;background:rgba(7,10,18,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:.75rem 1.5rem;display:flex;align-items:center;gap:1rem}
+.nav a{color:var(--gold);font-weight:600;font-size:.95rem}
+.nav .sep{color:var(--muted)}
+.wrap{max-width:1200px;margin:0 auto;padding:1.5rem}
+.hero{text-align:center;padding:2.5rem 0 2rem;margin-bottom:1rem}
+.hero h1{font-size:clamp(1.6rem,5vw,2.8rem);font-weight:800;letter-spacing:-.02em;margin-bottom:.5rem}
+.hero h1 .accent{background:linear-gradient(135deg,var(--gold),var(--green));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero .sub{color:var(--dim);font-size:.9rem;max-width:560px;margin:0 auto}
+.hero .count{display:inline-block;margin-top:.75rem;padding:4px 14px;border-radius:20px;background:rgba(212,168,67,.08);border:1px solid rgba(212,168,67,.2);font-size:.72rem;font-weight:700;color:var(--gold);font-family:'IBM Plex Mono',monospace}
+
+.search-wrap{max-width:440px;margin:1rem auto 1.5rem;position:relative}
+.search-input{width:100%;padding:10px 14px 10px 38px;border-radius:10px;border:1px solid var(--border);background:var(--surface);color:var(--text);font-family:'Space Grotesk',sans-serif;font-size:.85rem;outline:none;transition:border-color .2s}
+.search-input:focus{border-color:var(--gold)}
+.search-icon{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:.85rem;pointer-events:none}
+
+.cat-nav{display:flex;flex-wrap:wrap;gap:.4rem;justify-content:center;margin:0 0 1.5rem;padding-bottom:1rem;border-bottom:1px solid var(--border)}
+.cat-btn{padding:5px 14px;border-radius:8px;border:1px solid var(--border);background:var(--surface);color:var(--dim);font-size:.7rem;font-weight:700;cursor:pointer;font-family:'Space Grotesk',sans-serif;transition:all .2s}
+.cat-btn.active{border-color:var(--gold);color:var(--gold);background:rgba(212,168,67,.06)}
+.cat-btn:hover{border-color:var(--gold)}
+
+.section{margin-bottom:2rem}
+.section-head{display:flex;align-items:center;gap:.6rem;margin-bottom:.75rem;padding-bottom:.4rem;border-bottom:1px solid rgba(30,41,59,.5)}
+.section-icon{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.9rem;font-weight:800;flex-shrink:0}
+.section-title{font-size:1.05rem;font-weight:800;letter-spacing:-.01em}
+.section-count{font-size:.6rem;color:var(--muted);font-family:'IBM Plex Mono',monospace;margin-left:auto}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:.6rem}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:.85rem;display:flex;flex-direction:column;gap:.3rem;transition:all .2s;position:relative;overflow:hidden}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;opacity:0;transition:opacity .2s}
+.card:hover{border-color:var(--gold);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.3)}
+.card:hover::before{opacity:1}
+.card-name{font-size:.82rem;font-weight:800;display:flex;align-items:center;gap:.4rem}
+.card-name .badge{font-size:.5rem;padding:1px 5px;border-radius:4px;font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+.card-desc{font-size:.68rem;color:var(--muted);line-height:1.5}
+.card-tags{display:flex;gap:.3rem;flex-wrap:wrap;margin-top:auto;padding-top:.3rem}
+.card-tag{font-size:.5rem;padding:1px 6px;border-radius:3px;background:var(--surface2);color:var(--dim);font-family:'IBM Plex Mono',monospace}
+
+.hidden{display:none!important}
+.no-results{text-align:center;padding:2rem;color:var(--muted);font-size:.85rem}
+
+.cta-bar{background:var(--surface);border:1px solid var(--gold);border-radius:12px;padding:1.5rem;text-align:center;margin:2rem 0}
+.cta-bar h3{color:var(--gold);font-size:1.1rem;margin-bottom:.3rem}
+.cta-bar p{color:var(--dim);font-size:.8rem;margin-bottom:.75rem}
+.cta-bar a{display:inline-block;padding:.55rem 1.6rem;background:linear-gradient(135deg,var(--gold),#f1ce88);color:#070a12;font-weight:700;border-radius:8px;font-size:.85rem;transition:transform .15s}
+.cta-bar a:hover{transform:scale(1.04)}
+
+.stats-row{display:flex;justify-content:center;gap:2rem;margin:1rem 0 1.5rem;flex-wrap:wrap}
+.stat{text-align:center}
+.stat-val{font-size:1.5rem;font-weight:800;font-family:'IBM Plex Mono',monospace}
+.stat-lbl{font-size:.6rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+
+.footer{text-align:center;padding:1.5rem;font-size:.72rem;color:var(--muted);border-top:1px solid var(--border);margin-top:2rem}
+.footer a{color:var(--muted)}
+@media(max-width:600px){.grid{grid-template-columns:1fr 1fr}.card{padding:.7rem}.hero h1{font-size:1.4rem}}
+@media(max-width:380px){.grid{grid-template-columns:1fr}}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Catalyst Edge Tool Suite","url":"https://catalystedgescanner.com/suite/","description":"All 60+ Catalyst Edge tools in one organized hub — scanners, signals, analytics, research, and education","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<link rel="stylesheet" href="/lib/polish-tokens.css">
+</head>
+<body>
+<div class="nav">
+  <a href="/">Catalyst Edge</a>
+  <span class="sep">/</span>
+  <span style="color:var(--dim);font-size:.9rem">Tool Suite</span>
+</div>
+<div class="wrap">
+  <div class="hero">
+    <h1>The <span class="accent">Complete</span> Suite</h1>
+    <p class="sub">Every scanner, signal dashboard, research tool, and educational resource we offer — organized and searchable.</p>
+    <span class="count" id="tool-count">Loading...</span>
+  </div>
+
+  <div class="search-wrap">
+    <span class="search-icon">&#x1F50D;</span>
+    <input type="text" class="search-input" id="search" placeholder="Search tools... (e.g. squeeze, screener, insider)" autocomplete="off">
+  </div>
+
+  <div class="stats-row">
+    <div class="stat"><div class="stat-val" style="color:var(--gold)" id="s-tools">--</div><div class="stat-lbl">Tools</div></div>
+    <div class="stat"><div class="stat-val" style="color:var(--green)" id="s-cats">--</div><div class="stat-lbl">Categories</div></div>
+    <div class="stat"><div class="stat-val" style="color:var(--cyan)" id="s-free">--</div><div class="stat-lbl">Free to Use</div></div>
+  </div>
+
+  <div class="cat-nav" id="cat-nav"></div>
+  <div id="sections"></div>
+  <div class="no-results hidden" id="no-results">No tools match your search.</div>
+
+  <div class="cta-bar">
+    <h3>Get daily picks before market open</h3>
+    <p>Free 4 AM ET email with ranked catalyst picks, momentum alerts, and convergence signals.</p>
+    <a href="/preview/">Subscribe Free</a>
+  </div>
+</div>
+<div class="footer">
+  &copy; 2026 Catalyst Edge &middot;
+  <a href="/">Scanner</a> &middot;
+  <a href="/rankings/">Rankings</a> &middot;
+  <a href="/screener/">Screener</a> &middot;
+  <a href="/signals/">Signals</a> &middot;
+  <a href="/spotlight/">Spotlight</a> &middot;
+  <a href="/lookup/">Lookup</a> &middot;
+  <a href="/winners/">Winners</a> &middot;
+  <a href="/momentum/">Momentum</a> &middot;
+  <a href="/digest/">Digest</a> &middot;
+  <a href="/glossary/">Glossary</a> &middot;
+  Not financial advice.
+</div>
+<script>
+(function(){
+  var TOOLS = [
+    // === CORE SCANNERS ===
+    {name:'Live Scanner',href:'/',desc:'Real-time SEC filing scanner with catalyst scoring, signal detection, and ranked picks.',cat:'Core Scanners',tags:['scanner','sec','filings','live'],color:'var(--gold)',featured:true},
+    {name:'Screener',href:'/screener/',desc:'Filter the entire ticker universe by score, signals, sector, and more.',cat:'Core Scanners',tags:['filter','screen','search'],color:'var(--gold)'},
+    {name:'Rankings',href:'/rankings/',desc:'Daily ranked leaderboard of all scored tickers. Sort by score, signals, or sector.',cat:'Core Scanners',tags:['rank','leaderboard','top'],color:'var(--gold)'},
+    {name:'Spotlight',href:'/spotlight/',desc:'Deep-dive profile of the #1 pick each day with full signal breakdown.',cat:'Core Scanners',tags:['top-pick','profile','deep-dive'],color:'var(--gold)'},
+    {name:'Lookup',href:'/lookup/',desc:'Search any ticker for its catalyst score, signal history, and filing activity.',cat:'Core Scanners',tags:['search','ticker','lookup'],color:'var(--gold)'},
+
+    // === SIGNAL DASHBOARDS ===
+    {name:'All Signals',href:'/signals/',desc:'Nine signal categories in one view: squeeze, insider, dark pool, convergence, and more.',cat:'Signal Dashboards',tags:['signals','overview','multi'],color:'var(--green)',featured:true},
+    {name:'Squeeze Plays',href:'/squeeze/',desc:'High short interest + catalyst filings. Classic squeeze setup detection.',cat:'Signal Dashboards',tags:['squeeze','short-interest'],color:'var(--green)'},
+    {name:'Insider Buying',href:'/insiders/',desc:'Form 4 insider purchases with cluster detection and conviction scoring.',cat:'Signal Dashboards',tags:['insider','form-4','buying'],color:'var(--green)'},
+    {name:'Dark Pool',href:'/darkpool/',desc:'Unusual dark pool activity correlated with SEC catalyst filings.',cat:'Signal Dashboards',tags:['darkpool','institutional','block'],color:'var(--purple)'},
+    {name:'Deep Value',href:'/deepvalue/',desc:'Undervalued tickers with catalyst triggers — value meets momentum.',cat:'Signal Dashboards',tags:['value','undervalued','fundamental'],color:'var(--cyan)'},
+    {name:'Convergence Alerts',href:'/convergence/',desc:'Multiple signal types firing simultaneously on the same ticker.',cat:'Signal Dashboards',tags:['convergence','multi-signal','stacking'],color:'var(--orange)'},
+    {name:'Smart Money',href:'/smart-money/',desc:'Institutional accumulation signals from 13D/13G and large Form 4 filings.',cat:'Signal Dashboards',tags:['institutional','13d','smart-money'],color:'var(--green)'},
+    {name:'Mergers & Acquisitions',href:'/mergers/',desc:'M&A activity detected from SEC filings — potential acquisition targets.',cat:'Signal Dashboards',tags:['merger','acquisition','m&a'],color:'var(--pink)'},
+    {name:'Gap Scanners',href:'/gaps/',desc:'Pre-market gap-up and gap-down tickers with catalyst context.',cat:'Signal Dashboards',tags:['gap','premarket','gap-up'],color:'var(--gold)'},
+    {name:'Sympathy Plays',href:'/sympathy/',desc:'Sector sympathy chain detection — when one ticker moves, which follow?',cat:'Signal Dashboards',tags:['sympathy','sector','chain'],color:'var(--cyan)'},
+    {name:'Lockup Expirations',href:'/lockups/',desc:'IPO and SPAC lockup expiration calendar with catalyst overlay.',cat:'Signal Dashboards',tags:['lockup','ipo','expiration'],color:'var(--red)'},
+
+    // === ANALYTICS & DATA ===
+    {name:'Signal Strength',href:'/signal-strength/',desc:'Which signal types are most active today. Volume and trend across categories.',cat:'Analytics',tags:['analytics','volume','trend'],color:'var(--cyan)',featured:true},
+    {name:'Sector Heatmap',href:'/heatmap/',desc:'Color-coded sector performance with catalyst density overlay.',cat:'Analytics',tags:['sector','heatmap','performance'],color:'var(--cyan)'},
+    {name:'Sectors',href:'/sectors/',desc:'Drill into any GICS sector for ranked tickers and signal distribution.',cat:'Analytics',tags:['sector','gics','drill-down'],color:'var(--cyan)'},
+    {name:'Catalyst Map',href:'/map/',desc:'Visual heatmap of every ticker. Cell size = signals, color = score.',cat:'Analytics',tags:['map','visual','heatmap','treemap'],color:'var(--cyan)'},
+    {name:'Correlation Matrix',href:'/correlation/',desc:'Which signal types co-occur? See the strongest signal combinations.',cat:'Analytics',tags:['correlation','matrix','co-occurrence'],color:'var(--cyan)'},
+    {name:'Momentum Tracker',href:'/momentum/',desc:'Score momentum over time — rising and falling catalyst trends.',cat:'Analytics',tags:['momentum','trend','change'],color:'var(--cyan)'},
+    {name:'Top Movers',href:'/movers/',desc:'Biggest daily score changes. Gainers and losers by catalyst delta.',cat:'Analytics',tags:['movers','delta','change','gainers','losers'],color:'var(--cyan)'},
+    {name:'Hot Streaks',href:'/hot-streaks/',desc:'Tickers with sustained catalyst activity over multiple days.',cat:'Analytics',tags:['streak','sustained','multi-day'],color:'var(--orange)'},
+    {name:'Head-to-Head',href:'/vs/',desc:'Compare two tickers side-by-side on every signal and metric.',cat:'Analytics',tags:['compare','vs','head-to-head'],color:'var(--cyan)'},
+    {name:'Performance',href:'/performance/',desc:'Track historical accuracy of catalyst scores vs actual price moves.',cat:'Analytics',tags:['performance','accuracy','backtest'],color:'var(--cyan)'},
+    {name:'Calendar',href:'/calendar/',desc:'Upcoming catalysts by date — earnings, filings, lockup expirations.',cat:'Analytics',tags:['calendar','schedule','dates','upcoming'],color:'var(--cyan)'},
+
+    // === RESEARCH ===
+    {name:'Filings Feed',href:'/filings-feed/',desc:'Raw chronological SEC filing feed with form type and ticker mapping.',cat:'Research',tags:['filings','sec','feed','raw'],color:'var(--purple)'},
+    {name:'SEC Filings',href:'/sec-filings/',desc:'Search and browse SEC filings by form type, ticker, or date range.',cat:'Research',tags:['sec','filings','search','browse'],color:'var(--purple)'},
+    {name:'Late Filings',href:'/late-filings/',desc:'Companies that missed SEC filing deadlines — potential red flag scanner.',cat:'Research',tags:['late','delinquent','red-flag'],color:'var(--red)'},
+    {name:'Congress Trades',href:'/congress/',desc:'Congressional stock trading activity tracked from STOCK Act disclosures.',cat:'Research',tags:['congress','politician','stock-act'],color:'var(--purple)'},
+    {name:'Options Flow',href:'/options-flow/',desc:'Unusual options activity correlated with catalyst signals.',cat:'Research',tags:['options','flow','unusual','calls','puts'],color:'var(--purple)'},
+    {name:'News Momentum',href:'/news/',desc:'Bloomberg-style headline aggregation with sector momentum scoring.',cat:'Research',tags:['news','headlines','momentum'],color:'var(--purple)'},
+    {name:'Archive',href:'/archive/',desc:'Historical daily top 10 picks with full scoring data by date.',cat:'Research',tags:['archive','history','daily','past'],color:'var(--purple)'},
+    {name:'Winners Hall',href:'/winners/',desc:'All-time leaderboard — which tickers appeared most as top picks.',cat:'Research',tags:['winners','leaderboard','all-time','hall-of-fame'],color:'var(--gold)'},
+    {name:'Daily Digest',href:'/digest/',desc:'Morning briefing aggregating signals, sectors, filings, and the top pick.',cat:'Research',tags:['digest','briefing','daily','summary'],color:'var(--purple)',featured:true},
+
+    // === TOOLS & APPS ===
+    {name:'Watchlist',href:'/watchlist-app/',desc:'Build and track your personal catalyst watchlist. Synced to localStorage.',cat:'Tools & Apps',tags:['watchlist','track','personal','save'],color:'var(--orange)',featured:true},
+    {name:'Paper Simulator',href:'/simulator/',desc:'Paper trade with virtual money using live catalyst signals.',cat:'Tools & Apps',tags:['simulator','paper-trade','virtual','game'],color:'var(--orange)'},
+    {name:'Predictions',href:'/predict/',desc:'Bet virtual currency on ticker outcomes. See what others are betting.',cat:'Tools & Apps',tags:['predict','bet','game','social','polymarket'],color:'var(--orange)'},
+    {name:'Alerts Setup',href:'/alerts/',desc:'Configure email and push alerts for your watched signals and tickers.',cat:'Tools & Apps',tags:['alerts','notifications','email','push'],color:'var(--orange)'},
+    {name:'Watchlist (Legacy)',href:'/watchlist/',desc:'Original watchlist interface — still functional, newer version above.',cat:'Tools & Apps',tags:['watchlist','legacy'],color:'var(--muted)'},
+
+    // === EDUCATION ===
+    {name:'Glossary',href:'/glossary/',desc:'30+ term definitions: SEC forms, signal types, trading strategies.',cat:'Education',tags:['glossary','terms','definitions','learn'],color:'var(--gold)',featured:true},
+    {name:'Methodology',href:'/methodology/',desc:'How the catalyst scoring system works — weights, signals, ranking logic.',cat:'Education',tags:['methodology','scoring','how-it-works'],color:'var(--gold)'},
+    {name:'How to Trade 8-K',href:'/how-to-trade-8k/',desc:'Strategy guide for trading SEC 8-K catalyst events.',cat:'Education',tags:['8k','strategy','guide','trading'],color:'var(--gold)'},
+    {name:'Cheat Sheet',href:'/cheat-sheet/',desc:'Quick-reference card for all signal types, form types, and scoring.',cat:'Education',tags:['cheat-sheet','reference','quick','card'],color:'var(--gold)'},
+    {name:'Quiz',href:'/quiz/',desc:'Test your SEC and catalyst knowledge. 15 questions, scored with streaks.',cat:'Education',tags:['quiz','test','learn','game'],color:'var(--orange)'},
+
+    // === GLOSSARY DEEP DIVES ===
+    {name:'What is an 8-K?',href:'/glossary/what-is-8k/',desc:'Explainer on SEC Form 8-K current reports and why traders watch them.',cat:'Glossary Deep Dives',tags:['8k','sec','form','explainer'],color:'var(--dim)'},
+    {name:'What is Form 4?',href:'/glossary/what-is-form-4/',desc:'Insider transaction reporting — how to read and trade Form 4 filings.',cat:'Glossary Deep Dives',tags:['form-4','insider','filing'],color:'var(--dim)'},
+    {name:'How to Read Form 4',href:'/glossary/how-to-read-form-4/',desc:'Step-by-step walkthrough of Form 4 data fields and what matters.',cat:'Glossary Deep Dives',tags:['form-4','reading','tutorial'],color:'var(--dim)'},
+    {name:'How to Read SEC Filings',href:'/glossary/how-to-read-sec-filings/',desc:'General guide to navigating and extracting alpha from SEC filings.',cat:'Glossary Deep Dives',tags:['sec','filings','reading','guide'],color:'var(--dim)'},
+    {name:'What is Catalyst Score?',href:'/glossary/what-is-catalyst-score/',desc:'Deep dive into the catalyst scoring methodology and signal weights.',cat:'Glossary Deep Dives',tags:['catalyst','score','methodology'],color:'var(--dim)'},
+    {name:'What is Convergence Alert?',href:'/glossary/what-is-convergence-alert/',desc:'When multiple signals stack on one ticker — the convergence thesis.',cat:'Glossary Deep Dives',tags:['convergence','alert','multi-signal'],color:'var(--dim)'},
+    {name:'SEC Filing Types for Traders',href:'/glossary/sec-filing-types-for-traders/',desc:'Which SEC forms matter for trading and what each one signals.',cat:'Glossary Deep Dives',tags:['sec','forms','types','trading'],color:'var(--dim)'},
+    {name:'SEC Catalyst Trading Strategy',href:'/glossary/sec-catalyst-trading-strategy/',desc:'Complete strategy framework for catalyst-driven SEC filing trades.',cat:'Glossary Deep Dives',tags:['strategy','catalyst','sec','trading'],color:'var(--dim)'},
+    {name:'What is Short Squeeze?',href:'/glossary/what-is-short-squeeze/',desc:'Mechanics of short squeezes and how catalyst filings trigger them.',cat:'Glossary Deep Dives',tags:['squeeze','short','mechanics'],color:'var(--dim)'},
+    {name:'Short Squeeze Scanner',href:'/glossary/short-squeeze-scanner/',desc:'How to use the scanner to find squeeze setups before they fire.',cat:'Glossary Deep Dives',tags:['squeeze','scanner','setup'],color:'var(--dim)'},
+    {name:'What is Squeeze Play?',href:'/glossary/what-is-squeeze-play/',desc:'Difference between short squeeze and squeeze play — catalyst angle.',cat:'Glossary Deep Dives',tags:['squeeze','play','difference'],color:'var(--dim)'},
+    {name:'Insider Buying Signals',href:'/glossary/insider-buying-signals/',desc:'How to interpret insider buying clusters as a bullish signal.',cat:'Glossary Deep Dives',tags:['insider','buying','signal','bullish'],color:'var(--dim)'},
+    {name:'Dark Pool Signals',href:'/glossary/dark-pool-signals/',desc:'Reading dark pool prints for institutional positioning clues.',cat:'Glossary Deep Dives',tags:['darkpool','institutional','prints'],color:'var(--dim)'},
+    {name:'Convergence Alerts Guide',href:'/glossary/convergence-alerts/',desc:'How convergence detection works and why multi-signal tickers outperform.',cat:'Glossary Deep Dives',tags:['convergence','multi-signal','guide'],color:'var(--dim)'},
+    {name:'What is Deep Value?',href:'/glossary/what-is-deep-value-investing/',desc:'Deep value investing with a catalyst trigger — the CES approach.',cat:'Glossary Deep Dives',tags:['deep-value','investing','value'],color:'var(--dim)'},
+    {name:'What is SC 13D?',href:'/glossary/what-is-sc-13d/',desc:'Schedule 13D activist filings — when big players take 5%+ stakes.',cat:'Glossary Deep Dives',tags:['13d','activist','stake','filing'],color:'var(--dim)'},
+    {name:'What is S-3 Shelf?',href:'/glossary/what-is-s3-shelf-registration/',desc:'Shelf registrations and what they signal about future dilution risk.',cat:'Glossary Deep Dives',tags:['s-3','shelf','dilution','registration'],color:'var(--dim)'},
+    {name:'What is Lockup Expiration?',href:'/glossary/what-is-lockup-expiration/',desc:'IPO lockup periods and the selling pressure they create.',cat:'Glossary Deep Dives',tags:['lockup','ipo','expiration','selling'],color:'var(--dim)'},
+    {name:'What is Gap Up?',href:'/glossary/what-is-gap-up-stock/',desc:'Pre-market gap-ups, what causes them, and how to trade them.',cat:'Glossary Deep Dives',tags:['gap','premarket','gap-up'],color:'var(--dim)'},
+    {name:'Premarket Gap Scanner',href:'/glossary/premarket-gap-scanner/',desc:'How the gap scanner detects and scores pre-market catalyst gaps.',cat:'Glossary Deep Dives',tags:['gap','scanner','premarket'],color:'var(--dim)'},
+    {name:'What is Sympathy Play?',href:'/glossary/what-is-sympathy-play/',desc:'Sector sympathy chains — when one ticker moves, its peers follow.',cat:'Glossary Deep Dives',tags:['sympathy','sector','chain','play'],color:'var(--dim)'},
+    {name:'Congressional Stock Trading',href:'/glossary/congressional-stock-trading/',desc:'How politicians trade stocks and why their filings are worth watching.',cat:'Glossary Deep Dives',tags:['congress','politician','trading'],color:'var(--dim)'},
+    {name:'What is the STOCK Act?',href:'/glossary/what-is-stock-act/',desc:'The STOCK Act explained — congressional trading disclosure law.',cat:'Glossary Deep Dives',tags:['stock-act','law','congress','disclosure'],color:'var(--dim)'},
+    {name:'Free Stock Scanner',href:'/glossary/free-stock-scanner/',desc:'Why Catalyst Edge is the best free SEC-based stock scanner.',cat:'Glossary Deep Dives',tags:['free','scanner','comparison'],color:'var(--dim)'},
+    {name:'SEC Filing Scanner',href:'/glossary/sec-filing-scanner/',desc:'How our SEC filing scanner differs from basic EDGAR search.',cat:'Glossary Deep Dives',tags:['sec','scanner','edgar','filing'],color:'var(--dim)'},
+
+    // === PLATFORM ===
+    {name:'Pricing',href:'/pricing/',desc:'Plans and pricing — most tools are free. Pro features coming.',cat:'Platform',tags:['pricing','plans','pro','free'],color:'var(--gold)'},
+    {name:'Compare',href:'/compare/',desc:'See how Catalyst Edge stacks up against other stock scanners.',cat:'Platform',tags:['compare','vs','alternative','competitor'],color:'var(--gold)'},
+    {name:'API Access',href:'/api/',desc:'REST API documentation for programmatic access to catalyst data.',cat:'Platform',tags:['api','rest','developer','data'],color:'var(--gold)'},
+    {name:'Email Preview',href:'/preview/',desc:'Preview and subscribe to the free daily catalyst email at 4 AM ET.',cat:'Platform',tags:['email','subscribe','newsletter','preview'],color:'var(--gold)'},
+    {name:'Arcade',href:'/arcade/',desc:'Gamified trading challenges and catalyst prediction games.',cat:'Platform',tags:['arcade','game','challenge','fun'],color:'var(--orange)'}
+  ];
+
+  var CAT_ORDER = ['Core Scanners','Signal Dashboards','Analytics','Research','Tools & Apps','Education','Glossary Deep Dives','Platform'];
+  var CAT_ICONS = {
+    'Core Scanners':'\u25C9','Signal Dashboards':'\u26A1','Analytics':'\u2B21',
+    'Research':'\u2315','Tools & Apps':'\u2692','Education':'\u2605',
+    'Glossary Deep Dives':'\u2139','Platform':'\u229B'
+  };
+  var CAT_COLORS = {
+    'Core Scanners':'var(--gold)','Signal Dashboards':'var(--green)','Analytics':'var(--cyan)',
+    'Research':'var(--purple)','Tools & Apps':'var(--orange)','Education':'var(--gold)',
+    'Glossary Deep Dives':'var(--dim)','Platform':'var(--gold)'
+  };
+
+  var sectionsEl = document.getElementById('sections');
+  var catNavEl = document.getElementById('cat-nav');
+  var searchEl = document.getElementById('search');
+  var noResults = document.getElementById('no-results');
+  var activeCat = 'all';
+
+  // Stats
+  document.getElementById('s-tools').textContent = TOOLS.length;
+  document.getElementById('s-cats').textContent = CAT_ORDER.length;
+  document.getElementById('s-free').textContent = TOOLS.length;
+  document.getElementById('tool-count').textContent = TOOLS.length + ' tools & resources';
+
+  function el(tag, cls, text) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text) e.textContent = text;
+    return e;
+  }
+
+  // Build category nav
+  var allBtn = el('button', 'cat-btn active', 'All');
+  allBtn.dataset.cat = 'all';
+  allBtn.addEventListener('click', function(){ filterCat('all'); });
+  catNavEl.appendChild(allBtn);
+
+  CAT_ORDER.forEach(function(cat) {
+    var count = TOOLS.filter(function(t){return t.cat === cat}).length;
+    var btn = el('button', 'cat-btn', cat + ' (' + count + ')');
+    btn.dataset.cat = cat;
+    btn.addEventListener('click', function(){ filterCat(cat); });
+    catNavEl.appendChild(btn);
+  });
+
+  function renderSections(filter) {
+    sectionsEl.textContent = '';
+    var anyVisible = false;
+
+    CAT_ORDER.forEach(function(cat) {
+      if (activeCat !== 'all' && activeCat !== cat) return;
+
+      var tools = TOOLS.filter(function(t) {
+        if (t.cat !== cat) return false;
+        if (!filter) return true;
+        var q = filter.toLowerCase();
+        return t.name.toLowerCase().indexOf(q) !== -1 ||
+               t.desc.toLowerCase().indexOf(q) !== -1 ||
+               t.tags.some(function(tag){return tag.indexOf(q) !== -1}) ||
+               t.cat.toLowerCase().indexOf(q) !== -1;
+      });
+
+      if (tools.length === 0) return;
+      anyVisible = true;
+
+      var section = el('div', 'section');
+      section.dataset.cat = cat;
+
+      var head = el('div', 'section-head');
+      var icon = el('div', 'section-icon');
+      icon.textContent = CAT_ICONS[cat] || '\u2022';
+      icon.style.background = 'rgba(212,168,67,.08)';
+      icon.style.color = CAT_COLORS[cat] || 'var(--gold)';
+      head.appendChild(icon);
+      head.appendChild(el('span', 'section-title', cat));
+      head.appendChild(el('span', 'section-count', tools.length + ' tools'));
+      section.appendChild(head);
+
+      var grid = el('div', 'grid');
+
+      tools.forEach(function(t) {
+        var link = document.createElement('a');
+        link.href = t.href;
+        link.className = 'card';
+        link.style.setProperty('--card-accent', t.color || 'var(--gold)');
+        link.querySelector; // force layout
+        var before = 'background:linear-gradient(90deg,' + (t.color || 'var(--gold)') + ',' + (t.color || 'var(--gold)') + '40)';
+        link.style.cssText = '--before-bg:' + (t.color || 'var(--gold)');
+
+        // Inject ::before color via inline style on pseudo
+        var styleTag = document.createElement('style');
+        var uid = 'c' + Math.random().toString(36).substr(2,6);
+        link.classList.add(uid);
+        styleTag.textContent = '.' + uid + '::before{background:linear-gradient(90deg,' + (t.color || 'var(--gold)') + ',' + (t.color || 'var(--gold)') + '40)}';
+        link.appendChild(styleTag);
+
+        var nameRow = el('div', 'card-name');
+        nameRow.appendChild(document.createTextNode(t.name));
+        if (t.featured) {
+          var badge = el('span', 'badge');
+          badge.textContent = 'Popular';
+          badge.style.background = 'rgba(34,197,94,.12)';
+          badge.style.color = 'var(--green)';
+          nameRow.appendChild(badge);
+        }
+        link.appendChild(nameRow);
+        link.appendChild(el('div', 'card-desc', t.desc));
+
+        var tagsRow = el('div', 'card-tags');
+        t.tags.slice(0, 4).forEach(function(tag) {
+          tagsRow.appendChild(el('span', 'card-tag', tag));
+        });
+        link.appendChild(tagsRow);
+
+        grid.appendChild(link);
+      });
+
+      section.appendChild(grid);
+      sectionsEl.appendChild(section);
+    });
+
+    noResults.className = anyVisible ? 'no-results hidden' : 'no-results';
+  }
+
+  function filterCat(cat) {
+    activeCat = cat;
+    Array.from(catNavEl.children).forEach(function(btn) {
+      btn.className = 'cat-btn' + (btn.dataset.cat === cat ? ' active' : '');
+    });
+    renderSections(searchEl.value);
+  }
+
+  var debounceTimer;
+  searchEl.addEventListener('input', function() {
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(function() {
+      renderSections(searchEl.value);
+    }, 150);
+  });
+
+  renderSections('');
+})();
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KV1VDK22VC"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-KV1VDK22VC');</script>
+</body>
+</html>

@@ -1,0 +1,847 @@
+{
+  "TV": {
+    "ticker": "TV",
+    "price": 2.9200000762939453,
+    "source": "yfinance",
+    "sweep_count": 0,
+    "call_sweeps": 0,
+    "put_sweeps": 0,
+    "top_sweeps": [],
+    "flow": {
+      "call_volume": 2,
+      "put_volume": 1,
+      "cp_ratio": 2.0,
+      "sentiment": "BULLISH"
+    },
+    "gamma_magnet": {
+      "strike": 5.0,
+      "volume": 3
+    },
+    "velocity": 8.0,
+    "signals": [
+      "BULL_FLOW(2.0x)"
+    ],
+    "ts": "2026-04-27T22:52:28.173620+00:00"
+  },
+  "CBNK": {
+    "ticker": "CBNK",
+    "price": 31.81999969482422,
+    "source": "yfinance",
+    "sweep_count": 0,
+    "call_sweeps": 0,
+    "put_sweeps": 0,
+    "top_sweeps": [],
+    "flow": {
+      "call_volume": 0,
+      "put_volume": 1,
+      "cp_ratio": 0.0,
+      "sentiment": "BEARISH"
+    },
+    "gamma_magnet": {
+      "strike": 25.0,
+      "volume": 1
+    },
+    "velocity": -8.0,
+    "signals": [
+      "BEAR_FLOW(0.00x)"
+    ],
+    "ts": "2026-04-27T22:52:33.215776+00:00"
+  },
+  "UHT": {
+    "ticker": "UHT",
+    "price": 40.86000061035156,
+    "source": "yfinance",
+    "sweep_count": 0,
+    "call_sweeps": 0,
+    "put_sweeps": 0,
+    "top_sweeps": [],
+    "flow": {
+      "call_volume": 0,
+      "put_volume": 7,
+      "cp_ratio": 0.0,
+      "sentiment": "BEARISH"
+    },
+    "gamma_magnet": {
+      "strike": 35.0,
+      "volume": 5
+    },
+    "velocity": -8.0,
+    "signals": [
+      "BEAR_FLOW(0.00x)"
+    ],
+    "ts": "2026-04-27T22:52:39.727591+00:00"
+  },
+  "FBK": {
+    "ticker": "FBK",
+    "price": 54.310001373291016,
+    "source": "yfinance",
+    "sweep_count": 0,
+    "call_sweeps": 0,
+    "put_sweeps": 0,
+    "top_sweeps": [],
+    "flow": {
+      "call_volume": 1,
+      "put_volume": 1,
+      "cp_ratio": 1.0,
+      "sentiment": "NEUTRAL"
+    },
+    "gamma_magnet": {
+      "strike": 50.0,
+      "volume": 1
+    },
+    "velocity": 0.0,
+    "signals": [],
+    "ts": "2026-04-27T22:52:40.936394+00:00"
+  },
+  "RNGR": {
+    "ticker": "RNGR",
+    "price": 18.43000030517578,
+    "source": "yfinance",
+    "sweep_count": 0,
+    "call_sweeps": 0,
+    "put_sweeps": 0,
+    "top_sweeps": [],
+    "flow": {
+      "call_volume": 7,
+      "put_volume": 2,
+      "cp_ratio": 3.5,
+      "sentiment": "BULLISH"
+    },
+    "gamma_magnet": {
+      "strike": 20.0,
+      "volume": 6
+    },
+    "velocity": 8.0,
+    "signals": [
+      "BULL_FLOW(3.5x)"
+    ],
+    "ts": "2026-04-27T22:52:46.926637+00:00"
+  },
+  "CCK": {
+    "ticker": "CCK",
+    "price": 101.61000061035156,
+    "source": "yfinance",
+    "sweep_count": 1,
+    "call_sweeps": 1,
+    "put_sweeps": 0,
+    "top_sweeps": [
+      {
+        "contractSymbol": "CCK260515C00105000",
+        "strike": 105.0,
+        "volume": 1719,
+        "openInterest": 45,
+        "ratio": 38.2,
+        "iv": 0.4724
+      }
+    ],
+    "flow": {
+      "call_volume": 1787,
+      "put_volume": 128,
+      "cp_ratio": 13.961,
+      "sentiment": "BULLISH"
+    },
+    "gamma_magnet": {
+      "strike": 105.0,
+      "volume": 1743
+    },
+    "velocity": 23.0,
+    "signals": [
+      "SWEEP\u00d71",
+      "BULL_FLOW(14.0x)"
+    ],
+    "ts": "2026-04-27T22:52:48.215590+00:00"
+  },
+  "CTOS": {
+    "ticker": "CTOS",
+    "price": 8.779999732971191,
+    "source": "yfinance",
+    "sweep_count": 0,
+    "call_sweeps": 0,
+    "put_sweeps": 0,
+    "top_sweeps": [],
+    "flow": {
+      "call_volume": 14,
+      "put_volume": 2,
+      "cp_ratio": 7.0,
+      "sentiment": "BULLISH"
+    },
+    "gamma_magnet": {
+      "strike": 7.5,
+      "volume": 13
+    },
+    "velocity": 8.0,
+    "signals": [
+      "BULL_FLOW(7.0x)"
+    ],
+    "ts": "2026-04-27T22:52:48.802505+00:00"
+  },
+  "BAH": {
+    "ticker": "BAH",
+    "price": 76.19000244140625,
+    "source": "yfinance",
+    "sweep_count": 0,
+    "call_sweeps": 0,
+    "put_sweeps": 0,
+    "top_sweeps": [],
+    "flow": {
+      "call_volume": 31,
+      "put_volume": 269,
+      "cp_ratio": 0.115,
+      "sentiment": "BEARISH"
+    },
+    "gamma_magnet": {
+      "strike": 75.0,
+      "volume": 161
+    },
+    "velocity": -8.0,
+    "signals": [
+      "BEAR_FLOW(0.12x)"
+    ],
+    "ts": "2026-04-27T22:52:49.917441+00:00"
+  },
+  "GABC": {
+    "ticker": "GABC",
+    "price": 43.93000030517578,
+    "source": "yfinance",
+    "sweep_count": 0,
+    "call_sweeps": 0,
+    "put_sweeps": 0,
+    "top_sweeps": [],
+    "flow": {
+      "call_volume": 4,
+      "put_volume": 9,
+      "cp_ratio": 0.444,
+      "sentiment": "BEARISH"
+    },
+    "gamma_magnet": {
+      "strike": 45.0,
+      "volume": 10
+    },
+    "velocity": -8.0,
+    "signals": [
+      "BEAR_FLOW(0.44x)"
+    ],
+    "ts": "2026-04-27T22:52:33.747634+00:00"
+  },
+  "SUI": {
+    "ticker": "SUI",
+    "price": 127.63999938964844,
+    "source": "yfinance",
+    "sweep_count": 0,
+    "call_sweeps": 0,
+    "put_sweeps": 0,
+    "top_sweeps": [],
+    "flow": {
+      "call_volume": 19,
+      "put_volume": 27,
+      "cp_ratio": 0.704,
+      "sentiment": "NEUTRAL"
+    },
+    "gamma_magnet": {
+      "strike": 130.0,
+      "volume": 18
+    },
+    "velocity": 0.0,
+    "signals": [],
+    "ts": "2026-04-27T22:52:43.483242+00:00"
+  },
+  "TRUP": {
+    "ticker": "TRUP",
+    "price": 27.25,
+    "source": "yfinance",
+    "sweep_count": 0,
+    "call_sweeps": 0,
+    "put_sweeps": 0,
+    "top_sweeps": [],
+    "flow": {
+      "call_volume": 46,
+      "put_volume": 68,
+      "cp_ratio": 0.676,
+      "sentiment": "NEUTRAL"
+    },
+    "gamma_magnet": {
+      "strike": 15.0,
+      "volume": 20
+    },
+    "velocity": 0.0,
+    "signals": [],
+    "ts": "2026-04-27T22:52:31.417756+00:00"
+  },
+  "CI": {
+    "ticker": "CI",
+    "price": 282.5799865722656,
+    "source": "yfinance",
+    "sweep_count": 0,
+    "call_sweeps": 0,
+    "put_sweeps": 0,
+    "top_sweeps": [],
+    "flow": {
+      "call_volume": 250,
+      "put_volume": 139,
+      "cp_ratio": 1.799,
+      "sentiment": "BULLISH"
+    },
+    "gamma_magnet": {
+      "strike": 280.0,
+      "volume": 45
+    },
+    "velocity": 8.0,
+    "signals": [
+      "BULL_FLOW(1.8x)"
+    ],
+    "ts": "2026-04-27T22:52:44.419821+00:00"
+  },
+  "CDP": {
+    "ticker": "CDP",
+    "price": 32.31999969482422,
+    "source": "yfinance",
+    "sweep_count": 0,
+    "call_sweeps": 0,
+    "put_sweeps": 0,
+    "top_sweeps": [],
+    "flow": {
+      "call_volume": 1,
+      "put_volume": 0,
+      "cp_ratio": 999.0,
+      "sentiment": "BULLISH"
+    },
+    "gamma_magnet": {
+      "strike": 30.0,
+      "volume": 1
+    },
+    "velocity": 8.0,
+    "signals": [
+      "BULL_FLOW(999.0x)"
+    ],
+    "ts": "2026-04-27T22:52:45.523133+00:00"
+  },
+  "ASTE": {
+    "ticker": "ASTE",
+    "price": 58.75,
+    "source": "yfinance",
+    "sweep_count": 0,
+    "call_sweeps": 0,
+    "put_sweeps": 0,
+    "top_sweeps": [],
+    "flow": {
+      "call_volume": 2,
+      "put_volume": 0,
+      "cp_ratio": 999.0,
+      "sentiment": "BULLISH"
+    },
+    "gamma_magnet": {
+      "strike": 50.0,
+      "volume": 1
+    },
+    "velocity": 8.0,
+    "signals": [
+      "BULL_FLOW(999.0x)"
+    ],
+    "ts": "2026-04-27T22:52:49.366563+00:00"
+  },
+  "ARE": {
+    "ticker": "ARE",
+    "price": 45.560001373291016,
+    "source": "yfinance",
+    "sweep_count": 1,
+    "call_sweeps": 0,
+    "put_sweeps": 1,
+    "top_sweeps": [
+      {
+        "contractSymbol": "ARE260515P00035000",
+        "strike": 35.0,
+        "volume": 154,
+        "openInterest": 33,
+        "ratio": 4.67,
+        "iv": 0.6289
+      }
+    ],
+    "flow": {
+      "call_volume": 604,
+      "put_volume": 639,
+      "cp_ratio": 0.945,
+      "sentiment": "NEUTRAL"
+    },
+    "gamma_magnet": {
+      "strike": 50.0,
+      "volume": 379
+    },
+    "velocity": 15.0,
+    "signals": [
+      "SWEEP\u00d71"
+    ],
+    "ts": "2026-04-27T22:52:30.292315+00:00"
+  },
+  "CME": {
+    "ticker": "CME",
+    "price": 281.94000244140625,
+    "source": "yfinance",
+    "sweep_count": 0,
+    "call_sweeps": 0,
+    "put_sweeps": 0,
+    "top_sweeps": [],
+    "flow": {
+      "call_volume": 131,
+      "put_volume": 171,
+      "cp_ratio": 0.766,
+      "sentiment": "NEUTRAL"
+    },
+    "gamma_magnet": {
+      "strike": 292.5,
+      "volume": 51
+    },
+    "velocity": 0.0,
+    "signals": [],
+    "ts": "2026-04-27T22:52:42.170450+00:00"
+  },
+  "CBSH": {
+    "ticker": "CBSH",
+    "price": 51.02000045776367,
+    "source": "yfinance",
+    "sweep_count": 0,
+    "call_sweeps": 0,
+    "put_sweeps": 0,
+    "top_sweeps": [],
+    "flow": {
+      "call_volume": 37,
+      "put_volume": 7,
+      "cp_ratio": 5.286,
+      "sentiment": "BULLISH"
+    },
+    "gamma_magnet": {
+      "strike": 30.0,
+      "volume": 20
+    },
+    "velocity": 8.0,
+    "signals": [
+      "BULL_FLOW(5.3x)"
+    ],
+    "ts": "2026-04-27T22:52:32.037332+00:00"
+  },
+  "UTZ": {
+    "ticker": "UTZ",
+    "price": 7.800000190734863,
+    "source": "yfinance",
+    "sweep_count": 0,
+    "call_sweeps": 0,
+    "put_sweeps": 0,
+    "top_sweeps": [],
+    "flow": {
+      "call_volume": 26,
+      "put_volume": 67,
+      "cp_ratio": 0.388,
+      "sentiment": "BEARISH"
+    },
+    "gamma_magnet": {
+      "strike": 5.0,
+      "volume": 47
+    },
+    "velocity": -8.0,
+    "signals": [
+      "BEAR_FLOW(0.39x)"
+    ],
+    "ts": "2026-04-27T22:52:51.621299+00:00"
+  },
+  "BRO": {
+    "ticker": "BRO",
+    "price": 66.12000274658203,
+    "source": "yfinance",
+    "sweep_count": 0,
+    "call_sweeps": 0,
+    "put_sweeps": 0,
+    "top_sweeps": [],
+    "flow": {
+      "call_volume": 2004,
+      "put_volume": 202,
+      "cp_ratio": 9.921,
+      "sentiment": "BULLISH"
+    },
+    "gamma_magnet": {
+      "strike": 70.0,
+      "volume": 1189
+    },
+    "velocity": 8.0,
+    "signals": [
+      "BULL_FLOW(9.9x)"
+    ],
+    "ts": "2026-04-27T22:52:28.850854+00:00"
+  },
+  "LC": {
+    "ticker": "LC",
+    "price": 17.18000030517578,
+    "source": "yfinance",
+    "sweep_count": 4,
+    "call_sweeps": 4,
+    "put_sweeps": 3,
+    "top_sweeps": [
+      {
+        "contractSymbol": "LC260515C00022000",
+        "strike": 22.0,
+        "volume": 2449,
+        "openInterest": 287,
+        "ratio": 8.53,
+        "iv": 0.8438
+      },
+      {
+        "contractSymbol": "LC260515P00011000",
+        "strike": 11.0,
+        "volume": 231,
+        "openInterest": 6,
+        "ratio": 38.5,
+        "iv": 1.1797
+      },
+      {
+        "contractSymbol": "LC260515P00016000",
+        "strike": 16.0,
+        "volume": 1776,
+        "openInterest": 210,
+        "ratio": 8.46,
+        "iv": 0.8311
+      }
+    ],
+    "flow": {
+      "call_volume": 4504,
+      "put_volume": 6137,
+      "cp_ratio": 0.734,
+      "sentiment": "NEUTRAL"
+    },
+    "gamma_magnet": {
+      "strike": 22.0,
+      "volume": 2451
+    },
+    "velocity": 15.0,
+    "signals": [
+      "SWEEP\u00d74"
+    ],
+    "ts": "2026-04-27T22:52:46.093819+00:00"
+  },
+  "VTR": {
+    "ticker": "VTR",
+    "price": 84.69999694824219,
+    "source": "yfinance",
+    "sweep_count": 0,
+    "call_sweeps": 0,
+    "put_sweeps": 0,
+    "top_sweeps": [],
+    "flow": {
+      "call_volume": 246,
+      "put_volume": 230,
+      "cp_ratio": 1.07,
+      "sentiment": "NEUTRAL"
+    },
+    "gamma_magnet": {
+      "strike": 85.0,
+      "volume": 84
+    },
+    "velocity": 0.0,
+    "signals": [],
+    "ts": "2026-04-27T22:52:42.860899+00:00"
+  },
+  "KRC": {
+    "ticker": "KRC",
+    "price": 32.720001220703125,
+    "source": "yfinance",
+    "sweep_count": 0,
+    "call_sweeps": 0,
+    "put_sweeps": 0,
+    "top_sweeps": [],
+    "flow": {
+      "call_volume": 126,
+      "put_volume": 24,
+      "cp_ratio": 5.25,
+      "sentiment": "BULLISH"
+    },
+    "gamma_magnet": {
+      "strike": 32.5,
+      "volume": 89
+    },
+    "velocity": 8.0,
+    "signals": [
+      "BULL_FLOW(5.2x)"
+    ],
+    "ts": "2026-04-27T22:52:32.632383+00:00"
+  },
+  "NOA": {
+    "ticker": "NOA",
+    "price": 14.34000015258789,
+    "source": "yfinance",
+    "sweep_count": 0,
+    "call_sweeps": 0,
+    "put_sweeps": 0,
+    "top_sweeps": [],
+    "flow": {
+      "call_volume": 38,
+      "put_volume": 28,
+      "cp_ratio": 1.357,
+      "sentiment": "NEUTRAL"
+    },
+    "gamma_magnet": {
+      "strike": 15.0,
+      "volume": 20
+    },
+    "velocity": 0.0,
+    "signals": [],
+    "ts": "2026-04-27T22:52:30.874025+00:00"
+  },
+  "KINS": {
+    "ticker": "KINS",
+    "price": 17.530000686645508,
+    "source": "yfinance",
+    "sweep_count": 0,
+    "call_sweeps": 0,
+    "put_sweeps": 0,
+    "top_sweeps": [],
+    "flow": {
+      "call_volume": 395,
+      "put_volume": 11,
+      "cp_ratio": 35.909,
+      "sentiment": "BULLISH"
+    },
+    "gamma_magnet": {
+      "strike": 20.0,
+      "volume": 370
+    },
+    "velocity": 8.0,
+    "signals": [
+      "BULL_FLOW(35.9x)"
+    ],
+    "ts": "2026-04-27T22:52:38.166127+00:00"
+  },
+  "MATX": {
+    "ticker": "MATX",
+    "price": 176.72999572753906,
+    "source": "yfinance",
+    "sweep_count": 0,
+    "call_sweeps": 0,
+    "put_sweeps": 0,
+    "top_sweeps": [],
+    "flow": {
+      "call_volume": 46,
+      "put_volume": 45,
+      "cp_ratio": 1.022,
+      "sentiment": "NEUTRAL"
+    },
+    "gamma_magnet": {
+      "strike": 145.0,
+      "volume": 40
+    },
+    "velocity": 0.0,
+    "signals": [],
+    "ts": "2026-04-27T22:52:50.517233+00:00"
+  },
+  "WABC": {
+    "ticker": "WABC",
+    "price": 54.88999938964844,
+    "source": "yfinance",
+    "sweep_count": 0,
+    "call_sweeps": 0,
+    "put_sweeps": 0,
+    "top_sweeps": [],
+    "flow": {
+      "call_volume": 3,
+      "put_volume": 0,
+      "cp_ratio": 999.0,
+      "sentiment": "BULLISH"
+    },
+    "gamma_magnet": {
+      "strike": 55.0,
+      "volume": 3
+    },
+    "velocity": 8.0,
+    "signals": [
+      "BULL_FLOW(999.0x)"
+    ],
+    "ts": "2026-04-27T22:52:39.021399+00:00"
+  },
+  "SRTA": {
+    "ticker": "SRTA",
+    "price": 4.949999809265137,
+    "source": "yfinance",
+    "sweep_count": 0,
+    "call_sweeps": 0,
+    "put_sweeps": 0,
+    "top_sweeps": [],
+    "flow": {
+      "call_volume": 10,
+      "put_volume": 80,
+      "cp_ratio": 0.125,
+      "sentiment": "BEARISH"
+    },
+    "gamma_magnet": {
+      "strike": 2.5,
+      "volume": 75
+    },
+    "velocity": -8.0,
+    "signals": [
+      "BEAR_FLOW(0.12x)"
+    ],
+    "ts": "2026-04-27T22:52:47.469003+00:00"
+  },
+  "LU": {
+    "ticker": "LU",
+    "price": 1.899999976158142,
+    "source": "yfinance",
+    "sweep_count": 0,
+    "call_sweeps": 0,
+    "put_sweeps": 0,
+    "top_sweeps": [],
+    "flow": {
+      "call_volume": 106,
+      "put_volume": 5,
+      "cp_ratio": 21.2,
+      "sentiment": "BULLISH"
+    },
+    "gamma_magnet": {
+      "strike": 2.0,
+      "volume": 110
+    },
+    "velocity": 8.0,
+    "signals": [
+      "BULL_FLOW(21.2x)"
+    ],
+    "ts": "2026-04-27T22:52:29.392394+00:00"
+  },
+  "SEI": {
+    "ticker": "SEI",
+    "price": 70.62999725341797,
+    "source": "yfinance",
+    "sweep_count": 3,
+    "call_sweeps": 2,
+    "put_sweeps": 1,
+    "top_sweeps": [
+      {
+        "contractSymbol": "SEI260515C00067500",
+        "strike": 67.5,
+        "volume": 370,
+        "openInterest": 60,
+        "ratio": 6.17,
+        "iv": 1.1533
+      },
+      {
+        "contractSymbol": "SEI260515C00080000",
+        "strike": 80.0,
+        "volume": 3716,
+        "openInterest": 1007,
+        "ratio": 3.69,
+        "iv": 1.1519
+      },
+      {
+        "contractSymbol": "SEI260515P00065000",
+        "strike": 65.0,
+        "volume": 2426,
+        "openInterest": 667,
+        "ratio": 3.64,
+        "iv": 1.1133
+      }
+    ],
+    "flow": {
+      "call_volume": 5343,
+      "put_volume": 4575,
+      "cp_ratio": 1.168,
+      "sentiment": "NEUTRAL"
+    },
+    "gamma_magnet": {
+      "strike": 80.0,
+      "volume": 3717
+    },
+    "velocity": 15.0,
+    "signals": [
+      "SWEEP\u00d73"
+    ],
+    "ts": "2026-04-27T22:52:52.731234+00:00"
+  },
+  "USAU": {
+    "ticker": "USAU",
+    "price": 16.170000076293945,
+    "source": "yfinance",
+    "sweep_count": 0,
+    "call_sweeps": 0,
+    "put_sweeps": 0,
+    "top_sweeps": [],
+    "flow": {
+      "call_volume": 53,
+      "put_volume": 16,
+      "cp_ratio": 3.312,
+      "sentiment": "BULLISH"
+    },
+    "gamma_magnet": {
+      "strike": 22.5,
+      "volume": 14
+    },
+    "velocity": 8.0,
+    "signals": [
+      "BULL_FLOW(3.3x)"
+    ],
+    "ts": "2026-04-27T22:52:53.311374+00:00"
+  },
+  "HLMN": {
+    "ticker": "HLMN",
+    "price": 8.779999732971191,
+    "source": "yfinance",
+    "sweep_count": 0,
+    "call_sweeps": 0,
+    "put_sweeps": 0,
+    "top_sweeps": [],
+    "flow": {
+      "call_volume": 6,
+      "put_volume": 3,
+      "cp_ratio": 2.0,
+      "sentiment": "BULLISH"
+    },
+    "gamma_magnet": {
+      "strike": 7.5,
+      "volume": 5
+    },
+    "velocity": 8.0,
+    "signals": [
+      "BULL_FLOW(2.0x)"
+    ],
+    "ts": "2026-04-27T22:52:54.102956+00:00"
+  },
+  "SKY": {
+    "ticker": "SKY",
+    "price": 80.9000015258789,
+    "source": "yfinance",
+    "sweep_count": 0,
+    "call_sweeps": 0,
+    "put_sweeps": 0,
+    "top_sweeps": [],
+    "flow": {
+      "call_volume": 232,
+      "put_volume": 43,
+      "cp_ratio": 5.395,
+      "sentiment": "BULLISH"
+    },
+    "gamma_magnet": {
+      "strike": 90.0,
+      "volume": 206
+    },
+    "velocity": 8.0,
+    "signals": [
+      "BULL_FLOW(5.4x)"
+    ],
+    "ts": "2026-04-27T22:52:54.719910+00:00"
+  },
+  "MLM": {
+    "ticker": "MLM",
+    "price": 609.75,
+    "source": "yfinance",
+    "sweep_count": 0,
+    "call_sweeps": 0,
+    "put_sweeps": 0,
+    "top_sweeps": [],
+    "flow": {
+      "call_volume": 12,
+      "put_volume": 13,
+      "cp_ratio": 0.923,
+      "sentiment": "NEUTRAL"
+    },
+    "gamma_magnet": {
+      "strike": 600.0,
+      "volume": 4
+    },
+    "velocity": 0.0,
+    "signals": [],
+    "ts": "2026-04-27T22:52:55.644711+00:00"
+  }
+}

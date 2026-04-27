@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Paper Trade Simulator — Test Catalyst Picks | Catalyst Edge</title>
+<meta name="description" content="Paper trade catalyst picks with zero risk. Build a virtual portfolio from scanner picks, track hypothetical gains, and compete for the highest score.">
+<meta property="og:title" content="Paper Trade Simulator — Catalyst Edge">
+<link rel="canonical" href="https://catalystedgescanner.com/simulator/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#070a12;--surface:#0f1420;--surface2:#151c2c;--gold:#d4a843;--green:#22c55e;--red:#ef4444;--cyan:#06b6d4;--text:#e2e8f0;--dim:#94a3b8;--muted:#64748b;--border:#1e293b;--purple:#a855f7}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
+.wrap{max-width:960px;margin:0 auto;padding:1.5rem}
+.nav{position:sticky;top:0;z-index:100;background:rgba(7,10,18,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:.75rem 1.5rem;display:flex;align-items:center;gap:1rem}
+.nav a{color:var(--gold);font-weight:600;font-size:.95rem}
+.nav .sep{color:var(--muted)}
+.hero{text-align:center;padding:2rem 0 1.5rem;border-bottom:1px solid var(--border);margin-bottom:1.5rem}
+.hero h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:800;margin-bottom:.4rem}
+.hero h1 em{font-style:normal;color:var(--cyan)}
+.hero .sub{color:var(--dim);font-size:.85rem;max-width:520px;margin:0 auto}
+.portfolio-header{background:linear-gradient(135deg,var(--surface),rgba(6,182,212,.04));border:2px solid var(--border);border-radius:14px;padding:1.5rem;margin-bottom:1.5rem}
+.ph-stats{display:flex;justify-content:center;gap:2.5rem;flex-wrap:wrap;margin-bottom:1rem}
+.ph-stat{text-align:center}
+.ph-val{font-size:1.6rem;font-weight:800;font-family:'IBM Plex Mono',monospace}
+.ph-lbl{font-size:.6rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.ph-bar{height:6px;border-radius:3px;background:var(--surface2);overflow:hidden}
+.ph-bar-fill{height:100%;border-radius:3px;transition:width .5s}
+.ph-bar-label{display:flex;justify-content:space-between;margin-top:.3rem;font-size:.6rem;color:var(--muted)}
+.add-section{margin:1.5rem 0}
+.add-section h3{font-size:.85rem;font-weight:700;margin-bottom:.5rem;color:var(--dim)}
+.pick-row{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:.5rem}
+.pick-chip{padding:5px 12px;border-radius:8px;border:1px solid var(--border);background:var(--surface);color:var(--gold);font-size:.8rem;font-weight:700;cursor:pointer;font-family:'Space Grotesk',sans-serif;transition:all .2s}
+.pick-chip:hover{border-color:var(--gold);background:rgba(212,168,67,.06)}
+.pick-chip.added{border-color:var(--green);color:var(--green);background:rgba(34,197,94,.06)}
+.manual-add{display:flex;gap:.4rem;margin-top:.5rem}
+.manual-add input{flex:1;max-width:200px;padding:.5rem .8rem;background:var(--surface);border:2px solid var(--border);border-radius:8px;color:var(--text);font-family:'Space Grotesk',sans-serif;font-size:.85rem;font-weight:700;text-transform:uppercase;outline:none}
+.manual-add input:focus{border-color:var(--cyan)}
+.manual-add input::placeholder{text-transform:none;font-weight:400;color:var(--muted)}
+.manual-add button{padding:.5rem 1rem;background:linear-gradient(135deg,var(--cyan),#67e8f9);color:#070a12;font-weight:700;border:none;border-radius:8px;cursor:pointer;font-family:'Space Grotesk',sans-serif;font-size:.8rem}
+.positions{margin:1.5rem 0}
+.pos-header{display:grid;grid-template-columns:70px 1fr 80px 80px 60px 40px;gap:.5rem;padding:.5rem .6rem;font-size:.58rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;border-bottom:2px solid var(--border)}
+.pos-row{display:grid;grid-template-columns:70px 1fr 80px 80px 60px 40px;gap:.5rem;padding:.6rem;border-bottom:1px solid rgba(30,41,59,.4);align-items:center;transition:background .15s}
+.pos-row:hover{background:rgba(6,182,212,.03)}
+.pos-ticker{font-size:.9rem;font-weight:800;color:var(--gold)}
+.pos-bar{height:5px;border-radius:3px;background:var(--surface2)}
+.pos-bar-fill{height:100%;border-radius:3px}
+.pos-val{font-size:.78rem;font-weight:700;font-family:'IBM Plex Mono',monospace;text-align:center}
+.pos-close{width:24px;height:24px;border-radius:50%;border:1px solid var(--border);background:none;color:var(--muted);font-size:.8rem;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.pos-close:hover{border-color:var(--red);color:var(--red)}
+.actions{display:flex;gap:.5rem;margin:1rem 0}
+.action-btn{padding:.5rem 1rem;border-radius:8px;border:1px solid var(--border);background:var(--surface);color:var(--dim);font-size:.75rem;font-weight:600;cursor:pointer;font-family:'Space Grotesk',sans-serif}
+.action-btn:hover{border-color:var(--gold);color:var(--gold)}
+.action-btn.danger:hover{border-color:var(--red);color:var(--red)}
+.empty{text-align:center;padding:2rem;color:var(--muted)}
+.cta-bar{background:var(--surface);border:1px solid var(--gold);border-radius:10px;padding:1.25rem;text-align:center;margin:2rem 0}
+.cta-bar h3{color:var(--gold);font-size:1rem;margin-bottom:.3rem}
+.cta-bar p{color:var(--dim);font-size:.8rem;margin-bottom:.75rem}
+.cta-bar a{display:inline-block;padding:.5rem 1.4rem;background:linear-gradient(135deg,var(--gold),#f1ce88);color:#070a12;font-weight:700;border-radius:6px;font-size:.85rem}
+.footer{text-align:center;padding:1.5rem;font-size:.72rem;color:var(--muted);border-top:1px solid var(--border);margin-top:2rem}
+.footer a{color:var(--muted)}
+@media(max-width:600px){.pos-header,.pos-row{grid-template-columns:60px 1fr 65px 65px 40px}.pos-header>:nth-child(5),.pos-row>:nth-child(5){display:none}}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Catalyst Edge Paper Trade Simulator","url":"https://catalystedgescanner.com/simulator/","description":"Paper trade catalyst scanner picks with zero risk. Build virtual portfolios and track hypothetical performance.","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<link rel="stylesheet" href="/lib/polish-tokens.css">
+</head>
+<body>
+<div class="nav">
+  <a href="/">Catalyst Edge</a>
+  <span class="sep">/</span>
+  <span style="color:var(--dim);font-size:.9rem">Paper Trade Simulator</span>
+</div>
+<div class="wrap">
+  <div class="hero">
+    <h1><em>Paper Trade</em> Simulator</h1>
+    <p class="sub">Pick tickers from the scanner, build a virtual portfolio, and track hypothetical catalyst scores. No money, no risk, pure signal.</p>
+  </div>
+
+  <div class="portfolio-header">
+    <div class="ph-stats">
+      <div class="ph-stat"><div class="ph-val" id="p-positions" style="color:var(--gold)">0</div><div class="ph-lbl">Positions</div></div>
+      <div class="ph-stat"><div class="ph-val" id="p-avg-score" style="color:var(--cyan)">0.0</div><div class="ph-lbl">Avg Score</div></div>
+      <div class="ph-stat"><div class="ph-val" id="p-total-score" style="color:var(--green)">0.0</div><div class="ph-lbl">Total Score</div></div>
+      <div class="ph-stat"><div class="ph-val" id="p-signals" style="color:var(--purple)">0</div><div class="ph-lbl">Active Signals</div></div>
+    </div>
+    <div class="ph-bar"><div class="ph-bar-fill" id="p-bar" style="width:0%;background:var(--gold)"></div></div>
+    <div class="ph-bar-label"><span>Portfolio Strength</span><span id="p-strength">0%</span></div>
+  </div>
+
+  <div class="add-section">
+    <h3>Quick Add from Today's Top Picks</h3>
+    <div class="pick-row" id="quick-picks">Loading picks...</div>
+    <div class="manual-add">
+      <input type="text" id="manual-input" placeholder="Or enter any ticker" maxlength="10" autocomplete="off">
+      <button id="manual-btn">Add Position</button>
+    </div>
+  </div>
+
+  <div class="positions">
+    <div class="pos-header">
+      <span>Ticker</span>
+      <span>Score Distribution</span>
+      <span>Score</span>
+      <span>Signals</span>
+      <span>Rank</span>
+      <span></span>
+    </div>
+    <div id="pos-grid"></div>
+  </div>
+
+  <div class="actions">
+    <button class="action-btn" id="refresh-btn">Refresh Scores</button>
+    <button class="action-btn danger" id="clear-btn">Clear All</button>
+  </div>
+
+  <div class="cta-bar">
+    <h3>Get pick alerts before market open</h3>
+    <p>Free daily email at 4 AM ET with ranked picks, convergence signals, and momentum shifts.</p>
+    <a href="/preview/">Subscribe Free</a>
+  </div>
+</div>
+<div class="footer">
+  &copy; 2026 Catalyst Edge &middot;
+  <a href="/">Scanner</a> &middot;
+  <a href="/rankings/">Rankings</a> &middot;
+  <a href="/screener/">Screener</a> &middot;
+  <a href="/spotlight/">Spotlight</a> &middot;
+  <a href="/lookup/">Lookup</a> &middot;
+  <a href="/winners/">Winners</a> &middot;
+  <a href="/momentum/">Momentum</a> &middot;
+  <a href="/digest/">Digest</a> &middot;
+  <a href="/watchlist-app/">Watchlist</a> &middot;
+  <a href="/glossary/">Glossary</a> &middot;
+  Not financial advice.
+</div>
+<script>
+(function(){
+  var posGrid = document.getElementById('pos-grid');
+  var quickPicks = document.getElementById('quick-picks');
+  var manualInput = document.getElementById('manual-input');
+  var manualBtn = document.getElementById('manual-btn');
+  var refreshBtn = document.getElementById('refresh-btn');
+  var clearBtn = document.getElementById('clear-btn');
+  var STORAGE_KEY = 'ce_simulator';
+
+  function el(tag, cls, text) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text) e.textContent = text;
+    return e;
+  }
+
+  function getPositions() {
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; }
+    catch(e) { return []; }
+  }
+
+  function savePositions(list) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+  }
+
+  function addPosition(ticker) {
+    ticker = ticker.toUpperCase().trim();
+    if (!ticker || ticker.length > 10) return;
+    var list = getPositions();
+    if (list.some(function(p){ return p.ticker === ticker; })) return;
+    list.push({
+      ticker: ticker,
+      added: new Date().toISOString().slice(0,10),
+      score: 0,
+      signals: 0,
+      rank: null
+    });
+    savePositions(list);
+    refreshAll();
+  }
+
+  function removePosition(ticker) {
+    var list = getPositions().filter(function(p){ return p.ticker !== ticker; });
+    savePositions(list);
+    refreshAll();
+  }
+
+  function updateStats(positions) {
+    var count = positions.length;
+    var totalScore = 0;
+    var totalSignals = 0;
+    positions.forEach(function(p) {
+      totalScore += parseFloat(p.score || 0);
+      totalSignals += parseInt(p.signals || 0);
+    });
+    var avgScore = count > 0 ? totalScore / count : 0;
+
+    document.getElementById('p-positions').textContent = count;
+    document.getElementById('p-avg-score').textContent = avgScore.toFixed(1);
+    document.getElementById('p-total-score').textContent = totalScore.toFixed(1);
+    document.getElementById('p-signals').textContent = totalSignals;
+
+    var maxPossible = count * 25;
+    var strength = maxPossible > 0 ? Math.min(Math.round((totalScore / maxPossible) * 100), 100) : 0;
+    document.getElementById('p-strength').textContent = strength + '%';
+    var bar = document.getElementById('p-bar');
+    bar.style.width = strength + '%';
+    bar.style.background = strength >= 70 ? 'var(--green)' : strength >= 40 ? 'var(--gold)' : 'var(--cyan)';
+  }
+
+  function renderPositions(positions) {
+    posGrid.textContent = '';
+    if (positions.length === 0) {
+      posGrid.appendChild(el('div', 'empty', 'No positions yet. Add tickers above to build your virtual portfolio.'));
+      return;
+    }
+
+    var maxScore = 1;
+    positions.forEach(function(p) { if (p.score > maxScore) maxScore = p.score; });
+
+    positions.sort(function(a, b) { return (b.score || 0) - (a.score || 0); });
+
+    positions.forEach(function(p) {
+      var row = el('div', 'pos-row');
+
+      var tickerLink = document.createElement('a');
+      tickerLink.href = '/lookup/#' + p.ticker;
+      tickerLink.className = 'pos-ticker';
+      tickerLink.textContent = p.ticker;
+      var tickerCell = el('span', '');
+      tickerCell.appendChild(tickerLink);
+      row.appendChild(tickerCell);
+
+      var barWrap = el('div', '');
+      var bar = el('div', 'pos-bar');
+      var fill = el('div', 'pos-bar-fill');
+      var pct = maxScore > 0 ? (p.score / maxScore) * 100 : 0;
+      fill.style.width = pct + '%';
+      fill.style.background = p.score >= 15 ? 'var(--green)' : p.score >= 8 ? 'var(--gold)' : 'var(--cyan)';
+      bar.appendChild(fill);
+      barWrap.appendChild(bar);
+      row.appendChild(barWrap);
+
+      var scoreEl = el('span', 'pos-val', String(p.score || '0'));
+      scoreEl.style.color = p.score >= 15 ? 'var(--green)' : p.score >= 8 ? 'var(--gold)' : 'var(--dim)';
+      row.appendChild(scoreEl);
+
+      var sigEl = el('span', 'pos-val', String(p.signals || '0'));
+      sigEl.style.color = p.signals > 0 ? 'var(--green)' : 'var(--muted)';
+      row.appendChild(sigEl);
+
+      var rankEl = el('span', 'pos-val');
+      rankEl.textContent = p.rank ? '#' + p.rank : '--';
+      rankEl.style.color = p.rank && p.rank <= 10 ? 'var(--green)' : 'var(--muted)';
+      row.appendChild(rankEl);
+
+      var closeBtn = document.createElement('button');
+      closeBtn.className = 'pos-close';
+      closeBtn.textContent = '\u00D7';
+      closeBtn.addEventListener('click', function(){ removePosition(p.ticker); });
+      row.appendChild(closeBtn);
+
+      posGrid.appendChild(row);
+    });
+  }
+
+  function refreshAll() {
+    var positions = getPositions();
+    renderPositions(positions);
+    updateStats(positions);
+
+    if (positions.length === 0) return;
+
+    var fetches = positions.map(function(p) {
+      return fetch('/api/profile/' + encodeURIComponent(p.ticker))
+        .then(function(r) { return r.ok ? r.json() : null; })
+        .catch(function() { return null; });
+    });
+
+    Promise.all(fetches).then(function(results) {
+      var updated = getPositions();
+      updated.forEach(function(p, i) {
+        var profile = results[i] ? results[i].profile : null;
+        if (profile && profile.found) {
+          p.score = parseFloat(profile.total_score || 0);
+          p.signals = profile.signal_count || 0;
+          p.rank = profile.rank || null;
+        } else {
+          p.score = 0;
+          p.signals = 0;
+          p.rank = null;
+        }
+      });
+      savePositions(updated);
+      renderPositions(updated);
+      updateStats(updated);
+      updateQuickPickChips();
+    });
+  }
+
+  function updateQuickPickChips() {
+    var positions = getPositions();
+    var tickers = positions.map(function(p){ return p.ticker; });
+    Array.from(quickPicks.children).forEach(function(chip) {
+      if (chip.dataset && chip.dataset.ticker) {
+        chip.className = 'pick-chip' + (tickers.indexOf(chip.dataset.ticker) !== -1 ? ' added' : '');
+      }
+    });
+  }
+
+  // Load top picks for quick add
+  fetch('/api/screener').then(function(r){ return r.json(); }).then(function(d) {
+    var tickers = (d.tickers || []).slice(0, 12);
+    quickPicks.textContent = '';
+    if (tickers.length === 0) {
+      quickPicks.textContent = 'No picks available yet.';
+      return;
+    }
+    tickers.forEach(function(t) {
+      var chip = el('button', 'pick-chip', t.ticker + ' (' + (t.total_score || '?') + ')');
+      chip.dataset.ticker = t.ticker;
+      chip.addEventListener('click', function() {
+        addPosition(t.ticker);
+      });
+      quickPicks.appendChild(chip);
+    });
+    updateQuickPickChips();
+  }).catch(function() {
+    quickPicks.textContent = 'Could not load picks.';
+  });
+
+  manualBtn.addEventListener('click', function() {
+    addPosition(manualInput.value);
+    manualInput.value = '';
+  });
+  manualInput.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') { addPosition(manualInput.value); manualInput.value = ''; }
+  });
+  refreshBtn.addEventListener('click', refreshAll);
+  clearBtn.addEventListener('click', function() {
+    savePositions([]);
+    refreshAll();
+  });
+
+  refreshAll();
+})();
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KV1VDK22VC"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-KV1VDK22VC');</script>
+</body>
+</html>

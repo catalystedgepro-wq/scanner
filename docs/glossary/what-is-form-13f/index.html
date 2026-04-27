@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>What is SEC Form 13F? Institutional Holdings Tracker | Catalyst Edge</title>
+<meta name="description" content="SEC Form 13F reveals what stocks hedge funds and institutional investors are buying and selling. Learn how to use 13F filings to follow smart money and find high-conviction trade ideas.">
+<link rel="canonical" href="https://catalystedgescanner.com/glossary/what-is-form-13f/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "When are 13F filings due?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Form 13F is filed quarterly, within 45 days of the end of each calendar quarter. In 2026 the deadlines are February 17, May 15, August 14, and November 16. This delay means the data is always 45-90 days old by the time you see it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the minimum threshold for 13F reporting?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Institutional investment managers with at least $100 million in qualifying assets under management must file Form 13F. This includes hedge funds, mutual funds, pension funds, insurance companies, and bank trust departments."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can you see short positions on a 13F?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Form 13F only shows long equity positions and certain options positions. Short sales, cash, bonds, commodities, and most derivatives are excluded. For short interest data, traders must look at exchange-reported short interest or Form SI filings."
+      }
+    }
+  ]
+}
+</script>
+<style>
+:root {
+  --bg: #0a0e1a;
+  --surface: #111827;
+  --surface-2: #1a2035;
+  --border: #1e293b;
+  --text: #e2e8f0;
+  --text-dim: #94a3b8;
+  --accent: #d4a853;
+  --accent-glow: rgba(212, 168, 83, 0.15);
+  --blue: #3b82f6;
+  --green: #10b981;
+  --red: #ef4444;
+  --font: 'Space Grotesk', system-ui, sans-serif;
+  --mono: 'IBM Plex Mono', monospace;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+.container { max-width: 800px; margin: 0 auto; padding: 2rem 1.5rem; }
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(10, 14, 26, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0.75rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+}
+nav a { color: var(--accent); text-decoration: none; font-weight: 600; font-size: 0.95rem; }
+nav a:hover { text-decoration: underline; }
+nav .sep { color: var(--text-dim); }
+.hero {
+  text-align: center;
+  padding: 4rem 0 3rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 2rem;
+}
+.hero h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 800;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+}
+.hero .subtitle {
+  font-size: 1.15rem;
+  color: var(--text-dim);
+  max-width: 600px;
+  margin: 0 auto;
+}
+.content-section { margin-bottom: 2.5rem; }
+.content-section h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--accent-glow);
+}
+.content-section p, .content-section li {
+  color: var(--text-dim);
+  font-size: 1.05rem;
+}
+.content-section ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 0.5rem;
+}
+.content-section li {
+  padding: 0.35rem 0 0.35rem 1.5rem;
+  position: relative;
+}
+.content-section li::before {
+  content: '\25B8';
+  color: var(--accent);
+  position: absolute;
+  left: 0;
+}
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 0.95rem;
+}
+.data-table th, .data-table td {
+  padding: 0.6rem 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+.data-table th {
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.data-table td { color: var(--text-dim); }
+.data-table tr:hover td { color: var(--text); }
+.faq-section { margin-top: 3rem; }
+.faq-section h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--accent);
+}
+.faq-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
+  overflow: hidden;
+}
+.faq-item summary {
+  padding: 1rem 1.25rem;
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.faq-item summary::before {
+  content: '+';
+  font-family: var(--mono);
+  color: var(--accent);
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+.faq-item[open] summary::before { content: '\2212'; }
+.faq-item p {
+  padding: 0 1.25rem 1rem;
+  color: var(--text-dim);
+  line-height: 1.6;
+}
+.cta-box {
+  background: linear-gradient(135deg, var(--surface) 0%, var(--surface-2) 100%);
+  border: 1px solid var(--accent);
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  margin: 3rem 0;
+}
+.cta-box h3 {
+  color: var(--accent);
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+}
+.cta-box p {
+  color: var(--text-dim);
+  margin-bottom: 1.25rem;
+}
+.cta-box a {
+  display: inline-block;
+  background: var(--accent);
+  color: var(--bg);
+  font-weight: 700;
+  padding: 0.75rem 2rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.cta-box a:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px var(--accent-glow);
+}
+.related {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+.related h3 {
+  font-size: 1rem;
+  color: var(--text-dim);
+  margin-bottom: 0.75rem;
+}
+.related a {
+  color: var(--blue);
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+.related a:hover { text-decoration: underline; }
+footer {
+  text-align: center;
+  padding: 2rem 0;
+  color: var(--text-dim);
+  font-size: 0.85rem;
+  border-top: 1px solid var(--border);
+  margin-top: 2rem;
+}
+footer a { color: var(--accent); text-decoration: none; }
+</style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@800;900&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/lib/cinematic-hero.css">
+  <link rel="stylesheet" href="/lib/cyber-shell.css">
+  <link rel="stylesheet" href="/lib/polish-tokens.css">
+</head>
+<body>
+  <div class="cy-bg" aria-hidden="true"></div>
+  <div class="cy-floor" aria-hidden="true"></div>
+  <div class="cy-vignette" aria-hidden="true"></div>
+  <div class="cy-scan" aria-hidden="true"></div>
+<nav>
+  <a href="/">Catalyst Edge</a>
+  <span class="sep">/</span>
+  <a href="/glossary/">Glossary</a>
+  <span class="sep">/</span>
+  <span style="color:var(--text-dim);font-size:0.9rem">What is Form 13F?</span>
+</nav>
+
+<div class="container">
+<section class="cin-hero cy-neon-hero cy-narrow cy-shimmer">
+    <div class="cin-grid">
+      <div class="cin-stat-stack">
+        <div class="cin-eyebrow"><span class="cin-live-dot"></span>FORM 13F · INSTITUTIONS</div>
+        <div class="cin-colossal">
+          <div class="cin-num-row"><span class="cin-num">13F</span></div>
+          <div class="cin-side">
+          <span class="cin-tag"><b>$100M+</b> AUM filer</span>
+          <span class="cin-tag">45-day lag</span>
+          <span class="cin-tag">cluster adds</span>
+          </div>
+        </div>
+        <div class="cin-stamp">GLOSSARY · WHAT IS FORM 13F? · v1.0 · <b>LIVE</b></div>
+      </div>
+      <div class="cin-h1-block">
+        <div class="cin-h1-eyebrow">📚 What is Form 13F?</div>
+        <h1 class="cin-headline"><em>Institutional positions</em>—the <span class="cin-accent">the smart-money quarterly</span>.</h1>
+        <p class="cin-lede">Hedge funds with $100M+ AUM file 13F quarterly disclosing their positions. The 45-day lag matters, but cluster reads — multiple funds adding the same name — still leak alpha.</p>
+        <div class="cin-cta-row">
+          <a href="#article-body" class="cin-btn-primary">Read article ↓</a>
+          <a href="/glossary/" class="cin-btn-ghost">Glossary index</a>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <h2>Form 13F explained</h2>
+    <p>SEC Form 13F is a quarterly report that institutional investment managers with $100 million or more in qualifying assets must file. It discloses every long equity position and certain options holdings in the portfolio. In practical terms, it shows you what stocks Bridgewater, Citadel, Berkshire Hathaway, and thousands of other large funds own.</p>
+  </section>
+
+  <section class="content-section">
+    <h2>Who files a 13F?</h2>
+    <ul>
+      <li>Hedge funds (e.g., Citadel, Renaissance Technologies, Pershing Square)</li>
+      <li>Mutual fund companies (e.g., Vanguard, Fidelity, BlackRock)</li>
+      <li>Pension funds and endowments</li>
+      <li>Insurance companies with equity portfolios</li>
+      <li>Bank trust departments managing over $100M in equities</li>
+    </ul>
+    <p style="margin-top:0.75rem">Over 5,000 institutions file 13F reports each quarter. The SEC maintains a <a href="https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&type=13F&dateb=&owner=include&count=40" style="color:var(--blue)">searchable database on EDGAR</a> where anyone can look up a specific filer.</p>
+  </section>
+
+  <section class="content-section">
+    <h2>Why traders care about 13F filings</h2>
+    <p>13F data reveals institutional conviction. When a top-performing fund initiates a large new position or doubles down on an existing holding, it signals deep due diligence. Traders use 13F data to:</p>
+    <ul>
+      <li>Identify stocks accumulating institutional ownership quarter over quarter</li>
+      <li>Spot new positions from managers with strong track records</li>
+      <li>Detect sector rotation trends across multiple funds</li>
+      <li>Find overlap between activist investors and insider buying signals</li>
+    </ul>
+  </section>
+
+  <section class="content-section">
+    <h2>Limitations of 13F data</h2>
+    <table class="data-table">
+      <thead>
+        <tr><th>Included</th><th>Excluded</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Long equity positions</td><td>Short sales</td></tr>
+        <tr><td>Call and put options</td><td>Cash and treasuries</td></tr>
+        <tr><td>Convertible bonds (sometimes)</td><td>Most fixed income</td></tr>
+        <tr><td>ADRs and ETF shares</td><td>Commodities, forex, crypto</td></tr>
+      </tbody>
+    </table>
+    <p style="margin-top:0.75rem">The 45-day filing delay is the biggest limitation. By the time you read a 13F, the fund may have already sold. Cross-reference with real-time signals like <a href="/glossary/what-is-form-4/" style="color:var(--blue)">Form 4 insider buys</a> and <a href="/glossary/what-is-sc-13d/" style="color:var(--blue)">Schedule 13D activist stakes</a> for fresher data.</p>
+  </section>
+
+  <section class="content-section">
+    <h2>2026 Form 13F filing deadlines</h2>
+    <table class="data-table">
+      <thead>
+        <tr><th>Quarter End</th><th>Filing Deadline</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>December 31, 2025</td><td>February 17, 2026</td></tr>
+        <tr><td>March 31, 2026</td><td>May 15, 2026</td></tr>
+        <tr><td>June 30, 2026</td><td>August 14, 2026</td></tr>
+        <tr><td>September 30, 2026</td><td>November 16, 2026</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <div class="cta-box">
+    <h3>Track Institutional + Insider Signals Together</h3>
+    <p>Catalyst Edge combines 13F institutional data with real-time SEC filings so you see both the big picture and the live signal.</p>
+    <a href="https://catalystedgescanner.com/">Open Scanner</a>
+  </div>
+
+  <div class="faq-section">
+    <h2>Frequently Asked Questions</h2>
+    <details class="faq-item">
+      <summary>When are 13F filings due?</summary>
+      <p>Form 13F is filed quarterly, within 45 days of the end of each calendar quarter. In 2026 the deadlines are February 17, May 15, August 14, and November 16. This delay means the data is always 45-90 days old by the time you see it.</p>
+    </details>
+    <details class="faq-item">
+      <summary>What is the minimum threshold for 13F reporting?</summary>
+      <p>Institutional investment managers with at least $100 million in qualifying assets under management must file Form 13F. This includes hedge funds, mutual funds, pension funds, insurance companies, and bank trust departments.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Can you see short positions on a 13F?</summary>
+      <p>No. Form 13F only shows long equity positions and certain options positions. Short sales, cash, bonds, commodities, and most derivatives are excluded. For short interest data, traders must look at exchange-reported short interest or Form SI filings.</p>
+    </details>
+  </div>
+
+  <div class="related">
+    <h3>Related Topics</h3>
+    <p><a href="/glossary/what-is-form-4/">What is Form 4?</a> &middot; <a href="/glossary/what-is-sc-13d/">What is Schedule 13D?</a> &middot; <a href="/glossary/insider-buying-signals/">Insider Buying Signals</a> &middot; <a href="/glossary/what-is-insider-trading/">What is Insider Trading?</a> &middot; <a href="/glossary/sec-filing-types-for-traders/">SEC Filing Types for Traders</a> &middot; <a href="/glossary/what-is-deep-value-investing/">Deep Value Investing</a></p>
+  </div>
+</div>
+
+<footer>
+  <a href="https://catalystedgescanner.com/">Catalyst Edge Scanner</a> &middot;
+  <a href="https://catalystedge.agency">Daily Newsletter</a> &middot;
+  &copy; 2026 Catalyst Edge
+</footer>
+</body>
+</html>

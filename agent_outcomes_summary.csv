@@ -1,0 +1,2 @@
+list_name,rows,wins,losses,avg_gap_next_open_pct,avg_next_day_max_run_pct,avg_next_day_close_pct,hit_rate_2pct,hit_rate_3pct,hit_rate_5pct
+agent_combined_priority,2,0,0,,,,,,

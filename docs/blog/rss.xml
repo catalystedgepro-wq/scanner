@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Catalyst Edge — Build log</title>
+    <link>https://catalystedgescanner.com/blog/</link>
+    <atom:link href="https://catalystedgescanner.com/blog/rss.xml" rel="self" type="application/rss+xml" />
+    <description>Public build log for Catalyst Edge Scanner. Methodology deep-dives, postmortems, what 30 days of solo building looks like.</description>
+    <language>en-us</language>
+    <copyright>Catalyst Edge Scanner</copyright>
+    <lastBuildDate>Sat, 25 Apr 2026 12:00:00 +0000</lastBuildDate>
+    <ttl>720</ttl>
+
+    <item>
+      <title>Why we publish our hit rate (and Bloomberg never will)</title>
+      <link>https://catalystedgescanner.com/blog/why-we-publish-our-hit-rate/</link>
+      <guid isPermaLink="true">https://catalystedgescanner.com/blog/why-we-publish-our-hit-rate/</guid>
+      <pubDate>Sat, 25 Apr 2026 12:00:00 +0000</pubDate>
+      <description>Bloomberg, FactSet, and Refinitiv won't publish their hit rates. We do — and here's why, plus how to read ours without confusing accuracy for skill.</description>
+      <category>Methodology</category>
+    </item>
+
+    <item>
+      <title>How the cross-border convergence score works</title>
+      <link>https://catalystedgescanner.com/blog/how-the-cross-border-convergence-score-works/</link>
+      <guid isPermaLink="true">https://catalystedgescanner.com/blog/how-the-cross-border-convergence-score-works/</guid>
+      <pubDate>Thu, 23 Apr 2026 12:00:00 +0000</pubDate>
+      <description>The 4-point composite signal we use to score ADR ↔ home-listing setups in real time. Math, worked example, and the edge cases we deliberately threw out.</description>
+      <category>Methodology</category>
+    </item>
+
+    <item>
+      <title>30 days to build a Bloomberg killer</title>
+      <link>https://catalystedgescanner.com/blog/30-days-to-build-a-bloomberg-killer/</link>
+      <guid isPermaLink="true">https://catalystedgescanner.com/blog/30-days-to-build-a-bloomberg-killer/</guid>
+      <pubDate>Mon, 20 Apr 2026 12:00:00 +0000</pubDate>
+      <description>Phase by phase. The week that everything broke. The first $9 customer. The misses I won't repeat.</description>
+      <category>Build log</category>
+    </item>
+
+  </channel>
+</rss>

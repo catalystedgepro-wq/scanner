@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Multi-Signal Stock Screener — Filter by Squeeze, Insider, Dark Pool | Catalyst Edge</title>
+<meta name="description" content="Screen stocks across 8 signal types: squeeze candidates, insider clusters, dark pool flow, convergence alerts, deep value, smart money, mergers, and daily rankings.">
+<meta property="og:title" content="Multi-Signal Stock Screener — Catalyst Edge">
+<link rel="canonical" href="https://catalystedgescanner.com/screener/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#070a12;--surface:#0f1420;--gold:#d4a843;--green:#22c55e;--red:#ef4444;--cyan:#06b6d4;--purple:#a78bfa;--orange:#f97316;--emerald:#10b981;--blue:#3b82f6;--text:#e2e8f0;--dim:#94a3b8;--muted:#64748b;--border:#1e293b}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
+.wrap{max-width:1200px;margin:0 auto;padding:1.5rem}
+.nav{position:sticky;top:0;z-index:100;background:rgba(7,10,18,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:.75rem 1.5rem;display:flex;align-items:center;gap:1rem}
+.nav a{color:var(--gold);font-weight:600;font-size:.95rem}
+.nav .sep{color:var(--muted)}
+.hero{text-align:center;padding:2rem 0 1.5rem;border-bottom:1px solid var(--border);margin-bottom:1rem}
+.hero h1{font-size:clamp(1.4rem,3.5vw,2rem);font-weight:800;line-height:1.2;margin-bottom:.3rem}
+.hero h1 em{font-style:normal;color:var(--gold)}
+.hero .sub{color:var(--dim);font-size:.85rem;max-width:600px;margin:0 auto}
+.controls{display:flex;gap:8px;flex-wrap:wrap;margin:1rem 0;align-items:center}
+.search-box{flex:1;min-width:200px;padding:8px 14px;background:var(--surface);border:1px solid var(--border);border-radius:6px;color:var(--text);font-size:.85rem;font-family:inherit;outline:none}
+.search-box:focus{border-color:var(--gold)}
+.search-box::placeholder{color:var(--muted)}
+.signal-filters{display:flex;gap:6px;flex-wrap:wrap;margin:.5rem 0}
+.sf-btn{padding:5px 12px;background:var(--surface);border:1px solid var(--border);border-radius:6px;color:var(--dim);font-size:.72rem;font-weight:600;cursor:pointer;font-family:inherit;transition:all .15s;display:flex;align-items:center;gap:4px}
+.sf-btn:hover{border-color:var(--gold)}
+.sf-btn.active{border-color:var(--gold);color:var(--text);background:rgba(212,168,67,.08)}
+.sf-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.min-label{font-size:.72rem;color:var(--muted);margin:0 4px}
+.min-select{padding:4px 8px;background:var(--surface);border:1px solid var(--border);border-radius:4px;color:var(--text);font-size:.75rem;font-family:inherit}
+.stats-bar{display:flex;gap:2rem;margin:.8rem 0;flex-wrap:wrap}
+.sb-item{text-align:center}
+.sb-val{font-size:1.1rem;font-weight:800;color:var(--gold)}
+.sb-lbl{font-size:.6rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.result-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:10px;margin:1rem 0}
+.ticker-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1rem;transition:border-color .2s}
+.ticker-card:hover{border-color:var(--gold)}
+.tc-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:.4rem}
+.tc-ticker{font-size:1.3rem;font-weight:800}
+.tc-count{font-family:'IBM Plex Mono',monospace;font-size:.85rem;font-weight:700;padding:3px 10px;border-radius:12px;background:rgba(212,168,67,.12);color:var(--gold)}
+.tc-signals{display:flex;gap:4px;flex-wrap:wrap;margin-top:.5rem}
+.sig-tag{padding:3px 8px;border-radius:4px;font-size:.65rem;font-weight:600;text-transform:uppercase}
+.sig-ranking{background:rgba(212,168,67,.1);color:var(--gold)}
+.sig-squeeze{background:rgba(239,68,68,.1);color:var(--red)}
+.sig-insider{background:rgba(34,197,94,.1);color:var(--green)}
+.sig-darkpool{background:rgba(6,182,212,.1);color:var(--cyan)}
+.sig-deepvalue{background:rgba(16,185,129,.1);color:var(--emerald)}
+.sig-convergence{background:rgba(167,139,250,.1);color:var(--purple)}
+.sig-smart_money{background:rgba(59,130,246,.1);color:var(--blue)}
+.sig-merger{background:rgba(249,115,22,.1);color:var(--orange)}
+.tc-details{display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-top:.5rem;font-size:.72rem}
+.tc-detail{display:flex;justify-content:space-between;padding:2px 0}
+.tc-detail .lbl{color:var(--muted)}
+.tc-detail .val{font-family:'IBM Plex Mono',monospace;font-weight:600;color:var(--dim)}
+.no-results{text-align:center;padding:3rem;color:var(--muted);font-size:.9rem}
+.cta-bar{background:var(--surface);border:1px solid var(--gold);border-radius:10px;padding:1.25rem;text-align:center;margin:2rem 0}
+.cta-bar h3{color:var(--gold);font-size:1rem;margin-bottom:.3rem}
+.cta-bar p{color:var(--dim);font-size:.8rem;margin-bottom:.75rem}
+.cta-bar a{display:inline-block;padding:.5rem 1.4rem;background:linear-gradient(135deg,var(--gold),#f1ce88);color:#070a12;font-weight:700;border-radius:6px;font-size:.85rem}
+.footer{text-align:center;padding:1.5rem;font-size:.72rem;color:var(--muted);border-top:1px solid var(--border);margin-top:2rem}
+.footer a{color:var(--muted)}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Multi-Signal Stock Screener","description":"Screen stocks across 8 signal types: squeeze, insider, dark pool, convergence, deep value, smart money, mergers, and rankings","url":"https://catalystedgescanner.com/screener/","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Catalyst Edge","url":"https://catalystedgescanner.com"}}
+</script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@800;900&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/lib/cinematic-hero.css">
+  <link rel="stylesheet" href="/lib/cyber-shell.css">
+  <link rel="stylesheet" href="/lib/polish-tokens.css">
+</head>
+<body>
+  <div class="cy-bg" aria-hidden="true"></div>
+  <div class="cy-floor" aria-hidden="true"></div>
+  <div class="cy-vignette" aria-hidden="true"></div>
+  <div class="cy-scan" aria-hidden="true"></div>
+<div class="nav">
+  <a href="/">Catalyst Edge</a>
+  <span class="sep">/</span>
+  <span style="color:var(--dim);font-size:.9rem">Screener</span>
+</div>
+<div class="wrap">
+<div class="ce-breadcrumb" style="max-width:1400px;margin:8px auto 0;padding:0 28px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-mute,#5a6c92);"><a href="/scanner/" style="color:var(--neon-cyan,#00ffff);text-decoration:none">&larr; Scanner</a><span style="color:var(--ink-mute,#5a6c92);margin:0 8px">&middot;</span><span>SIGNAL SCREENER</span></div>
+
+<section class="cin-hero cy-neon-hero cy-shimmer">
+    <div class="cin-grid">
+      <div class="cin-stat-stack">
+        <div class="cin-eyebrow"><span class="cin-live-dot"></span>MULTI-SIGNAL · LIVE</div>
+        <div class="cin-colossal">
+          <div class="cin-num-row"><span class="cin-num">9</span></div>
+          <div class="cin-side">
+          <span class="cin-tag"><b>signal layers</b> available</span>
+          <span class="cin-tag">AND/OR composition</span>
+          <span class="cin-tag">live ticker universe</span>
+          </div>
+        </div>
+        <div class="cin-stamp">SCREEN//MATRIX · v1.2 · <b>LIVE</b></div>
+      </div>
+      <div class="cin-h1-block">
+        <div class="cin-h1-eyebrow">🔍 Multi-Signal Screener · Filter Every Layer</div>
+        <h1 class="cin-headline">Compose <em>any combination</em> of catalyst signals—then watch the <span class="cin-accent">universe shrink</span> to what matters.</h1>
+        <p class="cin-lede">Catalyst score, gap %, short interest, insider density, dark-pool share, M&A flag, and 3 more — combine with AND/OR logic. Save filter sets, share with the team.</p>
+        <div class="cin-cta-row">
+          <a href="#screener-form" class="cin-btn-primary">Open screener ↓</a>
+          <a href="/scanner/" class="cin-btn-ghost">Main scanner</a>
+        </div>
+        <div class="cin-strip">
+          <div class="cin-cell"><div class="cin-k">Layers</div><div class="cin-v">9</div></div>
+          <div class="cin-cell"><div class="cin-k">Universe</div><div class="cin-v bull" id="sc-uni">–</div></div>
+          <div class="cin-cell"><div class="cin-k">Filtered</div><div class="cin-v gold" id="sc-filt">–</div></div>
+          <div class="cin-cell"><div class="cin-k">Saved sets</div><div class="cin-v cyan">cloud</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="controls">
+    <input type="text" class="search-box" id="search" placeholder="Search ticker (e.g. AAPL, TSLA)...">
+    <span class="min-label">Min signals:</span>
+    <select class="min-select" id="min-signals">
+      <option value="1">1+</option>
+      <option value="2" selected>2+</option>
+      <option value="3">3+</option>
+      <option value="4">4+</option>
+      <option value="5">5+</option>
+    </select>
+  </div>
+
+  <div class="signal-filters" id="signal-filters"></div>
+
+  <div class="stats-bar">
+    <div class="sb-item"><div class="sb-val" id="sc-total">--</div><div class="sb-lbl">Matching</div></div>
+    <div class="sb-item"><div class="sb-val" id="sc-multi" style="color:var(--green)">--</div><div class="sb-lbl">3+ Signals</div></div>
+    <div class="sb-item"><div class="sb-val" id="sc-max" style="color:var(--gold)">--</div><div class="sb-lbl">Max Signals</div></div>
+  </div>
+
+  <div class="result-grid" id="result-grid"></div>
+
+  <div class="cta-bar">
+    <h3>Get screener results daily</h3>
+    <p>Free daily email with multi-signal convergence alerts, SEC catalysts, and ranked picks at 4 AM ET.</p>
+    <a href="/preview/">Subscribe Free</a>
+  </div>
+</div>
+<div class="footer">
+  &copy; 2026 Catalyst Edge &middot;
+  <a href="/">Scanner</a> &middot;
+  <a href="/rankings/">Rankings</a> &middot;
+  <a href="/convergence/">Convergence</a> &middot;
+  <a href="/darkpool/">Dark Pool</a> &middot;
+  <a href="/jackpot/" style="color:#22c55e">🎯 JACKPOT</a>
+  <a href="/dcf/" style="color:#06b6d4">💰 DCF</a> &middot;
+  <a href="/squeeze/">Squeeze</a> &middot;
+  <a href="/insiders/">Insiders</a> &middot;
+  <a href="/deepvalue/">Deep Value</a> &middot;
+  <a href="/smart-money/">Smart Money</a> &middot;
+  <a href="/mergers/">Mergers</a> &middot;
+  <a href="/news/">News</a> &middot;
+  <a href="/sec-filings/">SEC Guide</a> &middot;
+  <a href="/glossary/">Glossary</a> &middot;
+  Not financial advice.
+</div>
+<script>
+(function(){
+  var allTickers = [];
+  var activeSignals = new Set();
+  var minSignals = 2;
+  var searchQuery = '';
+
+  var signalDefs = [
+    {key:'ranking',label:'Ranked',color:'#d4a843'},
+    {key:'squeeze',label:'Squeeze',color:'#ef4444'},
+    {key:'insider',label:'Insider',color:'#22c55e'},
+    {key:'darkpool',label:'Dark Pool',color:'#06b6d4'},
+    {key:'deepvalue',label:'Deep Value',color:'#10b981'},
+    {key:'convergence',label:'Convergence',color:'#a78bfa'},
+    {key:'smart_money',label:'Smart Money',color:'#3b82f6'},
+    {key:'merger',label:'Merger',color:'#f97316'},
+  ];
+
+  // ── URL persistence: ?signals=insider,squeeze&min=3&q=AAPL ─────────────────
+  function readURLState(){
+    try {
+      var params = new URLSearchParams(window.location.search);
+      var sig = (params.get('signals') || '').split(',').map(function(s){return s.trim().toLowerCase()}).filter(Boolean);
+      sig.forEach(function(s){ activeSignals.add(s); });
+      var min = parseInt(params.get('min') || '', 10);
+      if(!isNaN(min) && min >= 1 && min <= 5) minSignals = min;
+      var q = params.get('q');
+      if(q) searchQuery = q.toUpperCase().trim();
+    } catch(e) {}
+  }
+  function writeURLState(){
+    try {
+      var params = new URLSearchParams();
+      if(activeSignals.size > 0) params.set('signals', Array.from(activeSignals).join(','));
+      if(minSignals !== 2) params.set('min', String(minSignals));
+      if(searchQuery) params.set('q', searchQuery);
+      var qs = params.toString();
+      var url = window.location.pathname + (qs ? '?' + qs : '');
+      window.history.replaceState({}, '', url);
+    } catch(e) {}
+  }
+  readURLState();
+
+  var filtersDiv = document.getElementById('signal-filters');
+  signalDefs.forEach(function(sd){
+    var btn = document.createElement('button');
+    btn.className = 'sf-btn';
+    if(activeSignals.has(sd.key)) btn.classList.add('active');
+    var dot = document.createElement('span');
+    dot.className = 'sf-dot';
+    dot.style.background = sd.color;
+    btn.appendChild(dot);
+    btn.appendChild(document.createTextNode(sd.label));
+    btn.addEventListener('click', function(){
+      if(activeSignals.has(sd.key)){
+        activeSignals.delete(sd.key);
+        btn.classList.remove('active');
+      } else {
+        activeSignals.add(sd.key);
+        btn.classList.add('active');
+      }
+      writeURLState();
+      render();
+    });
+    filtersDiv.appendChild(btn);
+  });
+
+  // Sync controls from URL state (must run before listeners attached)
+  var msEl = document.getElementById('min-signals');
+  if(msEl) msEl.value = String(minSignals);
+  var sbEl = document.getElementById('search');
+  if(sbEl && searchQuery) sbEl.value = searchQuery;
+
+  document.getElementById('search').addEventListener('input', function(e){
+    searchQuery = e.target.value.toUpperCase().trim();
+    writeURLState();
+    render();
+  });
+
+  document.getElementById('min-signals').addEventListener('change', function(e){
+    minSignals = parseInt(e.target.value);
+    writeURLState();
+    render();
+  });
+
+  function filterTickers(){
+    return allTickers.filter(function(t){
+      if(t.signal_count < minSignals) return false;
+      if(searchQuery && t.ticker.indexOf(searchQuery)===-1) return false;
+      if(activeSignals.size > 0){
+        var hasAll = true;
+        activeSignals.forEach(function(sig){
+          if(t.signals.indexOf(sig)===-1) hasAll = false;
+        });
+        if(!hasAll) return false;
+      }
+      return true;
+    });
+  }
+
+  function detailsForSignal(t, sig){
+    var d = t[sig];
+    if(!d) return [];
+    var out = [];
+    if(sig==='ranking'){
+      if(d.total_score) out.push({lbl:'Score',val:parseFloat(d.total_score).toFixed(1)});
+      if(d.sec_score && parseFloat(d.sec_score)>0) out.push({lbl:'SEC',val:parseFloat(d.sec_score).toFixed(0)});
+      if(d.gapper_score && parseFloat(d.gapper_score)>0) out.push({lbl:'Gap',val:parseFloat(d.gapper_score).toFixed(0)});
+    }
+    if(sig==='squeeze'){
+      if(d.score) out.push({lbl:'Sq Score',val:d.score});
+      if(d.short_pct) out.push({lbl:'Short %',val:parseFloat(d.short_pct).toFixed(1)+'%'});
+      if(d.stage) out.push({lbl:'Stage',val:d.stage});
+    }
+    if(sig==='insider'){
+      if(d.buy_count) out.push({lbl:'Buys',val:d.buy_count});
+      if(d.total_value) out.push({lbl:'Value',val:'$'+d.total_value});
+    }
+    if(sig==='darkpool'){
+      if(d.vol_ratio) out.push({lbl:'Vol Ratio',val:parseFloat(d.vol_ratio).toFixed(1)+'x'});
+    }
+    if(sig==='deepvalue'){
+      if(d.grade) out.push({lbl:'Grade',val:d.grade});
+      if(d.score) out.push({lbl:'DV Score',val:d.score});
+      if(d.pb_ratio) out.push({lbl:'P/B',val:parseFloat(d.pb_ratio).toFixed(2)});
+    }
+    if(sig==='convergence'){
+      if(d.score) out.push({lbl:'Conv Score',val:d.score});
+      if(d.conviction) out.push({lbl:'Conviction',val:d.conviction});
+    }
+    if(sig==='smart_money'){
+      if(d.fund_count) out.push({lbl:'Funds',val:d.fund_count});
+    }
+    if(sig==='merger'){
+      if(d.signal_type) out.push({lbl:'Type',val:d.signal_type.replace(/_/g,' ')});
+    }
+    return out;
+  }
+
+  function render(){
+    var filtered = filterTickers();
+    document.getElementById('sc-total').textContent = filtered.length;
+    var multi3 = filtered.filter(function(t){return t.signal_count>=3}).length;
+    document.getElementById('sc-multi').textContent = multi3;
+    var maxSig = filtered.length ? Math.max.apply(null, filtered.map(function(t){return t.signal_count})) : 0;
+    document.getElementById('sc-max').textContent = maxSig;
+
+    var grid = document.getElementById('result-grid');
+    while(grid.firstChild) grid.removeChild(grid.firstChild);
+
+    if(filtered.length===0){
+      var noRes = document.createElement('div');
+      noRes.className = 'no-results';
+      noRes.textContent = 'No tickers match your filters. Try reducing minimum signals or removing signal filters.';
+      grid.appendChild(noRes);
+      return;
+    }
+
+    filtered.slice(0,100).forEach(function(t){
+      var card = document.createElement('div');
+      card.className = 'ticker-card';
+
+      var top = document.createElement('div');
+      top.className = 'tc-top';
+      var tk = document.createElement('span');
+      tk.className = 'tc-ticker';
+      tk.textContent = t.ticker;
+      var ct = document.createElement('span');
+      ct.className = 'tc-count';
+      ct.textContent = t.signal_count + ' signals';
+      top.appendChild(tk);
+      top.appendChild(ct);
+      card.appendChild(top);
+
+      var sigDiv = document.createElement('div');
+      sigDiv.className = 'tc-signals';
+      t.signals.forEach(function(sig){
+        var tag = document.createElement('span');
+        tag.className = 'sig-tag sig-' + sig;
+        var def = signalDefs.find(function(d){return d.key===sig});
+        tag.textContent = def ? def.label : sig;
+        sigDiv.appendChild(tag);
+      });
+      card.appendChild(sigDiv);
+
+      var details = document.createElement('div');
+      details.className = 'tc-details';
+      t.signals.forEach(function(sig){
+        detailsForSignal(t, sig).forEach(function(d){
+          var row = document.createElement('div');
+          row.className = 'tc-detail';
+          var lbl = document.createElement('span');
+          lbl.className = 'lbl';
+          lbl.textContent = d.lbl;
+          var val = document.createElement('span');
+          val.className = 'val';
+          val.textContent = d.val;
+          row.appendChild(lbl);
+          row.appendChild(val);
+          details.appendChild(row);
+        });
+      });
+      if(details.children.length) card.appendChild(details);
+
+      grid.appendChild(card);
+    });
+  }
+
+  fetch('/api/screener').then(function(r){return r.json()}).then(function(d){
+    allTickers = d.tickers || [];
+    render();
+  });
+})();
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KV1VDK22VC"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-KV1VDK22VC');</script>
+</body>
+</html>

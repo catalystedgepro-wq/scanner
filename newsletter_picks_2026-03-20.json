@@ -1,0 +1,15 @@
+{
+  "date": "2026-03-20",
+  "top5_tickers": [
+    "APA",
+    "BRZE",
+    "AEM",
+    "ELE",
+    "CTRI"
+  ],
+  "gapper_count": 9,
+  "value_count": 6,
+  "moat_count": 5,
+  "total_combined": 131,
+  "top_pick": "APA"
+}

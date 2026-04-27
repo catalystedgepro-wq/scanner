@@ -1,0 +1,11 @@
+import { chromium } from 'playwright';
+const CHROME = '/home/operator/.cache/ms-playwright/chromium-1217/chrome-linux64/chrome';
+const browser = await chromium.launch({ executablePath: CHROME, headless: true });
+const ctx = await browser.newContext({ viewport: { width: 1440, height: 1200 }, deviceScaleFactor: 2 });
+const page = await ctx.newPage();
+await page.goto('https://catalystedgescanner.com/scanner/?cb=' + Date.now(), { waitUntil: 'load', timeout: 45000 });
+await page.waitForTimeout(3000);
+await page.evaluate(() => document.querySelector('.spotlight')?.scrollIntoView({ block: 'center' }));
+await page.waitForTimeout(600);
+await page.screenshot({ path: '/tmp/prod_spotlight.png', fullPage: false });
+await browser.close();

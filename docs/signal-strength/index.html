@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Signal Strength Meter — Market Catalyst Temperature | Catalyst Edge</title>
+<meta name="description" content="Real-time market catalyst temperature. See how many SEC filings, insider clusters, squeeze signals, dark pool flags, and convergence alerts are firing today.">
+<meta property="og:title" content="Signal Strength Meter — Catalyst Edge">
+<link rel="canonical" href="https://catalystedgescanner.com/signal-strength/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#070a12;--surface:#0f1420;--surface2:#151c2c;--gold:#d4a843;--green:#22c55e;--red:#ef4444;--cyan:#06b6d4;--text:#e2e8f0;--dim:#94a3b8;--muted:#64748b;--border:#1e293b}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
+.wrap{max-width:900px;margin:0 auto;padding:1.5rem}
+.nav{position:sticky;top:0;z-index:100;background:rgba(7,10,18,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:.75rem 1.5rem;display:flex;align-items:center;gap:1rem}
+.nav a{color:var(--gold);font-weight:600;font-size:.95rem}
+.nav .sep{color:var(--muted)}
+
+.meter-hero{text-align:center;padding:2.5rem 0 1.5rem}
+.meter-hero h1{font-size:clamp(1.3rem,4vw,2rem);font-weight:800;margin-bottom:.3rem}
+.meter-hero h1 em{font-style:normal;color:var(--gold)}
+.meter-hero .sub{color:var(--dim);font-size:.85rem}
+
+.temp-display{text-align:center;padding:2rem 0;margin:1rem 0}
+.temp-ring{width:200px;height:200px;border-radius:50%;margin:0 auto;position:relative;display:flex;align-items:center;justify-content:center;flex-direction:column}
+.temp-ring .ring-bg{position:absolute;inset:0;border-radius:50%;border:8px solid var(--border)}
+.temp-ring .ring-fill{position:absolute;inset:0;border-radius:50%;border:8px solid transparent;border-top-color:var(--gold);border-right-color:var(--gold);transform:rotate(-45deg);transition:all 1s ease}
+.temp-label{font-size:2.5rem;font-weight:800;z-index:1}
+.temp-word{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;z-index:1;margin-top:-.2rem}
+
+.stats-row{display:flex;justify-content:center;gap:2.5rem;margin:1.5rem 0;flex-wrap:wrap}
+.stat-item{text-align:center}
+.stat-val{font-size:1.8rem;font-weight:800;font-family:'IBM Plex Mono',monospace}
+.stat-lbl{font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+
+.source-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:.75rem;margin:2rem 0}
+.source-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1rem;display:flex;align-items:center;gap:1rem;transition:border-color .2s,transform .2s}
+.source-card:hover{border-color:var(--gold);transform:translateY(-2px)}
+.source-card .sc-bar{width:6px;border-radius:3px;align-self:stretch;min-height:40px}
+.source-card .sc-info{flex:1}
+.source-card .sc-label{font-size:.8rem;font-weight:700;color:var(--text)}
+.source-card .sc-count{font-size:1.5rem;font-weight:800;font-family:'IBM Plex Mono',monospace;line-height:1}
+.source-card .sc-tickers{font-size:.7rem;color:var(--muted);margin-top:.15rem}
+
+.cta-bar{background:var(--surface);border:1px solid var(--gold);border-radius:10px;padding:1.25rem;text-align:center;margin:2rem 0}
+.cta-bar h3{color:var(--gold);font-size:1rem;margin-bottom:.3rem}
+.cta-bar p{color:var(--dim);font-size:.8rem;margin-bottom:.75rem}
+.cta-bar a{display:inline-block;padding:.5rem 1.4rem;background:linear-gradient(135deg,var(--gold),#f1ce88);color:#070a12;font-weight:700;border-radius:6px;font-size:.85rem}
+.footer{text-align:center;padding:1.5rem;font-size:.72rem;color:var(--muted);border-top:1px solid var(--border);margin-top:2rem}
+.footer a{color:var(--muted)}
+.loading{text-align:center;padding:3rem;color:var(--muted)}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Catalyst Edge Signal Strength Meter","url":"https://catalystedgescanner.com/signal-strength/","description":"Real-time market catalyst temperature showing signal density across SEC filings, insider activity, and more","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<link rel="stylesheet" href="/lib/polish-tokens.css">
+</head>
+<body>
+<div class="nav">
+  <a href="/">Catalyst Edge</a>
+  <span class="sep">/</span>
+  <span style="color:var(--dim);font-size:.9rem">Signal Strength</span>
+</div>
+<div class="wrap">
+  <div class="meter-hero">
+    <h1><em>Signal Strength</em> Meter</h1>
+    <p class="sub">How hot is the market catalyst environment today? This meter aggregates all signal sources into a single temperature reading.</p>
+  </div>
+  <div id="meter-content">
+    <div class="loading">Reading signal strength...</div>
+  </div>
+  <div class="cta-bar">
+    <h3>Get signal alerts before market open</h3>
+    <p>Free daily email at 4 AM ET with ranked picks, convergence signals, and the daily temperature reading.</p>
+    <a href="/preview/">Subscribe Free</a>
+  </div>
+</div>
+<div class="footer">
+  &copy; 2026 Catalyst Edge &middot;
+  <a href="/">Scanner</a> &middot;
+  <a href="/rankings/">Rankings</a> &middot;
+  <a href="/screener/">Screener</a> &middot;
+  <a href="/spotlight/">Spotlight</a> &middot;
+  <a href="/lookup/">Lookup</a> &middot;
+  <a href="/sectors/">Sectors</a> &middot;
+  <a href="/convergence/">Convergence</a> &middot;
+  <a href="/darkpool/">Dark Pool</a> &middot;
+  <a href="/performance/">Performance</a> &middot;
+  <a href="/glossary/">Glossary</a> &middot;
+  Not financial advice.
+</div>
+<script>
+(function(){
+  var container = document.getElementById('meter-content');
+
+  function el(tag, cls, text) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text) e.textContent = text;
+    return e;
+  }
+
+  var tempColors = {
+    COLD: {color:'#3b82f6',glow:'rgba(59,130,246,.15)'},
+    WARM: {color:'var(--gold)',glow:'rgba(212,168,67,.15)'},
+    HOT: {color:'#f97316',glow:'rgba(249,115,22,.15)'},
+    EXTREME: {color:'var(--red)',glow:'rgba(239,68,68,.2)'}
+  };
+
+  var sourceColors = {
+    rankings:'var(--gold)',squeeze:'#f97316',insider:'var(--green)',
+    darkpool:'#6366f1',deepvalue:'var(--cyan)',convergence:'#ec4899',
+    smart_money:'#8b5cf6',merger:'#14b8a6',gappers:'var(--green)',
+    sec_filings:'var(--cyan)',news:'#3b82f6'
+  };
+
+  fetch('/api/signal-strength').then(function(r){return r.json()}).then(function(d){
+    container.textContent = '';
+    var tc = tempColors[d.temperature] || tempColors.WARM;
+
+    // Temperature ring
+    var tempDisp = el('div','temp-display');
+    var ring = el('div','temp-ring');
+    ring.style.boxShadow = '0 0 60px ' + tc.glow;
+
+    var ringBg = el('div','ring-bg');
+    ring.appendChild(ringBg);
+
+    var ringFill = el('div','ring-fill');
+    var deg = (d.temperature_pct / 100) * 360;
+    ringFill.style.borderTopColor = tc.color;
+    ringFill.style.borderRightColor = d.temperature_pct > 25 ? tc.color : 'transparent';
+    ringFill.style.borderBottomColor = d.temperature_pct > 50 ? tc.color : 'transparent';
+    ringFill.style.borderLeftColor = d.temperature_pct > 75 ? tc.color : 'transparent';
+    ring.appendChild(ringFill);
+
+    var label = el('div','temp-label',String(d.total_signals));
+    label.style.color = tc.color;
+    ring.appendChild(label);
+
+    var word = el('div','temp-word',d.temperature);
+    word.style.color = tc.color;
+    ring.appendChild(word);
+
+    tempDisp.appendChild(ring);
+    container.appendChild(tempDisp);
+
+    // Stats row
+    var statsRow = el('div','stats-row');
+    var pairs = [
+      {val:d.total_signals,lbl:'Total Signals',color:tc.color},
+      {val:d.unique_tickers,lbl:'Unique Tickers',color:'var(--gold)'},
+      {val:d.sources.length,lbl:'Signal Sources',color:'var(--cyan)'},
+      {val:d.date,lbl:'As Of',color:'var(--dim)'}
+    ];
+    pairs.forEach(function(p){
+      var item = el('div','stat-item');
+      var val = el('div','stat-val',String(p.val));
+      val.style.color = p.color;
+      item.appendChild(val);
+      item.appendChild(el('div','stat-lbl',p.lbl));
+      statsRow.appendChild(item);
+    });
+    container.appendChild(statsRow);
+
+    // Source breakdown
+    container.appendChild(el('h2','','Signal Source Breakdown'));
+    var grid = el('div','source-grid');
+
+    // Sort by count descending
+    var sorted = d.sources.slice().sort(function(a,b){return b.count - a.count});
+    sorted.forEach(function(s){
+      if(s.count === 0) return;
+      var card = el('div','source-card');
+      var bar = el('div','sc-bar');
+      bar.style.background = sourceColors[s.source] || 'var(--gold)';
+      card.appendChild(bar);
+
+      var info = el('div','sc-info');
+      info.appendChild(el('div','sc-label',s.label));
+      var count = el('div','sc-count',String(s.count));
+      count.style.color = sourceColors[s.source] || 'var(--gold)';
+      info.appendChild(count);
+      info.appendChild(el('div','sc-tickers',s.unique_tickers + ' unique tickers'));
+      card.appendChild(info);
+
+      grid.appendChild(card);
+    });
+    container.appendChild(grid);
+
+  }).catch(function(){
+    container.textContent = 'Could not load signal data. Try refreshing.';
+  });
+})();
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KV1VDK22VC"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-KV1VDK22VC');</script>
+</body>
+</html>

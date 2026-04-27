@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en">
+<head>
+<script src="/lib/tier.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Global Winners Hall · Catalyst Edge</title>
+<meta name="description" content="JACKPOT-class picks across 43 countries — names firing on multiple scanners simultaneously. The asymmetric edge wall.">
+<link rel="canonical" href="https://catalystedgescanner.com/international/winners/">
+<link rel="stylesheet" href="/lib/nav-fix.css">
+<link rel="stylesheet" href="/lib/admin-unlock.css">
+<link rel="stylesheet" href="/lib/scanner-polish.css">
+<style>
+:root {
+  --bg:#07090f; --surface:#11141d; --surface-2:#181c27;
+  --border-soft:rgba(255,255,255,.07);
+  --text:#f6efe2; --dim:#9ea8ba;
+  --gold:#d7b46a; --green:#7fe8b3; --orange:#ffbf69;
+  --red:#ff8b86; --blue:#72e5ff; --cyan:#22d3ee; --purple:#d59cff;
+}
+* { box-sizing:border-box; margin:0; padding:0; }
+body { font-family:'Space Grotesk','Segoe UI',-apple-system,sans-serif; background:var(--bg); color:var(--text); line-height:1.5; }
+body::before {
+  content:''; position:fixed; inset:0; pointer-events:none;
+  background-image: linear-gradient(rgba(114,229,255,.025) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(114,229,255,.025) 1px, transparent 1px);
+  background-size:48px 48px; opacity:.32; z-index:0;
+}
+nav.nav { position:sticky; top:0; z-index:100; display:flex; gap:.45rem; padding:.7rem 1rem; background:rgba(10,12,18,.86); backdrop-filter:blur(10px); border-bottom:1px solid var(--border-soft); font-size:.82rem; }
+nav.nav a { color:var(--dim); padding:.25rem .5rem; border-radius:4px; text-decoration:none; flex-shrink:0; }
+nav.nav a:hover { color:var(--text); background:var(--surface-2); }
+nav.nav .brand { color:var(--gold); font-weight:700; }
+header.hero { padding:3rem 1.5rem 1rem; max-width:1180px; margin:0 auto; position:relative; z-index:1; }
+.hero-eyebrow { display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--gold); padding:.3rem .8rem; border:1px solid rgba(215,180,106,.35); border-radius:999px; margin-bottom:.85rem; }
+header.hero h1 { font-size:clamp(1.8rem,3.5vw,2.6rem); font-weight:800; letter-spacing:-.02em; line-height:1.15; margin-bottom:.4rem; background:linear-gradient(90deg, var(--gold), var(--green)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+header.hero p { color:var(--dim); max-width:46rem; font-size:1.05rem; }
+.stats-row { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:.7rem; max-width:1180px; margin:1.5rem auto; padding:0 1.5rem; position:relative; z-index:1; }
+.stat { background:var(--surface); border:1px solid var(--border-soft); border-radius:8px; padding:.85rem 1rem; }
+.stat .v { font-family:'IBM Plex Mono',monospace; font-size:1.5rem; font-weight:700; color:var(--gold); }
+.stat .k { color:var(--dim); font-size:.78rem; margin-top:.15rem; }
+section.panel { max-width:1180px; margin:1.5rem auto; padding:0 1.5rem; position:relative; z-index:1; }
+h2.panel-h { font-size:1.3rem; margin-bottom:.5rem; }
+.sub { color:var(--dim); font-size:.92rem; margin-bottom:1rem; }
+.winners-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:.65rem; }
+.winner { background:var(--surface); border:1px solid var(--border-soft); border-radius:10px; padding:1rem 1.1rem; transition:transform .15s ease,border-color .15s ease,box-shadow .18s ease; position:relative; overflow:hidden; }
+.winner:hover { transform:translateY(-2px); border-color:var(--gold); box-shadow:0 8px 24px rgba(0,0,0,.3); }
+.winner.strong { border-color:var(--green); }
+.winner.strong::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg,var(--green),var(--cyan)); }
+.winner.trade { border-color:var(--gold); }
+.winner.trade::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg,var(--gold),var(--orange)); }
+.w-head { display:flex; gap:.5rem; align-items:center; margin-bottom:.6rem; }
+.w-flag { font-size:1.5rem; }
+.w-ticker { font-family:'IBM Plex Mono',monospace; font-weight:700; color:var(--blue); font-size:1rem; }
+.w-name { color:var(--dim); font-size:.85rem; flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.w-grade { padding:.18rem .5rem; border-radius:999px; font-family:'IBM Plex Mono',monospace; font-size:.65rem; font-weight:700; text-transform:uppercase; letter-spacing:.05em; }
+.w-grade.A { background:rgba(127,232,179,.14); color:var(--green); border:1px solid var(--green); }
+.w-grade.B { background:rgba(34,211,238,.14); color:var(--cyan); border:1px solid var(--cyan); }
+.w-grade.TRADE { background:rgba(215,180,106,.14); color:var(--gold); border:1px solid var(--gold); }
+.w-grade.STRONG { background:rgba(127,232,179,.14); color:var(--green); border:1px solid var(--green); }
+.w-stats { display:flex; gap:.85rem; margin-bottom:.55rem; flex-wrap:wrap; font-size:.85rem; }
+.w-stats span { color:var(--dim); }
+.w-stats span strong { color:var(--text); margin-left:.2rem; }
+.w-gap-pos { color:var(--green) !important; font-weight:700; }
+.w-gap-neg { color:var(--red) !important; font-weight:700; }
+.w-scanners { display:flex; gap:.25rem; flex-wrap:wrap; margin-top:.4rem; }
+.w-pill { font-family:'IBM Plex Mono',monospace; font-size:.65rem; padding:.13rem .45rem; border-radius:999px; background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.1); color:var(--text); text-transform:uppercase; letter-spacing:.04em; }
+.w-pill.gap { color:var(--green); border-color:rgba(127,232,179,.4); }
+.w-pill.dcf_a { color:var(--gold); border-color:rgba(215,180,106,.5); font-weight:700; }
+.w-pill.dcf_b { color:var(--cyan); border-color:rgba(34,211,238,.4); }
+.w-pill.crossborder { color:var(--purple); border-color:rgba(213,156,255,.4); }
+.empty { padding:3rem 1.5rem; text-align:center; color:var(--dim); background:var(--surface); border:1px dashed var(--border-soft); border-radius:10px; }
+footer { text-align:center; padding:2rem; color:var(--dim); font-size:.85rem; border-top:1px solid var(--border-soft); position:relative; z-index:1; }
+footer a { color:var(--blue); }
+</style>
+<link rel="stylesheet" href="/lib/polish-tokens.css">
+</head>
+<body>
+
+<nav class="nav">
+  <a class="brand" href="/">⚡ Catalyst Edge</a>
+  <a href="/jackpot/" style="color:#7fe8b3;font-weight:700">🎯 JACKPOT</a>
+  <a href="/dcf/" style="color:#22d3ee;font-weight:700">💰 DCF</a>
+  <a href="/dcf/international/" style="color:#22d3ee;font-weight:700">🌍 DCF (Intl)</a>
+  <a href="/numerai/" style="color:#d59cff;font-weight:700">🤖 Numerai</a>
+  <a href="/international/" style="color:#22d3ee;font-weight:700">🌍 Intl</a>
+  <a href="/international/winners/" style="color:#f5c443;font-weight:700">🏆 Winners</a>
+  <a href="/cross-border/" style="color:#d7b46a;font-weight:700">🔗 Cross-Border</a>
+  <a href="/defi/" style="color:#fb923c;font-weight:700">⛓ DeFi</a>
+  <a href="/scanner/">US Scanner</a>
+  <a href="/pricing/" style="color:var(--gold);font-weight:600">Premium</a>
+</nav>
+
+<header class="hero">
+  <span class="hero-eyebrow">Live · Updated every 2h · 43 countries</span>
+  <h1>🏆 Global Winners Hall</h1>
+  <p>Names firing on <strong>multiple scanners simultaneously</strong> — gap up ≥ 2% AND (DCF A-grade OR cross-border TRADE/STRONG OR multi-scanner ≥ 2). The asymmetric edge wall — institutional positioning retail can't easily see.</p>
+</header>
+
+<div class="stats-row">
+  <div class="stat"><div class="v" id="hs-winners">—</div><div class="k">winners today</div></div>
+  <div class="stat"><div class="v" id="hs-strong">—</div><div class="k">STRONG/A-grade</div></div>
+  <div class="stat"><div class="v" id="hs-trade">—</div><div class="k">TRADE class</div></div>
+  <div class="stat"><div class="v" id="hs-countries">—</div><div class="k">countries</div></div>
+  <div class="stat"><div class="v" id="hs-updated">—</div><div class="k">last refresh</div></div>
+</div>
+
+<section class="panel">
+  <h2 class="panel-h">🏆 Today's Winners</h2>
+  <p class="sub">Sorted by composite conviction score (gap × scanner count × DCF grade). Click any card to see source data.</p>
+  <div class="winners-grid" id="winners-grid">
+    <div class="empty">Loading…</div>
+  </div>
+</section>
+
+<footer>
+  <p>Updated every 2h via the autonomous loop. Free tier shows top 5; Reader $9 unlocks all; Pro $39 adds Telegram alerts when a new winner fires.</p>
+  <p><a href="/international/">← back to international scanner</a> · <a href="/methodology/">methodology</a> · <a href="/pricing/">pricing</a></p>
+</footer>
+
+<script src="/lib/intl.js"></script>
+<script>
+(function(){
+  var FLAG = {USA:'🇺🇸',BRA:'🇧🇷',JPN:'🇯🇵',GBR:'🇬🇧',IND:'🇮🇳',MEX:'🇲🇽',KOR:'🇰🇷',HKG:'🇭🇰',CHN:'🇨🇳',TWN:'🇹🇼',
+              DEU:'🇩🇪',FRA:'🇫🇷',CHE:'🇨🇭',NLD:'🇳🇱',ESP:'🇪🇸',ITA:'🇮🇹',SWE:'🇸🇪',NOR:'🇳🇴',DNK:'🇩🇰',FIN:'🇫🇮',
+              BEL:'🇧🇪',AUT:'🇦🇹',IRL:'🇮🇪',PRT:'🇵🇹',GRC:'🇬🇷',POL:'🇵🇱',CZE:'🇨🇿',TUR:'🇹🇷',ISR:'🇮🇱',ZAF:'🇿🇦',
+              SGP:'🇸🇬',THA:'🇹🇭',IDN:'🇮🇩',MYS:'🇲🇾',PHL:'🇵🇭',ARG:'🇦🇷',CHL:'🇨🇱',AUS:'🇦🇺',CAN:'🇨🇦',NZL:'🇳🇿'};
+  function flagFor(iso) { return FLAG[iso] || ''; }
+
+  Promise.all([
+    fetch('/data/intl_panels.json?cb=' + Date.now(), { cache: 'no-store' }).then(function(r){ return r.ok ? r.json() : null; }),
+    fetch('/data/intl_dcf.json?cb=' + Date.now(), { cache: 'no-store' }).then(function(r){ return r.ok ? r.json() : null; }),
+    fetch('/data/cross_border_convergence.json?cb=' + Date.now(), { cache: 'no-store' }).then(function(r){ return r.ok ? r.json() : null; }),
+    fetch('/data/intl_edge.json?cb=' + Date.now(), { cache: 'no-store' }).then(function(r){ return r.ok ? r.json() : null; }),
+  ]).then(function(results) {
+    var panels = results[0] || {};
+    var dcf = results[1] || {};
+    var cb = results[2] || {};
+    var edge = results[3] || {};
+
+    // Build a map: ticker → {gap, country, name, currency, dcf_grade, dcf_upside, cb_score, cb_conviction, scanners}
+    var index = {};
+    function ensure(t) {
+      if (!index[t]) index[t] = { ticker: t, scanners: [], gap_pct: null, country: '', country_iso: '', name: '', dcf_grade: null, dcf_upside: null, cb_score: null, cb_conviction: null };
+      return index[t];
+    }
+    (panels.top_up || []).forEach(function(r) {
+      var x = ensure(r.ticker);
+      x.gap_pct = r.gap_pct; x.country = r.country_full || r.country || ''; x.country_iso = r.country_iso || ''; x.name = r.name || ''; x.currency = r.currency || '';
+      if (r.gap_pct >= 2 && x.scanners.indexOf('gap') === -1) x.scanners.push('gap');
+    });
+    (dcf.top_undervalued || []).forEach(function(r) {
+      if (r.grade === 'A' || r.grade === 'B') {
+        var x = ensure(r.ticker);
+        x.dcf_grade = r.grade;
+        x.dcf_upside = r.upside_pct;
+        if (!x.country) { x.country = r.country || ''; x.name = r.name || x.name; x.currency = r.currency || x.currency; }
+        if (x.scanners.indexOf('dcf_' + r.grade.toLowerCase()) === -1) x.scanners.push('dcf_' + r.grade.toLowerCase());
+      }
+    });
+    (cb.top_setups || []).forEach(function(s) {
+      if (s.conviction === 'STRONG' || s.conviction === 'TRADE') {
+        [s.foreign_ticker, s.us_ticker].forEach(function(t) {
+          if (!t) return;
+          var x = ensure(t);
+          x.cb_score = s.score; x.cb_conviction = s.conviction;
+          if (x.scanners.indexOf('crossborder') === -1) x.scanners.push('crossborder');
+          if (!x.name) x.name = s.entity_name || x.name;
+        });
+      }
+    });
+
+    // Filter: gap >= 2% AND (DCF A OR DCF B OR cross-border OR multi-scanner >= 2)
+    var winners = [];
+    Object.keys(index).forEach(function(t) {
+      var w = index[t];
+      var hasGap = w.gap_pct != null && w.gap_pct >= 2;
+      var hasDCF = w.dcf_grade === 'A' || w.dcf_grade === 'B';
+      var hasCB = !!w.cb_conviction;
+      var multi = w.scanners.length >= 2;
+      if ((hasGap && (hasDCF || hasCB)) || multi) {
+        winners.push(w);
+      }
+    });
+    // Composite score: gap × scanner_count + DCF bonus
+    winners.forEach(function(w) {
+      var s = (w.gap_pct || 0) * w.scanners.length;
+      if (w.dcf_grade === 'A') s += 100;
+      if (w.dcf_grade === 'B') s += 40;
+      if (w.cb_conviction === 'STRONG') s += 50;
+      if (w.cb_conviction === 'TRADE') s += 25;
+      w._score = s;
+    });
+    winners.sort(function(a, b) { return b._score - a._score; });
+
+    var strongCount = winners.filter(function(w){ return w.dcf_grade === 'A' || w.cb_conviction === 'STRONG'; }).length;
+    var tradeCount = winners.filter(function(w){ return w.cb_conviction === 'TRADE' || w.dcf_grade === 'B'; }).length;
+    var countries = new Set(winners.map(function(w){ return w.country_iso; }).filter(Boolean));
+
+    document.getElementById('hs-winners').textContent = winners.length;
+    document.getElementById('hs-strong').textContent = strongCount;
+    document.getElementById('hs-trade').textContent = tradeCount;
+    document.getElementById('hs-countries').textContent = countries.size;
+    if (panels.generated_at) {
+      var d = new Date(panels.generated_at);
+      document.getElementById('hs-updated').textContent = d.toLocaleTimeString([], {hour:'numeric',minute:'2-digit'});
+    }
+
+    var grid = document.getElementById('winners-grid');
+    while (grid.firstChild) grid.removeChild(grid.firstChild);
+    if (!winners.length) {
+      var e = document.createElement('div');
+      e.className = 'empty';
+      e.textContent = 'No global winners firing right now — check back next 2h cycle.';
+      grid.appendChild(e);
+      return;
+    }
+
+    winners.forEach(function (w) {
+      var card = document.createElement('div');
+      var topClass = '';
+      if (w.dcf_grade === 'A' || w.cb_conviction === 'STRONG') topClass = 'strong';
+      else if (w.dcf_grade === 'B' || w.cb_conviction === 'TRADE') topClass = 'trade';
+      card.className = 'winner ' + topClass;
+      var head = document.createElement('div'); head.className = 'w-head';
+      var fl = document.createElement('span'); fl.className = 'w-flag'; fl.textContent = flagFor(w.country_iso);
+      var tk = document.createElement('span'); tk.className = 'w-ticker'; tk.textContent = w.ticker;
+      var nm = document.createElement('span'); nm.className = 'w-name'; nm.textContent = w.name || w.country || '';
+      head.appendChild(fl); head.appendChild(tk); head.appendChild(nm);
+      // Top-right grade badge
+      var topGrade = w.dcf_grade || w.cb_conviction;
+      if (topGrade) {
+        var gb = document.createElement('span');
+        gb.className = 'w-grade ' + topGrade;
+        gb.textContent = topGrade;
+        head.appendChild(gb);
+      }
+
+      var stats = document.createElement('div'); stats.className = 'w-stats';
+      if (w.gap_pct != null) {
+        var g = document.createElement('span');
+        var inner = document.createElement('strong');
+        inner.className = w.gap_pct >= 0 ? 'w-gap-pos' : 'w-gap-neg';
+        inner.textContent = (w.gap_pct >= 0 ? '+' : '') + w.gap_pct.toFixed(2) + '%';
+        g.appendChild(document.createTextNode('Gap: ')); g.appendChild(inner);
+        stats.appendChild(g);
+      }
+      if (w.dcf_upside != null) {
+        var d = document.createElement('span');
+        var dInner = document.createElement('strong');
+        dInner.textContent = '+' + Math.round(w.dcf_upside) + '%';
+        dInner.style.color = 'var(--gold)';
+        d.appendChild(document.createTextNode('DCF upside: ')); d.appendChild(dInner);
+        stats.appendChild(d);
+      }
+      if (w.cb_score != null) {
+        var c = document.createElement('span');
+        var cInner = document.createElement('strong');
+        cInner.textContent = w.cb_score + '/4';
+        cInner.style.color = 'var(--purple)';
+        c.appendChild(document.createTextNode('CB score: ')); c.appendChild(cInner);
+        stats.appendChild(c);
+      }
+      var pills = document.createElement('div'); pills.className = 'w-scanners';
+      (w.scanners || []).forEach(function(s) {
+        var p = document.createElement('span');
+        p.className = 'w-pill ' + s;
+        p.textContent = s.replace('_', ' ');
+        pills.appendChild(p);
+      });
+
+      card.appendChild(head); card.appendChild(stats); card.appendChild(pills);
+      grid.appendChild(card);
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Partners — Catalyst Edge Scanner</title>
+  <meta name="description" content="Affiliate, reseller, and embed-partner program for Catalyst Edge. 10% recurring revenue share. White-label available. Apply in 60 seconds." />
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/lib/admin-unlock.css" />
+  <link rel="stylesheet" href="/lib/scanner-polish.css" />
+  <link rel="stylesheet" href="/lib/nav-fix.css" />
+  <style>
+    :root{
+      --navy:#040a14; --navy2:#0a1424; --navy3:#0e1a2e;
+      --ink:#e6f1ff; --ink-dim:#9bb0c8; --ink-mute:#6e8198;
+      --cyan:#5ad7ff; --gold:#f5c662; --bull:#5cf2a4; --bear:#ff6b8b;
+      --line:rgba(110,140,180,0.18); --line-strong:rgba(110,140,180,0.32);
+      --glass: linear-gradient(180deg, rgba(15,28,48,0.78), rgba(7,14,28,0.78));
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;background:#04070d;color:var(--ink);
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      -webkit-font-smoothing:antialiased; font-feature-settings:"ss01","cv11";
+    }
+    a{color:var(--cyan);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+    code{font-family:"JetBrains Mono","IBM Plex Mono",ui-monospace,monospace;font-size:0.92em;background:rgba(90,215,255,0.06);padding:1px 6px;border-radius:4px;color:var(--cyan)}
+
+    .topbar{position:sticky;top:0;z-index:50;background:rgba(4,7,13,0.86);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+    .topbar-row{display:flex;align-items:center;gap:18px;padding:14px 24px;max-width:1400px;margin:0 auto}
+    .brand{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:14px;letter-spacing:0.18em;color:var(--gold);text-transform:uppercase}
+    .brand b{color:var(--cyan)}
+    nav.nav{display:flex;gap:8px;flex:1;flex-wrap:nowrap;overflow-x:auto;scroll-padding-top:80px}
+    nav.nav a{font-size:13px;color:var(--ink-dim);padding:8px 12px;border-radius:8px;white-space:nowrap}
+    nav.nav a:hover{background:rgba(90,215,255,0.08);color:var(--ink);text-decoration:none}
+    nav.nav a.active{color:var(--gold);background:rgba(245,198,98,0.08)}
+    .topbar-cta{display:flex;gap:10px;align-items:center}
+    .pill-cta{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;
+      padding:8px 14px;border:1px solid var(--gold);color:var(--gold);border-radius:999px;cursor:pointer}
+    .pill-cta:hover{background:rgba(245,198,98,0.12);text-decoration:none}
+
+    .hero{padding:64px 0 44px;border-bottom:1px solid var(--line);position:relative;overflow:hidden}
+    .hero::before{content:"";position:absolute;inset:0;
+      background:radial-gradient(800px 400px at 30% 20%, rgba(90,215,255,0.12), transparent 60%),
+                 radial-gradient(600px 380px at 80% 60%, rgba(245,198,98,0.10), transparent 60%);pointer-events:none}
+    .hero .wrap{position:relative}
+    .eyebrow{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:0.22em;color:var(--gold);text-transform:uppercase;margin-bottom:16px}
+    .h1{font-size:clamp(36px,5.5vw,60px);line-height:1.05;letter-spacing:-0.01em;margin:0 0 18px;font-weight:700}
+    .h1 .glow{color:var(--cyan)}
+    .sub{font-size:18px;color:var(--ink-dim);max-width:760px;line-height:1.55}
+    .stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:32px}
+    .stat-box{background:var(--glass);border:1px solid var(--line);border-radius:14px;padding:18px}
+    .stat-box .lbl{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:0.18em;color:var(--ink-mute);text-transform:uppercase;margin-bottom:6px}
+    .stat-box .val{font-size:24px;font-weight:700;font-variant-numeric:tabular-nums;color:var(--cyan)}
+    .stat-box .ann{font-size:12px;color:var(--ink-dim);margin-top:4px}
+    @media (max-width:860px){.stats-row{grid-template-columns:repeat(2,1fr)}}
+
+    section.section{padding:56px 0;border-bottom:1px solid var(--line)}
+    .section h2{font-size:28px;margin:0 0 8px;letter-spacing:-0.01em}
+    .section .lead{color:var(--ink-dim);max-width:680px;margin:0 0 28px}
+
+    /* tier cards */
+    .tier-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    @media (max-width:980px){.tier-grid{grid-template-columns:1fr}}
+    .tier{background:var(--glass);border:1px solid var(--line);border-radius:18px;padding:24px;display:flex;flex-direction:column;gap:14px;
+      transition:all .2s ease;position:relative;overflow:hidden}
+    .tier:hover{border-color:rgba(90,215,255,0.45);transform:translateY(-3px)}
+    .tier::before{content:"";position:absolute;top:-30px;right:-30px;width:160px;height:160px;border-radius:50%;
+      background:radial-gradient(circle, rgba(90,215,255,0.14), transparent 70%);pointer-events:none}
+    .tier.hot{border-color:rgba(245,198,98,0.55);box-shadow:0 18px 40px -28px rgba(245,198,98,0.45)}
+    .tier.hot::before{background:radial-gradient(circle, rgba(245,198,98,0.2), transparent 70%)}
+    .tier.embed::before{background:radial-gradient(circle, rgba(124,109,242,0.18), transparent 70%)}
+    .tier-tag{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:0.2em;color:var(--gold);text-transform:uppercase;position:relative;z-index:1}
+    .tier-name{font-size:22px;font-weight:700;color:var(--ink);position:relative;z-index:1}
+    .tier-cut{font-family:"JetBrains Mono",monospace;font-size:14px;color:var(--cyan);position:relative;z-index:1;
+      padding:8px 12px;background:rgba(90,215,255,0.06);border:1px solid rgba(90,215,255,0.32);border-radius:10px;align-self:flex-start}
+    .tier-cut.gold{color:var(--gold);background:rgba(245,198,98,0.06);border-color:rgba(245,198,98,0.4)}
+    .tier-summary{font-size:14px;color:var(--ink-dim);line-height:1.6;position:relative;z-index:1}
+    .tier ul{list-style:none;padding:0;margin:6px 0 0;display:flex;flex-direction:column;gap:8px;position:relative;z-index:1}
+    .tier ul li{font-size:13px;color:var(--ink);display:flex;gap:8px;align-items:flex-start;line-height:1.5}
+    .tier ul li::before{content:"✓";color:var(--bull);font-weight:700;flex-shrink:0}
+    .tier .best-for{margin-top:auto;padding-top:14px;border-top:1px dashed var(--line);font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:0.14em;color:var(--ink-mute);text-transform:uppercase;position:relative;z-index:1}
+    .tier .best-for b{color:var(--gold)}
+
+    /* widgets */
+    .widg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    @media (max-width:860px){.widg-grid{grid-template-columns:1fr}}
+    .widg{background:var(--glass);border:1px solid var(--line);border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:10px}
+    .widg .tag{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:0.18em;color:var(--gold);text-transform:uppercase}
+    .widg h4{margin:0;color:var(--cyan);font-size:15px}
+    .widg .mock{background:#040a14;border:1px solid var(--line);border-radius:10px;padding:14px;
+      font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--ink-dim);line-height:1.6;min-height:120px}
+    .widg .mock .row{display:flex;justify-content:space-between}
+    .widg .mock .pos{color:var(--bull)}
+    .widg .mock .neg{color:var(--bear)}
+    .widg .mock .head{font-size:10px;letter-spacing:0.16em;color:var(--gold);text-transform:uppercase;margin-bottom:6px}
+    .widg .badge-mock{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;background:rgba(245,198,98,0.06);
+      border:1px solid rgba(245,198,98,0.32);border-radius:10px;font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--gold);align-self:flex-start}
+    .widg p{margin:0;color:var(--ink-dim);font-size:13px;line-height:1.55}
+
+    .wl-callout{background:linear-gradient(135deg, rgba(124,109,242,0.10), rgba(245,198,98,0.06));
+      border:1px solid rgba(124,109,242,0.32);border-radius:14px;padding:24px;display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap}
+    .wl-callout .l{flex:1;min-width:240px}
+    .wl-callout h4{margin:0 0 4px;font-size:18px}
+    .wl-callout p{margin:0;color:var(--ink-dim);font-size:14px}
+    .wl-callout a.cta{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;
+      padding:11px 16px;border:1px solid var(--gold);color:var(--gold);border-radius:10px;white-space:nowrap}
+    .wl-callout a.cta:hover{background:rgba(245,198,98,0.10);text-decoration:none}
+
+    /* apply form (mailto) */
+    .apply{background:linear-gradient(135deg, rgba(90,215,255,0.10), rgba(245,198,98,0.08));
+      border:1px solid rgba(245,198,98,0.32);border-radius:18px;padding:32px}
+    .apply h3{margin:0 0 8px;font-size:24px}
+    .apply p{margin:0 0 18px;color:var(--ink-dim);font-size:14px;max-width:600px;line-height:1.55}
+    .apply-form{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    @media (max-width:760px){.apply-form{grid-template-columns:1fr}}
+    .apply-form label{display:flex;flex-direction:column;gap:6px;font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:0.16em;color:var(--ink-mute);text-transform:uppercase}
+    .apply-form input, .apply-form select, .apply-form textarea{
+      background:#040a14;border:1px solid var(--line-strong);color:var(--ink);font-size:14px;padding:11px 12px;border-radius:10px;font-family:inherit}
+    .apply-form input:focus, .apply-form select:focus, .apply-form textarea:focus{outline:none;border-color:var(--cyan)}
+    .apply-form .full{grid-column:1 / -1}
+    .apply-form button{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;
+      padding:13px 20px;border-radius:10px;background:var(--gold);color:#1a1304;border:none;font-weight:700;cursor:pointer}
+    .apply-form button:hover{background:#ffd683}
+    .apply .micro{margin-top:10px;font-size:11px;color:var(--ink-mute);font-family:"IBM Plex Mono",monospace}
+
+    .faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    @media (max-width:760px){.faq-grid{grid-template-columns:1fr}}
+    .faq-item{background:var(--glass);border:1px solid var(--line);border-radius:12px;padding:18px}
+    .faq-item h4{margin:0 0 8px;color:var(--cyan);font-size:15px}
+    .faq-item p{margin:0;color:var(--ink-dim);font-size:13px;line-height:1.6}
+    .faq-item p b{color:var(--ink)}
+
+    footer{padding:36px 0;color:var(--ink-mute);font-size:12px;border-top:1px solid var(--line);text-align:center}
+    footer .links{display:flex;gap:14px;justify-content:center;margin-top:8px;flex-wrap:wrap}
+  </style>
+<link rel="stylesheet" href="/lib/polish-tokens.css">
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-row">
+      <div class="brand"><b>Catalyst</b> · Edge</div>
+      <nav class="nav">
+        <a href="/scanner/">Scanner</a>
+        <a href="/international/">Global</a>
+        <a href="/dcf/">DCF</a>
+        <a href="/cross-border/">Cross-Border</a>
+        <a href="/sdk/">SDK</a>
+        <a href="/benchmarks/">Benchmarks</a>
+        <a href="/trust/">Trust</a>
+        <a href="/community/">Community</a>
+        <a href="/partners/" class="active">Partners</a>
+        <a href="/enterprise/">Enterprise</a>
+        <a href="/pricing/">Pricing</a>
+      </nav>
+      <div class="topbar-cta">
+        <a class="pill-cta" href="#apply">Apply ↓</a>
+      </div>
+    </div>
+  </div>
+
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow">🤝 Affiliate · Reseller · Embed Partner · 10% recurring revenue share</div>
+      <h1 class="h1">Partner with Catalyst Edge — <span class="glow">get paid to ship the future of retail data.</span></h1>
+      <p class="sub">Three ways to monetize the Bloomberg-killer with us: send qualified Pro+ referrals (10% recurring), resell Team/Enterprise with 25% margin, or embed our widgets in your product. Real attribution, real payouts, no contractual hostage-taking. Apply in 60 seconds below.</p>
+      <div class="stats-row">
+        <div class="stat-box"><div class="lbl">Recurring share</div><div class="val">10%</div><div class="ann">Affiliate · 6mo window</div></div>
+        <div class="stat-box"><div class="lbl">Reseller margin</div><div class="val">25%</div><div class="ann">Team + Enterprise</div></div>
+        <div class="stat-box"><div class="lbl">Embed share</div><div class="val">15%</div><div class="ann">Co-branded conversions</div></div>
+        <div class="stat-box"><div class="lbl">Payout cycle</div><div class="val">Net 30</div><div class="ann">PayPal · ACH · Wise</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>Three ways to partner</h2>
+      <p class="lead">Pick the one that maps to your audience. You can run multiple programs in parallel — referrals attribute by source, not exclusivity.</p>
+      <div class="tier-grid">
+
+        <div class="tier hot">
+          <div class="tier-tag">01 · Affiliate</div>
+          <div class="tier-name">Affiliate</div>
+          <div class="tier-cut gold">10% × 6 months recurring</div>
+          <p class="tier-summary">Anyone can join. Drop your referral URL in a tweet, a newsletter, a YouTube description — earn 10% on every Pro or Team conversion for 6 months.</p>
+          <ul>
+            <li>Unique <code>?ref=</code> URL on every public page</li>
+            <li>Click + conversion dashboard</li>
+            <li>30-day cookie window before attribution</li>
+            <li>10% × 6 months on Pro ($39) and Team ($199)</li>
+            <li>Pay out via PayPal / ACH / Wise · Net 30</li>
+            <li>No minimum, no exclusivity, no claw-back</li>
+          </ul>
+          <div class="best-for">Best for: <b>newsletter writers · fintwit · YouTubers</b></div>
+        </div>
+
+        <div class="tier">
+          <div class="tier-tag">02 · Reseller</div>
+          <div class="tier-name">Reseller</div>
+          <div class="tier-cut">25% margin baked in</div>
+          <p class="tier-summary">Resell Team ($199/mo) and Enterprise ($499+/seat) plans to your client roster with a 25% margin. We handle data + uptime, you keep the customer relationship.</p>
+          <ul>
+            <li>25% margin on Team + Enterprise contracts</li>
+            <li>Co-signed customer agreement</li>
+            <li>White-glove onboarding handed back to you</li>
+            <li>Monthly billing handed to your AR team</li>
+            <li>SLA + status page included for end customers</li>
+            <li>Annual prepay discounts available</li>
+          </ul>
+          <div class="best-for">Best for: <b>consultancies · advisory firms · fintech aggregators</b></div>
+        </div>
+
+        <div class="tier embed">
+          <div class="tier-tag">03 · Embed Partner</div>
+          <div class="tier-name">Embed Partner</div>
+          <div class="tier-cut">15% co-branded</div>
+          <p class="tier-summary">Iframe or self-host Catalyst Edge widgets in your product. "Powered by Catalyst Edge" badge required (or upgrade to white-label). 15% share on co-branded paid conversions.</p>
+          <ul>
+            <li>Embeddable widgets (DCF · cross-border tape · alerts)</li>
+            <li>"Powered by Catalyst Edge" badge required</li>
+            <li>Optional white-label via Enterprise tier</li>
+            <li>Iframe or self-hosted JS bundle</li>
+            <li>15% recurring share on co-branded conversions</li>
+            <li>Single integration, multiple widget surfaces</li>
+          </ul>
+          <div class="best-for">Best for: <b>portfolio dashboards · robo-advisors · broker platforms</b></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>Embeddable widgets</h2>
+      <p class="lead">Drop these into your dashboard with one script tag. Each one is data-live and auto-refreshes from the same feeds powering the public scanner.</p>
+      <div class="widg-grid">
+
+        <div class="widg">
+          <span class="tag">Widget · DCF</span>
+          <h4>Today's top DCF picks</h4>
+          <div class="mock">
+            <div class="head">A-graded · 2026-04-25</div>
+            <div class="row"><span>META</span><span class="pos">+104.2% upside</span></div>
+            <div class="row"><span>GOOGL</span><span class="pos">+41.5%</span></div>
+            <div class="row"><span>BABA</span><span class="pos">+60.2%</span></div>
+            <div class="row"><span>UBER</span><span class="pos">+38.1%</span></div>
+            <div class="row"><span>AVGO</span><span class="pos">+22.8%</span></div>
+          </div>
+          <p>Refreshes daily. 1,001-name universe. Sourced from SEC EDGAR XBRL.</p>
+        </div>
+
+        <div class="widg">
+          <span class="tag">Widget · Tape</span>
+          <h4>Live cross-border tape</h4>
+          <div class="mock">
+            <div class="head">STRONG · last 60 min</div>
+            <div class="row"><span>🇧🇷 PBR ↔ PETR4.SA</span><span class="pos">score 4 / 4</span></div>
+            <div class="row"><span>🇨🇳 BABA ↔ 9988.HK</span><span class="pos">score 3 / 4</span></div>
+            <div class="row"><span>🇮🇳 INFY ↔ INFY.NS</span><span class="pos">score 3 / 4</span></div>
+            <div class="row"><span>🇲🇽 AMX ↔ AMXB.MX</span><span class="pos">score 3 / 4</span></div>
+          </div>
+          <p>Updated hourly. 43 countries · 4-point convergence score.</p>
+        </div>
+
+        <div class="widg">
+          <span class="tag">Badge · Required for free embed</span>
+          <h4>"Powered by Catalyst Edge"</h4>
+          <div class="badge-mock">⚡ Powered by Catalyst Edge</div>
+          <p style="margin-top:8px;font-size:12px;color:var(--ink-mute)">Drop this badge anywhere on the page where the widget is rendered. White-label removes the badge — see <a href="/enterprise/">Enterprise</a>.</p>
+          <div class="mock" style="font-size:11px">
+            <div class="head">Embed code</div>
+            <div>&lt;script src="https://catalystedgescanner.com/embed.js"</div>
+            <div>&nbsp;&nbsp;data-widget="dcf-top"</div>
+            <div>&nbsp;&nbsp;data-partner="<span style="color:var(--cyan)">your_id</span>"&gt;&lt;/script&gt;</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="wl-callout">
+        <div class="l">
+          <h4>Need full white-label?</h4>
+          <p>Enterprise tier strips all Catalyst Edge branding, ships on your custom domain, and includes co-marketing. From $499/seat/mo with volume discounts.</p>
+        </div>
+        <a class="cta" href="/enterprise/">See enterprise →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="apply">
+    <div class="wrap">
+      <div class="apply">
+        <h3>Apply for the partner program</h3>
+        <p>One short form. Email opens with your details pre-filled. Most applications approved within 24 hours; founder reads every one personally. No commitment, no contract until your first payout cycle.</p>
+        <form class="apply-form" action="mailto:opensource@example.com" method="POST" enctype="text/plain">
+          <input type="hidden" name="subject" value="Partner program application" />
+          <label>Tier
+            <select name="tier" required>
+              <option value="">Select…</option>
+              <option value="Affiliate">Affiliate (10% recurring)</option>
+              <option value="Reseller">Reseller (25% margin)</option>
+              <option value="Embed">Embed Partner (15% co-branded)</option>
+            </select>
+          </label>
+          <label>Your email
+            <input type="email" name="email" placeholder="you@desk.com" required />
+          </label>
+          <label class="full">Audience or customer base
+            <input type="text" name="audience" placeholder="e.g. fintwit followers (45k), advisor clients (120 firms), embed in robo-advisor dashboard…" required />
+          </label>
+          <label>Expected monthly referrals
+            <input type="text" name="volume" placeholder="e.g. 5-20" />
+          </label>
+          <label>URL or channel
+            <input type="url" name="channel" placeholder="https://yourchannel.example" />
+          </label>
+          <label class="full">Anything else?
+            <textarea name="notes" rows="3" placeholder="Optional · context, constraints, ideas"></textarea>
+          </label>
+          <div class="full"><button type="submit">Apply →</button></div>
+        </form>
+        <div class="micro">Submit opens your email client · founder replies within 24 hours · no Stripe / KYC until first payout</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>FAQ</h2>
+      <p class="lead">Five quick answers to the questions every partner asks before signing up.</p>
+      <div class="faq-grid">
+        <div class="faq-item">
+          <h4>How long is the cookie window?</h4>
+          <p><b>30 days</b>. If a visitor clicks your <code>?ref=</code> URL and converts within 30 days on any device that hits the same browser session, they're attributed to you. We use first-touch attribution — the first <code>ref</code> wins, never re-attributed.</p>
+        </div>
+        <div class="faq-item">
+          <h4>Payout method + frequency?</h4>
+          <p><b>Net 30</b> from the close of each calendar month. We support <b>PayPal, ACH (US bank), and Wise</b> for international. Minimum payout is $20; balances under $20 roll forward.</p>
+        </div>
+        <div class="faq-item">
+          <h4>What are the attribution rules?</h4>
+          <p>Honest disclosure required: don't disguise affiliate links as editorial endorsements. Don't run paid search bidding on "catalyst edge" branded terms. Don't impersonate the founder or the brand. Violations forfeit current and future commissions.</p>
+        </div>
+        <div class="faq-item">
+          <h4>When do commissions stop?</h4>
+          <p>The 6-month payout window starts from the customer's <b>first paid charge</b>, not their signup. If they cancel before month 6, you get paid through the cancellation date. After month 6 you'll have referred a new customer for us — that's the deal.</p>
+        </div>
+        <div class="faq-item">
+          <h4>What about multi-product attribution?</h4>
+          <p>If your referred customer upgrades from Reader → Pro → Team, you earn the share at <b>each tier they sit in</b>, prorated by tier-month. Downgrade → reduced commission. Cancellation → commission stops.</p>
+        </div>
+        <div class="faq-item">
+          <h4>Can I run all three programs?</h4>
+          <p>Yes. Affiliate + Reseller + Embed are independent programs and stack cleanly. A single referral can only attribute to one program though — first-touch wins. Most partners start as Affiliate then graduate to Embed once they have product surface.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    Catalyst Edge Scanner · Partner with us · Audited 89% hit rate · Ships daily, not quarterly
+    <div class="links">
+      <a href="/scanner/">Scanner</a>
+      <a href="/enterprise/">Enterprise</a>
+      <a href="/pricing/">Pricing</a>
+      <a href="/changelog/">Changelog</a>
+      <a href="mailto:opensource@example.com">Contact</a>
+    </div>
+  </footer>
+
+  <script src="/lib/tier.js" defer></script>
+</body>
+</html>

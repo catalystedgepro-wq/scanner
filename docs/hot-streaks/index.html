@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hot Streaks — Repeat Catalyst Performers | Catalyst Edge</title>
+<meta name="description" content="Stocks appearing in multiple daily scans. These tickers keep firing catalysts day after day — persistent signal strength that matters.">
+<meta property="og:title" content="Hot Streaks — Catalyst Edge">
+<link rel="canonical" href="https://catalystedgescanner.com/hot-streaks/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#070a12;--surface:#0f1420;--gold:#d4a843;--green:#22c55e;--red:#ef4444;--cyan:#06b6d4;--text:#e2e8f0;--dim:#94a3b8;--muted:#64748b;--border:#1e293b}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
+.wrap{max-width:1000px;margin:0 auto;padding:1.5rem}
+.nav{position:sticky;top:0;z-index:100;background:rgba(7,10,18,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:.75rem 1.5rem;display:flex;align-items:center;gap:1rem}
+.nav a{color:var(--gold);font-weight:600;font-size:.95rem}
+.nav .sep{color:var(--muted)}
+.hero{text-align:center;padding:2.5rem 0 2rem;border-bottom:1px solid var(--border);margin-bottom:1.5rem}
+.hero h1{font-size:clamp(1.5rem,4vw,2.2rem);font-weight:800;margin-bottom:.4rem}
+.hero h1 em{font-style:normal;color:var(--red)}
+.hero .sub{color:var(--dim);font-size:.9rem;max-width:580px;margin:0 auto}
+.stats-bar{display:flex;justify-content:center;gap:2rem;margin:1rem 0;flex-wrap:wrap}
+.sb-item{text-align:center}
+.sb-val{font-size:1.3rem;font-weight:800;color:var(--gold)}
+.sb-lbl{font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.streak-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:.75rem;margin:1.5rem 0}
+.streak-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.2rem;transition:border-color .2s,transform .2s;position:relative;overflow:hidden}
+.streak-card:hover{border-color:var(--gold);transform:translateY(-2px)}
+.streak-card .fire-bar{position:absolute;top:0;left:0;right:0;height:3px}
+.sc-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.6rem}
+.sc-ticker{font-size:1.4rem;font-weight:800;color:var(--gold)}
+.sc-streak{padding:3px 10px;border-radius:6px;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+.sc-streak.hot{background:rgba(239,68,68,.1);color:var(--red)}
+.sc-streak.warm{background:rgba(249,115,22,.1);color:#f97316}
+.sc-streak.mild{background:rgba(212,168,67,.1);color:var(--gold)}
+.sc-metrics{display:flex;gap:1rem;margin-bottom:.6rem}
+.sc-metric{text-align:center}
+.sc-metric .sm-val{font-size:1rem;font-weight:800;font-family:'IBM Plex Mono',monospace}
+.sc-metric .sm-lbl{font-size:.55rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.sc-dates{display:flex;flex-wrap:wrap;gap:.25rem}
+.sc-date{padding:2px 6px;border-radius:4px;font-size:.6rem;font-family:'IBM Plex Mono',monospace;background:rgba(212,168,67,.06);color:var(--dim)}
+.sc-link{display:block;margin-top:.5rem;font-size:.75rem;color:var(--gold)}
+.cta-bar{background:var(--surface);border:1px solid var(--gold);border-radius:10px;padding:1.25rem;text-align:center;margin:2rem 0}
+.cta-bar h3{color:var(--gold);font-size:1rem;margin-bottom:.3rem}
+.cta-bar p{color:var(--dim);font-size:.8rem;margin-bottom:.75rem}
+.cta-bar a{display:inline-block;padding:.5rem 1.4rem;background:linear-gradient(135deg,var(--gold),#f1ce88);color:#070a12;font-weight:700;border-radius:6px;font-size:.85rem}
+.footer{text-align:center;padding:1.5rem;font-size:.72rem;color:var(--muted);border-top:1px solid var(--border);margin-top:2rem}
+.footer a{color:var(--muted)}
+.loading{text-align:center;padding:3rem;color:var(--muted)}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Catalyst Edge Hot Streaks","url":"https://catalystedgescanner.com/hot-streaks/","description":"Repeat catalyst performers appearing in multiple daily scans","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@800;900&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/lib/cinematic-hero.css">
+  <link rel="stylesheet" href="/lib/cyber-shell.css">
+  <link rel="stylesheet" href="/lib/polish-tokens.css">
+</head>
+<body>
+  <div class="cy-bg" aria-hidden="true"></div>
+  <div class="cy-floor" aria-hidden="true"></div>
+  <div class="cy-vignette" aria-hidden="true"></div>
+  <div class="cy-scan" aria-hidden="true"></div>
+<div class="nav">
+  <a href="/">Catalyst Edge</a>
+  <span class="sep">/</span>
+  <span style="color:var(--dim);font-size:.9rem">Hot Streaks</span>
+</div>
+<div class="wrap">
+<section class="cin-hero cy-neon-hero cy-shimmer">
+    <div class="cin-grid">
+      <div class="cin-stat-stack">
+        <div class="cin-eyebrow"><span class="cin-live-dot"></span>HOT STREAKS · LIVE</div>
+        <div class="cin-colossal">
+          <div class="cin-num-row"><span class="cin-num">≥5d</span></div>
+          <div class="cin-side">
+          <span class="cin-tag">consecutive <b>up</b> days</span>
+          <span class="cin-tag">volume confirmation</span>
+          <span class="cin-tag">sector-relative</span>
+          </div>
+        </div>
+        <div class="cin-stamp">STREAKS//RADAR · v1.0 · <b>LIVE</b></div>
+      </div>
+      <div class="cin-h1-block">
+        <div class="cin-h1-eyebrow">🔥 Hot Streaks · Names Closing Up N Days In A Row</div>
+        <h1 class="cin-headline">Streaks of <em>five or more</em> consecutive up-days—the <span class="cin-accent">tape's tell</span> on hidden accumulation.</h1>
+        <p class="cin-lede">Names closing up 5+ days in a row on rising volume, ranked by streak length and relative strength vs sector. Streaks longer than 8 days frequently mark institutional reweighting episodes.</p>
+        <div class="cin-cta-row">
+          <a href="#hs-table" class="cin-btn-primary">See active streaks ↓</a>
+          <a href="/scanner/" class="cin-btn-ghost">Open scanner</a>
+        </div>
+        <div class="cin-strip">
+          <div class="cin-cell"><div class="cin-k">Streaks ≥5d</div><div class="cin-v bull" id="hs-5">–</div></div>
+          <div class="cin-cell"><div class="cin-k">Streaks ≥8d</div><div class="cin-v gold" id="hs-8">–</div></div>
+          <div class="cin-cell"><div class="cin-k">Avg length</div><div class="cin-v cyan" id="hs-avg">–</div></div>
+          <div class="cin-cell"><div class="cin-k">Updated</div><div class="cin-v">daily</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="streak-grid" class="streak-grid">
+    <div class="loading">Analyzing streaks...</div>
+  </div>
+  <div class="cta-bar">
+    <h3>Track hot streaks daily</h3>
+    <p>Free daily email at 4 AM ET with ranked picks, streak alerts, and convergence signals.</p>
+    <a href="/preview/">Subscribe Free</a>
+  </div>
+</div>
+<div class="footer">
+  &copy; 2026 Catalyst Edge &middot;
+  <a href="/">Scanner</a> &middot;
+  <a href="/rankings/">Rankings</a> &middot;
+  <a href="/screener/">Screener</a> &middot;
+  <a href="/spotlight/">Spotlight</a> &middot;
+  <a href="/lookup/">Lookup</a> &middot;
+  <a href="/sectors/">Sectors</a> &middot;
+  <a href="/signal-strength/">Signal Strength</a> &middot;
+  <a href="/calendar/">Calendar</a> &middot;
+  <a href="/vs/">Compare</a> &middot;
+  <a href="/performance/">Performance</a> &middot;
+  <a href="/glossary/">Glossary</a> &middot;
+  Not financial advice.
+</div>
+<script>
+(function(){
+  var grid = document.getElementById('streak-grid');
+
+  function el(tag, cls, text) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text) e.textContent = text;
+    return e;
+  }
+
+  fetch('/api/hot-streaks').then(function(r){return r.json()}).then(function(d){
+    var streaks = d.streaks || [];
+    grid.textContent = '';
+
+    document.getElementById('h-total').textContent = d.total || streaks.length;
+    document.getElementById('h-days').textContent = d.days_analyzed || '--';
+    var longest = 0;
+    streaks.forEach(function(s){ if(s.appearances > longest) longest = s.appearances; });
+    document.getElementById('h-longest').textContent = longest + ' days';
+
+    streaks.forEach(function(s){
+      var card = el('div','streak-card');
+
+      // Fire bar
+      var fire = el('div','fire-bar');
+      var heat = s.appearances >= 5 ? 'var(--red)' : s.appearances >= 3 ? '#f97316' : 'var(--gold)';
+      fire.style.background = 'linear-gradient(90deg, ' + heat + ', transparent)';
+      card.appendChild(fire);
+
+      // Header
+      var hdr = el('div','sc-header');
+      hdr.appendChild(el('div','sc-ticker',s.ticker));
+      var streakClass = s.appearances >= 5 ? 'hot' : s.appearances >= 3 ? 'warm' : 'mild';
+      hdr.appendChild(el('span','sc-streak ' + streakClass, s.appearances + ' days'));
+      card.appendChild(hdr);
+
+      // Metrics
+      var metrics = el('div','sc-metrics');
+      var pairs = [
+        {val:String(s.streak_score),lbl:'Streak Score',color:heat},
+        {val:String(s.avg_score),lbl:'Avg Score',color:'var(--text)'},
+        {val:String(s.max_score),lbl:'Peak Score',color:'var(--green)'}
+      ];
+      pairs.forEach(function(p){
+        var m = el('div','sc-metric');
+        var v = el('div','sm-val',p.val);
+        v.style.color = p.color;
+        m.appendChild(v);
+        m.appendChild(el('div','sm-lbl',p.lbl));
+        metrics.appendChild(m);
+      });
+      card.appendChild(metrics);
+
+      // Date pills
+      var dates = el('div','sc-dates');
+      s.dates.forEach(function(dt,i){
+        var pill = el('span','sc-date',dt.slice(5) + ' (' + s.scores[i] + ')');
+        dates.appendChild(pill);
+      });
+      card.appendChild(dates);
+
+      // Link to lookup
+      var link = document.createElement('a');
+      link.className = 'sc-link';
+      link.href = '/lookup/#' + s.ticker;
+      link.textContent = 'View full profile \u2192';
+      card.appendChild(link);
+
+      grid.appendChild(card);
+    });
+
+    if(streaks.length === 0){
+      grid.appendChild(el('div','loading','No streaks detected yet. Check back after multiple scan days.'));
+    }
+  }).catch(function(){
+    grid.textContent = 'Could not load streak data.';
+  });
+})();
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KV1VDK22VC"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-KV1VDK22VC');</script>
+<script>
+(function(){
+  var f=function(id,v){var n=document.getElementById(id); if(n && v!=null) n.textContent=v;};
+  fetch('/api/hot-streaks').then(function(r){return r.json();}).then(function(d){
+    var s=(d&&d.streaks)||[];
+    var n5=0, n8=0, sumLen=0;
+    s.forEach(function(x){
+      var ap=parseInt(x.appearances||0,10);
+      sumLen += ap;
+      if(ap>=5) n5++;
+      if(ap>=8) n8++;
+    });
+    var avg = s.length ? (sumLen/s.length).toFixed(1) : '–';
+    f('hs-5', n5.toLocaleString());
+    f('hs-8', n8.toLocaleString());
+    f('hs-avg', avg);
+  }).catch(function(){});
+})();
+</script>
+</body>
+</html>

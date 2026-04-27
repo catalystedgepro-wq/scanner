@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Live Canary — Catalyst Edge</title>
+<link rel="stylesheet" href="/lib/cinematic-hero.css">
+<link rel="stylesheet" href="/lib/cyber-shell.css">
+<link rel="stylesheet" href="/lib/polish-tokens.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Orbitron:wght@500;700;900&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  body { font-family: "Inter Tight", system-ui, sans-serif; background: #050214; color: #e8f0ff; margin: 0; }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 40px 24px; position: relative; z-index: 5; }
+  h1 { font-family: "Orbitron", sans-serif; font-weight: 900; font-size: clamp(28px, 4vw, 48px); margin-bottom: 8px; letter-spacing: -0.02em; }
+  h1 .label { color: #d6ff3a; }
+  .stamp { font-family: "JetBrains Mono", monospace; font-size: 11px; color: #93a4c9; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 24px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+  .panel { background: linear-gradient(180deg, rgba(20,12,50,0.78), rgba(10,5,36,0.82)); border: 1px solid rgba(150,170,220,0.10); border-radius: 12px; padding: 18px 20px; }
+  .panel .lbl { font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #5a6c92; margin-bottom: 6px; }
+  .panel .val { font-family: "JetBrains Mono", monospace; font-size: 24px; font-weight: 700; color: #00ffff; font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
+  .panel .val.bull { color: #5cf2a4; }
+  .panel .val.bear { color: #ff5577; }
+  .panel .val.amber { color: #ffb347; }
+  .panel .sub { font-family: "JetBrains Mono", monospace; font-size: 11px; color: #93a4c9; margin-top: 4px; }
+  .events { margin-top: 32px; }
+  .events h2 { font-family: "Orbitron", sans-serif; font-size: 18px; font-weight: 700; margin-bottom: 12px; color: #00ffff; }
+  .event-list { display: flex; flex-direction: column; gap: 6px; }
+  .event { background: rgba(15,8,40,0.55); border-left: 3px solid #ff2a8a; padding: 10px 14px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: #93a4c9; }
+  .event .ts { color: #5a6c92; font-size: 10px; margin-right: 10px; }
+  .event.bull { border-left-color: #5cf2a4; }
+  .event.bear { border-left-color: #ff5577; }
+  .event.amber { border-left-color: #ffb347; }
+  .stale { color: #ff5577; }
+  .live-banner { background: rgba(255,42,138,0.10); border: 1px solid rgba(255,42,138,0.32); padding: 14px 18px; border-radius: 10px; margin-bottom: 24px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: #ff5cd1; }
+  .paper-banner { background: rgba(150,170,220,0.06); border: 1px solid rgba(150,170,220,0.20); padding: 14px 18px; border-radius: 10px; margin-bottom: 24px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: #93a4c9; }
+</style>
+</head>
+<body>
+<div class="cy-bg" aria-hidden="true"></div>
+<div class="cy-floor" aria-hidden="true"></div>
+<div class="cy-vignette" aria-hidden="true"></div>
+<div class="cy-scan" aria-hidden="true"></div>
+
+<div class="wrap">
+  <h1>⟁ Live <span class="label" id="mode-label">CANARY</span> Monitor</h1>
+  <div class="stamp">Account · Real-time · Alpaca <span id="base-url">paper-api.alpaca.markets</span></div>
+
+  <div id="banner-host"></div>
+
+  <div class="grid">
+    <div class="panel"><div class="lbl">Equity</div><div class="val" id="equity">—</div><div class="sub" id="account-id">—</div></div>
+    <div class="panel"><div class="lbl">P/L Today</div><div class="val" id="pl-today">—</div><div class="sub" id="dd-pct">—</div></div>
+    <div class="panel"><div class="lbl">Cash</div><div class="val amber" id="cash">—</div><div class="sub">available</div></div>
+    <div class="panel"><div class="lbl">Open positions</div><div class="val" id="pos-count">—</div><div class="sub" id="pos-list">—</div></div>
+    <div class="panel"><div class="lbl">Unrealized P/L</div><div class="val" id="unreal-pl">—</div><div class="sub">across open positions</div></div>
+    <div class="panel"><div class="lbl">Open orders</div><div class="val" id="orders">—</div><div class="sub">resting</div></div>
+    <div class="panel"><div class="lbl">Kill switch</div><div class="val" id="kill-state">—</div><div class="sub" id="kill-sub">5-min cron</div></div>
+    <div class="panel"><div class="lbl">Last evaluated</div><div class="val" id="last-eval" style="font-size:14px;">—</div><div class="sub">canary monitor</div></div>
+  </div>
+
+  <div class="events">
+    <h2>Recent events</h2>
+    <div class="event-list" id="event-list"><div class="event">loading…</div></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  function fmtUsd(n) {
+    if (n == null || isNaN(n)) return "—";
+    var v = +n;
+    var sign = v >= 0 ? "" : "−";
+    var a = Math.abs(v);
+    if (a >= 1e6) return sign + "$" + (a/1e6).toFixed(2) + "M";
+    if (a >= 1e3) return sign + "$" + (a/1e3).toFixed(1) + "K";
+    return sign + "$" + a.toFixed(2);
+  }
+  function setText(id, text, cls) {
+    var n = document.getElementById(id);
+    if (!n) return;
+    n.textContent = text;
+    if (cls) {
+      n.classList.remove('bull','bear','amber');
+      n.classList.add(cls);
+    }
+  }
+  function classByValue(v) {
+    if (v == null) return '';
+    return v > 0 ? 'bull' : (v < 0 ? 'bear' : '');
+  }
+  function fetchState() {
+    fetch('/data/live_canary_state.json?cb='+Date.now(), {cache:'no-store'})
+      .then(function(r){ return r.ok ? r.json() : Promise.reject(r.status); })
+      .then(function(s){
+        var isLive = !!s.is_live;
+        document.getElementById('mode-label').textContent = isLive ? 'LIVE' : 'PAPER';
+        document.getElementById('base-url').textContent = s.base_url || 'paper-api.alpaca.markets';
+        var banner = document.getElementById('banner-host');
+        while (banner.firstChild) banner.removeChild(banner.firstChild);
+        var div = document.createElement('div');
+        div.className = isLive ? 'live-banner' : 'paper-banner';
+        div.textContent = isLive
+          ? '🟢 LIVE TRADING ACTIVE — every order moves real money. Kill switch is the floor.'
+          : '⚪ PAPER ACCOUNT — no real capital at risk. Promote with promote_to_live.py';
+        banner.appendChild(div);
+
+        setText('equity', fmtUsd(s.equity));
+        setText('account-id', s.account_id ? (s.account_id.slice(0,8) + '…') : '—');
+        setText('pl-today', (s.pl_today_usd >= 0 ? '+' : '') + fmtUsd(s.pl_today_usd), classByValue(s.pl_today_usd));
+        setText('dd-pct', (s.drawdown_pct >= 0 ? '+' : '') + (s.drawdown_pct||0).toFixed(2) + '%');
+        setText('cash', fmtUsd(s.cash));
+        setText('pos-count', String(s.open_positions || 0));
+        setText('pos-list', (s.position_symbols || []).slice(0,8).join(', ') || '—');
+        setText('unreal-pl', (s.unrealized_pl_usd >= 0 ? '+' : '') + fmtUsd(s.unrealized_pl_usd), classByValue(s.unrealized_pl_usd));
+        setText('orders', String(s.open_orders || 0));
+        setText('kill-state', s.kill_switch_tripped ? 'TRIPPED' : 'armed', s.kill_switch_tripped ? 'bear' : 'bull');
+        if (s.evaluated_at) {
+          var dt = new Date(s.evaluated_at);
+          var minutes = Math.round((Date.now() - dt.getTime()) / 60000);
+          setText('last-eval', minutes + 'm ago');
+          var lastEl = document.getElementById('last-eval');
+          if (minutes > 30) lastEl.classList.add('stale');
+        }
+      })
+      .catch(function(){
+        setText('equity', '—');
+        setText('last-eval', 'feed offline');
+      });
+  }
+  function fetchEvents() {
+    fetch('/data/live_canary_events.jsonl?cb='+Date.now(), {cache:'no-store'})
+      .then(function(r){ return r.ok ? r.text() : Promise.reject(r.status); })
+      .then(function(txt){
+        var lines = txt.trim().split('\n').slice(-20).reverse();
+        var list = document.getElementById('event-list');
+        while (list.firstChild) list.removeChild(list.firstChild);
+        if (!lines.length || (lines.length === 1 && !lines[0])) {
+          var none = document.createElement('div');
+          none.className = 'event';
+          none.textContent = 'no events yet';
+          list.appendChild(none);
+          return;
+        }
+        lines.forEach(function(l){
+          try {
+            var e = JSON.parse(l);
+            var div = document.createElement('div');
+            div.className = 'event';
+            if (e.type === 'position_opened') div.classList.add('bull');
+            else if (e.type === 'position_closed') div.classList.add('bear');
+            else if (e.type === 'drawdown_threshold' || e.type === 'kill_switch_tripped') div.classList.add('amber');
+            var ts = document.createElement('span');
+            ts.className = 'ts';
+            ts.textContent = (e.ts || '').slice(11, 19);
+            div.appendChild(ts);
+            var label = document.createTextNode(
+              e.type === 'position_opened' ? ('OPEN ' + (e.symbol || '?')) :
+              e.type === 'position_closed' ? ('CLOSE ' + (e.symbol || '?')) :
+              e.type === 'drawdown_threshold' ? ('drawdown crossed ' + e.threshold_pct + '% (now ' + (e.drawdown_pct||0).toFixed(2) + '%)') :
+              e.type === 'kill_switch_tripped' ? 'KILL SWITCH TRIPPED' :
+              JSON.stringify(e)
+            );
+            div.appendChild(label);
+            list.appendChild(div);
+          } catch (err) {}
+        });
+      })
+      .catch(function(){});
+  }
+  fetchState();
+  fetchEvents();
+  setInterval(fetchState, 30000);
+  setInterval(fetchEvents, 60000);
+})();
+</script>
+</body>
+</html>

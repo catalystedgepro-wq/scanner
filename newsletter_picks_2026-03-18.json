@@ -1,0 +1,15 @@
+{
+  "date": "2026-03-18",
+  "top5_tickers": [
+    "FNV",
+    "DXCM",
+    "BZ",
+    "EXLS",
+    "ARHS"
+  ],
+  "gapper_count": 8,
+  "value_count": 7,
+  "moat_count": 3,
+  "total_combined": 145,
+  "top_pick": "FNV"
+}

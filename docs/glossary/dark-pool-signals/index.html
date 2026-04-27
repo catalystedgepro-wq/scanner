@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dark Pool Signals for Trading — How Block Volume Reveals Smart Money | Catalyst Edge</title>
+<meta name="description" content="Learn how dark pool block volume signals reveal institutional positioning before price moves. Free scanner tracks dark pool activity across 1,600+ tickers daily.">
+<meta property="og:title" content="Dark Pool Signals for Trading — Catalyst Edge">
+<meta property="og:description" content="Dark pool volume analysis: how block trades reveal smart money positioning before price moves.">
+<meta property="og:url" content="https://catalystedgescanner.com/glossary/dark-pool-signals/">
+<link rel="canonical" href="https://catalystedgescanner.com/glossary/dark-pool-signals/">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Dark Pool Signals for Trading: How Block Volume Reveals Smart Money",
+  "description": "Understanding dark pool activity as a trading signal. How institutional block trades create predictable price patterns.",
+  "author": {"@type": "Organization", "name": "Catalyst Edge"},
+  "publisher": {"@type": "Organization", "name": "Catalyst Edge"},
+  "url": "https://catalystedgescanner.com/glossary/dark-pool-signals/",
+  "datePublished": "2026-04-13",
+  "dateModified": "2026-04-13"
+}
+</script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#070a12;--surface:#0f1420;--surface2:#161d2e;--gold:#d4a843;--green:#22c55e;
+  --cyan:#06b6d4;--red:#ef4444;--text:#e2e8f0;--dim:#94a3b8;--muted:#64748b;--border:#1e293b}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);
+  color:var(--text);line-height:1.7;-webkit-font-smoothing:antialiased}
+a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
+.wrap{max-width:720px;margin:0 auto;padding:3rem 1.5rem 4rem}
+.breadcrumb{font-size:.75rem;color:var(--muted);margin-bottom:2rem}
+.breadcrumb a{color:var(--dim)}
+h1{font-size:clamp(1.8rem,4vw,2.4rem);font-weight:800;line-height:1.15;margin-bottom:1rem}
+h2{font-size:1.3rem;font-weight:700;margin:2.5rem 0 .8rem;color:var(--text);
+  padding-bottom:.4rem;border-bottom:1px solid var(--border)}
+h3{font-size:1.05rem;font-weight:600;margin:1.5rem 0 .5rem;color:var(--cyan)}
+p{color:var(--dim);margin-bottom:1rem;font-size:.94rem}
+ul,ol{color:var(--dim);margin:0 0 1rem 1.5rem;font-size:.94rem}
+li{margin-bottom:.4rem}
+.callout{background:var(--surface);border-left:3px solid var(--gold);padding:1rem 1.2rem;
+  border-radius:0 8px 8px 0;margin:1.5rem 0;font-size:.9rem}
+.callout strong{color:var(--gold)}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:1.5rem 0}
+.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px;text-align:center}
+.stat-n{font-size:1.6rem;font-weight:800;color:var(--green)}
+.stat-l{font-size:.72rem;color:var(--muted);margin-top:4px;text-transform:uppercase;letter-spacing:.08em}
+table{width:100%;border-collapse:collapse;font-size:.88rem;margin:1.2rem 0}
+th{background:var(--surface);color:var(--muted);padding:8px 12px;text-align:left;
+  border-bottom:1px solid var(--border);font-weight:600;font-size:.76rem;text-transform:uppercase;letter-spacing:.06em}
+td{padding:8px 12px;border-bottom:1px solid rgba(255,255,255,.04);color:var(--dim)}
+td:first-child{color:var(--cyan);font-weight:600}
+code{background:var(--surface2);padding:2px 6px;border-radius:4px;font-size:.85em;color:var(--green)}
+.cta{background:var(--surface);border:2px solid var(--gold);border-radius:12px;padding:2rem;
+  text-align:center;margin:2.5rem 0}
+.cta h3{color:var(--gold);margin:0 0 .5rem;font-size:1.2rem}
+.cta p{margin-bottom:1rem}
+.cta-btn{display:inline-block;padding:.7rem 2rem;background:linear-gradient(135deg,var(--gold),#f1ce88);
+  color:#070a12;font-weight:700;border-radius:8px;text-decoration:none}
+.footer{text-align:center;padding:1.5rem;font-size:.72rem;color:var(--muted);border-top:1px solid var(--border)}
+</style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@800;900&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/lib/cinematic-hero.css">
+  <link rel="stylesheet" href="/lib/cyber-shell.css">
+  <link rel="stylesheet" href="/lib/polish-tokens.css">
+</head>
+<body>
+  <div class="cy-bg" aria-hidden="true"></div>
+  <div class="cy-floor" aria-hidden="true"></div>
+  <div class="cy-vignette" aria-hidden="true"></div>
+  <div class="cy-scan" aria-hidden="true"></div>
+<div class=\"wrap\">
+<section class="cin-hero cy-neon-hero cy-narrow cy-shimmer">
+    <div class="cin-grid">
+      <div class="cin-stat-stack">
+        <div class="cin-eyebrow"><span class="cin-live-dot"></span>DARK POOL · SIGNAL · LIVE</div>
+        <div class="cin-colossal">
+          <div class="cin-num-row"><span class="cin-num">40%+</span></div>
+          <div class="cin-side">
+          <span class="cin-tag"><b>40%+</b> off-exchange</span>
+          <span class="cin-tag">block prints</span>
+          <span class="cin-tag">pre-bid signal</span>
+          </div>
+        </div>
+        <div class="cin-stamp">GLOSSARY · DARK POOL SIGNALS · v1.0 · <b>LIVE</b></div>
+      </div>
+      <div class="cin-h1-block">
+        <div class="cin-h1-eyebrow">📚 Dark Pool Signals</div>
+        <h1 class="cin-headline"><em>Off-exchange tape</em>—the <span class="cin-accent">institutional accumulation tell</span>.</h1>
+        <p class="cin-lede">When 40%+ of a name's daily tape goes off-exchange, institutions are accumulating quietly. Block prints + concentrated dark-pool share is the smoke before the public bid moves.</p>
+        <div class="cin-cta-row">
+          <a href="#article-body" class="cin-btn-primary">Read article ↓</a>
+          <a href="/glossary/" class="cin-btn-ghost">Glossary index</a>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+</div>
+<div class="wrap">
+  <div class="breadcrumb"><a href="/">Scanner</a> / <a href="/glossary/dark-pool-signals/">Dark Pool Signals</a></div>
+
+  <h1>Dark Pool Signals for Trading</h1>
+  <p style="font-size:1.05rem;color:var(--text)">
+    Dark pools execute 35-40% of US equity volume off-exchange. When institutions accumulate or distribute
+    large positions, the block volume ratio shifts — and those shifts often precede directional moves.
+  </p>
+
+  <div class="stat-grid">
+    <div class="stat-card"><div class="stat-n">35-40%</div><div class="stat-l">US equity volume in dark pools</div></div>
+    <div class="stat-card"><div class="stat-n">1,600+</div><div class="stat-l">Tickers tracked daily</div></div>
+    <div class="stat-card"><div class="stat-n">3:30 AM</div><div class="stat-l">ET signal delivery</div></div>
+  </div>
+
+  <h2>What Are Dark Pools?</h2>
+  <p>Dark pools are private exchanges where institutional investors execute large block trades without showing their orders
+     on public exchanges. This prevents large orders from moving the market before they're filled.</p>
+  <p>Examples include Crossfinder (Credit Suisse), SIGMA X (Goldman Sachs), and MS Pool (Morgan Stanley).
+     FINRA publishes aggregate dark pool volume data with a delay.</p>
+
+  <h2>Why Dark Pool Volume Matters</h2>
+  <p>When dark pool volume for a ticker spikes relative to its average, it signals institutional interest.
+     This is particularly powerful when combined with other catalyst signals:</p>
+
+  <table>
+    <thead><tr><th>Signal Combination</th><th>Meaning</th><th>Edge</th></tr></thead>
+    <tbody>
+      <tr><td>Dark pool spike + 8-K filing</td><td>Institution positioned ahead of news</td><td>High</td></tr>
+      <tr><td>Dark pool spike + insider buying</td><td>Aligned conviction</td><td>Very High</td></tr>
+      <tr><td>Dark pool spike + high short interest</td><td>Potential short squeeze setup</td><td>High</td></tr>
+      <tr><td>Dark pool drop + S-3 filing</td><td>Institutions exiting before dilution</td><td>Bearish</td></tr>
+    </tbody>
+  </table>
+
+  <h2>How We Track Dark Pool Signals</h2>
+  <p>The Catalyst Edge scanner monitors dark pool block volume ratios across our full universe.
+     The <code>dark_pool_vol</code> field in our data feed represents the block volume ratio signal —
+     higher values indicate unusual institutional activity relative to the ticker's baseline.</p>
+
+  <div class="callout">
+    <strong>Key insight:</strong> Dark pool volume spikes that coincide with SEC catalyst filings
+    (especially 8-K earnings and Form 4 insider buys) have historically produced the strongest
+    intraday moves in our 90-day backtest.
+  </div>
+
+  <h2>Reading Dark Pool Data</h2>
+  <h3>Volume Ratio Interpretation</h3>
+  <ul>
+    <li><strong>1.0x baseline</strong> — Normal institutional flow</li>
+    <li><strong>1.5-2.0x</strong> — Elevated interest, worth monitoring</li>
+    <li><strong>2.0-3.0x</strong> — Significant accumulation/distribution signal</li>
+    <li><strong>&gt;3.0x</strong> — Extreme institutional activity, often precedes major move</li>
+  </ul>
+
+  <h3>Timing Matters</h3>
+  <p>Dark pool prints that occur in the final hour of trading or post-market carry more signal weight —
+     institutions often try to fill large orders at close to minimize market impact.</p>
+
+  <h2>Combining with Other Catalyst Edge Signals</h2>
+  <p>Dark pool volume alone is noisy. The scanner's scoring engine weights it alongside:</p>
+  <ol>
+    <li><strong>SEC filing catalysts</strong> — 8-K, Form 4, S-3, 13D/G filings</li>
+    <li><strong>Squeeze pressure</strong> — Short interest, days-to-cover, utilization</li>
+    <li><strong>Insider clustering</strong> — Multiple insider buys within 10 days</li>
+    <li><strong>Sentiment polarity</strong> — NLP-extracted filing sentiment</li>
+    <li><strong>Macro sensitivity</strong> — Rate regime and sector rotation signals</li>
+  </ol>
+
+  <div class="cta">
+    <h3>Track Dark Pool Signals Free</h3>
+    <p>Our daily scanner includes dark pool volume data for 1,600+ tickers, updated before market open.</p>
+    <a href="/" class="cta-btn">Open Scanner</a>
+  </div>
+
+  <h2>Related</h2>
+  <ul>
+    <li><a href="/glossary/insider-buying-signals/">Insider Buying Signals</a></li>
+    <li><a href="/glossary/what-is-8k/">What Is an 8-K Filing?</a></li>
+    <li><a href="/glossary/sec-catalyst-trading-strategy/">SEC Catalyst Trading Strategy</a></li>
+    <li><a href="/cheat-sheet/">SEC Filing Cheat Sheet (Free Download)</a></li>
+    <li><a href="/api/">Catalyst Edge API</a></li>
+  </ul>
+</div>
+
+<div class="footer">
+  &copy; 2026 Catalyst Edge &middot;
+  <a href="/">Scanner</a> &middot;
+  <a href="/cheat-sheet/">Cheat Sheet</a> &middot;
+  <a href="/api/">API</a> &middot;
+  Not financial advice. SEC data from EDGAR.
+</div>
+</body>
+</html>

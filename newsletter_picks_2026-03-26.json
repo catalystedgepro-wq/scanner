@@ -1,0 +1,15 @@
+{
+  "date": "2026-03-26",
+  "top5_tickers": [
+    "DFTX",
+    "CAT",
+    "BCH",
+    "ARCO",
+    "FSM"
+  ],
+  "gapper_count": 10,
+  "value_count": 6,
+  "moat_count": 3,
+  "total_combined": 109,
+  "top_pick": "DFTX"
+}

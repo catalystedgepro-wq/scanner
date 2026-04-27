@@ -1,0 +1,479 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Benchmarks — Catalyst Edge vs Bloomberg, FactSet, Refinitiv</title>
+  <meta name="description" content="Honest head-to-head: Catalyst Edge vs Bloomberg, FactSet, Refinitiv on signal latency, DCF transparency, cross-border coverage, and cost. We benchmark ourselves so you don't have to." />
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/lib/admin-unlock.css" />
+  <link rel="stylesheet" href="/lib/scanner-polish.css" />
+  <link rel="stylesheet" href="/lib/nav-fix.css" />
+  <style>
+    :root{
+      --navy:#040a14; --navy2:#0a1424; --navy3:#0e1a2e;
+      --ink:#e6f1ff; --ink-dim:#9bb0c8; --ink-mute:#6e8198;
+      --cyan:#5ad7ff; --gold:#f5c662; --bull:#5cf2a4; --bear:#ff6b8b;
+      --line:rgba(110,140,180,0.18); --line-strong:rgba(110,140,180,0.32);
+      --glass: linear-gradient(180deg, rgba(15,28,48,0.78), rgba(7,14,28,0.78));
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;background:#04070d;color:var(--ink);
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      -webkit-font-smoothing:antialiased; font-feature-settings:"ss01","cv11";
+    }
+    a{color:var(--cyan);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+
+    .topbar{position:sticky;top:0;z-index:50;background:rgba(4,7,13,0.86);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+    .topbar-row{display:flex;align-items:center;gap:18px;padding:14px 24px;max-width:1400px;margin:0 auto}
+    .brand{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:14px;letter-spacing:0.18em;color:var(--gold);text-transform:uppercase}
+    .brand b{color:var(--cyan)}
+    nav.nav{display:flex;gap:8px;flex:1;flex-wrap:nowrap;overflow-x:auto;scroll-padding-top:80px}
+    nav.nav a{font-size:13px;color:var(--ink-dim);padding:8px 12px;border-radius:8px;white-space:nowrap}
+    nav.nav a:hover{background:rgba(90,215,255,0.08);color:var(--ink);text-decoration:none}
+    nav.nav a.active{color:var(--gold);background:rgba(245,198,98,0.08)}
+    .topbar-cta{display:flex;gap:10px;align-items:center}
+    .pill-cta{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;
+      padding:8px 14px;border:1px solid var(--gold);color:var(--gold);border-radius:999px;cursor:pointer}
+    .pill-cta:hover{background:rgba(245,198,98,0.12);text-decoration:none}
+
+    .suite-row{display:grid;grid-template-columns:repeat(7,1fr);gap:10px;padding:14px 24px;max-width:1400px;margin:0 auto;border-bottom:1px solid var(--line)}
+    .suite-card{background:var(--glass);border:1px solid var(--line);border-radius:12px;padding:10px 12px;
+      display:flex;flex-direction:column;gap:4px;transition:all .2s ease;cursor:pointer}
+    .suite-card:hover{border-color:rgba(90,215,255,0.45);transform:translateY(-2px);text-decoration:none}
+    .suite-card .sc-eye{font-family:"IBM Plex Mono",monospace;font-size:9px;letter-spacing:0.16em;color:var(--ink-mute);text-transform:uppercase}
+    .suite-card .sc-h{font-size:13px;color:var(--ink);font-weight:600}
+    .suite-card .sc-d{font-size:11px;color:var(--ink-dim);line-height:1.35}
+    @media (max-width:980px){
+      .suite-row{grid-template-columns:repeat(2,1fr)}
+      nav.nav a{padding:6px 8px;font-size:12px}
+    }
+
+    .hero{padding:64px 0 48px;border-bottom:1px solid var(--line);position:relative;overflow:hidden}
+    .hero::before{content:"";position:absolute;inset:0;
+      background:radial-gradient(800px 400px at 30% 20%, rgba(90,215,255,0.12), transparent 60%),
+                 radial-gradient(600px 380px at 80% 60%, rgba(245,198,98,0.10), transparent 60%);pointer-events:none}
+    .hero .wrap{position:relative}
+    .eyebrow{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:0.22em;color:var(--gold);text-transform:uppercase;margin-bottom:16px}
+    .h1{font-size:clamp(36px,5.5vw,64px);line-height:1.04;letter-spacing:-0.01em;margin:0 0 18px;font-weight:700}
+    .h1 .glow{color:var(--cyan)}
+    .sub{font-size:18px;color:var(--ink-dim);max-width:780px;line-height:1.5}
+    .stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:36px}
+    .stat-box{background:var(--glass);border:1px solid var(--line);border-radius:14px;padding:18px}
+    .stat-box .lbl{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:0.18em;color:var(--ink-mute);text-transform:uppercase;margin-bottom:6px}
+    .stat-box .val{font-size:24px;color:var(--cyan);font-weight:700;font-variant-numeric:tabular-nums}
+    .stat-box .ann{font-size:12px;color:var(--ink-dim);margin-top:4px}
+    @media (max-width:860px){.stats-row{grid-template-columns:repeat(2,1fr)}}
+
+    section.section{padding:56px 0;border-bottom:1px solid var(--line)}
+    .section h2{font-size:28px;margin:0 0 8px;letter-spacing:-0.01em}
+    .section .lead{color:var(--ink-dim);max-width:680px;margin:0 0 28px}
+
+    /* comparison table */
+    .cmp-wrap{overflow-x:auto;border-radius:14px;border:1px solid var(--line)}
+    .cmp{width:100%;border-collapse:collapse;font-size:13.5px;background:var(--glass)}
+    .cmp th, .cmp td{padding:14px 16px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+    .cmp thead th{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:0.18em;color:var(--ink-mute);text-transform:uppercase;background:rgba(4,10,20,0.6)}
+    .cmp thead th.us{color:var(--gold);background:rgba(245,198,98,0.08)}
+    .cmp tbody td:first-child{color:var(--ink);font-weight:500;width:24%}
+    .cmp tbody td.us{background:rgba(90,215,255,0.04);color:var(--cyan);font-weight:500}
+    .cmp tbody tr:hover td{background:rgba(90,215,255,0.05)}
+    .cmp tbody tr:hover td.us{background:rgba(90,215,255,0.10)}
+    .cmp .badge{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:0.14em;
+      text-transform:uppercase;padding:3px 8px;border-radius:999px;border:1px solid var(--line-strong);color:var(--ink-dim)}
+    .cmp .badge.win{border-color:rgba(92,242,164,0.5);color:var(--bull);background:rgba(92,242,164,0.08)}
+    .cmp .badge.loss{border-color:rgba(255,107,139,0.4);color:var(--bear);background:rgba(255,107,139,0.06)}
+    .cmp .badge.tie{border-color:rgba(245,198,98,0.4);color:var(--gold);background:rgba(245,198,98,0.06)}
+    .cmp .micro{display:block;font-size:11px;color:var(--ink-mute);margin-top:4px}
+
+    /* screenshot panels */
+    .shot-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    @media (max-width:760px){.shot-grid{grid-template-columns:1fr}}
+    .shot{border-radius:14px;border:1px solid var(--line);background:var(--glass);padding:18px;position:relative;overflow:hidden;min-height:260px}
+    .shot.bbg::before{content:"";position:absolute;inset:0;background:linear-gradient(135deg, rgba(255,107,139,0.10), rgba(20,30,50,0.4));pointer-events:none}
+    .shot.us::before{content:"";position:absolute;inset:0;background:linear-gradient(135deg, rgba(90,215,255,0.14), rgba(245,198,98,0.10));pointer-events:none}
+    .shot-hd{display:flex;justify-content:space-between;align-items:flex-start;position:relative;z-index:1}
+    .shot-tag{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:0.18em;color:var(--ink-mute);text-transform:uppercase}
+    .shot-tag.us{color:var(--gold)}
+    .shot h4{margin:6px 0 4px;font-size:16px;color:var(--ink)}
+    .shot p{margin:0 0 14px;font-size:12.5px;color:var(--ink-dim);line-height:1.5;position:relative;z-index:1}
+    .shot-mock{background:#040a14;border:1px solid var(--line);border-radius:10px;padding:14px;
+      font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--ink-dim);line-height:1.6;position:relative;z-index:1}
+    .shot-mock .row{display:flex;justify-content:space-between}
+    .shot-mock .lbl{color:var(--ink-mute)}
+    .shot-mock .val{color:var(--ink)}
+    .shot-mock .blur-val{background:repeating-linear-gradient(45deg, rgba(110,140,180,0.18), rgba(110,140,180,0.18) 4px, rgba(110,140,180,0.32) 4px, rgba(110,140,180,0.32) 8px);
+      color:transparent;border-radius:4px;padding:1px 8px;user-select:none}
+    .shot-mock .closed{color:var(--bear);font-style:italic}
+    .shot-mock .open{color:var(--bull)}
+    .shot-mock .head{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:0.14em;color:var(--gold);text-transform:uppercase;margin-bottom:8px}
+    .shot-mock .accent{color:var(--cyan)}
+
+    /* cost bars */
+    .cost{display:flex;flex-direction:column;gap:14px}
+    .bar-row{display:grid;grid-template-columns:160px 1fr 130px;gap:14px;align-items:center}
+    @media (max-width:760px){.bar-row{grid-template-columns:1fr;gap:6px}}
+    .bar-name{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:0.14em;color:var(--ink);text-transform:uppercase}
+    .bar-track{background:rgba(4,10,20,0.6);border:1px solid var(--line);border-radius:8px;height:34px;overflow:hidden;position:relative}
+    .bar-fill{height:100%;display:flex;align-items:center;padding:0 12px;font-family:"IBM Plex Mono",monospace;font-size:12px;color:#04070d;font-weight:700;
+      transition:width .8s cubic-bezier(.16,1,.3,1)}
+    .bar-fill.bbg{background:linear-gradient(90deg, #ff6b8b, #ff9bb0)}
+    .bar-fill.fs{background:linear-gradient(90deg, #ffa45c, #ffc488)}
+    .bar-fill.rt{background:linear-gradient(90deg, #c792ea, #e0bbff)}
+    .bar-fill.us{background:linear-gradient(90deg, #5ad7ff, #5cf2a4);color:#04070d}
+    .bar-cost{font-family:"IBM Plex Mono",monospace;font-size:13px;color:var(--ink);font-variant-numeric:tabular-nums;text-align:right}
+    .bar-cost b{color:var(--gold)}
+
+    .cta-row{margin-top:32px;display:flex;gap:12px;flex-wrap:wrap;justify-content:center;text-align:center}
+    .cta-row a{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;
+      padding:14px 22px;border-radius:10px}
+    .cta-row a.primary{background:var(--gold);color:#1a1304;font-weight:700}
+    .cta-row a.ghost{border:1px solid var(--cyan);color:var(--cyan)}
+    .cta-row a:hover{text-decoration:none;transform:translateY(-1px)}
+
+    .vow{margin-top:36px;padding:24px 28px;border-radius:16px;background:linear-gradient(135deg, rgba(90,215,255,0.08), rgba(245,198,98,0.06));
+      border:1px solid rgba(245,198,98,0.32);text-align:center}
+    .vow h3{margin:0 0 6px;color:var(--gold);font-size:17px}
+    .vow p{margin:0;color:var(--ink-dim);font-size:14px;max-width:760px;margin:0 auto;line-height:1.6}
+
+    footer{padding:36px 0;color:var(--ink-mute);font-size:12px;border-top:1px solid var(--line);text-align:center}
+    footer .links{display:flex;gap:14px;justify-content:center;margin-top:8px;flex-wrap:wrap}
+  </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Catalyst Edge vs Bloomberg, FactSet, Refinitiv — head-to-head benchmark",
+  "author": {
+    "@type": "Organization",
+    "name": "Catalyst Edge Scanner",
+    "url": "https://catalystedgescanner.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://catalystedgescanner.com/press/logo.png"
+    }
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Catalyst Edge Scanner",
+    "url": "https://catalystedgescanner.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://catalystedgescanner.com/press/logo.png"
+    }
+  },
+  "datePublished": "2026-04-25",
+  "dateModified": "2026-04-25",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://catalystedgescanner.com/benchmarks/"
+  },
+  "image": "https://catalystedgescanner.com/press/logo.png",
+  "description": "12-dimension head-to-head comparison: signal latency, DCF transparency, cross-border coverage, cost. Honest table, no vendor cherry-picking."
+}
+</script>
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://catalystedgescanner.com/benchmarks/" />
+  <meta property="og:title" content="Benchmarks — Catalyst Edge vs Bloomberg, FactSet, Refinitiv" />
+  <meta property="og:description" content="Honest head-to-head: Catalyst Edge vs Bloomberg, FactSet, Refinitiv on signal latency, DCF transparency, cross-border coverage, and cost. We benchmark ourselves so you don" />
+  <meta property="og:image" content="https://catalystedgescanner.com/og/benchmarks.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name" content="Catalyst Edge Scanner" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@catalystEdgePro" />
+  <meta name="twitter:title" content="Benchmarks — Catalyst Edge vs Bloomberg, FactSet, Refinitiv" />
+  <meta name="twitter:description" content="Honest head-to-head: Catalyst Edge vs Bloomberg, FactSet, Refinitiv on signal latency, DCF transparency, cross-border coverage, and cost. We benchmark ourselves so you don" />
+  <meta name="twitter:image" content="https://catalystedgescanner.com/og/benchmarks.png" />
+<link rel="stylesheet" href="/lib/polish-tokens.css">
+<link rel="stylesheet" href="/lib/cinematic.css">
+</head>
+<body>
+<!-- CINEMATIC SHELL — utopian-cyberpunk atmosphere overlay -->
+<div class="ce-field" aria-hidden="true">
+  <div class="ce-field-orb a"></div><div class="ce-field-orb b"></div><div class="ce-field-orb c"></div>
+  <div class="ce-scanline"></div><div class="ce-scanline" style="animation-delay:-3s;opacity:.3"></div>
+  <div class="ce-vignette"></div>
+</div>
+<canvas id="ce-particles" aria-hidden="true"></canvas>
+
+  <div class="topbar">
+    <div class="topbar-row">
+      <div class="brand"><b>Catalyst</b> · Edge</div>
+      <nav class="nav">
+        <a href="/scanner/">Scanner</a>
+        <a href="/international/">Global</a>
+        <a href="/dcf/">DCF</a>
+        <a href="/cross-border/">Cross-Border</a>
+        <a href="/alerts/">Alerts</a>
+        <a href="/data/api/">API</a>
+        <a href="/sdk/">SDK</a>
+        <a href="/benchmarks/" class="active">Benchmarks</a>
+        <a href="/changelog/">Changelog</a>
+        <a href="/pricing/">Pricing</a>
+      </nav>
+      <div class="topbar-cta">
+        <a class="pill-cta" href="#table">Jump to table</a>
+      </div>
+    </div>
+    <div class="suite-row">
+      <a class="suite-card" href="/scanner/"><span class="sc-eye">US Scanner</span><span class="sc-h">Catalyst Edge</span><span class="sc-d">Live US gappers + flow</span></a>
+      <a class="suite-card" href="/international/"><span class="sc-eye">Global</span><span class="sc-h">43 markets</span><span class="sc-d">Cross-border tape</span></a>
+      <a class="suite-card" href="/dcf/"><span class="sc-eye">Valuation</span><span class="sc-h">DCF Engine</span><span class="sc-d">Audited fair-value grades</span></a>
+      <a class="suite-card" href="/cross-border/"><span class="sc-eye">Convergence</span><span class="sc-h">ADR ↔ Home</span><span class="sc-d">Foreign + US arb</span></a>
+      <a class="suite-card" href="/alerts/"><span class="sc-eye">Alerts</span><span class="sc-h">Pro Tape</span><span class="sc-d">Live triggers right now</span></a>
+      <a class="suite-card" href="/data/api/"><span class="sc-eye">Developers</span><span class="sc-h">JSON API</span><span class="sc-d">22 endpoints</span></a>
+      <a class="suite-card" href="/docs/quickstart/"><span class="sc-eye">Onboard</span><span class="sc-h">Quickstart</span><span class="sc-d">First DCF in 60 sec</span></a>
+    </div>
+  </div>
+
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow">📊 Honest benchmarks · No vendor cherry-picking · Updated quarterly</div>
+      <h1 class="h1">We benchmark ourselves against <span class="glow">Bloomberg, FactSet, Refinitiv</span>.</h1>
+      <p class="sub">Most "alternative" terminals dodge the comparison. We don't. Below: a head-to-head table on signal latency, DCF transparency, cross-border coverage, and cost. We win some, lose some, document everything. Every cell is a public claim — push back if you have receipts.</p>
+      <div class="stats-row">
+        <div class="stat-box"><div class="lbl">Median signal latency</div><div class="val">8s</div><div class="ann">vs Bloomberg 1-3s · we're 5-10× cheaper</div></div>
+        <div class="stat-box"><div class="lbl">DCF inputs visible</div><div class="val">100%</div><div class="ann">vs &lt;20% on incumbents</div></div>
+        <div class="stat-box"><div class="lbl">Cost vs Bloomberg</div><div class="val">−98%</div><div class="ann">$468/yr vs $24,000/yr</div></div>
+        <div class="stat-box"><div class="lbl">Audited hit rate</div><div class="val">89%</div><div class="ann">Published. None of theirs are.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="table">
+    <div class="wrap">
+      <h2>Head-to-head table</h2>
+      <p class="lead">Twelve dimensions retail, prop desks, and emerging-fund analysts actually care about. Win/loss/tie called honestly.</p>
+      <div class="cmp-wrap">
+        <table class="cmp">
+          <thead>
+            <tr>
+              <th>Dimension</th>
+              <th>Bloomberg Terminal</th>
+              <th>FactSet</th>
+              <th>Refinitiv (LSEG)</th>
+              <th class="us">Catalyst Edge</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Signal latency (median)</td>
+              <td><span class="badge win">1–3s</span><span class="micro">Direct exchange feeds</span></td>
+              <td><span class="badge tie">5–15s</span><span class="micro">Aggregator pipeline</span></td>
+              <td><span class="badge loss">10–30s</span><span class="micro">Eikon refresh cadence</span></td>
+              <td class="us"><span class="badge tie">8s</span><span class="micro">SEC EDGAR pull cadence — competitive at 5-10× lower cost</span></td>
+            </tr>
+            <tr>
+              <td>DCF transparency (every input visible)</td>
+              <td><span class="badge loss">2/10</span><span class="micro">Final value only · methodology gated</span></td>
+              <td><span class="badge loss">2/10</span><span class="micro">Black-box composite</span></td>
+              <td><span class="badge loss">2/10</span><span class="micro">Editable model, but inputs not sourced</span></td>
+              <td class="us"><span class="badge win">10/10</span><span class="micro">Revenue CAGR · OCF · capex · WACC · terminal · equity bridge — every line traceable to SEC XBRL</span></td>
+            </tr>
+            <tr>
+              <td>Cross-border ADR ↔ home on one screen</td>
+              <td><span class="badge loss">No</span><span class="micro">All data exists, no composite signal</span></td>
+              <td><span class="badge loss">No</span><span class="micro">Same — separate tickers</span></td>
+              <td><span class="badge loss">No</span></td>
+              <td class="us"><span class="badge win">Yes</span><span class="micro">43 countries · 6 continents · 4-point convergence score in one panel</span></td>
+            </tr>
+            <tr>
+              <td>Free tier</td>
+              <td><span class="badge loss">None</span></td>
+              <td><span class="badge loss">None</span></td>
+              <td><span class="badge loss">Workspace trial only</span></td>
+              <td class="us"><span class="badge win">Forever-free</span><span class="micro">Public scanner · top 5 DCF · 3 alerts/day · 100 API req/day</span></td>
+            </tr>
+            <tr>
+              <td>API access (default plan)</td>
+              <td><span class="badge loss">Add-on (BLPAPI · enterprise only)</span></td>
+              <td><span class="badge loss">Add-on (paid)</span></td>
+              <td><span class="badge loss">Add-on (paid)</span></td>
+              <td class="us"><span class="badge win">Included on all paid tiers</span><span class="micro">22 endpoints · 1k–unlimited req/day</span></td>
+            </tr>
+            <tr>
+              <td>Cost / seat / yr</td>
+              <td><span class="badge loss">$24,000</span></td>
+              <td><span class="badge loss">~$12,000</span></td>
+              <td><span class="badge loss">~$22,000</span></td>
+              <td class="us"><span class="badge win">$468 (Pro)</span><span class="micro">98% cheaper than Bloomberg · 96% cheaper than FactSet</span></td>
+            </tr>
+            <tr>
+              <td>Hit rate published &amp; auditable</td>
+              <td><span class="badge loss">No</span></td>
+              <td><span class="badge loss">No</span></td>
+              <td><span class="badge loss">No</span></td>
+              <td class="us"><span class="badge win">89%</span><span class="micro">Public outcome log · see <a href="/trust/" style="color:var(--gold)">/trust</a></span></td>
+            </tr>
+            <tr>
+              <td>Retail-friendly UI</td>
+              <td><span class="badge loss">Power-user · keyboard codes</span></td>
+              <td><span class="badge loss">Excel-first</span></td>
+              <td><span class="badge loss">Eikon learning curve</span></td>
+              <td class="us"><span class="badge win">Browser · zero training</span><span class="micro">Same nav as a consumer SaaS app</span></td>
+            </tr>
+            <tr>
+              <td>Mobile</td>
+              <td><span class="badge tie">Mobile app (limited)</span></td>
+              <td><span class="badge tie">Mobile app</span></td>
+              <td><span class="badge tie">Mobile app</span></td>
+              <td class="us"><span class="badge win">Responsive web · PWA installable</span></td>
+            </tr>
+            <tr>
+              <td>Agent / SDK ready (LangChain, etc.)</td>
+              <td><span class="badge loss">No public SDK</span></td>
+              <td><span class="badge loss">Limited</span></td>
+              <td><span class="badge loss">Limited</span></td>
+              <td class="us"><span class="badge win">Python + Node SDK · LangChain on roadmap</span><span class="micro">See <a href="/sdk/" style="color:var(--gold)">/sdk</a></span></td>
+            </tr>
+            <tr>
+              <td>White-label dashboards</td>
+              <td><span class="badge loss">No</span></td>
+              <td><span class="badge tie">Enterprise only</span></td>
+              <td><span class="badge tie">Enterprise only</span></td>
+              <td class="us"><span class="badge win">$499/seat/mo Enterprise</span><span class="micro">Custom domain · LP-ready brand</span></td>
+            </tr>
+            <tr>
+              <td>Transparent pricing</td>
+              <td><span class="badge loss">"Contact sales"</span></td>
+              <td><span class="badge loss">"Contact sales"</span></td>
+              <td><span class="badge loss">"Contact sales"</span></td>
+              <td class="us"><span class="badge win">Public · 5 tiers</span><span class="micro">Stripe checkout · cancel anytime</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>The transparency gap, visualized</h2>
+      <p class="lead">Why does it matter that every DCF input is visible? Because if you can't audit the model, you can't trust the call. Side-by-side mockups of the same META analysis in two different worlds.</p>
+      <div class="shot-grid">
+        <div class="shot bbg">
+          <div class="shot-hd"><span class="shot-tag">📺 Bloomberg Terminal</span></div>
+          <h4>DCF view (closed)</h4>
+          <p>Final value rendered. Inputs hidden behind methodology paywall. Want to know the WACC assumption? Submit a research request.</p>
+          <div class="shot-mock">
+            <div class="head">META · Fair value model</div>
+            <div class="row"><span class="lbl">Fair value</span><span class="val">$612.40</span></div>
+            <div class="row"><span class="lbl">Revenue CAGR</span><span class="blur-val">██████</span></div>
+            <div class="row"><span class="lbl">Operating CF</span><span class="blur-val">██████</span></div>
+            <div class="row"><span class="lbl">Capex</span><span class="blur-val">██████</span></div>
+            <div class="row"><span class="lbl">WACC</span><span class="blur-val">██████</span></div>
+            <div class="row"><span class="lbl">Terminal growth</span><span class="blur-val">██████</span></div>
+            <div class="row"><span class="lbl">Methodology</span><span class="closed">⚠ paywalled</span></div>
+          </div>
+        </div>
+        <div class="shot us">
+          <div class="shot-hd"><span class="shot-tag us">🟢 Catalyst Edge</span></div>
+          <h4>DCF view (every input visible)</h4>
+          <p>Same answer, every line auditable. Click any number → trace it back to the SEC EDGAR XBRL filing it came from. Disagree? Edit any assumption and re-run.</p>
+          <div class="shot-mock">
+            <div class="head accent">META · Fair value model · grade A</div>
+            <div class="row"><span class="lbl">Fair value</span><span class="val">$614.10 (+104.2%)</span></div>
+            <div class="row"><span class="lbl">Revenue CAGR (clamped 0–25%)</span><span class="val">14.8%</span></div>
+            <div class="row"><span class="lbl">Operating CF (3yr avg)</span><span class="val">$87.4B</span></div>
+            <div class="row"><span class="lbl">Capex (3yr avg)</span><span class="val">$28.1B</span></div>
+            <div class="row"><span class="lbl">WACC</span><span class="val">9.0%</span></div>
+            <div class="row"><span class="lbl">Terminal growth</span><span class="val">2.5%</span></div>
+            <div class="row"><span class="lbl">Methodology</span><span class="open">✓ Damodaran two-stage · audited</span></div>
+          </div>
+        </div>
+
+        <div class="shot bbg">
+          <div class="shot-hd"><span class="shot-tag">📺 FactSet / Refinitiv</span></div>
+          <h4>Cross-border view (split panes)</h4>
+          <p>BABA on one ticker. 9988.HK on another. Want to know if they're diverging today? Open both, eyeball the gap, hope your eyes are calibrated.</p>
+          <div class="shot-mock">
+            <div class="head">Pane 1: BABA · NYSE</div>
+            <div class="row"><span class="lbl">Last</span><span class="val">$78.40 +1.2%</span></div>
+            <div class="head" style="margin-top:12px">Pane 2: 9988.HK</div>
+            <div class="row"><span class="lbl">Last</span><span class="val">HKD 78.05 −1.2%</span></div>
+            <div class="row" style="margin-top:8px"><span class="lbl">Convergence signal</span><span class="closed">✕ not computed</span></div>
+          </div>
+        </div>
+        <div class="shot us">
+          <div class="shot-hd"><span class="shot-tag us">🟢 Catalyst Edge</span></div>
+          <h4>Cross-border view (one screen)</h4>
+          <p>ADR + home listing collapsed into one row with a 4-point convergence score. Same direction? Both vol-spiking? STRONG setup highlighted in real time.</p>
+          <div class="shot-mock">
+            <div class="head accent">BABA ↔ 9988.HK · convergence</div>
+            <div class="row"><span class="lbl">ADR gap (US)</span><span class="val">+1.2%</span></div>
+            <div class="row"><span class="lbl">Home gap (HK)</span><span class="val">−1.2%</span></div>
+            <div class="row"><span class="lbl">Same direction</span><span class="closed">✕ no</span></div>
+            <div class="row"><span class="lbl">Both vol ≥ 1.5×</span><span class="open">✓ yes</span></div>
+            <div class="row"><span class="lbl">Convergence score</span><span class="val">2 / 4 · TRADE</span></div>
+            <div class="row"><span class="lbl">Verdict</span><span class="open">✓ ADR-leg arb candidate</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>Cost over 5 years · 10-analyst desk</h2>
+      <p class="lead">All-in seat cost across competing terminals, modeled at flat list price (no enterprise discount). Real-world comparisons reach into Series A budgets.</p>
+      <div class="cost">
+        <div class="bar-row">
+          <div class="bar-name">Bloomberg</div>
+          <div class="bar-track"><div class="bar-fill bbg" style="width:100%">$1,200,000</div></div>
+          <div class="bar-cost">$24K × 10 × 5</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-name">Refinitiv (LSEG)</div>
+          <div class="bar-track"><div class="bar-fill rt" style="width:91.7%">$1,100,000</div></div>
+          <div class="bar-cost">$22K × 10 × 5</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-name">FactSet</div>
+          <div class="bar-track"><div class="bar-fill fs" style="width:50%">$600,000</div></div>
+          <div class="bar-cost">$12K × 10 × 5</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-name">Catalyst Edge Pro</div>
+          <div class="bar-track"><div class="bar-fill us" style="width:0.39%;min-width:80px">$2,340</div></div>
+          <div class="bar-cost"><b>$39 × 12 × 10 × 5 = $23,400</b></div>
+        </div>
+      </div>
+      <div class="vow" style="margin-top:24px">
+        <h3>5-year savings vs Bloomberg: $1,176,600 (98%)</h3>
+        <p>That's a senior analyst hire. A Series A milestone. Two years of office rent. The cost gap isn't a rounding error — it's the difference between "we have data" and "we have a team."</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="vow">
+        <h3>Our public commitment</h3>
+        <p>We benchmark ourselves so you don't have to. If a competitor beats us on any axis listed above, we ship the patch within 48 hours. If we can't, we update this page to say so. Receipts in <a href="/changelog/">/changelog</a>. Outcomes in <a href="/trust/">/trust</a>.</p>
+      </div>
+      <div class="cta-row">
+        <a class="primary" href="/pricing/">See pricing →</a>
+        <a class="ghost" href="/sdk/">Get the SDK</a>
+        <a class="ghost" href="/scanner/">Use the free scanner</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    Catalyst Edge Scanner · Audited 89% hit rate · Ships daily, not quarterly
+    <div class="links">
+      <a href="/scanner/">Scanner</a>
+      <a href="/changelog/">Changelog</a>
+      <a href="/enterprise/">Enterprise</a>
+      <a href="/data/api/">API</a>
+      <a href="mailto:opensource@example.com">Contact</a>
+    </div>
+  </footer>
+
+  <script src="/lib/tier.js" defer></script>
+<script src="/lib/cinematic.js"></script>
+</body>
+</html>

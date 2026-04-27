@@ -1,0 +1,166 @@
+record_date,country,currency,country_currency_desc,exchange_rate,effective_date,captured_at
+2026-03-31,Afghanistan,Afghani,Afghanistan-Afghani,64.77,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Albania,Lek,Albania-Lek,83.3,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Algeria,Dinar,Algeria-Dinar,132.596,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Angola,Kwanza,Angola-Kwanza,912.13,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Antigua & Barbuda,East Caribbean Dollar,Antigua & Barbuda-East Caribbean Dollar,2.7,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Argentina,Peso,Argentina-Peso,1420,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Armenia,Dram,Armenia-Dram,380,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Australia,Dollar,Australia-Dollar,1.453,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Azerbaijan,Manat,Azerbaijan-Manat,1.7,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Bahamas,Dollar,Bahamas-Dollar,1,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Bahrain,Dinar,Bahrain-Dinar,0.377,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Bangladesh,Taka,Bangladesh-Taka,123,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Barbados,Dollar,Barbados-Dollar,2.02,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Belarus,New Ruble,Belarus-New Ruble,2.951,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Belize,Dollar,Belize-Dollar,2,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Benin,Cfa Franc,Benin-Cfa Franc,567,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Bermuda,Dollar,Bermuda-Dollar,1,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Bolivia,Boliviano,Bolivia-Boliviano,6.86,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Bosnia,Marka,Bosnia-Marka,1.702,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Botswana,Pula,Botswana-Pula,13.021,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Brazil,Real,Brazil-Real,5.254,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Brunei,Dollar,Brunei-Dollar,1.289,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Burkina Faso,Cfa Franc,Burkina Faso-Cfa Franc,567,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Burundi,Franc,Burundi-Franc,3000,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Cambodia,Riel,Cambodia-Riel,3995,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Cameroon,Cfa Franc,Cameroon-Cfa Franc,570.79,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Canada,Dollar,Canada-Dollar,1.393,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Cape Verde,Escudo,Cape Verde-Escudo,95.96,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Cayman Islands,Dollar,Cayman Islands-Dollar,0.82,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Central African Republic,Cfa Franc,Central African Republic-Cfa Franc,570.79,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Chad,Cfa Franc,Chad-Cfa Franc,570.79,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Chile,Peso,Chile-Peso,926.76,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,China,Renminbi,China-Renminbi,6.902,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Colombia,Peso,Colombia-Peso,3666.16,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Comoros,Franc,Comoros-Franc,428.54,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Congo,Cfa Franc,Congo-Cfa Franc,570.79,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Costa Rica,Colon,Costa Rica-Colon,462.08,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Cote D'Ivoire,Cfa Franc,Cote D'Ivoire-Cfa Franc,567,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Cuba,Chavito,Cuba-Chavito,1,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Cuba,Peso,Cuba-Peso,24,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Curacao,Caribbean Guilder,Curacao-Caribbean Guilder,1.78,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Czech Republic,Koruna,Czech Republic-Koruna,20.825,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Democratic Republic Of Congo,Congolese Franc,Democratic Republic Of Congo-Congolese Franc,2280,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Denmark,Krone,Denmark-Krone,6.501,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Djibouti,Franc,Djibouti-Franc,177,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Dominican Republic,Peso,Dominican Republic-Peso,59.74,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Ecuador,Dolares,Ecuador-Dolares,1,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Egypt,Pound,Egypt-Pound,54.58,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,El Salvador,Dollar,El Salvador-Dollar,1,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Equatorial Guinea,Cfa Franc,Equatorial Guinea-Cfa Franc,570.79,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Eritrea,Nakfa,Eritrea-Nakfa,15,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Eswatini,Lilangeni,Eswatini-Lilangeni,17.087,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Ethiopia,Birr,Ethiopia-Birr,153.466,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Euro Zone,Euro,Euro Zone-Euro,0.87,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Fiji,Dollar,Fiji-Dollar,2.213,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Gabon,Cfa Franc,Gabon-Cfa Franc,570.79,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Gambia,Dalasi,Gambia-Dalasi,73,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Georgia,Lari,Georgia-Lari,2.667,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Ghana,Cedi,Ghana-Cedi,10.97,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Grenada,East Caribbean Dollar,Grenada-East Caribbean Dollar,2.7,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Guatemala,Quetzal,Guatemala-Quetzal,7.64,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Guinea,Franc,Guinea-Franc,8737,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Guinea Bissau,Cfa Franc,Guinea Bissau-Cfa Franc,567,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Guyana,Dollar,Guyana-Dollar,215,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Haiti,Gourde,Haiti-Gourde,130.582,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Honduras,Lempira,Honduras-Lempira,26.496,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Hong Kong,Dollar,Hong Kong-Dollar,7.839,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Hungary,Forint,Hungary-Forint,335.02,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Iceland,Krona,Iceland-Krona,124.83,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,India,Rupee,India-Rupee,93.924,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Indonesia,Rupiah,Indonesia-Rupiah,16952.8,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Iran,Rial,Iran-Rial,1.31595e+06,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Iraq,Dinar,Iraq-Dinar,1309.52,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Israel,Shekel,Israel-Shekel,3.165,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Jamaica,Dollar,Jamaica-Dollar,159,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Japan,Yen,Japan-Yen,159.41,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Jordan,Dinar,Jordan-Dinar,0.708,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Kazakhstan,Tenge,Kazakhstan-Tenge,476.1,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Kenya,Shilling,Kenya-Shilling,129.95,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Korea,Won,Korea-Won,1524.5,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Kuwait,Dinar,Kuwait-Dinar,0.307,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Kyrgyzstan,Som,Kyrgyzstan-Som,87.45,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Laos,Kip,Laos-Kip,21906,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Lebanon,Pound,Lebanon-Pound,89500,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Lesotho,Maloti,Lesotho-Maloti,17.087,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Liberia,Dollar,Liberia-Dollar,183,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Libya,Dinar,Libya-Dinar,6.392,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Madagascar,Ariary,Madagascar-Ariary,4180,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Malawi,Kwacha,Malawi-Kwacha,1751,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Malaysia,Ringgit,Malaysia-Ringgit,4.046,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Maldives,Rufiyaa,Maldives-Rufiyaa,15.42,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Mali,Cfa Franc,Mali-Cfa Franc,567,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Marshall Islands,U.S. Dollar,Marshall Islands-U.S. Dollar,1,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Mauritania,Ouguiya,Mauritania-Ouguiya,39.852,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Mauritius,Rupee,Mauritius-Rupee,46.95,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Mexico,Peso,Mexico-Peso,18.028,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Micronesia,U.S. Dollar,Micronesia-U.S. Dollar,1,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Moldova,Leu,Moldova-Leu,17.55,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Mongolia,Tugrik,Mongolia-Tugrik,3568,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Morocco,Dirham,Morocco-Dirham,9.379,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Mozambique,Metical,Mozambique-Metical,63.25,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Myanmar,Kyat,Myanmar-Kyat,3667.5,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Namibia,Dollar,Namibia-Dollar,17.087,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Nepal,Rupee,Nepal-Rupee,151.73,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,New Zealand,Dollar,New Zealand-Dollar,1.746,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Nicaragua,Cordoba,Nicaragua-Cordoba,36.6,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Niger,Cfa Franc,Niger-Cfa Franc,567,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Nigeria,Naira,Nigeria-Naira,1375,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Norway,Krone,Norway-Krone,9.748,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Oman,Rial,Oman-Rial,0.385,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Pakistan,Rupee,Pakistan-Rupee,279,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Palau,Dollar,Palau-Dollar,1,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Panama,Dolares,Panama-Dolares,1,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Papua New Guinea,Kina,Papua New Guinea-Kina,4.167,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Paraguay,Guarani,Paraguay-Guarani,6459,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Peru,Sol,Peru-Sol,3.493,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Philippines,Peso,Philippines-Peso,60.699,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Poland,Zloty,Poland-Zloty,3.734,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Qatar,Riyal,Qatar-Riyal,3.64,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Republic Of North Macedonia,Denar,Republic Of North Macedonia-Denar,53.56,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Romania,New Leu,Romania-New Leu,4.436,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Russia,Ruble,Russia-Ruble,81.55,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Rwanda,Franc,Rwanda-Franc,1450,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Sao Tome & Principe,New Dobras,Sao Tome & Principe-New Dobras,21.325,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Saudi Arabia,Riyal,Saudi Arabia-Riyal,3.75,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Senegal,Cfa Franc,Senegal-Cfa Franc,567,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Serbia,Dinar,Serbia-Dinar,102.09,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Seychelles,Rupee,Seychelles-Rupee,13.883,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Sierra Leone,Leone,Sierra Leone-Leone,24.35,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Singapore,Dollar,Singapore-Dollar,1.289,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Solomon Islands,Dollar,Solomon Islands-Dollar,7.74,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Somali,Shilling,Somali-Shilling,568,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,South Africa,Rand,South Africa-Rand,17.087,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,South Sudan,Sudanese Pound,South Sudan-Sudanese Pound,4600,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Sri Lanka,Rupee,Sri Lanka-Rupee,315,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,St. Lucia,East Caribbean Dollar,St. Lucia-East Caribbean Dollar,2.7,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Sudan,Pound,Sudan-Pound,3100,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Suriname,Dollar,Suriname-Dollar,37.249,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Sweden,Krona,Sweden-Krona,9.522,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Switzerland,Franc,Switzerland-Franc,0.799,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Syria,Pound,Syria-Pound,110,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Taiwan,Dollar,Taiwan-Dollar,32.002,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Tajikistan,Somoni,Tajikistan-Somoni,9.54,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Tanzania,Shilling,Tanzania-Shilling,2565,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Thailand,Baht,Thailand-Baht,32.79,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Timor,Leste-Dili,Timor-Leste-Dili,1,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Togo,Cfa Franc,Togo-Cfa Franc,567,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Tonga,Pa'Anga,Tonga-Pa'Anga,2.323,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Trinidad & Tobago,Dollar,Trinidad & Tobago-Dollar,6.762,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Tunisia,Dinar,Tunisia-Dinar,2.922,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Turkey,New Lira,Turkey-New Lira,44.478,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Turkmenistan,New Manat,Turkmenistan-New Manat,3.491,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Uganda,Shilling,Uganda-Shilling,3760,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Ukraine,Hryvnia,Ukraine-Hryvnia,43.9,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,United Arab Emirates,Dirham,United Arab Emirates-Dirham,3.672,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,United Kingdom,Pound,United Kingdom-Pound,0.756,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Uruguay,Peso,Uruguay-Peso,40.56,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Uzbekistan,Som,Uzbekistan-Som,12180,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Vanuatu,Vatu,Vanuatu-Vatu,118.05,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Venezuela,Bolivar Soberano,Venezuela-Bolivar Soberano,472.686,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Vietnam,Dong,Vietnam-Dong,26323,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Western Samoa,Tala,Western Samoa-Tala,2.667,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Yemen,Rial,Yemen-Rial,528,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Zambia,New Kwacha,Zambia-New Kwacha,19.135,2026-03-31,2026-04-27T23:11:28Z
+2026-03-31,Zimbabwe,Gold,Zimbabwe-Gold,24.839,2026-03-31,2026-04-27T23:11:28Z

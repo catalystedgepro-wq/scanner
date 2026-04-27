@@ -1,0 +1,843 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Bot Audit — Catalyst Edge</title>
+<meta name="description" content="A live, in-public audit of an autonomous trading system. We deployed a Coinbase bot, halted it within 6 hours when fees broke the math, then iterated until the strategy lab found +1.87% net alpha. Every backtest and every halt is on the record.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://catalystedgescanner.com/blog/why-our-bot-failed-validation/">
+<meta property="og:title" content="The Bot Audit — Catalyst Edge">
+<meta property="og:description" content="In-public iteration log of an autonomous trading bot. Halted, iterated, lab found alpha, audit killed a bad idea, live trades fired. Every step on the record.">
+<meta property="og:url" content="https://catalystedgescanner.com/blog/why-our-bot-failed-validation/">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://catalystedgescanner.com/og/default.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#05060b">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#05060b; --surface:#0c1018; --surface2:#12161f;
+  --border:rgba(231,183,108,.14); --border-cyan:rgba(114,229,255,.18);
+  --text:#e8edf4; --muted:#7a8899; --dim:#586271;
+  --cyan:#72e5ff; --cyan-deep:#3fb5cf;
+  --gold:#e7b76c; --gold-deep:#c89854;
+  --green:#10b981; --red:#f43f5e; --purple:#a78bfa; --rose:#fb7185;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--text);
+  line-height:1.7;font-size:17px;overflow-x:hidden;font-feature-settings:"ss01" on}
+a{color:var(--cyan);text-decoration:none;border-bottom:1px solid rgba(114,229,255,.4);transition:all .2s}
+a:hover{color:var(--gold);border-bottom-color:var(--gold)}
+.mono{font-family:'IBM Plex Mono',ui-monospace,monospace}
+
+/* ── ANIMATIONS ── */
+@keyframes meshDrift{0%{transform:translate(0,0)}50%{transform:translate(2vw,-1vh)}100%{transform:translate(0,0)}}
+@keyframes scanlineGlide{0%{transform:translateY(-30vh)}100%{transform:translateY(130vh)}}
+@keyframes orbA{0%,100%{transform:translate(-30vw,-30vh) scale(1)}50%{transform:translate(20vw,10vh) scale(1.2)}}
+@keyframes orbB{0%,100%{transform:translate(30vw,30vh) scale(.95)}50%{transform:translate(-15vw,-10vh) scale(1.1)}}
+@keyframes orbC{0%,100%{transform:translate(-20vw,30vh) scale(1.05)}50%{transform:translate(25vw,-25vh) scale(.85)}}
+@keyframes pulseRing{0%{box-shadow:0 0 0 0 rgba(231,183,108,.5)}70%{box-shadow:0 0 0 22px rgba(231,183,108,0)}100%{box-shadow:0 0 0 0 rgba(231,183,108,0)}}
+@keyframes pulseGreen{0%{box-shadow:0 0 0 0 rgba(16,185,129,.5)}70%{box-shadow:0 0 0 22px rgba(16,185,129,0)}100%{box-shadow:0 0 0 0 rgba(16,185,129,0)}}
+@keyframes pulseRose{0%{box-shadow:0 0 0 0 rgba(244,63,94,.5)}70%{box-shadow:0 0 0 22px rgba(244,63,94,0)}100%{box-shadow:0 0 0 0 rgba(244,63,94,0)}}
+@keyframes flicker{0%,100%{opacity:1}50%{opacity:.85}}
+@keyframes haloRise{from{opacity:0;transform:translateY(40px) scale(.95);filter:blur(8px)}to{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+@keyframes typeIn{from{width:0}to{width:100%}}
+@keyframes blinkCursor{50%{opacity:0}}
+@keyframes ledgerScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+@keyframes glowPulse{0%,100%{filter:drop-shadow(0 0 16px rgba(231,183,108,.4))}50%{filter:drop-shadow(0 0 36px rgba(231,183,108,.85))}}
+@keyframes nodePulse{0%,100%{transform:scale(1);opacity:.9}50%{transform:scale(1.4);opacity:1}}
+@keyframes beamFlow{0%{transform:translateX(-100%);opacity:0}30%{opacity:1}70%{opacity:1}100%{transform:translateX(100%);opacity:0}}
+@keyframes scrollHint{0%,100%{transform:translateY(0);opacity:.4}50%{transform:translateY(8px);opacity:.9}}
+@keyframes chapterIn{from{opacity:0;transform:translateX(-30px)}to{opacity:1;transform:translateX(0)}}
+@keyframes barFill{from{width:0}to{width:var(--bar-w)}}
+
+/* ── CINEMATIC FIELD ── */
+.field{position:fixed;inset:0;pointer-events:none;z-index:-50;overflow:hidden;
+  background:radial-gradient(ellipse at top,rgb(12,18,32) 0%,rgb(5,6,11) 60%,#000 100%)}
+.field::before{content:'';position:absolute;inset:-10vw;
+  background-image:
+    linear-gradient(rgba(114,229,255,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(114,229,255,.04) 1px,transparent 1px);
+  background-size:60px 60px;
+  animation:meshDrift 22s ease-in-out infinite;
+  mask-image:radial-gradient(ellipse at center,black 30%,transparent 75%);
+  -webkit-mask-image:radial-gradient(ellipse at center,black 30%,transparent 75%);
+}
+.field-orb{position:absolute;left:50%;top:50%;width:80vw;height:80vw;max-width:1100px;max-height:1100px;
+  border-radius:50%;filter:blur(120px);opacity:.4;mix-blend-mode:screen}
+.field-orb.a{background:radial-gradient(circle,rgba(231,183,108,.6),rgba(231,183,108,0) 70%);animation:orbA 38s ease-in-out infinite}
+.field-orb.b{background:radial-gradient(circle,rgba(114,229,255,.5),rgba(114,229,255,0) 70%);animation:orbB 32s ease-in-out infinite}
+.field-orb.c{background:radial-gradient(circle,rgba(167,139,250,.32),rgba(167,139,250,0) 70%);animation:orbC 44s ease-in-out infinite}
+.scanline{position:absolute;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(114,229,255,.18),transparent);
+  animation:scanlineGlide 8s linear infinite;opacity:.6}
+.vignette{position:absolute;inset:0;background:
+  radial-gradient(ellipse at top,transparent 30%,rgba(0,0,0,.4) 80%),
+  linear-gradient(180deg,transparent 50%,rgba(0,0,0,.6))}
+
+/* ── PARTICLE CANVAS ── */
+canvas#particles{position:fixed;inset:0;z-index:-49;pointer-events:none;opacity:.45}
+
+/* ── NAV ── */
+nav.top{position:sticky;top:0;z-index:80;background:rgba(7,11,17,.78);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;gap:18px;padding:11px 24px;font-size:13px;
+  flex-wrap:nowrap;overflow-x:auto}
+nav.top::-webkit-scrollbar{display:none}
+nav.top .brand{display:flex;align-items:center;gap:10px;flex-shrink:0;font-weight:700}
+nav.top .brand-mark{width:26px;height:26px;border-radius:50%;
+  background:radial-gradient(circle at 30% 30%,var(--gold),var(--gold-deep) 60%,#5a3f1c);
+  box-shadow:0 0 14px rgba(231,183,108,.4),inset 0 0 8px rgba(255,220,140,.5);
+  flex-shrink:0;animation:flicker 4s ease-in-out infinite}
+nav.top .brand-text{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--gold);
+  letter-spacing:.18em;text-transform:uppercase}
+nav.top a.nl{color:var(--muted);padding:7px 10px;border-radius:6px;font-size:12.5px;
+  white-space:nowrap;flex-shrink:0;transition:all .18s;border-bottom:none}
+nav.top a.nl:hover{color:var(--text);background:rgba(255,255,255,.04)}
+nav.top a.nl-cta{margin-left:auto;background:linear-gradient(135deg,var(--gold),var(--gold-deep));
+  color:#0a0d18;padding:7px 14px;border-radius:6px;font-weight:700;letter-spacing:.04em;
+  flex-shrink:0;animation:pulseRing 3.4s ease-in-out infinite;border-bottom:none}
+nav.top a.nl-cta:hover{filter:brightness(1.1);color:#0a0d18}
+@media(max-width:680px){nav.top{padding:10px 14px;gap:10px}nav.top a.nl{display:none}nav.top a.nl.always{display:inline-block}}
+
+/* ── HERO — CINEMATIC OPENING ── */
+.hero{position:relative;min-height:88vh;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;padding:80px 24px 60px;text-align:center;overflow:hidden}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;
+  font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--gold);
+  background:rgba(231,183,108,.06);border:1px solid rgba(231,183,108,.22);
+  border-radius:999px;padding:8px 18px;margin-bottom:32px;
+  box-shadow:0 0 24px rgba(231,183,108,.14);
+  animation:haloRise 1.4s cubic-bezier(.18,.84,.2,1) both}
+.hero-eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--gold);
+  animation:flicker 1.6s ease-in-out infinite;box-shadow:0 0 8px var(--gold)}
+.hero h1{font-size:clamp(40px,7vw,96px);font-weight:800;letter-spacing:-.025em;line-height:1;
+  max-width:1080px;margin:0 auto;
+  background:linear-gradient(180deg,#fff 25%,#9aa6bd 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  animation:haloRise 1.6s cubic-bezier(.18,.84,.2,1) .2s both}
+.hero h1 .accent{
+  background:linear-gradient(120deg,var(--gold) 30%,var(--cyan) 70%);
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  position:relative;display:inline-block}
+.hero h1 .accent::after{content:'';position:absolute;left:0;right:0;bottom:-6px;height:2px;
+  background:linear-gradient(90deg,transparent,var(--gold),var(--cyan),transparent);
+  animation:flicker 3s ease-in-out infinite}
+.hero .subtitle{font-size:clamp(16px,1.6vw,20px);color:#c4cdde;max-width:680px;margin:30px auto 0;
+  line-height:1.6;animation:haloRise 1.7s cubic-bezier(.18,.84,.2,1) .35s both}
+.hero .subtitle strong{color:var(--gold);font-weight:600}
+.hero .meta-line{margin-top:34px;display:flex;justify-content:center;gap:22px;flex-wrap:wrap;
+  font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);
+  letter-spacing:.16em;text-transform:uppercase;
+  animation:haloRise 1.8s cubic-bezier(.18,.84,.2,1) .5s both}
+.hero .meta-line span{display:inline-flex;align-items:center;gap:6px}
+.hero .meta-line .live::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--green);
+  animation:flicker 1.4s ease-in-out infinite;box-shadow:0 0 8px var(--green);display:inline-block}
+.hero::before{content:'';position:absolute;left:50%;top:50%;width:120vw;height:60vh;transform:translate(-50%,-50%);
+  background:radial-gradient(ellipse at center,rgba(231,183,108,.18),transparent 60%);pointer-events:none;z-index:-1}
+.scroll-hint{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);
+  font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--muted);
+  letter-spacing:.32em;text-transform:uppercase;text-align:center;
+  animation:scrollHint 2.2s ease-in-out infinite}
+.scroll-hint::after{content:'';display:block;width:1px;height:30px;margin:8px auto 0;
+  background:linear-gradient(180deg,var(--muted),transparent)}
+
+/* ── TL;DR cinematic card ── */
+.tldr-shell{max-width:780px;margin:0 auto 40px;padding:0 24px;
+  animation:fadeUp 1s cubic-bezier(.18,.84,.2,1) .8s both}
+.tldr{position:relative;background:linear-gradient(180deg,rgba(16,185,129,.08),rgba(7,11,17,.82));
+  border:1px solid rgba(16,185,129,.32);border-radius:14px;padding:26px 30px;overflow:hidden;
+  box-shadow:0 0 50px rgba(16,185,129,.08)}
+.tldr::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--green);
+  box-shadow:0 0 12px var(--green)}
+.tldr::after{content:'';position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(circle at 100% 0%,rgba(16,185,129,.08),transparent 60%)}
+.tldr-tag{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.24em;
+  text-transform:uppercase;color:var(--green);margin-bottom:8px;font-weight:700;
+  display:inline-flex;align-items:center;gap:8px}
+.tldr-tag::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--green);
+  animation:flicker 1.4s ease-in-out infinite;box-shadow:0 0 8px var(--green)}
+.tldr p{position:relative;font-size:15.5px;color:#dde4ee;line-height:1.65}
+.tldr code{background:rgba(231,183,108,.12);color:var(--gold);padding:1px 7px;border-radius:4px;
+  font-size:.9em;border:1px solid rgba(231,183,108,.22)}
+.tldr .links{margin-top:14px;display:flex;gap:18px;flex-wrap:wrap;
+  font-family:'IBM Plex Mono',monospace;font-size:12px}
+
+/* ── ARTICLE BODY ── */
+article{max-width:760px;margin:0 auto;padding:30px 24px 80px}
+article p{margin:0 0 1.3rem;color:#d8dfeb}
+article p strong{color:var(--gold);font-weight:600}
+article p em{color:#b6c0d2;font-style:italic}
+article ul,article ol{margin:0 0 1.4rem;padding-left:1.2rem;color:#d8dfeb}
+article li{margin-bottom:.5rem}
+article ul li::marker{color:var(--cyan)}
+article ol li::marker{color:var(--gold);font-family:'IBM Plex Mono',monospace}
+code{font-family:'IBM Plex Mono',monospace;background:rgba(231,183,108,.1);
+  color:var(--gold);padding:1px 7px;border-radius:4px;font-size:.9em;
+  border:1px solid rgba(231,183,108,.18)}
+
+/* ── TERMINAL BLOCKS ── */
+pre.term{position:relative;background:linear-gradient(180deg,#0a0e16 0%,#06090e 100%);
+  border:1px solid var(--border-cyan);border-radius:10px;padding:46px 22px 22px;
+  font-family:'IBM Plex Mono',monospace;font-size:13px;line-height:1.7;
+  color:#a8d8e8;overflow-x:auto;margin:1.6rem 0;
+  box-shadow:0 0 40px rgba(114,229,255,.06),inset 0 1px 0 rgba(255,255,255,.05)}
+pre.term::before{content:'● ● ●';position:absolute;top:14px;left:18px;
+  color:#3a3f4d;font-size:11px;letter-spacing:8px}
+pre.term::after{content:'BACKTEST · 60d hourly · fees included';position:absolute;top:14px;right:18px;
+  color:var(--muted);font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.16em;
+  text-transform:uppercase}
+pre.term.no-fees::after{content:'BACKTEST · 60d hourly · gross (no fees)'}
+pre.term.lab-result::after{content:'STRATEGY LAB · auto-promote run'}
+.term-line{display:block}
+.term-line .key{color:var(--muted)}
+.term-line .v{color:var(--cyan);font-weight:600}
+.term-line .v.win{color:var(--green)}
+.term-line .v.lose{color:var(--rose)}
+.term-line .v.gold{color:var(--gold)}
+.term-line .verdict{font-weight:700;letter-spacing:.04em}
+
+/* ── CHAPTER LABELS ── */
+.chapter{display:flex;align-items:flex-end;gap:18px;margin:90px 0 18px;
+  border-bottom:1px solid var(--border);padding-bottom:18px;animation:chapterIn .8s cubic-bezier(.18,.84,.2,1) both}
+.chapter-num{font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.32em;
+  font-weight:700;color:var(--gold);min-width:120px;
+  display:flex;align-items:center;gap:10px;padding-bottom:4px}
+.chapter-num::before{content:'';width:24px;height:1px;background:var(--gold);box-shadow:0 0 8px var(--gold)}
+.chapter h2{font-size:clamp(26px,3.6vw,40px);font-weight:700;letter-spacing:-.018em;line-height:1.1;
+  flex:1;color:var(--text)}
+.chapter h2 .accent{color:var(--gold)}
+.chapter h2 .accent.green{color:var(--green)}
+.chapter h2 .accent.rose{color:var(--rose)}
+
+/* ── PULL QUOTES ── */
+.pull-quote{position:relative;margin:60px -24px;padding:60px 40px;text-align:center;
+  font-family:'Space Grotesk',sans-serif;font-size:clamp(22px,3vw,32px);font-weight:600;
+  letter-spacing:-.012em;line-height:1.25;color:var(--text);
+  background:linear-gradient(180deg,transparent,rgba(231,183,108,.04),transparent);
+  border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.pull-quote .q-mark{position:absolute;top:14px;left:50%;transform:translateX(-50%);
+  font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.32em;
+  color:var(--gold);text-transform:uppercase;background:var(--bg);padding:0 14px}
+.pull-quote em{
+  background:linear-gradient(120deg,var(--gold),var(--cyan));
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  font-style:normal;font-weight:700}
+.pull-quote::before{content:'';position:absolute;left:50%;bottom:-1px;width:80px;height:2px;
+  transform:translateX(-50%);background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  animation:flicker 3s ease-in-out infinite}
+
+/* ── DATA TABLES ── */
+.cinetable{position:relative;background:rgba(12,16,24,.55);border:1px solid var(--border);
+  border-radius:12px;overflow:hidden;margin:1.5rem 0;box-shadow:0 16px 40px rgba(0,0,0,.3)}
+.cinetable::before{content:'';position:absolute;left:0;top:0;height:2px;width:100%;
+  background:linear-gradient(90deg,var(--gold),var(--cyan),transparent)}
+.cinetable table{width:100%;border-collapse:collapse;font-size:13.5px}
+.cinetable th{text-align:left;padding:13px 16px;font-family:'IBM Plex Mono',monospace;
+  font-weight:600;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--muted);background:rgba(0,0,0,.3);border-bottom:1px solid var(--border)}
+.cinetable td{padding:13px 16px;border-bottom:1px solid var(--border);color:#dde4ee}
+.cinetable tr:last-child td{border-bottom:none}
+.cinetable tr:hover{background:rgba(114,229,255,.03)}
+.cinetable td.win{color:var(--green);font-weight:600;font-family:'IBM Plex Mono',monospace}
+.cinetable td.lose{color:var(--rose);font-weight:600;font-family:'IBM Plex Mono',monospace}
+.cinetable td.mono{font-family:'IBM Plex Mono',monospace}
+.cinetable tr.featured td{background:linear-gradient(90deg,rgba(16,185,129,.1),transparent);
+  position:relative}
+.cinetable tr.featured td:first-child{font-weight:700;color:var(--green)}
+.cinetable tr.featured::after{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;
+  background:var(--green);box-shadow:0 0 8px var(--green)}
+
+/* Inline bar viz on alpha cells */
+.alpha-bar{display:inline-block;height:6px;border-radius:2px;margin-left:8px;vertical-align:middle;
+  background:linear-gradient(90deg,var(--rose),var(--rose));max-width:80px;
+  animation:barFill 1s cubic-bezier(.18,.84,.2,1) .3s both}
+.alpha-bar.win{background:linear-gradient(90deg,var(--green),var(--cyan))}
+
+/* ── CALLOUT BLOCKS ── */
+.callout{position:relative;margin:1.8rem 0;padding:22px 28px;border-radius:12px;
+  background:rgba(244,63,94,.06);border:1px solid rgba(244,63,94,.28);
+  box-shadow:0 0 40px rgba(244,63,94,.06)}
+.callout::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--rose);
+  box-shadow:0 0 10px var(--rose)}
+.callout strong{color:var(--rose)}
+.callout.green{background:rgba(16,185,129,.06);border-color:rgba(16,185,129,.28);
+  box-shadow:0 0 40px rgba(16,185,129,.06)}
+.callout.green::before{background:var(--green);box-shadow:0 0 10px var(--green)}
+.callout.green strong{color:var(--green)}
+.callout.gold{background:rgba(231,183,108,.06);border-color:rgba(231,183,108,.28)}
+.callout.gold::before{background:var(--gold)}
+.callout.gold strong{color:var(--gold)}
+
+/* ── METHODOLOGY DIAGRAM (loop) ── */
+.loop{position:relative;margin:50px auto;max-width:640px;height:340px;
+  display:flex;align-items:center;justify-content:center}
+.loop .ring{position:absolute;border-radius:50%;border:1px solid rgba(231,183,108,.18);
+  animation:flicker 4s ease-in-out infinite}
+.loop .ring.r1{width:200px;height:200px;border-color:rgba(114,229,255,.18)}
+.loop .ring.r2{width:280px;height:280px}
+.loop .ring.r3{width:360px;height:360px;border-color:rgba(167,139,250,.16)}
+.loop .core{position:absolute;width:140px;height:140px;border-radius:50%;
+  background:radial-gradient(circle,rgba(231,183,108,.32),rgba(231,183,108,0) 70%);
+  filter:blur(2px);animation:flicker 5s ease-in-out infinite}
+.loop .node{position:absolute;width:14px;height:14px;border-radius:50%;
+  animation:nodePulse 3s ease-in-out infinite}
+.loop .node.scan{top:0;left:50%;transform:translate(-50%,-50%);background:var(--cyan);box-shadow:0 0 14px var(--cyan)}
+.loop .node.validate{top:50%;right:0;transform:translate(50%,-50%);background:var(--gold);box-shadow:0 0 14px var(--gold);animation-delay:.7s}
+.loop .node.deploy{bottom:0;left:50%;transform:translate(-50%,50%);background:var(--green);box-shadow:0 0 14px var(--green);animation-delay:1.4s}
+.loop .node.audit{top:50%;left:0;transform:translate(-50%,-50%);background:var(--purple);box-shadow:0 0 14px var(--purple);animation-delay:2.1s}
+.loop .label{position:absolute;font-family:'IBM Plex Mono',monospace;font-size:11px;
+  color:var(--muted);text-transform:uppercase;letter-spacing:.18em;font-weight:600}
+.loop .label.scan{top:-30px;left:50%;transform:translateX(-50%);color:var(--cyan)}
+.loop .label.validate{top:50%;right:-92px;transform:translateY(-50%);color:var(--gold)}
+.loop .label.deploy{bottom:-30px;left:50%;transform:translateX(-50%);color:var(--green)}
+.loop .label.audit{top:50%;left:-80px;transform:translateY(-50%);color:var(--purple)}
+.loop .center-text{position:absolute;font-family:'IBM Plex Mono',monospace;font-size:11px;
+  color:var(--gold);letter-spacing:.16em;text-transform:uppercase;text-align:center}
+
+/* ── DUAL MOMENTUM RULES (animated reveal) ── */
+.rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:1.5rem 0}
+.rule{position:relative;padding:20px 22px;background:linear-gradient(180deg,rgba(12,16,24,.7),rgba(7,11,17,.7));
+  border:1px solid var(--border-cyan);border-radius:10px;overflow:hidden}
+.rule::before{content:'';position:absolute;left:0;top:0;height:2px;width:100%;
+  background:linear-gradient(90deg,var(--cyan),var(--gold))}
+.rule .num{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;
+  color:var(--cyan);font-weight:700;text-transform:uppercase;margin-bottom:6px}
+.rule h4{font-size:15px;font-weight:700;color:var(--text);margin-bottom:6px}
+.rule p{font-size:13px;color:var(--muted);line-height:1.55;margin:0}
+
+/* ── LESSONS GRID ── */
+.lessons{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin:1.5rem 0}
+.lesson{position:relative;padding:24px 22px;background:rgba(12,16,24,.6);
+  border:1px solid var(--border);border-radius:10px;overflow:hidden;
+  transition:all .35s cubic-bezier(.18,.84,.2,1)}
+.lesson::before{content:'';position:absolute;left:0;top:0;height:3px;width:100%;
+  background:linear-gradient(90deg,var(--gold),transparent)}
+.lesson:hover{transform:translateY(-4px);border-color:rgba(231,183,108,.4);
+  box-shadow:0 18px 44px rgba(231,183,108,.1)}
+.lesson .icon{font-size:22px;margin-bottom:8px;display:block}
+.lesson h4{font-size:15px;font-weight:700;letter-spacing:-.005em;margin-bottom:6px;color:var(--text)}
+.lesson p{font-size:13px;color:var(--muted);line-height:1.55;margin:0}
+
+/* ── FINAL CTA ── */
+.finale{position:relative;margin-top:90px;padding:120px 24px 100px;text-align:center;overflow:hidden;
+  border-top:1px solid var(--border);
+  background:linear-gradient(180deg,transparent,rgba(7,11,17,.6) 30%,rgba(7,11,17,.92))}
+.finale::before{content:'';position:absolute;left:50%;top:50%;width:140vw;height:140vh;transform:translate(-50%,-50%);
+  background:radial-gradient(ellipse at center,rgba(231,183,108,.16),transparent 50%);
+  pointer-events:none;z-index:-1}
+.finale h2{font-size:clamp(30px,4.4vw,52px);font-weight:800;letter-spacing:-.025em;line-height:1.05;
+  max-width:780px;margin:0 auto;color:var(--text)}
+.finale h2 .accent{
+  background:linear-gradient(120deg,var(--gold),var(--cyan));
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.finale p{font-size:17px;color:#c4cdde;max-width:580px;margin:24px auto 36px;line-height:1.6}
+.finale .btn-row{display:inline-flex;gap:14px;flex-wrap:wrap;justify-content:center}
+.btn{display:inline-flex;align-items:center;gap:10px;font-weight:700;font-size:15px;
+  padding:14px 28px;border-radius:8px;cursor:pointer;border:none;
+  letter-spacing:.02em;transition:all .25s;text-decoration:none;border-bottom:none}
+.btn-primary{background:linear-gradient(135deg,var(--gold),var(--gold-deep));color:#0a0d18;
+  box-shadow:0 0 30px rgba(231,183,108,.35);animation:pulseRing 2.8s ease-in-out infinite}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 0 50px rgba(231,183,108,.55);color:#0a0d18}
+.btn-ghost{background:rgba(114,229,255,.06);border:1px solid var(--border-cyan);color:var(--cyan)}
+.btn-ghost:hover{background:rgba(114,229,255,.1);border-color:var(--cyan);color:var(--cyan);transform:translateY(-2px)}
+.btn .arrow{transition:transform .25s}
+.btn:hover .arrow{transform:translateX(4px)}
+.finale-sub{margin-top:24px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);
+  letter-spacing:.14em}
+
+/* ── FOOTER ── */
+footer{padding:36px 24px;border-top:1px solid var(--border);text-align:center;
+  font-size:12px;color:var(--muted);background:rgba(5,6,11,.85)}
+footer .links{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin-bottom:14px;
+  font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase}
+footer .links a{color:var(--muted);border-bottom:none}
+footer .links a:hover{color:var(--gold)}
+footer .copy{font-size:11.5px;line-height:1.55;max-width:560px;margin:0 auto;color:#586271}
+
+@media(max-width:680px){
+  .pull-quote{margin:40px -24px;padding:40px 24px}
+  .chapter-num{min-width:auto;font-size:11px}
+  .loop{height:280px;transform:scale(.85)}
+}
+</style>
+</head>
+<body>
+
+<!-- Cinematic field -->
+<div class="field" aria-hidden="true">
+  <div class="field-orb a"></div>
+  <div class="field-orb b"></div>
+  <div class="field-orb c"></div>
+  <div class="scanline" style="animation-delay:0s"></div>
+  <div class="scanline" style="animation-delay:-3s;opacity:.3"></div>
+  <div class="vignette"></div>
+</div>
+<canvas id="particles" aria-hidden="true"></canvas>
+
+<!-- Sticky nav -->
+<nav class="top">
+  <a href="https://catalystedge.agency/" class="brand" style="border:none">
+    <span class="brand-mark"></span>
+    <span class="brand-text">CATALYST · AUDIT</span>
+  </a>
+  <a class="nl" href="#chapter-01">The Setup</a>
+  <a class="nl" href="#chapter-04">The Halt</a>
+  <a class="nl" href="#chapter-05">Iteration 1</a>
+  <a class="nl" href="#chapter-09">Iteration 2</a>
+  <a class="nl" href="https://catalystedgescanner.com/trust/">Trust Ledger</a>
+  <a class="nl-cta always" href="https://catalystedgescanner.com/scanner/">Open Scanner →</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow"><span class="dot"></span>The Bot Audit · Iteration Log · Public</div>
+  <h1>We built an autonomous trader.<br>It failed. We <span class="accent">re-engineered it</span> in public.</h1>
+  <p class="subtitle">A real-money, real-time iteration log of an autonomous Coinbase trading system —
+  every backtest, every halt, every promoted strategy, written to a public ledger before any subscriber
+  sees the trade. <strong>This is what trading looks like when the audit is the product.</strong></p>
+  <div class="meta-line">
+    <span><span class="live"></span>Bot · live</span>
+    <span>Strategy · dual_momentum</span>
+    <span>Net alpha · +1.87%</span>
+    <span>Iterations · 2</span>
+  </div>
+  <div class="scroll-hint">scroll · enter the audit</div>
+</section>
+
+<!-- TL;DR -->
+<div class="tldr-shell">
+  <div class="tldr">
+    <div class="tldr-tag">tl;dr · 2026-04-27</div>
+    <p>The strategy lab found alpha 28 hours after the original halt. <code>dual_momentum</code> cleared
+    the +1% threshold (<strong>+1.87% net alpha, 91.7% hit rate</strong>). Halt auto-lifted; bot has placed
+    five live entries since (ETH×2, BTC, ATOM, ARB). A second iteration proposed a trailing-stop exit
+    variant — the lab rejected it (−2.38% alpha). Live bot stays on <code>dual_momentum</code>.</p>
+    <div class="links">
+      <a href="#chapter-01">Read the full audit ↓</a>
+      <a href="https://catalystedgescanner.com/trust/">Public ledger →</a>
+      <a href="https://catalystedgescanner.com/scanner/">Live scanner →</a>
+    </div>
+  </div>
+</div>
+
+<article>
+
+  <!-- CHAPTER 01 -->
+  <div class="chapter" id="chapter-01">
+    <div class="chapter-num">CHAPTER 01</div>
+    <h2>The <span class="accent">setup</span></h2>
+  </div>
+
+  <p>On April 26, 2026, we deployed a Coinbase Advanced trading bot with a controlled live-test stake. Within
+  6 hours we halted it. This page explains why — with the actual numbers, every order we placed, and
+  the math most retail trading strategies bury.</p>
+
+  <p>If you sell trading signals, run a Discord pump group, or tweet "I'm up 200% this year" — you should
+  read this and ask whether your strategy survives <em>net of fees</em>.</p>
+
+  <p>Our SEC catalyst scanner has an audited 89% hit rate on equity catalysts (full audit at
+  <a href="https://catalystedgescanner.com/trust/">/trust/</a>). We wanted to extend that edge to crypto
+  by trading the BTC/ETH/etc spot market on Coinbase, using a multi-signal stack:</p>
+
+  <ul>
+    <li>SEC catalyst flag (when scanner flags a crypto-treasury equity like MSTR/MARA/RIOT)</li>
+    <li>BTC ETF heavy-flow signal (combined dollar volume &gt; $2B)</li>
+    <li>Crypto-calm signal (DeFi liquidations in drift state)</li>
+    <li>ETH gas-relief signal (ETH-only)</li>
+    <li>Coinbase premium (CB BTC vs Kraken BTC, indicates US institutional buying)</li>
+    <li>Intraday momentum (1h breakout in top quintile of 24h returns + 4h trend agreement)</li>
+  </ul>
+
+  <p>Combined into a 0–6 score. Threshold ≥ 2 to enter. Conviction-weighted position sizing (5%–20% of
+  equity scaled to score). +5% take-profit, −4% stop-loss, 168h time-stop. Re-entry blocked while holding.</p>
+
+  <!-- CHAPTER 02 -->
+  <div class="chapter" id="chapter-02">
+    <div class="chapter-num">CHAPTER 02</div>
+    <h2><span class="accent">"Edge confirmed"</span> — and wrong</h2>
+  </div>
+
+  <p>We ran a 60-day walk-forward backtest across 10 coins, 210 trades. Result:</p>
+
+  <pre class="term no-fees"><span class="term-line"><span class="key">Hit rate              </span><span class="v">48.6%</span></span>
+<span class="term-line"><span class="key">Avg strategy return   </span><span class="v win">+4.83%</span><span class="key"> per coin</span></span>
+<span class="term-line"><span class="key">Avg buy-and-hold      </span><span class="v">+2.32%</span><span class="key"> per coin</span></span>
+<span class="term-line"><span class="key">Alpha vs buy-and-hold </span><span class="v win">+2.52%</span></span>
+<span class="term-line"><span class="key">Verdict               </span><span class="v win verdict">EDGE confirmed ✓</span></span></pre>
+
+  <p>We deployed live. Placed three real-money trades. Then ran the backtest again — this time with
+  Coinbase's actual taker fee (25bps × 2 sides = 50bps round-trip) subtracted from each trade.</p>
+
+  <!-- CHAPTER 03 -->
+  <div class="chapter" id="chapter-03">
+    <div class="chapter-num">CHAPTER 03</div>
+    <h2>Same data, <span class="accent rose">fees included</span></h2>
+  </div>
+
+  <pre class="term"><span class="term-line"><span class="key">Hit rate              </span><span class="v">48.6%</span><span class="key"> (same)</span></span>
+<span class="term-line"><span class="key">Avg strategy return   </span><span class="v lose">-5.24%</span><span class="key"> per coin   ← SUBTRACTING fees</span></span>
+<span class="term-line"><span class="key">Avg buy-and-hold      </span><span class="v">+2.71%</span><span class="key"> per coin</span></span>
+<span class="term-line"><span class="key">Alpha vs buy-and-hold </span><span class="v lose">-7.95%</span></span>
+<span class="term-line"><span class="key">Verdict               </span><span class="v lose verdict">NO EDGE — bot underperforms B&amp;H by 8% ✗</span></span></pre>
+
+  <p>The same strategy that looked like alpha became a fee-bleeder once we honestly accounted for the
+  cost of trading. <strong>21 trades per coin × 50bps = 10.5% in fees over 60 days per coin.</strong>
+  The +2.52% gross alpha was completely consumed.</p>
+
+  <div class="callout">
+    <strong>The fee trap.</strong> The most common pattern in retail trading marketing is "look at this
+    backtest, it printed +X%." If the backtest doesn't disclose fee assumptions, assume it omitted them.
+    Coinbase taker is 25bps. Robinhood is "free" but pays via PFOF (you slip on the spread). Interactive
+    Brokers is 0.5–1bp. Whatever venue you use, multiply your trade frequency by the round-trip cost.
+    Most active retail strategies don't survive once you do.
+  </div>
+
+  <p>Before halting, we tested two adjustments:</p>
+
+  <div class="cinetable"><table>
+    <thead><tr><th>Config</th><th>Strategy</th><th>B&amp;H</th><th>Alpha</th></tr></thead>
+    <tbody>
+      <tr><td>5% TP / 4% SL (original)</td><td class="lose">−5.24%</td><td class="mono">+2.71%</td><td class="lose">−7.95%<span class="alpha-bar" style="--bar-w:80px"></span></td></tr>
+      <tr><td>8% TP / 3% SL (asymmetric)</td><td class="lose">−4.88%</td><td class="mono">+2.91%</td><td class="lose">−7.79%<span class="alpha-bar" style="--bar-w:78px"></span></td></tr>
+    </tbody>
+  </table></div>
+
+  <p>Tighter or wider exits don't help — the underlying win/loss distribution at 48.6% hit rate just
+  isn't favorable enough to overcome 50bps × 21 trades. <strong>Tuning can't fix a strategy that doesn't
+  have edge.</strong></p>
+
+  <!-- CHAPTER 04 — pull quote -->
+  <div class="chapter" id="chapter-04">
+    <div class="chapter-num">CHAPTER 04</div>
+    <h2>The <span class="accent rose">honest halt</span></h2>
+  </div>
+
+  <p>We wrote a halt file. Bot stopped placing new entries. The three live positions ($24.70 ETH × 2
+  + $9.69 BTC) stayed open and were set to exit naturally on TP/SL/time-stop. Total real-money loss:
+  about 0.6% in fees on the live-test stake.</p>
+
+  <div class="pull-quote">
+    <span class="q-mark">— operator</span>
+    <em>"Earn or die"</em> — when something doesn't work, kill it. Don't pretend.
+  </div>
+
+  <p>We caught this on day one of live deployment, lost less than 1% of capital, and now know two things
+  we didn't know before:</p>
+
+  <ol>
+    <li><strong>Pure intraday momentum on hourly bars has no alpha after Coinbase's retail fee tier.</strong>
+    This isn't a tuning issue — it's a strategy-doesn't-work-at-scale issue. Fixing it requires either
+    materially better signals (lower trade frequency or higher hit rate) or materially lower fees
+    (Tier 2+ volume — unreachable at live-test scale).</li>
+    <li><strong>Our SEC scanner edge probably doesn't transfer to crypto spot directly.</strong> The
+    scanner has 89% hit rate on equity catalysts. But "MSTR catalyst hit" doesn't mean "BTC will move
+    5% in next 168h." The correlation is weaker than the per-equity edge.</li>
+  </ol>
+
+  <!-- CHAPTER 05 — Iteration 1 begins -->
+  <div class="chapter" id="chapter-05" style="margin-top:120px">
+    <div class="chapter-num" style="color:var(--green)">ITERATION · 01</div>
+    <h2>Research found <span class="accent green">alpha</span>. Halt auto-lifted.</h2>
+  </div>
+
+  <div class="callout green">
+    The strategy lab kept iterating after the original halt. On 2026-04-27 we added 4 new candidates
+    (<code>weekly_rotate</code>, <code>drawdown_buy</code>, <code>regime_split</code>, <code>dual_momentum</code>).
+    One of them — <code>dual_momentum</code> — cleared the +1% promote threshold with
+    <strong>+1.87% net alpha vs B&amp;H</strong> over 60 days, <strong>91.7% hit rate (11/12 winners)</strong>,
+    only <strong>12 trades</strong> so the fees barely bite. The lab auto-removed the halt file and wrote
+    <code>.live_strategy.json</code> naming dual_momentum as the live strategy.
+  </div>
+
+  <h3 style="font-size:22px;margin:36px 0 14px;color:var(--text);font-weight:700">What dual_momentum actually does</h3>
+
+  <p>Antonacci-style trend confirmation on hourly crypto bars — four rules, all required to fire an entry:</p>
+
+  <div class="rules">
+    <div class="rule"><div class="num">RULE 01</div><h4>7d return positive</h4><p>The most recent week must be uptrending. No buying into a down week.</p></div>
+    <div class="rule"><div class="num">RULE 02</div><h4>30d return positive</h4><p>The longer-window trend must agree. Stops false breakouts in down regimes.</p></div>
+    <div class="rule"><div class="num">RULE 03</div><h4>Not at 24h high</h4><p>Don't chase the local top. Price within 1% of yesterday's high → skip.</p></div>
+    <div class="rule"><div class="num">RULE 04</div><h4>All three pass</h4><p>If any rule fails, no entry fires. Most days we don't trade.</p></div>
+  </div>
+
+  <p>It's intentionally restrictive. Most days no entry fires. When it does, the trend is multi-window
+  confirmed and the entry isn't right at a local peak. Wide TP (+15%) and tight SL (−6%) — one winner
+  pays for two losers; with 91.7% hit rate, very few losers happen.</p>
+
+  <!-- CHAPTER 06 -->
+  <div class="chapter" id="chapter-06">
+    <div class="chapter-num" style="color:var(--green)">ITERATION · 01</div>
+    <h2>Why others <span class="accent rose">failed</span> and this one <span class="accent green">won</span></h2>
+  </div>
+
+  <div class="cinetable"><table>
+    <thead>
+      <tr><th>Strategy</th><th>Trades</th><th>Hit %</th><th>Alpha vs B&amp;H</th><th>Verdict</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>momentum_5_4 (original)</td><td class="mono">102</td><td class="mono">52.9%</td><td class="lose">−11.29%<span class="alpha-bar" style="--bar-w:80px"></span></td><td class="lose">FAILED</td></tr>
+      <tr><td>buy_and_hold (control)</td><td class="mono">5</td><td class="mono">100%</td><td class="lose">−0.34%<span class="alpha-bar" style="--bar-w:8px"></span></td><td class="lose">FAILED</td></tr>
+      <tr><td>bear_regime_long</td><td class="mono">40</td><td class="mono">55.0%</td><td class="lose">−4.42%<span class="alpha-bar" style="--bar-w:36px"></span></td><td class="lose">FAILED</td></tr>
+      <tr><td>weekly_rotate (new)</td><td class="mono">18</td><td class="mono">44.4%</td><td class="lose">−13.24%<span class="alpha-bar" style="--bar-w:80px"></span></td><td class="lose">FAILED</td></tr>
+      <tr><td>regime_split (new)</td><td class="mono">7</td><td class="mono">71.4%</td><td class="lose">−0.70%<span class="alpha-bar" style="--bar-w:14px"></span></td><td class="lose">FAILED</td></tr>
+      <tr class="featured"><td>dual_momentum (new)</td><td class="mono">12</td><td class="mono">91.7%</td><td class="win">+2.00%<span class="alpha-bar win" style="--bar-w:30px"></span></td><td class="win">EDGE — PROMOTED</td></tr>
+    </tbody>
+  </table></div>
+
+  <p>The pattern: <strong>low trade count + high hit rate + dual-window trend confirmation</strong> is
+  what survives the fee tax. Single-window strategies trigger too often and get eaten by fees.
+  Dual-window strategies trigger rarely and only when the trend is actually established.</p>
+
+  <!-- CHAPTER 07 — methodology loop diagram -->
+  <div class="chapter" id="chapter-07">
+    <div class="chapter-num" style="color:var(--green)">ITERATION · 01</div>
+    <h2>How the live bot <span class="accent">uses this</span></h2>
+  </div>
+
+  <p>We wired <code>dual_momentum</code> directly into <code>agent_coinbase.py</code> on 2026-04-27.
+  The live bot now runs a closed loop:</p>
+
+  <div class="loop" aria-hidden="true">
+    <div class="ring r1"></div>
+    <div class="ring r2"></div>
+    <div class="ring r3"></div>
+    <div class="core"></div>
+    <div class="node scan"></div><div class="label scan">scan</div>
+    <div class="node validate"></div><div class="label validate">validate</div>
+    <div class="node deploy"></div><div class="label deploy">deploy</div>
+    <div class="node audit"></div><div class="label audit">audit</div>
+    <div class="center-text" style="top:50%;left:50%;transform:translate(-50%,-50%)">closed<br>loop</div>
+  </div>
+
+  <ul>
+    <li>Reads <code>.live_strategy.json</code> on every run</li>
+    <li>Uses dual_momentum's price gate (7d &amp; 30d positive, not at 24h high) as the primary entry filter</li>
+    <li>Drops the SEC-catalyst hard gate that previously required treasury flags</li>
+    <li>Uses SEC catalyst as a <em>position-size multiplier</em> instead — no catalyst = 1.0× base, treasury_w 3-4 = 1.5×, treasury_w ≥ 5 = 2.5×</li>
+    <li>Uses dual_momentum's TP (+15%) / SL (−6%) / max-hold (336h = 14d) instead of the legacy 8/3/168h</li>
+  </ul>
+
+  <p>First live trade since the halt fired at 04:13:42 UTC on 2026-04-27 — <strong>$5.00 ATOM-USD</strong>
+  at $1.993, gated by dual_mom_7d=+11.84% / 30d=+19.20%. ARB and LINK were filtered out by the "not at
+  24h high" rule that same run, exactly as designed. ARB later passed at $0.1308 once the rule cleared
+  (7d +4.31% / 30d +46.64%). 5 open positions now: ETH×2, BTC, ATOM, ARB.</p>
+
+  <!-- CHAPTER 08 — pull quote about methodology -->
+  <div class="pull-quote">
+    <span class="q-mark">— the methodology</span>
+    The halt-file + auto-promote loop works.<br>
+    Bot was off for ~28 hours. Lab found alpha. Halt lifted automatically.<br>
+    <em>No manual intervention required.</em>
+  </div>
+
+  <!-- CHAPTER 09 — Iteration 2 -->
+  <div class="chapter" id="chapter-09">
+    <div class="chapter-num" style="color:var(--rose)">ITERATION · 02</div>
+    <h2>The audit <span class="accent rose">killed</span> the next idea.</h2>
+  </div>
+
+  <p>Operator hypothesis (2026-04-27): "We're sitting on +1% to +1.6% unrealized winners with a +15% TP
+  that may take days to hit. Could a trailing-stop exit (arm at +5%, exit on −2% from high-water mark)
+  capture more of the move and rinse the loop faster?"</p>
+
+  <p>Reasonable hypothesis. Sounds tradeable. <strong>We did NOT ship it directly.</strong> Instead we
+  added it to the strategy lab as <code>dual_momentum_trail</code> and replayed against the same 60-day
+  candle set with the same fee model:</p>
+
+  <div class="cinetable"><table>
+    <thead><tr><th>Strategy</th><th>Trades</th><th>Hit %</th><th>Return</th><th>vs B&amp;H</th><th>Verdict</th></tr></thead>
+    <tbody>
+      <tr class="featured"><td>dual_momentum (live)</td><td class="mono">12</td><td class="mono">91.7%</td><td class="mono">+15.01%</td><td class="win">+1.87%</td><td class="win">EDGE — kept</td></tr>
+      <tr><td>dual_momentum_trail (proposed)</td><td class="mono">28</td><td class="mono">78.6%</td><td class="mono">+10.76%</td><td class="lose">−2.38%<span class="alpha-bar" style="--bar-w:24px"></span></td><td class="lose">FAILED — rejected</td></tr>
+    </tbody>
+  </table></div>
+
+  <p>The trailing exit closed too eagerly on minor pullbacks. 28 trades vs 12 means more fee burn,
+  78.6% hit rate vs 91.7% means more losers, and the +15% wins that drive dual_momentum's edge got
+  capped at ~+5% to +8% before they could fully develop.</p>
+
+  <div class="callout gold">
+    <strong>The audit kept the bad idea out of production.</strong> Live bot stays on
+    <code>dual_momentum</code>. We DID wire the trailing-stop logic into <code>manage_exits()</code>
+    inside <code>agent_coinbase.py</code> so the rails exist for any future variant that does pass
+    the threshold — but the rails stay inert until a strategy with <code>trail_pct</code> in its
+    params actually gets promoted by the lab.
+  </div>
+
+  <!-- CHAPTER 10 — lessons -->
+  <div class="chapter" id="chapter-10">
+    <div class="chapter-num">FINAL</div>
+    <h2>What this <span class="accent">proves</span></h2>
+  </div>
+
+  <div class="lessons">
+    <div class="lesson">
+      <span class="icon">🛠</span>
+      <h4>"Sounds tradeable" ≠ "is tradeable."</h4>
+      <p>The trailing-stop proposal was logical. The math said no. Always backtest before promoting.</p>
+    </div>
+    <div class="lesson">
+      <span class="icon">⚙</span>
+      <h4>Build rails when you write rules.</h4>
+      <p>Trailing-exit live support exists now — when a variant ever clears the bar, no re-engineering needed.</p>
+    </div>
+    <div class="lesson">
+      <span class="icon">⛓</span>
+      <h4>The audit IS the product.</h4>
+      <p>Every promoted strategy AND every rejected variant lives at <a href="https://catalystedgescanner.com/data/strategy_lab.json" style="border-bottom:none">/data/strategy_lab.json</a>. Pro subscribers pay for transparency, not signals.</p>
+    </div>
+    <div class="lesson">
+      <span class="icon">⚖</span>
+      <h4>"Earn or die" cuts both ways.</h4>
+      <p>Earlier we killed a strategy that didn't earn. Now we're shipping one that does — same standard, opposite direction.</p>
+    </div>
+  </div>
+
+  <!-- What you should take from this -->
+  <h2 style="font-size:26px;margin:60px 0 16px;letter-spacing:-.012em">What you should take from this</h2>
+
+  <p>Most paid trading services advertise gross returns. Almost none disclose the fee math, slippage,
+  or kill-switch logic. We just halted our own bot in public, then iterated it back to alpha, then
+  rejected an upgrade that didn't pass the audit — all in front of you. That's how you build trust.</p>
+
+  <p>If a service won't show you their full audit ledger including the trades that got halted and the
+  ideas that got killed, you have your answer.</p>
+
+  <h2 style="font-size:22px;margin:50px 0 14px;letter-spacing:-.012em;color:var(--muted)">Footnotes</h2>
+
+  <p style="font-size:14px;color:var(--muted)">
+    Backtest data: <a href="https://catalystedgescanner.com/data/coinbase_backtest.json">/data/coinbase_backtest.json</a> ·
+    strategy lab results: <a href="https://catalystedgescanner.com/data/strategy_lab.json">/data/strategy_lab.json</a> ·
+    promoted strategy: <code>.live_strategy.json</code> (dual_momentum, +1.87% alpha) ·
+    live P/L: <a href="https://catalystedgescanner.com/data/coinbase_pnl.json">/data/coinbase_pnl.json</a> ·
+    all open and historical positions: <a href="https://catalystedgescanner.com/trust/">/trust/</a> ·
+    halt file <strong style="color:var(--green)">REMOVED 2026-04-27 04:02 UTC</strong> by lab auto-promote.
+  </p>
+
+  <p style="color:var(--dim);font-size:13px;margin-top:2rem;line-height:1.55">
+    This is not investment advice. We are a software publisher, not a registered investment advisor.
+    The bot trades a small principal sum we control. We disclose all trades, all halts, and all
+    rejected iterations.
+  </p>
+</article>
+
+<!-- FINAL CTA -->
+<section class="finale">
+  <h2>The console is <span class="accent">already running.</span><br>You just haven't sat down at it yet.</h2>
+  <p>Three hundred SEC filings parsed since you started reading. Heatmap recalculating, scanner sorting,
+  bot watching every position. The audit log is open. The console is hot.</p>
+  <div class="btn-row">
+    <a class="btn btn-primary" href="https://catalystedgescanner.com/scanner/">Enter the Scanner <span class="arrow">→</span></a>
+    <a class="btn btn-ghost" href="https://catalystedgescanner.com/trust/">See the Audit <span class="arrow">→</span></a>
+  </div>
+  <div class="finale-sub">No signup required for free tier · Stripe checkout takes 12 seconds · cancel any time</div>
+</section>
+
+<footer>
+  <div class="links">
+    <a href="https://catalystedge.agency/">Home</a>
+    <a href="https://catalystedgescanner.com/scanner/">Long Scanner</a>
+    <a href="https://catalystedgescanner.com/short-scanner/">Short Scanner</a>
+    <a href="https://catalystedgescanner.com/trust/">Trust Ledger</a>
+    <a href="https://catalystedgescanner.com/blog/">Blog</a>
+    <a href="https://catalystedgescanner.com/pricing/">Pricing</a>
+  </div>
+  <div class="copy">
+    Catalyst Edge · independent signal publisher · we are not a registered investment advisor ·
+    all signals are reference only · audit ledger is public so you can verify every claim before subscribing.
+  </div>
+</footer>
+
+<script>
+/* Particle field — soft drifting nodes connected by faint lines.
+ * Pure 2D canvas, no libs. Disabled on prefers-reduced-motion. */
+(function(){
+  if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var c = document.getElementById('particles');
+  if(!c) return;
+  var ctx = c.getContext('2d');
+  var w = 0, h = 0, dpr = window.devicePixelRatio || 1;
+  function resize(){
+    w = window.innerWidth; h = window.innerHeight;
+    c.width = w * dpr; c.height = h * dpr;
+    c.style.width = w + 'px'; c.style.height = h + 'px';
+    ctx.scale(dpr, dpr);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  var N = Math.min(60, Math.floor((w * h) / 26000));
+  var pts = [];
+  for(var i=0;i<N;i++){
+    pts.push({
+      x: Math.random()*w, y: Math.random()*h,
+      vx: (Math.random()-.5)*.18, vy: (Math.random()-.5)*.18,
+      r: Math.random()*1.4 + .4
+    });
+  }
+  function tick(){
+    ctx.clearRect(0,0,w,h);
+    for(var i=0;i<pts.length;i++){
+      var p = pts[i];
+      p.x += p.vx; p.y += p.vy;
+      if(p.x < -10) p.x = w+10;
+      if(p.x > w+10) p.x = -10;
+      if(p.y < -10) p.y = h+10;
+      if(p.y > h+10) p.y = -10;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+      ctx.fillStyle = 'rgba(231,183,108,.5)';
+      ctx.fill();
+    }
+    // Connect close points with faint lines
+    for(var i=0;i<pts.length;i++){
+      for(var j=i+1;j<pts.length;j++){
+        var dx = pts[i].x - pts[j].x, dy = pts[i].y - pts[j].y;
+        var d2 = dx*dx + dy*dy;
+        if(d2 < 9000){
+          var alpha = .14 * (1 - d2/9000);
+          ctx.strokeStyle = 'rgba(114,229,255,'+alpha+')';
+          ctx.lineWidth = .6;
+          ctx.beginPath();
+          ctx.moveTo(pts[i].x, pts[i].y);
+          ctx.lineTo(pts[j].x, pts[j].y);
+          ctx.stroke();
+        }
+      }
+    }
+    requestAnimationFrame(tick);
+  }
+  tick();
+})();
+
+/* Scroll-revealed chapter blocks. */
+(function(){
+  if(!('IntersectionObserver' in window)) return;
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+        obs.unobserve(e.target);
+      }
+    });
+  }, {threshold: .15});
+  document.querySelectorAll('.chapter, .pull-quote, .cinetable, pre.term, .callout, .rules, .lessons, .loop').forEach(function(el){
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(28px)';
+    el.style.transition = 'opacity .9s cubic-bezier(.18,.84,.2,1), transform .9s cubic-bezier(.18,.84,.2,1)';
+    obs.observe(el);
+  });
+})();
+</script>
+</body>
+</html>

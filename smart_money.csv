@@ -1,0 +1,9 @@
+ticker,fund_count,latest_fund_name,latest_filed_date,total_mentions,signal,primary_link
+CME,90,Prevatt Capital Ltd  (CIK 0002009520),2026-04-27,100,INSTITUTIONAL_INTEREST,https://www.sec.gov/Archives/edgar/data/0002009520-26-000003:prevatt_13f_2026q1.xml
+CI,11,"Asset Planning,Inc  (CIK 0002048547)",2026-04-23,16,INSTITUTIONAL_INTEREST,https://www.sec.gov/Archives/edgar/data/0002048547-26-000002:Asset_Planning_13F_2026-Q1.xml
+SUI,6,Phraction Management LLC  (CIK 0001907803),2026-04-24,6,INSTITUTIONAL_INTEREST,https://www.sec.gov/Archives/edgar/data/0002085853-26-000477:infotable.xml
+LC,4,GREENLEAF TRUST  (CIK 0001162170),2026-04-27,4,INSTITUTIONAL_INTEREST,https://www.sec.gov/Archives/edgar/data/0001162170-26-000005:firstqtr2026.xml
+ARE,3,Yelin Lapidot Holdings Management Ltd.  (CIK 0001590495),2026-04-22,4,INSTITUTIONAL_INTEREST,https://www.sec.gov/Archives/edgar/data/0001213900-26-046590:primary_doc.xml
+BRO,1,"HORIZON FINANCIAL SERVICES, LLC  (CIK 0001674020)",2026-04-15,1,WATCH,https://www.sec.gov/Archives/edgar/data/0001674020-26-000002:HorizonQ126.xml
+LU,1,"Blue Zone Wealth Advisors, LLC  (CIK 0001803106)",2026-04-16,1,WATCH,https://www.sec.gov/Archives/edgar/data/0001803106-26-000002:primary_doc.xml
+VTR,1,"Asset Planning,Inc  (CIK 0002048547)",2026-04-23,1,WATCH,https://www.sec.gov/Archives/edgar/data/0002048547-26-000002:Asset_Planning_13F_2026-Q1.xml

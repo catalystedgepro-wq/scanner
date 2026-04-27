@@ -1,0 +1,42 @@
+{
+  "DGS10": {
+    "label": "10Y Treasury",
+    "value": "4.33%",
+    "raw": 4.33,
+    "date": "2026-03-25",
+    "change": "-0.06",
+    "unit": "%"
+  },
+  "VIXCLS": {
+    "label": "VIX",
+    "value": "25.3",
+    "raw": 25.33,
+    "date": "2026-03-25",
+    "change": "-1.62",
+    "unit": ""
+  },
+  "SP500": {
+    "label": "S&P 500",
+    "value": "6,592",
+    "raw": 6591.9,
+    "date": "2026-03-25",
+    "change": "+35.53",
+    "unit": ""
+  },
+  "FEDFUNDS": {
+    "label": "Fed Funds Rate",
+    "value": "3.64%",
+    "raw": 3.64,
+    "date": "2026-02-01",
+    "change": "+0.00",
+    "unit": "%"
+  },
+  "UNRATE": {
+    "label": "Unemployment",
+    "value": "4.4%",
+    "raw": 4.4,
+    "date": "2026-02-01",
+    "change": "+0.10",
+    "unit": "%"
+  }
+}

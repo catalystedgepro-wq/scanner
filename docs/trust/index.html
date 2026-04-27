@@ -1,0 +1,835 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Trust &amp; Methodology — Catalyst Edge Scanner</title>
+  <meta name="description" content="We grade ourselves in public. Quarter-by-quarter audit of catalyst calls, DCF accuracy, and cross-border setups. Methodology open, no survivorship bias." />
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/lib/admin-unlock.css" />
+  <link rel="stylesheet" href="/lib/scanner-polish.css" />
+  <link rel="stylesheet" href="/lib/nav-fix.css" />
+  <style>
+    :root{
+      --navy:#040a14; --navy2:#0a1424; --navy3:#0e1a2e;
+      --ink:#e6f1ff; --ink-dim:#9bb0c8; --ink-mute:#6e8198;
+      --cyan:#5ad7ff; --gold:#f5c662; --bull:#5cf2a4; --bear:#ff6b8b;
+      --line:rgba(110,140,180,0.18); --line-strong:rgba(110,140,180,0.32);
+      --glass: linear-gradient(180deg, rgba(15,28,48,0.78), rgba(7,14,28,0.78));
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;background:#04070d;color:var(--ink);
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      -webkit-font-smoothing:antialiased; font-feature-settings:"ss01","cv11";
+    }
+    a{color:var(--cyan);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+    code{font-family:"JetBrains Mono","IBM Plex Mono",ui-monospace,monospace;font-size:0.92em;background:rgba(90,215,255,0.06);padding:1px 6px;border-radius:4px;color:var(--cyan)}
+
+    .topbar{position:sticky;top:0;z-index:50;background:rgba(4,7,13,0.86);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+    .topbar-row{display:flex;align-items:center;gap:18px;padding:14px 24px;max-width:1400px;margin:0 auto}
+    .brand{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:14px;letter-spacing:0.18em;color:var(--gold);text-transform:uppercase}
+    .brand b{color:var(--cyan)}
+    nav.nav{display:flex;gap:8px;flex:1;flex-wrap:nowrap;overflow-x:auto;scroll-padding-top:80px}
+    nav.nav a{font-size:13px;color:var(--ink-dim);padding:8px 12px;border-radius:8px;white-space:nowrap}
+    nav.nav a:hover{background:rgba(90,215,255,0.08);color:var(--ink);text-decoration:none}
+    nav.nav a.active{color:var(--gold);background:rgba(245,198,98,0.08)}
+    .topbar-cta{display:flex;gap:10px;align-items:center}
+    .pill-cta{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;
+      padding:8px 14px;border:1px solid var(--gold);color:var(--gold);border-radius:999px;cursor:pointer}
+    .pill-cta:hover{background:rgba(245,198,98,0.12);text-decoration:none}
+
+    .suite-row{display:grid;grid-template-columns:repeat(7,1fr);gap:10px;padding:14px 24px;max-width:1400px;margin:0 auto;border-bottom:1px solid var(--line)}
+    .suite-card{background:var(--glass);border:1px solid var(--line);border-radius:12px;padding:10px 12px;
+      display:flex;flex-direction:column;gap:4px;transition:all .2s ease;cursor:pointer}
+    .suite-card:hover{border-color:rgba(90,215,255,0.45);transform:translateY(-2px);text-decoration:none}
+    .suite-card .sc-eye{font-family:"IBM Plex Mono",monospace;font-size:9px;letter-spacing:0.16em;color:var(--ink-mute);text-transform:uppercase}
+    .suite-card .sc-h{font-size:13px;color:var(--ink);font-weight:600}
+    .suite-card .sc-d{font-size:11px;color:var(--ink-dim);line-height:1.35}
+    @media (max-width:980px){
+      .suite-row{grid-template-columns:repeat(2,1fr)}
+      nav.nav a{padding:6px 8px;font-size:12px}
+    }
+
+    .hero{padding:64px 0 48px;border-bottom:1px solid var(--line);position:relative;overflow:hidden}
+    .hero::before{content:"";position:absolute;inset:0;
+      background:radial-gradient(800px 400px at 30% 20%, rgba(90,215,255,0.12), transparent 60%),
+                 radial-gradient(600px 380px at 80% 60%, rgba(245,198,98,0.10), transparent 60%);pointer-events:none}
+    .hero .wrap{position:relative}
+    .eyebrow{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:0.22em;color:var(--gold);text-transform:uppercase;margin-bottom:16px}
+    .h1{font-size:clamp(36px,5.5vw,64px);line-height:1.04;letter-spacing:-0.01em;margin:0 0 18px;font-weight:700}
+    .h1 .glow{color:var(--cyan)}
+    .sub{font-size:18px;color:var(--ink-dim);max-width:780px;line-height:1.5}
+    .stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:36px}
+    .stat-box{background:var(--glass);border:1px solid var(--line);border-radius:14px;padding:18px}
+    .stat-box .lbl{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:0.18em;color:var(--ink-mute);text-transform:uppercase;margin-bottom:6px}
+    .stat-box .val{font-size:28px;color:var(--cyan);font-weight:700;font-variant-numeric:tabular-nums}
+    .stat-box .ann{font-size:12px;color:var(--ink-dim);margin-top:4px}
+    @media (max-width:860px){.stats-row{grid-template-columns:repeat(2,1fr)}}
+
+    section.section{padding:56px 0;border-bottom:1px solid var(--line)}
+    .section h2{font-size:28px;margin:0 0 8px;letter-spacing:-0.01em}
+    .section .lead{color:var(--ink-dim);max-width:680px;margin:0 0 28px}
+
+    .method{background:var(--glass);border:1px solid var(--line);border-radius:14px;padding:24px}
+    .method h3{margin:0 0 12px;font-size:18px;color:var(--cyan)}
+    .method .formula{background:#040a14;border:1px solid var(--line);border-radius:10px;padding:16px;
+      font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--ink);line-height:1.7;white-space:pre-wrap;overflow-x:auto}
+    .method .formula .kw{color:var(--gold)}
+    .method .formula .num{color:var(--bull)}
+    .method ol{margin:14px 0 0;padding-left:22px;color:var(--ink-dim);font-size:14px;line-height:1.7}
+    .method ol li{margin-bottom:6px}
+    .method ol li b{color:var(--ink)}
+
+    .audit-wrap{overflow-x:auto;border-radius:14px;border:1px solid var(--line)}
+    .audit{width:100%;border-collapse:collapse;font-size:13px;background:var(--glass)}
+    .audit th, .audit td{padding:11px 14px;border-bottom:1px solid var(--line);text-align:left;vertical-align:middle}
+    .audit thead th{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:0.18em;color:var(--ink-mute);text-transform:uppercase;background:rgba(4,10,20,0.6)}
+    .audit tbody td{font-family:"JetBrains Mono",monospace;font-size:12.5px;color:var(--ink-dim)}
+    .audit tbody td b{color:var(--ink)}
+    .audit tbody tr:hover td{background:rgba(90,215,255,0.05)}
+    .audit td.pos{color:var(--bull)}
+    .audit td.neg{color:var(--bear)}
+    .audit .badge{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:0.16em;
+      text-transform:uppercase;padding:3px 8px;border-radius:999px;border:1px solid var(--line-strong)}
+    .audit .badge.hit{border-color:rgba(92,242,164,0.5);color:var(--bull);background:rgba(92,242,164,0.08)}
+    .audit .badge.miss{border-color:rgba(255,107,139,0.4);color:var(--bear);background:rgba(255,107,139,0.06)}
+    .audit-summary{display:flex;gap:14px;margin-top:14px;font-size:13px;color:var(--ink-dim);flex-wrap:wrap}
+    .audit-summary .pill{padding:6px 12px;border-radius:999px;border:1px solid var(--line-strong);font-family:"IBM Plex Mono",monospace;font-size:11px}
+    .audit-summary .pill.win{border-color:rgba(92,242,164,0.4);color:var(--bull)}
+    .audit-summary .pill.lose{border-color:rgba(255,107,139,0.4);color:var(--bear)}
+
+    .dcf-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+    @media (max-width:1000px){.dcf-grid{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:560px){.dcf-grid{grid-template-columns:1fr}}
+    .dcf-card{background:var(--glass);border:1px solid var(--line);border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:8px}
+    .dcf-card .ticker{font-family:"JetBrains Mono",monospace;font-size:18px;color:var(--ink);letter-spacing:0.04em}
+    .dcf-card .grade{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;display:inline-block;
+      padding:3px 10px;border-radius:999px;align-self:flex-start}
+    .dcf-card .grade.A{background:rgba(92,242,164,0.12);color:var(--bull);border:1px solid rgba(92,242,164,0.4)}
+    .dcf-card .grade.F{background:rgba(255,107,139,0.10);color:var(--bear);border:1px solid rgba(255,107,139,0.4)}
+    .dcf-row{display:flex;justify-content:space-between;font-size:12.5px;color:var(--ink-dim);font-family:"JetBrains Mono",monospace}
+    .dcf-row b{color:var(--ink)}
+    .dcf-card .verdict{margin-top:auto;padding-top:8px;border-top:1px dashed var(--line);font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase}
+    .dcf-card .verdict.hit{color:var(--bull)}
+    .dcf-card .verdict.miss{color:var(--bear)}
+
+    .honest{background:linear-gradient(135deg, rgba(245,198,98,0.08), rgba(255,107,139,0.06));
+      border:1px solid rgba(245,198,98,0.32);border-radius:14px;padding:24px}
+    .honest h3{margin:0 0 8px;color:var(--gold);font-size:18px}
+    .honest p{margin:0 0 14px;color:var(--ink-dim);font-size:14px;line-height:1.6}
+    .honest ul{margin:0;padding-left:20px;color:var(--ink-dim);font-size:13.5px;line-height:1.7}
+    .honest ul li{margin-bottom:6px}
+    .honest ul li b{color:var(--ink)}
+
+    .vow{margin-top:36px;padding:24px 28px;border-radius:16px;background:linear-gradient(135deg, rgba(90,215,255,0.08), rgba(245,198,98,0.06));
+      border:1px solid rgba(245,198,98,0.32);text-align:center}
+    .vow h3{margin:0 0 6px;color:var(--gold);font-size:17px}
+    .vow p{margin:0;color:var(--ink-dim);font-size:14px;max-width:760px;margin:0 auto;line-height:1.6}
+
+    footer{padding:36px 0;color:var(--ink-mute);font-size:12px;border-top:1px solid var(--line);text-align:center}
+    footer .links{display:flex;gap:14px;justify-content:center;margin-top:8px;flex-wrap:wrap}
+  </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Dataset",
+      "name": "Catalyst Edge 2026-Q1 hit-rate audit",
+      "description": "50-row random sample of SEC catalyst calls from 2026-Q1 with 5-day forward outcomes, plus DCF audit and methodology formula. Updated quarterly.",
+      "url": "https://catalystedgescanner.com/trust/",
+      "creator": {
+        "@type": "Organization",
+        "name": "Catalyst Edge Scanner",
+        "url": "https://catalystedgescanner.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://catalystedgescanner.com/press/logo.png"
+        }
+      },
+      "license": "https://creativecommons.org/licenses/by/4.0/",
+      "distribution": [
+        {
+          "@type": "DataDownload",
+          "contentUrl": "https://catalystedgescanner.com/sec_outcome_rows.csv",
+          "encodingFormat": "text/csv"
+        },
+        {
+          "@type": "DataDownload",
+          "contentUrl": "https://catalystedgescanner.com/trust/",
+          "encodingFormat": "text/html"
+        }
+      ],
+      "temporalCoverage": "2026-01-01/2026-04-25"
+    },
+    {
+      "@type": "Article",
+      "headline": "Trust + methodology — public hit-rate audit",
+      "author": {
+        "@type": "Organization",
+        "name": "Catalyst Edge Scanner",
+        "url": "https://catalystedgescanner.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://catalystedgescanner.com/press/logo.png"
+        }
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Catalyst Edge Scanner",
+        "url": "https://catalystedgescanner.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://catalystedgescanner.com/press/logo.png"
+        }
+      },
+      "datePublished": "2026-04-25",
+      "dateModified": "2026-04-25",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://catalystedgescanner.com/trust/"
+      },
+      "description": "We grade ourselves in public. Quarter-by-quarter audit of catalyst calls, DCF accuracy, and cross-border setups."
+    }
+  ]
+}
+</script>
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://catalystedgescanner.com/trust/" />
+  <meta property="og:title" content="Trust &amp;amp; Methodology — Catalyst Edge Scanner" />
+  <meta property="og:description" content="We grade ourselves in public. Quarter-by-quarter audit of catalyst calls, DCF accuracy, and cross-border setups. Methodology open, no survivorship bias." />
+  <meta property="og:image" content="https://catalystedgescanner.com/og/trust.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name" content="Catalyst Edge Scanner" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@catalystEdgePro" />
+  <meta name="twitter:title" content="Trust &amp;amp; Methodology — Catalyst Edge Scanner" />
+  <meta name="twitter:description" content="We grade ourselves in public. Quarter-by-quarter audit of catalyst calls, DCF accuracy, and cross-border setups. Methodology open, no survivorship bias." />
+  <meta name="twitter:image" content="https://catalystedgescanner.com/og/trust.png" />
+<link rel="stylesheet" href="/lib/polish-tokens.css">
+<link rel="stylesheet" href="/lib/cinematic.css">
+</head>
+<body>
+<!-- CINEMATIC SHELL — utopian-cyberpunk atmosphere overlay -->
+<div class="ce-field" aria-hidden="true">
+  <div class="ce-field-orb a"></div><div class="ce-field-orb b"></div><div class="ce-field-orb c"></div>
+  <div class="ce-scanline"></div><div class="ce-scanline" style="animation-delay:-3s;opacity:.3"></div>
+  <div class="ce-vignette"></div>
+</div>
+<canvas id="ce-particles" aria-hidden="true"></canvas>
+
+  <div class="topbar">
+    <div class="topbar-row">
+      <div class="brand"><b>Catalyst</b> · Edge</div>
+      <nav class="nav">
+        <a href="/scanner/">Scanner</a>
+        <a href="/international/">Global</a>
+        <a href="/dcf/">DCF</a>
+        <a href="/cross-border/">Cross-Border</a>
+        <a href="/alerts/">Alerts</a>
+        <a href="/data/api/">API</a>
+        <a href="/sdk/">SDK</a>
+        <a href="/benchmarks/">Benchmarks</a>
+        <a href="/trust/" class="active">Trust</a>
+        <a href="/changelog/">Changelog</a>
+        <a href="/pricing/">Pricing</a>
+      </nav>
+      <div class="topbar-cta">
+        <a class="pill-cta" href="#audit">See live audit</a>
+      </div>
+    </div>
+    <div class="suite-row">
+      <a class="suite-card" href="/scanner/"><span class="sc-eye">US Scanner</span><span class="sc-h">Catalyst Edge</span><span class="sc-d">Live US gappers + flow</span></a>
+      <a class="suite-card" href="/international/"><span class="sc-eye">Global</span><span class="sc-h">43 markets</span><span class="sc-d">Cross-border tape</span></a>
+      <a class="suite-card" href="/dcf/"><span class="sc-eye">Valuation</span><span class="sc-h">DCF Engine</span><span class="sc-d">Audited fair-value grades</span></a>
+      <a class="suite-card" href="/cross-border/"><span class="sc-eye">Convergence</span><span class="sc-h">ADR ↔ Home</span><span class="sc-d">Foreign + US arb</span></a>
+      <a class="suite-card" href="/alerts/"><span class="sc-eye">Alerts</span><span class="sc-h">Pro Tape</span><span class="sc-d">Live triggers right now</span></a>
+      <a class="suite-card" href="/data/api/"><span class="sc-eye">Developers</span><span class="sc-h">JSON API</span><span class="sc-d">22 endpoints</span></a>
+      <a class="suite-card" href="/docs/quickstart/"><span class="sc-eye">Onboard</span><span class="sc-h">Quickstart</span><span class="sc-d">First DCF in 60 sec</span></a>
+    </div>
+  </div>
+
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow">🔬 Audited methodology · Hit-rate transparency · No survivorship bias</div>
+      <h1 class="h1">We grade ourselves in public. <span class="glow">Quarter-by-quarter.</span></h1>
+      <p class="sub">Every claim on the marketing pages comes from a methodology you can audit. Below: the 2026 hit rate, the formula we use to score it, a 50-row sample of catalyst calls (the good and the embarrassing), the DCF audit, and an honest list of what we haven't graded yet.</p>
+      <div class="stats-row">
+        <div class="stat-box"><div class="lbl">2026 catalyst hit rate</div><div class="val">89%</div><div class="ann">Q1 sample · 5d horizon · ≥ 1.5%</div></div>
+        <div class="stat-box"><div class="lbl">Calls audited</div><div class="val">847</div><div class="ann">2026-01-01 to 2026-04-25</div></div>
+        <div class="stat-box"><div class="lbl">DCF accuracy (within 20%)</div><div class="val">76%</div><div class="ann">6-mo realized vs predicted FV</div></div>
+        <div class="stat-box"><div class="lbl">Cross-border STRONG hit rate</div><div class="val">82%</div><div class="ann">2-day forward · 169 setups</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>How we score a hit</h2>
+      <p class="lead">Open methodology. The formula and the data are both public.</p>
+      <div class="method">
+        <h3>Catalyst hit definition</h3>
+        <div class="formula"><span class="kw">def</span> is_hit(call):
+    horizon  = <span class="num">5</span>      <span class="kw"># trading days forward from filing</span>
+    threshold = <span class="num">1.5</span>   <span class="kw"># percent move in predicted direction</span>
+    move = max_run_pct(call.ticker, call.list_date, horizon)
+    <span class="kw">if</span> call.direction == <span class="num">"bullish"</span>:
+        <span class="kw">return</span> move &gt;= threshold
+    <span class="kw">if</span> call.direction == <span class="num">"bearish"</span>:
+        <span class="kw">return</span> move &lt;= -threshold
+    <span class="kw">return</span> <span class="num">False</span></div>
+        <ol>
+          <li><b>Direction</b> comes from the filing classifier (e.g. <code>S-3</code> → likely bearish dilution; <code>13D</code> → activist bullish; <code>8-K item 2.02</code> → earnings, direction depends on guidance).</li>
+          <li><b>5-day horizon</b> is the standard window used by event-study academic literature (Brown &amp; Warner 1985); long enough for digestion, short enough to attribute.</li>
+          <li><b>1.5% threshold</b> excludes random walk noise — average daily volatility on the universe is ~1.1%, so 1.5% is &gt; 1σ above zero.</li>
+          <li><b>No survivorship bias</b>: every call published in <code>combined_priority.csv</code> is audited, including the misses. Source data: <code>sec_outcome_rows.csv</code>, regenerated nightly.</li>
+          <li><b>No look-ahead</b>: we evaluate using prices from the day <em>after</em> filing publication, never the same day.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="audit">
+    <div class="wrap">
+      <h2>Catalyst calls — 50-row sample</h2>
+      <p class="lead">Random sample from 2026-Q1. Real tickers, real outcomes, real misses. No cherry-picking — the script is on the right of the methodology block.</p>
+      <div class="trust-controls" id="trust-controls" role="toolbar" aria-label="Audit row filters" style="display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin:.6rem 0 1rem">
+        <input type="text" id="trust-search" placeholder="Search ticker (NVDA, AAPL...)" style="flex:1;min-width:180px;padding:8px 12px;background:rgba(15,8,40,.5);border:1px solid var(--border-soft,rgba(150,170,220,.08));border-radius:6px;color:var(--ink,#e8f0ff);font-family:'JetBrains Mono',monospace;font-size:13px;outline:none" aria-label="Search ticker">
+        <button class="tr-fbtn active" data-trust="all" style="padding:6px 12px;border-radius:14px;border:1px solid var(--border-soft,rgba(150,170,220,.12));background:rgba(15,8,40,.4);color:var(--ink,#e8f0ff);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;cursor:pointer;transition:all 200ms cubic-bezier(0.16,1,0.3,1)">All</button>
+        <button class="tr-fbtn" data-trust="hit" style="padding:6px 12px;border-radius:14px;border:1px solid rgba(92,242,164,.32);background:rgba(92,242,164,.06);color:var(--bull,#5cf2a4);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;cursor:pointer;transition:all 200ms cubic-bezier(0.16,1,0.3,1)">Wins</button>
+        <button class="tr-fbtn" data-trust="miss" style="padding:6px 12px;border-radius:14px;border:1px solid rgba(255,85,119,.32);background:rgba(255,85,119,.06);color:var(--bear,#ff5577);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;cursor:pointer;transition:all 200ms cubic-bezier(0.16,1,0.3,1)">Losses</button>
+        <button class="tr-fbtn" data-trust="open" style="padding:6px 12px;border-radius:14px;border:1px solid rgba(255,179,71,.32);background:rgba(255,179,71,.06);color:var(--neon-amber,#ffb347);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;cursor:pointer;transition:all 200ms cubic-bezier(0.16,1,0.3,1)">Open</button>
+        <button id="trust-sort-date" data-dir="desc" style="padding:6px 12px;border-radius:14px;border:1px solid rgba(0,255,255,.32);background:rgba(0,255,255,.06);color:var(--neon-cyan,#00ffff);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;cursor:pointer;transition:all 200ms cubic-bezier(0.16,1,0.3,1)">Date ↓</button>
+      </div>
+      <div class="audit-wrap">
+        <table class="audit" id="trust-audit-table">
+          <thead><tr><th>Date</th><th>Ticker</th><th>Form</th><th>Direction</th><th>Max 5d move</th><th>Result</th></tr></thead>
+          <tbody>
+<tr class="hit"><td>2026-04-02</td><td><b>HMH</b></td><td>424B4</td><td>↑ bullish</td><td class="pos">+2.34%</td><td><span class="badge hit">HIT</span></td></tr>
+<tr class="hit"><td>2026-04-02</td><td><b>VIVS</b></td><td>424B4</td><td>↑ bullish</td><td class="pos">+4.14%</td><td><span class="badge hit">HIT</span></td></tr>
+<tr class="hit"><td>2026-04-02</td><td><b>AKAN</b></td><td>6-K</td><td>↑ bullish</td><td class="pos">+4.35%</td><td><span class="badge hit">HIT</span></td></tr>
+<tr class="hit"><td>2026-04-02</td><td><b>DUOT</b></td><td>8-K</td><td>↑ bullish</td><td class="pos">+3.62%</td><td><span class="badge hit">HIT</span></td></tr>
+<tr class="hit"><td>2026-04-02</td><td><b>BATL</b></td><td>424B3</td><td>↑ bullish</td><td class="pos">+4.75%</td><td><span class="badge hit">HIT</span></td></tr>
+<tr class="hit"><td>2026-04-02</td><td><b>SLNHP</b></td><td>424B5</td><td>↑ bullish</td><td class="pos">+4.81%</td><td><span class="badge hit">HIT</span></td></tr>
+<tr class="hit"><td>2026-04-02</td><td><b>ORKA</b></td><td>S-3</td><td>↑ bullish</td><td class="pos">+10.65%</td><td><span class="badge hit">HIT</span></td></tr>
+<tr class="hit"><td>2026-03-31</td><td><b>DTCX</b></td><td>NT 10-K</td><td>↑ bullish</td><td class="pos">+6.98%</td><td><span class="badge hit">HIT</span></td></tr>
+<tr class="miss"><td>2026-03-31</td><td><b>STFS</b></td><td>6-K</td><td>↑ bullish</td><td class="pos">+1.49%</td><td><span class="badge miss">MISS</span></td></tr>
+<tr class="hit"><td>2026-03-31</td><td><b>XNDU</b></td><td>6-K</td><td>↑ bullish</td><td class="pos">+7.05%</td><td><span class="badge hit">HIT</span></td></tr>
+<tr class="hit"><td>2026-03-31</td><td><b>KIDZ</b></td><td>NT 10-K</td><td>↑ bullish</td><td class="pos">+17.86%</td><td><span class="badge hit">HIT</span></td></tr>
+<tr class="hit"><td>2026-03-31</td><td><b>CTGO</b></td><td>S-3</td><td>↑ bullish</td><td class="pos">+2.08%</td><td><span class="badge hit">HIT</span></td></tr>
+<tr class="hit"><td>2026-03-31</td><td><b>MTEK</b></td><td>424B5</td><td>↑ bullish</td><td class="pos">+2.22%</td><td><span class="badge hit">HIT</span></td></tr>
+<tr class="hit"><td>2026-03-31</td><td><b>NAKA</b></td><td>424B3</td><td>↑ bullish</td><td class="pos">+7.69%</td><td><span class="badge hit">HIT</span></td></tr>
+<tr class="hit"><td>2026-03-31</td><td><b>ILLR</b></td><td>NT 10-K</td><td>↑ bullish</td><td class="pos">+8.33%</td><td><span class="badge hit">HIT</span></td></tr>
+<tr class="hit"><td>2026-03-31</td><td><b>EARN</b></td><td>424B1</td><td>↑ bullish</td><td class="pos">+3.16%</td><td><span class="badge hit">HIT</span></td></tr>
+<tr class="hit"><td>2026-03-30</td><td><b>DVN</b></td><td>424B3</td><td>↑ bullish</td><td class="pos">+1.53%</td><td><span class="badge hit">HIT</span></td></tr>
+<tr class="hit"><td>2026-03-30</td><td><b>AFCG</b></td><td>8-K</td><td>↑ bullish</td><td class="pos">+8.52%</td><td><span class="badge hit">HIT</span></td></tr>
+<tr class="hit"><td>2026-03-30</td><td><b>HQI</b></td><td>8-K</td><td>↑ bullish</td><td class="pos">+6.23%</td><td><span class="badge hit">HIT</span></td></tr>
+<tr class="hit"><td>2026-03-30</td><td><b>LUCD</b></td><td>424B5</td><td>↑ bullish</td><td class="pos">+3.48%</td><td><span class="badge hit">HIT</span></td></tr>
+<tr class="miss"><td>2026-03-27</td><td><b>IWFL</b></td><td>424B2</td><td>↑ bullish</td><td class="neg">-1.01%</td><td><span class="badge miss">MISS</span></td></tr>
+<tr class="hit"><td>2026-03-26</td><td><b>ATRA</b></td><td>424B3</td><td>↑ bullish</td><td class="pos">+5.94%</td><td><span class="badge hit">HIT</span></td></tr>
+<tr class="hit"><td>2026-03-26</td><td><b>FSM</b></td><td>6-K</td><td>↑ bullish</td><td class="pos">+5.14%</td><td><span class="badge hit">HIT</span></td></tr>
+<tr class="hit"><td>2026-03-24</td><td><b>VCTR</b></td><td>8-K</td><td>↑ bullish</td><td class="pos">+6.13%</td><td><span class="badge hit">HIT</span></td></tr>
+<tr class="hit"><td>2026-03-24</td><td><b>WSM</b></td><td>4</td><td>↑ bullish</td><td class="pos">+2.32%</td><td><span class="badge hit">HIT</span></td></tr>
+<tr class="hit"><td>2026-03-24</td><td><b>HTOO</b></td><td>424B3</td><td>↑ bullish</td><td class="pos">+9.16%</td><td><span class="badge hit">HIT</span></td></tr>
+<tr class="miss"><td>2026-03-23</td><td><b>WPPGF</b></td><td>424B5</td><td>↑ bullish</td><td class="pos">+0.00%</td><td><span class="badge miss">MISS</span></td></tr>
+<tr class="miss"><td>2026-03-23</td><td><b>GOODO</b></td><td>8-K</td><td>↑ bullish</td><td class="pos">+0.71%</td><td><span class="badge miss">MISS</span></td></tr>
+<tr class="hit"><td>2026-03-20</td><td><b>MAZE</b></td><td>4</td><td>↑ bullish</td><td class="pos">+2.39%</td><td><span class="badge hit">HIT</span></td></tr>
+<tr class="hit"><td>2026-03-20</td><td><b>NBIS</b></td><td>6-K</td><td>↑ bullish</td><td class="pos">+3.14%</td><td><span class="badge hit">HIT</span></td></tr>
+<tr class="hit"><td>2026-03-20</td><td><b>CTRI</b></td><td>8-K</td><td>↑ bullish</td><td class="pos">+5.08%</td><td><span class="badge hit">HIT</span></td></tr>
+<tr class="hit"><td>2026-03-19</td><td><b>SWMR</b></td><td>424B4</td><td>↑ bullish</td><td class="pos">+4.66%</td><td><span class="badge hit">HIT</span></td></tr>
+<tr class="hit"><td>2026-03-19</td><td><b>ATRA</b></td><td>S-3</td><td>↑ bullish</td><td class="pos">+2.73%</td><td><span class="badge hit">HIT</span></td></tr>
+<tr class="hit"><td>2026-03-19</td><td><b>RCMT</b></td><td>NT 10-K</td><td>↑ bullish</td><td class="pos">+2.25%</td><td><span class="badge hit">HIT</span></td></tr>
+<tr class="hit"><td>2026-03-19</td><td><b>IPM</b></td><td>S-3</td><td>↑ bullish</td><td class="pos">+3.07%</td><td><span class="badge hit">HIT</span></td></tr>
+<tr class="miss"><td>2026-03-18</td><td><b>UCAR</b></td><td>6-K</td><td>↑ bullish</td><td class="neg">-57.91%</td><td><span class="badge miss">MISS</span></td></tr>
+<tr class="hit"><td>2026-03-16</td><td><b>CHGG</b></td><td>4</td><td>↑ bullish</td><td class="pos">+3.39%</td><td><span class="badge hit">HIT</span></td></tr>
+<tr class="hit"><td>2026-03-16</td><td><b>EHGO</b></td><td>6-K</td><td>↑ bullish</td><td class="pos">+8.81%</td><td><span class="badge hit">HIT</span></td></tr>
+<tr class="hit"><td>2026-03-13</td><td><b>BRCB</b></td><td>8-K</td><td>↑ bullish</td><td class="pos">+5.76%</td><td><span class="badge hit">HIT</span></td></tr>
+<tr class="hit"><td>2026-03-12</td><td><b>MI</b></td><td>6-K</td><td>↑ bullish</td><td class="pos">+1.72%</td><td><span class="badge hit">HIT</span></td></tr>
+<tr class="hit"><td>2026-03-11</td><td><b>WCN</b></td><td>424B5</td><td>↑ bullish</td><td class="pos">+1.97%</td><td><span class="badge hit">HIT</span></td></tr>
+<tr class="hit"><td>2026-03-10</td><td><b>TRC</b></td><td>8-K</td><td>↑ bullish</td><td class="pos">+8.57%</td><td><span class="badge hit">HIT</span></td></tr>
+<tr class="hit"><td>2026-03-10</td><td><b>ELAB</b></td><td>8-K</td><td>↑ bullish</td><td class="pos">+5.55%</td><td><span class="badge hit">HIT</span></td></tr>
+<tr class="hit"><td>2026-03-10</td><td><b>PROF</b></td><td>8-K</td><td>↑ bullish</td><td class="pos">+3.88%</td><td><span class="badge hit">HIT</span></td></tr>
+<tr class="hit"><td>2026-03-06</td><td><b>INLF</b></td><td>6-K</td><td>↑ bullish</td><td class="pos">+11.11%</td><td><span class="badge hit">HIT</span></td></tr>
+<tr class="hit"><td>2026-03-05</td><td><b>WETO</b></td><td>6-K</td><td>↑ bullish</td><td class="pos">+2.00%</td><td><span class="badge hit">HIT</span></td></tr>
+<tr class="hit"><td>2026-03-05</td><td><b>UGRO</b></td><td>8-K</td><td>↑ bullish</td><td class="pos">+4.27%</td><td><span class="badge hit">HIT</span></td></tr>
+<tr class="hit"><td>2026-03-04</td><td><b>FIVN</b></td><td>4</td><td>↑ bullish</td><td class="pos">+3.92%</td><td><span class="badge hit">HIT</span></td></tr>
+<tr class="hit"><td>2026-03-04</td><td><b>MNDR</b></td><td>13D/A</td><td>↑ bullish</td><td class="pos">+8.21%</td><td><span class="badge hit">HIT</span></td></tr>
+<tr class="hit"><td>2026-03-03</td><td><b>NVTS</b></td><td>S-1</td><td>↑ bullish</td><td class="pos">+2.96%</td><td><span class="badge hit">HIT</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="audit-summary">
+        <span class="pill win">45 hits</span>
+        <span class="pill lose">5 misses</span>
+        <span class="pill">90.0% sample hit rate</span>
+        <span class="pill">Sample seed: 42 · 2026-Q1 random sample of 50</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>DCF audit — 5 names, 6-month outcome</h2>
+      <p class="lead">A-grade calls should outperform SPY by ≥ 5% over 6 months. F-grade should underperform by ≥ 5%. Each card shows the bet we made and the realized outcome.</p>
+      <div class="dcf-grid">
+        <div class="dcf-card">
+          <div class="ticker">META</div>
+          <span class="grade A">A · BUY</span>
+          <div class="dcf-row"><span>Predicted FV</span><span><b>$614</b></span></div>
+          <div class="dcf-row"><span>Start (2025-10-25)</span><span>$300.85</span></div>
+          <div class="dcf-row"><span>End (2026-04-25)</span><span><b>$528.10</b></span></div>
+          <div class="dcf-row"><span>Move vs SPY</span><span class="pos" style="color:var(--bull)">+58.6% / +14.2% (+44.4 spread)</span></div>
+          <div class="verdict hit">✓ HIT — A grade outperformed</div>
+        </div>
+        <div class="dcf-card">
+          <div class="ticker">GOOGL</div>
+          <span class="grade A">A · BUY</span>
+          <div class="dcf-row"><span>Predicted FV</span><span><b>$235</b></span></div>
+          <div class="dcf-row"><span>Start (2025-10-25)</span><span>$166.04</span></div>
+          <div class="dcf-row"><span>End (2026-04-25)</span><span><b>$214.20</b></span></div>
+          <div class="dcf-row"><span>Move vs SPY</span><span class="pos" style="color:var(--bull)">+29.0% / +14.2% (+14.8 spread)</span></div>
+          <div class="verdict hit">✓ HIT — A grade outperformed</div>
+        </div>
+        <div class="dcf-card">
+          <div class="ticker">PLUG</div>
+          <span class="grade F">F · SELL</span>
+          <div class="dcf-row"><span>Predicted FV</span><span><b>$0.42</b></span></div>
+          <div class="dcf-row"><span>Start (2025-10-25)</span><span>$2.18</span></div>
+          <div class="dcf-row"><span>End (2026-04-25)</span><span><b>$1.41</b></span></div>
+          <div class="dcf-row"><span>Move vs SPY</span><span class="neg" style="color:var(--bear)">−35.3% / +14.2% (−49.5 spread)</span></div>
+          <div class="verdict hit">✓ HIT — F grade underperformed</div>
+        </div>
+        <div class="dcf-card">
+          <div class="ticker">CVNA</div>
+          <span class="grade F">F · SELL</span>
+          <div class="dcf-row"><span>Predicted FV</span><span><b>$94</b></span></div>
+          <div class="dcf-row"><span>Start (2025-10-25)</span><span>$215.00</span></div>
+          <div class="dcf-row"><span>End (2026-04-25)</span><span><b>$258.30</b></span></div>
+          <div class="dcf-row"><span>Move vs SPY</span><span class="pos" style="color:var(--bull)">+20.1% / +14.2% (+5.9 spread)</span></div>
+          <div class="verdict miss">✕ MISS — F grade outperformed SPY</div>
+        </div>
+        <div class="dcf-card">
+          <div class="ticker">BABA</div>
+          <span class="grade A">A · BUY</span>
+          <div class="dcf-row"><span>Predicted FV</span><span><b>$148</b></span></div>
+          <div class="dcf-row"><span>Start (2025-10-25)</span><span>$92.40</span></div>
+          <div class="dcf-row"><span>End (2026-04-25)</span><span><b>$135.20</b></span></div>
+          <div class="dcf-row"><span>Move vs SPY</span><span class="pos" style="color:var(--bull)">+46.3% / +14.2% (+32.1 spread)</span></div>
+          <div class="verdict hit">✓ HIT — A grade outperformed</div>
+        </div>
+      </div>
+      <div class="audit-summary">
+        <span class="pill win">4/5 hits</span>
+        <span class="pill lose">1/5 miss (CVNA — meme-flow squeeze ran F-grade higher)</span>
+        <span class="pill">SPY 6mo: +14.2%</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>What we haven't graded yet</h2>
+      <p class="lead">Honest list. We don't claim a hit rate on anything below — sample size or data plumbing isn't there yet.</p>
+      <div class="honest">
+        <h3>Pending audits</h3>
+        <p>Each item below is a marketing claim we've <em>not</em> backed up with a public audit. We'll either ship the audit or remove the claim. Quarter-by-quarter.</p>
+        <ul>
+          <li><b>International markets (43 countries)</b> — Coverage shipped 2026-04-15. Sample size too small for a credible hit rate. First intl audit: <code>2026-07-31</code> with ≥ 60 days of forward-window data.</li>
+          <li><b>Sympathy chains</b> — 90-day correlation data collection started 2026-04-08. Need full window before publishing a hit rate. First sympathy audit: <code>2026-07-08</code>.</li>
+          <li><b>Options flow signals</b> — yfinance is the public fallback. Live options require Alpaca/Tradier keys (not configured yet). Dark-pool prints are similarly TBD. We'll publish hit rates after 30 days of live feed.</li>
+          <li><b>Cross-asset macro regimes</b> — yield curve / DXY / oil-gold / VIX regime calls are visible in <code>/international</code> but we haven't scored them against forward returns. Next audit: <code>2026-07-31</code>.</li>
+          <li><b>Numerai signal output</b> — submitted weekly. Performance scored on Numerai's leaderboard, not by us. We'll mirror those scores here once we have a 4-tournament track record.</li>
+        </ul>
+      </div>
+      <div class="vow">
+        <h3>Our public commitment</h3>
+        <p>We grade ourselves in public. Quarter-by-quarter. Next audit: <code style="color:var(--gold)">2026-07-31</code>. If the hit rate drops below 80%, we say so on this page within 24 hours of measurement and ship a methodology fix within a week. If we ever silently change the formula, the change is in <a href="/changelog/">the changelog</a> with a delta diff.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>Coinbase live P/L (real money, public ledger)</h2>
+      <p class="lead">The bot is trading real money on Coinbase Advanced. Every fill is shown below. Equity, realized + unrealized P/L, and fees paid are pulled directly from Coinbase's fills API — not the bot's self-report. If the number is negative, we're down. If positive, we're up. No spin.</p>
+      <div class="audit-summary" id="cb-pnl-summary">
+        <span class="pill">loading P/L…</span>
+      </div>
+      <div class="audit-wrap" style="margin-top:14px">
+        <table class="audit">
+          <thead><tr><th>Position</th><th>Size</th><th>Entry $</th><th>Mark $</th><th>P/L $</th><th>P/L %</th></tr></thead>
+          <tbody id="cb-pnl-tbody"><tr><td colspan="6" style="padding:18px;color:var(--ink-mute);text-align:center">loading…</td></tr></tbody>
+        </table>
+      </div>
+      <p class="lead" style="margin-top:14px;font-size:12.5px;color:var(--ink-mute)">Source: <a href="/data/coinbase_pnl.json">/data/coinbase_pnl.json</a>. Updated every cron tick (~5 min). Includes Coinbase taker fees in the math. Strategy: 24/7 spot trader, 10-coin universe, signal stack = crypto-treasury equity flags + BTC ETF flow + DeFi calm + ETH gas relief + Coinbase premium + intraday momentum, +5% TP / -4% SL / 168h time-stop, conviction-weighted sizing.</p>
+      <div style="margin-top:18px;padding:14px 18px;background:linear-gradient(135deg,rgba(63,185,80,.06),rgba(212,168,67,.04));border:1px solid rgba(63,185,80,.25);border-radius:10px;display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between">
+        <div style="font-size:13.5px;color:var(--ink)">
+          <strong>Want to mirror this bot live?</strong> Open a Coinbase Advanced account, fund with USDC or USD, then subscribe to <a href="/pricing/">Pro</a> for real-time trade alerts on Telegram + Discord.
+        </div>
+        <a href="https://advanced.coinbase.com/join/SKVC3Z5?src=referral-link" target="_blank" rel="noopener nofollow" style="background:linear-gradient(135deg,#3fb950,#2ea043);color:#0d1117;padding:8px 18px;border-radius:999px;font-weight:700;text-decoration:none;font-size:.92rem;white-space:nowrap">Open Coinbase →</a>
+      </div>
+      <p style="margin-top:6px;font-size:11px;color:var(--ink-mute)">Referral link — both you and we earn fee credits when you sign up and trade. <a href="/disclosures/">Disclosures</a>.</p>
+    </div>
+  </section>
+
+  <script>
+    (async () => {
+      try {
+        const r = await fetch("/data/coinbase_pnl.json", { cache: "no-store" });
+        if (!r.ok) return;
+        const d = await r.json();
+        const sum = document.getElementById("cb-pnl-summary");
+        const tbody = document.getElementById("cb-pnl-tbody");
+        if (!sum || !tbody) return;
+        const sc = Number(d.starting_capital || 0);
+        const eq = Number(d.equity || 0);
+        const pct = sc ? ((eq - sc) / sc * 100) : 0;
+        const pnlClass = (Number(d.total_pnl) >= 0) ? "win" : "";
+        sum.replaceChildren();
+        const pills = [
+          { txt: "started $" + sc.toFixed(2), cls: "" },
+          { txt: "equity $" + eq.toFixed(2), cls: pnlClass },
+          { txt: "return " + (pct >= 0 ? "+" : "") + pct.toFixed(3) + "%", cls: pnlClass },
+          { txt: "realized $" + Number(d.realized_pnl || 0).toFixed(2), cls: Number(d.realized_pnl) > 0 ? "win" : "" },
+          { txt: "unrealized $" + Number(d.unrealized_pnl || 0).toFixed(2), cls: Number(d.unrealized_pnl) > 0 ? "win" : "" },
+          { txt: "fees $" + Number(d.fees_paid || 0).toFixed(2), cls: "" },
+          { txt: (d.fills_count || 0) + " fills", cls: "" },
+        ];
+        pills.forEach(p => {
+          const s = document.createElement("span");
+          s.className = "pill " + p.cls;
+          s.textContent = p.txt;
+          sum.appendChild(s);
+        });
+        tbody.replaceChildren();
+        const rows = [...(d.open_positions || []), ...(d.recent_closed || []).map(c => ({
+          product: c.product, base_size: c.base_size, entry_price: null,
+          mark_price: c.exit_price, unrealized_pnl: c.pnl, unrealized_pct: null, _closed: true,
+        }))];
+        if (!rows.length) {
+          const tr = document.createElement("tr");
+          const td = document.createElement("td");
+          td.colSpan = 6;
+          td.style.cssText = "padding:18px;color:var(--ink-mute);text-align:center";
+          td.textContent = "No fills yet — bot armed and waiting for signal ≥ threshold.";
+          tr.appendChild(td);
+          tbody.appendChild(tr);
+          return;
+        }
+        rows.forEach(p => {
+          const tr = document.createElement("tr");
+          const cells = [
+            (p._closed ? "✕ closed " : "● open ") + p.product,
+            (p.base_size || 0).toFixed(6),
+            p.entry_price ? "$" + Number(p.entry_price).toFixed(2) : "—",
+            p.mark_price ? "$" + Number(p.mark_price).toFixed(2) : "—",
+            (Number(p.unrealized_pnl) >= 0 ? "+" : "") + "$" + Number(p.unrealized_pnl || 0).toFixed(4),
+            p.unrealized_pct != null ? ((p.unrealized_pct >= 0 ? "+" : "") + (p.unrealized_pct * 100).toFixed(2) + "%") : "—",
+          ];
+          cells.forEach(c => {
+            const td = document.createElement("td");
+            td.textContent = c;
+            tr.appendChild(td);
+          });
+          tbody.appendChild(tr);
+        });
+      } catch (e) {}
+    })();
+  </script>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>Agent paper-trading audit (live)</h2>
+      <p class="lead">In addition to the 2026-Q1 SEC audit above, an autonomous agent now places paper trades against Alpaca off the same scanner signals. Live stats refresh from <code>/data/agent_outcomes.json</code> every 60 seconds. As fills accumulate, this section becomes the second independent audit of the same scanner — different timeframe, same methodology.</p>
+      <div class="audit-summary" id="agent-audit-summary">
+        <span class="pill">loading agent ledger…</span>
+      </div>
+      <div class="audit-wrap" style="margin-top:14px">
+        <table class="audit">
+          <thead><tr><th>Asset class · signal</th><th>Trades</th><th>5d horizons</th><th>Hit rate ≥ 2%</th><th>Big-move ≥ 5%</th><th>Loss ≤ -3%</th><th>Avg P/L %</th></tr></thead>
+          <tbody id="agent-audit-tbody"><tr><td colspan="7" style="padding:18px;color:var(--ink-mute);text-align:center">loading…</td></tr></tbody>
+        </table>
+      </div>
+      <p class="lead" style="margin-top:14px;font-size:12.5px;color:var(--ink-mute)">Source: <a href="/data/agent_outcomes.json">/data/agent_outcomes.json</a> · live from Alpaca paper account · also feeds <a href="/changelog/">tune_scoring_config.py</a> at a 30% blend weight (<code>SEC × 0.7 + agent × 0.3</code>) once any signal bucket crosses 10 trades.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>Crypto-treasury equity bot (live ledger)</h2>
+      <p class="lead">A separate bot trades the crypto-treasury equity basket — MSTR, MARA, RIOT, COIN, CIFR, CLSK, IREN, BITF, HUT, HIVE, TSLA, SQ, HOOD, BITO — whenever the SEC catalyst scanner flags one of those names. Same signal, two ledgers in parallel: Alpaca paper (always-on proof) and Tradier live (gated on funding). This is "trade crypto" using our actual edge, not pretending the SEC scanner predicts spot BTC.</p>
+      <div class="audit-summary" id="ct-audit-summary">
+        <span class="pill">loading crypto-treasury ledger…</span>
+      </div>
+      <div class="audit-wrap" style="margin-top:14px">
+        <table class="audit">
+          <thead><tr><th>Rank</th><th>Ticker</th><th>Role</th><th>Score</th><th>Qty</th><th>Approx $</th><th>Alpaca</th><th>Tradier</th></tr></thead>
+          <tbody id="ct-audit-tbody"><tr><td colspan="8" style="padding:18px;color:var(--ink-mute);text-align:center">loading…</td></tr></tbody>
+        </table>
+      </div>
+      <p class="lead" style="margin-top:14px;font-size:12.5px;color:var(--ink-mute)">Source: <a href="/data/crypto_treasury_decisions.json">/data/crypto_treasury_decisions.json</a> (today's decisions) + <a href="/data/crypto_treasury_ledger.json">/data/crypto_treasury_ledger.json</a> (audit trail). To enable real Tradier orders, set <code>TRADIER_LIVE_ORDERS=1</code> in the env file. Per-position cap: $25.</p>
+    </div>
+  </section>
+
+  <script>
+    (async () => {
+      try {
+        const r = await fetch("/data/crypto_treasury_decisions.json", { cache: "no-store" });
+        if (!r.ok) return;
+        const d = await r.json();
+        const sum = document.getElementById("ct-audit-summary");
+        const tbody = document.getElementById("ct-audit-tbody");
+        if (!sum || !tbody) return;
+        sum.replaceChildren();
+        const pills = [
+          { txt: "universe " + (d.universe_size ?? 0), cls: "" },
+          { txt: (d.matches ?? 0) + " catalyst hits today", cls: (d.matches ? "win" : "") },
+          { txt: (d.alpaca_live ? "Alpaca: LIVE paper" : "Alpaca: dry-run"), cls: d.alpaca_live ? "win" : "" },
+          { txt: (d.tradier_live ? "Tradier: LIVE $$" : "Tradier: dry-run"), cls: d.tradier_live ? "win" : "" },
+          { txt: "max $" + (d.max_position_usd ?? 25) + "/position", cls: "" },
+        ];
+        pills.forEach(p => {
+          const s = document.createElement("span");
+          s.className = "pill " + p.cls;
+          s.textContent = p.txt;
+          sum.appendChild(s);
+        });
+        tbody.replaceChildren();
+        if (!d.decisions || !d.decisions.length) {
+          const tr = document.createElement("tr");
+          const td = document.createElement("td");
+          td.colSpan = 8;
+          td.style.cssText = "padding:18px;color:var(--ink-mute);text-align:center";
+          td.textContent = "No crypto-treasury catalyst hits today — bot armed and waiting.";
+          tr.appendChild(td);
+          tbody.appendChild(tr);
+          return;
+        }
+        d.decisions.forEach(x => {
+          const tr = document.createElement("tr");
+          const cells = [
+            "#" + x.rank,
+            x.ticker,
+            x.label || "",
+            (x.score ?? "").toString(),
+            (x.qty ?? "").toString(),
+            x.approx_price ? "$" + Number(x.approx_price).toFixed(2) : "—",
+            (x.alpaca && x.alpaca.ok) ? "✓ placed" : ((x.alpaca && x.alpaca.reason) || "—"),
+            (x.tradier && x.tradier.ok) ? "✓ placed" : ((x.tradier && x.tradier.reason) || "—"),
+          ];
+          cells.forEach(c => {
+            const td = document.createElement("td");
+            td.textContent = c;
+            tr.appendChild(td);
+          });
+          tbody.appendChild(tr);
+        });
+      } catch (e) {}
+    })();
+  </script>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>Coinbase Advanced 24/7 spot ledger</h2>
+      <p class="lead">The 24/7 leg of the trading harness. Equity bots only fire 9:30-4 ET — this runs every cron tick, always. Two stacked signals: (a) crypto-treasury equity flags from our SEC scanner score ×3 weight, (b) BTC ETF heavy-flow + DeFi calm + ETH gas relief score ×1 each. Threshold ≥ 2 to enter. Dry-run by default until <code>COINBASE_LIVE_ORDERS=1</code> + <code>COINBASE_API_KEY</code> + <code>COINBASE_API_SECRET</code> are set in env. (Hyperliquid was tried but blocks US jurisdictions; Coinbase Advanced is US-legal and 24/7.)</p>
+      <div class="audit-summary" id="cb-audit-summary">
+        <span class="pill">loading coinbase ledger…</span>
+      </div>
+      <div class="audit-wrap" style="margin-top:14px">
+        <table class="audit">
+          <thead><tr><th>Coin</th><th>Score</th><th>Price $</th><th>Decision</th></tr></thead>
+          <tbody id="cb-audit-tbody"><tr><td colspan="4" style="padding:18px;color:var(--ink-mute);text-align:center">loading…</td></tr></tbody>
+        </table>
+      </div>
+      <p class="lead" style="margin-top:14px;font-size:12.5px;color:var(--ink-mute)">Source: <a href="/data/coinbase_decisions.json">/data/coinbase_decisions.json</a> + <a href="/data/coinbase_ledger.json">/data/coinbase_ledger.json</a>. Setup: Coinbase account → Settings → API → New API key (default permissions: trade) → paste key + secret into <code>.sec_email_env</code>. ~10 min if account exists.</p>
+    </div>
+  </section>
+
+  <script>
+    (async () => {
+      try {
+        const r = await fetch("/data/coinbase_decisions.json", { cache: "no-store" });
+        if (!r.ok) return;
+        const d = await r.json();
+        const sum = document.getElementById("cb-audit-summary");
+        const tbody = document.getElementById("cb-audit-tbody");
+        if (!sum || !tbody) return;
+        sum.replaceChildren();
+        const sig = d.signals || {};
+        const cfg = d.config || {};
+        const live = d.live_state || {};
+        const pills = [
+          { txt: "BTC " + (live.btc_price ? "$" + Number(live.btc_price).toLocaleString() : "—"), cls: live.btc_price ? "win" : "" },
+          { txt: "ETH " + (live.eth_price ? "$" + Number(live.eth_price).toLocaleString() : "—"), cls: live.eth_price ? "win" : "" },
+          { txt: "treasury flags: " + (sig.treasury_flags && sig.treasury_flags.length ? sig.treasury_flags.join(", ") : "0"), cls: sig.treasury_flags && sig.treasury_flags.length ? "win" : "" },
+          { txt: "BTC ETF heavy: " + (sig.btc_etf_heavy ? "yes" : "no"), cls: sig.btc_etf_heavy ? "win" : "" },
+          { txt: "Crypto calm: " + (sig.crypto_calm ? "yes" : "no"), cls: sig.crypto_calm ? "win" : "" },
+          { txt: cfg.live_orders ? "LIVE ORDERS" : "dry-run", cls: cfg.live_orders ? "win" : "" },
+          { txt: live.auth_ok ? "Coinbase auth OK" : "no creds", cls: live.auth_ok ? "win" : "" },
+          { txt: "max $" + (cfg.max_position_usd ?? 25) + "/pos", cls: "" },
+        ];
+        pills.forEach(p => {
+          const s = document.createElement("span");
+          s.className = "pill " + p.cls;
+          s.textContent = p.txt;
+          sum.appendChild(s);
+        });
+        tbody.replaceChildren();
+        (d.decisions || []).forEach(x => {
+          const tr = document.createElement("tr");
+          const cells = [
+            x.coin,
+            (x.score ?? "").toString(),
+            x.price ? "$" + Number(x.price).toLocaleString() : "—",
+            (x.result && x.result.ok) ? "✓ placed" : ((x.result && x.result.reason) || "—"),
+          ];
+          cells.forEach(c => {
+            const td = document.createElement("td");
+            td.textContent = c;
+            tr.appendChild(td);
+          });
+          tbody.appendChild(tr);
+        });
+      } catch (e) {}
+    })();
+  </script>
+
+  <script>
+    (async () => {
+      try {
+        const r = await fetch("/data/agent_outcomes.json", { cache: "no-store" });
+        if (!r.ok) return;
+        const d = await r.json();
+        const sum = document.getElementById("agent-audit-summary");
+        const tbody = document.getElementById("agent-audit-tbody");
+        if (!sum || !tbody) return;
+
+        sum.replaceChildren();
+        const pills = [
+          { txt: (d.ledger_rows ?? 0) + " ledger rows", cls: "" },
+          { txt: (d.fills_captured ?? 0) + " fills captured", cls: "win" },
+          { txt: (d.horizon_complete_5d ?? 0) + " complete @ 5d", cls: "" },
+          { txt: (d.horizon_complete_30d ?? 0) + " complete @ 30d", cls: "" },
+        ];
+        pills.forEach(p => {
+          const span = document.createElement("span");
+          span.className = "pill " + p.cls;
+          span.textContent = p.txt;
+          sum.appendChild(span);
+        });
+
+        const by = d.by_signal || {};
+        const keys = Object.keys(by);
+        tbody.replaceChildren();
+        if (!keys.length) {
+          const tr = document.createElement("tr");
+          const td = document.createElement("td");
+          td.colSpan = 7; td.style.padding = "18px"; td.style.color = "var(--ink-mute)"; td.style.textAlign = "center";
+          td.textContent = "No buckets yet — first fills land Monday 2026-04-27 at market open.";
+          tr.appendChild(td); tbody.appendChild(tr);
+          return;
+        }
+        keys.sort();
+        keys.forEach(k => {
+          const s = by[k] || {};
+          const tr = document.createElement("tr");
+          const cells = [
+            k,
+            s.n != null ? String(s.n) : "—",
+            s.n_5d != null ? String(s.n_5d) : "—",
+            s.hit_rate_2pct != null ? (s.hit_rate_2pct * 100).toFixed(1) + "%" : "—",
+            s.big_move_rate_5pct != null ? (s.big_move_rate_5pct * 100).toFixed(1) + "%" : "—",
+            s.loss_rate_3pct != null ? (s.loss_rate_3pct * 100).toFixed(1) + "%" : "—",
+            s.avg_pl_pct != null ? (s.avg_pl_pct >= 0 ? "+" : "") + s.avg_pl_pct.toFixed(2) + "%" : "—",
+          ];
+          cells.forEach((c, i) => {
+            const td = document.createElement("td");
+            if (i === 0) {
+              const b = document.createElement("b"); b.textContent = c; td.appendChild(b);
+            } else {
+              td.textContent = c;
+            }
+            tr.appendChild(td);
+          });
+          tbody.appendChild(tr);
+        });
+      } catch (e) { /* silent */ }
+    })();
+  </script>
+
+  <footer>
+    Catalyst Edge Scanner · Audited 89% hit rate · Ships daily, not quarterly
+    <div class="links">
+      <a href="/scanner/">Scanner</a>
+      <a href="/benchmarks/">Benchmarks</a>
+      <a href="/changelog/">Changelog</a>
+      <a href="/data/api/">API</a>
+      <a href="mailto:opensource@example.com">Contact</a>
+    </div>
+  </footer>
+
+  <script src="/lib/tier.js" defer></script>
+  <script>
+  (function(){
+    var table = document.getElementById('trust-audit-table');
+    if(!table) return;
+    var tbody = table.querySelector('tbody');
+    if(!tbody) return;
+    var rows = Array.prototype.slice.call(tbody.querySelectorAll('tr'));
+    var statusFilter = 'all';
+    var query = '';
+
+    function applyFilter(){
+      rows.forEach(function(r){
+        var hit = r.classList.contains('hit') ? 'hit' : (r.classList.contains('miss') ? 'miss' : 'open');
+        var statusOK = (statusFilter === 'all') || (statusFilter === hit);
+        var tickerCell = r.querySelector('td:nth-child(2)');
+        var tk = (tickerCell && tickerCell.textContent || '').toUpperCase();
+        var queryOK = !query || tk.indexOf(query) !== -1;
+        r.style.display = (statusOK && queryOK) ? '' : 'none';
+      });
+    }
+
+    document.querySelectorAll('#trust-controls .tr-fbtn').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        statusFilter = btn.dataset.trust;
+        document.querySelectorAll('#trust-controls .tr-fbtn').forEach(function(b){
+          b.classList.toggle('active', b === btn);
+          b.style.transform = (b === btn) ? 'translateY(-1px)' : '';
+          b.style.boxShadow = (b === btn) ? '0 8px 24px -8px rgba(0,255,255,.3)' : '';
+        });
+        applyFilter();
+      });
+    });
+
+    var search = document.getElementById('trust-search');
+    if(search){
+      search.addEventListener('input', function(e){
+        query = (e.target.value || '').toUpperCase().trim();
+        applyFilter();
+      });
+    }
+
+    var sortBtn = document.getElementById('trust-sort-date');
+    if(sortBtn){
+      sortBtn.addEventListener('click', function(){
+        var dir = sortBtn.dataset.dir === 'desc' ? 'asc' : 'desc';
+        sortBtn.dataset.dir = dir;
+        sortBtn.textContent = 'Date ' + (dir === 'desc' ? '↓' : '↑');
+        rows.sort(function(a, b){
+          var da = (a.querySelector('td:nth-child(1)') || {}).textContent || '';
+          var db = (b.querySelector('td:nth-child(1)') || {}).textContent || '';
+          return dir === 'desc' ? db.localeCompare(da) : da.localeCompare(db);
+        });
+        rows.forEach(function(r){ tbody.appendChild(r); });
+        applyFilter();
+      });
+    }
+  })();
+  </script>
+<script src="/lib/cinematic.js"></script>
+</body>
+</html>

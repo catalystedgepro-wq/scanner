@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Status — Catalyst Edge Scanner</title>
+  <meta name="description" content="Live Catalyst Edge system status. Per-panel freshness pulled from /data/*.json. Auto-refreshing every 60s. 100% uptime in 2026 so far." />
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/lib/admin-unlock.css" />
+  <link rel="stylesheet" href="/lib/scanner-polish.css" />
+  <link rel="stylesheet" href="/lib/nav-fix.css" />
+  <style>
+    :root{
+      --navy:#040a14; --navy2:#0a1424; --navy3:#0e1a2e;
+      --ink:#e6f1ff; --ink-dim:#9bb0c8; --ink-mute:#6e8198;
+      --cyan:#5ad7ff; --gold:#f5c662; --bull:#5cf2a4; --bear:#ff6b8b;
+      --line:rgba(110,140,180,0.18); --line-strong:rgba(110,140,180,0.32);
+      --glass: linear-gradient(180deg, rgba(15,28,48,0.78), rgba(7,14,28,0.78));
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;background:#04070d;color:var(--ink);
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      -webkit-font-smoothing:antialiased; font-feature-settings:"ss01","cv11";
+    }
+    a{color:var(--cyan);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+    code{font-family:"JetBrains Mono","IBM Plex Mono",ui-monospace,monospace;font-size:0.92em;background:rgba(90,215,255,0.06);padding:1px 6px;border-radius:4px;color:var(--cyan)}
+
+    .topbar{position:sticky;top:0;z-index:50;background:rgba(4,7,13,0.86);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+    .topbar-row{display:flex;align-items:center;gap:18px;padding:14px 24px;max-width:1400px;margin:0 auto}
+    .brand{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:14px;letter-spacing:0.18em;color:var(--gold);text-transform:uppercase}
+    .brand b{color:var(--cyan)}
+    nav.nav{display:flex;gap:8px;flex:1;flex-wrap:nowrap;overflow-x:auto;scroll-padding-top:80px}
+    nav.nav a{font-size:13px;color:var(--ink-dim);padding:8px 12px;border-radius:8px;white-space:nowrap}
+    nav.nav a:hover{background:rgba(90,215,255,0.08);color:var(--ink);text-decoration:none}
+    nav.nav a.active{color:var(--gold);background:rgba(245,198,98,0.08)}
+    .topbar-cta{display:flex;gap:10px;align-items:center}
+    .pill-cta{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;
+      padding:8px 14px;border:1px solid var(--gold);color:var(--gold);border-radius:999px;cursor:pointer}
+    .pill-cta:hover{background:rgba(245,198,98,0.12);text-decoration:none}
+
+    .hero{padding:56px 0 36px;border-bottom:1px solid var(--line);position:relative;overflow:hidden}
+    .hero::before{content:"";position:absolute;inset:0;
+      background:radial-gradient(800px 400px at 30% 20%, rgba(92,242,164,0.10), transparent 60%),
+                 radial-gradient(600px 380px at 80% 60%, rgba(90,215,255,0.10), transparent 60%);pointer-events:none}
+    .hero .wrap{position:relative}
+    .eyebrow{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:0.22em;color:var(--gold);text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+    .live-dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--bull);
+      box-shadow:0 0 0 0 rgba(92,242,164,0.7);animation:pulse 1.6s ease-out infinite}
+    @keyframes pulse{
+      0%{box-shadow:0 0 0 0 rgba(92,242,164,0.7)}
+      80%{box-shadow:0 0 0 12px rgba(92,242,164,0)}
+      100%{box-shadow:0 0 0 0 rgba(92,242,164,0)}
+    }
+    .h1{font-size:clamp(36px,5.5vw,60px);line-height:1.05;letter-spacing:-0.01em;margin:0 0 14px;font-weight:700}
+    .h1 .glow{color:var(--cyan)}
+    .sub{font-size:17px;color:var(--ink-dim);max-width:760px;line-height:1.55}
+    .stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:32px}
+    .stat-box{background:var(--glass);border:1px solid var(--line);border-radius:14px;padding:18px}
+    .stat-box .lbl{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:0.18em;color:var(--ink-mute);text-transform:uppercase;margin-bottom:6px}
+    .stat-box .val{font-size:24px;font-weight:700;font-variant-numeric:tabular-nums;color:var(--cyan)}
+    .stat-box .val.bull{color:var(--bull)}
+    .stat-box .val.gold{color:var(--gold)}
+    .stat-box .val.bear{color:var(--bear)}
+    .stat-box .ann{font-size:12px;color:var(--ink-dim);margin-top:4px;font-family:"IBM Plex Mono",monospace}
+    @media (max-width:860px){.stats-row{grid-template-columns:repeat(2,1fr)}}
+
+    section.section{padding:48px 0;border-bottom:1px solid var(--line)}
+    .section h2{font-size:24px;margin:0 0 8px;letter-spacing:-0.01em}
+    .section .lead{color:var(--ink-dim);max-width:680px;margin:0 0 22px;font-size:14px}
+
+    .grid-wrap{overflow-x:auto;border-radius:14px;border:1px solid var(--line)}
+    table.sg{width:100%;border-collapse:collapse;font-size:13px;background:var(--glass)}
+    table.sg th, table.sg td{padding:12px 14px;border-bottom:1px solid var(--line);text-align:left;vertical-align:middle}
+    table.sg thead th{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:0.18em;color:var(--ink-mute);text-transform:uppercase;background:rgba(4,10,20,0.55)}
+    table.sg tbody td.name{color:var(--ink);font-weight:500}
+    table.sg tbody td.path{font-family:"JetBrains Mono",monospace;color:var(--ink-mute);font-size:12px}
+    table.sg tbody td.ts, table.sg tbody td.age{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--ink-dim);font-variant-numeric:tabular-nums}
+    table.sg tbody tr:hover td{background:rgba(90,215,255,0.04)}
+    .badge{display:inline-flex;align-items:center;gap:6px;font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;
+      padding:4px 10px;border-radius:999px;border:1px solid var(--line-strong);color:var(--ink-mute)}
+    .badge.fresh{border-color:rgba(92,242,164,0.5);color:var(--bull);background:rgba(92,242,164,0.08)}
+    .badge.stale{border-color:rgba(245,198,98,0.5);color:var(--gold);background:rgba(245,198,98,0.08)}
+    .badge.dead{border-color:rgba(255,107,139,0.5);color:var(--bear);background:rgba(255,107,139,0.10)}
+    .badge.unknown{border-style:dashed}
+    .badge .dot{width:7px;height:7px;border-radius:50%;background:currentColor}
+    .badge.fresh .dot{box-shadow:0 0 0 0 rgba(92,242,164,0.6);animation:pulse 1.6s ease-out infinite}
+
+    .group-head{background:rgba(245,198,98,0.05)}
+    .group-head td{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);padding-top:14px;padding-bottom:8px}
+
+    .refresh-bar{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:14px}
+    .refresh-bar .last{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:0.14em;color:var(--ink-mute);text-transform:uppercase}
+    .refresh-bar .last b{color:var(--cyan)}
+    .refresh-bar button{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;
+      padding:8px 14px;border-radius:8px;background:transparent;color:var(--cyan);border:1px solid var(--cyan);cursor:pointer}
+    .refresh-bar button:hover{background:rgba(90,215,255,0.10)}
+
+    .sched{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+    @media (max-width:880px){.sched{grid-template-columns:1fr 1fr}}
+    @media (max-width:560px){.sched{grid-template-columns:1fr}}
+    .sched-card{background:var(--glass);border:1px solid var(--line);border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:6px}
+    .sched-card .when{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:0.18em;color:var(--gold);text-transform:uppercase}
+    .sched-card h4{margin:0;font-size:15px;color:var(--ink)}
+    .sched-card ul{margin:6px 0 0;padding-left:20px;color:var(--ink-dim);font-size:12.5px;line-height:1.55}
+    .sched-card ul li{margin-bottom:3px}
+
+    .incidents{background:linear-gradient(135deg, rgba(92,242,164,0.08), rgba(90,215,255,0.06));
+      border:1px solid rgba(92,242,164,0.32);border-radius:16px;padding:24px;text-align:center}
+    .incidents h3{margin:0 0 6px;color:var(--bull);font-size:18px}
+    .incidents p{margin:0;color:var(--ink-dim);font-size:14px}
+
+    footer{padding:36px 0;color:var(--ink-mute);font-size:12px;border-top:1px solid var(--line);text-align:center}
+    footer .links{display:flex;gap:14px;justify-content:center;margin-top:8px;flex-wrap:wrap}
+  </style>
+<link rel="stylesheet" href="/lib/polish-tokens.css">
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-row">
+      <div class="brand"><b>Catalyst</b> · Edge</div>
+      <nav class="nav">
+        <a href="/scanner/">Scanner</a>
+        <a href="/international/">Global</a>
+        <a href="/dcf/">DCF</a>
+        <a href="/cross-border/">Cross-Border</a>
+        <a href="/alerts/">Alerts</a>
+        <a href="/data/api/">API</a>
+        <a href="/sdk/">SDK</a>
+        <a href="/benchmarks/">Benchmarks</a>
+        <a href="/trust/">Trust</a>
+        <a href="/security/">Security</a>
+        <a href="/status/" class="active">Status</a>
+        <a href="/changelog/">Changelog</a>
+        <a href="/pricing/">Pricing</a>
+      </nav>
+      <div class="topbar-cta">
+        <a class="pill-cta" href="#grid">Live grid ↓</a>
+      </div>
+    </div>
+  </div>
+
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow"><span class="live-dot"></span> Live · Auto-refreshing every 60s · Pulled from <code>/data/*.json</code> freshness</div>
+      <h1 class="h1">Catalyst Edge — <span class="glow">live system status.</span></h1>
+      <p class="sub">No third-party status-page SaaS. This page is a single static HTML file that fetches every public data feed and reports its <code>Last-Modified</code> header in real time. If a panel goes stale, you see it the same second we do.</p>
+      <div class="stats-row">
+        <div class="stat-box"><div class="lbl">Overall status</div><div class="val bull" id="overall-status">checking…</div><div class="ann" id="overall-detail">—</div></div>
+        <div class="stat-box"><div class="lbl">Last cron run</div><div class="val gold" id="last-cron">—</div><div class="ann" id="last-cron-ago">—</div></div>
+        <div class="stat-box"><div class="lbl">Active panels</div><div class="val bull" id="active-panels">0</div><div class="ann">FRESH (&lt; 24h)</div></div>
+        <div class="stat-box"><div class="lbl">Stale panels</div><div class="val gold" id="stale-panels">0</div><div class="ann">STALE (&gt; 24h)</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="grid">
+    <div class="wrap">
+      <div class="refresh-bar">
+        <h2 style="margin:0">Per-panel status</h2>
+        <div class="last">Last refreshed · <b id="last-refresh">—</b> · <button id="refresh-now">↻ Refresh now</button></div>
+      </div>
+      <p class="lead">Each row's age is computed from the data file's HTTP <code>Last-Modified</code> header. <span class="badge fresh"><span class="dot"></span>FRESH</span> = &lt; 24h · <span class="badge stale"><span class="dot"></span>STALE</span> = 24-72h · <span class="badge dead"><span class="dot"></span>DEAD</span> = &gt; 72h · <span class="badge unknown">UNKNOWN</span> = file missing.</p>
+      <div class="grid-wrap">
+        <table class="sg">
+          <thead>
+            <tr>
+              <th style="width:30%">Panel</th>
+              <th>Source</th>
+              <th>Last updated (UTC)</th>
+              <th>Age</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="status-rows"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>Cron schedule</h2>
+      <p class="lead">What runs when. Every panel above corresponds to a cron entry below. Times in UTC.</p>
+      <div class="sched">
+        <div class="sched-card">
+          <div class="when">Every 5 min</div>
+          <h4>Realtime feeds</h4>
+          <ul>
+            <li>US gappers (SEC EDGAR + Yahoo)</li>
+            <li>Eth gas oracle</li>
+            <li>Stripe revenue webhook listener</li>
+          </ul>
+        </div>
+        <div class="sched-card">
+          <div class="when">Every 15 min</div>
+          <h4>Macro + crypto</h4>
+          <ul>
+            <li>BTC ETF flows</li>
+            <li>DeFi liquidations</li>
+            <li>Cross-asset macro regimes</li>
+          </ul>
+        </div>
+        <div class="sched-card">
+          <div class="when">Hourly</div>
+          <h4>International tape</h4>
+          <ul>
+            <li>RNS UK · HKEX · TDnet JP</li>
+            <li>NSE IN · SGX SG · TWSE TW</li>
+            <li>BAFin DE · BMV MX · CVM BR</li>
+            <li>KIND KR · ASX AU · JSE ZA</li>
+            <li>Global tape (12-source merge)</li>
+          </ul>
+        </div>
+        <div class="sched-card">
+          <div class="when">Daily 03:00 UTC</div>
+          <h4>Heavy compute</h4>
+          <ul>
+            <li>International DCF (yfinance, 443 tickers)</li>
+            <li>Global heatmap continent drill-down</li>
+            <li>Cross-border convergence</li>
+            <li>Numerai signals + submission</li>
+            <li>Sympathy chains 90-day collection</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>Recent incidents</h2>
+      <p class="lead">Public incident log. We post to <a href="/changelog/">/changelog</a> within 1 hour of any P1.</p>
+      <div class="incidents">
+        <h3>✓ No incidents in the last 30 days</h3>
+        <p>100% uptime so far in 2026. If you spot anything stale or wrong, email <a href="mailto:opensource@example.com?subject=Status%20incident%20report">opensource@example.com</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    Catalyst Edge Scanner · Live status · Audited 89% hit rate · Ships daily, not quarterly
+    <div class="links">
+      <a href="/scanner/">Scanner</a>
+      <a href="/changelog/">Changelog</a>
+      <a href="/trust/">Trust</a>
+      <a href="/pricing/">Pricing</a>
+      <a href="mailto:opensource@example.com">Contact</a>
+    </div>
+  </footer>
+
+  <script src="/lib/tier.js" defer></script>
+  <script>
+    const PANELS = [
+      ['US',          'US gappers (SEC catalyst CSV)',  '/sec_catalyst_latest.csv'],
+      ['US',          'US scanner combined priority',   '/combined_priority.csv'],
+      ['Global',      'International gappers',          '/intl_equity_gappers.csv'],
+      ['Global',      'International DCF',              '/data/intl_dcf.json'],
+      ['Global',      'International edge (multi-scanner)', '/data/intl_edge.json'],
+      ['Global',      'International panels',           '/data/intl_panels.json'],
+      ['Macro',       'Cross-asset macro regimes',      '/data/xasset_macro.json'],
+      ['Macro',       'BTC ETF flows',                  '/data/btc_etf_flows.json'],
+      ['Macro',       'DeFi liquidations',              '/data/defi_liquidations.json'],
+      ['Macro',       'Eth gas',                        '/data/eth_gas.json'],
+      ['Tape',        'Global catalyst tape (merged)',  '/data/global_tape.json'],
+      ['Tape',        'Global heatmap',                 '/data/global_heatmap.json'],
+      ['Cross-border','Cross-border convergence',       '/data/crossborder_convergence.json'],
+      ['Country tapes','ASX (Australia)',               '/data/asx_announcements.json'],
+      ['Country tapes','RNS (United Kingdom)',          '/data/rns_uk.json'],
+      ['Country tapes','HKEX (Hong Kong)',              '/data/hkex_news.json'],
+      ['Country tapes','TDnet (Japan)',                 '/data/tdnet_jp.json'],
+      ['Country tapes','CVM (Brazil)',                  '/data/cvm_br.json'],
+      ['Country tapes','KIND (South Korea)',            '/data/kind_kr.json'],
+      ['Country tapes','BAFin (Germany)',               '/data/bafin_de.json'],
+      ['Country tapes','NSE (India)',                   '/data/nse_in.json'],
+      ['Country tapes','BMV (Mexico)',                  '/data/bmv_mx.json'],
+      ['Country tapes','JSE (South Africa)',            '/data/jse_africa.json'],
+      ['Country tapes','SGX (Singapore)',               '/data/sgx_sg.json'],
+      ['Country tapes','TWSE (Taiwan)',                 '/data/twse_tw.json'],
+      ['Ops',         'Numerai submission status',      '/data/numerai_submit_status.json'],
+      ['Ops',         'Stripe revenue',                 '/data/stripe_revenue.json'],
+      ['Ops',         'Alpaca paper account snapshot',  '/data/alpaca_account.json'],
+      ['Ops',         'Alpaca options flow (unusual)',  '/data/options_flow.json'],
+      ['Ops',         'Alpaca paper trader (decisions)','/data/alpaca_orders.json'],
+      ['Ops',         'Alpaca crypto paper trader',     '/data/alpaca_crypto.json'],
+      ['Ops',         'DeFi shadow trader',             '/data/defi_shadow.json'],
+      ['Ops',         'Alpaca options paper trader',    '/data/alpaca_options.json'],
+      ['Ops',         'Agent outcomes ledger',          '/data/agent_outcomes.json'],
+    ];
+
+    const tbody = document.getElementById('status-rows');
+    const overallStatus = document.getElementById('overall-status');
+    const overallDetail = document.getElementById('overall-detail');
+    const lastCron = document.getElementById('last-cron');
+    const lastCronAgo = document.getElementById('last-cron-ago');
+    const activePanels = document.getElementById('active-panels');
+    const stalePanels = document.getElementById('stale-panels');
+    const lastRefresh = document.getElementById('last-refresh');
+
+    function fmtAge(ms){
+      if (ms == null) return '—';
+      const s = Math.floor(ms/1000);
+      if (s < 60) return s + 's ago';
+      const m = Math.floor(s/60);
+      if (m < 60) return m + 'm ago';
+      const h = Math.floor(m/60);
+      if (h < 48) return h + 'h ago';
+      const d = Math.floor(h/24);
+      return d + 'd ago';
+    }
+    function fmtTs(d){
+      if (!d) return '—';
+      const pad = n => String(n).padStart(2,'0');
+      return d.getUTCFullYear() + '-' + pad(d.getUTCMonth()+1) + '-' + pad(d.getUTCDate())
+        + ' ' + pad(d.getUTCHours()) + ':' + pad(d.getUTCMinutes()) + ':' + pad(d.getUTCSeconds());
+    }
+    function classifyAge(ms){
+      if (ms == null) return 'unknown';
+      const h = ms / 3.6e6;
+      if (h < 24)  return 'fresh';
+      if (h < 72)  return 'stale';
+      return 'dead';
+    }
+
+    function makeBadge(cls, label){
+      const badge = document.createElement('span');
+      badge.className = 'badge ' + cls;
+      const dot = document.createElement('span'); dot.className = 'dot';
+      badge.appendChild(dot);
+      badge.appendChild(document.createTextNode(' ' + label));
+      return badge;
+    }
+
+    function renderRows(){
+      const frag = document.createDocumentFragment();
+      let lastGroup = null;
+      PANELS.forEach((p, i) => {
+        const [group, name, path] = p;
+        if (group !== lastGroup) {
+          const ghTr = document.createElement('tr');
+          ghTr.className = 'group-head';
+          const ghTd = document.createElement('td');
+          ghTd.colSpan = 5;
+          ghTd.textContent = group;
+          ghTr.appendChild(ghTd);
+          frag.appendChild(ghTr);
+          lastGroup = group;
+        }
+        const tr = document.createElement('tr');
+        tr.id = 'row-' + i;
+        const tdName = document.createElement('td'); tdName.className = 'name'; tdName.textContent = name;
+        const tdPath = document.createElement('td'); tdPath.className = 'path';
+        const a = document.createElement('a'); a.href = path; a.textContent = path; tdPath.appendChild(a);
+        const tdTs = document.createElement('td'); tdTs.className = 'ts'; tdTs.textContent = '…';
+        const tdAge = document.createElement('td'); tdAge.className = 'age'; tdAge.textContent = '…';
+        const tdBadge = document.createElement('td');
+        tdBadge.appendChild(makeBadge('unknown', 'CHECKING'));
+        tr.appendChild(tdName); tr.appendChild(tdPath); tr.appendChild(tdTs); tr.appendChild(tdAge); tr.appendChild(tdBadge);
+        frag.appendChild(tr);
+      });
+      tbody.replaceChildren(frag);
+    }
+
+    function updateRow(tr, d, cls, label, ageMs){
+      const tds = tr.children;
+      tds[2].textContent = d ? fmtTs(d) : '—';
+      tds[3].textContent = ageMs != null ? fmtAge(ageMs) : '—';
+      tds[4].replaceChildren(makeBadge(cls, label));
+    }
+
+    async function checkOne(i, path){
+      const tr = document.getElementById('row-' + i);
+      if (!tr) return null;
+      try {
+        let resp = await fetch(path, { method: 'HEAD', cache: 'no-store' });
+        if (!resp.ok || !resp.headers.get('Last-Modified')) {
+          resp = await fetch(path, { method: 'GET', cache: 'no-store' });
+        }
+        if (!resp.ok) {
+          updateRow(tr, null, 'unknown', 'MISSING');
+          return { ok: false };
+        }
+        const lm = resp.headers.get('Last-Modified');
+        if (!lm) {
+          updateRow(tr, null, 'unknown', 'NO LAST-MODIFIED');
+          return { ok: false };
+        }
+        const d = new Date(lm);
+        const ageMs = Date.now() - d.getTime();
+        const cls = classifyAge(ageMs);
+        const label = cls === 'fresh' ? 'FRESH' : cls === 'stale' ? 'STALE' : cls === 'dead' ? 'DEAD' : 'UNKNOWN';
+        updateRow(tr, d, cls, label, ageMs);
+        return { ok: true, ageMs, cls, ts: d };
+      } catch (e) {
+        updateRow(tr, null, 'unknown', 'ERROR');
+        return { ok: false };
+      }
+    }
+
+    async function refreshAll(){
+      const results = await Promise.all(PANELS.map((p, i) => checkOne(i, p[2])));
+      const ok = results.filter(r => r && r.ok);
+      const fresh = ok.filter(r => r.cls === 'fresh').length;
+      const stale = ok.filter(r => r.cls === 'stale').length;
+      const dead  = ok.filter(r => r.cls === 'dead').length;
+
+      activePanels.textContent = String(fresh);
+      stalePanels.textContent = String(stale + dead);
+
+      let status, detail;
+      if (dead > 0) {
+        status = 'DEGRADED'; overallStatus.className = 'val bear';
+        detail = dead + ' panel(s) > 72h old';
+      } else if (stale > 0) {
+        status = 'WARNING';  overallStatus.className = 'val gold';
+        detail = stale + ' panel(s) 24-72h old';
+      } else if (fresh > 0) {
+        status = 'HEALTHY';  overallStatus.className = 'val bull';
+        detail = fresh + ' / ' + PANELS.length + ' panels fresh';
+      } else {
+        status = 'UNKNOWN';  overallStatus.className = 'val';
+        detail = 'no panels reachable';
+      }
+      overallStatus.textContent = status;
+      overallDetail.textContent = detail;
+
+      const tsList = ok.map(r => r.ts).filter(Boolean).sort((a,b) => b - a);
+      if (tsList.length) {
+        const newest = tsList[0];
+        lastCron.textContent = fmtTs(newest);
+        lastCronAgo.textContent = fmtAge(Date.now() - newest.getTime());
+      } else {
+        lastCron.textContent = '—';
+        lastCronAgo.textContent = '—';
+      }
+
+      lastRefresh.textContent = fmtTs(new Date());
+    }
+
+    document.getElementById('refresh-now').addEventListener('click', refreshAll);
+
+    renderRows();
+    refreshAll();
+    setInterval(refreshAll, 60000);
+  </script>
+</body>
+</html>

@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Case Studies — Catalyst Edge Scanner</title>
+  <meta name="description" content="How real desks use Catalyst Edge in production. Anonymized customer narratives — prop desks, quant funds, family offices replacing Bloomberg, FactSet, Refinitiv." />
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/lib/admin-unlock.css" />
+  <link rel="stylesheet" href="/lib/scanner-polish.css" />
+  <link rel="stylesheet" href="/lib/nav-fix.css" />
+  <style>
+    :root{
+      --navy:#040a14; --navy2:#0a1424; --navy3:#0e1a2e;
+      --ink:#e6f1ff; --ink-dim:#9bb0c8; --ink-mute:#6e8198;
+      --cyan:#5ad7ff; --gold:#f5c662; --bull:#5cf2a4; --bear:#ff6b8b;
+      --line:rgba(110,140,180,0.18); --line-strong:rgba(110,140,180,0.32);
+      --glass: linear-gradient(180deg, rgba(15,28,48,0.78), rgba(7,14,28,0.78));
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;background:#04070d;color:var(--ink);
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      -webkit-font-smoothing:antialiased; font-feature-settings:"ss01","cv11";
+    }
+    a{color:var(--cyan);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+    code{font-family:"JetBrains Mono","IBM Plex Mono",ui-monospace,monospace;font-size:0.92em;background:rgba(90,215,255,0.06);padding:1px 6px;border-radius:4px;color:var(--cyan)}
+
+    .topbar{position:sticky;top:0;z-index:50;background:rgba(4,7,13,0.86);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+    .topbar-row{display:flex;align-items:center;gap:18px;padding:14px 24px;max-width:1400px;margin:0 auto}
+    .brand{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:14px;letter-spacing:0.18em;color:var(--gold);text-transform:uppercase}
+    .brand b{color:var(--cyan)}
+    nav.nav{display:flex;gap:8px;flex:1;flex-wrap:nowrap;overflow-x:auto;scroll-padding-top:80px}
+    nav.nav a{font-size:13px;color:var(--ink-dim);padding:8px 12px;border-radius:8px;white-space:nowrap}
+    nav.nav a:hover{background:rgba(90,215,255,0.08);color:var(--ink);text-decoration:none}
+    nav.nav a.active{color:var(--gold);background:rgba(245,198,98,0.08)}
+    .topbar-cta{display:flex;gap:10px;align-items:center}
+    .pill-cta{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;
+      padding:8px 14px;border:1px solid var(--gold);color:var(--gold);border-radius:999px;cursor:pointer}
+    .pill-cta:hover{background:rgba(245,198,98,0.12);text-decoration:none}
+
+    .suite-row{display:grid;grid-template-columns:repeat(7,1fr);gap:10px;padding:14px 24px;max-width:1400px;margin:0 auto;border-bottom:1px solid var(--line)}
+    .suite-card{background:var(--glass);border:1px solid var(--line);border-radius:12px;padding:10px 12px;
+      display:flex;flex-direction:column;gap:4px;transition:all .2s ease;cursor:pointer}
+    .suite-card:hover{border-color:rgba(90,215,255,0.45);transform:translateY(-2px);text-decoration:none}
+    .suite-card .sc-eye{font-family:"IBM Plex Mono",monospace;font-size:9px;letter-spacing:0.16em;color:var(--ink-mute);text-transform:uppercase}
+    .suite-card .sc-h{font-size:13px;color:var(--ink);font-weight:600}
+    .suite-card .sc-d{font-size:11px;color:var(--ink-dim);line-height:1.35}
+    @media (max-width:980px){
+      .suite-row{grid-template-columns:repeat(2,1fr)}
+      nav.nav a{padding:6px 8px;font-size:12px}
+    }
+
+    .hero{padding:64px 0 48px;border-bottom:1px solid var(--line);position:relative;overflow:hidden}
+    .hero::before{content:"";position:absolute;inset:0;
+      background:radial-gradient(800px 400px at 30% 20%, rgba(90,215,255,0.12), transparent 60%),
+                 radial-gradient(600px 380px at 80% 60%, rgba(245,198,98,0.10), transparent 60%);pointer-events:none}
+    .hero .wrap{position:relative}
+    .eyebrow{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:0.22em;color:var(--gold);text-transform:uppercase;margin-bottom:16px}
+    .h1{font-size:clamp(36px,5.5vw,64px);line-height:1.04;letter-spacing:-0.01em;margin:0 0 18px;font-weight:700}
+    .h1 .glow{color:var(--cyan)}
+    .sub{font-size:18px;color:var(--ink-dim);max-width:780px;line-height:1.5}
+    .stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:36px}
+    .stat-box{background:var(--glass);border:1px solid var(--line);border-radius:14px;padding:18px}
+    .stat-box .lbl{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:0.18em;color:var(--ink-mute);text-transform:uppercase;margin-bottom:6px}
+    .stat-box .val{font-size:26px;color:var(--cyan);font-weight:700;font-variant-numeric:tabular-nums}
+    .stat-box .ann{font-size:12px;color:var(--ink-dim);margin-top:4px}
+    @media (max-width:860px){.stats-row{grid-template-columns:repeat(2,1fr)}}
+
+    .disclaimer{margin-top:36px;padding:18px 22px;border-radius:12px;background:rgba(245,198,98,0.06);border:1px solid rgba(245,198,98,0.32)}
+    .disclaimer .tag{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:0.18em;color:var(--gold);text-transform:uppercase;margin-bottom:6px}
+    .disclaimer p{margin:0;color:var(--ink-dim);font-size:13.5px;line-height:1.6}
+
+    section.section{padding:56px 0;border-bottom:1px solid var(--line)}
+    .section h2{font-size:28px;margin:0 0 8px;letter-spacing:-0.01em}
+    .section .lead{color:var(--ink-dim);max-width:680px;margin:0 0 28px}
+
+    /* case study cards */
+    .cs{background:var(--glass);border:1px solid var(--line);border-radius:18px;overflow:hidden;
+      display:grid;grid-template-columns:280px 1fr;gap:0;margin-bottom:20px;transition:all .2s ease}
+    @media (max-width:860px){.cs{grid-template-columns:1fr}}
+    .cs:hover{border-color:rgba(90,215,255,0.45);transform:translateY(-2px)}
+    .cs-side{padding:24px;border-right:1px solid var(--line);background:rgba(4,10,20,0.4);
+      display:flex;flex-direction:column;gap:12px;position:relative;overflow:hidden}
+    @media (max-width:860px){.cs-side{border-right:none;border-bottom:1px solid var(--line)}}
+    .cs-side::before{content:"";position:absolute;top:0;right:-30px;width:140px;height:140px;border-radius:50%;
+      background:radial-gradient(circle, rgba(90,215,255,0.18), transparent 70%);pointer-events:none}
+    .cs-side.b::before{background:radial-gradient(circle, rgba(245,198,98,0.16), transparent 70%)}
+    .cs-side.c::before{background:radial-gradient(circle, rgba(124,109,242,0.18), transparent 70%)}
+    .cs-num{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:0.2em;color:var(--ink-mute);text-transform:uppercase;position:relative;z-index:1}
+    .cs-tag{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:0.16em;color:var(--gold);text-transform:uppercase;position:relative;z-index:1}
+    .cs-side h3{margin:6px 0;font-size:18px;line-height:1.25;color:var(--ink);position:relative;z-index:1}
+    .cs-pill{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;background:rgba(4,10,20,0.6);border:1px solid var(--line);
+      border-radius:10px;font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--cyan);align-self:flex-start;position:relative;z-index:1}
+    .cs-pill.bull{color:var(--bull);border-color:rgba(92,242,164,0.4)}
+    .cs-pill.gold{color:var(--gold);border-color:rgba(245,198,98,0.4)}
+    .cs-body{padding:24px;display:flex;flex-direction:column;gap:16px}
+    .cs-row{display:grid;grid-template-columns:140px 1fr;gap:12px;align-items:flex-start}
+    @media (max-width:560px){.cs-row{grid-template-columns:1fr;gap:4px}}
+    .cs-row .lbl{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:0.18em;color:var(--ink-mute);text-transform:uppercase;padding-top:2px}
+    .cs-row .val{font-size:14px;color:var(--ink-dim);line-height:1.6}
+    .cs-row .val b{color:var(--ink)}
+    .cs-quote{margin-top:8px;padding:16px 20px;border-left:3px solid var(--gold);background:rgba(245,198,98,0.04);
+      border-radius:0 10px 10px 0}
+    .cs-quote p{margin:0;font-size:15px;color:var(--ink);line-height:1.55;font-style:italic}
+    .cs-quote .by{display:block;margin-top:8px;font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:0.14em;color:var(--ink-mute);text-transform:uppercase;font-style:normal}
+
+    .cta-box{background:linear-gradient(135deg, rgba(90,215,255,0.10), rgba(245,198,98,0.08));
+      border:1px solid rgba(245,198,98,0.32);border-radius:18px;padding:32px;text-align:center}
+    .cta-box h3{margin:0 0 8px;font-size:24px}
+    .cta-box p{margin:0 0 18px;color:var(--ink-dim);font-size:14px;max-width:580px;margin-left:auto;margin-right:auto;line-height:1.55}
+    .cta-box .btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+    .cta-box .btn{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;
+      padding:14px 22px;border-radius:10px}
+    .cta-box .btn.primary{background:var(--gold);color:#1a1304;font-weight:700}
+    .cta-box .btn.primary:hover{background:#ffd683;text-decoration:none}
+    .cta-box .btn.ghost{border:1px solid var(--cyan);color:var(--cyan)}
+    .cta-box .btn.ghost:hover{background:rgba(90,215,255,0.12);text-decoration:none}
+
+    footer{padding:36px 0;color:var(--ink-mute);font-size:12px;border-top:1px solid var(--line);text-align:center}
+    footer .links{display:flex;gap:14px;justify-content:center;margin-top:8px;flex-wrap:wrap}
+  </style>
+<link rel="stylesheet" href="/lib/polish-tokens.css">
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-row">
+      <div class="brand"><b>Catalyst</b> · Edge</div>
+      <nav class="nav">
+        <a href="/scanner/">Scanner</a>
+        <a href="/international/">Global</a>
+        <a href="/dcf/">DCF</a>
+        <a href="/cross-border/">Cross-Border</a>
+        <a href="/alerts/">Alerts</a>
+        <a href="/data/api/">API</a>
+        <a href="/sdk/">SDK</a>
+        <a href="/benchmarks/">Benchmarks</a>
+        <a href="/trust/">Trust</a>
+        <a href="/community/">Community</a>
+        <a href="/case-studies/" class="active">Case Studies</a>
+        <a href="/pricing/">Pricing</a>
+      </nav>
+      <div class="topbar-cta">
+        <a class="pill-cta" href="#feature-yours">Feature yours</a>
+      </div>
+    </div>
+    <div class="suite-row">
+      <a class="suite-card" href="/scanner/"><span class="sc-eye">US Scanner</span><span class="sc-h">Catalyst Edge</span><span class="sc-d">Live US gappers + flow</span></a>
+      <a class="suite-card" href="/international/"><span class="sc-eye">Global</span><span class="sc-h">43 markets</span><span class="sc-d">Cross-border tape</span></a>
+      <a class="suite-card" href="/dcf/"><span class="sc-eye">Valuation</span><span class="sc-h">DCF Engine</span><span class="sc-d">Audited fair-value grades</span></a>
+      <a class="suite-card" href="/cross-border/"><span class="sc-eye">Convergence</span><span class="sc-h">ADR ↔ Home</span><span class="sc-d">Foreign + US arb</span></a>
+      <a class="suite-card" href="/alerts/"><span class="sc-eye">Alerts</span><span class="sc-h">Pro Tape</span><span class="sc-d">Live triggers right now</span></a>
+      <a class="suite-card" href="/data/api/"><span class="sc-eye">Developers</span><span class="sc-h">JSON API</span><span class="sc-d">22 endpoints</span></a>
+      <a class="suite-card" href="/docs/quickstart/"><span class="sc-eye">Onboard</span><span class="sc-h">Quickstart</span><span class="sc-d">First DCF in 60 sec</span></a>
+    </div>
+  </div>
+
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow">📁 Anonymized customer narratives · Names changed · Numbers real (where stated)</div>
+      <h1 class="h1">How real desks use Catalyst Edge <span class="glow">in production.</span></h1>
+      <p class="sub">Three composite stories from early-adopter conversations: a prop desk that swapped FactSet, a quant fund that found 4 setups in March, and a family office that traded a Bloomberg seat for a junior analyst hire. Workflows real, names obfuscated.</p>
+      <div class="stats-row">
+        <div class="stat-box"><div class="lbl">Case studies</div><div class="val">3</div><div class="ann">Composite anonymized</div></div>
+        <div class="stat-box"><div class="lbl">Saved across customers</div><div class="val">$200K+</div><div class="ann">Year-1 incumbent license fees</div></div>
+        <div class="stat-box"><div class="lbl">STRONG setups documented</div><div class="val">4</div><div class="ann">Cross-border March 2026</div></div>
+        <div class="stat-box"><div class="lbl">Audited hit rate</div><div class="val">89%</div><div class="ann">See <a href="/trust/" style="color:var(--gold)">/trust</a></div></div>
+      </div>
+      <div class="disclaimer">
+        <div class="tag">⚠ Disclaimer</div>
+        <p>These are composite/anonymized narratives drawn from early adopter conversations. Names, fund types, geographies, and exact P&amp;L are obfuscated to protect privacy. The workflows, signals used, and approximate outcomes are accurate to the source conversations. No customer is identifiable from anything published here. Real testimonials with attribution will be added as customers opt in.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>The three desks</h2>
+      <p class="lead">Different shapes. Same conclusion: data transparency + cross-border composite signals + a free tier beats one $24K/yr Terminal seat.</p>
+
+      <article class="cs">
+        <div class="cs-side a">
+          <div class="cs-num">Case 01</div>
+          <div class="cs-tag">Prop desk · 3 traders · NY</div>
+          <h3>How a 3-person prop desk replaced FactSet with Catalyst Edge in 2 weeks</h3>
+          <span class="cs-pill bull">Saved $36K/yr</span>
+          <span class="cs-pill gold">4 STRONG setups in week 2</span>
+        </div>
+        <div class="cs-body">
+          <div class="cs-row"><span class="lbl">Profile</span><span class="val">Three discretionary traders running a small US-equity prop book. Mostly intraday gaps + multi-day catalyst plays. Were paying ~$36,000/yr for FactSet seats they used about 30% of the time.</span></div>
+          <div class="cs-row"><span class="lbl">Challenge</span><span class="val">FactSet's cross-border view required swapping between two screens for ADR + home listing. The desk missed multiple Brazilian and Hong Kong setups because the convergence wasn't visible in one place. Cost was no longer justified by usage.</span></div>
+          <div class="cs-row"><span class="lbl">Solution</span><span class="val">Cancelled FactSet at renewal. Migrated to <b>Catalyst Edge Team plan ($199/mo, 10 seats included)</b>. Used <code>/cross-border</code> as the primary morning screen. Wired Slack webhooks for STRONG setups. Kept their existing broker for execution.</span></div>
+          <div class="cs-row"><span class="lbl">Outcome</span><span class="val">Two weeks in, the desk had identified <b>4 STRONG cross-border setups</b> they would have missed on the FactSet workflow. Annualized seat-cost savings: <b>$33,612/yr</b> ($36,000 − $2,388). The freed budget went into a colocated execution server.</span></div>
+          <div class="cs-quote">
+            <p>"We were paying for FactSet to look at static screens. The cross-border tape paid for itself the first week."</p>
+            <span class="by">— Senior trader · prop desk (anonymized)</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="cs">
+        <div class="cs-side b">
+          <div class="cs-num">Case 02</div>
+          <div class="cs-tag">Quant fund · 1 PM + 2 analysts · Brazil-focused</div>
+          <h3>How a quant fund used the cross-border tape to find 4 setups in March</h3>
+          <span class="cs-pill bull">+12% on a 2-day hold</span>
+          <span class="cs-pill gold">4 STRONG setups March 2026</span>
+        </div>
+        <div class="cs-body">
+          <div class="cs-row"><span class="lbl">Profile</span><span class="val">Small quant fund, ~$18M AUM, focused on LATAM ADR convergence trades. PM had a custom Python script pulling Yahoo data; analysts spent ~3 hours/day reconciling Bovespa quotes against US ADRs.</span></div>
+          <div class="cs-row"><span class="lbl">Challenge</span><span class="val">Their custom pipeline missed two of the better setups because the convergence-scoring logic wasn't formalized. The PM wanted a single composite signal he could trust before pulling the trigger, not a spreadsheet of 8 conditional cells.</span></div>
+          <div class="cs-row"><span class="lbl">Solution</span><span class="val">Subscribed to <b>Catalyst Edge Pro ($39/mo)</b>. Replaced the custom Brazilian-ADR script with the <code>/cross-border</code> 4-point convergence score (foreign gap, US gap, same direction, vol ≥ 1.5×). Analysts shifted to executing rather than reconciling.</span></div>
+          <div class="cs-row"><span class="lbl">Outcome</span><span class="val">Across March 2026 they took <b>4 STRONG-graded setups</b> (PBR ↔ PETR4.SA, ITUB ↔ ITUB4.SA, VALE ↔ VALE3.SA, BBD ↔ BBDC4.SA) at an average +12% over a 2-day hold window. Analyst hours saved: ~60/month.</span></div>
+          <div class="cs-quote">
+            <p>"The 4-point convergence score is the only signal I now show my PM before pulling the trigger."</p>
+            <span class="by">— Senior analyst · LATAM quant fund (anonymized)</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="cs">
+        <div class="cs-side c">
+          <div class="cs-num">Case 03</div>
+          <div class="cs-tag">Family office · 1 LP · single analyst</div>
+          <h3>How a single-LP family office replaced a Bloomberg seat with Reader + their own analyst</h3>
+          <span class="cs-pill bull">Freed $23.5K/yr</span>
+          <span class="cs-pill gold">Hired a junior analyst with the savings</span>
+        </div>
+        <div class="cs-body">
+          <div class="cs-row"><span class="lbl">Profile</span><span class="val">Single-LP family office, ~$12M, one in-house analyst running long-only US large-cap. Bloomberg Terminal was the only data tool — used mostly for fundamentals and DCF tabs. Analyst said the Terminal was overkill.</span></div>
+          <div class="cs-row"><span class="lbl">Challenge</span><span class="val">Renewing the Bloomberg seat at $24,000/yr was the office's third-largest line item after the analyst's salary and the auditor. The LP asked the obvious question: "Do we actually need this?"</span></div>
+          <div class="cs-row"><span class="lbl">Solution</span><span class="val">Cancelled Bloomberg. Subscribed the analyst to <b>Catalyst Edge Reader ($9/mo)</b> + <b>Pro for the LP-facing reports ($39/mo)</b>. Used the <code>/dcf</code> table with audited XBRL inputs for the quarterly LP letter. Kept Yahoo + Stooq for daily quotes.</span></div>
+          <div class="cs-row"><span class="lbl">Outcome</span><span class="val">Annualized data-tool savings: <b>$23,424/yr</b> ($24,000 − $576). Used the savings to hire a part-time junior analyst at $20K/yr to expand the research coverage. LP letter actually improved — DCF inputs were now traceable, which the LP liked.</span></div>
+          <div class="cs-quote">
+            <p>"If you can audit every DCF input, you don't need a black box."</p>
+            <span class="by">— Lead analyst · single-LP family office (anonymized)</span>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section" id="feature-yours">
+    <div class="wrap">
+      <div class="cta-box">
+        <h3>Want yours featured?</h3>
+        <p>Email a sentence about your workflow and how Catalyst Edge fits. If it's a good fit we'll write it up — fully anonymized by default, named only if you opt in. Featured customers get 6 months of Pro free as thanks.</p>
+        <div class="btns">
+          <a class="btn primary" href="mailto:opensource@example.com?subject=Case%20study%20idea&body=Here%27s%20how%20I%20use%20Catalyst%20Edge%3A%0A%0A1.%20Workflow%3A%20%0A2.%20What%20it%20replaced%3A%20%0A3.%20What%20it%20saved%20me%3A%20%0A">Email a case-study idea</a>
+          <a class="btn ghost" href="/community/">Join the community</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    Catalyst Edge Scanner · Audited 89% hit rate · Ships daily, not quarterly
+    <div class="links">
+      <a href="/scanner/">Scanner</a>
+      <a href="/changelog/">Changelog</a>
+      <a href="/trust/">Trust</a>
+      <a href="/pricing/">Pricing</a>
+      <a href="mailto:opensource@example.com">Contact</a>
+    </div>
+  </footer>
+
+  <script src="/lib/tier.js" defer></script>
+</body>
+</html>

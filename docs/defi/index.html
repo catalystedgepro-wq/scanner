@@ -1,0 +1,1216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DeFi Catalyst Terminal — Live Coins, BTC ETF Flows, On-Chain Stress | Catalyst Edge</title>
+<meta name="description" content="Live crypto market terminal: 100+ coins with sparklines, BTC spot ETF flows, DeFi protocol stress map, and direct trade-now affiliate routing to Coinbase, Kraken, and Binance.US.">
+<meta property="og:title" content="DeFi Catalyst Terminal — Live Crypto · BTC ETF · TVL Stress">
+<meta property="og:description" content="Cyberpunk-grade crypto terminal: live coin tape, BTC ETF flows, DeFi liquidation stress, downstream equity catalysts. Trade in one click.">
+<link rel="canonical" href="https://catalystedgescanner.com/defi/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://api.coingecko.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Orbitron:wght@500;700;900&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg-0: #050214;
+    --bg-1: #0a0524;
+    --bg-2: #100a36;
+    --ink: #e8f0ff;
+    --ink-dim: #93a4c9;
+    --ink-mute: #5a6c92;
+    --neon-cyan: #00ffff;
+    --neon-magenta: #ff2a8a;
+    --neon-purple: #b026ff;
+    --neon-lime: #d6ff3a;
+    --neon-pink: #ff5cd1;
+    --neon-amber: #ffb347;
+    --bull: #5cf2a4;
+    --bear: #ff5577;
+    --grid-line: rgba(0, 255, 255, 0.04);
+    --grid-line-strong: rgba(176, 38, 255, 0.10);
+    --border-soft: rgba(150, 170, 220, 0.08);
+    --border-strong: rgba(255, 42, 138, 0.32);
+    --panel: linear-gradient(180deg, rgba(20, 12, 50, 0.78), rgba(10, 5, 36, 0.82));
+    --panel-glass: rgba(15, 8, 40, 0.55);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--bg-0); color: var(--ink); }
+  body {
+    font-family: "Inter Tight", system-ui, sans-serif;
+    line-height: 1.55;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  a { color: var(--neon-cyan); text-decoration: none; }
+  a:hover { color: var(--neon-magenta); }
+
+  .cyber-bg { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+  .cyber-bg::before {
+    content: ""; position: absolute; inset: -20%;
+    background:
+      radial-gradient(900px 540px at 18% 8%, rgba(255, 42, 138, 0.20), transparent 65%),
+      radial-gradient(720px 480px at 85% 18%, rgba(0, 255, 255, 0.16), transparent 65%),
+      radial-gradient(1100px 700px at 50% 100%, rgba(176, 38, 255, 0.18), transparent 60%);
+  }
+  .cyber-bg::after {
+    content: ""; position: absolute; inset: 0;
+    background-image:
+      linear-gradient(var(--grid-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px),
+      linear-gradient(var(--grid-line-strong) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line-strong) 1px, transparent 1px);
+    background-size: 32px 32px, 32px 32px, 256px 256px, 256px 256px;
+    mask-image: radial-gradient(ellipse 90% 70% at 50% 30%, #000 30%, transparent 80%);
+  }
+
+  .cyber-floor {
+    position: fixed; bottom: -50%; left: -25%; width: 150%; height: 70%;
+    background-image:
+      linear-gradient(rgba(0, 255, 255, 0.32) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 42, 138, 0.20) 1px, transparent 1px);
+    background-size: 60px 60px;
+    transform: perspective(720px) rotateX(62deg);
+    transform-origin: 50% 0;
+    opacity: 0.55;
+    z-index: 0; pointer-events: none;
+    mask-image: linear-gradient(180deg, transparent 0%, #000 35%, transparent 100%);
+    animation: floor-scroll 8s linear infinite;
+  }
+  @keyframes floor-scroll {
+    from { background-position: 0 0; }
+    to   { background-position: 0 60px; }
+  }
+
+  .cyber-scan {
+    position: fixed; inset: 0; pointer-events: none; z-index: 50;
+    background: repeating-linear-gradient(
+      180deg, transparent 0, transparent 3px,
+      rgba(255, 255, 255, 0.012) 3px, rgba(255, 255, 255, 0.012) 4px);
+  }
+  .cyber-scan::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(0, 255, 255, 0.05), transparent 12%, transparent 88%, rgba(255, 42, 138, 0.05));
+    animation: scan-sweep 6s linear infinite;
+  }
+  @keyframes scan-sweep {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100vh); }
+  }
+
+  .cyber-vignette {
+    position: fixed; inset: 0; pointer-events: none; z-index: 1;
+    background: radial-gradient(ellipse at center, transparent 50%, rgba(5, 2, 20, 0.65) 100%);
+  }
+
+  .cyber-tape {
+    position: relative; z-index: 10;
+    background: linear-gradient(90deg, rgba(255, 42, 138, 0.08), rgba(176, 38, 255, 0.08), rgba(0, 255, 255, 0.08));
+    border-top: 1px solid var(--border-strong);
+    border-bottom: 1px solid var(--border-strong);
+    overflow: hidden; height: 38px;
+    display: flex; align-items: center;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+  .tape-track {
+    display: flex; gap: 36px; white-space: nowrap;
+    animation: tape-scroll 80s linear infinite;
+    padding-right: 36px;
+  }
+  @keyframes tape-scroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+  .tape-coin {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12px; color: var(--ink-dim);
+  }
+  .tape-coin .sym { color: var(--neon-cyan); font-weight: 700; letter-spacing: 0.06em; }
+  .tape-coin .px  { color: var(--ink); }
+  .tape-coin .ch  { font-weight: 600; }
+  .tape-coin .ch.up   { color: var(--bull); }
+  .tape-coin .ch.down { color: var(--bear); }
+
+  .cyber-nav {
+    position: sticky; top: 0; z-index: 60;
+    background: rgba(5, 2, 20, 0.78);
+    border-bottom: 1px solid var(--border-soft);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    padding: 10px 24px;
+    display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+  }
+  .cyber-nav a {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--ink-dim); font-weight: 600;
+  }
+  .cyber-nav a:hover { color: var(--neon-cyan); }
+  .cyber-nav .brand {
+    color: var(--neon-magenta);
+    font-family: "Orbitron", monospace;
+    font-weight: 900; letter-spacing: 0.10em; font-size: 13px;
+    text-shadow: 0 0 14px rgba(255, 42, 138, 0.55);
+  }
+  .cyber-nav .pulse {
+    margin-left: auto;
+    display: inline-flex; align-items: center; gap: 8px;
+    color: var(--bull);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px; letter-spacing: 0.10em; text-transform: uppercase;
+  }
+  .pulse .dot {
+    width: 8px; height: 8px;
+    background: var(--bull); border-radius: 50%;
+    box-shadow: 0 0 0 0 var(--bull);
+    animation: pulseDot 1.4s ease-out infinite;
+  }
+  @keyframes pulseDot {
+    0% { box-shadow: 0 0 0 0 rgba(92, 242, 164, 0.6); }
+    80% { box-shadow: 0 0 0 12px rgba(92, 242, 164, 0); }
+  }
+
+  .cyber-hero {
+    position: relative; z-index: 5;
+    max-width: 1400px; margin: 0 auto;
+    padding: 80px 28px 56px;
+  }
+  .cyber-hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 56px; align-items: center;
+  }
+  @media (max-width: 1100px) {
+    .cyber-hero-grid { grid-template-columns: 1fr; gap: 40px; }
+    .cyber-hero { padding: 56px 20px 44px; }
+  }
+
+  .cy-eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--neon-cyan);
+    padding: 7px 14px; border-radius: 999px;
+    background: rgba(0, 255, 255, 0.05);
+    border: 1px solid rgba(0, 255, 255, 0.32);
+    margin-bottom: 18px;
+    text-shadow: 0 0 8px rgba(0, 255, 255, 0.55);
+  }
+  .cy-eyebrow .dot {
+    width: 8px; height: 8px;
+    background: var(--neon-magenta); border-radius: 50%;
+    box-shadow: 0 0 8px var(--neon-magenta);
+    animation: pulseDot 1.6s ease-out infinite;
+  }
+
+  .cy-colossal { position: relative; margin-bottom: 14px; }
+  .cy-num {
+    font-family: "Orbitron", "Inter Tight", sans-serif;
+    font-weight: 900; font-size: clamp(96px, 14vw, 240px);
+    line-height: 0.85; letter-spacing: -0.04em;
+    background: linear-gradient(180deg, #ffffff 0%, var(--neon-cyan) 50%, var(--neon-magenta) 100%);
+    -webkit-background-clip: text; background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 80px rgba(255, 42, 138, 0.30);
+    position: relative; display: inline-block;
+  }
+  .cy-suffix {
+    font-family: "Orbitron", monospace;
+    font-weight: 700; font-size: clamp(24px, 3vw, 40px);
+    color: var(--neon-magenta); letter-spacing: 0.04em;
+    margin-left: 14px; vertical-align: top;
+    text-shadow: 0 0 12px rgba(255, 42, 138, 0.6);
+  }
+
+  .cy-tags { display: flex; flex-wrap: wrap; gap: 8px 10px; margin-bottom: 20px; }
+  .cy-tag {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--ink-dim);
+    padding: 6px 12px; border-radius: 6px;
+    background: rgba(176, 38, 255, 0.06);
+    border: 1px solid rgba(176, 38, 255, 0.30);
+  }
+  .cy-tag b { color: var(--neon-lime); }
+
+  .cy-stamp {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--ink-mute);
+    padding: 6px 10px; border-radius: 6px;
+    background: rgba(5, 2, 20, 0.6);
+    border: 1px solid var(--border-soft);
+  }
+  .cy-stamp b { color: var(--neon-cyan); }
+
+  .cy-h1-eyebrow {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px; letter-spacing: 0.20em;
+    text-transform: uppercase; color: var(--neon-magenta);
+    margin-bottom: 14px;
+    text-shadow: 0 0 8px rgba(255, 42, 138, 0.5);
+  }
+  .cy-headline {
+    font-family: "Inter Tight", sans-serif;
+    font-weight: 800; letter-spacing: -0.025em;
+    font-size: clamp(28px, 3.6vw, 52px);
+    line-height: 1.06; color: var(--ink); margin: 0 0 22px;
+  }
+  .cy-headline em {
+    font-style: normal; color: var(--neon-magenta);
+    text-shadow: 0 0 16px rgba(255, 42, 138, 0.45);
+  }
+  .cy-headline .acc {
+    color: var(--neon-cyan);
+    text-shadow: 0 0 16px rgba(0, 255, 255, 0.45);
+  }
+  .cy-headline .lime {
+    color: var(--neon-lime);
+    text-shadow: 0 0 12px rgba(214, 255, 58, 0.4);
+  }
+  .cy-lede {
+    font-size: 17px; color: var(--ink-dim);
+    line-height: 1.62; max-width: 580px; margin: 0 0 28px;
+  }
+  .cy-lede strong { color: var(--ink); font-weight: 600; }
+
+  .cy-cta-row { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 26px; }
+  .cy-btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 14px 24px; border-radius: 8px;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px; letter-spacing: 0.14em;
+    text-transform: uppercase; font-weight: 700;
+    cursor: pointer; border: none; transition: all 0.2s ease;
+    text-decoration: none;
+  }
+  .cy-btn-primary {
+    background: linear-gradient(135deg, var(--neon-magenta), var(--neon-purple));
+    color: #fff; box-shadow: 0 0 24px rgba(255, 42, 138, 0.4);
+  }
+  .cy-btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 32px rgba(255, 42, 138, 0.7);
+    color: #fff;
+  }
+  .cy-btn-ghost {
+    background: transparent; color: var(--neon-cyan);
+    border: 1px solid var(--neon-cyan);
+  }
+  .cy-btn-ghost:hover {
+    background: rgba(0, 255, 255, 0.08);
+    transform: translateY(-2px); color: var(--neon-cyan);
+  }
+
+  .cy-strip {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 0; border: 1px solid var(--border-soft);
+    border-radius: 12px; overflow: hidden;
+    background: var(--panel-glass); backdrop-filter: blur(8px);
+  }
+  .cy-cell { padding: 14px 18px; border-right: 1px solid var(--border-soft); }
+  .cy-cell:last-child { border-right: none; }
+  .cy-k {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 9.5px; letter-spacing: 0.18em;
+    color: var(--ink-mute); text-transform: uppercase; margin-bottom: 4px;
+  }
+  .cy-v {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 18px; color: var(--ink); font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+  .cy-v.cyan { color: var(--neon-cyan); }
+  .cy-v.magenta { color: var(--neon-magenta); }
+  .cy-v.lime { color: var(--neon-lime); }
+  .cy-v.bull { color: var(--bull); }
+  .cy-v.bear { color: var(--bear); }
+  @media (max-width: 640px) {
+    .cy-strip { grid-template-columns: repeat(2, 1fr); }
+    .cy-cell:nth-child(2) { border-right: none; }
+  }
+
+  .cy-wrap {
+    position: relative; z-index: 5;
+    max-width: 1400px; margin: 0 auto;
+    padding: 0 28px 80px;
+  }
+  @media (max-width: 1100px) { .cy-wrap { padding: 0 20px 60px; } }
+
+  .cy-section-head {
+    display: flex; align-items: baseline;
+    justify-content: space-between;
+    margin: 56px 0 20px; gap: 16px; flex-wrap: wrap;
+  }
+  .cy-section-head h2 {
+    font-family: "Orbitron", sans-serif;
+    font-size: clamp(22px, 2.5vw, 30px);
+    font-weight: 800; letter-spacing: -0.01em; color: var(--ink);
+  }
+  .cy-section-head h2 .glyph { color: var(--neon-magenta); margin-right: 8px; }
+  .cy-section-head .meta {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--ink-mute);
+  }
+  .cy-section-head .meta b { color: var(--neon-cyan); }
+
+  .cy-section-sub {
+    color: var(--ink-dim); font-size: 14px;
+    margin-bottom: 16px; max-width: 880px;
+  }
+  .cy-section-sub .label-cascade {
+    background: rgba(255, 85, 119, 0.16); color: var(--bear);
+    padding: 1px 8px; border-radius: 4px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.85em; border: 1px solid rgba(255, 85, 119, 0.3);
+  }
+
+  .coin-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 14px; margin-bottom: 32px;
+  }
+  .coin-card {
+    position: relative; background: var(--panel);
+    border: 1px solid var(--border-soft);
+    border-radius: 12px;
+    padding: 14px 16px 12px;
+    transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+    cursor: pointer; overflow: hidden;
+  }
+  .coin-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--neon-cyan);
+    box-shadow: 0 12px 32px -12px rgba(0, 255, 255, 0.32), 0 0 0 1px rgba(0, 255, 255, 0.16);
+  }
+  .coin-card::before {
+    content: ""; position: absolute;
+    top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--neon-cyan), transparent);
+    opacity: 0; transition: opacity 0.15s;
+  }
+  .coin-card:hover::before { opacity: 1; }
+
+  .cc-head { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .cc-icon {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: rgba(176, 38, 255, 0.12); flex-shrink: 0;
+  }
+  .cc-symbol {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 14px; font-weight: 700;
+    color: var(--neon-cyan); letter-spacing: 0.04em;
+  }
+  .cc-name {
+    font-size: 11px; color: var(--ink-mute);
+    font-weight: 500; letter-spacing: 0.02em;
+  }
+  .cc-rank {
+    margin-left: auto;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 9.5px; color: var(--ink-mute);
+    padding: 2px 6px; border: 1px solid var(--border-soft);
+    border-radius: 999px; letter-spacing: 0.08em;
+  }
+
+  .cc-price-row {
+    display: flex; align-items: baseline;
+    justify-content: space-between; gap: 8px;
+    margin-bottom: 4px;
+  }
+  .cc-price {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 19px; font-weight: 700; color: var(--ink);
+    font-variant-numeric: tabular-nums; letter-spacing: -0.02em;
+  }
+  .cc-change {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 13px; font-weight: 700;
+    font-variant-numeric: tabular-nums;
+  }
+  .cc-change.up   { color: var(--bull); }
+  .cc-change.down { color: var(--bear); }
+
+  .cc-spark { height: 36px; margin: 6px 0 8px; }
+  .cc-meta {
+    display: flex; justify-content: space-between;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px; color: var(--ink-mute); letter-spacing: 0.04em;
+  }
+  .cc-meta .lbl { color: var(--ink-mute); }
+  .cc-meta .v   { color: var(--ink-dim); font-weight: 600; }
+
+  .cc-trade-row {
+    display: flex; gap: 4px;
+    margin-top: 10px; padding-top: 10px;
+    border-top: 1px dashed var(--border-soft);
+  }
+  .cc-trade {
+    flex: 1; display: inline-flex;
+    align-items: center; justify-content: center; gap: 4px;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 9.5px; font-weight: 700;
+    letter-spacing: 0.10em; text-transform: uppercase;
+    padding: 6px 4px; border-radius: 5px;
+    background: rgba(0, 255, 255, 0.04);
+    border: 1px solid rgba(0, 255, 255, 0.18);
+    color: var(--neon-cyan); transition: all 0.12s;
+  }
+  .cc-trade:hover {
+    background: rgba(0, 255, 255, 0.12);
+    border-color: var(--neon-cyan);
+    color: var(--neon-cyan); transform: translateY(-1px);
+  }
+  .cc-trade.kraken { background: rgba(176, 38, 255, 0.04); border-color: rgba(176, 38, 255, 0.22); color: var(--neon-purple); }
+  .cc-trade.kraken:hover { background: rgba(176, 38, 255, 0.12); color: #d57aff; }
+  .cc-trade.binance { background: rgba(255, 179, 71, 0.04); border-color: rgba(255, 179, 71, 0.22); color: var(--neon-amber); }
+  .cc-trade.binance:hover { background: rgba(255, 179, 71, 0.12); color: #ffc77a; }
+
+  .coin-loading {
+    grid-column: 1 / -1;
+    padding: 80px 0; text-align: center;
+    color: var(--ink-mute);
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+  }
+  .coin-loading::after {
+    content: "▮▯▮▯▮▯";
+    display: block; margin-top: 12px;
+    color: var(--neon-cyan);
+    animation: blink 1s step-end infinite;
+  }
+  @keyframes blink { 50% { opacity: 0.3; } }
+
+  .coin-controls {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    align-items: center; margin-bottom: 16px;
+  }
+  .coin-search {
+    flex: 1; min-width: 200px;
+    background: rgba(15, 8, 40, 0.6);
+    border: 1px solid var(--border-soft);
+    border-radius: 8px; padding: 10px 14px;
+    color: var(--ink);
+    font-family: "JetBrains Mono", monospace; font-size: 13px;
+  }
+  .coin-search:focus {
+    outline: none; border-color: var(--neon-cyan);
+    box-shadow: 0 0 0 3px rgba(0, 255, 255, 0.10);
+  }
+  .coin-search::placeholder { color: var(--ink-mute); }
+  .coin-filter {
+    background: transparent;
+    border: 1px solid var(--border-soft);
+    border-radius: 8px; padding: 9px 14px;
+    color: var(--ink-dim);
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px; letter-spacing: 0.10em;
+    text-transform: uppercase; cursor: pointer;
+    transition: all 0.15s;
+  }
+  .coin-filter.active {
+    background: rgba(255, 42, 138, 0.10);
+    border-color: var(--neon-magenta);
+    color: var(--neon-magenta);
+  }
+  .coin-filter:hover { color: var(--ink); border-color: var(--ink-dim); }
+
+  .cy-table-wrap { overflow-x: auto; border-radius: 8px; border: 1px solid var(--border-soft); }
+  table.cy-table {
+    width: 100%; border-collapse: collapse;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12.5px; background: rgba(5, 2, 20, 0.4);
+  }
+  .cy-table th {
+    background: rgba(15, 8, 40, 0.85); color: var(--neon-cyan);
+    text-align: left; padding: 12px 14px;
+    font-size: 10px; letter-spacing: 0.14em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--border-soft);
+    font-family: "IBM Plex Mono", monospace; white-space: nowrap;
+  }
+  .cy-table td {
+    padding: 10px 14px;
+    border-bottom: 1px solid rgba(150, 170, 220, 0.06);
+    color: var(--ink-dim); font-variant-numeric: tabular-nums;
+  }
+  .cy-table tr:hover td { background: rgba(0, 255, 255, 0.025); }
+  .cy-table .symbol { color: var(--neon-cyan); font-weight: 700; }
+  .cy-table .pos { color: var(--bull); }
+  .cy-table .neg { color: var(--bear); }
+  .label-cascade {
+    background: rgba(255, 85, 119, 0.18); color: var(--bear);
+    padding: 2px 8px; border-radius: 4px;
+    border: 1px solid rgba(255, 85, 119, 0.32);
+    font-size: 10px; letter-spacing: 0.10em; text-transform: uppercase;
+  }
+  .label-drift {
+    background: rgba(150, 170, 220, 0.06); color: var(--ink-dim);
+    padding: 2px 8px; border-radius: 4px;
+    border: 1px solid var(--border-soft);
+    font-size: 10px; letter-spacing: 0.10em; text-transform: uppercase;
+  }
+  .label-rip {
+    background: rgba(214, 255, 58, 0.10); color: var(--neon-lime);
+    padding: 2px 8px; border-radius: 4px;
+    border: 1px solid rgba(214, 255, 58, 0.30);
+    font-size: 10px; letter-spacing: 0.10em; text-transform: uppercase;
+  }
+
+  .equity-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 12px; margin-top: 16px;
+  }
+  .equity-card {
+    background: var(--panel);
+    border: 1px solid var(--border-soft);
+    border-radius: 10px; padding: 14px 16px;
+    transition: all 0.15s ease;
+  }
+  .equity-card:hover {
+    border-color: var(--neon-magenta);
+    transform: translateY(-2px);
+  }
+  .equity-card .tk {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 16px; font-weight: 800;
+    color: var(--neon-cyan); letter-spacing: 0.04em;
+    margin-bottom: 4px;
+  }
+  .equity-card .desc {
+    font-size: 11px; color: var(--ink-mute);
+    line-height: 1.45; margin-bottom: 8px;
+  }
+  .equity-card .reaction {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px; color: var(--ink-dim);
+  }
+
+  .cy-footer {
+    position: relative; z-index: 5;
+    border-top: 1px solid var(--border-soft);
+    padding: 32px 28px 64px;
+    color: var(--ink-mute);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px; text-align: center; letter-spacing: 0.04em;
+  }
+  .cy-footer a { color: var(--ink-dim); }
+  .cy-footer a:hover { color: var(--neon-cyan); }
+  .cy-footer .disclaimer {
+    margin-top: 14px; color: var(--ink-mute);
+    line-height: 1.7; max-width: 760px;
+    margin-left: auto; margin-right: auto;
+  }
+
+  .suite-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px; margin-bottom: 32px;
+  }
+  .suite-card {
+    background: var(--panel);
+    border: 1px solid var(--border-soft);
+    border-radius: 10px; padding: 14px 16px;
+    transition: all 0.18s; text-decoration: none;
+    color: inherit; display: flex; flex-direction: column; gap: 4px;
+  }
+  .suite-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--neon-magenta);
+    color: inherit;
+  }
+  .suite-card .glyph { font-size: 1.4rem; margin-bottom: 4px; }
+  .suite-card .lbl { font-weight: 700; font-size: 14px; color: var(--ink); }
+  .suite-card .sub { color: var(--ink-mute); font-size: 11px; }
+  .suite-card .arr { color: var(--neon-magenta); margin-top: 6px; font-size: 13px; }
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Catalyst Edge — DeFi Catalyst Terminal",
+  "description": "Live crypto terminal with 100+ coins, BTC ETF flows, DeFi protocol stress, and direct trade-now affiliate routing.",
+  "url": "https://catalystedgescanner.com/defi/",
+  "applicationCategory": "FinanceApplication"
+}
+</script>
+<link rel="stylesheet" href="/lib/polish-tokens.css">
+</head>
+
+<body>
+
+<div class="cyber-bg" aria-hidden="true"></div>
+<div class="cyber-floor" aria-hidden="true"></div>
+<div class="cyber-vignette" aria-hidden="true"></div>
+<div class="cyber-scan" aria-hidden="true"></div>
+
+<div class="cyber-tape" aria-label="Live coin tape">
+  <div class="tape-track" id="tape-track">
+    <span class="tape-coin"><span class="sym">LOADING</span><span class="px">…</span></span>
+  </div>
+</div>
+
+<nav class="cyber-nav">
+  <a href="/" class="brand">⟦ CATALYST EDGE ⟧</a>
+  <a href="/jackpot/">🎯 Jackpot</a>
+  <a href="/scanner/">Scanner</a>
+  <a href="/defi/" style="color:var(--neon-magenta)">⟁ DeFi</a>
+  <a href="/cross-border/">Cross-Border</a>
+  <a href="/sectors/">Sectors</a>
+  <a href="/news/">News</a>
+  <a href="/pricing/" style="color:var(--neon-lime)">Premium</a>
+  <span class="pulse"><span class="dot"></span><span id="pulse-label">stream open</span></span>
+</nav>
+
+<section class="cyber-hero">
+  <div class="cyber-hero-grid">
+    <div>
+      <div class="cy-eyebrow"><span class="dot"></span>DEFI · ON-CHAIN STRESS · LIVE</div>
+      <div class="cy-colossal">
+        <span class="cy-num" data-text="100+">100+</span><span class="cy-suffix">COINS</span>
+      </div>
+      <div class="cy-tags">
+        <span class="cy-tag"><b>live</b> CoinGecko prices</span>
+        <span class="cy-tag">300 protocols · TVL stress</span>
+        <span class="cy-tag">trade-now <b>affiliate</b> routing</span>
+      </div>
+      <div class="cy-stamp">DEFI//TERMINAL · v2.0 · <b>ONLINE</b></div>
+    </div>
+    <div>
+      <div class="cy-h1-eyebrow">⟁ DeFi Catalyst Terminal · Where Chain Meets Tape</div>
+      <h1 class="cy-headline">
+        Every coin, every <em>flow</em>, every <span class="acc">cascade</span>—plus the <span class="lime">equities</span> that move when crypto breaks.
+      </h1>
+      <p class="cy-lede">
+        100+ coins streamed live with sparklines. Spot BTC ETF flow proxies. 300-protocol TVL stress map with cascade detection. And the equity downstream—<strong>COIN, MSTR, RIOT, MARA, CLSK, HOOD</strong>—that reacts when the chain reacts. Trade in one click via Coinbase, Kraken, or Binance.US.
+      </p>
+      <div class="cy-cta-row">
+        <a href="#coin-tape" class="cy-btn cy-btn-primary">⟁ Open coin tape ↓</a>
+        <a href="#defi-stress" class="cy-btn cy-btn-ghost">TVL stress map</a>
+      </div>
+      <div class="cy-strip">
+        <div class="cy-cell"><div class="cy-k">Total mcap</div><div class="cy-v cyan" id="strip-mcap">—</div></div>
+        <div class="cy-cell"><div class="cy-k">24h volume</div><div class="cy-v magenta" id="strip-vol">—</div></div>
+        <div class="cy-cell"><div class="cy-k">BTC dom</div><div class="cy-v lime" id="strip-btc-dom">—</div></div>
+        <div class="cy-cell"><div class="cy-k">DeFi TVL</div><div class="cy-v" id="strip-tvl">—</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cy-wrap">
+  <div class="suite-cards">
+    <a href="#coin-tape" class="suite-card"><span class="glyph">🪙</span><span class="lbl">Live Coin Tape</span><span class="sub">Top 100 by market cap, sparklines</span><span class="arr">›</span></a>
+    <a href="#etfs" class="suite-card"><span class="glyph">📈</span><span class="lbl">BTC ETF Flow</span><span class="sub">11 spot ETFs, daily $ vol</span><span class="arr">›</span></a>
+    <a href="#defi-stress" class="suite-card"><span class="glyph">🔥</span><span class="lbl">DeFi Stress</span><span class="sub">300 protocols, TVL deltas</span><span class="arr">›</span></a>
+    <a href="#downstream" class="suite-card"><span class="glyph">🔗</span><span class="lbl">Equity Downstream</span><span class="sub">COIN, MSTR, RIOT, MARA, CLSK, HOOD</span><span class="arr">›</span></a>
+    <a href="/scanner/" class="suite-card"><span class="glyph">📡</span><span class="lbl">Main Scanner</span><span class="sub">All catalyst rails</span><span class="arr">›</span></a>
+  </div>
+
+  <section id="coin-tape">
+    <div class="cy-section-head">
+      <h2><span class="glyph">🪙</span>Live Coin Tape</h2>
+      <div class="meta">SOURCE: <b>CoinGecko</b> · refresh 60s · <span id="coin-count">—</span> coins</div>
+    </div>
+    <p class="cy-section-sub">Every coin streamed with 7-day sparklines. Click any card to open trade routes — Coinbase, Kraken, and Binance.US are wired in.</p>
+    <div class="coin-controls">
+      <input type="text" class="coin-search" id="coin-search" placeholder="Search coin (BTC, ETH, SOL…)">
+      <button class="coin-filter active" data-sort="rank">Top by rank</button>
+      <button class="coin-filter" data-sort="gainers">Top gainers 24h</button>
+      <button class="coin-filter" data-sort="losers">Top losers 24h</button>
+      <button class="coin-filter" data-sort="volume">Volume leaders</button>
+    </div>
+    <div class="coin-grid" id="coin-grid">
+      <div class="coin-loading">Bootstrapping coin terminal</div>
+    </div>
+  </section>
+
+  <section id="etfs">
+    <div class="cy-section-head">
+      <h2><span class="glyph">📈</span>Spot BTC ETF Flow Proxy</h2>
+      <div class="meta">11 spot ETFs · <span id="etf-meta">—</span></div>
+    </div>
+    <p class="cy-section-sub">Daily dollar volume by spot Bitcoin ETF. Volume × price approximates flow direction; the leader and the regime label are the actionable signals.</p>
+    <div class="cy-table-wrap">
+      <table class="cy-table">
+        <thead>
+          <tr><th>ETF</th><th>Name</th><th>Close</th><th>Day %</th><th>Volume</th><th>$ Vol Est</th><th>Regime</th></tr>
+        </thead>
+        <tbody id="etf-tbody"><tr><td colspan="7" class="coin-loading">loading ETF tape…</td></tr></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="defi-stress">
+    <div class="cy-section-head">
+      <h2><span class="glyph">🔥</span>DeFi TVL Stress Map</h2>
+      <div class="meta">protocols: <b id="tvl-count">—</b> · cascade-state filter</div>
+    </div>
+    <p class="cy-section-sub">Top 30 protocols by TVL with 1-day and 7-day change. <span class="label-cascade">Cascade</span> means the protocol shed 10%+ of its TVL in 24h — usually a forced-liquidation event.</p>
+    <div class="cy-table-wrap">
+      <table class="cy-table">
+        <thead>
+          <tr><th>Protocol</th><th>Category</th><th>TVL</th><th>1d</th><th>7d</th><th>Chains</th><th>State</th></tr>
+        </thead>
+        <tbody id="tvl-tbody"><tr><td colspan="7" class="coin-loading">decoding chain telemetry…</td></tr></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="downstream">
+    <div class="cy-section-head">
+      <h2><span class="glyph">🔗</span>Equity Downstream</h2>
+      <div class="meta">when crypto moves, these <b>react</b></div>
+    </div>
+    <p class="cy-section-sub">The chain reaction from BTC spot drop → ETF outflow → liquidation cascade → equity tape. We track the public-equity downstream so you can position the move that's about to follow the on-chain stress.</p>
+    <div class="equity-grid">
+      <a href="/lookup/?ticker=COIN" class="equity-card"><div class="tk">COIN</div><div class="desc">Coinbase Global · the exchange equity</div><div class="reaction">Beta to BTC ≈ 1.4×</div></a>
+      <a href="/lookup/?ticker=MSTR" class="equity-card"><div class="tk">MSTR</div><div class="desc">Strategy · BTC treasury proxy</div><div class="reaction">Beta to BTC ≈ 2.1×</div></a>
+      <a href="/lookup/?ticker=RIOT" class="equity-card"><div class="tk">RIOT</div><div class="desc">Riot Platforms · BTC mining</div><div class="reaction">Beta to BTC ≈ 2.6×</div></a>
+      <a href="/lookup/?ticker=MARA" class="equity-card"><div class="tk">MARA</div><div class="desc">Marathon Digital · BTC mining</div><div class="reaction">Beta to BTC ≈ 2.5×</div></a>
+      <a href="/lookup/?ticker=CLSK" class="equity-card"><div class="tk">CLSK</div><div class="desc">CleanSpark · BTC mining</div><div class="reaction">Beta to BTC ≈ 2.2×</div></a>
+      <a href="/lookup/?ticker=HOOD" class="equity-card"><div class="tk">HOOD</div><div class="desc">Robinhood · retail crypto venue</div><div class="reaction">Beta to BTC ≈ 1.6×</div></a>
+    </div>
+  </section>
+</div>
+
+<footer class="cy-footer">
+  <div>
+    <a href="/">Scanner</a> · <a href="/jackpot/">Jackpot</a> · <a href="/dcf/">DCF</a> · <a href="/news/">News</a> · <a href="/sectors/">Sectors</a> · <a href="/trust/">Trust</a> · <a href="/pricing/">Premium</a>
+  </div>
+  <div class="disclaimer">Not investment advice. Crypto trades route to third-party venues — Catalyst Edge does not custody, route orders, or earn maker/taker fees. Affiliate links may pay us a referral fee at no cost to you. Data via CoinGecko (coins), llama-public TVL feed (protocols), Stooq (ETFs).</div>
+  <div style="margin-top:12px;color:var(--ink-mute)">© 2026 Catalyst Edge · ⟦ DeFi Terminal v2.0 ⟧</div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  var AFF = { coinbase: "", kraken: "", binance_us: "" };
+  function tradeUrls(coin) {
+    var sym = (coin.symbol || "").toLowerCase();
+    var slug = (coin.id || sym).toLowerCase();
+    return {
+      coinbase: "https://www.coinbase.com/price/" + (slug || sym) + AFF.coinbase,
+      kraken:   "https://www.kraken.com/prices/" + (sym ? sym + "-usd" : "") + AFF.kraken,
+      binance:  "https://www.binance.us/buy-sell-crypto?coin=" + (sym ? sym.toUpperCase() : "") + AFF.binance_us
+    };
+  }
+
+  function fmtUsd(n) {
+    if (n == null || isNaN(n)) return "—";
+    var v = +n;
+    if (v >= 1e12) return "$" + (v / 1e12).toFixed(2) + "T";
+    if (v >= 1e9)  return "$" + (v / 1e9).toFixed(2) + "B";
+    if (v >= 1e6)  return "$" + (v / 1e6).toFixed(2) + "M";
+    if (v >= 1e3)  return "$" + (v / 1e3).toFixed(1) + "K";
+    if (v >= 1)    return "$" + v.toFixed(2);
+    if (v >= 0.01) return "$" + v.toFixed(4);
+    return "$" + v.toExponential(2);
+  }
+  function fmtPct(n) {
+    if (n == null || isNaN(n)) return "—";
+    return (n >= 0 ? "+" : "") + (+n).toFixed(2) + "%";
+  }
+
+  function el(tag, attrs, kids) {
+    var node = document.createElement(tag);
+    if (attrs) {
+      for (var k in attrs) {
+        if (!Object.prototype.hasOwnProperty.call(attrs, k)) continue;
+        var v = attrs[k];
+        if (v == null) continue;
+        if (k === "class") node.className = v;
+        else if (k === "text") node.textContent = v;
+        else if (k === "html") {
+          // intentional: CSS-only generated SVG markup constructed from numeric coords
+          var range = document.createRange();
+          range.selectNodeContents(node);
+          range.deleteContents();
+          var frag = range.createContextualFragment(v);
+          node.appendChild(frag);
+        }
+        else node.setAttribute(k, v);
+      }
+    }
+    if (kids) {
+      if (!Array.isArray(kids)) kids = [kids];
+      kids.forEach(function (c) {
+        if (c == null) return;
+        if (typeof c === "string" || typeof c === "number") node.appendChild(document.createTextNode(String(c)));
+        else node.appendChild(c);
+      });
+    }
+    return node;
+  }
+
+  function clear(node) { while (node.firstChild) node.removeChild(node.firstChild); }
+
+  function makeSpark(values, color) {
+    if (!values || values.length < 2) return null;
+    var w = 200, h = 36, n = values.length;
+    var lo = Math.min.apply(null, values);
+    var hi = Math.max.apply(null, values);
+    var range = (hi - lo) || 1;
+    var pts = values.map(function (v, i) {
+      var x = (i / (n - 1)) * (w - 4) + 2;
+      var y = h - ((v - lo) / range) * (h - 6) - 3;
+      return x.toFixed(1) + "," + y.toFixed(1);
+    }).join(" ");
+    var areaPts = pts + " " + (w - 2) + "," + (h - 1) + " 2," + (h - 1);
+    var c = color || "#00ffff";
+    var ns = "http://www.w3.org/2000/svg";
+    var svg = document.createElementNS(ns, "svg");
+    svg.setAttribute("viewBox", "0 0 200 36");
+    svg.setAttribute("preserveAspectRatio", "none");
+    svg.setAttribute("width", "100%");
+    svg.setAttribute("height", "36");
+    var area = document.createElementNS(ns, "polyline");
+    area.setAttribute("points", areaPts);
+    area.setAttribute("fill", c);
+    area.setAttribute("fill-opacity", "0.10");
+    area.setAttribute("stroke", "none");
+    var line = document.createElementNS(ns, "polyline");
+    line.setAttribute("points", pts);
+    line.setAttribute("fill", "none");
+    line.setAttribute("stroke", c);
+    line.setAttribute("stroke-width", "1.5");
+    line.setAttribute("stroke-linecap", "round");
+    line.setAttribute("stroke-linejoin", "round");
+    svg.appendChild(area);
+    svg.appendChild(line);
+    return svg;
+  }
+
+  var COINS = [];
+  var GLOBAL = null;
+  var sortMode = "rank";
+  var searchQuery = "";
+
+  function buildCoinCard(c) {
+    var ch = c.price_change_percentage_24h;
+    var chCls = ch == null ? "cc-change" : (ch >= 0 ? "cc-change up" : "cc-change down");
+    var sparkColor = ch == null ? "#93a4c9" : (ch >= 0 ? "#5cf2a4" : "#ff5577");
+    var spark = (c.sparkline_in_7d && c.sparkline_in_7d.price) ? makeSpark(c.sparkline_in_7d.price, sparkColor) : null;
+    var urls = tradeUrls(c);
+
+    var card = el("div", { "class": "coin-card", "data-id": c.id || "" });
+
+    var iconNode;
+    if (c.image) {
+      iconNode = el("img", {
+        src: c.image,
+        "class": "cc-icon",
+        alt: "",
+        width: "28", height: "28",
+        loading: "lazy", decoding: "async",
+        referrerpolicy: "no-referrer"
+      });
+      iconNode.addEventListener("error", function () { this.style.display = "none"; });
+    } else {
+      iconNode = el("div", { "class": "cc-icon" });
+    }
+
+    var head = el("div", { "class": "cc-head" }, [
+      iconNode,
+      el("div", null, [
+        el("div", { "class": "cc-symbol", text: (c.symbol || "").toUpperCase() }),
+        el("div", { "class": "cc-name", text: c.name || "" })
+      ]),
+      el("div", { "class": "cc-rank", text: "#" + (c.market_cap_rank || "?") })
+    ]);
+
+    var priceRow = el("div", { "class": "cc-price-row" }, [
+      el("div", { "class": "cc-price", text: fmtUsd(c.current_price) }),
+      el("div", { "class": chCls, text: fmtPct(ch) })
+    ]);
+
+    var sparkBox = el("div", { "class": "cc-spark" }, spark ? [spark] : null);
+
+    var meta = el("div", { "class": "cc-meta" }, [
+      el("span", null, [el("span", { "class": "lbl", text: "MCAP " }), el("span", { "class": "v", text: fmtUsd(c.market_cap) })]),
+      el("span", null, [el("span", { "class": "lbl", text: "VOL " }), el("span", { "class": "v", text: fmtUsd(c.total_volume) })])
+    ]);
+
+    var tradeRow = el("div", { "class": "cc-trade-row" }, [
+      el("a", { href: urls.coinbase, target: "_blank", rel: "nofollow noopener sponsored", "class": "cc-trade", text: "Coinbase" }),
+      el("a", { href: urls.kraken,   target: "_blank", rel: "nofollow noopener sponsored", "class": "cc-trade kraken", text: "Kraken" }),
+      el("a", { href: urls.binance,  target: "_blank", rel: "nofollow noopener sponsored", "class": "cc-trade binance", text: "Binance.US" })
+    ]);
+
+    card.appendChild(head);
+    card.appendChild(priceRow);
+    card.appendChild(sparkBox);
+    card.appendChild(meta);
+    card.appendChild(tradeRow);
+    return card;
+  }
+
+  function renderCoins() {
+    var grid = document.getElementById("coin-grid");
+    if (!grid) return;
+    var filtered = COINS.slice();
+    if (searchQuery) {
+      var q = searchQuery.toLowerCase();
+      filtered = filtered.filter(function (c) {
+        return (c.symbol || "").toLowerCase().includes(q) || (c.name || "").toLowerCase().includes(q);
+      });
+    }
+    if (sortMode === "gainers") {
+      filtered.sort(function (a, b) { return (b.price_change_percentage_24h || -999) - (a.price_change_percentage_24h || -999); });
+    } else if (sortMode === "losers") {
+      filtered.sort(function (a, b) { return (a.price_change_percentage_24h || 999) - (b.price_change_percentage_24h || 999); });
+    } else if (sortMode === "volume") {
+      filtered.sort(function (a, b) { return (b.total_volume || 0) - (a.total_volume || 0); });
+    } else {
+      filtered.sort(function (a, b) { return (a.market_cap_rank || 9999) - (b.market_cap_rank || 9999); });
+    }
+    clear(grid);
+    if (!filtered.length) {
+      grid.appendChild(el("div", { "class": "coin-loading", text: "No coins match." }));
+      return;
+    }
+    var frag = document.createDocumentFragment();
+    filtered.forEach(function (c) { frag.appendChild(buildCoinCard(c)); });
+    grid.appendChild(frag);
+    var count = document.getElementById("coin-count");
+    if (count) count.textContent = filtered.length;
+  }
+
+  function renderTape() {
+    var top = COINS.slice(0, 30);
+    if (!top.length) return;
+    var track = document.getElementById("tape-track");
+    if (!track) return;
+    clear(track);
+    var build = function (c) {
+      var ch = c.price_change_percentage_24h;
+      var cls = ch == null ? "ch" : (ch >= 0 ? "ch up" : "ch down");
+      return el("span", { "class": "tape-coin" }, [
+        el("span", { "class": "sym", text: (c.symbol || "").toUpperCase() }),
+        el("span", { "class": "px", text: fmtUsd(c.current_price) }),
+        el("span", { "class": cls, text: fmtPct(ch) })
+      ]);
+    };
+    var frag = document.createDocumentFragment();
+    top.forEach(function (c) { frag.appendChild(build(c)); });
+    top.forEach(function (c) { frag.appendChild(build(c)); });
+    track.appendChild(frag);
+  }
+
+  function renderHero() {
+    if (!GLOBAL) return;
+    var d = GLOBAL.data || {};
+    var mcap = (d.total_market_cap && d.total_market_cap.usd) || null;
+    var vol = (d.total_volume && d.total_volume.usd) || null;
+    var btcd = (d.market_cap_percentage && d.market_cap_percentage.btc) || null;
+    setText("strip-mcap", mcap != null ? fmtUsd(mcap) : "—");
+    setText("strip-vol", vol != null ? fmtUsd(vol) : "—");
+    setText("strip-btc-dom", btcd != null ? btcd.toFixed(1) + "%" : "—");
+  }
+  function setText(id, t) { var node = document.getElementById(id); if (node) node.textContent = t; }
+
+  function fetchCoins() {
+    var url = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=true&price_change_percentage=24h";
+    fetch(url, { cache: "no-cache" })
+      .then(function (r) { return r.ok ? r.json() : Promise.reject(r.status); })
+      .then(function (data) {
+        COINS = Array.isArray(data) ? data : [];
+        renderTape();
+        renderCoins();
+      })
+      .catch(function () {
+        var grid = document.getElementById("coin-grid");
+        if (grid) {
+          clear(grid);
+          grid.appendChild(el("div", { "class": "coin-loading", style: "color:var(--bear)", text: "Coin feed unavailable. Refresh in a few seconds." }));
+        }
+      });
+  }
+  function fetchGlobal() {
+    fetch("https://api.coingecko.com/api/v3/global", { cache: "no-cache" })
+      .then(function (r) { return r.ok ? r.json() : Promise.reject(r.status); })
+      .then(function (data) { GLOBAL = data; renderHero(); })
+      .catch(function () {});
+  }
+
+  function buildEtfRow(r) {
+    var pcls = r.day_change_pct >= 0 ? "pos" : "neg";
+    var rcls = "label-drift";
+    if (r.regime === "rip") rcls = "label-rip";
+    else if (r.regime === "cascade" || r.regime === "outflow") rcls = "label-cascade";
+    return el("tr", null, [
+      el("td", null, [el("span", { "class": "symbol", text: r.symbol })]),
+      el("td", { text: r.name }),
+      el("td", { text: isFinite(r.close) ? "$" + r.close.toFixed(2) : "—" }),
+      el("td", { "class": pcls, text: isFinite(r.day_change_pct) ? r.day_change_pct.toFixed(2) + "%" : "—" }),
+      el("td", { text: isFinite(r.volume) ? r.volume.toLocaleString() : "—" }),
+      el("td", { text: isFinite(r.dollar_vol_est) ? fmtUsd(r.dollar_vol_est) : "—" }),
+      el("td", null, [el("span", { "class": rcls, text: r.regime || "drift" })])
+    ]);
+  }
+
+  function fetchEtfs() {
+    fetch("/btc_etf_flows.csv?cb=" + Date.now(), { cache: "no-store" })
+      .then(function (r) { return r.ok ? r.text() : Promise.reject(r.status); })
+      .then(function (txt) {
+        var lines = txt.trim().split("\n");
+        if (lines.length < 2) throw new Error("empty");
+        var hdr = lines[0].split(",");
+        var idx = {};
+        hdr.forEach(function (h, i) { idx[h.trim().toLowerCase()] = i; });
+        var rows = lines.slice(1).map(function (l) {
+          var cells = l.split(",");
+          return {
+            symbol: cells[idx.symbol] || cells[1] || "",
+            name: cells[idx.name] || cells[2] || "",
+            close: parseFloat(cells[idx.close]),
+            day_change_pct: parseFloat(cells[idx.day_change_pct]),
+            volume: parseFloat(cells[idx.volume]),
+            dollar_vol_est: parseFloat(cells[idx.dollar_vol_est]),
+            regime: cells[idx.regime] || ""
+          };
+        }).filter(function (r) { return r.symbol; });
+        rows.sort(function (a, b) { return (b.dollar_vol_est || 0) - (a.dollar_vol_est || 0); });
+        var tbody = document.getElementById("etf-tbody");
+        clear(tbody);
+        rows.forEach(function (r) { tbody.appendChild(buildEtfRow(r)); });
+        var meta = document.getElementById("etf-meta");
+        if (meta) meta.textContent = rows.length + " rows";
+      })
+      .catch(function () {
+        var tbody = document.getElementById("etf-tbody");
+        if (tbody) {
+          clear(tbody);
+          var tr = el("tr", null, [el("td", { colspan: "7", "class": "coin-loading", style: "color:var(--ink-mute)", text: "ETF tape offline." })]);
+          tbody.appendChild(tr);
+        }
+      });
+  }
+
+  function buildTvlRow(r) {
+    var d1cls = (r.d1 || 0) >= 0 ? "pos" : "neg";
+    var d7cls = (r.d7 || 0) >= 0 ? "pos" : "neg";
+    var lblCls = r.label === "cascade" ? "label-cascade" : (r.label === "rip" ? "label-rip" : "label-drift");
+    return el("tr", null, [
+      el("td", null, [el("span", { "class": "symbol", text: r.protocol })]),
+      el("td", { text: r.category || "" }),
+      el("td", { text: isFinite(r.tvl) ? fmtUsd(r.tvl) : "—" }),
+      el("td", { "class": d1cls, text: isFinite(r.d1) ? r.d1.toFixed(2) + "%" : "—" }),
+      el("td", { "class": d7cls, text: isFinite(r.d7) ? r.d7.toFixed(2) + "%" : "—" }),
+      el("td", { style: "font-size:11px;color:var(--ink-mute)", text: (r.chains || "").split(",").slice(0, 3).join(", ") }),
+      el("td", null, [el("span", { "class": lblCls, text: r.label })])
+    ]);
+  }
+
+  function fetchTvl() {
+    fetch("/defi_liquidations.csv?cb=" + Date.now(), { cache: "no-store" })
+      .then(function (r) { return r.ok ? r.text() : Promise.reject(r.status); })
+      .then(function (txt) {
+        var lines = txt.trim().split("\n");
+        if (lines.length < 2) throw new Error("empty");
+        var hdr = parseCsvLine(lines[0]);
+        var idx = {};
+        hdr.forEach(function (h, i) { idx[h.trim().toLowerCase()] = i; });
+        var rows = lines.slice(1).map(function (l) {
+          var cells = parseCsvLine(l);
+          return {
+            protocol: cells[idx.protocol],
+            category: cells[idx.category],
+            tvl: parseFloat(cells[idx.tvl_usd]),
+            d1: parseFloat(cells[idx.change_1d_pct]),
+            d7: parseFloat(cells[idx.change_7d_pct]),
+            chains: cells[idx.chains],
+            label: (cells[idx.stress_label] || "drift").toLowerCase()
+          };
+        }).filter(function (r) { return r.protocol; });
+
+        rows.sort(function (a, b) {
+          var aCascade = a.label === "cascade" ? 1 : 0;
+          var bCascade = b.label === "cascade" ? 1 : 0;
+          if (aCascade !== bCascade) return bCascade - aCascade;
+          return (b.tvl || 0) - (a.tvl || 0);
+        });
+        var top = rows.slice(0, 30);
+
+        var totalTvl = 0;
+        rows.forEach(function (r) { if (isFinite(r.tvl)) totalTvl += r.tvl; });
+        setText("strip-tvl", fmtUsd(totalTvl));
+        setText("tvl-count", rows.length);
+
+        var tbody = document.getElementById("tvl-tbody");
+        clear(tbody);
+        top.forEach(function (r) { tbody.appendChild(buildTvlRow(r)); });
+      })
+      .catch(function () {
+        var tbody = document.getElementById("tvl-tbody");
+        if (tbody) {
+          clear(tbody);
+          var tr = el("tr", null, [el("td", { colspan: "7", "class": "coin-loading", style: "color:var(--ink-mute)", text: "TVL feed offline." })]);
+          tbody.appendChild(tr);
+        }
+      });
+  }
+
+  function parseCsvLine(line) {
+    var out = [];
+    var cur = "";
+    var inQ = false;
+    for (var i = 0; i < line.length; i++) {
+      var c = line.charAt(i);
+      if (inQ) {
+        if (c === '"') {
+          if (line.charAt(i + 1) === '"') { cur += '"'; i++; }
+          else { inQ = false; }
+        } else { cur += c; }
+      } else {
+        if (c === ',') { out.push(cur); cur = ""; }
+        else if (c === '"') { inQ = true; }
+        else { cur += c; }
+      }
+    }
+    out.push(cur);
+    return out;
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    var input = document.getElementById("coin-search");
+    if (input) {
+      input.addEventListener("input", function (e) {
+        searchQuery = e.target.value.trim();
+        renderCoins();
+      });
+    }
+    var filters = document.querySelectorAll(".coin-filter");
+    filters.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        filters.forEach(function (b) { b.classList.remove("active"); });
+        btn.classList.add("active");
+        sortMode = btn.getAttribute("data-sort") || "rank";
+        renderCoins();
+      });
+    });
+
+    fetchCoins();
+    fetchGlobal();
+    fetchEtfs();
+    fetchTvl();
+    setInterval(fetchCoins, 60000);
+    setInterval(fetchGlobal, 300000);
+    setInterval(fetchEtfs, 600000);
+    setInterval(fetchTvl, 600000);
+  });
+})();
+</script>
+</body>
+</html>

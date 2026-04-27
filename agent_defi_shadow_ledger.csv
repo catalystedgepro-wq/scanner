@@ -1,0 +1,9 @@
+client_order_id,captured_at,protocol,signal,entry_tvl,change_1d_pct,change_7d_pct,horizon_5d_change_pct,horizon_5d_evaluated_at,hit_5pct,lost_3pct
+ce_defi_2026-04-25_binance_cex_shadow,2026-04-25T04:05:07+00:00,Binance CEX,defi_shadow_bull,155176391855.0,-0.38,-1.15,,,,
+ce_defi_2026-04-25_lido_shadow,2026-04-25T04:05:07+00:00,Lido,defi_shadow_bull,21706776817.0,-0.33,-4.83,,,,
+ce_defi_2026-04-25_bitfinex_shadow,2026-04-25T04:05:07+00:00,Bitfinex,defi_shadow_bull,18982975712.0,-0.81,1.14,,,,
+ce_defi_2026-04-25_ssv_network_shadow,2026-04-25T04:05:07+00:00,SSV Network,defi_shadow_bull,17072162848.0,-0.33,-4.17,,,,
+ce_defi_2026-04-25_robinhood_shadow,2026-04-25T04:05:07+00:00,Robinhood,defi_shadow_bull,14037946475.0,-0.69,-1.31,,,,
+ce_defi_2026-04-25_aave_v3_shadow,2026-04-25T04:05:07+00:00,Aave V3,defi_shadow_bear,13833526236.0,0.09,-46.9,,,,
+ce_defi_2026-04-25_eigencloud_shadow,2026-04-25T04:05:07+00:00,EigenCloud,defi_shadow_bull,9244311181.0,1.54,-9.94,,,,
+ce_defi_2026-04-25_wbtc_shadow,2026-04-25T04:05:07+00:00,WBTC,defi_shadow_bull,9004050239.0,-0.92,-0.11,,,,

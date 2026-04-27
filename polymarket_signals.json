@@ -1,0 +1,105 @@
+{
+  "generated_at": "2026-04-27T22:52:26.898769+00:00",
+  "signals": [
+    {
+      "title": "US x Iran ceasefire extended by April 22, 2026?",
+      "probability": 0.2,
+      "label": "LOW PROBABILITY",
+      "impact": "Energy stocks, defense, oil prices",
+      "vol_24h": 26510609.755846944,
+      "vol_total": 78524988.85093819,
+      "end_date": "2026-04-21",
+      "url": "https://polymarket.com/event/us-x-iran-ceasefire-extended-by"
+    },
+    {
+      "title": "Will there be no change in Fed interest rates after the April 2026 meeting?",
+      "probability": 99.9,
+      "label": "HIGH CONVICTION",
+      "impact": "Rate-sensitive: banks, REITs, growth stocks",
+      "vol_24h": 6232803.064953935,
+      "vol_total": 47515837.8782256,
+      "end_date": "2026-04-29",
+      "url": "https://polymarket.com/event/fed-decision-in-april"
+    },
+    {
+      "title": "Israel x Hezbollah Ceasefire extended by April 26, 2026?",
+      "probability": 99.7,
+      "label": "HIGH CONVICTION",
+      "impact": "Energy stocks, defense, oil prices",
+      "vol_24h": 3405714.300685004,
+      "vol_total": 5430834.196772936,
+      "end_date": "",
+      "url": "https://polymarket.com/event/israel-x-hezbollah-ceasefire-extended-by"
+    },
+    {
+      "title": "Will the Fed increase interest rates by 25+ bps after the April 2026 meeting?",
+      "probability": 0.1,
+      "label": "LOW PROBABILITY",
+      "impact": "Rate-sensitive: banks, REITs, growth stocks",
+      "vol_24h": 2954752.34,
+      "vol_total": 47709180.96529933,
+      "end_date": "2026-04-29",
+      "url": "https://polymarket.com/event/fed-decision-in-april"
+    },
+    {
+      "title": "Will the Iranian regime fall by April 30?",
+      "probability": 0.2,
+      "label": "LOW PROBABILITY",
+      "impact": "Energy stocks, defense, oil prices",
+      "vol_24h": 2716793.784175001,
+      "vol_total": 46409808.094547406,
+      "end_date": "2026-04-30",
+      "url": "https://polymarket.com/event/will-the-iranian-regime-fall-by-april-30"
+    },
+    {
+      "title": "Will the Fed decrease interest rates by 25 bps after the April 2026 meeting?",
+      "probability": 0.1,
+      "label": "LOW PROBABILITY",
+      "impact": "Rate-sensitive: banks, REITs, growth stocks",
+      "vol_24h": 2188037.9000000004,
+      "vol_total": 38772610.56953498,
+      "end_date": "2026-04-29",
+      "url": "https://polymarket.com/event/fed-decision-in-april"
+    },
+    {
+      "title": "Will the Fed decrease interest rates by 50+ bps after the April 2026 meeting?",
+      "probability": 0.1,
+      "label": "LOW PROBABILITY",
+      "impact": "Rate-sensitive: banks, REITs, growth stocks",
+      "vol_24h": 2154352.45,
+      "vol_total": 58427768.502000265,
+      "end_date": "2026-04-29",
+      "url": "https://polymarket.com/event/fed-decision-in-april"
+    },
+    {
+      "title": "US x Iran permanent peace deal by April 30, 2026?",
+      "probability": 1.7,
+      "label": "LOW PROBABILITY",
+      "impact": "Energy stocks, defense, oil prices",
+      "vol_24h": 2108207.7434059978,
+      "vol_total": 20504841.342470825,
+      "end_date": "2026-04-30",
+      "url": "https://polymarket.com/event/us-x-iran-permanent-peace-deal-by"
+    },
+    {
+      "title": "Strait of Hormuz traffic returns to normal by end of April?",
+      "probability": 0.4,
+      "label": "LOW PROBABILITY",
+      "impact": "Macro / risk-off sentiment",
+      "vol_24h": 942394.170366,
+      "vol_total": 31210332.475176033,
+      "end_date": "2026-04-30",
+      "url": "https://polymarket.com/event/strait-of-hormuz-traffic-returns-to-normal-by-april-30"
+    },
+    {
+      "title": "Kharg Island no longer under Iranian control by April 30?",
+      "probability": 0.9,
+      "label": "LOW PROBABILITY",
+      "impact": "Energy stocks, defense, oil prices",
+      "vol_24h": 877027.650404,
+      "vol_total": 15739109.7598179,
+      "end_date": "2026-04-30",
+      "url": "https://polymarket.com/event/kharg-island-no-longer-under-iranian-control-by-march-31"
+    }
+  ]
+}

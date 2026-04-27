@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SEC Catalyst Watchlist — Track Your Tickers | Catalyst Edge</title>
+<meta name="description" content="Build a free SEC catalyst watchlist. Track your tickers and get scored catalyst data daily. Export to CSV. No signup required.">
+<meta property="og:title" content="SEC Catalyst Watchlist — Catalyst Edge">
+<meta property="og:description" content="Build a watchlist of tickers and track their SEC catalyst scores daily. Free, no account needed.">
+<meta property="og:url" content="https://catalystedgescanner.com/watchlist/">
+<link rel="canonical" href="https://catalystedgescanner.com/watchlist/">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "SEC Catalyst Watchlist Builder",
+  "description": "Build a watchlist of tickers and track their SEC catalyst scores daily.",
+  "url": "https://catalystedgescanner.com/watchlist/",
+  "applicationCategory": "FinanceApplication",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+  "author": {"@type": "Organization", "name": "Catalyst Edge"}
+}
+</script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#070a12;--surface:#0f1420;--surface2:#161d2e;--gold:#d4a843;--green:#22c55e;
+  --cyan:#06b6d4;--red:#ef4444;--text:#e2e8f0;--dim:#94a3b8;--muted:#64748b;--border:#1e293b}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);
+  color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
+.wrap{max-width:760px;margin:0 auto;padding:0 1.5rem}
+.hero{padding:3rem 1.5rem 2rem;text-align:center;background:linear-gradient(180deg,#0f1629,var(--bg));border-bottom:1px solid var(--border)}
+.hero-badge{display:inline-block;padding:.3rem .8rem;background:rgba(212,168,67,.12);border:1px solid rgba(212,168,67,.25);
+  border-radius:20px;font-size:.72rem;color:var(--gold);text-transform:uppercase;letter-spacing:.08em;margin-bottom:1rem}
+.hero h1{font-size:clamp(1.6rem,3.5vw,2.2rem);font-weight:800;line-height:1.15;margin-bottom:.6rem}
+.hero-sub{font-size:.92rem;color:var(--dim);max-width:480px;margin:0 auto 1.5rem}
+.add-bar{display:flex;gap:.5rem;max-width:420px;margin:0 auto}
+.add-input{flex:1;padding:.7rem 1rem;background:var(--bg);border:1px solid var(--border);border-radius:8px;
+  color:var(--text);font-size:1rem;text-transform:uppercase;outline:none;font-weight:700;letter-spacing:.05em}
+.add-input:focus{border-color:var(--gold)}
+.add-input::placeholder{text-transform:none;font-weight:400;letter-spacing:0;color:var(--muted)}
+.add-btn{padding:.7rem 1.2rem;background:var(--gold);color:#000;font-weight:700;border:none;border-radius:8px;cursor:pointer;font-size:.9rem}
+.add-btn:hover{opacity:.85}
+.actions{display:flex;gap:.5rem;justify-content:center;margin-top:1rem;flex-wrap:wrap}
+.action-btn{padding:.4rem 1rem;background:var(--surface);border:1px solid var(--border);border-radius:6px;
+  color:var(--dim);font-size:.78rem;cursor:pointer;font-family:inherit}
+.action-btn:hover{border-color:var(--gold);color:var(--gold)}
+.wl-table{width:100%;border-collapse:collapse;margin-top:1.5rem;font-size:.88rem}
+.wl-table th{background:var(--surface);color:var(--muted);padding:8px 10px;text-align:left;
+  border-bottom:1px solid var(--border);font-weight:600;font-size:.72rem;text-transform:uppercase;letter-spacing:.06em}
+.wl-table td{padding:8px 10px;border-bottom:1px solid rgba(255,255,255,.04);vertical-align:middle}
+.wl-table .ticker-col{font-weight:800;color:var(--gold);font-size:.95rem}
+.wl-table .score-col{font-weight:700}
+.score-high{color:var(--green)}
+.score-mid{color:var(--gold)}
+.score-low{color:var(--dim)}
+.rm-btn{background:none;border:none;color:var(--red);cursor:pointer;font-size:.82rem;opacity:.5}
+.rm-btn:hover{opacity:1}
+.empty{text-align:center;padding:3rem 1rem;color:var(--muted);font-size:.9rem}
+.loading-row{color:var(--muted);font-size:.82rem}
+.alert-bar{background:var(--surface);border:1px solid var(--border);border-radius:10px;
+  padding:1.2rem;margin-top:1.5rem;text-align:center}
+.alert-bar h3{font-size:.95rem;margin-bottom:.4rem}
+.alert-bar p{font-size:.82rem;color:var(--dim);margin-bottom:.8rem}
+.alert-form{display:flex;gap:.5rem;max-width:360px;margin:0 auto}
+.alert-input{flex:1;padding:.5rem .8rem;background:var(--bg);border:1px solid var(--border);border-radius:6px;color:var(--text);font-size:.85rem;outline:none}
+.alert-btn{padding:.5rem 1rem;background:var(--green);color:#000;font-weight:700;border:none;border-radius:6px;cursor:pointer;font-size:.82rem}
+.alert-ok{display:none;color:var(--green);font-weight:700;font-size:.85rem;margin-top:.5rem}
+.footer{text-align:center;padding:1.5rem;font-size:.72rem;color:var(--muted);border-top:1px solid var(--border);margin-top:2rem}
+@media(max-width:640px){.add-bar,.alert-form{flex-direction:column}.wl-table{font-size:.78rem}}
+</style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@800;900&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/lib/cinematic-hero.css">
+  <link rel="stylesheet" href="/lib/cyber-shell.css">
+  <link rel="stylesheet" href="/lib/polish-tokens.css">
+</head>
+<body>
+  <div class="cy-bg" aria-hidden="true"></div>
+  <div class="cy-floor" aria-hidden="true"></div>
+  <div class="cy-vignette" aria-hidden="true"></div>
+  <div class="cy-scan" aria-hidden="true"></div>
+<section class="cin-hero cy-neon-hero cy-shimmer">
+    <div class="cin-grid">
+      <div class="cin-stat-stack">
+        <div class="cin-eyebrow"><span class="cin-live-dot"></span>WATCHLIST · YOURS · SAVED</div>
+        <div class="cin-colossal">
+          <div class="cin-num-row"><span class="cin-num">∞</span></div>
+          <div class="cin-side">
+          <span class="cin-tag"><b>localStorage</b> sync</span>
+          <span class="cin-tag">multi-list support</span>
+          <span class="cin-tag">alerts wired</span>
+          </div>
+        </div>
+        <div class="cin-stamp">WATCH//LIST · v1.1 · <b>LIVE</b></div>
+      </div>
+      <div class="cin-h1-block">
+        <div class="cin-h1-eyebrow">⭐ Watchlist · Your Personal Tracker</div>
+        <h1 class="cin-headline">Build your own <em>watchlist</em>—everything saved locally, with <span class="cin-accent">scanner signals</span> wired in.</h1>
+        <p class="cin-lede">Add any tickers to your personal watchlist. We persist the list in localStorage, surface scanner signals on each name, and offer alert hookups. Privacy-first: nothing leaves your browser unless you opt in.</p>
+        <div class="cin-cta-row">
+          <a href="#watchlist-app" class="cin-btn-primary">Open watchlist ↓</a>
+          <a href="/alerts/" class="cin-btn-ghost">Alert setup</a>
+        </div>
+        <div class="cin-strip">
+          <div class="cin-cell"><div class="cin-k">Stored</div><div class="cin-v cyan">local</div></div>
+          <div class="cin-cell"><div class="cin-k">Multi-list</div><div class="cin-v bull">yes</div></div>
+          <div class="cin-cell"><div class="cin-k">Sync</div><div class="cin-v gold" id="wl-sync">–</div></div>
+          <div class="cin-cell"><div class="cin-k">Items</div><div class="cin-v" id="wl-count">–</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <h1>SEC Catalyst Watchlist</h1>
+  <p class="hero-sub">Add tickers. Get catalyst scores. Export anytime. Saved in your browser.</p>
+  <form class="add-bar" onsubmit="addTicker(event)">
+    <input type="text" class="add-input" placeholder="Add ticker (e.g. AAPL)" id="add-input" maxlength="10">
+    <button type="submit" class="add-btn">Add</button>
+  </form>
+  <div class="actions">
+    <button class="action-btn" onclick="exportCSV()">Export CSV</button>
+    <button class="action-btn" onclick="refreshAll()">Refresh All</button>
+    <button class="action-btn" onclick="clearAll()">Clear All</button>
+  </div>
+</div>
+
+<div class="wrap">
+  <table class="wl-table" id="wl-table">
+    <thead>
+      <tr>
+        <th>Ticker</th>
+        <th>Score</th>
+        <th>Sector</th>
+        <th>Price</th>
+        <th>Form</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody id="wl-body"></tbody>
+  </table>
+  <div class="empty" id="empty-msg">Your watchlist is empty. Add tickers above.</div>
+
+  <div class="alert-bar" id="alert-bar" style="display:none">
+    <h3>Get daily alerts for your watchlist</h3>
+    <p>We'll email you when any ticker on your list files with the SEC.</p>
+    <form class="alert-form" onsubmit="handleAlert(event)">
+      <input type="email" class="alert-input" placeholder="your@email.com" required id="alert-email">
+      <button type="submit" class="alert-btn">Set Alert</button>
+    </form>
+    <div class="alert-ok" id="alert-ok">Alerts activated for your watchlist tickers.</div>
+  </div>
+</div>
+
+<div class="footer">
+  &copy; 2026 Catalyst Edge &middot;
+  <a href="/">Scanner</a> &middot;
+  <a href="/alerts/">Alerts</a> &middot;
+  <a href="/options-flow/">Options Flow</a> &middot;
+  <a href="/cheat-sheet/">Cheat Sheet</a> &middot;
+  Not financial advice.
+</div>
+
+<script>
+var watchlist = JSON.parse(localStorage.getItem('ce_watchlist') || '[]');
+var tickerData = {};
+
+function save() { localStorage.setItem('ce_watchlist', JSON.stringify(watchlist)); }
+
+function render() {
+  var body = document.getElementById('wl-body');
+  var empty = document.getElementById('empty-msg');
+  var alertBar = document.getElementById('alert-bar');
+  body.textContent = '';
+
+  if (watchlist.length === 0) {
+    empty.style.display = 'block';
+    alertBar.style.display = 'none';
+    return;
+  }
+  empty.style.display = 'none';
+  alertBar.style.display = 'block';
+
+  watchlist.forEach(function(ticker) {
+    var d = tickerData[ticker] || {};
+    var tr = document.createElement('tr');
+
+    var tdTicker = document.createElement('td');
+    tdTicker.className = 'ticker-col';
+    tdTicker.textContent = ticker;
+    tr.appendChild(tdTicker);
+
+    var tdScore = document.createElement('td');
+    tdScore.className = 'score-col';
+    var score = d.catalyst_score || d.score || d.brightness || '';
+    if (score) {
+      var s = parseFloat(score);
+      tdScore.className += s >= 14 ? ' score-high' : s >= 8 ? ' score-mid' : ' score-low';
+      tdScore.textContent = s.toFixed(1);
+    } else {
+      tdScore.textContent = d._loading ? '...' : '—';
+      tdScore.className += ' loading-row';
+    }
+    tr.appendChild(tdScore);
+
+    var tdSector = document.createElement('td');
+    var sector = d.sector;
+    tdSector.textContent = sector ? (Array.isArray(sector) ? sector.join(', ') : sector) : '—';
+    tdSector.style.color = '#64748b';
+    tdSector.style.fontSize = '.82rem';
+    tr.appendChild(tdSector);
+
+    var tdPrice = document.createElement('td');
+    tdPrice.textContent = d.price ? '$' + parseFloat(d.price).toFixed(2) : '—';
+    tdPrice.style.color = '#94a3b8';
+    tr.appendChild(tdPrice);
+
+    var tdForm = document.createElement('td');
+    tdForm.textContent = d.form_type || d.form || '—';
+    tdForm.style.color = '#06b6d4';
+    tdForm.style.fontSize = '.82rem';
+    tr.appendChild(tdForm);
+
+    var tdRm = document.createElement('td');
+    var rmBtn = document.createElement('button');
+    rmBtn.className = 'rm-btn';
+    rmBtn.textContent = 'x';
+    rmBtn.setAttribute('data-ticker', ticker);
+    rmBtn.onclick = function() { removeTicker(this.getAttribute('data-ticker')); };
+    tdRm.appendChild(rmBtn);
+    tr.appendChild(tdRm);
+
+    body.appendChild(tr);
+  });
+}
+
+function fetchData(ticker) {
+  tickerData[ticker] = {_loading: true};
+  render();
+  fetch('/api/ticker/' + encodeURIComponent(ticker))
+    .then(function(r) { return r.json(); })
+    .then(function(d) { tickerData[ticker] = d; render(); })
+    .catch(function() { tickerData[ticker] = {}; render(); });
+}
+
+function addTicker(e) {
+  e.preventDefault();
+  var input = document.getElementById('add-input');
+  var ticker = input.value.trim().toUpperCase().replace(/[^A-Z0-9.-]/g, '');
+  if (!ticker || watchlist.indexOf(ticker) !== -1) { input.value = ''; return; }
+  watchlist.push(ticker);
+  save();
+  input.value = '';
+  fetchData(ticker);
+}
+
+function removeTicker(ticker) {
+  watchlist = watchlist.filter(function(t) { return t !== ticker; });
+  delete tickerData[ticker];
+  save();
+  render();
+}
+
+function refreshAll() {
+  watchlist.forEach(function(t) { fetchData(t); });
+}
+
+function clearAll() {
+  if (!confirm('Clear entire watchlist?')) return;
+  watchlist = [];
+  tickerData = {};
+  save();
+  render();
+}
+
+function exportCSV() {
+  if (watchlist.length === 0) return;
+  var rows = ['ticker,score,sector,price,form_type'];
+  watchlist.forEach(function(t) {
+    var d = tickerData[t] || {};
+    var score = d.catalyst_score || d.score || '';
+    var sector = d.sector ? (Array.isArray(d.sector) ? d.sector.join(';') : d.sector) : '';
+    var price = d.price || '';
+    var form = d.form_type || d.form || '';
+    rows.push([t, score, sector, price, form].join(','));
+  });
+  var blob = new Blob([rows.join('\n')], {type: 'text/csv'});
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url;
+  a.download = 'catalyst_watchlist.csv';
+  a.click();
+  URL.revokeObjectURL(url);
+  if (typeof gtag === 'function') {
+    gtag('event', 'watchlist_export', {event_category: 'engagement', event_label: watchlist.length + '_tickers'});
+  }
+}
+
+function handleAlert(e) {
+  e.preventDefault();
+  var email = document.getElementById('alert-email').value.trim();
+  if (!email) return;
+  watchlist.forEach(function(t) {
+    fetch('/api/subscribe', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({email: email, ticker: t, source: 'watchlist'})
+    });
+  });
+  document.getElementById('alert-ok').style.display = 'block';
+  document.querySelector('.alert-form').style.display = 'none';
+  if (typeof gtag === 'function') {
+    gtag('event', 'watchlist_alert_signup', {event_category: 'conversion', event_label: watchlist.length + '_tickers'});
+  }
+}
+
+// Init: load saved watchlist and fetch data
+render();
+if (watchlist.length > 0) refreshAll();
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KV1VDK22VC"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-KV1VDK22VC');</script>
+</body>
+</html>

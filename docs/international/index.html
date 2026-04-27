@@ -1,0 +1,1318 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>International Catalyst Scanner — Catalyst Edge</title>
+<meta name="description" content="Live overnight gap scanner across 38 international markets and 370+ blue chips. Sympathy chains, sector heatmap, cross-border ADR convergence. Free, refreshed every 2 hours.">
+<link rel="canonical" href="https://catalystedgescanner.com/international/">
+<link rel="alternate" hreflang="x-default" href="https://catalystedgescanner.com/international/">
+<link rel="alternate" hreflang="en" href="https://catalystedgescanner.com/international/">
+<meta property="og:title" content="International Catalyst Scanner — 38 markets, 370+ tickers">
+<meta property="og:description" content="What gapped overnight while New York slept? Sympathy chains, regional sector heatmap, cross-border ADR convergence. Free.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://catalystedgescanner.com/international/">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FinancialProduct",
+  "name": "Catalyst Edge International Scanner",
+  "description": "Free overnight gap and catalyst scanner across 38 international equity markets covering 99%+ of global liquid float.",
+  "provider": {"@type":"Organization","name":"Catalyst Edge","url":"https://catalystedgescanner.com/"},
+  "category": "International Equity Scanner",
+  "areaServed": ["BR","JP","GB","IN","CN","HK","TW","KR","DE","FR","CH","NL","ES","IT","SE","NO","DK","FI","BE","AT","IE","PT","GR","PL","CZ","TR","IL","ZA","TH","ID","MY","PH","AR","CL","MX","AU","CA","NZ","SG"]
+}
+</script>
+<style>
+:root {
+  --bg: #07090f; --surface: #11141d; --surface-2: #181c27;
+  --border: rgba(215,180,106,.18); --border-soft: rgba(255,255,255,.07);
+  --text: #f6efe2; --dim: #9ea8ba;
+  --gold: #d7b46a; --green: #7fe8b3; --yellow: #e6bd6b;
+  --orange: #ffbf69; --red: #ff8b86; --blue: #72e5ff;
+  --purple: #d59cff; --cyan: #22d3ee;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Space Grotesk', 'Segoe UI', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  background: var(--bg); color: var(--text); line-height: 1.55;
+}
+body::before {
+  content: ''; position: fixed; inset: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(114,229,255,.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(114,229,255,.03) 1px, transparent 1px);
+  background-size: 48px 48px; opacity: .28; z-index: 0;
+}
+a { color: var(--blue); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.nav {
+  position: sticky; top: 0; z-index: 100;
+  display: flex; flex-wrap: nowrap; gap: 0.45rem;
+  padding: 0.7rem 1rem; background: rgba(10,12,18,.86);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border-soft);
+  font-size: 0.82rem; overflow-x: auto;
+  white-space: nowrap; align-items: center;
+  scrollbar-width: thin;
+}
+.nav::-webkit-scrollbar { height: 4px; }
+.nav::-webkit-scrollbar-thumb { background: rgba(215,180,106,.25); border-radius: 4px; }
+.nav a { color: var(--dim); padding: 0.25rem 0.5rem; border-radius: 4px; flex-shrink: 0; }
+.nav a:hover { color: var(--text); background: var(--surface-2); text-decoration: none; }
+.nav .brand { color: var(--gold); font-weight: 700; }
+.hero {
+  max-width: 1180px; margin: 1.5rem auto 1rem; padding: 2.25rem 1.5rem 1rem;
+  position: relative; z-index: 1;
+}
+.hero-eyebrow {
+  display: inline-block;
+  font-family: 'IBM Plex Mono', monospace; font-size: .75rem;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: var(--gold); padding: .35rem .8rem;
+  border: 1px solid rgba(215,180,106,.35); border-radius: 999px;
+  background: rgba(215,180,106,.06); margin-bottom: 1rem;
+}
+.hero h1 {
+  font-size: clamp(1.85rem, 3.8vw, 3rem); font-weight: 800;
+  letter-spacing: -.02em; line-height: 1.1; margin-bottom: 0.5rem;
+  background: linear-gradient(90deg, var(--gold), var(--blue));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero p.lede {
+  color: var(--dim); max-width: 50rem;
+  font-size: clamp(.98rem, 1.4vw, 1.12rem);
+}
+.hero-stats {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: .75rem; margin-top: 1.5rem;
+}
+.hero-stat {
+  background: var(--surface); border: 1px solid var(--border-soft);
+  border-radius: 8px; padding: .9rem 1rem;
+}
+.hero-stat .v {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 1.6rem; color: var(--blue); font-weight: 700;
+}
+.hero-stat .k { color: var(--dim); font-size: .78rem; margin-top: .15rem; }
+.suite-row {
+  max-width: 1180px; margin: 1rem auto; padding: 0 1.5rem;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: .65rem; position: relative; z-index: 1;
+}
+.suite-card {
+  background: var(--surface); border: 1px solid var(--border-soft);
+  border-radius: 8px; padding: .9rem 1rem; cursor: pointer;
+  transition: transform .12s ease, border-color .12s ease;
+  display: flex; flex-direction: column; gap: .25rem;
+}
+.suite-card:hover { transform: translateY(-2px); border-color: var(--gold); }
+.suite-card .icon { font-size: 1.4rem; }
+.suite-card .title { font-weight: 600; font-size: .98rem; }
+.suite-card .sub { color: var(--dim); font-size: .8rem; }
+.suite-card .arrow { color: var(--gold); margin-top: .25rem; font-size: .85rem; }
+section.panel {
+  max-width: 1180px; margin: 1.25rem auto; padding: 0 1.5rem;
+  position: relative; z-index: 1;
+}
+section.panel h2 {
+  display: flex; align-items: center; gap: .5rem;
+  font-size: 1.25rem; margin-bottom: .85rem;
+}
+section.panel h2 .badge {
+  background: rgba(215,180,106,.12); border: 1px solid rgba(215,180,106,.3);
+  color: var(--gold); font-size: .7rem; padding: .15rem .5rem;
+  border-radius: 999px; font-weight: 600; letter-spacing: .04em;
+  text-transform: uppercase; font-family: 'IBM Plex Mono', monospace;
+}
+section.panel .sub {
+  color: var(--dim); font-size: .9rem; margin-bottom: .85rem;
+}
+.market-filter-bar {
+  background: var(--surface); border: 1px solid var(--border-soft);
+  border-radius: 10px; padding: .8rem 1rem;
+}
+table.tbl {
+  width: 100%; border-collapse: collapse; background: var(--surface);
+  border: 1px solid var(--border-soft); border-radius: 10px;
+  overflow: hidden; font-size: .88rem;
+}
+table.tbl th, table.tbl td {
+  padding: .55rem .75rem; text-align: left;
+  border-bottom: 1px solid var(--border-soft);
+}
+table.tbl th {
+  background: var(--surface-2); color: var(--dim);
+  font-weight: 600; font-size: .72rem;
+  text-transform: uppercase; letter-spacing: .05em;
+}
+table.tbl tr:last-child td { border-bottom: none; }
+table.tbl tr.locked td { opacity: .25; filter: blur(2.5px); pointer-events: none; }
+.gap-pos { color: var(--green); font-weight: 600; }
+.gap-neg { color: var(--red); font-weight: 600; }
+.regime-explosive { color: var(--red); font-weight: 700; }
+.regime-tradable { color: var(--orange); font-weight: 600; }
+.regime-alert { color: var(--gold); }
+.regime-drift, .regime-quiet { color: var(--dim); }
+.chain-list { display: flex; flex-direction: column; gap: .6rem; }
+.chain {
+  background: var(--surface); border: 1px solid var(--border-soft);
+  border-radius: 10px; padding: .85rem 1rem;
+  display: grid; grid-template-columns: auto 1fr auto; gap: .9rem;
+  align-items: center;
+}
+.chain.up { border-left: 3px solid var(--green); }
+.chain.down { border-left: 3px solid var(--red); }
+.chain .country { font-size: 1.1rem; font-weight: 600; }
+.chain .meta { color: var(--dim); font-size: .8rem; }
+.chain .tickers { display: flex; flex-wrap: wrap; gap: .35rem; }
+.chain .tk {
+  background: var(--surface-2); border: 1px solid var(--border-soft);
+  padding: .15rem .5rem; border-radius: 999px;
+  font-family: 'IBM Plex Mono', monospace; font-size: .78rem;
+}
+.chain .stat { font-weight: 700; font-family: 'IBM Plex Mono', monospace; }
+.heatmap-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: .5rem;
+}
+.heat-cell {
+  background: var(--surface); border: 1px solid var(--border-soft);
+  border-radius: 8px; padding: .7rem .85rem;
+  position: relative; overflow: hidden;
+}
+.heat-cell::before {
+  content: ''; position: absolute; inset: 0;
+  background: var(--heat-color, transparent); opacity: .15;
+  pointer-events: none;
+}
+.heat-cell .region {
+  font-family: 'IBM Plex Mono', monospace; font-size: .7rem;
+  color: var(--dim); text-transform: uppercase; letter-spacing: .08em;
+}
+.heat-cell .sector { font-weight: 600; font-size: .92rem; margin-top: .1rem; }
+.heat-cell .gap-val {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 1.05rem; font-weight: 700; margin-top: .25rem;
+}
+.heat-cell .count { color: var(--dim); font-size: .75rem; }
+
+/* ===== Edge Insights Panel (asymmetric signals retail can't see) ===== */
+.edge-panel {
+  background: linear-gradient(135deg, rgba(215,180,106,.04) 0%, rgba(213,156,255,.04) 100%);
+  border: 1px solid var(--gold); border-radius: 14px;
+  padding: 1.5rem 1.5rem 1.25rem;
+  position: relative; overflow: hidden;
+}
+.edge-panel::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(circle at 0% 0%, rgba(215,180,106,.12) 0%, transparent 50%);
+  pointer-events: none;
+}
+.edge-eyebrow {
+  display: inline-block; font-family: 'IBM Plex Mono', monospace;
+  font-size: .7rem; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--gold);
+  padding: .25rem .65rem;
+  border: 1px solid rgba(215,180,106,.4); border-radius: 999px;
+  margin-bottom: .85rem;
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(215,180,106,0); }
+  50% { box-shadow: 0 0 18px 0 rgba(215,180,106,.35); }
+}
+.edge-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: .75rem; margin-top: 1rem;
+}
+.edge-card {
+  background: var(--surface); border: 1px solid var(--border-soft);
+  border-radius: 10px; padding: .85rem 1rem;
+  position: relative; transition: transform .15s ease, border-color .15s ease;
+}
+.edge-card:hover { transform: translateY(-2px); border-color: var(--gold); }
+.edge-card .label {
+  font-family: 'IBM Plex Mono', monospace; font-size: .68rem;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: .35rem;
+}
+.edge-card .ticker {
+  font-family: 'IBM Plex Mono', monospace; font-weight: 700;
+  font-size: 1.02rem; color: var(--blue); margin-right: .35rem;
+}
+.edge-card .name { color: var(--dim); font-size: .82rem; }
+.edge-card .scanners {
+  display: flex; flex-wrap: wrap; gap: .25rem; margin-top: .5rem;
+}
+.edge-card .sc-pill {
+  background: var(--surface-2); border: 1px solid var(--border-soft);
+  padding: .15rem .5rem; border-radius: 999px;
+  font-size: .68rem; font-family: 'IBM Plex Mono', monospace;
+  color: var(--text);
+}
+.edge-card .sc-pill.gap { color: var(--green); border-color: rgba(127,232,179,.4); }
+.edge-card .sc-pill.dcf_a { color: var(--gold); border-color: rgba(215,180,106,.5); font-weight: 700; }
+.edge-card .sc-pill.dcf_b { color: var(--cyan); border-color: rgba(34,211,238,.4); }
+.edge-card .sc-pill.crossborder { color: var(--purple); border-color: rgba(213,156,255,.4); }
+.edge-card .meta { color: var(--dim); font-size: .78rem; margin-top: .35rem; }
+.edge-card .meta strong { color: var(--text); }
+.rotation {
+  background: var(--surface); border: 1px solid var(--border-soft);
+  border-radius: 10px; padding: .8rem 1rem; margin-bottom: .55rem;
+  border-left: 3px solid var(--gold);
+}
+.rotation.up { border-left-color: var(--green); }
+.rotation.down { border-left-color: var(--red); }
+.rotation .head { display: flex; gap: .5rem; align-items: center; }
+.rotation .sec { font-weight: 600; }
+.rotation .dir {
+  font-size: .7rem; padding: .15rem .5rem; border-radius: 999px;
+  font-family: 'IBM Plex Mono', monospace; text-transform: uppercase;
+  letter-spacing: .05em;
+}
+.rotation .dir.up { background: rgba(127,232,179,.12); color: var(--green); border: 1px solid var(--green); }
+.rotation .dir.down { background: rgba(255,139,134,.12); color: var(--red); border: 1px solid var(--red); }
+.rotation .meta { color: var(--dim); font-size: .8rem; margin-top: .25rem; }
+.rotation .names { display: flex; flex-wrap: wrap; gap: .3rem; margin-top: .45rem; }
+.rotation .nm {
+  background: var(--surface-2); border: 1px solid var(--border-soft);
+  padding: .12rem .45rem; border-radius: 999px;
+  font-family: 'IBM Plex Mono', monospace; font-size: .72rem;
+}
+.cross-asset-bar {
+  background: var(--surface); border: 1px solid var(--border-soft);
+  border-radius: 10px; padding: .9rem 1.1rem; margin-top: .85rem;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: .85rem; align-items: center;
+}
+.cross-asset-bar .ca-cell { display: flex; flex-direction: column; }
+.cross-asset-bar .ca-cell .ca-k { color: var(--dim); font-size: .7rem;
+  text-transform: uppercase; letter-spacing: .08em;
+  font-family: 'IBM Plex Mono', monospace; }
+.cross-asset-bar .ca-cell .ca-v { font-size: 1.05rem; font-weight: 700;
+  font-family: 'IBM Plex Mono', monospace; color: var(--blue); margin-top: .2rem; }
+.divergence-on { color: var(--gold); font-weight: 700; }
+.divergence-off { color: var(--dim); }
+
+/* ===== Filterable / sortable table headers ===== */
+table.tbl th.sortable {
+  cursor: pointer; user-select: none; position: relative;
+  padding-right: 1.4rem;
+}
+table.tbl th.sortable::after {
+  content: '⇅'; position: absolute; right: .5rem;
+  color: var(--dim); font-size: .7rem;
+}
+table.tbl th.sortable:hover { color: var(--text); }
+table.tbl th.sortable.sort-asc::after { content: '▲'; color: var(--gold); }
+table.tbl th.sortable.sort-desc::after { content: '▼'; color: var(--gold); }
+.country-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: .55rem;
+}
+.country-tile {
+  background: var(--surface); border: 1px solid var(--border-soft);
+  border-radius: 8px; padding: .7rem .9rem;
+}
+.country-tile .row1 {
+  display: flex; align-items: center; gap: .4rem; margin-bottom: .15rem;
+}
+.country-tile .flag { font-size: 1.2rem; }
+.country-tile .name { font-weight: 600; font-size: .92rem; }
+.country-tile .meta {
+  display: flex; gap: .9rem; font-size: .76rem; color: var(--dim);
+  margin-top: .35rem; flex-wrap: wrap;
+}
+.country-tile .meta strong { color: var(--text); }
+.cb-card {
+  background: var(--surface); border: 1px solid var(--border-soft);
+  border-radius: 10px; padding: .85rem 1rem; margin-bottom: .55rem;
+  display: grid; grid-template-columns: auto 1fr 1fr auto; gap: .9rem;
+  align-items: center;
+}
+.cb-card.STRONG { border-color: var(--green); box-shadow: 0 0 0 1px rgba(127,232,179,.18); }
+.cb-card.TRADE { border-color: var(--gold); }
+.cb-conv {
+  font-size: .68rem; font-weight: 700; padding: .25rem .55rem;
+  border-radius: 999px; text-transform: uppercase; letter-spacing: .05em;
+  font-family: 'IBM Plex Mono', monospace;
+}
+.conv-STRONG { background: rgba(127,232,179,.15); color: var(--green); border: 1px solid var(--green); }
+.conv-TRADE { background: rgba(215,180,106,.15); color: var(--gold); border: 1px solid var(--gold); }
+.cb-side {
+  background: var(--surface-2); border-radius: 6px; padding: .45rem .7rem;
+  display: flex; flex-direction: column; gap: .15rem;
+}
+.cb-side .ticker {
+  font-family: 'IBM Plex Mono', monospace; font-weight: 700;
+  font-size: .9rem; color: var(--blue);
+}
+.cb-side .gap { font-weight: 600; font-size: .9rem; }
+.paywall {
+  background: linear-gradient(135deg, rgba(215,180,106,.08), rgba(213,156,255,.08));
+  border: 1px solid var(--gold); border-radius: 12px;
+  padding: 1.3rem 1.5rem; margin-top: 1rem;
+}
+.paywall h3 {
+  color: var(--gold); margin-bottom: .35rem;
+  display: flex; align-items: center; gap: .5rem;
+}
+.paywall p { color: var(--dim); margin-bottom: .85rem; }
+.paywall .tier-row {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: .8rem; margin-top: 1rem;
+}
+.tier-card {
+  background: var(--surface); border: 1px solid var(--border-soft);
+  border-radius: 8px; padding: .9rem 1rem;
+}
+.tier-card.featured { border-color: var(--gold); }
+.tier-card .price {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 1.5rem; font-weight: 700; color: var(--gold);
+}
+.tier-card .price small { color: var(--dim); font-size: .8rem; font-weight: 400; }
+.tier-card .tier-name { font-weight: 600; font-size: 1.05rem; margin-bottom: .2rem; }
+.tier-card ul { list-style: none; margin: .7rem 0 1rem; font-size: .87rem; color: var(--dim); }
+.tier-card ul li { padding: .15rem 0; }
+.tier-card ul li::before { content: '✓ '; color: var(--green); }
+.tier-card .cta {
+  display: block; text-align: center;
+  background: var(--gold); color: var(--bg);
+  padding: .6rem 1rem; border-radius: 6px;
+  font-weight: 700; text-decoration: none;
+}
+.tier-card .cta.outline {
+  background: transparent; color: var(--text); border: 1px solid var(--border-soft);
+}
+footer {
+  max-width: 1180px; margin: 2.5rem auto 1.5rem;
+  padding: 1.5rem; text-align: center; color: var(--dim); font-size: .85rem;
+  border-top: 1px solid var(--border-soft); position: relative; z-index: 1;
+}
+footer a { color: var(--blue); }
+</style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@800;900&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/lib/cinematic-hero.css">
+  <link rel="stylesheet" href="/lib/cyber-shell.css">
+  <link rel="stylesheet" href="/lib/polish-tokens.css">
+</head>
+<body>
+  <div class="cy-bg" aria-hidden="true"></div>
+  <div class="cy-floor" aria-hidden="true"></div>
+  <div class="cy-vignette" aria-hidden="true"></div>
+  <div class="cy-scan" aria-hidden="true"></div>
+
+<nav class="nav">
+  <a class="brand" href="/">⚡ Catalyst Edge</a>
+  <a href="/jackpot/" style="color:#7fe8b3;font-weight:700">🎯 JACKPOT</a>
+  <a href="/dcf/" style="color:#22d3ee;font-weight:700">💰 DCF (US)</a>
+  <a href="/dcf/international/" style="color:#22d3ee;font-weight:700">🌍 DCF (Intl)</a>
+  <a href="/numerai/" style="color:#d59cff;font-weight:700">🤖 Numerai</a>
+  <a href="/cross-border/" style="color:#d7b46a;font-weight:700">🔗 Cross-Border</a>
+  <a href="/international/" style="color:#22d3ee;font-weight:700">🌍 International</a>
+  <a href="/defi/" style="color:#ffbf69;font-weight:700">⛓ DeFi</a>
+  <a href="/scanner/">US Scanner</a>
+  <a href="/scanner/#gaps">Gap Plays</a>
+  <a href="/squeeze/">Squeeze</a>
+  <a href="/scanner/#insider">Insider Buys</a>
+  <a href="/congress/">Congress</a>
+  <a href="/sectors/">Sectors</a>
+  <a href="/news/">News</a>
+  <a href="/predict/">Predict ▸</a>
+  <a href="/pricing/" style="color:var(--gold);font-weight:600">Premium</a>
+  <a href="javascript:void(0)" onclick="(function(){var p=document.getElementById('sub-popup');if(p){p.style.display='flex';}})()" style="color:var(--green);font-weight:600">Subscribe Free</a>
+</nav>
+
+<!-- Subscribe popup -->
+<div id="sub-popup" style="display:none;position:fixed;inset:0;background:rgba(7,9,15,.85);z-index:9999;align-items:center;justify-content:center;padding:1rem">
+  <div style="background:var(--surface);border:1px solid var(--gold);border-radius:12px;padding:1.5rem 1.75rem;max-width:24rem;width:100%;position:relative">
+    <button onclick="document.getElementById('sub-popup').style.display='none'" style="position:absolute;top:.5rem;right:.75rem;background:transparent;border:none;color:var(--dim);font-size:1.25rem;cursor:pointer">✕</button>
+    <h3 style="color:var(--gold);margin-bottom:.4rem">📬 Free pre-market picks</h3>
+    <p style="color:var(--dim);font-size:.9rem;margin-bottom:1rem">Top SEC catalyst picks delivered before 4 AM ET. Free, forever.</p>
+    <form action="/api/subscribe" method="post" style="display:flex;flex-direction:column;gap:.6rem">
+      <input type="email" name="email" placeholder="your@email.com" required style="padding:.6rem .8rem;background:var(--bg);border:1px solid var(--border-soft);border-radius:6px;color:var(--text);font-size:.95rem">
+      <button type="submit" style="padding:.65rem 1rem;background:var(--gold);color:var(--bg);border:none;border-radius:6px;font-weight:700;cursor:pointer">Subscribe Free →</button>
+    </form>
+    <p style="color:var(--dim);font-size:.78rem;margin-top:.7rem">No credit card. Unsubscribe anytime. Want full dataset? <a href="/pricing/" style="color:var(--gold)">Upgrade $9/mo →</a></p>
+  </div>
+</div>
+
+<section class="cin-hero cy-neon-hero cy-shimmer">
+    <div class="cin-grid">
+      <div class="cin-stat-stack">
+        <div class="cin-eyebrow"><span class="cin-live-dot"></span>38 MARKETS · 372 TICKERS · LIVE</div>
+        <div class="cin-colossal">
+          <div class="cin-num-row"><span class="cin-num">43</span></div><div class="cin-side">
+          <span class="cin-tag"><b>countries</b> · 6 continents</span>
+          <span class="cin-tag"><b>372</b> tickers tracked</span>
+          <span class="cin-tag">cross-border ADR convergence</span>
+          </div>
+        </div>
+        <div class="cin-stamp">INTL//SCANNER · v1.5 · <b>LIVE</b></div>
+      </div>
+      <div class="cin-h1-block">
+        <div class="cin-h1-eyebrow">🌐 International Scanner · 38 Markets · Live</div>
+        <h1 class="cin-headline">
+ The international scanner Bloomberg charges <em>$24,000</em> for—every overnight gap, every <span class="cin-accent">cross-border convergence</span>.
+ </h1>
+        <p class="cin-lede">Sector heatmaps across Americas / EMEA / APAC. Sympathy chains in the same country and sector. ADR ↔ home-listing 4-point convergence scores. Free for the first 5 picks per panel — Reader $9 unlocks the full feed.</p>
+        <div class="cin-cta-row">
+          <a href="#global-tape" class="cin-btn-primary">See live tape ↓</a>
+          <a href="/pricing/" class="cin-btn-ghost">Unlock full feed</a>
+        </div>
+        <div class="cin-strip">
+          <div class="cin-cell"><div class="cin-k">Tickers</div><div class="cin-v" id="hs-tickers">–</div></div>
+          <div class="cin-cell"><div class="cin-k">Countries</div><div class="cin-v cyan" id="hs-countries">–</div></div>
+          <div class="cin-cell"><div class="cin-k">Explosive moves</div><div class="cin-v bull" id="hs-explosive">–</div></div>
+          <div class="cin-cell"><div class="cin-k">Cross-border</div><div class="cin-v gold" id="hs-cb">–</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- ═══════════════════════════ GLOBAL CATALYST TAPE ═══════════════════════════ -->
+<section class="panel" id="global-tape">
+  <h2>🌐 Global Catalyst Tape <span class="badge" id="badge-tape">live</span></h2>
+  <p class="sub">Every catalyst headline from <strong>12 country feeds</strong> merged into one chronological wall — 1,500+ headlines/day from ASX, RNS UK, HKEX, TDnet, CVM, KIND, BaFin, NSE, BMV, JSE/Africa, SGX, TWSE. Filter by country or catalyst kind; click any row to read the source.</p>
+  <div id="tape-filters" style="display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:.85rem;align-items:center"></div>
+  <div id="tape-list" style="display:flex;flex-direction:column;gap:.4rem"></div>
+  <div style="margin-top:.85rem;text-align:center">
+    <button id="tape-load-more" type="button" style="background:var(--surface);border:1px solid var(--border-soft);color:var(--text);padding:.5rem 1.2rem;border-radius:6px;cursor:pointer;font-size:.85rem">Load more (50 of <span id="tape-total">0</span>)</button>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ CROSS-ASSET MACRO ═══════════════════════════ -->
+<section class="panel" id="xasset-macro">
+  <h2>📊 Cross-Asset Macro Tape <span class="badge" id="badge-xasset">live</span></h2>
+  <p class="sub">Yield curve, USD strength, oil/gold, VIX — the macro context that determines which sectors and regions get the bid each day. <strong style="color:var(--gold)">Trade readthrough included on every signal.</strong></p>
+  <div id="xasset-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:.7rem"></div>
+</section>
+
+<!-- ═══════════════════════════ AI EDGE INSIGHTS ═══════════════════════════ -->
+<section class="panel" id="edge-insights">
+  <h2>🧠 Asymmetric Edge Insights <span class="badge" id="badge-edge">live</span></h2>
+  <p class="sub">Signals retail can't easily see — names firing simultaneously across multiple scanners, sector rotation events, volume divergences, cross-asset cascades. <strong style="color:var(--gold)">This is where the alpha lives.</strong></p>
+  <div class="edge-panel">
+    <span class="edge-eyebrow">⚡ Multi-Scanner Convergence — 2+ scanners agree</span>
+    <div class="edge-grid" id="edge-multi"></div>
+
+    <div style="margin-top:1.5rem">
+      <span class="edge-eyebrow">🔄 Sector Rotation Events</span>
+      <div id="edge-rotations" style="margin-top:.65rem"></div>
+    </div>
+
+    <div style="margin-top:1.5rem">
+      <span class="edge-eyebrow">📊 Cross-Asset Tape</span>
+      <div class="cross-asset-bar" id="edge-crossasset"></div>
+    </div>
+  </div>
+</section>
+
+<div class="suite-row">
+  <a href="#top-up" class="suite-card"><span class="icon">📈</span><span class="title">Top Gainers</span><span class="sub">Overnight gap up — global</span><span class="arrow">›</span></a>
+  <a href="#top-down" class="suite-card"><span class="icon">📉</span><span class="title">Top Losers</span><span class="sub">Overnight gap down — global</span><span class="arrow">›</span></a>
+  <a href="#sympathy" class="suite-card"><span class="icon">🔗</span><span class="title">Sympathy Chains</span><span class="sub">Same country + sector + direction</span><span class="arrow">›</span></a>
+  <a href="#heatmap" class="suite-card"><span class="icon">🌡️</span><span class="title">Regional Heatmap</span><span class="sub">Sector × region average gap</span><span class="arrow">›</span></a>
+  <a href="#crossborder" class="suite-card"><span class="icon">🔁</span><span class="title">Cross-Border</span><span class="sub">ADR ↔ home-listing convergence</span><span class="arrow">›</span></a>
+  <a href="#countries" class="suite-card"><span class="icon">🌍</span><span class="title">Country Leaders</span><span class="sub">Where the action is today</span><span class="arrow">›</span></a>
+</div>
+
+<section class="panel" id="market-filter-section">
+  <div class="market-filter-bar" id="market-filter"></div>
+</section>
+
+<section class="panel" id="top-up">
+  <h2>📈 Top Overnight Gainers <span class="badge" id="badge-up">—</span></h2>
+  <p class="sub">Largest overnight gaps up across all markets. Free tier shows top 5 — Reader unlocks all.</p>
+  <table class="tbl">
+    <thead><tr><th>#</th><th>Ticker</th><th>Market</th><th>Name</th><th>Sector</th><th>Close</th><th>Gap %</th><th>Vol vs 20d</th><th>Regime</th></tr></thead>
+    <tbody id="top-up-body"></tbody>
+  </table>
+</section>
+
+<section class="panel" id="top-down">
+  <h2>📉 Top Overnight Losers <span class="badge" id="badge-down">—</span></h2>
+  <p class="sub">Largest overnight gaps down — failed earnings, sector rotation, macro hits. Free tier shows top 5.</p>
+  <table class="tbl">
+    <thead><tr><th>#</th><th>Ticker</th><th>Market</th><th>Name</th><th>Sector</th><th>Close</th><th>Gap %</th><th>Vol vs 20d</th><th>Regime</th></tr></thead>
+    <tbody id="top-down-body"></tbody>
+  </table>
+</section>
+
+<section class="panel" id="sympathy">
+  <h2>🔗 Sympathy Chains <span class="badge" id="badge-sym">—</span></h2>
+  <p class="sub">When 2+ names in the same country and sector move ≥1.5% the same direction the same day, that's a sympathy chain — usually a sector-wide catalyst.</p>
+  <div class="chain-list" id="sympathy-list"></div>
+</section>
+
+<!-- ═══════════════════════════ GLOBAL HEATMAP (continent drill-down) ═════════ -->
+<section class="panel" id="global-heatmap">
+  <h2>🌐 Global Heatmap <span class="badge" id="badge-gh">live</span></h2>
+  <p class="sub">Continent → country → sector → ticker drill-down. Click any tile to expand. Liquid-fill rises proportional to absolute average gap.</p>
+  <div id="gh-continents" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:.55rem"></div>
+  <div id="gh-countries" style="display:none;margin-top:1rem"></div>
+  <div id="gh-sectors" style="display:none;margin-top:1rem"></div>
+</section>
+
+<section class="panel" id="heatmap">
+  <h2>🌡️ Regional Sector Heatmap <span class="badge" id="badge-heat">—</span></h2>
+  <p class="sub">Average gap percent per sector × region. Green = sector buying, red = sector selling.</p>
+  <div class="heatmap-grid" id="heatmap-grid"></div>
+</section>
+
+<section class="panel" id="crossborder">
+  <h2>🔁 Cross-Border Convergence <span class="badge" id="badge-cb">—</span></h2>
+  <p class="sub">When the same entity gaps on both its home exchange AND its US-listed ADR with elevated volume — the strongest single-day catalyst signal in equities.</p>
+  <div id="cb-list"></div>
+  <div style="margin-top:.85rem"><a href="/cross-border/" style="color:var(--gold)">→ See all 49 pairs analyzed</a></div>
+</section>
+
+<section class="panel" id="countries">
+  <h2>🌍 Country Leaderboard <span class="badge" id="badge-country">—</span></h2>
+  <p class="sub">Which markets are moving today, ranked by explosive count and average gap magnitude.</p>
+  <div class="country-grid" id="country-grid"></div>
+</section>
+
+<section class="panel">
+  <div class="paywall">
+    <h3>🚀 Unlock the full international feed</h3>
+    <p>Free tier shows top 5 per panel. Edge Reader unlocks every gap, every chain, every country. Edge Pro adds the cross-border DCF intrinsic-value layer + Telegram alerts when a JACKPOT setup fires globally.</p>
+    <div class="tier-row">
+      <div class="tier-card">
+        <div class="tier-name">🆓 Free</div>
+        <div class="price">$0<small>/mo</small></div>
+        <ul>
+          <li>Top 5 gainers / losers</li>
+          <li>3 sympathy chains</li>
+          <li>Regional heatmap</li>
+          <li>4 AM ET email</li>
+        </ul>
+        <a class="cta outline" href="/">You're here</a>
+      </div>
+      <div class="tier-card featured">
+        <div class="tier-name">📡 Edge Reader</div>
+        <div class="price">$9<small>/mo</small></div>
+        <ul>
+          <li>All 372 international tickers</li>
+          <li>Full sympathy chain feed</li>
+          <li>Cross-border convergence</li>
+          <li>JACKPOT global setups</li>
+          <li>Premium morning newsletter</li>
+        </ul>
+        <a class="cta" href="/pricing/">Unlock Reader</a>
+      </div>
+      <div class="tier-card">
+        <div class="tier-name">⚡ Edge Pro</div>
+        <div class="price">$39<small>/mo</small></div>
+        <ul>
+          <li>Everything in Reader</li>
+          <li>International DCF intrinsic value</li>
+          <li>Cerebro 3D HUD access</li>
+          <li>Telegram + Discord alerts</li>
+          <li>API / CSV access</li>
+        </ul>
+        <a class="cta" href="/pricing/">Go Pro</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Live data: Yahoo Finance chart API · DefiLlama public API · DCF math via two-stage Damodaran model. Refreshed every ~2 hours during market hours.</p>
+  <p><a href="/">← back to scanner</a> · <a href="/methodology/">methodology</a> · <a href="/cross-border/">cross-border</a> · <a href="/PLAN_INTL.md">i18n plan doc</a></p>
+</footer>
+
+<link rel="stylesheet" href="/lib/scanner-polish.css">
+<script src="/lib/tier.js"></script>
+<script src="/lib/intl.js"></script>
+<script src="/lib/market_filter.js"></script>
+<script src="/lib/digit-reel.js"></script>
+<script>
+(function(){
+  if (window.CatalystIntl && CatalystIntl.setupLanguageBanner) CatalystIntl.setupLanguageBanner();
+
+  var STATE = { tier: (window.CatalystTier && CatalystTier.get()) || 'free',
+                data: null, marketFilter: null };
+  var FREE_LIMIT = 5;
+  var FREE_SYMPATHY = 3;
+
+  var FLAGS = {USA:'🇺🇸',BRA:'🇧🇷',JPN:'🇯🇵',GBR:'🇬🇧',IND:'🇮🇳',MEX:'🇲🇽',KOR:'🇰🇷',HKG:'🇭🇰',CHN:'🇨🇳',TWN:'🇹🇼',
+               DEU:'🇩🇪',FRA:'🇫🇷',CHE:'🇨🇭',NLD:'🇳🇱',ESP:'🇪🇸',ITA:'🇮🇹',SWE:'🇸🇪',NOR:'🇳🇴',DNK:'🇩🇰',FIN:'🇫🇮',
+               BEL:'🇧🇪',AUT:'🇦🇹',IRL:'🇮🇪',PRT:'🇵🇹',GRC:'🇬🇷',POL:'🇵🇱',CZE:'🇨🇿',TUR:'🇹🇷',ISR:'🇮🇱',ZAF:'🇿🇦',
+               SGP:'🇸🇬',THA:'🇹🇭',IDN:'🇮🇩',MYS:'🇲🇾',PHL:'🇵🇭',ARG:'🇦🇷',CHL:'🇨🇱',AUS:'🇦🇺',CAN:'🇨🇦',NZL:'🇳🇿'};
+  function flagFor(iso) { return FLAGS[iso] || ''; }
+  function fmtPct(n){ var v = parseFloat(n) || 0; return (v >= 0 ? '+' : '') + v.toFixed(2) + '%'; }
+  function fmtClose(n, ccy){
+    if (window.CatalystIntl && CatalystIntl.formatCurrency)
+      return CatalystIntl.formatCurrency(n, ccy || 'USD');
+    return '$' + (parseFloat(n) || 0).toFixed(2);
+  }
+  function clearChildren(el){ while (el.firstChild) el.removeChild(el.firstChild); }
+  function tdText(t, cls){
+    var td = document.createElement('td');
+    td.textContent = t == null ? '—' : t;
+    if (cls) td.className = cls;
+    return td;
+  }
+
+  function renderTable(bodyId, rows, badgeId) {
+    var body = document.getElementById(bodyId);
+    var badge = document.getElementById(badgeId);
+    clearChildren(body);
+    var sel = STATE.marketFilter ? STATE.marketFilter.getSelected() : null;
+    var filtered = rows;
+    if (sel && sel.length) filtered = rows.filter(function(r){ return sel.indexOf(r.country_iso) !== -1; });
+    badge.textContent = filtered.length + ' names';
+    var visible = STATE.tier === 'free' ? FREE_LIMIT : filtered.length;
+    filtered.forEach(function (r, i) {
+      var tr = document.createElement('tr');
+      var isLocked = i >= visible;
+      if (isLocked) {
+        tr.className = 'locked';
+        tr.style.position = 'relative';
+      }
+      var rank = document.createElement('td');
+      rank.textContent = String(i + 1).padStart(2, '0');
+      tr.appendChild(rank);
+      var tk = document.createElement('td');
+      tk.style.fontFamily = "'IBM Plex Mono', monospace";
+      tk.style.color = 'var(--blue)';
+      tk.textContent = r.ticker;
+      tr.appendChild(tk);
+      tr.appendChild(tdText((flagFor(r.country_iso) || '') + ' ' + (r.country_iso || '')));
+      tr.appendChild(tdText(r.name));
+      tr.appendChild(tdText(r.sector || '—'));
+      tr.appendChild(tdText(fmtClose(r.close, r.currency)));
+      var pct = parseFloat(r.gap_pct) || 0;
+      // Animated digit-reel for gap %
+      var gapTd = document.createElement('td');
+      gapTd.className = pct >= 0 ? 'gap-pos' : 'gap-neg';
+      var reelHost = document.createElement('span');
+      gapTd.appendChild(reelHost);
+      tr.appendChild(gapTd);
+      if (window.CatalystReels) {
+        CatalystReels.render(reelHost, pct, { decimals: 2, suffix: '%', signed: true });
+      } else {
+        reelHost.textContent = (pct >= 0 ? '+' : '') + pct.toFixed(2) + '%';
+      }
+      tr.appendChild(tdText((parseFloat(r.vol_ratio) || 0).toFixed(2) + 'x'));
+      tr.appendChild(tdText(r.regime, 'regime-' + r.regime));
+      body.appendChild(tr);
+    });
+    // Add a single overlay across the locked block (covers all blurred rows
+    // at once so the user sees one clear "Unlock" call-to-action).
+    if (visible < filtered.length && window.CatalystTier) {
+      var firstLocked = body.children[visible];
+      if (firstLocked) {
+        var hostTable = body.parentNode;
+        if (hostTable) {
+          hostTable.style.position = 'relative';
+          // Remove any previous overlays in this table
+          var prev = hostTable.querySelector('.tier-unlock-overlay');
+          if (prev) prev.remove();
+          // Build overlay anchored to bottom block of the table
+          var rect = firstLocked.getBoundingClientRect();
+          var hostRect = hostTable.getBoundingClientRect();
+          var overlayHost = document.createElement('div');
+          overlayHost.style.cssText =
+            'position:absolute;left:0;right:0;'
+            + 'top:' + (firstLocked.offsetTop) + 'px;bottom:0;'
+            + 'pointer-events:none;border-radius:0 0 10px 10px;overflow:hidden';
+          hostTable.appendChild(overlayHost);
+          CatalystTier.attachUnlockOverlay(overlayHost, { minTier: 'reader' });
+        }
+      }
+    }
+  }
+
+  function renderSympathy(chains) {
+    var el = document.getElementById('sympathy-list');
+    var badge = document.getElementById('badge-sym');
+    clearChildren(el);
+    var sel = STATE.marketFilter ? STATE.marketFilter.getSelected() : null;
+    var filtered = chains;
+    if (sel && sel.length) filtered = chains.filter(function(c){ return sel.indexOf(c.country_iso) !== -1; });
+    badge.textContent = filtered.length + ' chains';
+    var visible = STATE.tier === 'free' ? FREE_SYMPATHY : filtered.length;
+    filtered.forEach(function (c, i) {
+      var div = document.createElement('div');
+      div.className = 'chain ' + c.direction;
+      if (i >= visible) {
+        div.style.opacity = '.25'; div.style.filter = 'blur(2.5px)'; div.style.pointerEvents = 'none';
+      }
+      var head = document.createElement('div');
+      head.className = 'country';
+      head.textContent = (flagFor(c.country_iso) || '') + ' ' + (c.country_full || c.country_iso);
+      var body = document.createElement('div');
+      var meta = document.createElement('div');
+      meta.className = 'meta';
+      meta.textContent = c.sector + ' · ' + c.count + ' names ' + c.direction
+        + ' (avg ' + (c.avg_gap_pct >= 0 ? '+' : '') + c.avg_gap_pct.toFixed(2) + '%)';
+      var tickerWrap = document.createElement('div');
+      tickerWrap.className = 'tickers';
+      (c.tickers || []).forEach(function (t) {
+        var sp = document.createElement('span');
+        sp.className = 'tk';
+        sp.textContent = t.ticker + ' ' + (t.gap_pct >= 0 ? '+' : '') + t.gap_pct.toFixed(2) + '%';
+        sp.style.color = t.gap_pct >= 0 ? 'var(--green)' : 'var(--red)';
+        tickerWrap.appendChild(sp);
+      });
+      body.appendChild(meta);
+      body.appendChild(tickerWrap);
+      var stat = document.createElement('div');
+      stat.className = 'stat';
+      stat.style.color = c.direction === 'up' ? 'var(--green)' : 'var(--red)';
+      stat.textContent = (c.avg_gap_pct >= 0 ? '+' : '') + c.avg_gap_pct.toFixed(2) + '%';
+      div.appendChild(head);
+      div.appendChild(body);
+      div.appendChild(stat);
+      el.appendChild(div);
+    });
+  }
+
+  function renderHeatmap(cells) {
+    var grid = document.getElementById('heatmap-grid');
+    var badge = document.getElementById('badge-heat');
+    clearChildren(grid);
+    badge.textContent = cells.length + ' cells';
+    var sortedByAbs = cells.slice().sort(function(a, b){ return Math.abs(b.avg_gap_pct) - Math.abs(a.avg_gap_pct); });
+    var hotCells = new Set(sortedByAbs.slice(0, 3).map(function(c){ return c.region + '|' + c.sector; }));
+    cells.forEach(function (c) {
+      var d = document.createElement('div');
+      d.className = 'heat-cell heat-cell-liquid ' + (c.avg_gap_pct >= 0 ? 'bull' : 'bear');
+      var v = c.avg_gap_pct;
+      var hue = v >= 0 ? 145 : 0;
+      var sat = Math.min(80, Math.abs(v) * 25);
+      d.style.setProperty('--heat-color', 'hsl(' + hue + ',' + sat + '%,50%)');
+      var fillPct = Math.min(85, Math.max(8, Math.abs(v) * 12));
+      d.style.setProperty('--liquid-fill', fillPct + '%');
+      // Top-3 explosive cells get pulse-glow
+      if (hotCells.has(c.region + '|' + c.sector)) {
+        d.classList.add(c.avg_gap_pct >= 0 ? 'tile-pulse-bull' : 'tile-pulse-bear');
+      }
+      var region = document.createElement('div');
+      region.className = 'region'; region.textContent = c.region;
+      var sector = document.createElement('div');
+      sector.className = 'sector'; sector.textContent = c.sector;
+      var val = document.createElement('div');
+      val.className = 'gap-val';
+      val.textContent = (v >= 0 ? '+' : '') + v.toFixed(2) + '%';
+      val.style.color = v >= 0 ? 'var(--green)' : 'var(--red)';
+      var count = document.createElement('div');
+      count.className = 'count';
+      count.textContent = c.count + ' names · ↑' + c.movers_up + ' ↓' + c.movers_down;
+      d.appendChild(region); d.appendChild(sector); d.appendChild(val); d.appendChild(count);
+      grid.appendChild(d);
+    });
+  }
+
+  function renderCrossBorder(setups) {
+    var el = document.getElementById('cb-list');
+    var badge = document.getElementById('badge-cb');
+    clearChildren(el);
+    badge.textContent = setups.length + ' setups';
+    setups.slice(0, 8).forEach(function (s) {
+      var card = document.createElement('div');
+      card.className = 'cb-card ' + s.conviction;
+      var conv = document.createElement('div');
+      conv.className = 'cb-conv conv-' + s.conviction;
+      conv.textContent = s.conviction;
+      var entity = document.createElement('div');
+      var en = document.createElement('div');
+      en.style.fontWeight = '600'; en.textContent = s.entity_name;
+      var es = document.createElement('div');
+      es.style.color = 'var(--dim)'; es.style.fontSize = '.8rem';
+      es.textContent = (s.sector_gics || '') + ' · ' + (s.foreign_market || '');
+      entity.appendChild(en); entity.appendChild(es);
+      function side(t, gap) {
+        var b = document.createElement('div');
+        b.className = 'cb-side';
+        var tk = document.createElement('div');
+        tk.className = 'ticker'; tk.textContent = t;
+        var gp = document.createElement('div');
+        gp.className = 'gap';
+        gp.style.color = gap >= 0 ? 'var(--green)' : 'var(--red)';
+        gp.textContent = (gap >= 0 ? '+' : '') + gap.toFixed(2) + '%';
+        b.appendChild(tk); b.appendChild(gp);
+        return b;
+      }
+      var score = document.createElement('div');
+      score.style.fontFamily = "'IBM Plex Mono', monospace";
+      score.style.fontSize = '1.05rem'; score.style.fontWeight = '700';
+      score.style.color = 'var(--gold)';
+      score.textContent = s.score + '/4';
+      card.appendChild(conv);
+      card.appendChild(entity);
+      card.appendChild(side(s.foreign_ticker, s.foreign_gap_pct));
+      card.appendChild(side(s.us_ticker, s.us_gap_pct));
+      card.appendChild(score);
+      el.appendChild(card);
+    });
+  }
+
+  function renderCountryBoard(board) {
+    var grid = document.getElementById('country-grid');
+    var badge = document.getElementById('badge-country');
+    clearChildren(grid);
+    badge.textContent = board.length + ' countries';
+    board.forEach(function (c) {
+      var t = document.createElement('div');
+      t.className = 'country-tile';
+      var r1 = document.createElement('div'); r1.className = 'row1';
+      var f = document.createElement('span');
+      f.className = 'flag'; f.textContent = flagFor(c.country_iso);
+      var n = document.createElement('span');
+      n.className = 'name'; n.textContent = c.country_full;
+      r1.appendChild(f); r1.appendChild(n);
+      var meta = document.createElement('div');
+      meta.className = 'meta';
+      var s1 = document.createElement('span');
+      s1.appendChild(document.createTextNode('avg |gap| '));
+      var b1 = document.createElement('strong'); b1.textContent = c.avg_abs_gap.toFixed(2) + '%';
+      s1.appendChild(b1);
+      var s2 = document.createElement('span');
+      s2.appendChild(document.createTextNode('top: '));
+      var b2 = document.createElement('strong'); b2.textContent = c.top_mover || '—';
+      s2.appendChild(b2);
+      meta.appendChild(s1); meta.appendChild(s2);
+      t.appendChild(r1); t.appendChild(meta);
+      var meta2 = document.createElement('div');
+      meta2.className = 'meta';
+      meta2.appendChild(document.createTextNode(c.tickers + ' names · '));
+      var ex = document.createElement('strong');
+      ex.style.color = 'var(--red)'; ex.textContent = c.explosive + ' explosive';
+      meta2.appendChild(ex);
+      t.appendChild(meta2);
+      grid.appendChild(t);
+    });
+  }
+
+  function rerender() {
+    var d = STATE.data;
+    if (!d) return;
+    renderTable('top-up-body', d.top_up || [], 'badge-up');
+    renderTable('top-down-body', d.top_down || [], 'badge-down');
+    renderSympathy(d.sympathy_chains || []);
+    renderHeatmap(d.sector_heatmap || []);
+    renderCrossBorder(d.cross_border_top || []);
+    renderCountryBoard(d.country_board || []);
+  }
+
+  function setupFilter(d) {
+    var iso = Array.from(new Set((d.top_up || []).concat(d.top_down || []).map(function(r){ return r.country_iso; }))).sort();
+    if (window.CatalystMarketFilter) {
+      STATE.marketFilter = CatalystMarketFilter.create(
+        document.getElementById('market-filter'),
+        { markets: iso, selected: 'all', onChange: function(){ rerender(); } }
+      );
+    }
+  }
+
+  function fmtMoney(n){
+    n = parseFloat(n) || 0;
+    if (n >= 1e9) return '$' + (n/1e9).toFixed(2) + 'B';
+    if (n >= 1e6) return '$' + (n/1e6).toFixed(0) + 'M';
+    return '$' + Math.round(n).toLocaleString();
+  }
+
+  function renderEdgePanels(edge) {
+    if (!edge) return;
+    var multiHost = document.getElementById('edge-multi');
+    clearChildren(multiHost);
+    (edge.multi_scanner || []).slice(0, 12).forEach(function (e) {
+      var card = document.createElement('div'); card.className = 'edge-card';
+      var label = document.createElement('div'); label.className = 'label';
+      label.textContent = (flagFor(e.country_iso) || '') + ' ' + (e.country || '') + ' · ' + e.scanner_count + ' scanners';
+      var head = document.createElement('div');
+      var tk = document.createElement('span'); tk.className = 'ticker'; tk.textContent = e.ticker;
+      var nm = document.createElement('span'); nm.className = 'name'; nm.textContent = e.name || '';
+      head.appendChild(tk); head.appendChild(nm);
+      var pills = document.createElement('div'); pills.className = 'scanners';
+      (e.scanners || []).forEach(function (s) {
+        var p = document.createElement('span');
+        p.className = 'sc-pill ' + s;
+        p.textContent = s.replace('_', ' ').toUpperCase();
+        pills.appendChild(p);
+      });
+      var meta = document.createElement('div'); meta.className = 'meta';
+      var bits = [];
+      if (e.gap_pct != null) bits.push('gap ' + (e.gap_pct >= 0 ? '+' : '') + e.gap_pct + '%');
+      if (e.dcf_grade) bits.push('DCF ' + e.dcf_grade + (e.upside_pct != null ? ' (+' + Math.round(e.upside_pct) + '%)' : ''));
+      if (e.cb_score != null) bits.push('cross-border ' + e.cb_score + '/4');
+      meta.textContent = bits.join(' · ');
+      card.appendChild(label); card.appendChild(head); card.appendChild(pills); card.appendChild(meta);
+      multiHost.appendChild(card);
+    });
+    if (!multiHost.firstChild) {
+      var n = document.createElement('div');
+      n.style.color = 'var(--dim)'; n.style.fontSize = '.85rem';
+      n.textContent = 'No multi-scanner names firing right now — wait for next 2h cycle.';
+      multiHost.appendChild(n);
+    }
+
+    var rotHost = document.getElementById('edge-rotations');
+    clearChildren(rotHost);
+    (edge.rotations || []).slice(0, 6).forEach(function (r) {
+      var div = document.createElement('div');
+      div.className = 'rotation ' + r.direction;
+      var head = document.createElement('div'); head.className = 'head';
+      var sec = document.createElement('div'); sec.className = 'sec';
+      sec.textContent = r.sector;
+      var dir = document.createElement('div'); dir.className = 'dir ' + r.direction;
+      dir.textContent = r.count + ' names ' + r.direction;
+      head.appendChild(sec); head.appendChild(dir);
+      var meta = document.createElement('div'); meta.className = 'meta';
+      meta.textContent = 'avg ' + (r.avg_gap >= 0 ? '+' : '') + r.avg_gap + '% across ' + r.count + ' tickers globally';
+      var names = document.createElement('div'); names.className = 'names';
+      (r.names || []).forEach(function (n) {
+        var sp = document.createElement('span'); sp.className = 'nm';
+        sp.textContent = (flagFor(n.country) || '') + ' ' + n.ticker
+          + ' ' + (n.gap_pct >= 0 ? '+' : '') + n.gap_pct + '%';
+        sp.style.color = n.gap_pct >= 0 ? 'var(--green)' : 'var(--red)';
+        names.appendChild(sp);
+      });
+      div.appendChild(head); div.appendChild(meta); div.appendChild(names);
+      rotHost.appendChild(div);
+    });
+    if (!rotHost.firstChild) {
+      var n2 = document.createElement('div');
+      n2.style.color = 'var(--dim)'; n2.style.fontSize = '.85rem';
+      n2.textContent = 'No sector rotations detected — markets are mixed.';
+      rotHost.appendChild(n2);
+    }
+
+    var ca = edge.cross_asset || {};
+    var caHost = document.getElementById('edge-crossasset');
+    clearChildren(caHost);
+    function caCell(k, v, cls) {
+      var c = document.createElement('div'); c.className = 'ca-cell';
+      var ck = document.createElement('div'); ck.className = 'ca-k'; ck.textContent = k;
+      var cv = document.createElement('div'); cv.className = 'ca-v'; cv.textContent = v;
+      if (cls) cv.className += ' ' + cls;
+      c.appendChild(ck); c.appendChild(cv); return c;
+    }
+    caHost.appendChild(caCell('BTC ETF 24h vol', fmtMoney(ca.btc_etf_24h_volume_usd)));
+    caHost.appendChild(caCell('ETF spike funds', String(ca.btc_etf_spike_funds || 0)));
+    caHost.appendChild(caCell('Miner avg gap',
+      (ca.miner_avg_gap >= 0 ? '+' : '') + (ca.miner_avg_gap || 0).toFixed(2) + '%'));
+    caHost.appendChild(caCell('DeFi cascades', String(ca.defi_cascade_count || 0)));
+    caHost.appendChild(caCell('Divergence',
+      ca.divergence_signal ? '⚡ YES — flow vs price' : '— neutral',
+      ca.divergence_signal ? 'divergence-on' : 'divergence-off'));
+  }
+
+  // Sortable table headers — applied after renderTable runs
+  function attachSortable(tableId) {
+    var table = document.querySelector('#' + tableId + ' table.tbl, table.tbl#' + tableId);
+    var section = document.getElementById(tableId);
+    if (!section) return;
+    var thead = section.querySelector('thead');
+    if (!thead) return;
+    var ths = thead.querySelectorAll('th');
+    ths.forEach(function (th, idx) {
+      if (idx === 0) return; // skip rank column
+      th.classList.add('sortable');
+      th.onclick = function () {
+        var body = section.querySelector('tbody');
+        if (!body) return;
+        var dir = th.classList.contains('sort-asc') ? 'desc' : 'asc';
+        ths.forEach(function (h) { h.classList.remove('sort-asc', 'sort-desc'); });
+        th.classList.add('sort-' + dir);
+        var rows = Array.from(body.querySelectorAll('tr'));
+        rows.sort(function (a, b) {
+          var av = a.children[idx] ? a.children[idx].textContent.trim() : '';
+          var bv = b.children[idx] ? b.children[idx].textContent.trim() : '';
+          var an = parseFloat(av.replace(/[^\d.\-]/g, '')); var bn = parseFloat(bv.replace(/[^\d.\-]/g, ''));
+          if (!isNaN(an) && !isNaN(bn)) return dir === 'asc' ? an - bn : bn - an;
+          return dir === 'asc' ? av.localeCompare(bv) : bv.localeCompare(av);
+        });
+        rows.forEach(function (r) { body.appendChild(r); });
+      };
+    });
+  }
+
+  fetch('/data/intl_panels.json?cb=' + Date.now(), { cache: 'no-store' })
+    .then(function (r) { if (!r.ok) throw new Error('no data'); return r.json(); })
+    .then(function (d) {
+      STATE.data = d;
+      var setIfPresent = function (id, value) {
+        var node = document.getElementById(id);
+        if (node) node.textContent = value;
+      };
+      setIfPresent('hs-tickers', d.total_tickers);
+      setIfPresent('hs-countries', d.total_countries);
+      setIfPresent('hs-explosive', d.explosive_count);
+      setIfPresent('hs-sympathy', (d.sympathy_chains || []).length);
+      setIfPresent('hs-cb', (d.cross_border_top || []).length);
+      if (d.generated_at) {
+        var dt = new Date(d.generated_at);
+        var fmt = new Intl.DateTimeFormat(navigator.language || 'en-US',
+          { hour: 'numeric', minute: '2-digit' }).format(dt);
+        setIfPresent('hs-updated', fmt);
+      }
+      setupFilter(d);
+      rerender();
+      // Wire sortable column headers after first render
+      setTimeout(function () {
+        attachSortable('top-up'); attachSortable('top-down');
+      }, 50);
+    });
+
+  // Edge insights — separate fetch so a missing edge.json doesn't break the page
+  fetch('/data/intl_edge.json?cb=' + Date.now(), { cache: 'no-store' })
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (e) { if (e) renderEdgePanels(e); })
+    .catch(function () {});
+
+  // Cross-Asset Macro — yield curve, DXY, oil/gold, VIX
+  function regimeColor(label) {
+    var map = {
+      inverted: '#ff8b86', flat: '#e6bd6b', steep: '#7fe8b3',
+      very_strong: '#ff8b86', strong: '#ffbf69', neutral: '#9ea8ba', weak: '#7fe8b3',
+      recession_signal: '#ff8b86', commodity_surge: '#ffbf69', balanced: '#9ea8ba',
+      panic: '#ff8b86', elevated: '#ffbf69', normal: '#9ea8ba', complacent: '#e6bd6b',
+      natgas_surge: '#7fe8b3', crude_surge: '#ffbf69',
+    };
+    return map[label] || '#9ea8ba';
+  }
+  function renderXAsset(d) {
+    var grid = document.getElementById('xasset-grid');
+    if (!grid) return;
+    clearChildren(grid);
+    (d.signals || []).forEach(function (s) {
+      var card = document.createElement('div');
+      card.style.cssText = 'background:var(--surface);border:1px solid var(--border-soft);border-radius:10px;padding:.95rem 1rem;display:flex;flex-direction:column;gap:.35rem;transition:transform .15s ease,border-color .15s ease;position:relative;overflow:hidden';
+      card.onmouseover = function(){ card.style.transform = 'translateY(-2px)'; card.style.borderColor = regimeColor(s.regime); };
+      card.onmouseout = function(){ card.style.transform = ''; card.style.borderColor = 'var(--border-soft)'; };
+      var head = document.createElement('div');
+      head.style.cssText = 'display:flex;justify-content:space-between;align-items:center;gap:.5rem';
+      var lbl = document.createElement('div');
+      lbl.style.cssText = 'font-family:"IBM Plex Mono",monospace;font-size:.7rem;color:var(--dim);letter-spacing:.08em;text-transform:uppercase';
+      lbl.textContent = s.label;
+      var pill = document.createElement('span');
+      pill.style.cssText = 'font-family:"IBM Plex Mono",monospace;font-size:.65rem;padding:.2rem .55rem;border-radius:999px;letter-spacing:.06em;text-transform:uppercase;font-weight:700;background:rgba(255,255,255,.04);color:' + regimeColor(s.regime) + ';border:1px solid ' + regimeColor(s.regime);
+      pill.textContent = s.regime || '—';
+      head.appendChild(lbl); head.appendChild(pill);
+      var v = document.createElement('div');
+      v.style.cssText = 'font-family:"IBM Plex Mono",monospace;font-size:1.4rem;font-weight:700;color:' + regimeColor(s.regime);
+      var reelHost = document.createElement('span');
+      v.appendChild(reelHost);
+      var unit = document.createElement('span');
+      unit.style.cssText = 'color:var(--dim);font-size:.75rem;margin-left:.4rem;font-weight:400';
+      unit.textContent = s.value_unit || '';
+      v.appendChild(unit);
+      var note = document.createElement('div');
+      note.style.cssText = 'color:var(--dim);font-size:.78rem;line-height:1.45';
+      note.textContent = s.readthrough || '';
+      card.appendChild(head); card.appendChild(v); card.appendChild(note);
+      grid.appendChild(card);
+      if (window.CatalystReels && s.value != null) {
+        CatalystReels.render(reelHost, s.value, { decimals: s.id === 'btc' ? 0 : 2 });
+      } else {
+        reelHost.textContent = s.value != null ? s.value : '—';
+      }
+    });
+  }
+  fetch('/data/xasset_macro.json?cb=' + Date.now(), { cache: 'no-store' })
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (d) { if (d) renderXAsset(d); })
+    .catch(function () {});
+
+  // ── Global Catalyst Tape ─────────────────────────────────────────
+  var TAPE = { rows: [], filterCountry: null, filterKind: null, visible: 50 };
+  function timeAgo(iso) {
+    if (!iso) return '';
+    var t = new Date(iso).getTime();
+    if (!t) return '';
+    var diff = (Date.now() - t) / 1000;
+    if (diff < 60) return 'just now';
+    if (diff < 3600) return Math.floor(diff / 60) + 'm ago';
+    if (diff < 86400) return Math.floor(diff / 3600) + 'h ago';
+    return Math.floor(diff / 86400) + 'd ago';
+  }
+  function renderTapeRows() {
+    var host = document.getElementById('tape-list');
+    if (!host) return;
+    clearChildren(host);
+    var filtered = TAPE.rows.filter(function (r) {
+      if (TAPE.filterCountry && TAPE.filterCountry.length > 0
+          && TAPE.filterCountry.indexOf(r.country_iso) === -1) return false;
+      if (TAPE.filterKind && TAPE.filterKind.length > 0
+          && TAPE.filterKind.indexOf(r.kind) === -1) return false;
+      return true;
+    });
+    document.getElementById('tape-total').textContent = filtered.length;
+    var slice = filtered.slice(0, TAPE.visible);
+    slice.forEach(function (r) {
+      var row = document.createElement('a');
+      row.href = r.url || '#';
+      if (r.url) { row.target = '_blank'; row.rel = 'noopener'; }
+      row.style.cssText = 'display:grid;grid-template-columns:32px auto 1fr auto;gap:.6rem;align-items:center;padding:.55rem .8rem;background:var(--surface);border:1px solid var(--border-soft);border-radius:8px;text-decoration:none;color:var(--text);transition:transform .12s ease,border-color .12s ease';
+      row.onmouseover = function(){ row.style.transform = 'translateX(2px)'; row.style.borderColor = 'rgba(34,211,238,.4)'; };
+      row.onmouseout = function(){ row.style.transform = ''; row.style.borderColor = 'var(--border-soft)'; };
+      var flag = document.createElement('span');
+      flag.style.cssText = 'font-size:1.1rem;text-align:center';
+      flag.textContent = r.flag || '';
+      var tk = document.createElement('span');
+      tk.style.cssText = 'font-family:"IBM Plex Mono",monospace;font-weight:700;color:var(--blue);font-size:.85rem;min-width:5em';
+      tk.textContent = r.ticker;
+      var hl = document.createElement('span');
+      hl.style.cssText = 'font-size:.88rem;line-height:1.4;overflow:hidden;text-overflow:ellipsis;white-space:nowrap';
+      hl.textContent = r.headline;
+      var meta = document.createElement('div');
+      meta.style.cssText = 'display:flex;gap:.35rem;align-items:center';
+      var ageBadge = document.createElement('span');
+      ageBadge.style.cssText = 'font-family:"IBM Plex Mono",monospace;font-size:.7rem;color:var(--dim)';
+      ageBadge.textContent = timeAgo(r.issued_at);
+      var kindBadge = document.createElement('span');
+      kindBadge.style.cssText = 'font-family:"IBM Plex Mono",monospace;font-size:.65rem;padding:.15rem .45rem;border-radius:999px;background:rgba(215,180,106,.1);border:1px solid rgba(215,180,106,.3);color:var(--gold);text-transform:uppercase;letter-spacing:.05em';
+      kindBadge.textContent = r.kind;
+      meta.appendChild(ageBadge); meta.appendChild(kindBadge);
+      row.appendChild(flag); row.appendChild(tk); row.appendChild(hl); row.appendChild(meta);
+      host.appendChild(row);
+    });
+  }
+  function renderTapeFilters(by_country, by_kind) {
+    var host = document.getElementById('tape-filters');
+    if (!host) return;
+    clearChildren(host);
+    var lbl = document.createElement('span');
+    lbl.style.cssText = 'color:var(--dim);font-size:.78rem;font-weight:600;margin-right:.4rem';
+    lbl.textContent = 'Filter:';
+    host.appendChild(lbl);
+
+    function makeChip(label, key, type, count) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      var active = false;
+      b.style.cssText = 'cursor:pointer;border:1px solid var(--border-soft);background:transparent;color:var(--dim);padding:.25rem .55rem;border-radius:999px;font-size:.74rem;font-family:"IBM Plex Mono",monospace';
+      b.textContent = label + ' ' + count;
+      b.onclick = function () {
+        active = !active;
+        if (type === 'country') {
+          TAPE.filterCountry = TAPE.filterCountry || [];
+          if (active) TAPE.filterCountry.push(key);
+          else TAPE.filterCountry = TAPE.filterCountry.filter(function(x){ return x !== key; });
+        } else {
+          TAPE.filterKind = TAPE.filterKind || [];
+          if (active) TAPE.filterKind.push(key);
+          else TAPE.filterKind = TAPE.filterKind.filter(function(x){ return x !== key; });
+        }
+        b.style.background = active ? 'rgba(34,211,238,.15)' : 'transparent';
+        b.style.color = active ? 'var(--text)' : 'var(--dim)';
+        b.style.borderColor = active ? 'var(--cyan)' : 'var(--border-soft)';
+        TAPE.visible = 50;
+        renderTapeRows();
+      };
+      return b;
+    }
+    var countryFlag = {AUS:'🇦🇺',GBR:'🇬🇧',HKG:'🇭🇰',JPN:'🇯🇵',BRA:'🇧🇷',KOR:'🇰🇷',DEU:'🇩🇪',IND:'🇮🇳',MEX:'🇲🇽',ZAF:'🇿🇦',SGP:'🇸🇬',TWN:'🇹🇼'};
+    Object.keys(by_country).sort(function(a,b){ return by_country[b]-by_country[a]; }).forEach(function (iso) {
+      host.appendChild(makeChip((countryFlag[iso] || iso), iso, 'country', by_country[iso]));
+    });
+    var kindSep = document.createElement('span');
+    kindSep.style.cssText = 'color:var(--dim);margin:0 .35rem';
+    kindSep.textContent = '·';
+    host.appendChild(kindSep);
+    Object.keys(by_kind).sort(function(a,b){ return by_kind[b]-by_kind[a]; }).slice(0, 8).forEach(function (k) {
+      if (k === 'other') return;
+      host.appendChild(makeChip(k, k, 'kind', by_kind[k]));
+    });
+  }
+  // Global Heatmap drill-down
+  function ghTile(label, sublabel, avgGap, count, onClick) {
+    var d = document.createElement('div');
+    d.className = 'heat-cell heat-cell-liquid ' + (avgGap >= 0 ? 'bull' : 'bear');
+    var fillPct = Math.min(85, Math.max(8, Math.abs(avgGap) * 10));
+    d.style.setProperty('--liquid-fill', fillPct + '%');
+    if (onClick) { d.style.cursor = 'pointer'; d.onclick = onClick; }
+    var lbl = document.createElement('div');
+    lbl.style.cssText = 'font-family:"IBM Plex Mono",monospace;font-size:.7rem;color:var(--dim);text-transform:uppercase;letter-spacing:.08em';
+    lbl.textContent = sublabel || '';
+    var name = document.createElement('div');
+    name.style.cssText = 'font-weight:600;font-size:1rem;margin-top:.15rem';
+    name.textContent = label;
+    var val = document.createElement('div');
+    val.style.cssText = 'font-family:"IBM Plex Mono",monospace;font-size:1.05rem;font-weight:700;margin-top:.3rem;color:' + (avgGap >= 0 ? 'var(--green)' : 'var(--red)');
+    val.textContent = (avgGap >= 0 ? '+' : '') + avgGap.toFixed(2) + '%';
+    var meta = document.createElement('div');
+    meta.style.cssText = 'color:var(--dim);font-size:.72rem';
+    meta.textContent = count + ' names';
+    d.appendChild(lbl); d.appendChild(name); d.appendChild(val); d.appendChild(meta);
+    return d;
+  }
+  fetch('/data/global_heatmap.json?cb=' + Date.now(), { cache: 'no-store' })
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (d) {
+      if (!d) return;
+      var contHost = document.getElementById('gh-continents');
+      var coHost = document.getElementById('gh-countries');
+      var secHost = document.getElementById('gh-sectors');
+      clearChildren(contHost);
+      document.getElementById('badge-gh').textContent =
+        d.continent_count + ' continents · ' + d.country_count + ' countries · ' + d.ticker_count + ' tickers';
+      (d.continents || []).forEach(function (c) {
+        contHost.appendChild(ghTile(c.name, 'continent', c.avg_gap, c.ticker_count, function () {
+          // expand countries for this continent
+          clearChildren(coHost);
+          coHost.style.display = 'block';
+          secHost.style.display = 'none';
+          var grid = document.createElement('div');
+          grid.style.cssText = 'display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:.55rem';
+          (c.countries || []).forEach(function (co) {
+            grid.appendChild(ghTile(co.country_name, '🌎 ' + c.name, co.avg_gap, co.ticker_count, function () {
+              clearChildren(secHost);
+              secHost.style.display = 'block';
+              var grid2 = document.createElement('div');
+              grid2.style.cssText = 'display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:.55rem';
+              (co.sectors || []).forEach(function (s) {
+                var t = ghTile(s.name, co.country_name, s.avg_gap, s.ticker_count, null);
+                var tickers = document.createElement('div');
+                tickers.style.cssText = 'margin-top:.4rem;font-family:"IBM Plex Mono",monospace;font-size:.7rem;color:var(--dim);line-height:1.4';
+                tickers.textContent = (s.tickers || []).map(function(tk){
+                  return tk.ticker + ' ' + (tk.gap_pct >= 0 ? '+' : '') + tk.gap_pct.toFixed(1) + '%';
+                }).join(' · ');
+                t.appendChild(tickers);
+                grid2.appendChild(t);
+              });
+              secHost.appendChild(grid2);
+              secHost.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }));
+          });
+          coHost.appendChild(grid);
+          coHost.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }));
+      });
+    })
+    .catch(function () {});
+
+  fetch('/data/global_tape.json?cb=' + Date.now(), { cache: 'no-store' })
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (d) {
+      if (!d) return;
+      TAPE.rows = d.recent || [];
+      document.getElementById('badge-tape').textContent = (d.count || TAPE.rows.length) + ' rows · ' + (d.sources_merged || 0) + ' feeds';
+      renderTapeFilters(d.by_country || {}, d.by_kind || {});
+      renderTapeRows();
+      var loadMore = document.getElementById('tape-load-more');
+      if (loadMore) {
+        loadMore.onclick = function () { TAPE.visible += 50; renderTapeRows(); };
+      }
+    })
+    .catch(function () {});
+
+  // CatalystTier handles admin URL token, localStorage, cookie, and /api/tier.
+  if (window.CatalystTier) {
+    CatalystTier.onResolved(function (t) {
+      if (t !== STATE.tier) { STATE.tier = t; rerender(); }
+    });
+  }
+})();
+</script>
+
+</body>
+</html>

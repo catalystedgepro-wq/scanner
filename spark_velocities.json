@@ -1,0 +1,434 @@
+{
+  "CIK": {
+    "legal": -25.0,
+    "legal_case_count": 28,
+    "latest_case": "2026-04-17",
+    "latest_case_name": "Dauch Corp  (DCH)  (CIK 0001062231)"
+  },
+  "DCH": {
+    "legal": -5.0,
+    "legal_case_count": 1,
+    "latest_case": "2026-04-17",
+    "latest_case_name": "Dauch Corp  (DCH)  (CIK 0001062231)"
+  },
+  "BCPPF": {
+    "legal": -15.0,
+    "legal_case_count": 3,
+    "latest_case": "2026-04-03",
+    "latest_case_name": "BCE INC  (BCE, BCAEF, BCEFF, BCEIF, BCENF, BCEPF, BCEXF, BCPPF, BECEF)  (CIK 000"
+  },
+  "BCEFF": {
+    "legal": -5.0,
+    "legal_case_count": 1,
+    "latest_case": "2026-04-03",
+    "latest_case_name": "BCE INC  (BCE, BCAEF, BCEFF, BCEIF, BCENF, BCEPF, BCEXF, BCPPF, BECEF)  (CIK 000"
+  },
+  "BBU": {
+    "legal": -5.0,
+    "legal_case_count": 1,
+    "latest_case": "2026-04-02",
+    "latest_case_name": "Brookfield Business Corp  (BBU, BBUC)  (CIK 0001654795)"
+  },
+  "BBUC": {
+    "legal": -5.0,
+    "legal_case_count": 1,
+    "latest_case": "2026-04-02",
+    "latest_case_name": "Brookfield Business Corp  (BBU, BBUC)  (CIK 0001654795)"
+  },
+  "AMEGF": {
+    "legal": -5.0,
+    "legal_case_count": 1,
+    "latest_case": "2026-04-15",
+    "latest_case_name": "American Eagle Gold Corp.  (CIK 0002129284)"
+  },
+  "NTR": {
+    "legal": -5.0,
+    "legal_case_count": 1,
+    "latest_case": "2026-03-31",
+    "latest_case_name": "Nutrien Ltd.  (NTR)  (CIK 0001725964)"
+  },
+  "ATS": {
+    "legal": -5.0,
+    "legal_case_count": 1,
+    "latest_case": "2026-04-27",
+    "latest_case_name": "ATS Corp /ATS  (ATS)  (CIK 0001394832)"
+  },
+  "MINE": {
+    "legal": -5.0,
+    "legal_case_count": 1,
+    "latest_case": "2026-04-16",
+    "latest_case_name": "MAYFAIR GOLD CORP.  (MINE)  (CIK 0001823255)"
+  },
+  "WIT": {
+    "legal": -5.0,
+    "legal_case_count": 1,
+    "latest_case": "2026-04-22",
+    "latest_case_name": "WIPRO LTD  (WIT)  (CIK 0001123799)"
+  },
+  "AYA": {
+    "legal": -5.0,
+    "legal_case_count": 1,
+    "latest_case": "2026-04-13",
+    "latest_case_name": "Aya Gold & Silver Inc.  (CIK 0001826836)"
+  },
+  "HSDT": {
+    "legal": -5.0,
+    "legal_case_count": 1,
+    "latest_case": "2026-04-27",
+    "latest_case_name": "Solana Co  (HSDT)  (CIK 0001610853)"
+  },
+  "ILLR": {
+    "legal": -5.0,
+    "legal_case_count": 1,
+    "latest_case": "2026-03-30",
+    "latest_case_name": "Triller Group Inc.  (ILLR, ILLRW)  (CIK 0001769624)"
+  },
+  "ILLRW": {
+    "legal": -5.0,
+    "legal_case_count": 1,
+    "latest_case": "2026-03-30",
+    "latest_case_name": "Triller Group Inc.  (ILLR, ILLRW)  (CIK 0001769624)"
+  },
+  "QHUOY": {
+    "legal": -5.0,
+    "legal_case_count": 1,
+    "latest_case": "2026-04-02",
+    "latest_case_name": "QUHUO Ltd  (QH)  (CIK 0001781193)"
+  },
+  "AZ": {
+    "legal": -5.0,
+    "legal_case_count": 1,
+    "latest_case": "2026-04-01",
+    "latest_case_name": "A2Z CUST2MATE SOLUTIONS CORP.  (AZ)  (CIK 0001866030)"
+  },
+  "IGTAR": {
+    "legal": -5.0,
+    "legal_case_count": 1,
+    "latest_case": "2026-04-15",
+    "latest_case_name": "Inception Growth Acquisition Ltd  (IGTA, IGTAR, IGTAU, IGTAW)  (CIK 0001866838)"
+  },
+  "IGTAW": {
+    "legal": -5.0,
+    "legal_case_count": 1,
+    "latest_case": "2026-04-15",
+    "latest_case_name": "Inception Growth Acquisition Ltd  (IGTA, IGTAR, IGTAU, IGTAW)  (CIK 0001866838)"
+  },
+  "ZSPC": {
+    "legal": -5.0,
+    "legal_case_count": 1,
+    "latest_case": "2026-04-23",
+    "latest_case_name": "zSpace, Inc.  (ZSPC)  (CIK 0001637147)"
+  },
+  "AEON": {
+    "legal": -5.0,
+    "legal_case_count": 1,
+    "latest_case": "2026-03-30",
+    "latest_case_name": "AEON Biopharma, Inc.  (AEON)  (CIK 0001837607)"
+  },
+  "MRT": {
+    "legal": -5.0,
+    "legal_case_count": 1,
+    "latest_case": "2026-04-13",
+    "latest_case_name": "Marti Technologies, Inc.  (MRT)  (CIK 0001852767)"
+  },
+  "REAL": {
+    "legal": -5.0,
+    "legal_case_count": 1,
+    "latest_case": "2026-03-31",
+    "latest_case_name": "NEXPOINT DIVERSIFIED REAL ESTATE TRUST  (NXDT, NXDT-PA)  (CIK 0001356115)"
+  },
+  "NXDT$A": {
+    "legal": -5.0,
+    "legal_case_count": 1,
+    "latest_case": "2026-03-31",
+    "latest_case_name": "NEXPOINT DIVERSIFIED REAL ESTATE TRUST  (NXDT, NXDT-PA)  (CIK 0001356115)"
+  },
+  "TV": {
+    "options": 8.0,
+    "options_signals": [
+      "BULL_FLOW(2.0x)"
+    ],
+    "gamma_magnet": {
+      "strike": 5.0,
+      "volume": 3
+    },
+    "options_ts": "2026-04-27T22:52:28.173620+00:00"
+  },
+  "CBNK": {
+    "options": -8.0,
+    "options_signals": [
+      "BEAR_FLOW(0.00x)"
+    ],
+    "gamma_magnet": {
+      "strike": 25.0,
+      "volume": 1
+    },
+    "options_ts": "2026-04-27T22:52:33.215776+00:00"
+  },
+  "UHT": {
+    "options": -8.0,
+    "options_signals": [
+      "BEAR_FLOW(0.00x)"
+    ],
+    "gamma_magnet": {
+      "strike": 35.0,
+      "volume": 5
+    },
+    "options_ts": "2026-04-27T22:52:39.727591+00:00"
+  },
+  "RNGR": {
+    "options": 8.0,
+    "options_signals": [
+      "BULL_FLOW(3.5x)"
+    ],
+    "gamma_magnet": {
+      "strike": 20.0,
+      "volume": 6
+    },
+    "options_ts": "2026-04-27T22:52:46.926637+00:00"
+  },
+  "CCK": {
+    "options": 23.0,
+    "options_signals": [
+      "SWEEP\u00d71",
+      "BULL_FLOW(14.0x)"
+    ],
+    "gamma_magnet": {
+      "strike": 105.0,
+      "volume": 1743
+    },
+    "options_ts": "2026-04-27T22:52:48.215590+00:00"
+  },
+  "CTOS": {
+    "options": 8.0,
+    "options_signals": [
+      "BULL_FLOW(7.0x)"
+    ],
+    "gamma_magnet": {
+      "strike": 7.5,
+      "volume": 13
+    },
+    "options_ts": "2026-04-27T22:52:48.802505+00:00"
+  },
+  "BAH": {
+    "options": -8.0,
+    "options_signals": [
+      "BEAR_FLOW(0.12x)"
+    ],
+    "gamma_magnet": {
+      "strike": 75.0,
+      "volume": 161
+    },
+    "options_ts": "2026-04-27T22:52:49.917441+00:00"
+  },
+  "GABC": {
+    "options": -8.0,
+    "options_signals": [
+      "BEAR_FLOW(0.44x)"
+    ],
+    "gamma_magnet": {
+      "strike": 45.0,
+      "volume": 10
+    },
+    "options_ts": "2026-04-27T22:52:33.747634+00:00"
+  },
+  "CI": {
+    "options": 8.0,
+    "options_signals": [
+      "BULL_FLOW(1.8x)"
+    ],
+    "gamma_magnet": {
+      "strike": 280.0,
+      "volume": 45
+    },
+    "options_ts": "2026-04-27T22:52:44.419821+00:00"
+  },
+  "CDP": {
+    "options": 8.0,
+    "options_signals": [
+      "BULL_FLOW(999.0x)"
+    ],
+    "gamma_magnet": {
+      "strike": 30.0,
+      "volume": 1
+    },
+    "options_ts": "2026-04-27T22:52:45.523133+00:00"
+  },
+  "ASTE": {
+    "options": 8.0,
+    "options_signals": [
+      "BULL_FLOW(999.0x)"
+    ],
+    "gamma_magnet": {
+      "strike": 50.0,
+      "volume": 1
+    },
+    "options_ts": "2026-04-27T22:52:49.366563+00:00"
+  },
+  "HUSIF": {
+    "legal": -5.0,
+    "legal_case_count": 1,
+    "latest_case": "2026-04-27",
+    "latest_case_name": "NICOLA MINING INC.  (NICM, HUSIF)  (CIK 0001526475)"
+  },
+  "NICM": {
+    "legal": -5.0,
+    "legal_case_count": 1,
+    "latest_case": "2026-04-27",
+    "latest_case_name": "NICOLA MINING INC.  (NICM, HUSIF)  (CIK 0001526475)"
+  },
+  "ARE": {
+    "options": 15.0,
+    "options_signals": [
+      "SWEEP\u00d71"
+    ],
+    "gamma_magnet": {
+      "strike": 50.0,
+      "volume": 379
+    },
+    "options_ts": "2026-04-27T22:52:30.292315+00:00"
+  },
+  "CBSH": {
+    "options": 8.0,
+    "options_signals": [
+      "BULL_FLOW(5.3x)"
+    ],
+    "gamma_magnet": {
+      "strike": 30.0,
+      "volume": 20
+    },
+    "options_ts": "2026-04-27T22:52:32.037332+00:00"
+  },
+  "UTZ": {
+    "options": -8.0,
+    "options_signals": [
+      "BEAR_FLOW(0.39x)"
+    ],
+    "gamma_magnet": {
+      "strike": 5.0,
+      "volume": 47
+    },
+    "options_ts": "2026-04-27T22:52:51.621299+00:00"
+  },
+  "BRO": {
+    "options": 8.0,
+    "options_signals": [
+      "BULL_FLOW(9.9x)"
+    ],
+    "gamma_magnet": {
+      "strike": 70.0,
+      "volume": 1189
+    },
+    "options_ts": "2026-04-27T22:52:28.850854+00:00"
+  },
+  "LC": {
+    "options": 15.0,
+    "options_signals": [
+      "SWEEP\u00d74"
+    ],
+    "gamma_magnet": {
+      "strike": 22.0,
+      "volume": 2451
+    },
+    "options_ts": "2026-04-27T22:52:46.093819+00:00"
+  },
+  "KRC": {
+    "options": 8.0,
+    "options_signals": [
+      "BULL_FLOW(5.2x)"
+    ],
+    "gamma_magnet": {
+      "strike": 32.5,
+      "volume": 89
+    },
+    "options_ts": "2026-04-27T22:52:32.632383+00:00"
+  },
+  "KINS": {
+    "options": 8.0,
+    "options_signals": [
+      "BULL_FLOW(35.9x)"
+    ],
+    "gamma_magnet": {
+      "strike": 20.0,
+      "volume": 370
+    },
+    "options_ts": "2026-04-27T22:52:38.166127+00:00"
+  },
+  "WABC": {
+    "options": 8.0,
+    "options_signals": [
+      "BULL_FLOW(999.0x)"
+    ],
+    "gamma_magnet": {
+      "strike": 55.0,
+      "volume": 3
+    },
+    "options_ts": "2026-04-27T22:52:39.021399+00:00"
+  },
+  "SRTA": {
+    "options": -8.0,
+    "options_signals": [
+      "BEAR_FLOW(0.12x)"
+    ],
+    "gamma_magnet": {
+      "strike": 2.5,
+      "volume": 75
+    },
+    "options_ts": "2026-04-27T22:52:47.469003+00:00"
+  },
+  "LU": {
+    "options": 8.0,
+    "options_signals": [
+      "BULL_FLOW(21.2x)"
+    ],
+    "gamma_magnet": {
+      "strike": 2.0,
+      "volume": 110
+    },
+    "options_ts": "2026-04-27T22:52:29.392394+00:00"
+  },
+  "SEI": {
+    "options": 15.0,
+    "options_signals": [
+      "SWEEP\u00d73"
+    ],
+    "gamma_magnet": {
+      "strike": 80.0,
+      "volume": 3717
+    },
+    "options_ts": "2026-04-27T22:52:52.731234+00:00"
+  },
+  "USAU": {
+    "options": 8.0,
+    "options_signals": [
+      "BULL_FLOW(3.3x)"
+    ],
+    "gamma_magnet": {
+      "strike": 22.5,
+      "volume": 14
+    },
+    "options_ts": "2026-04-27T22:52:53.311374+00:00"
+  },
+  "HLMN": {
+    "options": 8.0,
+    "options_signals": [
+      "BULL_FLOW(2.0x)"
+    ],
+    "gamma_magnet": {
+      "strike": 7.5,
+      "volume": 5
+    },
+    "options_ts": "2026-04-27T22:52:54.102956+00:00"
+  },
+  "SKY": {
+    "options": 8.0,
+    "options_signals": [
+      "BULL_FLOW(5.4x)"
+    ],
+    "gamma_magnet": {
+      "strike": 90.0,
+      "volume": 206
+    },
+    "options_ts": "2026-04-27T22:52:54.719910+00:00"
+  }
+}

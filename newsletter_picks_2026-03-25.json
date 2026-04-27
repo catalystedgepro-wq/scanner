@@ -1,0 +1,15 @@
+{
+  "date": "2026-03-25",
+  "top5_tickers": [
+    "CNI",
+    "EQX",
+    "CHD",
+    "BTGO",
+    "EPAC"
+  ],
+  "gapper_count": 11,
+  "value_count": 10,
+  "moat_count": 6,
+  "total_combined": 128,
+  "top_pick": "CNI"
+}

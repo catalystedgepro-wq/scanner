@@ -1,0 +1,175 @@
+spokes:
+- name: cftc_cot
+  state: in_progress
+  priority: 1
+  title: CFTC Commitments of Traders
+  rationale: 'Weekly large-speculator positioning in futures. Free CSV from cftc.gov,
+
+    no API key. Uncorrelated with Options Flow (futures venue, different
+
+    actors). Strong predictive signal on commodities + currencies.
+
+    '
+  source:
+    url: https://www.cftc.gov/dea/newcot/deafut.txt
+    fmt: fixed_width_csv
+    auth: none
+    ttl_hours: 168
+  fields_required:
+  - market_and_exchange_names
+  - report_date_as_yyyy_mm_dd
+  - noncommercial_positions_long_all
+  - noncommercial_positions_short_all
+  - change_in_noncommercial_long_all
+  - change_in_noncommercial_short_all
+  output_schema:
+    ticker_proxy: futures_to_etf_map.json
+    net_position_long_short: int
+    week_change: int
+    pct_oi: float
+  ticker_universe: futures_proxy
+  expected_alpha_lift: 15
+  last_transition_utc: '2026-04-26T10:35:24.887423+00:00'
+- name: treasury_auctions
+  state: in_progress
+  priority: 2
+  title: US Treasury Auction Results
+  rationale: 'Primary dealer takedown %, foreign bid %, bid-to-cover. Free from
+
+    TreasuryDirect. FRED has rates but NOT auction internals. Tells you
+
+    when bond-market stress is forming days before headlines.
+
+    '
+  source:
+    url: https://www.treasurydirect.gov/TA_WS/securities/announced?format=json
+    fmt: json_api
+    auth: none
+    ttl_hours: 24
+  fields_required:
+  - cusip
+  - issue_date
+  - security_type
+  - bid_to_cover_ratio
+  - primary_dealer_accepted
+  - direct_bidder_accepted
+  - indirect_bidder_accepted
+  - high_yield
+  output_schema:
+    auction_stress_score: float
+    foreign_demand_pct: float
+    dealer_takedown_pct: float
+  ticker_universe: rate_sensitive
+  expected_alpha_lift: 12
+  last_transition_utc: '2026-04-26T10:40:23.931344+00:00'
+- name: faa_flights
+  state: in_progress
+  priority: 3
+  title: FAA / ADS-B Corporate Jet Tracking
+  rationale: "Corporate jet movement is a known M&A leak \u2014 CEO's plane lands\
+    \ at the\ntarget's airport in the days before announcement. ADS-B Exchange has\n\
+    a free API; track ~200 known corporate registrations.\n"
+  source:
+    url: https://api.adsbexchange.com/v2/icao/{tail_number}
+    fmt: json_api
+    auth: env_var:ADSB_EXCHANGE_KEY
+    ttl_hours: 6
+  fields_required:
+  - tail_number
+  - timestamp
+  - origin_airport
+  - destination_airport
+  - duration_min
+  output_schema:
+    flights_last_30d: int
+    destinations_distinct: list
+    m_and_a_proximity_score: float
+  ticker_universe: sp1500_with_known_jets
+  expected_alpha_lift: 18
+  blocker_check: true
+  last_transition_utc: '2026-04-26T10:45:43.505607+00:00'
+- name: gdelt_events
+  state: queued
+  priority: 4
+  title: GDELT Geopolitical Events
+  rationale: 'Tracks ~every event mentioned in news worldwide, structured. Free.
+
+    Especially valuable for international tickers + macro plays.
+
+    Complements News Momentum (event-coded vs headline-aggregated).
+
+    '
+  source:
+    url: http://data.gdeltproject.org/gdeltv2/lastupdate.txt
+    fmt: csv_zip
+    auth: none
+    ttl_hours: 1
+  fields_required:
+  - event_id
+  - event_date
+  - actor1_country
+  - actor2_country
+  - event_code
+  - goldstein_scale
+  - num_mentions
+  - avg_tone
+  output_schema:
+    country_event_density: dict
+    country_tone_30d: dict
+  ticker_universe: international_adr
+  expected_alpha_lift: 8
+- name: google_trends
+  state: queued
+  priority: 5
+  title: Google Trends + Wikipedia Pageviews
+  rationale: "Retail attention proxy \u2014 predicts retail-driven moves at higher\
+    \ temporal\nresolution than News Momentum. Catches meme-stock + product-launch\n\
+    signal that News Momentum misses (interest precedes coverage).\n"
+  source:
+    url: https://trends.google.com/trends/api/explore
+    fmt: json_api
+    auth: none
+    ttl_hours: 24
+  fields_required:
+  - keyword
+  - relative_interest_7d
+  - relative_interest_24h
+  - geo_distribution
+  output_schema:
+    attention_score_7d: float
+    attention_score_24h: float
+    delta_pct: float
+  ticker_universe: russell_3000_top_500_by_volume
+  expected_alpha_lift: 6
+- name: nasa_solar_flare
+  title: NASA Solar Flare Alerts
+  rationale: 'Solar flare warnings (X-class) precede satellite outages and
+
+    grid stress. Free DONKI API. Predictive for utilities + sat-com.
+
+    '
+  source:
+    url: https://api.nasa.gov/DONKI/FLR?api_key=DEMO_KEY
+    fmt: json
+    auth: none
+    ttl_hours: 6
+  fields_required:
+  - flrID
+  - beginTime
+  - classType
+  - sourceLocation
+  - linkedEvents
+  output_schema:
+    flare_class: string
+    begin_ts: string
+    intensity_score: float
+  ticker_universe: utilities_satcom
+  expected_alpha_lift: 4
+  priority: 6
+  state: queued
+  last_transition_utc: '2026-04-26T10:59:13.099233+00:00'
+shipped: []
+blocked: []
+last_run_utc: '2026-04-26T10:45:43.505609+00:00'
+last_audit_utc: '2026-04-26T10:40:23.875961+00:00'
+last_ingest_utc: '2026-04-26T10:59:13.099246+00:00'

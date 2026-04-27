@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>What is a Dark Pool? Hidden Stock Exchange Guide | Catalyst Edge</title>
+<meta name="description" content="Dark pools are private stock exchanges where institutional investors trade large blocks without moving the market. Learn how dark pool data reveals hidden buying and selling pressure.">
+<link rel="canonical" href="https://catalystedgescanner.com/glossary/what-is-dark-pool/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Are dark pools legal?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Dark pools are SEC-registered Alternative Trading Systems (ATS). They must comply with Regulation ATS, report trades to FINRA, and publish Form ATS-N disclosures. There are roughly 50 active dark pools in the US, handling about 40% of all equity trading volume."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How can retail traders see dark pool data?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "FINRA publishes weekly dark pool volume data with a 2-week delay through its ATS Transparency Data. Real-time dark pool prints are reported to the consolidated tape and appear on time-and-sales feeds. Services like Catalyst Edge aggregate this data and flag unusual dark pool activity alongside SEC filings."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a dark pool print?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A dark pool print is a completed trade that was executed on a dark pool and then reported to the consolidated tape. Large single prints — especially at or above the ask price — suggest institutional buying conviction. Traders watch for prints over $1M as potential accumulation signals."
+      }
+    }
+  ]
+}
+</script>
+<style>
+:root {
+  --bg: #0a0e1a;
+  --surface: #111827;
+  --surface-2: #1a2035;
+  --border: #1e293b;
+  --text: #e2e8f0;
+  --text-dim: #94a3b8;
+  --accent: #d4a853;
+  --accent-glow: rgba(212, 168, 83, 0.15);
+  --blue: #3b82f6;
+  --green: #10b981;
+  --red: #ef4444;
+  --font: 'Space Grotesk', system-ui, sans-serif;
+  --mono: 'IBM Plex Mono', monospace;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+.container { max-width: 800px; margin: 0 auto; padding: 2rem 1.5rem; }
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(10, 14, 26, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0.75rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+}
+nav a { color: var(--accent); text-decoration: none; font-weight: 600; font-size: 0.95rem; }
+nav a:hover { text-decoration: underline; }
+nav .sep { color: var(--text-dim); }
+.hero {
+  text-align: center;
+  padding: 4rem 0 3rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 2rem;
+}
+.hero h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 800;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+}
+.hero .subtitle {
+  font-size: 1.15rem;
+  color: var(--text-dim);
+  max-width: 600px;
+  margin: 0 auto;
+}
+.content-section { margin-bottom: 2.5rem; }
+.content-section h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--accent-glow);
+}
+.content-section p, .content-section li {
+  color: var(--text-dim);
+  font-size: 1.05rem;
+}
+.content-section ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 0.5rem;
+}
+.content-section li {
+  padding: 0.35rem 0 0.35rem 1.5rem;
+  position: relative;
+}
+.content-section li::before {
+  content: '\25B8';
+  color: var(--accent);
+  position: absolute;
+  left: 0;
+}
+.signal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin: 1rem 0;
+}
+.signal-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.25rem;
+}
+.signal-card h4 {
+  color: var(--accent);
+  font-size: 0.95rem;
+  margin-bottom: 0.4rem;
+}
+.signal-card p {
+  color: var(--text-dim);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 0.95rem;
+}
+.data-table th, .data-table td {
+  padding: 0.6rem 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+.data-table th {
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.data-table td { color: var(--text-dim); }
+.faq-section { margin-top: 3rem; }
+.faq-section h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--accent);
+}
+.faq-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
+  overflow: hidden;
+}
+.faq-item summary {
+  padding: 1rem 1.25rem;
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.faq-item summary::before {
+  content: '+';
+  font-family: var(--mono);
+  color: var(--accent);
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+.faq-item[open] summary::before { content: '\2212'; }
+.faq-item p {
+  padding: 0 1.25rem 1rem;
+  color: var(--text-dim);
+  line-height: 1.6;
+}
+.cta-box {
+  background: linear-gradient(135deg, var(--surface) 0%, var(--surface-2) 100%);
+  border: 1px solid var(--accent);
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  margin: 3rem 0;
+}
+.cta-box h3 { color: var(--accent); font-size: 1.3rem; margin-bottom: 0.5rem; }
+.cta-box p { color: var(--text-dim); margin-bottom: 1.25rem; }
+.cta-box a {
+  display: inline-block;
+  background: var(--accent);
+  color: var(--bg);
+  font-weight: 700;
+  padding: 0.75rem 2rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.cta-box a:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px var(--accent-glow);
+}
+.related {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+.related h3 { font-size: 1rem; color: var(--text-dim); margin-bottom: 0.75rem; }
+.related a { color: var(--blue); text-decoration: none; font-size: 0.9rem; }
+.related a:hover { text-decoration: underline; }
+footer {
+  text-align: center;
+  padding: 2rem 0;
+  color: var(--text-dim);
+  font-size: 0.85rem;
+  border-top: 1px solid var(--border);
+  margin-top: 2rem;
+}
+footer a { color: var(--accent); text-decoration: none; }
+</style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@800;900&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/lib/cinematic-hero.css">
+  <link rel="stylesheet" href="/lib/cyber-shell.css">
+  <link rel="stylesheet" href="/lib/polish-tokens.css">
+</head>
+<body>
+  <div class="cy-bg" aria-hidden="true"></div>
+  <div class="cy-floor" aria-hidden="true"></div>
+  <div class="cy-vignette" aria-hidden="true"></div>
+  <div class="cy-scan" aria-hidden="true"></div>
+<nav>
+  <a href="/">Catalyst Edge</a>
+  <span class="sep">/</span>
+  <a href="/glossary/">Glossary</a>
+  <span class="sep">/</span>
+  <span style="color:var(--text-dim);font-size:0.9rem">What is a Dark Pool?</span>
+</nav>
+
+<div class="container">
+<section class="cin-hero cy-neon-hero cy-narrow cy-shimmer">
+    <div class="cin-grid">
+      <div class="cin-stat-stack">
+        <div class="cin-eyebrow"><span class="cin-live-dot"></span>DARK POOL · ATS · LIVE</div>
+        <div class="cin-colossal">
+          <div class="cin-num-row"><span class="cin-num">ATS</span></div>
+          <div class="cin-side">
+          <span class="cin-tag"><b>ATS</b> regulation</span>
+          <span class="cin-tag">block prints</span>
+          <span class="cin-tag">off-exchange %</span>
+          </div>
+        </div>
+        <div class="cin-stamp">GLOSSARY · WHAT IS A DARK POOL? · v1.0 · <b>LIVE</b></div>
+      </div>
+      <div class="cin-h1-block">
+        <div class="cin-h1-eyebrow">📚 What is a Dark Pool?</div>
+        <h1 class="cin-headline"><em>Off-exchange venue</em>—the <span class="cin-accent">where institutions actually trade</span>.</h1>
+        <p class="cin-lede">Dark pools are alternative trading systems where institutions trade large blocks without showing the order book. We track the off-exchange share as the closest public proxy for institutional intent.</p>
+        <div class="cin-cta-row">
+          <a href="#article-body" class="cin-btn-primary">Read article ↓</a>
+          <a href="/glossary/" class="cin-btn-ghost">Glossary index</a>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <h2>Dark pools explained</h2>
+    <p>A dark pool is a private electronic trading venue where institutional investors can buy and sell large blocks of stock without showing their orders on public exchanges. The name comes from the lack of pre-trade transparency &mdash; other market participants cannot see the orders until after they execute. Dark pools handle approximately 40% of all US equity volume.</p>
+  </section>
+
+  <section class="content-section">
+    <h2>Why dark pools exist</h2>
+    <p>When a pension fund needs to sell 5 million shares of a stock, placing that order on NYSE or Nasdaq would instantly crash the price. Dark pools solve this by matching large orders privately, reducing market impact. The trade-off is transparency: public market participants don't see the order flow until after execution.</p>
+    <ul>
+      <li>Reduced market impact for large block trades</li>
+      <li>Potentially better execution prices for institutions</li>
+      <li>Lower information leakage that could trigger front-running</li>
+      <li>Anonymity &mdash; counterparties don't know who they are trading with</li>
+    </ul>
+  </section>
+
+  <section class="content-section">
+    <h2>Types of dark pools</h2>
+    <table class="data-table">
+      <thead>
+        <tr><th>Type</th><th>Operator</th><th>Examples</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Broker-dealer owned</td><td>Major banks</td><td>Goldman Sachs Sigma X, Morgan Stanley MS Pool</td></tr>
+        <tr><td>Independent</td><td>Standalone operators</td><td>IEX (now lit), Liquidnet</td></tr>
+        <tr><td>Exchange-owned</td><td>Stock exchanges</td><td>NYSE Arca Dark, Cboe BATS Dark</td></tr>
+        <tr><td>Electronic market maker</td><td>HFT firms</td><td>Citadel Connect, Virtu</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="content-section">
+    <h2>Dark pool signals for traders</h2>
+    <div class="signal-grid">
+      <div class="signal-card">
+        <h4>Large Prints at Ask</h4>
+        <p>Block trades executed at or above the ask price suggest aggressive institutional buying. Prints over $1M at the ask are strong bullish signals.</p>
+      </div>
+      <div class="signal-card">
+        <h4>Unusual Volume Ratio</h4>
+        <p>When dark pool volume as a percentage of total volume spikes above historical norms, institutions are actively repositioning.</p>
+      </div>
+      <div class="signal-card">
+        <h4>Divergence from Price</h4>
+        <p>Heavy dark pool buying while the stock price falls suggests accumulation &mdash; institutions are absorbing selling pressure quietly.</p>
+      </div>
+      <div class="signal-card">
+        <h4>Repeated Prints</h4>
+        <p>Multiple dark pool prints in the same stock within a short window indicate sustained institutional interest, not a one-off rebalance.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <h2>Where to find dark pool data</h2>
+    <ul>
+      <li><strong>FINRA ATS Transparency Data</strong> &mdash; Weekly volume per stock per ATS, published with a 2-week delay</li>
+      <li><strong>Consolidated tape</strong> &mdash; Real-time prints from dark pools appear on the tape with a "D" market identifier</li>
+      <li><strong>Catalyst Edge</strong> &mdash; Aggregates dark pool signals alongside SEC filings, insider trades, and options flow for a unified view</li>
+    </ul>
+  </section>
+
+  <div class="cta-box">
+    <h3>See Dark Pool + SEC Signals Together</h3>
+    <p>Catalyst Edge layers dark pool prints on top of SEC filing alerts so you see when institutional buying confirms a catalyst.</p>
+    <a href="https://catalystedgescanner.com/">Open Scanner</a>
+  </div>
+
+  <div class="faq-section">
+    <h2>Frequently Asked Questions</h2>
+    <details class="faq-item">
+      <summary>Are dark pools legal?</summary>
+      <p>Yes. Dark pools are SEC-registered Alternative Trading Systems (ATS). They must comply with Regulation ATS, report trades to FINRA, and publish Form ATS-N disclosures. There are roughly 50 active dark pools in the US, handling about 40% of all equity trading volume.</p>
+    </details>
+    <details class="faq-item">
+      <summary>How can retail traders see dark pool data?</summary>
+      <p>FINRA publishes weekly dark pool volume data with a 2-week delay through its ATS Transparency Data. Real-time dark pool prints are reported to the consolidated tape and appear on time-and-sales feeds. Services like Catalyst Edge aggregate this data and flag unusual dark pool activity alongside SEC filings.</p>
+    </details>
+    <details class="faq-item">
+      <summary>What is a dark pool print?</summary>
+      <p>A dark pool print is a completed trade that was executed on a dark pool and then reported to the consolidated tape. Large single prints &mdash; especially at or above the ask price &mdash; suggest institutional buying conviction. Traders watch for prints over $1M as potential accumulation signals.</p>
+    </details>
+  </div>
+
+  <div class="related">
+    <h3>Related Topics</h3>
+    <p><a href="/glossary/dark-pool-signals/">Dark Pool Signals</a> &middot; <a href="/glossary/what-is-form-13f/">What is Form 13F?</a> &middot; <a href="/glossary/what-is-insider-trading/">What is Insider Trading?</a> &middot; <a href="/glossary/what-is-short-squeeze/">What is a Short Squeeze?</a> &middot; <a href="/glossary/what-is-squeeze-play/">What is a Squeeze Play?</a></p>
+  </div>
+</div>
+
+<footer>
+  <a href="https://catalystedgescanner.com/">Catalyst Edge Scanner</a> &middot;
+  <a href="https://catalystedge.agency">Daily Newsletter</a> &middot;
+  &copy; 2026 Catalyst Edge
+</footer>
+</body>
+</html>

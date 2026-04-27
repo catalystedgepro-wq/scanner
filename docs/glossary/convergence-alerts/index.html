@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Convergence Alerts: When Multiple Signals Align on One Stock | Catalyst Edge</title>
+<meta name="description" content="Convergence alerts fire when 3+ independent signals — insider buying, SEC filings, options flow, short interest — align on the same ticker. Learn why convergence beats single-signal trading.">
+<link rel="canonical" href="https://catalystedgescanner.com/glossary/convergence-alerts/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is a convergence alert?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A convergence alert fires when three or more independent signals align on the same stock within a defined time window. For example, if a company files a positive 8-K, insiders buy shares via Form 4, and the stock has elevated short interest — all within the same week — that's convergence. The probability of a significant move increases dramatically when multiple signal types confirm each other."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why is convergence better than single-signal trading?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Single signals produce many false positives. An insider buy might be routine. A high short interest might be justified. An 8-K might be immaterial. But when all three appear on the same ticker in the same window, the combined probability of a meaningful price move is much higher. Convergence filters noise and elevates conviction."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What types of signals does Catalyst Edge monitor for convergence?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Catalyst Edge monitors six signal types for convergence: SEC filings (8-K, S-3, S-1), insider transactions (Form 4 buys and cluster patterns), short interest and squeeze radar stages, unusual options activity, sector momentum (news and headline sentiment), and price/volume anomalies. A convergence alert requires 3+ of these signal types to fire on the same ticker."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does any other platform offer convergence alerts?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most trading platforms focus on a single signal type — options flow, SEC filings, or insider tracking — in isolation. Catalyst Edge is the only platform that combines all of these data streams into a single convergence detection engine that fires alerts when multiple independent signals align on one ticker."
+      }
+    }
+  ]
+}
+</script>
+<style>
+:root {
+  --bg: #05060b;
+  --surface: #0c1018;
+  --surface2: #12161f;
+  --surface3: #181d28;
+  --border: rgba(114,229,255,0.12);
+  --border-accent: rgba(215,180,106,0.22);
+  --text: #e8edf4;
+  --muted: #7a8899;
+  --cyan: #72e5ff;
+  --gold: #e7b76c;
+  --green: #10b981;
+  --red: #f43f5e;
+  --purple: #a78bfa;
+  --blue: #38bdf8;
+  --navy: #07111a;
+}
+* { box-sizing: border-box; margin: 0; padding: 0 }
+html { scroll-behavior: smooth }
+body {
+  font-family: 'Space Grotesk', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(114,229,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(114,229,255,0.025) 1px, transparent 1px);
+  background-size: 56px 56px;
+  opacity: 0.3;
+}
+.wrap { max-width: 800px; margin: 0 auto; padding: 0 24px }
+a { color: var(--cyan); text-decoration: none }
+a:hover { text-decoration: underline }
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--border);
+}
+.nav-brand {
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 2px;
+  color: var(--gold);
+}
+.nav-links { display: flex; gap: 28px; }
+.nav-links a {
+  font-size: 13px;
+  color: var(--muted);
+  letter-spacing: 0.5px;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--text); text-decoration: none }
+
+.hero {
+  padding: 72px 0 24px;
+  text-align: center;
+}
+.hero-badge {
+  display: inline-block;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--cyan);
+  border: 1px solid rgba(114,229,255,0.2);
+  padding: 6px 16px;
+  border-radius: 20px;
+  margin-bottom: 24px;
+}
+.hero h1 {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -1px;
+  margin-bottom: 16px;
+}
+.hero h1 span { color: var(--gold) }
+.hero p {
+  color: var(--muted);
+  font-size: 1.1rem;
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+.article { padding: 48px 0 }
+.article h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 40px 0 16px;
+  letter-spacing: -0.5px;
+}
+.article h2:first-child { margin-top: 0 }
+.article h2 span { color: var(--cyan) }
+.article h3 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin: 28px 0 12px;
+  color: var(--gold);
+}
+.article p {
+  color: var(--muted);
+  font-size: 15px;
+  margin-bottom: 16px;
+  line-height: 1.75;
+}
+.article ul, .article ol {
+  color: var(--muted);
+  font-size: 15px;
+  margin: 0 0 16px 20px;
+  line-height: 1.75;
+}
+.article li { margin-bottom: 6px }
+.article strong { color: var(--text); font-weight: 600 }
+
+.callout {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--gold);
+  border-radius: 8px;
+  padding: 20px 24px;
+  margin: 24px 0;
+}
+.callout p { margin-bottom: 0 }
+.callout .label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+
+.signal-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+  margin: 20px 0 24px;
+}
+@media (max-width: 700px) { .signal-grid { grid-template-columns: 1fr 1fr } }
+@media (max-width: 460px) { .signal-grid { grid-template-columns: 1fr } }
+.signal-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 18px 20px;
+}
+.signal-card .tag {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin-bottom: 8px;
+}
+.signal-card .title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+.signal-card p {
+  font-size: 12.5px;
+  margin-bottom: 0;
+  line-height: 1.6;
+}
+
+.convergence-visual {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 28px;
+  margin: 24px 0;
+  text-align: center;
+}
+.convergence-visual .ticker {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--gold);
+  margin-bottom: 4px;
+}
+.convergence-visual .status {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 16px;
+}
+.convergence-visual .signals {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.convergence-visual .signal-pill {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1px;
+  padding: 5px 12px;
+  border-radius: 16px;
+  border: 1px solid;
+}
+.signal-pill.filing { color: var(--cyan); border-color: rgba(114,229,255,0.3); background: rgba(114,229,255,0.06) }
+.signal-pill.insider { color: var(--green); border-color: rgba(16,185,129,0.3); background: rgba(16,185,129,0.06) }
+.signal-pill.squeeze { color: var(--red); border-color: rgba(244,63,94,0.3); background: rgba(244,63,94,0.06) }
+.signal-pill.options { color: var(--purple); border-color: rgba(167,139,250,0.3); background: rgba(167,139,250,0.06) }
+.signal-pill.momentum { color: var(--gold); border-color: rgba(215,180,106,0.3); background: rgba(215,180,106,0.06) }
+
+.cta-section {
+  text-align: center;
+  padding: 48px 0;
+  border-top: 1px solid var(--border);
+}
+.cta-section h2 {
+  font-size: 1.6rem;
+  margin-bottom: 12px;
+}
+.cta-section p {
+  color: var(--muted);
+  font-size: 14px;
+  max-width: 500px;
+  margin: 0 auto 24px;
+}
+.cta-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.cta-btn {
+  display: inline-block;
+  text-align: center;
+  padding: 14px 36px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  transition: all 0.2s;
+  text-decoration: none;
+  cursor: pointer;
+}
+.cta-btn.cyan-fill {
+  background: linear-gradient(135deg, var(--cyan), #38a0d0);
+  color: var(--bg);
+  border: none;
+}
+.cta-btn.cyan-fill:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px rgba(114,229,255,0.3);
+  text-decoration: none;
+}
+.cta-btn.outline {
+  border: 1px solid var(--border);
+  color: var(--text);
+  background: transparent;
+}
+.cta-btn.outline:hover {
+  border-color: var(--cyan);
+  background: rgba(114,229,255,0.05);
+  text-decoration: none;
+}
+.cta-btn.filled {
+  background: linear-gradient(135deg, var(--gold), #c9923b);
+  color: var(--bg);
+  border: none;
+}
+.cta-btn.filled:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px rgba(215,180,106,0.3);
+  text-decoration: none;
+}
+
+.tip-section {
+  text-align: center;
+  padding: 48px 0;
+  border-top: 1px solid var(--border);
+}
+.tip-section h3 {
+  font-size: 1.3rem;
+  margin-bottom: 12px;
+}
+.tip-section p {
+  color: var(--muted);
+  font-size: 14px;
+  max-width: 500px;
+  margin: 0 auto 20px;
+}
+.tip-btn {
+  display: inline-block;
+  padding: 12px 32px;
+  border: 1px solid var(--border-accent);
+  border-radius: 8px;
+  color: var(--gold);
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+.tip-btn:hover {
+  background: rgba(215,180,106,0.08);
+  border-color: var(--gold);
+  text-decoration: none;
+}
+
+.footer {
+  text-align: center;
+  padding: 40px 0;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 12px;
+}
+.footer a { color: var(--cyan) }
+.footer-links { margin-bottom: 8px }
+.footer-links a { margin: 0 12px }
+</style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@800;900&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/lib/cinematic-hero.css">
+  <link rel="stylesheet" href="/lib/cyber-shell.css">
+  <link rel="stylesheet" href="/lib/polish-tokens.css">
+</head>
+<body>
+  <div class="cy-bg" aria-hidden="true"></div>
+  <div class="cy-floor" aria-hidden="true"></div>
+  <div class="cy-vignette" aria-hidden="true"></div>
+  <div class="cy-scan" aria-hidden="true"></div>
+<div class="wrap">
+
+<nav class="nav">
+  <a href="/" class="nav-brand">CATALYST EDGE</a>
+  <div class="nav-links">
+    <a href="/scanner/">Scanner</a>
+    <a href="/cerebro/">Cerebro</a>
+    <a href="/cerebro/app/">HUD</a>
+    <a href="/pricing/">Pricing</a>
+  </div>
+</nav>
+
+<section class="cin-hero cy-neon-hero cy-narrow cy-shimmer">
+    <div class="cin-grid">
+      <div class="cin-stat-stack">
+        <div class="cin-eyebrow"><span class="cin-live-dot"></span>CONVERGENCE · GUIDE · LIVE</div>
+        <div class="cin-colossal">
+          <div class="cin-num-row"><span class="cin-num">Stack</span></div>
+          <div class="cin-side">
+          <span class="cin-tag"><b>compound</b> alpha</span>
+          <span class="cin-tag">cross-validated signals</span>
+          <span class="cin-tag">historical hit rates</span>
+          </div>
+        </div>
+        <div class="cin-stamp">GLOSSARY · CONVERGENCE ALERTS GUIDE · v1.0 · <b>LIVE</b></div>
+      </div>
+      <div class="cin-h1-block">
+        <div class="cin-h1-eyebrow">📚 Convergence Alerts Guide</div>
+        <h1 class="cin-headline"><em>Multi-signal alpha</em>—the <span class="cin-accent">why stacked signals outperform</span>.</h1>
+        <p class="cin-lede">Each individual signal has alpha. The intersection of 3+ has compounded alpha. We document the historical hit rates by signal-count stack — and the names where the convergence is firing right now.</p>
+        <div class="cin-cta-row">
+          <a href="#article-body" class="cin-btn-primary">Read article ↓</a>
+          <a href="/glossary/" class="cin-btn-ghost">Glossary index</a>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+<article class="article">
+
+  <h2>What is <span>Convergence?</span></h2>
+
+  <p>In trading, convergence means <strong>multiple independent data signals pointing at the same stock at the same time</strong>. Not correlated signals from the same data source &mdash; truly independent signals from different domains that all converge on one ticker within a tight time window.</p>
+
+  <p>Consider a stock where three things happen in the same week: the company files an <a href="/glossary/what-is-8k/">8-K announcing a material agreement</a>, two insiders submit <a href="/glossary/how-to-read-form-4/">Form 4 filings showing open-market purchases</a>, and the stock's short interest sits at 28% of float with a <a href="/glossary/what-is-short-squeeze/">COILED squeeze setup</a>. Each signal alone might mean something. Together, they paint a high-conviction picture: the company just announced good news, insiders are putting their own money behind it, and there's a pile of shorts who may be forced to cover.</p>
+
+  <p>That's convergence. And it's the foundational concept behind Catalyst Edge's alert engine.</p>
+
+  <h2>The <span>Six Signal Types</span></h2>
+
+  <p>Catalyst Edge monitors six independent signal categories. A convergence alert requires three or more of these to fire on the same ticker within a rolling window:</p>
+
+  <div class="signal-grid">
+    <div class="signal-card">
+      <div class="tag">01</div>
+      <div class="title">SEC Filings</div>
+      <p>8-K material events, S-3 shelf registrations, S-1 IPO amendments. Parsed by item type and scored by historical catalyst impact.</p>
+    </div>
+    <div class="signal-card">
+      <div class="tag">02</div>
+      <div class="title">Insider Transactions</div>
+      <p>Form 4 open-market purchases, especially cluster buys (3+ insiders within 14 days). Sales are noted but weighted lower.</p>
+    </div>
+    <div class="signal-card">
+      <div class="tag">03</div>
+      <div class="title">Short Interest</div>
+      <p>Squeeze radar stages (COILED, IGNITION, SQUEEZE). Based on SI% of float, days to cover, cost to borrow, and float size.</p>
+    </div>
+    <div class="signal-card">
+      <div class="tag">04</div>
+      <div class="title">Options Flow</div>
+      <p>Unusual call sweeps, large premium bets, and put/call ratio anomalies that suggest smart money positioning.</p>
+    </div>
+    <div class="signal-card">
+      <div class="tag">05</div>
+      <div class="title">Sector Momentum</div>
+      <p>Bloomberg-style headline sentiment, sector rotation signals, and news momentum scores from financial media parsing.</p>
+    </div>
+    <div class="signal-card">
+      <div class="tag">06</div>
+      <div class="title">Price &amp; Volume</div>
+      <p>Volume spikes relative to 20-day average, breakouts from consolidation, and unusual pre-market activity patterns.</p>
+    </div>
+  </div>
+
+  <h2>Why Convergence <span>Beats</span> Single-Signal Trading</h2>
+
+  <p>Every trading signal has a false positive rate. An insider buy might be routine. A high short interest might be justified by deteriorating fundamentals. An 8-K filing might disclose something immaterial. Individually, each signal produces noise alongside its signal.</p>
+
+  <p>Convergence <strong>dramatically reduces false positives</strong> through independent confirmation. Think of it statistically: if each signal has a 40% false positive rate independently, the probability that three unrelated signals all produce false positives simultaneously drops to roughly 6%. The math is on your side when signals converge.</p>
+
+  <p>Here's what single-signal platforms miss:</p>
+
+  <ul>
+    <li><strong>Options flow platforms</strong> (Unusual Whales, FlowAlgo) show you the flow but not <em>why</em> it's happening. Was there an 8-K that triggered the sweep? Is there insider buying confirming the thesis? They can't tell you.</li>
+    <li><strong>Insider tracking platforms</strong> (OpenInsider, SEC.gov) show you the transaction but not the surrounding context. Is the stock heavily shorted? Is there a recent catalyst filing? You'd need to check elsewhere.</li>
+    <li><strong>SEC filing scanners</strong> (EDGAR, Quiver Quant) show you the filing but not whether smart money is already positioning around it. No cross-referencing with insider buys or short interest.</li>
+  </ul>
+
+  <p>Catalyst Edge is the only platform that <strong>ingests all of these data streams</strong> and runs a convergence detection engine across them. When three or more signals align, you get a single alert that connects all the dots.</p>
+
+  <div class="convergence-visual">
+    <div class="ticker">ACME</div>
+    <div class="status">CONVERGENCE DETECTED &mdash; 4 SIGNALS</div>
+    <div class="signals">
+      <span class="signal-pill filing">8-K ITEM 1.01</span>
+      <span class="signal-pill insider">3x INSIDER BUY</span>
+      <span class="signal-pill squeeze">SI 31% &bull; COILED</span>
+      <span class="signal-pill options">CALL SWEEP $2.1M</span>
+    </div>
+  </div>
+
+  <h2>How <span>Convergence Alerts</span> Work in Practice</h2>
+
+  <h3>The Detection Window</h3>
+
+  <p>Catalyst Edge uses a <strong>rolling 7-day window</strong> for convergence detection. Signals that appear within the same 7-day period on the same ticker are evaluated as potentially convergent. The window is tight enough to ensure temporal relevance but wide enough to capture signals that don't all land on the same day.</p>
+
+  <h3>Scoring and Ranking</h3>
+
+  <p>Not all convergences are equal. A convergence of three moderate signals is less compelling than a convergence of four strong signals. Each individual signal carries its own strength score (based on magnitude, historical hit rate, and context), and the convergence score compounds these. The highest-scoring convergences appear at the top of the daily newsletter and scanner rankings.</p>
+
+  <h3>Delivery</h3>
+
+  <p>Convergence alerts reach you through multiple channels depending on your plan:</p>
+
+  <ul>
+    <li><strong>Free tier:</strong> Convergence summaries in the daily email newsletter</li>
+    <li><strong>Edge Reader:</strong> Full convergence detail in the scanner with real-time updates</li>
+    <li><strong>Edge Pro:</strong> Priority convergence alerts delivered before the newsletter, plus webhook integrations for automated workflows</li>
+    <li><strong>Edge API:</strong> Programmatic access to the convergence engine for custom applications</li>
+  </ul>
+
+  <div class="callout">
+    <div class="label">PERFORMANCE NOTE</div>
+    <p>Convergence alerts represent a small subset of total alerts &mdash; typically 3-8 tickers per week meet the 3+ signal threshold. This selectivity is by design. The convergence engine is a <strong>precision filter, not a firehose</strong>. Fewer alerts, higher conviction, better outcomes.</p>
+  </div>
+
+  <h2>Building a <span>Convergence-First</span> Trading Process</h2>
+
+  <p>Many traders make the mistake of starting with a stock and then looking for confirming signals. This is <strong>confirmation bias</strong> dressed up as research. The convergence-first approach inverts this: let the data surface the opportunities, then evaluate whether the setup fits your trading style.</p>
+
+  <ol>
+    <li><strong>Start with the convergence feed.</strong> Review which tickers triggered convergence alerts that day. Don't start with a watchlist.</li>
+    <li><strong>Evaluate the signal composition.</strong> Which three (or more) signals fired? Is the combination one you've traded successfully before?</li>
+    <li><strong>Check the fundamentals.</strong> Convergence identifies candidates. Due diligence confirms or rejects them. Look at the balance sheet, cash position, and sector context.</li>
+    <li><strong>Size and manage risk.</strong> Even high-conviction setups fail. Position sizing and stop placement are non-negotiable regardless of signal count.</li>
+  </ol>
+
+  <p>This process removes the emotional component of stock selection. You're not picking favorites. You're letting independent data streams nominate the highest-probability setups and then applying disciplined evaluation.</p>
+
+</article>
+
+<section class="cta-section">
+  <h2>Only Catalyst Edge fires convergence alerts.</h2>
+  <p>No other platform cross-references SEC filings, insider buys, short interest, and options flow into a single convergence engine. See it in action.</p>
+  <div class="cta-buttons">
+    <a href="/pricing/" class="cta-btn filled">See Pricing</a>
+    <a href="https://catalystedge.agency" class="cta-btn cyan-fill">Subscribe Free</a>
+    <a href="/scanner/" class="cta-btn outline">Open Scanner</a>
+  </div>
+</section>
+
+<section class="tip-section">
+  <h3>Love the free tools? Buy us a coffee.</h3>
+  <p>Catalyst Edge is indie-built. Every dollar goes directly to data feeds, servers, and making the scanner faster. No VC, no ads, just us building.</p>
+  <a href="https://ko-fi.com/catalystedge" class="tip-btn" target="_blank" rel="noopener">Support on Ko-fi</a>
+</section>
+
+<footer class="footer">
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="/scanner/">Scanner</a>
+    <a href="/cerebro/">Cerebro</a>
+    <a href="/cerebro/app/">HUD</a>
+    <a href="/pricing/">Pricing</a>
+    <a href="https://catalystedge.agency">Newsletter</a>
+    <a href="https://www.catalystedge.agency/">Catalyst AI</a>
+  </div>
+  <p>&copy; 2026 Catalyst Edge. Built indie. No VC. No ads. Just signal.</p>
+</footer>
+
+</div>
+</body>
+</html>

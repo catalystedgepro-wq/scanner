@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Security &amp; Privacy — Catalyst Edge Scanner</title>
+  <meta name="description" content="What we collect, what we don't have access to. Stripe-handled billing, TLS 1.3, no tracking pixels, NMR-paid bug bounty. OWASP-aligned, secure-by-default." />
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/lib/admin-unlock.css" />
+  <link rel="stylesheet" href="/lib/scanner-polish.css" />
+  <link rel="stylesheet" href="/lib/nav-fix.css" />
+  <style>
+    :root{
+      --navy:#040a14; --navy2:#0a1424; --navy3:#0e1a2e;
+      --ink:#e6f1ff; --ink-dim:#9bb0c8; --ink-mute:#6e8198;
+      --cyan:#5ad7ff; --gold:#f5c662; --bull:#5cf2a4; --bear:#ff6b8b;
+      --line:rgba(110,140,180,0.18); --line-strong:rgba(110,140,180,0.32);
+      --glass: linear-gradient(180deg, rgba(15,28,48,0.78), rgba(7,14,28,0.78));
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;background:#04070d;color:var(--ink);
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      -webkit-font-smoothing:antialiased; font-feature-settings:"ss01","cv11";
+    }
+    a{color:var(--cyan);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+    code{font-family:"JetBrains Mono","IBM Plex Mono",ui-monospace,monospace;font-size:0.92em;background:rgba(90,215,255,0.06);padding:1px 6px;border-radius:4px;color:var(--cyan)}
+
+    .topbar{position:sticky;top:0;z-index:50;background:rgba(4,7,13,0.86);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+    .topbar-row{display:flex;align-items:center;gap:18px;padding:14px 24px;max-width:1400px;margin:0 auto}
+    .brand{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:14px;letter-spacing:0.18em;color:var(--gold);text-transform:uppercase}
+    .brand b{color:var(--cyan)}
+    nav.nav{display:flex;gap:8px;flex:1;flex-wrap:nowrap;overflow-x:auto;scroll-padding-top:80px}
+    nav.nav a{font-size:13px;color:var(--ink-dim);padding:8px 12px;border-radius:8px;white-space:nowrap}
+    nav.nav a:hover{background:rgba(90,215,255,0.08);color:var(--ink);text-decoration:none}
+    nav.nav a.active{color:var(--gold);background:rgba(245,198,98,0.08)}
+    .topbar-cta{display:flex;gap:10px;align-items:center}
+    .pill-cta{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;
+      padding:8px 14px;border:1px solid var(--gold);color:var(--gold);border-radius:999px;cursor:pointer}
+    .pill-cta:hover{background:rgba(245,198,98,0.12);text-decoration:none}
+
+    .suite-row{display:grid;grid-template-columns:repeat(7,1fr);gap:10px;padding:14px 24px;max-width:1400px;margin:0 auto;border-bottom:1px solid var(--line)}
+    .suite-card{background:var(--glass);border:1px solid var(--line);border-radius:12px;padding:10px 12px;
+      display:flex;flex-direction:column;gap:4px;transition:all .2s ease;cursor:pointer}
+    .suite-card:hover{border-color:rgba(90,215,255,0.45);transform:translateY(-2px);text-decoration:none}
+    .suite-card .sc-eye{font-family:"IBM Plex Mono",monospace;font-size:9px;letter-spacing:0.16em;color:var(--ink-mute);text-transform:uppercase}
+    .suite-card .sc-h{font-size:13px;color:var(--ink);font-weight:600}
+    .suite-card .sc-d{font-size:11px;color:var(--ink-dim);line-height:1.35}
+    @media (max-width:980px){
+      .suite-row{grid-template-columns:repeat(2,1fr)}
+      nav.nav a{padding:6px 8px;font-size:12px}
+    }
+
+    .hero{padding:64px 0 48px;border-bottom:1px solid var(--line);position:relative;overflow:hidden}
+    .hero::before{content:"";position:absolute;inset:0;
+      background:radial-gradient(800px 400px at 30% 20%, rgba(90,215,255,0.12), transparent 60%),
+                 radial-gradient(600px 380px at 80% 60%, rgba(245,198,98,0.10), transparent 60%);pointer-events:none}
+    .hero .wrap{position:relative}
+    .eyebrow{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:0.22em;color:var(--gold);text-transform:uppercase;margin-bottom:16px}
+    .h1{font-size:clamp(36px,5.5vw,64px);line-height:1.04;letter-spacing:-0.01em;margin:0 0 18px;font-weight:700}
+    .h1 .glow{color:var(--cyan)}
+    .sub{font-size:18px;color:var(--ink-dim);max-width:780px;line-height:1.5}
+    .stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:36px}
+    .stat-box{background:var(--glass);border:1px solid var(--line);border-radius:14px;padding:18px}
+    .stat-box .lbl{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:0.18em;color:var(--ink-mute);text-transform:uppercase;margin-bottom:6px}
+    .stat-box .val{font-size:26px;color:var(--cyan);font-weight:700;font-variant-numeric:tabular-nums}
+    .stat-box .ann{font-size:12px;color:var(--ink-dim);margin-top:4px}
+    @media (max-width:860px){.stats-row{grid-template-columns:repeat(2,1fr)}}
+
+    section.section{padding:56px 0;border-bottom:1px solid var(--line)}
+    .section h2{font-size:28px;margin:0 0 8px;letter-spacing:-0.01em}
+    .section .lead{color:var(--ink-dim);max-width:680px;margin:0 0 28px}
+
+    /* sec cards */
+    .sec-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    @media (max-width:760px){.sec-grid{grid-template-columns:1fr}}
+    .sec{background:var(--glass);border:1px solid var(--line);border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:10px;transition:all .2s ease}
+    .sec:hover{border-color:rgba(90,215,255,0.45);transform:translateY(-2px)}
+    .sec-hd{display:flex;align-items:center;gap:12px}
+    .sec .ico{font-size:24px}
+    .sec h3{margin:0;font-size:17px;color:var(--ink)}
+    .sec h3 .tag{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:0.18em;color:var(--gold);text-transform:uppercase;margin-left:8px;padding:3px 8px;border-radius:6px;background:rgba(245,198,98,0.08);border:1px solid rgba(245,198,98,0.32)}
+    .sec h3 .tag.bull{color:var(--bull);background:rgba(92,242,164,0.08);border-color:rgba(92,242,164,0.4)}
+    .sec h3 .tag.bear{color:var(--bear);background:rgba(255,107,139,0.06);border-color:rgba(255,107,139,0.4)}
+    .sec p{margin:0;font-size:13.5px;color:var(--ink-dim);line-height:1.6}
+    .sec ul{margin:6px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px}
+    .sec ul li{font-size:13px;color:var(--ink-dim);display:flex;gap:8px;align-items:flex-start;line-height:1.5}
+    .sec ul li::before{content:"›";color:var(--cyan);font-weight:700;flex-shrink:0}
+    .sec ul.no li::before{content:"✕";color:var(--bear)}
+    .sec ul.yes li::before{content:"✓";color:var(--bull)}
+    .sec ul li b{color:var(--ink);font-weight:600}
+
+    /* bug bounty */
+    .bounty{background:linear-gradient(135deg, rgba(245,198,98,0.10), rgba(124,109,242,0.08));
+      border:1px solid rgba(245,198,98,0.32);border-radius:18px;padding:32px}
+    .bounty h3{margin:0 0 8px;font-size:24px;color:var(--gold)}
+    .bounty p{margin:0 0 14px;color:var(--ink-dim);font-size:14px;line-height:1.6;max-width:680px}
+    .bounty-table{width:100%;border-collapse:collapse;margin-top:16px;font-size:13px}
+    .bounty-table th, .bounty-table td{padding:12px 14px;border-bottom:1px solid var(--line);text-align:left}
+    .bounty-table th{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:0.18em;color:var(--ink-mute);text-transform:uppercase}
+    .bounty-table td b{color:var(--ink)}
+    .bounty-table td.amount{font-family:"JetBrains Mono",monospace;color:var(--gold);font-weight:600}
+    .bounty-cta{display:inline-flex;gap:10px;margin-top:18px;flex-wrap:wrap}
+    .bounty-cta a{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;
+      padding:11px 16px;border-radius:10px}
+    .bounty-cta a.primary{background:var(--gold);color:#1a1304;font-weight:700}
+    .bounty-cta a.primary:hover{background:#ffd683;text-decoration:none}
+    .bounty-cta a.ghost{border:1px solid var(--cyan);color:var(--cyan)}
+    .bounty-cta a.ghost:hover{background:rgba(90,215,255,0.12);text-decoration:none}
+
+    .compliance{margin-top:24px;background:var(--glass);border:1px solid var(--line);border-radius:14px;padding:22px}
+    .compliance h4{margin:0 0 8px;color:var(--cyan);font-size:16px}
+    .compliance p{margin:0;color:var(--ink-dim);font-size:13.5px;line-height:1.6}
+    .compliance .badges{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+    .compliance .b{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;
+      padding:6px 12px;border-radius:999px;border:1px solid var(--line-strong);color:var(--ink-dim)}
+    .compliance .b.bull{color:var(--bull);border-color:rgba(92,242,164,0.4)}
+    .compliance .b.gold{color:var(--gold);border-color:rgba(245,198,98,0.4)}
+    .compliance .b.future{color:var(--ink-mute);border-style:dashed}
+
+    footer{padding:36px 0;color:var(--ink-mute);font-size:12px;border-top:1px solid var(--line);text-align:center}
+    footer .links{display:flex;gap:14px;justify-content:center;margin-top:8px;flex-wrap:wrap}
+  </style>
+<link rel="stylesheet" href="/lib/polish-tokens.css">
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-row">
+      <div class="brand"><b>Catalyst</b> · Edge</div>
+      <nav class="nav">
+        <a href="/scanner/">Scanner</a>
+        <a href="/international/">Global</a>
+        <a href="/dcf/">DCF</a>
+        <a href="/cross-border/">Cross-Border</a>
+        <a href="/alerts/">Alerts</a>
+        <a href="/data/api/">API</a>
+        <a href="/sdk/">SDK</a>
+        <a href="/benchmarks/">Benchmarks</a>
+        <a href="/trust/">Trust</a>
+        <a href="/security/" class="active">Security</a>
+        <a href="/community/">Community</a>
+        <a href="/changelog/">Changelog</a>
+        <a href="/pricing/">Pricing</a>
+      </nav>
+      <div class="topbar-cta">
+        <a class="pill-cta" href="#bounty">Bug bounty</a>
+      </div>
+    </div>
+    <div class="suite-row">
+      <a class="suite-card" href="/scanner/"><span class="sc-eye">US Scanner</span><span class="sc-h">Catalyst Edge</span><span class="sc-d">Live US gappers + flow</span></a>
+      <a class="suite-card" href="/international/"><span class="sc-eye">Global</span><span class="sc-h">43 markets</span><span class="sc-d">Cross-border tape</span></a>
+      <a class="suite-card" href="/dcf/"><span class="sc-eye">Valuation</span><span class="sc-h">DCF Engine</span><span class="sc-d">Audited fair-value grades</span></a>
+      <a class="suite-card" href="/cross-border/"><span class="sc-eye">Convergence</span><span class="sc-h">ADR ↔ Home</span><span class="sc-d">Foreign + US arb</span></a>
+      <a class="suite-card" href="/alerts/"><span class="sc-eye">Alerts</span><span class="sc-h">Pro Tape</span><span class="sc-d">Live triggers right now</span></a>
+      <a class="suite-card" href="/data/api/"><span class="sc-eye">Developers</span><span class="sc-h">JSON API</span><span class="sc-d">22 endpoints</span></a>
+      <a class="suite-card" href="/docs/quickstart/"><span class="sc-eye">Onboard</span><span class="sc-h">Quickstart</span><span class="sc-d">First DCF in 60 sec</span></a>
+    </div>
+  </div>
+
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow">🔒 No PII beyond email · Stripe-handled billing · TLS everywhere · No tracking pixels</div>
+      <h1 class="h1">Security &amp; privacy — what we do, <span class="glow">what we don't have access to.</span></h1>
+      <p class="sub">A Bloomberg replacement that asks for less data than your weather app. Below: every byte we collect, every byte we deliberately do not, and a paid bug bounty so security researchers have a reason to actually look.</p>
+      <div class="stats-row">
+        <div class="stat-box"><div class="lbl">Third-party trackers</div><div class="val">0</div><div class="ann">No GA · no Pixel · no Hotjar</div></div>
+        <div class="stat-box"><div class="lbl">PII fields beyond email</div><div class="val">0</div><div class="ann">Email + Stripe customer ID only</div></div>
+        <div class="stat-box"><div class="lbl">Transport security</div><div class="val">TLS 1.3</div><div class="ann">HSTS preload-eligible</div></div>
+        <div class="stat-box"><div class="lbl">Bug bounty payout</div><div class="val">5–50 NMR</div><div class="ann">≈ $45–$450 per CVSS tier</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>What we collect — and what we don't</h2>
+      <p class="lead">Two cards, side by side. The full surface, no fine print.</p>
+      <div class="sec-grid">
+        <div class="sec">
+          <div class="sec-hd"><span class="ico">📥</span><h3>Data we collect <span class="tag">minimal</span></h3></div>
+          <p>Everything required to bill you, authenticate you, and stop API abuse. That's it.</p>
+          <ul class="yes">
+            <li><b>Email</b> — for login, Stripe receipts, optional newsletter. Required.</li>
+            <li><b>Stripe customer ID</b> — billing reference. We never see card numbers.</li>
+            <li><b>API key</b> — bcrypt-hashed at rest. Rotatable from your account dashboard.</li>
+            <li><b>Server logs</b> — IP, User-Agent, request path, timestamp. Used only for rate-limiting + abuse prevention.</li>
+            <li><b>Log retention</b> — rotated &amp; deleted after <code>30 days</code>. No long-term archive.</li>
+          </ul>
+        </div>
+        <div class="sec">
+          <div class="sec-hd"><span class="ico">🚫</span><h3>Data we never collect <span class="tag bear">never</span></h3></div>
+          <p>The list of things we explicitly refuse to ingest. Some by design, some by license, all permanent.</p>
+          <ul class="no">
+            <li>Your portfolio file</li>
+            <li>Your brokerage / IB account</li>
+            <li>Your trade tape</li>
+            <li>Your card numbers (Stripe only)</li>
+            <li>Your phone or address</li>
+            <li>Your social handles or contact list</li>
+            <li>Your real name (unless you opt in for a case study)</li>
+            <li>Your IP location beyond country code</li>
+            <li>Browser fingerprints, device IDs, ad IDs</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>How the surface is hardened</h2>
+      <p class="lead">Eight building blocks. Each one is boring on purpose — boring is what doesn't break in production.</p>
+      <div class="sec-grid">
+        <div class="sec">
+          <div class="sec-hd"><span class="ico">💳</span><h3>Stripe-handled billing <span class="tag bull">PCI Stripe</span></h3></div>
+          <p>We never see your card. Stripe Checkout is iframed; tokens come back, raw card numbers never touch our infrastructure. PCI-DSS compliance is Stripe's burden — by design.</p>
+          <ul class="yes">
+            <li>Cancel anytime via the Stripe receipt link</li>
+            <li>Refunds processed in Stripe directly</li>
+            <li>Subscription state mirrored to our DB by webhook signature</li>
+            <li>Webhook signing secret rotated quarterly</li>
+          </ul>
+        </div>
+
+        <div class="sec">
+          <div class="sec-hd"><span class="ico">🔑</span><h3>Authentication <span class="tag bull">bcrypt</span></h3></div>
+          <p>Bearer-token API keys, rotatable from your account dashboard. <code>bcrypt</code> at rest, never logged in plaintext. Compromised? Rotate, the old key 401s instantly.</p>
+          <ul class="yes">
+            <li>Format <code>ce_live_…</code> · 32 random bytes base32-encoded</li>
+            <li>Hashed (bcrypt cost 12) on creation, plaintext shown once</li>
+            <li>Per-key rate-limit + scope flags for /alerts vs /tape vs /dcf</li>
+            <li>Optional IP allowlist for Enterprise tier</li>
+          </ul>
+        </div>
+
+        <div class="sec">
+          <div class="sec-hd"><span class="ico">🛡️</span><h3>Rate-limits as DDoS defense <span class="tag">tier-aware</span></h3></div>
+          <p>Per-IP and per-API-key buckets. Bursts allowed up to 2× tier limit, then 429 with <code>Retry-After</code>. Persistent abuse → email warning, not a permanent ban.</p>
+          <ul class="yes">
+            <li>Free: 100 req/day · Reader: 1k · Pro: 10k · Team: 50k · Enterprise: unlimited</li>
+            <li>Per-IP cap on unauthenticated routes to absorb scrape attempts</li>
+            <li>Cloudflare in front for L3/L4; nginx <code>limit_req_zone</code> at the edge</li>
+            <li>Telemetry: any 429 spike pages the founder within 60 seconds</li>
+          </ul>
+        </div>
+
+        <div class="sec">
+          <div class="sec-hd"><span class="ico">🔐</span><h3>Transport security <span class="tag bull">TLS 1.3</span></h3></div>
+          <p>HTTPS everywhere. No HTTP fallback for any API surface. HSTS header set; preload list submission queued. Plain-HTTP requests are 301'd to HTTPS, then HSTS-locked thereafter.</p>
+          <ul class="yes">
+            <li>TLS 1.3 with modern cipher suites (no RC4, no SHA-1, no SSLv3)</li>
+            <li>HSTS: <code>max-age=63072000; includeSubDomains; preload</code></li>
+            <li>Let's Encrypt cert auto-renewed every 60 days</li>
+            <li>SSL Labs A+ target (current grade tracked publicly via /trust audit)</li>
+          </ul>
+        </div>
+
+        <div class="sec">
+          <div class="sec-hd"><span class="ico">👁️</span><h3>No third-party tracking pixels <span class="tag bull">zero</span></h3></div>
+          <p>No Google Analytics. No Facebook Pixel. No Hotjar. No Sentry session replay. No LinkedIn insight tag. Just plain server logs we control. If you block cookies the site works identically.</p>
+          <ul class="yes">
+            <li>One first-party cookie: <code>tier_token</code> for auth (HttpOnly, SameSite=Lax)</li>
+            <li>Zero analytics SaaS in production HTML</li>
+            <li>No CDNs that fingerprint visitors (we self-host fonts and CSS)</li>
+            <li>Dashboards built from anonymized aggregate logs only</li>
+          </ul>
+        </div>
+
+        <div class="sec">
+          <div class="sec-hd"><span class="ico">🚪</span><h3>What we don't have access to <span class="tag bear">never</span></h3></div>
+          <p>The boundary is one-way: we serve you data, you don't have to give us yours. We literally cannot leak what we don't store.</p>
+          <ul class="no">
+            <li>Your brokerage (IB, TD, Schwab, etc.) — no OAuth, no API key</li>
+            <li>Your bank — never asked, no Plaid integration</li>
+            <li>Your portfolio file — store it on your device, not ours</li>
+            <li>Your social account — no LinkedIn / Twitter OAuth</li>
+            <li>Your trade tape — we only see what you query us for</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="bounty">
+    <div class="wrap">
+      <h2>Bug bounty</h2>
+      <p class="lead">Find a real vulnerability, get paid in NMR. We'd rather pay you than read about it on Twitter at 3am.</p>
+      <div class="bounty">
+        <h3>5 → 50 NMR per finding</h3>
+        <p>Severity bracketed by CVSS v3.1 base score. Payouts in NMR (Numerai token, ≈ $8.97/coin). Each accepted CVSS-7-or-higher report also gets a thank-you in <a href="/releases/">/releases</a> (your handle, optional). Hall of Fame coming with v0.0.5.</p>
+        <table class="bounty-table">
+          <thead>
+            <tr><th>Severity (CVSS v3.1)</th><th>Examples</th><th>Payout</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><b>Critical (9.0–10.0)</b></td><td>Remote code execution · auth bypass on /api · Stripe webhook forgery</td><td class="amount">50 NMR</td></tr>
+            <tr><td><b>High (7.0–8.9)</b></td><td>SQL injection · stored XSS in admin · session hijack</td><td class="amount">25 NMR</td></tr>
+            <tr><td><b>Medium (4.0–6.9)</b></td><td>Reflected XSS · SSRF in API · IDOR on read endpoints</td><td class="amount">10 NMR</td></tr>
+            <tr><td><b>Low (0.1–3.9)</b></td><td>Info disclosure (non-PII) · clickjacking · header misconfig</td><td class="amount">5 NMR</td></tr>
+            <tr><td><b>Out of scope</b></td><td>Self-XSS · social engineering · physical · spam · brute-force without working PoC</td><td class="amount">No payout</td></tr>
+          </tbody>
+        </table>
+        <div class="bounty-cta">
+          <a class="primary" href="mailto:opensource@example.com?subject=%5BSECURITY%5D%20Vulnerability%20report&body=Severity%3A%20%0A%0AAffected%20component%2Furl%3A%20%0A%0AReproduction%20steps%3A%0A1.%20%0A2.%20%0A3.%20%0A%0AImpact%3A%20%0A%0ASuggested%20fix%3A%20">Report a vulnerability</a>
+          <a class="ghost" href="/security/pgp.txt">PGP key (placeholder)</a>
+        </div>
+      </div>
+
+      <div class="compliance">
+        <h4>Responsible disclosure</h4>
+        <p>Standard <code>90-day</code> disclosure window from first contact, faster on critical. Email <code>security@catalystedgescanner.com</code> (currently aliased to <a href="mailto:opensource@example.com">opensource@example.com</a>) for a first response within 24 hours. Critical findings paged to founder within 60 seconds via dedicated channel. We do not pursue legal action against good-faith researchers operating within the scope above.</p>
+      </div>
+
+      <div class="compliance">
+        <h4>Compliance</h4>
+        <p>We are <b>not yet</b> SOC2 audited. SOC2 Type 1 is in progress for the Enterprise tier and targeted for <code>2026-Q4</code>. Until then, we follow OWASP Top 10 + standard secure-by-default patterns and document our posture publicly here. If your buyer needs a vendor questionnaire today, reply to <a href="/enterprise/">enterprise inquiries</a> and we'll send a one-page security summary within 24 hours.</p>
+        <div class="badges">
+          <span class="b bull">OWASP Top 10 aligned</span>
+          <span class="b bull">TLS 1.3 + HSTS</span>
+          <span class="b bull">Stripe-handled PCI</span>
+          <span class="b gold">SOC2 Type 1 — in progress</span>
+          <span class="b future">SOC2 Type 2 — 2027</span>
+          <span class="b future">ISO 27001 — TBD</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    Catalyst Edge Scanner · Boring security on purpose · Audited 89% hit rate
+    <div class="links">
+      <a href="/scanner/">Scanner</a>
+      <a href="/trust/">Trust</a>
+      <a href="/changelog/">Changelog</a>
+      <a href="/pricing/">Pricing</a>
+      <a href="mailto:opensource@example.com">Contact</a>
+    </div>
+  </footer>
+
+  <script src="/lib/tier.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+metric,name,value,unit,snapshot_time,captured_at
+fuel_mw,Dual Fuel,3929.0,MW,04/27/2026 18:30:00,2026-04-27T22:49:26Z
+fuel_mw,Hydro,3746.0,MW,04/27/2026 18:30:00,2026-04-27T22:49:26Z
+fuel_mw,Natural Gas,3881.0,MW,04/27/2026 18:30:00,2026-04-27T22:49:26Z
+fuel_mw,Nuclear,3331.0,MW,04/27/2026 18:30:00,2026-04-27T22:49:26Z
+fuel_mw,Other Fossil Fuels,0.0,MW,04/27/2026 18:30:00,2026-04-27T22:49:26Z
+fuel_mw,Other Renewables,313.0,MW,04/27/2026 18:30:00,2026-04-27T22:49:26Z
+fuel_mw,Wind,430.0,MW,04/27/2026 18:30:00,2026-04-27T22:49:26Z
+renewable_share,renewable_pct,28.72,pct,04/27/2026 18:30:00,2026-04-27T22:49:26Z
+total_gen,total_mw,15630.0,MW,04/27/2026 18:30:00,2026-04-27T22:49:26Z

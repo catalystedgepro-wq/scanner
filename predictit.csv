@@ -1,0 +1,963 @@
+market_id,market,contract,last,yes,no,prev_close,delta,date_end,status,captured_at
+8459,Who will win the Republican nomination in the TX-32 House primary?,Aimee Carrasco,0.01,0.63,,0.65,-0.64,NA,Open,2026-04-27T22:54:56Z
+8753,"How many ""truths"" will Trump post from April 23 through April 29?",221 or more,0.02,0.39,0.99,0.65,-0.63,2026-04-30,Open,2026-04-27T22:54:56Z
+8737,What will the RCP Iran Action approval rating be on Apr. 28?,40.3% to 40.5%,0.25,0.98,0.75,0.67,-0.42,04/28/2026,Open,2026-04-27T22:54:56Z
+8204,Who will win the 2026 Michigan Republican nomination for governor?,John James,0.38,0.38,0.9,0.1,0.28,NA,Open,2026-04-27T22:54:56Z
+8609,Who will be Prime Minister of the United Kingdom after Kier Starmer?,Ed Miliband,0.25,0.47,0.85,0.47,-0.22,NA,Open,2026-04-27T22:54:56Z
+8761,"Trump's DDHQ job approval rating on May 1? (New URL, see Rules)",41.5% or higher,0.25,0.29,0.95,0.06,0.19,05/01/2026,Open,2026-04-27T22:54:56Z
+8760,Will Virginia use its newly redistricted map in 2026?,Will Virginia use its newly redistricted map in 2026?,0.55,0.81,0.43,0.7,-0.15,NA,Open,2026-04-27T22:54:56Z
+8204,Who will win the 2026 Michigan Republican nomination for governor?,Perry Johnson,0.5,0.57,0.52,0.65,-0.15,NA,Open,2026-04-27T22:54:56Z
+8737,What will the RCP Iran Action approval rating be on Apr. 28?,40.2% or lower,0.16,0.97,0.84,0.3,-0.14,04/28/2026,Open,2026-04-27T22:54:56Z
+8416,Which party will win the 2026 election for governor of Georgia?,Democratic,0.68,0.69,0.41,0.56,0.12,NA,Open,2026-04-27T22:54:56Z
+8743,What will President Trump's RCP job approval rating be on April 29?,39.5% to 39.7%,0.02,0.05,0.98,0.14,-0.12,04/29/2026,Open,2026-04-27T22:54:56Z
+8737,What will the RCP Iran Action approval rating be on Apr. 28?,40.6% to 40.8%,0.06,0.75,0.9,0.15,-0.09,04/28/2026,Open,2026-04-27T22:54:56Z
+8416,Which party will win the 2026 election for governor of Georgia?,Republican,0.39,0.53,0.61,0.47,-0.08,NA,Open,2026-04-27T22:54:56Z
+8457,Will Trump leave office early?,Will Trump leave office early?,0.61,0.61,0.49,0.54,0.07,NA,Open,2026-04-27T22:54:56Z
+8743,What will President Trump's RCP job approval rating be on April 29?,39.4% or lower,0.01,0.01,,0.08,-0.07,04/29/2026,Open,2026-04-27T22:54:56Z
+8214,Which party will win the 2026 election for governor of Kansas?,Republican,0.73,0.77,0.28,0.79,-0.06,NA,Open,2026-04-27T22:54:56Z
+8230,Who will win the 2026 Kentucky Republican Senate nomination?,Nate Morris,0.12,0.12,0.92,0.07,0.05,NA,Open,2026-04-27T22:54:56Z
+8644,Who will win the South Carolina primary for Lindsey Graham's Senate seat?,Lindsey Graham,0.91,0.93,0.2,0.87,0.04,NA,Open,2026-04-27T22:54:56Z
+8246,Who will be the next Supreme Court nominee?,Andrew Oldham,0.39,0.43,0.61,0.43,-0.04,NA,Open,2026-04-27T22:54:56Z
+8364,Who will win the Democratic nomination in the NY-12 House primary?,Alex Bores,0.3,0.34,0.75,0.26,0.04,NA,Open,2026-04-27T22:54:56Z
+8167,Who will win the 2026 Michigan Democratic Senate nomination?,Haley Stevens,0.07,0.08,0.93,0.11,-0.04,NA,Open,2026-04-27T22:54:56Z
+8207,Who will win the 2026 Maine Democratic nomination for governor?,Angus King III,0.05,0.08,0.95,0.09,-0.04,NA,Open,2026-04-27T22:54:56Z
+8178,Who will win the 2026 Georgia Republican Senate nomination?,Buddy Carter,0.04,0.1,0.96,0.08,-0.04,NA,Open,2026-04-27T22:54:56Z
+8504,Will the Senate confirm a new Fed Chair by May 15?,Will the Senate confirm a new Fed Chair by May 15?,0.9,0.94,0.1,0.93,-0.03,2026-05-15,Open,2026-04-27T22:54:56Z
+8230,Who will win the 2026 Kentucky Republican Senate nomination?,Andy Barr,0.82,0.95,0.18,0.79,0.03,NA,Open,2026-04-27T22:54:56Z
+8165,Who will win the 2026 Texas Republican Senate nomination?,Ken Paxton,0.63,0.63,0.39,0.6,0.03,NA,Open,2026-04-27T22:54:56Z
+8429,What will be the matchup in the 2026 US Senate election in Texas?,Talarico v. Paxton,0.59,0.64,0.4,0.62,-0.03,NA,Open,2026-04-27T22:54:56Z
+8203,Who will win the 2026 Georgia Republican nomination for governor?,Burt Jones,0.3,0.3,0.74,0.33,-0.03,NA,Open,2026-04-27T22:54:56Z
+8743,What will President Trump's RCP job approval rating be on April 29?,40.4% to 40.6%,0.26,0.39,0.74,0.23,0.03,04/29/2026,Open,2026-04-27T22:54:56Z
+8582,Will the Senate pass the SAVE Act before the Midterms?,Will the Senate pass the SAVE Act before the Midterms?,0.18,0.19,0.84,0.15,0.03,2026-11-02,Open,2026-04-27T22:54:56Z
+8393,Who will win the 2026 Louisiana Republican Senate nomination?,Bill Cassidy,0.13,0.16,0.88,0.16,-0.03,NA,Open,2026-04-27T22:54:56Z
+8246,Who will be the next Supreme Court nominee?,Kyle Duncan,0.02,0.03,0.98,0.05,-0.03,NA,Open,2026-04-27T22:54:56Z
+8743,What will President Trump's RCP job approval rating be on April 29?,41.6% or higher,0.01,0.01,,0.04,-0.03,04/29/2026,Open,2026-04-27T22:54:56Z
+8374,Who will win the 2026 Florida Republican nomination for governor?,Byron Donalds,0.88,0.91,0.12,0.9,-0.02,NA,Open,2026-04-27T22:54:56Z
+8345,Will Mike Johnson remain Speaker of the House through the 119th Congress?,Will Mike Johnson remain Speaker of the House through the 11,0.77,0.8,0.23,0.79,-0.02,NA,Open,2026-04-27T22:54:56Z
+8461,When will the House impeach Trump again?,1/1/27 -6/30/27,0.54,0.54,0.48,0.56,-0.02,NA,Open,2026-04-27T22:54:56Z
+8175,Which party will win the 2026 US Senate special election in Ohio?,Republican,0.53,0.54,0.49,0.51,0.02,NA,Open,2026-04-27T22:54:56Z
+8167,Who will win the 2026 Michigan Democratic Senate nomination?,Abdul El-Sayed,0.47,0.47,0.56,0.45,0.02,NA,Open,2026-04-27T22:54:56Z
+8167,Who will win the 2026 Michigan Democratic Senate nomination?,Mallory McMorrow,0.47,0.48,0.53,0.45,0.02,NA,Open,2026-04-27T22:54:56Z
+8363,Which office will AOC announce a run for by the end of 2027?,Senate,0.47,0.48,0.59,0.49,-0.02,2027-12-31,Open,2026-04-27T22:54:56Z
+8214,Which party will win the 2026 election for governor of Kansas?,Democratic,0.27,0.27,0.79,0.25,0.02,NA,Open,2026-04-27T22:54:56Z
+8233,Who will win the 2026 South Carolina Republican nomination for governor?,Nancy Mace,0.23,0.26,0.77,0.25,-0.02,NA,Open,2026-04-27T22:54:56Z
+8211,Which party will win the 2026 election for governor of Arizona?,Republican,0.2,0.4,0.8,0.22,-0.02,NA,Open,2026-04-27T22:54:56Z
+8403,Which party will win the 2026 election for governor of Massachusetts?,Republican,0.05,0.11,0.95,0.03,0.02,NA,Open,2026-04-27T22:54:56Z
+8278,Will Trump pardon Ghislaine Maxwell or commute her sentence before July 2026?,Will Trump pardon Ghislaine Maxwell or commute her sentence ,0.04,0.08,0.95,0.06,-0.02,2026-06-30,Open,2026-04-27T22:54:56Z
+8377,Which party will win the 2026 US Senate election in Montana?,Democratic,0.04,0.04,0.99,0.02,0.02,NA,Open,2026-04-27T22:54:56Z
+8635,How many House and Senate seats will Dems control after the 2026 midterms?,51-53 and ≤232,0.04,0.04,0.98,0.02,0.02,NA,Open,2026-04-27T22:54:56Z
+8709,What will be the matchup in the 2026 California governor's election?,Mahan v. Hilton,0.03,0.06,0.97,0.01,0.02,NA,Open,2026-04-27T22:54:56Z
+8152,Who will win the 2028 Republican presidential nomination?,Brian Kemp,0.02,0.04,0.98,0.04,-0.02,NA,Open,2026-04-27T22:54:56Z
+8684,What will be the margin in the Virginia redistricting referendum?,Approve 2% - 4%,0.97,0.99,0.03,0.98,-0.01,NA,Open,2026-04-27T22:54:56Z
+8211,Which party will win the 2026 election for governor of Arizona?,Democratic,0.78,0.81,0.24,0.77,0.01,NA,Open,2026-04-27T22:54:56Z
+8687,Who will Trump nominate to replace Pam Bondi as Attorney General?,Todd Blanche,0.69,0.7,0.43,0.68,0.01,NA,Open,2026-04-27T22:54:56Z
+8554,Will Kash Patel leave office before July?,Will Kash Patel leave office before July?,0.61,0.69,0.38,0.6,0.01,2026-06-30,Open,2026-04-27T22:54:56Z
+8693,Will Howard Lutnick leave office before July?,Will Howard Lutnick leave office before July?,0.45,0.46,0.89,0.46,-0.01,2026-06-30,Open,2026-04-27T22:54:56Z
+8600,What will be the balance of power in Congress after the 2026 election?,"D House, R Senate",0.4,0.44,0.6,0.41,-0.01,NA,Open,2026-04-27T22:54:56Z
+8152,Who will win the 2028 Republican presidential nomination?,JD Vance,0.38,0.39,0.62,0.39,-0.01,NA,Open,2026-04-27T22:54:56Z
+8481,Will Keir Starmer remain British prime minister through 2026?,Will Keir Starmer remain British prime minister through 2026,0.38,0.38,0.65,0.37,0.01,2026-12-31,Open,2026-04-27T22:54:56Z
+8373,Who will win the 2026 Peruvian presidential election?,Roberto Sánchez,0.37,0.37,0.76,0.36,0.01,NA,Open,2026-04-27T22:54:56Z
+8153,Who will win the 2028 Democratic presidential nomination?,Gavin Newsom,0.26,0.27,0.74,0.27,-0.01,NA,Open,2026-04-27T22:54:56Z
+8152,Who will win the 2028 Republican presidential nomination?,Marco Rubio,0.22,0.23,0.78,0.23,-0.01,NA,Open,2026-04-27T22:54:56Z
+8743,What will President Trump's RCP job approval rating be on April 29?,40.7% to 40.9%,0.22,0.26,0.78,0.21,0.01,04/29/2026,Open,2026-04-27T22:54:56Z
+8161,Which party will win the 2026 US Senate election in New Hampshire?,Republican,0.21,0.21,0.8,0.2,0.01,NA,Open,2026-04-27T22:54:56Z
+8588,Will California pass a wealth tax referendum in 2026?,Will California pass a wealth tax referendum in 2026?,0.21,0.41,0.8,0.2,0.01,NA,Open,2026-04-27T22:54:56Z
+8163,How many Senate seats will the GOP control after the 2026 midterms?,50,0.2,0.21,0.81,0.21,-0.01,NA,Open,2026-04-27T22:54:56Z
+8163,How many Senate seats will the GOP control after the 2026 midterms?,47 or fewer,0.18,0.18,0.83,0.19,-0.01,NA,Open,2026-04-27T22:54:56Z
+8461,When will the House impeach Trump again?,7/1/27-12/31/27,0.14,0.18,0.87,0.13,0.01,NA,Open,2026-04-27T22:54:56Z
+8491,Will the US purchase and annex any land in Greenland in 2026?,Will the US purchase and annex any land in Greenland in 2026,0.13,0.16,0.87,0.14,-0.01,NA,Open,2026-04-27T22:54:56Z
+8480,Will Congress override a veto in 2026?,Will Congress override a veto in 2026?,0.1,0.1,0.92,0.09,0.01,2026-12-31,Open,2026-04-27T22:54:56Z
+8153,Who will win the 2028 Democratic presidential nomination?,Kamala Harris,0.09,0.09,0.92,0.08,0.01,NA,Open,2026-04-27T22:54:56Z
+8461,When will the House impeach Trump again?,1/1/28 -6/30/28,0.05,0.05,0.96,0.04,0.01,NA,Open,2026-04-27T22:54:56Z
+7589,How many House seats will Republicans win in the 2026 midterm election?,228 to 232,0.04,0.04,0.97,0.03,0.01,NA,Open,2026-04-27T22:54:56Z
+8166,Who will win the 2026 election for governor of California?,Katie Porter,0.04,0.05,0.97,0.05,-0.01,NA,Open,2026-04-27T22:54:56Z
+8166,Who will win the 2026 election for governor of California?,Chad Bianco,0.04,0.04,0.97,0.05,-0.01,NA,Open,2026-04-27T22:54:56Z
+8152,Who will win the 2028 Republican presidential nomination?,Glenn Youngkin,0.03,0.04,0.97,0.04,-0.01,NA,Open,2026-04-27T22:54:56Z
+8163,How many Senate seats will the GOP control after the 2026 midterms?,54,0.03,0.04,0.97,0.04,-0.01,NA,Open,2026-04-27T22:54:56Z
+8370,Who will be elected Los Angeles mayor in 2026?,Rae Huang,0.03,0.11,0.97,0.04,-0.01,NA,Open,2026-04-27T22:54:56Z
+8163,How many Senate seats will the GOP control after the 2026 midterms?,56,0.02,0.03,0.98,0.03,-0.01,NA,Open,2026-04-27T22:54:56Z
+8737,What will the RCP Iran Action approval rating be on Apr. 28?,41.5% to 41.7%,0.01,0.5,0.99,0.02,-0.01,04/28/2026,Open,2026-04-27T22:54:56Z
+8737,What will the RCP Iran Action approval rating be on Apr. 28?,41.8% to 42.0%,0.01,0.24,0.99,0.02,-0.01,04/28/2026,Open,2026-04-27T22:54:56Z
+8737,What will the RCP Iran Action approval rating be on Apr. 28?,42.1% to 42.3%,0.01,0.17,0.99,0.02,-0.01,04/28/2026,Open,2026-04-27T22:54:56Z
+8737,What will the RCP Iran Action approval rating be on Apr. 28?,42.4% or higher,0.01,0.08,0.99,0.02,-0.01,04/28/2026,Open,2026-04-27T22:54:56Z
+8459,Who will win the Republican nomination in the TX-32 House primary?,Jace Yarbrough,0.99,0.99,0.08,0.99,0.0,NA,Open,2026-04-27T22:54:56Z
+8528,Which of these 10 European leaders will leave office next?,Viktor Orbán,0.99,,0.01,0.99,0.0,NA,Open,2026-04-27T22:54:56Z
+8666,Will Vivek Ramaswamy or Amy Acton win more votes in the Ohio gov primaries?,Amy Acton,0.99,0.94,0.8,0.99,0.0,NA,Open,2026-04-27T22:54:56Z
+8726,Who will win the most votes in the CA-11 House primary?,Saikat Chakrabarti,0.99,0.99,0.9,0.99,0.0,NA,Open,2026-04-27T22:54:56Z
+8248,Who will win the 2026 Tennessee Republican nomination for governor?,Marsha Blackburn,0.98,0.98,0.08,0.98,0.0,NA,Open,2026-04-27T22:54:56Z
+8395,Which party will win the 2026 US Senate election in Oregon?,Democratic,0.98,0.98,0.03,0.98,0.0,NA,Open,2026-04-27T22:54:56Z
+8397,Which party will win the 2026 US Senate election in New Mexico?,Democratic,0.98,0.98,0.04,0.98,0.0,NA,Open,2026-04-27T22:54:56Z
+8465,Who will win the 2026 Wyoming Republican Senate nomination?,Harriet Hageman,0.98,0.98,0.07,0.98,0.0,NA,Open,2026-04-27T22:54:56Z
+8587,Who will replace Christine Lagarde at the European Central Bank?,P. Hernández de Cos,0.98,0.6,0.77,0.98,0.0,NA,Open,2026-04-27T22:54:56Z
+8587,Who will replace Christine Lagarde at the European Central Bank?,Klaas Knot,0.98,0.59,0.84,0.98,0.0,NA,Open,2026-04-27T22:54:56Z
+8587,Who will replace Christine Lagarde at the European Central Bank?,Isabel Schnabel,0.98,0.94,0.85,0.98,0.0,NA,Open,2026-04-27T22:54:56Z
+8587,Who will replace Christine Lagarde at the European Central Bank?,Joachim Nagel,0.98,0.94,0.73,0.98,0.0,NA,Open,2026-04-27T22:54:56Z
+8608,Who will win the 2026 Texas Democratic attorney general nomination?,Nathan Johnson,0.98,0.98,0.4,0.98,0.0,NA,Open,2026-04-27T22:54:56Z
+8201,Who will win the 2026 New York Republican nomination for governor?,Bruce Blakeman,0.97,0.98,0.07,0.97,0.0,NA,Open,2026-04-27T22:54:56Z
+8293,Who will win the 2026 Maine Republican Senate nomination?,Susan Collins,0.97,0.98,0.03,0.97,0.0,NA,Open,2026-04-27T22:54:56Z
+8375,Which party will win the 2026 US Senate election in South Carolina?,Republican,0.97,0.98,0.13,0.97,0.0,NA,Open,2026-04-27T22:54:56Z
+8382,Which party will win the 2026 US Senate election in Rhode Island?,Democratic,0.97,0.97,0.04,0.97,0.0,NA,Open,2026-04-27T22:54:56Z
+8383,Which party will win the 2026 US Senate election in New Jersey?,Democratic,0.97,0.97,0.09,0.97,0.0,NA,Open,2026-04-27T22:54:56Z
+8384,Which party will win the 2026 US Senate election in Alabama?,Republican,0.97,0.97,0.07,0.97,0.0,NA,Open,2026-04-27T22:54:56Z
+8392,Which party will win the 2026 US Senate election in Illinois?,Democratic,0.97,0.98,0.05,0.97,0.0,NA,Open,2026-04-27T22:54:56Z
+8398,Which party will win the 2026 US Senate election in Colorado?,Democratic,0.97,0.97,0.04,0.97,0.0,NA,Open,2026-04-27T22:54:56Z
+8399,Which party will win the 2026 US Senate election in Wyoming?,Republican,0.97,0.97,0.04,0.97,0.0,NA,Open,2026-04-27T22:54:56Z
+8400,Which party will win the 2026 US Senate election in Idaho?,Republican,0.97,0.98,0.04,0.97,0.0,NA,Open,2026-04-27T22:54:56Z
+8410,Which party will win the 2026 election for governor of Maryland?,Democratic,0.97,0.98,0.03,0.97,0.0,NA,Open,2026-04-27T22:54:56Z
+8422,Will SCOTUS let Trump fire Rebecca Slaughter?,Will SCOTUS let Trump fire Rebecca Slaughter?,0.97,0.98,0.09,0.97,0.0,2026-07-10,Open,2026-04-27T22:54:56Z
+8426,Who will win the Democratic nomination in the TX-33 House primary?,Colin Allred,0.97,0.94,0.27,0.97,0.0,NA,Open,2026-04-27T22:54:56Z
+8433,Who will win the Republican nomination in the TX-09 House primary?,A. D. Moral Mealer,0.97,0.93,0.83,0.97,0.0,NA,Open,2026-04-27T22:54:56Z
+8453,Who will win the Republican nomination in the TX-19 House primary?,Tom Sell,0.97,0.98,0.04,0.97,0.0,NA,Open,2026-04-27T22:54:56Z
+8468,Who will win the Republican nomination in the TX-38 House primary?,Jon Bonck,0.97,0.98,0.25,0.97,0.0,NA,Open,2026-04-27T22:54:56Z
+8472,Which party will win the 2026 election for governor of Nebraska?,Republican,0.97,0.98,0.92,0.97,0.0,NA,Open,2026-04-27T22:54:56Z
+8483,Who will win the 2026 Minnesota Democratic nomination for governor?,Amy Klobuchar,0.97,0.98,0.04,0.97,0.0,NA,Open,2026-04-27T22:54:56Z
+8206,Who will win the 2026 Michigan Democratic nomination for governor?,Jocelyn Benson,0.96,0.97,0.06,0.96,0.0,NA,Open,2026-04-27T22:54:56Z
+8217,Who will win the 2026 New York Democratic nomination for governor?,Kathy Hochul,0.96,0.98,0.04,0.96,0.0,NA,Open,2026-04-27T22:54:56Z
+8376,Which party will win the 2026 US Senate election in South Dakota?,Republican,0.96,0.96,0.05,0.96,0.0,NA,Open,2026-04-27T22:54:56Z
+8381,Which party will win the 2026 US Senate election in Massachusetts?,Democratic,0.96,0.97,0.05,0.96,0.0,NA,Open,2026-04-27T22:54:56Z
+8391,Which party will win the 2026 US Senate election in Oklahoma?,Republican,0.96,0.97,0.05,0.96,0.0,NA,Open,2026-04-27T22:54:56Z
+8403,Which party will win the 2026 election for governor of Massachusetts?,Democratic,0.96,0.97,0.05,0.96,0.0,NA,Open,2026-04-27T22:54:56Z
+8407,Which party will win the 2026 US Senate election in Delaware?,Democratic,0.96,0.97,0.04,0.96,0.0,NA,Open,2026-04-27T22:54:56Z
+8460,Which party will win the 2026 election for governor of Colorado?,Democratic,0.96,0.97,0.04,0.96,0.0,NA,Open,2026-04-27T22:54:56Z
+8603,Who will win the OH-01 Republican primary?,Eric Conroy,0.96,0.97,0.04,0.96,0.0,NA,Open,2026-04-27T22:54:56Z
+8622,Who will win the Republican nomination in the AL-01 House primary?,Jerry Carl,0.96,0.96,0.93,0.96,0.0,NA,Open,2026-04-27T22:54:56Z
+8385,Which party will win the 2026 US Senate election in Tennessee?,Republican,0.95,0.95,0.08,0.95,0.0,NA,Open,2026-04-27T22:54:56Z
+8386,Which party will win the 2026 US Senate election in Kentucky?,Republican,0.95,0.95,0.12,0.95,0.0,NA,Open,2026-04-27T22:54:56Z
+8387,Which party will win the 2026 US Senate election in West Virginia?,Republican,0.95,0.95,0.06,0.95,0.0,NA,Open,2026-04-27T22:54:56Z
+8388,Which party will win the 2026 US Senate election in Mississippi?,Republican,0.95,0.97,0.08,0.95,0.0,NA,Open,2026-04-27T22:54:56Z
+8401,Which party will win the 2026 election for governor of Connecticut?,Democratic,0.95,0.96,0.06,0.95,0.0,NA,Open,2026-04-27T22:54:56Z
+8412,Which party will win the 2026 election for governor of Pennsylvania?,Democratic,0.95,0.95,0.11,0.95,0.0,NA,Open,2026-04-27T22:54:56Z
+8427,Who will win the 2026 Texas Republican attorney general nomination?,Mayes Middleton,0.95,0.93,0.15,0.95,0.0,NA,Open,2026-04-27T22:54:56Z
+8474,Which party will win the 2026 election for governor of New Mexico?,Democratic,0.95,0.96,0.05,0.95,0.0,NA,Open,2026-04-27T22:54:56Z
+8174,Which party will win the 2026 US Senate election in Virginia?,Democratic,0.94,0.95,0.06,0.94,0.0,NA,Open,2026-04-27T22:54:56Z
+8256,Who will win the 2026 Maine Democratic Senate nomination?,Graham Platner,0.94,0.94,0.07,0.94,0.0,NA,Open,2026-04-27T22:54:56Z
+8389,Which party will win the 2026 US Senate election in Louisiana?,Republican,0.94,0.93,0.12,0.94,0.0,NA,Open,2026-04-27T22:54:56Z
+8390,Which party will win the 2026 US Senate election in Arkansas?,Republican,0.94,0.95,0.12,0.94,0.0,NA,Open,2026-04-27T22:54:56Z
+8443,Who will win the Democratic nomination in the TX-18 House primary?,Christian Menefee,0.94,0.95,0.34,0.94,0.0,NA,Open,2026-04-27T22:54:56Z
+8475,Who will win the 2026 New Mexico Democratic nomination for governor?,Deb Haaland,0.94,0.94,0.14,0.94,0.0,NA,Open,2026-04-27T22:54:56Z
+8179,Who will win the 2026 Michigan Republican Senate nomination?,Mike Rogers,0.93,0.93,0.08,0.93,0.0,NA,Open,2026-04-27T22:54:56Z
+8297,Which party will win the 2026 election for governor of Minnesota?,Democratic,0.93,0.93,0.08,0.93,0.0,NA,Open,2026-04-27T22:54:56Z
+8351,Who will win the 2026 New Hampshire Republican Senate nomination?,John Sununu,0.93,0.95,0.09,0.93,0.0,NA,Open,2026-04-27T22:54:56Z
+8396,Which party will win the 2026 US Senate election in Kansas?,Republican,0.93,0.92,0.12,0.93,0.0,NA,Open,2026-04-27T22:54:56Z
+8448,Which party will win the 2026 election for governor of Alabama?,Republican,0.93,0.95,0.08,0.93,0.0,NA,Open,2026-04-27T22:54:56Z
+8490,Which party will win the 2026 House special election in California's 1st CD?,Republican,0.93,0.98,0.4,0.93,0.0,NA,Open,2026-04-27T22:54:56Z
+8669,Will Pete Buttigieg announce a run for President before 2028?,Will Pete Buttigieg announce a run for President before 2028,0.93,0.93,0.82,0.93,0.0,2027-12-31,Open,2026-04-27T22:54:56Z
+8162,Which party will win the 2026 US Senate election in Minnesota?,Democratic,0.92,0.92,0.09,0.92,0.0,NA,Open,2026-04-27T22:54:56Z
+8183,Which party will win the 2026 US House election in Nebraska's 2nd District?,Democratic,0.92,0.93,0.15,0.92,0.0,NA,Open,2026-04-27T22:54:56Z
+8190,Which party will win the 2026 US House election in Arizona's 6th District?,Democratic,0.92,0.93,0.4,0.92,0.0,NA,Open,2026-04-27T22:54:56Z
+8202,Who will win the 2026 Arizona Republican nomination for governor?,Andy Biggs,0.92,0.96,0.08,0.92,0.0,NA,Open,2026-04-27T22:54:56Z
+8215,Which party will win the 2026 election for governor of New York?,Democratic,0.92,0.95,0.09,0.92,0.0,NA,Open,2026-04-27T22:54:56Z
+8228,Which party will win the 2026 US Senate election in Florida?,Republican,0.91,0.92,0.14,0.91,0.0,NA,Open,2026-04-27T22:54:56Z
+8373,Who will win the 2026 Peruvian presidential election?,Keiko Fujimori,0.91,0.78,0.36,0.91,0.0,NA,Open,2026-04-27T22:54:56Z
+8643,Who will be the Prime Minister of Israel after the 2026 election?,Naftali Bennett,0.91,0.91,0.72,0.91,0.0,NA,Open,2026-04-27T22:54:56Z
+8418,Which party will win the 2026 election for governor of Texas?,Republican,0.9,0.94,0.12,0.9,0.0,NA,Open,2026-04-27T22:54:56Z
+8542,Will Jack Schlossberg get over 10% of the vote in the NY-12 Dem primary?,Will Jack Schlossberg get over 10% of the vote in the NY-12 ,0.89,0.94,0.18,0.89,0.0,NA,Open,2026-04-27T22:54:56Z
+8447,Will Missouri pass an anti-redistricting referendum in 2026?,Will Missouri pass an anti-redistricting referendum in 2026?,0.88,0.88,0.46,0.88,0.0,NA,Open,2026-04-27T22:54:56Z
+8580,Who will win the 2026 Georgia Democratic nomination for governor?,Keisha Lance Bottoms,0.88,0.89,0.33,0.88,0.0,NA,Open,2026-04-27T22:54:56Z
+8625,How many votes to confirm Kevin Warsh as Fed Chair by May 30?,52 or 53,0.88,0.69,0.81,0.88,0.0,2026-05-30,Open,2026-04-27T22:54:56Z
+8157,Which party will win the House in the 2026 election?,Democratic,0.87,0.87,0.14,0.87,0.0,NA,Open,2026-04-27T22:54:56Z
+8187,Which party will win the 2026 US House election in New York's 17th District?,Democratic,0.87,0.93,0.24,0.87,0.0,NA,Open,2026-04-27T22:54:56Z
+8156,Which party will win the 2026 US Senate election in Georgia?,Democratic,0.86,0.87,0.14,0.86,0.0,NA,Open,2026-04-27T22:54:56Z
+8188,Which party will win the 2026 US House election in Washington's 3rd District?,Democratic,0.86,0.87,0.15,0.86,0.0,NA,Open,2026-04-27T22:54:56Z
+8413,Which party will win the 2026 election for governor of Florida?,Republican,0.86,0.88,0.17,0.86,0.0,NA,Open,2026-04-27T22:54:56Z
+8630,Who will win the 2026 Oklahoma Republican Senate nomination?,Kevin Hern,0.86,0.95,0.13,0.86,0.0,NA,Open,2026-04-27T22:54:56Z
+8185,Which party will win the 2026 US House election in New Mexico's 2nd District?,Democratic,0.85,0.89,0.16,0.85,0.0,NA,Open,2026-04-27T22:54:56Z
+8197,Who will win the 2026 Iowa Republican Senate nomination?,Ashley Hinson,0.85,0.91,0.13,0.85,0.0,NA,Open,2026-04-27T22:54:56Z
+8452,Who will win the 2026 Minnesota Republican Senate nomination?,Michele Tafoya,0.85,0.83,0.35,0.85,0.0,NA,Open,2026-04-27T22:54:56Z
+8213,Which party will win the 2026 election for governor of Wisconsin?,Democratic,0.84,0.85,0.17,0.84,0.0,NA,Open,2026-04-27T22:54:56Z
+8645,Who will win the 2026 Colorado Democratic Senate nomination?,John Hickenlooper,0.84,0.99,0.16,0.84,0.0,NA,Open,2026-04-27T22:54:56Z
+8161,Which party will win the 2026 US Senate election in New Hampshire?,Democratic,0.83,0.84,0.17,0.83,0.0,NA,Open,2026-04-27T22:54:56Z
+8194,Which party will win the 2026 US House election in Pennsylvania's 7th District?,Democratic,0.83,0.84,0.17,0.83,0.0,NA,Open,2026-04-27T22:54:56Z
+8186,Which party will win the 2026 US House election in New York's 4th District?,Democratic,0.82,0.83,0.25,0.82,0.0,NA,Open,2026-04-27T22:54:56Z
+8425,Who will win the Democratic nomination in the NY-10 House primary?,Brad Lander,0.82,0.84,0.19,0.82,0.0,NA,Open,2026-04-27T22:54:56Z
+8670,Who will win the 2026 Kentucky Democratic Senate nomination?,Charles Booker,0.82,0.97,0.18,0.82,0.0,NA,Open,2026-04-27T22:54:56Z
+8160,Which party will win the 2026 US Senate election in North Carolina?,Democratic,0.81,0.85,0.19,0.81,0.0,NA,Open,2026-04-27T22:54:56Z
+8404,Which party will win the 2026 election for governor of Rhode Island?,Democratic,0.81,0.97,0.18,0.81,0.0,NA,Open,2026-04-27T22:54:56Z
+8158,Which party will win the 2026 US Senate election in Michigan?,Democratic,0.8,0.82,0.19,0.8,0.0,NA,Open,2026-04-27T22:54:56Z
+8679,Who will win the 2026 Florida Democratic Senate nomination?,Alexander Vindman,0.8,0.96,0.6,0.8,0.0,NA,Open,2026-04-27T22:54:56Z
+8189,Which party will win the 2026 US House election in Arizona's 1st District?,Democratic,0.79,0.81,0.21,0.79,0.0,NA,Open,2026-04-27T22:54:56Z
+8702,Who will win in Dan Bilzerian's challenge to Randy Fine in the FL-06 House race?,Dan Bilzerian,0.79,0.73,0.81,0.79,0.0,NA,Open,2026-04-27T22:54:56Z
+8243,Who will win the 2026 Minnesota Democratic Senate nomination?,Peggy Flanagan,0.78,0.87,0.21,0.78,0.0,NA,Open,2026-04-27T22:54:56Z
+8349,Will Chuck Schumer remain the Democratic Leader through the 119th Congress?,Will Chuck Schumer remain the Democratic Leader through the ,0.77,0.87,0.15,0.77,0.0,NA,Open,2026-04-27T22:54:56Z
+8359,Who will win the 2026 Massachusetts Democratic Senate nomination?,Ed Markey,0.76,0.83,0.2,0.76,0.0,NA,Open,2026-04-27T22:54:56Z
+8178,Who will win the 2026 Georgia Republican Senate nomination?,Mike Collins,0.75,0.92,0.25,0.75,0.0,NA,Open,2026-04-27T22:54:56Z
+8193,Which party will win the 2026 US House election in Michigan's 7th District?,Democratic,0.75,0.75,0.26,0.75,0.0,NA,Open,2026-04-27T22:54:56Z
+8195,Which party will win the 2026 US House election in Pennsylvania's 10th District?,Democratic,0.75,0.77,0.25,0.75,0.0,NA,Open,2026-04-27T22:54:56Z
+8196,Which party will win the 2026 US House election in Wisconsin's 3rd District?,Democratic,0.75,0.82,0.26,0.75,0.0,NA,Open,2026-04-27T22:54:56Z
+8203,Who will win the 2026 Georgia Republican nomination for governor?,Rick Jackson,0.75,0.69,0.33,0.75,0.0,NA,Open,2026-04-27T22:54:56Z
+8402,Which party will win the 2026 election for governor of Vermont?,Republican,0.75,0.75,0.26,0.75,0.0,NA,Open,2026-04-27T22:54:56Z
+8487,Who will win the Republican nomination in the KY-04 House primary?,Thomas Massie,0.75,0.76,0.25,0.75,0.0,NA,Open,2026-04-27T22:54:56Z
+8541,Will George Conway get over 5% of the vote in the NY-12 Dem primary?,Will George Conway get over 5% of the vote in the NY-12 Dem ,0.75,0.75,0.74,0.75,0.0,NA,Open,2026-04-27T22:54:56Z
+8646,Will Trump visit China before June?,Will Trump visit China before June?,0.75,0.91,0.44,0.75,0.0,2026-05-31,Open,2026-04-27T22:54:56Z
+8172,Which party will win the 2026 US Senate election in Nebraska?,Republican,0.73,0.75,0.32,0.73,0.0,NA,Open,2026-04-27T22:54:56Z
+8191,Which party will win the 2026 US House election in Colorado's 8th District?,Democratic,0.72,0.82,0.29,0.72,0.0,NA,Open,2026-04-27T22:54:56Z
+8212,Which party will win the 2026 election for governor of Michigan?,Democratic,0.7,0.72,0.35,0.7,0.0,NA,Open,2026-04-27T22:54:56Z
+8393,Who will win the 2026 Louisiana Republican Senate nomination?,Julia Letlow,0.7,0.72,0.3,0.7,0.0,NA,Open,2026-04-27T22:54:56Z
+8467,Who will win the Republican nomination in the TX-35 House primary?,Carlos De La Cruz,0.7,0.97,0.91,0.7,0.0,NA,Open,2026-04-27T22:54:56Z
+8562,Will Tulsi Gabbard leave office in 2026?,Will Tulsi Gabbard leave office in 2026?,0.7,0.74,0.29,0.7,0.0,2026-12-31,Open,2026-04-27T22:54:56Z
+8159,Which party will win the 2026 US Senate election in Maine?,Democratic,0.69,0.7,0.31,0.69,0.0,NA,Open,2026-04-27T22:54:56Z
+8377,Which party will win the 2026 US Senate election in Montana?,Republican,0.69,0.85,0.32,0.69,0.0,NA,Open,2026-04-27T22:54:56Z
+8625,How many votes to confirm Kevin Warsh as Fed Chair by May 30?,54 or 55,0.69,0.4,0.94,0.69,0.0,2026-05-30,Open,2026-04-27T22:54:56Z
+8570,Will Jon Ossoff announce a run for President before 2028?,Will John Ossoff announce a run for President before 2028?,0.67,0.89,0.35,0.67,0.0,2027-12-31,Open,2026-04-27T22:54:56Z
+8709,What will be the matchup in the 2026 California governor's election?,Steyer v. Hilton,0.67,0.75,0.88,0.67,0.0,NA,Open,2026-04-27T22:54:56Z
+8419,Which party will win the 2026 election for governor of Nevada?,Democratic,0.66,0.59,0.43,0.66,0.0,NA,Open,2026-04-27T22:54:56Z
+8192,Which party will win the 2026 US House election in Iowa's 1st District?,Democratic,0.65,0.73,0.36,0.65,0.0,NA,Open,2026-04-27T22:54:56Z
+8593,Who will win the 2026 Iowa Democratic Senate nomination?,Zach Wahls,0.65,0.65,0.7,0.65,0.0,NA,Open,2026-04-27T22:54:56Z
+8274,Which party will win the 2026 US Senate election in Iowa?,Republican,0.63,0.65,0.41,0.63,0.0,NA,Open,2026-04-27T22:54:56Z
+8298,Who will win the 2026 Minnesota Republican nomination for governor?,Lisa Demuth,0.63,0.64,0.38,0.63,0.0,NA,Open,2026-04-27T22:54:56Z
+8181,Which party will win the 2028 US presidential election?,Democratic,0.62,0.63,0.38,0.62,0.0,NA,Open,2026-04-27T22:54:56Z
+8184,Which party will win the 2026 US House race in North Carolina's 1st District?,Republican,0.61,0.66,0.37,0.61,0.0,NA,Open,2026-04-27T22:54:56Z
+8648,Will Rubio visit Cuba in 2026?,Will Rubio visit Cuba in 2026?,0.61,0.62,0.61,0.61,0.0,2026-12-31,Open,2026-04-27T22:54:56Z
+8177,Which party will win the 2026 US House election in Maine's 2nd District?,Republican,0.6,0.6,0.44,0.6,0.0,NA,Open,2026-04-27T22:54:56Z
+8467,Who will win the Republican nomination in the TX-35 House primary?,John Lujan,0.6,0.52,0.96,0.6,0.0,NA,Open,2026-04-27T22:54:56Z
+8697,Will Pete Hegseth leave office in 2026?,Will Pete Hegseth leave office in 2026?,0.6,0.67,0.4,0.6,0.0,2026-12-31,Open,2026-04-27T22:54:56Z
+8463,Who will win the 2026 Colorado Republican nomination for governor?,Barbara Kirkmeyer,0.59,0.75,0.81,0.59,0.0,NA,Open,2026-04-27T22:54:56Z
+8173,Which party will win the 2026 US Senate election in Texas?,Republican,0.58,0.59,0.42,0.58,0.0,NA,Open,2026-04-27T22:54:56Z
+8271,Which party will win the 2026 US Senate election in Alaska?,Democratic,0.58,0.58,0.46,0.58,0.0,NA,Open,2026-04-27T22:54:56Z
+8378,Which party will win the 2026 election for governor of Iowa?,Democratic,0.58,0.69,0.42,0.58,0.0,NA,Open,2026-04-27T22:54:56Z
+8205,Who will win the 2026 Maine Republican nomination for governor?,Robert Charles,0.55,0.8,0.68,0.55,0.0,NA,Open,2026-04-27T22:54:56Z
+8441,Which party will win the 2026 election for governor of Ohio?,Democratic,0.54,0.54,0.47,0.54,0.0,NA,Open,2026-04-27T22:54:56Z
+8702,Who will win in Dan Bilzerian's challenge to Randy Fine in the FL-06 House race?,Randy Fine,0.53,0.94,0.41,0.53,0.0,NA,Open,2026-04-27T22:54:56Z
+8175,Which party will win the 2026 US Senate special election in Ohio?,Democratic,0.52,0.53,0.56,0.52,0.0,NA,Open,2026-04-27T22:54:56Z
+8155,Which party will control the Senate after the 2026 election?,Republican,0.51,0.51,0.5,0.51,0.0,NA,Open,2026-04-27T22:54:56Z
+8294,Who will win the 2026 Wisconsin Democratic nomination for governor?,Mandela Barnes,0.51,0.5,0.57,0.51,0.0,NA,Open,2026-04-27T22:54:56Z
+8363,Which office will AOC announce a run for by the end of 2027?,President,0.51,0.5,0.51,0.51,0.0,2027-12-31,Open,2026-04-27T22:54:56Z
+8155,Which party will control the Senate after the 2026 election?,Democratic,0.5,0.51,0.5,0.5,0.0,NA,Open,2026-04-27T22:54:56Z
+8166,Who will win the 2026 election for governor of California?,Tom Steyer,0.5,0.51,0.5,0.5,0.0,NA,Open,2026-04-27T22:54:56Z
+8294,Who will win the 2026 Wisconsin Democratic nomination for governor?,Francesca Hong,0.5,0.45,0.67,0.5,0.0,NA,Open,2026-04-27T22:54:56Z
+8370,Who will be elected Los Angeles mayor in 2026?,Nithya Raman,0.5,0.53,0.6,0.5,0.0,NA,Open,2026-04-27T22:54:56Z
+8626,Who will win the 2026 Texas Republican Railroad Commissioner runoff?,Jim Wright,0.5,0.7,0.98,0.5,0.0,NA,Open,2026-04-27T22:54:56Z
+8691,Who will win the 2026 Oregon Republican nomination for governor?,Chris Dudley,0.5,0.44,0.99,0.5,0.0,NA,Open,2026-04-27T22:54:56Z
+8692,Will Janet Mills drop out before June?,Will Janet Mills drop out before June?,0.5,0.5,0.95,0.5,0.0,2026-05-31,Open,2026-04-27T22:54:56Z
+8711,Who will win the most votes in the CA-17 House primary?,Ro Khanna,0.5,0.99,0.97,0.5,0.0,NA,Open,2026-04-27T22:54:56Z
+8495,Who will win the 2026 Colombian presidential election?,Iván Cepeda,0.49,0.49,0.52,0.49,0.0,NA,Open,2026-04-27T22:54:56Z
+8177,Which party will win the 2026 US House election in Maine's 2nd District?,Democratic,0.48,0.49,0.54,0.48,0.0,NA,Open,2026-04-27T22:54:56Z
+8495,Who will win the 2026 Colombian presidential election?,A. de la Espriella,0.48,0.49,0.67,0.48,0.0,NA,Open,2026-04-27T22:54:56Z
+8357,Who will win the 2028 Republican presidential primary in New Hampshire?,JD Vance,0.47,0.48,0.54,0.47,0.0,NA,Open,2026-04-27T22:54:56Z
+8600,What will be the balance of power in Congress after the 2026 election?,Dem. House & Senate,0.46,0.47,0.54,0.46,0.0,NA,Open,2026-04-27T22:54:56Z
+8378,Which party will win the 2026 election for governor of Iowa?,Republican,0.45,0.47,0.67,0.45,0.0,NA,Open,2026-04-27T22:54:56Z
+8419,Which party will win the 2026 election for governor of Nevada?,Republican,0.45,0.46,0.55,0.45,0.0,NA,Open,2026-04-27T22:54:56Z
+8544,Who will win the 2026 Brazilian presidential election?,Flávio Bolsonaro,0.45,0.64,0.53,0.45,0.0,NA,Open,2026-04-27T22:54:56Z
+8620,"Who will win the Democratic primary in the Washington, DC mayoral election?",Gary Goodweather,0.45,0.39,,0.45,0.0,NA,Open,2026-04-27T22:54:56Z
+8173,Which party will win the 2026 US Senate election in Texas?,Democratic,0.43,0.44,0.58,0.43,0.0,NA,Open,2026-04-27T22:54:56Z
+8441,Which party will win the 2026 election for governor of Ohio?,Republican,0.43,0.43,0.58,0.43,0.0,NA,Open,2026-04-27T22:54:56Z
+7589,How many House seats will Republicans win in the 2026 midterm election?,192 or fewer,0.42,0.43,0.58,0.42,0.0,NA,Open,2026-04-27T22:54:56Z
+8271,Which party will win the 2026 US Senate election in Alaska?,Republican,0.42,0.47,0.58,0.42,0.0,NA,Open,2026-04-27T22:54:56Z
+8429,What will be the matchup in the 2026 US Senate election in Texas?,Talarico v. Cornyn,0.41,0.39,0.64,0.41,0.0,NA,Open,2026-04-27T22:54:56Z
+8479,How many vetoes will Trump issue in 2026?,0 vetoes,0.41,0.4,0.7,0.41,0.0,2026-12-31,Open,2026-04-27T22:54:56Z
+8533,Which of these 10 Asian leaders will leave office next?,Benjamin Netanyahu,0.41,0.5,0.72,0.41,0.0,NA,Open,2026-04-27T22:54:56Z
+8165,Who will win the 2026 Texas Republican Senate nomination?,John Cornyn,0.4,0.39,0.63,0.4,0.0,NA,Open,2026-04-27T22:54:56Z
+8181,Which party will win the 2028 US presidential election?,Republican,0.4,0.4,0.61,0.4,0.0,NA,Open,2026-04-27T22:54:56Z
+8364,Who will win the Democratic nomination in the NY-12 House primary?,Micah Lasher,0.4,0.5,0.57,0.4,0.0,NA,Open,2026-04-27T22:54:56Z
+8485,Will Congress confirm a Supreme Court justice in 2026?,Will Congress confirm a Supreme Court justice in 2026?,0.4,0.69,0.68,0.4,0.0,NA,Open,2026-04-27T22:54:56Z
+8534,Who will win the Democratic nomination in the NY-07 House primary?,Claire Valdez,0.4,0.81,0.55,0.4,0.0,NA,Open,2026-04-27T22:54:56Z
+8640,Will Rubio and Vance both announce a run for President before 2028?,Will Rubio and Vance both announce a run for President befor,0.4,0.4,0.65,0.4,0.0,2027-12-31,Open,2026-04-27T22:54:56Z
+8654,Who will place first in the California Governor's primary?,Steve Hilton,0.4,0.54,0.67,0.4,0.0,NA,Open,2026-04-27T22:54:56Z
+8689,Who will win the Republican nomination in the GA-01 House primary?,Jim Kingston,0.4,0.99,0.5,0.4,0.0,NA,Open,2026-04-27T22:54:56Z
+8689,Who will win the Republican nomination in the GA-01 House primary?,Brian Montgomery,0.4,0.98,0.98,0.4,0.0,NA,Open,2026-04-27T22:54:56Z
+8540,Will Stephen Miller leave office in 2026?,Will Stephen Miller leave office in 2026?,0.38,0.45,0.63,0.38,0.0,2026-12-31,Open,2026-04-27T22:54:56Z
+8544,Who will win the 2026 Brazilian presidential election?,Luiz Inácio Lula,0.38,0.68,0.6,0.38,0.0,NA,Open,2026-04-27T22:54:56Z
+8274,Which party will win the 2026 US Senate election in Iowa?,Democratic,0.37,0.43,0.64,0.37,0.0,NA,Open,2026-04-27T22:54:56Z
+8593,Who will win the 2026 Iowa Democratic Senate nomination?,Josh Turek,0.37,0.59,0.66,0.37,0.0,NA,Open,2026-04-27T22:54:56Z
+8479,How many vetoes will Trump issue in 2026?,1 veto,0.36,0.33,0.8,0.36,0.0,2026-12-31,Open,2026-04-27T22:54:56Z
+8534,Who will win the Democratic nomination in the NY-07 House primary?,Antonio Reynoso,0.35,0.39,0.93,0.35,0.0,NA,Open,2026-04-27T22:54:56Z
+8609,Who will be Prime Minister of the United Kingdom after Kier Starmer?,Andy Burnham,0.35,0.37,0.95,0.35,0.0,NA,Open,2026-04-27T22:54:56Z
+8618,Will Cuba's leader leave office by July 1?,Will Cuba's leader leave office by July 1?,0.35,0.44,0.7,0.35,0.0,2026-07-01,Open,2026-04-27T22:54:56Z
+8191,Which party will win the 2026 US House election in Colorado's 8th District?,Republican,0.34,0.35,0.83,0.34,0.0,NA,Open,2026-04-27T22:54:56Z
+8233,Who will win the 2026 South Carolina Republican nomination for governor?,Alan Wilson,0.34,0.38,0.65,0.34,0.0,NA,Open,2026-04-27T22:54:56Z
+8598,Who will win the Democratic nomination in the NY-17 House primary?,Cait Conley,0.33,0.94,0.81,0.33,0.0,NA,Open,2026-04-27T22:54:56Z
+8619,Will Trump endorse Cornyn or Paxton in the Texas Republican Senate runoff?,John Cornyn,0.33,0.34,0.67,0.33,0.0,NA,Open,2026-04-27T22:54:56Z
+8619,Will Trump endorse Cornyn or Paxton in the Texas Republican Senate runoff?,Ken Paxton,0.33,0.48,0.7,0.33,0.0,NA,Open,2026-04-27T22:54:56Z
+8654,Who will place first in the California Governor's primary?,Tom Steyer,0.33,0.33,0.77,0.33,0.0,NA,Open,2026-04-27T22:54:56Z
+8159,Which party will win the 2026 US Senate election in Maine?,Republican,0.32,0.32,0.69,0.32,0.0,NA,Open,2026-04-27T22:54:56Z
+8192,Which party will win the 2026 US House election in Iowa's 1st District?,Republican,0.32,0.32,0.69,0.32,0.0,NA,Open,2026-04-27T22:54:56Z
+8233,Who will win the 2026 South Carolina Republican nomination for governor?,Pamela Evette,0.32,0.34,0.68,0.32,0.0,NA,Open,2026-04-27T22:54:56Z
+8245,Who will win the 2026 election for governor of Alaska?,Tom Begich,0.32,0.34,0.73,0.32,0.0,NA,Open,2026-04-27T22:54:56Z
+8462,Who will win the 2026 Colorado Democratic nomination for governor?,Michael Bennet,0.32,0.68,0.65,0.32,0.0,NA,Open,2026-04-27T22:54:56Z
+8427,Who will win the 2026 Texas Republican attorney general nomination?,Chip Roy,0.3,0.3,0.95,0.3,0.0,NA,Open,2026-04-27T22:54:56Z
+8172,Which party will win the 2026 US Senate election in Nebraska?,Independent,0.29,0.3,0.71,0.29,0.0,NA,Open,2026-04-27T22:54:56Z
+8184,Which party will win the 2026 US House race in North Carolina's 1st District?,Democratic,0.29,0.37,0.65,0.29,0.0,NA,Open,2026-04-27T22:54:56Z
+8202,Who will win the 2026 Arizona Republican nomination for governor?,David Schweikert,0.29,0.29,0.92,0.29,0.0,NA,Open,2026-04-27T22:54:56Z
+8245,Who will win the 2026 election for governor of Alaska?,Bernadette Wilson,0.29,0.3,0.71,0.29,0.0,NA,Open,2026-04-27T22:54:56Z
+8442,Will the House pass any articles of impeachment by the end of 2026?,Will the House pass any articles of impeachment by the end o,0.29,0.28,0.74,0.29,0.0,2026-12-31,Open,2026-04-27T22:54:56Z
+8402,Which party will win the 2026 election for governor of Vermont?,Democratic,0.28,0.27,0.74,0.28,0.0,NA,Open,2026-04-27T22:54:56Z
+8357,Who will win the 2028 Republican presidential primary in New Hampshire?,Marco Rubio,0.27,0.27,0.74,0.27,0.0,NA,Open,2026-04-27T22:54:56Z
+8377,Which party will win the 2026 US Senate election in Montana?,Independent,0.27,0.25,0.92,0.27,0.0,NA,Open,2026-04-27T22:54:56Z
+8426,Who will win the Democratic nomination in the TX-33 House primary?,Julie Johnson,0.27,0.28,0.73,0.27,0.0,NA,Open,2026-04-27T22:54:56Z
+8656,Which of these Democratic candidates will announce a 2028 POTUS run first?,A. Ocasio-Cortez,0.27,0.17,0.95,0.27,0.0,NA,Open,2026-04-27T22:54:56Z
+8207,Who will win the 2026 Maine Democratic nomination for governor?,Troy Jackson,0.26,0.26,0.75,0.26,0.0,NA,Open,2026-04-27T22:54:56Z
+8370,Who will be elected Los Angeles mayor in 2026?,Karen Bass,0.26,0.44,0.74,0.26,0.0,NA,Open,2026-04-27T22:54:56Z
+8166,Who will win the 2026 election for governor of California?,Xavier Becerra,0.25,0.26,0.75,0.25,0.0,NA,Open,2026-04-27T22:54:56Z
+8487,Who will win the Republican nomination in the KY-04 House primary?,Ed Gallrein,0.25,0.27,0.75,0.25,0.0,NA,Open,2026-04-27T22:54:56Z
+8656,Which of these Democratic candidates will announce a 2028 POTUS run first?,JB Pritzker,0.25,0.23,0.95,0.25,0.0,NA,Open,2026-04-27T22:54:56Z
+8195,Which party will win the 2026 US House election in Pennsylvania's 10th District?,Republican,0.24,0.25,0.8,0.24,0.0,NA,Open,2026-04-27T22:54:56Z
+8486,Will Trump visit Greenland in 2026?,Will Trump visit Greenland in 2026?,0.24,0.25,0.8,0.24,0.0,NA,Open,2026-04-27T22:54:56Z
+8623,Will Hunt endorse Cornyn or Paxton in the Texas Republican Senate runoff?,John Cornyn,0.24,0.76,0.97,0.24,0.0,NA,Open,2026-04-27T22:54:56Z
+8635,How many House and Senate seats will Dems control after the 2026 midterms?,48-50 and 218-232,0.24,0.24,0.83,0.24,0.0,NA,Open,2026-04-27T22:54:56Z
+8635,How many House and Senate seats will Dems control after the 2026 midterms?,51-53 and 233-247,0.24,0.25,0.76,0.24,0.0,NA,Open,2026-04-27T22:54:56Z
+8171,Who will win the 2028 US presidential election?,JD Vance,0.23,0.24,0.77,0.23,0.0,NA,Open,2026-04-27T22:54:56Z
+8207,Who will win the 2026 Maine Democratic nomination for governor?,Hannah Pingree,0.23,0.22,0.85,0.23,0.0,NA,Open,2026-04-27T22:54:56Z
+8445,How many Indiana GOP Senators opposing redistricting will win 2026 primaries?,4,0.23,0.24,0.9,0.23,0.0,NA,Open,2026-04-27T22:54:56Z
+8599,Will Stephen A. Smith announce a run for president before 2028?,Will Stephen A. Smith announce a run for president before 20,0.23,0.3,0.78,0.23,0.0,2027-12-31,Open,2026-04-27T22:54:56Z
+8656,Which of these Democratic candidates will announce a 2028 POTUS run first?,Andy Beshear,0.23,0.97,0.99,0.23,0.0,NA,Open,2026-04-27T22:54:56Z
+8668,How many of these Elizabeth Warren endorsees will win Senate primaries?,1,0.23,0.25,0.78,0.23,0.0,NA,Open,2026-04-27T22:54:56Z
+8743,What will President Trump's RCP job approval rating be on April 29?,40.1% to 40.3%,0.23,0.27,0.89,0.23,0.0,04/29/2026,Open,2026-04-27T22:54:56Z
+8171,Who will win the 2028 US presidential election?,Gavin Newsom,0.22,0.23,0.78,0.22,0.0,NA,Open,2026-04-27T22:54:56Z
+8189,Which party will win the 2026 US House election in Arizona's 1st District?,Republican,0.22,0.21,0.8,0.22,0.0,NA,Open,2026-04-27T22:54:56Z
+8193,Which party will win the 2026 US House election in Michigan's 7th District?,Republican,0.22,0.23,0.79,0.22,0.0,NA,Open,2026-04-27T22:54:56Z
+8425,Who will win the Democratic nomination in the NY-10 House primary?,Daniel Goldman,0.22,0.24,0.79,0.22,0.0,NA,Open,2026-04-27T22:54:56Z
+8580,Who will win the 2026 Georgia Democratic nomination for governor?,Jason Esteves,0.22,0.27,0.95,0.22,0.0,NA,Open,2026-04-27T22:54:56Z
+8608,Who will win the 2026 Texas Democratic attorney general nomination?,Joe Jaworski,0.22,0.37,0.99,0.22,0.0,NA,Open,2026-04-27T22:54:56Z
+8761,"Trump's DDHQ job approval rating on May 1? (New URL, see Rules)",40.6% to 40.8%,0.22,0.24,0.83,0.22,0.0,05/01/2026,Open,2026-04-27T22:54:56Z
+8207,Who will win the 2026 Maine Democratic nomination for governor?,Nirav Shah,0.21,0.52,0.71,0.21,0.0,NA,Open,2026-04-27T22:54:56Z
+8393,Who will win the 2026 Louisiana Republican Senate nomination?,John Fleming,0.21,0.24,0.79,0.21,0.0,NA,Open,2026-04-27T22:54:56Z
+8462,Who will win the 2026 Colorado Democratic nomination for governor?,Phil Weiser,0.21,0.21,0.84,0.21,0.0,NA,Open,2026-04-27T22:54:56Z
+8604,Who will win the OH-09 Republican primary?,Derek Merrin,0.21,0.97,0.75,0.21,0.0,NA,Open,2026-04-27T22:54:56Z
+8158,Which party will win the 2026 US Senate election in Michigan?,Republican,0.2,0.21,0.8,0.2,0.0,NA,Open,2026-04-27T22:54:56Z
+8186,Which party will win the 2026 US House election in New York's 4th District?,Republican,0.2,0.2,0.81,0.2,0.0,NA,Open,2026-04-27T22:54:56Z
+8187,Which party will win the 2026 US House election in New York's 17th District?,Republican,0.2,0.25,0.94,0.2,0.0,NA,Open,2026-04-27T22:54:56Z
+8196,Which party will win the 2026 US House election in Wisconsin's 3rd District?,Republican,0.2,0.44,0.82,0.2,0.0,NA,Open,2026-04-27T22:54:56Z
+8212,Which party will win the 2026 election for governor of Michigan?,Independent,0.2,0.2,0.86,0.2,0.0,NA,Open,2026-04-27T22:54:56Z
+8213,Which party will win the 2026 election for governor of Wisconsin?,Republican,0.2,0.21,0.8,0.2,0.0,NA,Open,2026-04-27T22:54:56Z
+8243,Who will win the 2026 Minnesota Democratic Senate nomination?,Angie Craig,0.2,0.2,0.87,0.2,0.0,NA,Open,2026-04-27T22:54:56Z
+8245,Who will win the 2026 election for governor of Alaska?,Click Bishop,0.2,0.19,0.9,0.2,0.0,NA,Open,2026-04-27T22:54:56Z
+8359,Who will win the 2026 Massachusetts Democratic Senate nomination?,Seth Moulton,0.2,0.21,0.81,0.2,0.0,NA,Open,2026-04-27T22:54:56Z
+8445,How many Indiana GOP Senators opposing redistricting will win 2026 primaries?,1,0.2,0.21,0.87,0.2,0.0,NA,Open,2026-04-27T22:54:56Z
+8463,Who will win the 2026 Colorado Republican nomination for governor?,Scott Bottoms,0.2,0.23,0.88,0.2,0.0,NA,Open,2026-04-27T22:54:56Z
+8598,Who will win the Democratic nomination in the NY-17 House primary?,Peter Chatzky,0.2,0.2,0.98,0.2,0.0,NA,Open,2026-04-27T22:54:56Z
+8643,Who will be the Prime Minister of Israel after the 2026 election?,Benjamin Netanyahu,0.2,0.78,0.8,0.2,0.0,NA,Open,2026-04-27T22:54:56Z
+8761,"Trump's DDHQ job approval rating on May 1? (New URL, see Rules)",41.2% to 41.4%,0.2,0.19,0.93,0.2,0.0,05/01/2026,Open,2026-04-27T22:54:56Z
+8160,Which party will win the 2026 US Senate election in North Carolina?,Republican,0.19,0.2,0.81,0.19,0.0,NA,Open,2026-04-27T22:54:56Z
+8163,How many Senate seats will the GOP control after the 2026 midterms?,49,0.19,0.19,0.82,0.19,0.0,NA,Open,2026-04-27T22:54:56Z
+8204,Who will win the 2026 Michigan Republican nomination for governor?,Aric Nesbitt,0.19,0.11,0.98,0.19,0.0,NA,Open,2026-04-27T22:54:56Z
+8635,How many House and Senate seats will Dems control after the 2026 midterms?,48-50 and 233-247,0.19,0.2,0.83,0.19,0.0,NA,Open,2026-04-27T22:54:56Z
+8451,Will Susie Wiles leave office before July 2026?,Will Susie Wiles leave office before July 2026?,0.18,0.19,0.82,0.18,0.0,2026-06-30,Open,2026-04-27T22:54:56Z
+8472,Which party will win the 2026 election for governor of Nebraska?,Democratic,0.18,0.3,0.95,0.18,0.0,NA,Open,2026-04-27T22:54:56Z
+8475,Who will win the 2026 New Mexico Democratic nomination for governor?,Sam Bregman,0.18,0.25,0.92,0.18,0.0,NA,Open,2026-04-27T22:54:56Z
+8479,How many vetoes will Trump issue in 2026?,2 vetoes,0.18,0.16,0.89,0.18,0.0,2026-12-31,Open,2026-04-27T22:54:56Z
+8625,How many votes to confirm Kevin Warsh as Fed Chair by May 30?,51 or fewer,0.18,0.45,0.85,0.18,0.0,2026-05-30,Open,2026-04-27T22:54:56Z
+8156,Which party will win the 2026 US Senate election in Georgia?,Republican,0.17,0.18,0.85,0.17,0.0,NA,Open,2026-04-27T22:54:56Z
+8163,How many Senate seats will the GOP control after the 2026 midterms?,51,0.17,0.17,0.84,0.17,0.0,NA,Open,2026-04-27T22:54:56Z
+8188,Which party will win the 2026 US House election in Washington's 3rd District?,Republican,0.17,0.17,0.84,0.17,0.0,NA,Open,2026-04-27T22:54:56Z
+8364,Who will win the Democratic nomination in the NY-12 House primary?,Jack Schlossberg,0.17,0.27,0.8,0.17,0.0,NA,Open,2026-04-27T22:54:56Z
+8413,Which party will win the 2026 election for governor of Florida?,Democratic,0.17,0.17,0.85,0.17,0.0,NA,Open,2026-04-27T22:54:56Z
+8445,How many Indiana GOP Senators opposing redistricting will win 2026 primaries?,3,0.17,0.18,0.87,0.17,0.0,NA,Open,2026-04-27T22:54:56Z
+8521,How many tie-breaking Senate votes will JD Vance cast in 2026?,1 vote,0.17,0.53,0.85,0.17,0.0,NA,Open,2026-04-27T22:54:56Z
+8533,Which of these 10 Asian leaders will leave office next?,Anthony Albanese,0.17,0.47,0.79,0.17,0.0,NA,Open,2026-04-27T22:54:56Z
+8598,Who will win the Democratic nomination in the NY-17 House primary?,E. Phillips-Staley,0.17,0.19,0.88,0.17,0.0,NA,Open,2026-04-27T22:54:56Z
+8656,Which of these Democratic candidates will announce a 2028 POTUS run first?,Kamala Harris,0.17,0.16,0.94,0.17,0.0,NA,Open,2026-04-27T22:54:56Z
+8670,Who will win the 2026 Kentucky Democratic Senate nomination?,Amy McGrath,0.17,0.17,0.96,0.17,0.0,NA,Open,2026-04-27T22:54:56Z
+8743,What will President Trump's RCP job approval rating be on April 29?,39.8% to 40.0%,0.17,0.1,0.97,0.17,0.0,04/29/2026,Open,2026-04-27T22:54:56Z
+8761,"Trump's DDHQ job approval rating on May 1? (New URL, see Rules)",40.3% to 40.5%,0.17,0.17,0.89,0.17,0.0,05/01/2026,Open,2026-04-27T22:54:56Z
+8761,"Trump's DDHQ job approval rating on May 1? (New URL, see Rules)",40.9% to 41.1%,0.17,0.17,0.87,0.17,0.0,05/01/2026,Open,2026-04-27T22:54:56Z
+8370,Who will be elected Los Angeles mayor in 2026?,Spencer Pratt,0.16,0.17,0.96,0.16,0.0,NA,Open,2026-04-27T22:54:56Z
+8533,Which of these 10 Asian leaders will leave office next?,Recep Tayyip Erdoğan,0.16,0.38,0.85,0.16,0.0,NA,Open,2026-04-27T22:54:56Z
+8609,Who will be Prime Minister of the United Kingdom after Kier Starmer?,Angela Rayner,0.16,0.49,0.79,0.16,0.0,NA,Open,2026-04-27T22:54:56Z
+8687,Who will Trump nominate to replace Pam Bondi as Attorney General?,Ken Paxton,0.16,0.15,0.97,0.16,0.0,NA,Open,2026-04-27T22:54:56Z
+8726,Who will win the most votes in the CA-11 House primary?,Scott Wiener,0.16,0.99,0.79,0.16,0.0,NA,Open,2026-04-27T22:54:56Z
+8157,Which party will win the House in the 2026 election?,Republican,0.15,0.15,0.86,0.15,0.0,NA,Open,2026-04-27T22:54:56Z
+8246,Who will be the next Supreme Court nominee?,James Ho,0.15,0.15,0.9,0.15,0.0,NA,Open,2026-04-27T22:54:56Z
+8298,Who will win the 2026 Minnesota Republican nomination for governor?,Kendall Qualls,0.15,0.18,0.84,0.15,0.0,NA,Open,2026-04-27T22:54:56Z
+8521,How many tie-breaking Senate votes will JD Vance cast in 2026?,2 votes,0.15,0.43,0.87,0.15,0.0,NA,Open,2026-04-27T22:54:56Z
+8600,What will be the balance of power in Congress after the 2026 election?,Rep. House & Senate,0.15,0.15,0.87,0.15,0.0,NA,Open,2026-04-27T22:54:56Z
+8687,Who will Trump nominate to replace Pam Bondi as Attorney General?,Lee Zeldin,0.15,0.31,0.85,0.15,0.0,NA,Open,2026-04-27T22:54:56Z
+8163,How many Senate seats will the GOP control after the 2026 midterms?,48,0.14,0.14,0.87,0.14,0.0,NA,Open,2026-04-27T22:54:56Z
+8185,Which party will win the 2026 US House election in New Mexico's 2nd District?,Republican,0.14,0.17,0.87,0.14,0.0,NA,Open,2026-04-27T22:54:56Z
+8194,Which party will win the 2026 US House election in Pennsylvania's 7th District?,Republican,0.14,0.25,0.84,0.14,0.0,NA,Open,2026-04-27T22:54:56Z
+8212,Which party will win the 2026 election for governor of Michigan?,Republican,0.14,0.14,0.88,0.14,0.0,NA,Open,2026-04-27T22:54:56Z
+8246,Who will be the next Supreme Court nominee?,Amul Thapar,0.14,0.12,0.9,0.14,0.0,NA,Open,2026-04-27T22:54:56Z
+8298,Who will win the 2026 Minnesota Republican nomination for governor?,Mike Lindell,0.14,0.19,0.86,0.14,0.0,NA,Open,2026-04-27T22:54:56Z
+8461,When will the House impeach Trump again?,Not by 1/20/29,0.14,0.15,0.87,0.14,0.0,NA,Open,2026-04-27T22:54:56Z
+8479,How many vetoes will Trump issue in 2026?,3 vetoes,0.14,0.16,0.87,0.14,0.0,2026-12-31,Open,2026-04-27T22:54:56Z
+8479,How many vetoes will Trump issue in 2026?,4 or more  vetoes,0.14,0.15,0.88,0.14,0.0,2026-12-31,Open,2026-04-27T22:54:56Z
+8521,How many tie-breaking Senate votes will JD Vance cast in 2026?,3 votes,0.14,0.14,0.87,0.14,0.0,NA,Open,2026-04-27T22:54:56Z
+8549,Will Trump pardon Elon Musk in 2026?,Will Trump pardon Elon Musk in 2026?,0.14,0.11,0.96,0.14,0.0,2026-12-31,Open,2026-04-27T22:54:56Z
+8654,Who will place first in the California Governor's primary?,Xavier Becerra,0.14,0.32,0.95,0.14,0.0,NA,Open,2026-04-27T22:54:56Z
+8654,Who will place first in the California Governor's primary?,Matt Mahan,0.14,0.11,0.97,0.14,0.0,NA,Open,2026-04-27T22:54:56Z
+8171,Who will win the 2028 US presidential election?,Marco Rubio,0.13,0.14,0.88,0.13,0.0,NA,Open,2026-04-27T22:54:56Z
+8228,Which party will win the 2026 US Senate election in Florida?,Democratic,0.13,0.14,0.88,0.13,0.0,NA,Open,2026-04-27T22:54:56Z
+8622,Who will win the Republican nomination in the AL-01 House primary?,Rhett Marques,0.13,0.94,0.94,0.13,0.0,NA,Open,2026-04-27T22:54:56Z
+8623,Will Hunt endorse Cornyn or Paxton in the Texas Republican Senate runoff?,Ken Paxton,0.13,0.83,0.9,0.13,0.0,NA,Open,2026-04-27T22:54:56Z
+8707,Will Trump meet with Pope Leo in 2026?,Will Trump meet with Pope Leo in 2026?,0.13,0.25,0.87,0.13,0.0,2026-12-31,Open,2026-04-27T22:54:56Z
+7589,How many House seats will Republicans win in the 2026 midterm election?,203 to 207,0.12,0.13,0.88,0.12,0.0,NA,Open,2026-04-27T22:54:56Z
+8153,Who will win the 2028 Democratic presidential nomination?,A. Ocasio-Cortez,0.12,0.12,0.89,0.12,0.0,NA,Open,2026-04-27T22:54:56Z
+8166,Who will win the 2026 election for governor of California?,Matt Mahan,0.12,0.11,0.91,0.12,0.0,NA,Open,2026-04-27T22:54:56Z
+8207,Who will win the 2026 Maine Democratic nomination for governor?,Shenna Bellows,0.12,0.14,0.89,0.12,0.0,NA,Open,2026-04-27T22:54:56Z
+8418,Which party will win the 2026 election for governor of Texas?,Democratic,0.12,0.12,0.92,0.12,0.0,NA,Open,2026-04-27T22:54:56Z
+8445,How many Indiana GOP Senators opposing redistricting will win 2026 primaries?,7 or more,0.12,0.91,0.88,0.12,0.0,NA,Open,2026-04-27T22:54:56Z
+8488,Will any country announce that it is leaving NATO in 2026?,Will any country announce that it is leaving NATO in 2026?,0.12,0.22,0.87,0.12,0.0,NA,Open,2026-04-27T22:54:56Z
+8490,Which party will win the 2026 House special election in California's 1st CD?,Democratic,0.12,0.39,0.89,0.12,0.0,NA,Open,2026-04-27T22:54:56Z
+8612,Will the House vote to restrict the use of force on Iran by June 30?,Will the House vote to restrict the use of force on Iran by ,0.12,0.39,0.95,0.12,0.0,2026-06-30,Open,2026-04-27T22:54:56Z
+8620,"Who will win the Democratic primary in the Washington, DC mayoral election?",Janeese Lewis George,0.12,0.95,0.8,0.12,0.0,NA,Open,2026-04-27T22:54:56Z
+8660,Will a law restricting sports trades on prediction markets be enacted in 2026?,Will a law restricting sports trades on prediction markets b,0.12,0.12,0.89,0.12,0.0,2026-12-31,Open,2026-04-27T22:54:56Z
+7589,How many House seats will Republicans win in the 2026 midterm election?,198 to 202,0.11,0.12,0.89,0.11,0.0,NA,Open,2026-04-27T22:54:56Z
+8178,Who will win the 2026 Georgia Republican Senate nomination?,Derek Dooley,0.11,0.11,0.97,0.11,0.0,NA,Open,2026-04-27T22:54:56Z
+8245,Who will win the 2026 election for governor of Alaska?,Nancy Dahlstrom,0.11,0.18,0.9,0.11,0.0,NA,Open,2026-04-27T22:54:56Z
+8351,Who will win the 2026 New Hampshire Republican Senate nomination?,Scott Brown,0.11,0.09,0.94,0.11,0.0,NA,Open,2026-04-27T22:54:56Z
+8390,Which party will win the 2026 US Senate election in Arkansas?,Democratic,0.11,0.12,0.94,0.11,0.0,NA,Open,2026-04-27T22:54:56Z
+8396,Which party will win the 2026 US Senate election in Kansas?,Democratic,0.11,0.12,0.89,0.11,0.0,NA,Open,2026-04-27T22:54:56Z
+8445,How many Indiana GOP Senators opposing redistricting will win 2026 primaries?,5,0.11,0.99,0.9,0.11,0.0,NA,Open,2026-04-27T22:54:56Z
+8445,How many Indiana GOP Senators opposing redistricting will win 2026 primaries?,6,0.11,0.89,0.81,0.11,0.0,NA,Open,2026-04-27T22:54:56Z
+8598,Who will win the Democratic nomination in the NY-17 House primary?,Beth Davidson,0.11,0.97,0.95,0.11,0.0,NA,Open,2026-04-27T22:54:56Z
+8635,How many House and Senate seats will Dems control after the 2026 midterms?,≤47 and ≤217,0.11,0.1,0.91,0.11,0.0,NA,Open,2026-04-27T22:54:56Z
+8701,Will the US announce in 2026 it is closing a military base in Germany or Spain?,Will the US announce in 2026 it is closing a military base i,0.11,0.22,0.9,0.11,0.0,2026-12-31,Open,2026-04-27T22:54:56Z
+8709,What will be the matchup in the 2026 California governor's election?,Becerra v. Hilton,0.11,0.61,0.89,0.11,0.0,NA,Open,2026-04-27T22:54:56Z
+8761,"Trump's DDHQ job approval rating on May 1? (New URL, see Rules)",40.0% to 40.2%,0.11,0.16,0.93,,,05/01/2026,Open,2026-04-27T22:54:56Z
+7589,How many House seats will Republicans win in the 2026 midterm election?,193 to 197,0.1,0.11,0.91,0.1,0.0,NA,Open,2026-04-27T22:54:56Z
+8162,Which party will win the 2026 US Senate election in Minnesota?,Republican,0.1,0.11,0.91,0.1,0.0,NA,Open,2026-04-27T22:54:56Z
+8183,Which party will win the 2026 US House election in Nebraska's 2nd District?,Republican,0.1,0.09,0.92,0.1,0.0,NA,Open,2026-04-27T22:54:56Z
+8230,Who will win the 2026 Kentucky Republican Senate nomination?,Daniel Cameron,0.1,0.13,0.93,0.1,0.0,NA,Open,2026-04-27T22:54:56Z
+8233,Who will win the 2026 South Carolina Republican nomination for governor?,Ralph Norman,0.1,0.1,0.91,0.1,0.0,NA,Open,2026-04-27T22:54:56Z
+8374,Who will win the 2026 Florida Republican nomination for governor?,James Fishback,0.1,0.11,0.9,0.1,0.0,NA,Open,2026-04-27T22:54:56Z
+8445,How many Indiana GOP Senators opposing redistricting will win 2026 primaries?,0,0.1,0.11,0.91,0.1,0.0,NA,Open,2026-04-27T22:54:56Z
+8521,How many tie-breaking Senate votes will JD Vance cast in 2026?,10 or more votes,0.1,0.17,0.96,0.1,0.0,NA,Open,2026-04-27T22:54:56Z
+8591,Will Prince Andrew testify publicly before Congress in 2026?,Will Prince Andrew testify publicly before Congress in 2026?,0.1,0.1,0.95,0.1,0.0,2026-12-31,Open,2026-04-27T22:54:56Z
+8609,Who will be Prime Minister of the United Kingdom after Kier Starmer?,Nigel Farage,0.1,0.1,0.92,0.1,0.0,NA,Open,2026-04-27T22:54:56Z
+8635,How many House and Senate seats will Dems control after the 2026 midterms?,51-53 and ≥248 ,0.1,0.11,0.9,0.1,0.0,NA,Open,2026-04-27T22:54:56Z
+8668,How many of these Elizabeth Warren endorsees will win Senate primaries?,0,0.1,0.1,0.98,0.1,0.0,NA,Open,2026-04-27T22:54:56Z
+8684,What will be the margin in the Virginia redistricting referendum?,Approve 14% - 16%,0.1,0.01,,0.1,0.0,NA,Open,2026-04-27T22:54:56Z
+8694,Will Jon Husted or Sherrod Brown win more votes in the Ohio Senate primaries?,Sherrod Brown,0.1,0.97,0.63,0.1,0.0,NA,Open,2026-04-27T22:54:56Z
+8743,What will President Trump's RCP job approval rating be on April 29?,41.0% to 41.2%,0.1,0.1,0.93,0.1,0.0,04/29/2026,Open,2026-04-27T22:54:56Z
+8163,How many Senate seats will the GOP control after the 2026 midterms?,52,0.09,0.09,0.92,0.09,0.0,NA,Open,2026-04-27T22:54:56Z
+8246,Who will be the next Supreme Court nominee?,Aileen Cannon,0.09,0.1,0.96,0.09,0.0,NA,Open,2026-04-27T22:54:56Z
+8574,Will James Fishback be removed from the primary ballot by June 30?,Will James Fishback be removed from the primary ballot by Ju,0.09,0.49,0.89,0.09,0.0,2026-06-30,Open,2026-04-27T22:54:56Z
+8747,Who will be the next Cabinet member to leave office?,Howard Lutnick,0.09,0.98,0.91,0.09,0.0,NA,Open,2026-04-27T22:54:56Z
+7589,How many House seats will Republicans win in the 2026 midterm election?,208 to 212,0.08,0.09,0.92,0.08,0.0,NA,Open,2026-04-27T22:54:56Z
+8153,Who will win the 2028 Democratic presidential nomination?,Andy Beshear,0.08,0.08,0.93,0.08,0.0,NA,Open,2026-04-27T22:54:56Z
+8166,Who will win the 2026 election for governor of California?,Steve Hilton,0.08,0.08,0.94,0.08,0.0,NA,Open,2026-04-27T22:54:56Z
+8171,Who will win the 2028 US presidential election?,A. Ocasio-Cortez,0.08,0.09,0.92,0.08,0.0,NA,Open,2026-04-27T22:54:56Z
+8205,Who will win the 2026 Maine Republican nomination for governor?,Jonathan Bush,0.08,0.31,0.93,0.08,0.0,NA,Open,2026-04-27T22:54:56Z
+8246,Who will be the next Supreme Court nominee?,Emil Bove,0.08,0.12,0.92,0.08,0.0,NA,Open,2026-04-27T22:54:56Z
+8386,Which party will win the 2026 US Senate election in Kentucky?,Democratic,0.08,0.09,0.94,0.08,0.0,NA,Open,2026-04-27T22:54:56Z
+8391,Which party will win the 2026 US Senate election in Oklahoma?,Democratic,0.08,0.1,0.98,0.08,0.0,NA,Open,2026-04-27T22:54:56Z
+8448,Which party will win the 2026 election for governor of Alabama?,Democratic,0.08,0.09,0.92,0.08,0.0,NA,Open,2026-04-27T22:54:56Z
+8580,Who will win the 2026 Georgia Democratic nomination for governor?,Geoff Duncan,0.08,0.08,0.94,0.08,0.0,NA,Open,2026-04-27T22:54:56Z
+8656,Which of these Democratic candidates will announce a 2028 POTUS run first?,Pete Buttigieg,0.08,0.18,0.93,0.08,0.0,NA,Open,2026-04-27T22:54:56Z
+8152,Who will win the 2028 Republican presidential nomination?,Tucker Carlson,0.07,0.07,0.94,0.07,0.0,NA,Open,2026-04-27T22:54:56Z
+8153,Who will win the 2028 Democratic presidential nomination?,Josh Shapiro,0.07,0.08,0.93,0.07,0.0,NA,Open,2026-04-27T22:54:56Z
+8153,Who will win the 2028 Democratic presidential nomination?,Jon Ossoff,0.07,0.08,0.93,0.07,0.0,NA,Open,2026-04-27T22:54:56Z
+8174,Which party will win the 2026 US Senate election in Virginia?,Republican,0.07,0.07,0.96,0.07,0.0,NA,Open,2026-04-27T22:54:56Z
+8297,Which party will win the 2026 election for governor of Minnesota?,Republican,0.07,0.08,0.95,0.07,0.0,NA,Open,2026-04-27T22:54:56Z
+8474,Which party will win the 2026 election for governor of New Mexico?,Republican,0.07,0.13,0.95,0.07,0.0,NA,Open,2026-04-27T22:54:56Z
+8515,Will SCOTUS strike down transgender sports bans?,Will SCOTUS strike down transgender sports bans?,0.07,0.07,0.97,0.07,0.0,2026-08-14,Open,2026-04-27T22:54:56Z
+8620,"Who will win the Democratic primary in the Washington, DC mayoral election?",Kenyan McDuffie,0.07,0.83,0.94,0.07,0.0,NA,Open,2026-04-27T22:54:56Z
+8630,Who will win the 2026 Oklahoma Republican Senate nomination?,Matt Pinnell,0.07,0.22,,0.07,0.0,NA,Open,2026-04-27T22:54:56Z
+8630,Who will win the 2026 Oklahoma Republican Senate nomination?,T. W. Shannon,0.07,0.79,,0.07,0.0,NA,Open,2026-04-27T22:54:56Z
+8635,How many House and Senate seats will Dems control after the 2026 midterms?,48-50 and ≤217,0.07,0.07,0.95,0.07,0.0,NA,Open,2026-04-27T22:54:56Z
+8644,Who will win the South Carolina primary for Lindsey Graham's Senate seat?,Mark Lynch,0.07,0.1,0.93,0.07,0.0,NA,Open,2026-04-27T22:54:56Z
+7589,How many House seats will Republicans win in the 2026 midterm election?,213 to 217,0.06,0.07,0.94,0.06,0.0,NA,Open,2026-04-27T22:54:56Z
+8190,Which party will win the 2026 US House election in Arizona's 6th District?,Republican,0.06,0.25,0.94,0.06,0.0,NA,Open,2026-04-27T22:54:56Z
+8205,Who will win the 2026 Maine Republican nomination for governor?,Garrett Mason,0.06,0.12,0.95,0.06,0.0,NA,Open,2026-04-27T22:54:56Z
+8215,Which party will win the 2026 election for governor of New York?,Republican,0.06,0.07,0.95,0.06,0.0,NA,Open,2026-04-27T22:54:56Z
+8248,Who will win the 2026 Tennessee Republican nomination for governor?,John Rose,0.06,0.1,0.94,0.06,0.0,NA,Open,2026-04-27T22:54:56Z
+8294,Who will win the 2026 Wisconsin Democratic nomination for governor?,Sara Rodriguez,0.06,0.15,0.94,0.06,0.0,NA,Open,2026-04-27T22:54:56Z
+8375,Which party will win the 2026 US Senate election in South Carolina?,Democratic,0.06,0.15,0.95,0.06,0.0,NA,Open,2026-04-27T22:54:56Z
+8389,Which party will win the 2026 US Senate election in Louisiana?,Democratic,0.06,0.1,0.95,0.06,0.0,NA,Open,2026-04-27T22:54:56Z
+8412,Which party will win the 2026 election for governor of Pennsylvania?,Republican,0.06,0.09,0.95,0.06,0.0,NA,Open,2026-04-27T22:54:56Z
+8414,Will SCOTUS side with Trump on birthright citizenship?,Will SCOTUS side with Trump on birthright citizenship?,0.06,0.06,0.95,0.06,0.0,2026-07-10,Open,2026-04-27T22:54:56Z
+8443,Who will win the Democratic nomination in the TX-18 House primary?,Al Green,0.06,0.27,0.95,0.06,0.0,NA,Open,2026-04-27T22:54:56Z
+8445,How many Indiana GOP Senators opposing redistricting will win 2026 primaries?,2,0.06,0.07,0.97,0.06,0.0,NA,Open,2026-04-27T22:54:56Z
+8461,When will the House impeach Trump again?,Before 2027,0.06,0.09,0.93,0.06,0.0,NA,Open,2026-04-27T22:54:56Z
+8533,Which of these 10 Asian leaders will leave office next?,Xi Jinping,0.06,0.1,0.94,0.06,0.0,NA,Open,2026-04-27T22:54:56Z
+8533,Which of these 10 Asian leaders will leave office next?,Lee Jae Myung,0.06,0.43,0.95,0.06,0.0,NA,Open,2026-04-27T22:54:56Z
+8597,Will California Dems get shut out of the 2026 governor's race?,Will California Dems get shut out of the 2026 Gubernatorial ,0.06,0.08,0.93,0.06,0.0,NA,Open,2026-04-27T22:54:56Z
+8604,Who will win the OH-09 Republican primary?,Josh Williams,0.06,0.99,0.94,0.06,0.0,NA,Open,2026-04-27T22:54:56Z
+8604,Who will win the OH-09 Republican primary?,Madison Sheahan,0.06,0.98,0.92,0.06,0.0,NA,Open,2026-04-27T22:54:56Z
+8656,Which of these Democratic candidates will announce a 2028 POTUS run first?,Gavin Newsom,0.06,0.42,0.93,0.06,0.0,NA,Open,2026-04-27T22:54:56Z
+8666,Will Vivek Ramaswamy or Amy Acton win more votes in the Ohio gov primaries?,Vivek Ramaswamy,0.06,0.28,0.94,0.06,0.0,NA,Open,2026-04-27T22:54:56Z
+8687,Who will Trump nominate to replace Pam Bondi as Attorney General?,Mike Lee,0.06,0.11,0.94,0.06,0.0,NA,Open,2026-04-27T22:54:56Z
+8705,Will the Pope excommunicate JD Vance before 2028?,Will the Pope excommunicate JD Vance before 2028?,0.06,0.05,0.97,0.06,0.0,2027-12-31,Open,2026-04-27T22:54:56Z
+8710,Will Matt Mahan advance to the general election for governor of California?,Will Matt Mahan advance to the general election for governor,0.06,0.3,0.93,0.06,0.0,NA,Open,2026-04-27T22:54:56Z
+7589,How many House seats will Republicans win in the 2026 midterm election?,218 to 222,0.05,0.06,0.95,0.05,0.0,NA,Open,2026-04-27T22:54:56Z
+8152,Who will win the 2028 Republican presidential nomination?,Ron DeSantis,0.05,0.06,0.95,0.05,0.0,NA,Open,2026-04-27T22:54:56Z
+8153,Who will win the 2028 Democratic presidential nomination?,Pete Buttigieg,0.05,0.06,0.95,0.05,0.0,NA,Open,2026-04-27T22:54:56Z
+8153,Who will win the 2028 Democratic presidential nomination?,JB Pritzker,0.05,0.05,0.96,0.05,0.0,NA,Open,2026-04-27T22:54:56Z
+8163,How many Senate seats will the GOP control after the 2026 midterms?,53,0.05,0.06,0.95,0.05,0.0,NA,Open,2026-04-27T22:54:56Z
+8197,Who will win the 2026 Iowa Republican Senate nomination?,Jim Carlin,0.05,0.04,0.99,0.05,0.0,NA,Open,2026-04-27T22:54:56Z
+8256,Who will win the 2026 Maine Democratic Senate nomination?,Janet Mills,0.05,0.07,0.94,0.05,0.0,NA,Open,2026-04-27T22:54:56Z
+8357,Who will win the 2028 Republican presidential primary in New Hampshire?,Brian Kemp,0.05,0.04,0.97,0.05,0.0,NA,Open,2026-04-27T22:54:56Z
+8381,Which party will win the 2026 US Senate election in Massachusetts?,Republican,0.05,0.05,0.97,0.05,0.0,NA,Open,2026-04-27T22:54:56Z
+8383,Which party will win the 2026 US Senate election in New Jersey?,Republican,0.05,0.06,0.95,0.05,0.0,NA,Open,2026-04-27T22:54:56Z
+8385,Which party will win the 2026 US Senate election in Tennessee?,Democratic,0.05,0.09,0.95,0.05,0.0,NA,Open,2026-04-27T22:54:56Z
+8388,Which party will win the 2026 US Senate election in Mississippi?,Democratic,0.05,0.07,0.97,0.05,0.0,NA,Open,2026-04-27T22:54:56Z
+8401,Which party will win the 2026 election for governor of Connecticut?,Republican,0.05,0.05,0.96,0.05,0.0,NA,Open,2026-04-27T22:54:56Z
+8407,Which party will win the 2026 US Senate election in Delaware?,Republican,0.05,0.05,0.98,0.05,0.0,NA,Open,2026-04-27T22:54:56Z
+8452,Who will win the 2026 Minnesota Republican Senate nomination?,Adam Schwarze,0.05,0.67,0.94,0.05,0.0,NA,Open,2026-04-27T22:54:56Z
+8461,When will the House impeach Trump again?,7/1/28-1/20/29,0.05,0.06,0.95,0.05,0.0,NA,Open,2026-04-27T22:54:56Z
+8476,Will Trump pardon Edward Snowden or commute his sentence before July 2026?,Will Trump pardon Edward Snowden or commute his sentence bef,0.05,0.04,0.97,0.05,0.0,2026-06-30,Open,2026-04-27T22:54:56Z
+8495,Who will win the 2026 Colombian presidential election?,Paloma Valencia,0.05,0.99,0.95,0.05,0.0,NA,Open,2026-04-27T22:54:56Z
+8502,Will the House vote to restrict the use of force on Greenland by June 30?,Will the House vote to restrict the use of force on Greenlan,0.05,0.06,0.96,0.05,0.0,2026-06-30,Open,2026-04-27T22:54:56Z
+8521,How many tie-breaking Senate votes will JD Vance cast in 2026?,4 votes,0.05,0.11,0.9,0.05,0.0,NA,Open,2026-04-27T22:54:56Z
+8521,How many tie-breaking Senate votes will JD Vance cast in 2026?,6 votes,0.05,0.15,0.95,0.05,0.0,NA,Open,2026-04-27T22:54:56Z
+8521,How many tie-breaking Senate votes will JD Vance cast in 2026?,9 votes,0.05,0.08,0.93,0.05,0.0,NA,Open,2026-04-27T22:54:56Z
+8527,Will SCOTUS let Trump fire Lisa Cook?,Will SCOTUS let Trump fire Lisa Cook?,0.05,0.05,0.97,0.05,0.0,2026-07-31,Open,2026-04-27T22:54:56Z
+8533,Which of these 10 Asian leaders will leave office next?,Anwar Ibrahim,0.05,0.06,0.95,0.05,0.0,NA,Open,2026-04-27T22:54:56Z
+8643,Who will be the Prime Minister of Israel after the 2026 election?,Yair Lapid,0.05,0.94,0.96,0.05,0.0,NA,Open,2026-04-27T22:54:56Z
+8643,Who will be the Prime Minister of Israel after the 2026 election?,Itamar Ben-Gvir,0.05,0.95,0.98,0.05,0.0,NA,Open,2026-04-27T22:54:56Z
+8643,Who will be the Prime Minister of Israel after the 2026 election?,Israel Katz,0.05,0.95,0.98,0.05,0.0,NA,Open,2026-04-27T22:54:56Z
+8709,What will be the matchup in the 2026 California governor's election?,Bianco v. Hilton,0.05,0.08,0.95,0.05,0.0,NA,Open,2026-04-27T22:54:56Z
+8709,What will be the matchup in the 2026 California governor's election?,Becerra v. Steyer,0.05,0.65,0.97,0.05,0.0,NA,Open,2026-04-27T22:54:56Z
+8737,What will the RCP Iran Action approval rating be on Apr. 28?,40.9% to 41.1%,0.05,0.7,0.95,,,04/28/2026,Open,2026-04-27T22:54:56Z
+7589,How many House seats will Republicans win in the 2026 midterm election?,223 to 227,0.04,0.05,0.96,0.04,0.0,NA,Open,2026-04-27T22:54:56Z
+8152,Who will win the 2028 Republican presidential nomination?,Donald Trump,0.04,0.05,0.96,0.04,0.0,NA,Open,2026-04-27T22:54:56Z
+8152,Who will win the 2028 Republican presidential nomination?,Donald Trump Jr.,0.04,0.04,0.97,0.04,0.0,NA,Open,2026-04-27T22:54:56Z
+8152,Who will win the 2028 Republican presidential nomination?,M. Taylor Greene,0.04,0.04,0.98,0.04,0.0,NA,Open,2026-04-27T22:54:56Z
+8153,Who will win the 2028 Democratic presidential nomination?,Gretchen Whitmer,0.04,0.04,0.97,0.04,0.0,NA,Open,2026-04-27T22:54:56Z
+8153,Who will win the 2028 Democratic presidential nomination?,Mark Kelly,0.04,0.05,0.96,0.04,0.0,NA,Open,2026-04-27T22:54:56Z
+8171,Who will win the 2028 US presidential election?,Josh Shapiro,0.04,0.05,0.96,0.04,0.0,NA,Open,2026-04-27T22:54:56Z
+8171,Who will win the 2028 US presidential election?,Kamala Harris,0.04,0.05,0.96,0.04,0.0,NA,Open,2026-04-27T22:54:56Z
+8171,Who will win the 2028 US presidential election?,Pete Buttigieg,0.04,0.05,0.96,0.04,0.0,NA,Open,2026-04-27T22:54:56Z
+8203,Who will win the 2026 Georgia Republican nomination for governor?,Brad Raffensperger,0.04,0.06,0.95,0.04,0.0,NA,Open,2026-04-27T22:54:56Z
+8204,Who will win the 2026 Michigan Republican nomination for governor?,Mike Cox,0.04,0.04,0.98,0.04,0.0,NA,Open,2026-04-27T22:54:56Z
+8205,Who will win the 2026 Maine Republican nomination for governor?,Shawn Moody,0.04,0.19,0.97,0.04,0.0,NA,Open,2026-04-27T22:54:56Z
+8205,Who will win the 2026 Maine Republican nomination for governor?,Bruce Poliquin,0.04,0.1,0.97,0.04,0.0,NA,Open,2026-04-27T22:54:56Z
+8246,Who will be the next Supreme Court nominee?,Neomi Rao,0.04,0.04,0.97,0.04,0.0,NA,Open,2026-04-27T22:54:56Z
+8246,Who will be the next Supreme Court nominee?,Mike Lee,0.04,0.03,0.99,0.04,0.0,NA,Open,2026-04-27T22:54:56Z
+8357,Who will win the 2028 Republican presidential primary in New Hampshire?,Ron DeSantis,0.04,0.05,0.96,0.04,0.0,NA,Open,2026-04-27T22:54:56Z
+8357,Who will win the 2028 Republican presidential primary in New Hampshire?,M. Taylor Greene,0.04,0.04,0.97,0.04,0.0,NA,Open,2026-04-27T22:54:56Z
+8364,Who will win the Democratic nomination in the NY-12 House primary?,George Conway,0.04,0.05,0.98,0.04,0.0,NA,Open,2026-04-27T22:54:56Z
+8376,Which party will win the 2026 US Senate election in South Dakota?,Democratic,0.04,0.06,0.96,0.04,0.0,NA,Open,2026-04-27T22:54:56Z
+8399,Which party will win the 2026 US Senate election in Wyoming?,Democratic,0.04,0.04,0.97,0.04,0.0,NA,Open,2026-04-27T22:54:56Z
+8452,Who will win the 2026 Minnesota Republican Senate nomination?,Royce White,0.04,0.04,0.97,0.04,0.0,NA,Open,2026-04-27T22:54:56Z
+8460,Which party will win the 2026 election for governor of Colorado?,Republican,0.04,0.13,0.97,0.04,0.0,NA,Open,2026-04-27T22:54:56Z
+8493,Will the US purchase Greenland in 2026?,Will the US purchase Greenland in 2026?,0.04,0.04,0.97,0.04,0.0,NA,Open,2026-04-27T22:54:56Z
+8496,Will Trump visit Venezuela by July 1?,Will Trump visit Venezuela by July 1?,0.04,0.05,0.96,0.04,0.0,2026-07-01,Open,2026-04-27T22:54:56Z
+8521,How many tie-breaking Senate votes will JD Vance cast in 2026?,5 votes,0.04,0.14,0.97,0.04,0.0,NA,Open,2026-04-27T22:54:56Z
+8521,How many tie-breaking Senate votes will JD Vance cast in 2026?,7 votes,0.04,0.1,0.97,0.04,0.0,NA,Open,2026-04-27T22:54:56Z
+8521,How many tie-breaking Senate votes will JD Vance cast in 2026?,8 votes,0.04,0.1,0.97,0.04,0.0,NA,Open,2026-04-27T22:54:56Z
+8559,Will Trump pardon Nicolás Maduro or commute his sentence in 2026?,Will Trump pardon Nicolás Maduro or commute his sentence in ,0.04,0.07,0.97,0.04,0.0,2026-12-31,Open,2026-04-27T22:54:56Z
+8611,Will the Senate vote to restrict the use of force on Iran by June 30?,Will the Senate vote to restrict the use of force on Iran by,0.04,0.12,0.97,0.04,0.0,2026-06-30,Open,2026-04-27T22:54:56Z
+8625,How many votes to confirm Kevin Warsh as Fed Chair by May 30?,56 or 57,0.04,0.11,0.95,0.04,0.0,2026-05-30,Open,2026-04-27T22:54:56Z
+8626,Who will win the 2026 Texas Republican Railroad Commissioner runoff?,Bo French,0.04,0.92,0.9,0.04,0.0,NA,Open,2026-04-27T22:54:56Z
+8635,How many House and Senate seats will Dems control after the 2026 midterms?,≤47 and 218-232,0.04,0.04,0.97,0.04,0.0,NA,Open,2026-04-27T22:54:56Z
+8643,Who will be the Prime Minister of Israel after the 2026 election?,Gadi Eisenkot,0.04,0.95,0.99,0.04,0.0,NA,Open,2026-04-27T22:54:56Z
+8643,Who will be the Prime Minister of Israel after the 2026 election?,Bezalel Smotrich,0.04,0.95,0.99,0.04,0.0,NA,Open,2026-04-27T22:54:56Z
+8679,Who will win the 2026 Florida Democratic Senate nomination?,Alan Grayson,0.04,0.74,0.97,0.04,0.0,NA,Open,2026-04-27T22:54:56Z
+8747,Who will be the next Cabinet member to leave office?,Scott Bessent,0.04,0.99,0.94,,,NA,Open,2026-04-27T22:54:56Z
+8747,Who will be the next Cabinet member to leave office?,Doug Burgum,0.04,0.04,0.99,0.04,0.0,NA,Open,2026-04-27T22:54:56Z
+8747,Who will be the next Cabinet member to leave office?,Brooke Rollins,0.04,0.04,0.99,0.04,0.0,NA,Open,2026-04-27T22:54:56Z
+8747,Who will be the next Cabinet member to leave office?,Scott Turner,0.04,0.04,0.99,0.04,0.0,NA,Open,2026-04-27T22:54:56Z
+8747,Who will be the next Cabinet member to leave office?,Doug Collins,0.04,0.04,0.99,0.04,0.0,NA,Open,2026-04-27T22:54:56Z
+8747,Who will be the next Cabinet member to leave office?,John Ratcliffe,0.04,0.04,0.99,0.04,0.0,NA,Open,2026-04-27T22:54:56Z
+7589,How many House seats will Republicans win in the 2026 midterm election?,233 to 237,0.03,0.03,0.98,0.03,0.0,NA,Open,2026-04-27T22:54:56Z
+7589,How many House seats will Republicans win in the 2026 midterm election?,238 or more,0.03,0.03,0.98,0.03,0.0,NA,Open,2026-04-27T22:54:56Z
+8152,Who will win the 2028 Republican presidential nomination?,Tulsi Gabbard,0.03,0.03,0.98,0.03,0.0,NA,Open,2026-04-27T22:54:56Z
+8153,Who will win the 2028 Democratic presidential nomination?,Rahm Emanuel,0.03,0.05,0.97,0.03,0.0,NA,Open,2026-04-27T22:54:56Z
+8153,Who will win the 2028 Democratic presidential nomination?,Ro Khanna,0.03,0.04,0.97,0.03,0.0,NA,Open,2026-04-27T22:54:56Z
+8163,How many Senate seats will the GOP control after the 2026 midterms?,57 or more,0.03,0.04,0.97,0.03,0.0,NA,Open,2026-04-27T22:54:56Z
+8171,Who will win the 2028 US presidential election?,Jon Ossoff,0.03,0.04,0.97,0.03,0.0,NA,Open,2026-04-27T22:54:56Z
+8171,Who will win the 2028 US presidential election?,Andy Beshear,0.03,0.04,0.97,0.03,0.0,NA,Open,2026-04-27T22:54:56Z
+8179,Who will win the 2026 Michigan Republican Senate nomination?,Bill Huizenga,0.03,0.03,0.98,0.03,0.0,NA,Open,2026-04-27T22:54:56Z
+8179,Who will win the 2026 Michigan Republican Senate nomination?,Ronna McDaniel,0.03,0.04,0.98,0.03,0.0,NA,Open,2026-04-27T22:54:56Z
+8205,Who will win the 2026 Maine Republican nomination for governor?,Rick Bennett,0.03,0.12,0.98,0.03,0.0,NA,Open,2026-04-27T22:54:56Z
+8245,Who will win the 2026 election for governor of Alaska?,Lisa Murkowski,0.03,0.03,0.98,0.03,0.0,NA,Open,2026-04-27T22:54:56Z
+8245,Who will win the 2026 election for governor of Alaska?,Mary Peltola,0.03,0.02,0.99,0.03,0.0,NA,Open,2026-04-27T22:54:56Z
+8246,Who will be the next Supreme Court nominee?,Ted Cruz,0.03,0.17,0.98,0.03,0.0,NA,Open,2026-04-27T22:54:56Z
+8294,Who will win the 2026 Wisconsin Democratic nomination for governor?,David Crowley,0.03,0.13,0.97,0.03,0.0,NA,Open,2026-04-27T22:54:56Z
+8357,Who will win the 2028 Republican presidential primary in New Hampshire?,Nikki Haley,0.03,0.04,0.97,0.03,0.0,NA,Open,2026-04-27T22:54:56Z
+8374,Who will win the 2026 Florida Republican nomination for governor?,Jay Collins,0.03,0.04,0.99,0.03,0.0,NA,Open,2026-04-27T22:54:56Z
+8382,Which party will win the 2026 US Senate election in Rhode Island?,Republican,0.03,0.05,0.98,0.03,0.0,NA,Open,2026-04-27T22:54:56Z
+8384,Which party will win the 2026 US Senate election in Alabama?,Democratic,0.03,0.03,0.99,0.03,0.0,NA,Open,2026-04-27T22:54:56Z
+8387,Which party will win the 2026 US Senate election in West Virginia?,Democratic,0.03,0.08,0.97,0.03,0.0,NA,Open,2026-04-27T22:54:56Z
+8392,Which party will win the 2026 US Senate election in Illinois?,Republican,0.03,0.04,0.98,0.03,0.0,NA,Open,2026-04-27T22:54:56Z
+8398,Which party will win the 2026 US Senate election in Colorado?,Republican,0.03,0.04,0.97,0.03,0.0,NA,Open,2026-04-27T22:54:56Z
+8404,Which party will win the 2026 election for governor of Rhode Island?,Republican,0.03,0.21,0.97,0.03,0.0,NA,Open,2026-04-27T22:54:56Z
+8410,Which party will win the 2026 election for governor of Maryland?,Republican,0.03,0.04,0.98,0.03,0.0,NA,Open,2026-04-27T22:54:56Z
+8483,Who will win the 2026 Minnesota Democratic nomination for governor?,Keith Ellison,0.03,0.03,0.99,0.03,0.0,NA,Open,2026-04-27T22:54:56Z
+8505,Will Jesse Ventura announce a run for Minnesota governor by June 2?,Will Jesse Ventura announce a run for Minnesota governor by ,0.03,0.03,0.98,0.03,0.0,2026-06-02,Open,2026-04-27T22:54:56Z
+8533,Which of these 10 Asian leaders will leave office next?,Sanae Takaichi,0.03,0.1,0.98,0.03,0.0,NA,Open,2026-04-27T22:54:56Z
+8533,Which of these 10 Asian leaders will leave office next?,Narendra Modi,0.03,0.07,0.97,0.03,0.0,NA,Open,2026-04-27T22:54:56Z
+8533,Which of these 10 Asian leaders will leave office next?,Kim Jong Un,0.03,0.16,0.97,0.03,0.0,NA,Open,2026-04-27T22:54:56Z
+8602,Will Casey DeSantis announce a run for Florida governor by June 12?,Will Casey DeSantis announce a run for Florida governor by J,0.03,0.03,0.98,0.03,0.0,2026-06-12,Open,2026-04-27T22:54:56Z
+8625,How many votes to confirm Kevin Warsh as Fed Chair by May 30?,58 or 59,0.03,0.05,0.98,0.03,0.0,2026-05-30,Open,2026-04-27T22:54:56Z
+8635,How many House and Senate seats will Dems control after the 2026 midterms?,≤47 and ≥233,0.03,0.05,0.97,0.03,0.0,NA,Open,2026-04-27T22:54:56Z
+8645,Who will win the 2026 Colorado Democratic Senate nomination?,Karen Breslin,0.03,0.03,0.98,0.03,0.0,NA,Open,2026-04-27T22:54:56Z
+8649,Will a law restricting corporations from owning homes be enacted by June?,Will a law restricting corporations from owning homes be ena,0.03,0.29,0.97,0.03,0.0,2026-05-31,Open,2026-04-27T22:54:56Z
+8679,Who will win the 2026 Florida Democratic Senate nomination?,Hector Mujica,0.03,0.74,0.98,0.03,0.0,NA,Open,2026-04-27T22:54:56Z
+8743,What will President Trump's RCP job approval rating be on April 29?,41.3% to 41.5%,0.03,0.04,0.97,0.03,0.0,04/29/2026,Open,2026-04-27T22:54:56Z
+8747,Who will be the next Cabinet member to leave office?,Linda McMahon,0.03,0.99,0.95,,,NA,Open,2026-04-27T22:54:56Z
+8152,Who will win the 2028 Republican presidential nomination?,Ted Cruz,0.02,0.03,0.98,0.02,0.0,NA,Open,2026-04-27T22:54:56Z
+8153,Who will win the 2028 Democratic presidential nomination?,Wes Moore,0.02,0.03,0.98,0.02,0.0,NA,Open,2026-04-27T22:54:56Z
+8153,Who will win the 2028 Democratic presidential nomination?,Cory Booker,0.02,0.02,0.99,0.02,0.0,NA,Open,2026-04-27T22:54:56Z
+8153,Who will win the 2028 Democratic presidential nomination?,Ruben Gallego,0.02,0.03,0.98,0.02,0.0,NA,Open,2026-04-27T22:54:56Z
+8163,How many Senate seats will the GOP control after the 2026 midterms?,55,0.02,0.03,0.98,0.02,0.0,NA,Open,2026-04-27T22:54:56Z
+8171,Who will win the 2028 US presidential election?,Gretchen Whitmer,0.02,0.03,0.98,0.02,0.0,NA,Open,2026-04-27T22:54:56Z
+8171,Who will win the 2028 US presidential election?,Donald Trump,0.02,0.03,0.98,0.02,0.0,NA,Open,2026-04-27T22:54:56Z
+8171,Who will win the 2028 US presidential election?,JB Pritzker,0.02,0.02,0.99,0.02,0.0,NA,Open,2026-04-27T22:54:56Z
+8179,Who will win the 2026 Michigan Republican Senate nomination?,Jonathan Lindsey,0.02,0.03,0.98,0.02,0.0,NA,Open,2026-04-27T22:54:56Z
+8201,Who will win the 2026 New York Republican nomination for governor?,Elise Stefanik,0.02,0.02,0.99,0.02,0.0,NA,Open,2026-04-27T22:54:56Z
+8204,Who will win the 2026 Michigan Republican nomination for governor?,Tom Leonard,0.02,0.02,0.99,0.02,0.0,NA,Open,2026-04-27T22:54:56Z
+8205,Who will win the 2026 Maine Republican nomination for governor?,Laurel Libby,0.02,0.07,0.99,0.02,0.0,NA,Open,2026-04-27T22:54:56Z
+8217,Who will win the 2026 New York Democratic nomination for governor?,Antonio Delgado,0.02,0.03,0.99,0.02,0.0,NA,Open,2026-04-27T22:54:56Z
+8233,Who will win the 2026 South Carolina Republican nomination for governor?,Josh Kimbrell,0.02,0.03,0.99,0.02,0.0,NA,Open,2026-04-27T22:54:56Z
+8245,Who will win the 2026 election for governor of Alaska?,Shelley Hughes,0.02,0.03,0.98,0.02,0.0,NA,Open,2026-04-27T22:54:56Z
+8293,Who will win the 2026 Maine Republican Senate nomination?,Daniel Smeriglio,0.02,0.02,0.99,0.02,0.0,NA,Open,2026-04-27T22:54:56Z
+8294,Who will win the 2026 Wisconsin Democratic nomination for governor?,Kelda Roys,0.02,0.04,0.98,0.02,0.0,NA,Open,2026-04-27T22:54:56Z
+8357,Who will win the 2028 Republican presidential primary in New Hampshire?,Ted Cruz,0.02,0.02,0.99,0.02,0.0,NA,Open,2026-04-27T22:54:56Z
+8373,Who will win the 2026 Peruvian presidential election?,Rafael López Aliaga,0.02,0.1,0.98,0.02,0.0,NA,Open,2026-04-27T22:54:56Z
+8395,Which party will win the 2026 US Senate election in Oregon?,Republican,0.02,0.09,0.98,0.02,0.0,NA,Open,2026-04-27T22:54:56Z
+8400,Which party will win the 2026 US Senate election in Idaho?,Democratic,0.02,0.04,0.98,0.02,0.0,NA,Open,2026-04-27T22:54:56Z
+8433,Who will win the Republican nomination in the TX-09 House primary?,Briscoe Cain,0.02,0.79,0.98,0.02,0.0,NA,Open,2026-04-27T22:54:56Z
+8452,Who will win the 2026 Minnesota Republican Senate nomination?,Tom Weiler,0.02,0.77,0.96,0.02,0.0,NA,Open,2026-04-27T22:54:56Z
+8453,Who will win the Republican nomination in the TX-19 House primary?,Abraham Enriquez,0.02,0.04,0.99,0.02,0.0,NA,Open,2026-04-27T22:54:56Z
+8463,Who will win the 2026 Colorado Republican nomination for governor?,Greg Lopez,0.02,0.79,0.97,0.02,0.0,NA,Open,2026-04-27T22:54:56Z
+8494,Will Greenland hold an independence referendum in 2026?,Will Greenland hold an independence referendum in 2026?,0.02,0.09,0.98,0.02,0.0,NA,Open,2026-04-27T22:54:56Z
+8498,Will Bill or Hillary Clinton testify publicly before Congress by June 30?,Will Bill or Hillary Clinton testify publicly before Congres,0.02,0.07,0.99,0.02,0.0,2026-06-30,Open,2026-04-27T22:54:56Z
+8501,Will the Senate vote to restrict the use of force on Greenland by June 30?,Will the Senate vote to restrict the use of force on Greenla,0.02,0.03,0.98,0.02,0.0,2026-06-30,Open,2026-04-27T22:54:56Z
+8506,Will the Senate pass a bill to cap credit card interest rates under 15% by 6/5?,Will the Senate pass a bill to cap credit card interest rate,0.02,0.02,0.99,0.02,0.0,2026-06-05,Open,2026-04-27T22:54:56Z
+8508,Will the Senate pass a bill to rename the Kennedy Center by June 5?,Will the Senate pass a bill to rename the Kennedy Center by ,0.02,0.03,0.98,0.02,0.0,2026-06-05,Open,2026-04-27T22:54:56Z
+8509,Will the House pass a bill to rename the Kennedy Center by June 5?,Will the House pass a bill to rename the Kennedy Center by J,0.02,0.02,0.99,0.02,0.0,2026-06-05,Open,2026-04-27T22:54:56Z
+8533,Which of these 10 Asian leaders will leave office next?,M. b. Z. Al Nahyan,0.02,0.08,0.98,0.02,0.0,NA,Open,2026-04-27T22:54:56Z
+8604,Who will win the OH-09 Republican primary?,Alea Nadeem,0.02,0.97,0.99,0.02,0.0,NA,Open,2026-04-27T22:54:56Z
+8609,Who will be Prime Minister of the United Kingdom after Kier Starmer?,Wes Streeting,0.02,0.36,0.98,0.02,0.0,NA,Open,2026-04-27T22:54:56Z
+8609,Who will be Prime Minister of the United Kingdom after Kier Starmer?,Kemi Badenoch,0.02,0.25,0.99,0.02,0.0,NA,Open,2026-04-27T22:54:56Z
+8625,How many votes to confirm Kevin Warsh as Fed Chair by May 30?,60 or 61,0.02,0.05,0.98,0.02,0.0,2026-05-30,Open,2026-04-27T22:54:56Z
+8625,How many votes to confirm Kevin Warsh as Fed Chair by May 30?,66 or 67,0.02,0.05,0.98,0.02,0.0,2026-05-30,Open,2026-04-27T22:54:56Z
+8625,How many votes to confirm Kevin Warsh as Fed Chair by May 30?,68 or more,0.02,0.34,0.98,0.02,0.0,2026-05-30,Open,2026-04-27T22:54:56Z
+8635,How many House and Senate seats will Dems control after the 2026 midterms?,48-50 and ≥248 ,0.02,0.03,0.98,0.02,0.0,NA,Open,2026-04-27T22:54:56Z
+8635,How many House and Senate seats will Dems control after the 2026 midterms?,≥54 and 233-247,0.02,0.03,0.98,0.02,0.0,NA,Open,2026-04-27T22:54:56Z
+8635,How many House and Senate seats will Dems control after the 2026 midterms?,≥54 and ≥248,0.02,0.03,0.98,0.02,0.0,NA,Open,2026-04-27T22:54:56Z
+8643,Who will be the Prime Minister of Israel after the 2026 election?,Benny Gantz,0.02,0.09,0.98,0.02,0.0,NA,Open,2026-04-27T22:54:56Z
+8654,Who will place first in the California Governor's primary?,Chad Bianco,0.02,0.08,0.97,0.02,0.0,NA,Open,2026-04-27T22:54:56Z
+8670,Who will win the 2026 Kentucky Democratic Senate nomination?,Pamela Stevenson,0.02,0.36,0.99,0.02,0.0,NA,Open,2026-04-27T22:54:56Z
+8670,Who will win the 2026 Kentucky Democratic Senate nomination?,Dale Romans,0.02,0.26,0.98,0.02,0.0,NA,Open,2026-04-27T22:54:56Z
+8687,Who will Trump nominate to replace Pam Bondi as Attorney General?,Jeanine Pirro,0.02,0.05,0.97,0.02,0.0,NA,Open,2026-04-27T22:54:56Z
+8687,Who will Trump nominate to replace Pam Bondi as Attorney General?,Harmeet Dhillon,0.02,0.85,0.98,0.02,0.0,NA,Open,2026-04-27T22:54:56Z
+8689,Who will win the Republican nomination in the GA-01 House primary?,Pat Farrell,0.02,0.99,0.98,0.02,0.0,NA,Open,2026-04-27T22:54:56Z
+8694,Will Jon Husted or Sherrod Brown win more votes in the Ohio Senate primaries?,Jon Husted,0.02,0.57,0.98,0.02,0.0,NA,Open,2026-04-27T22:54:56Z
+8706,Will Cory Mills leave the House before May?,Will Cory Mills leave the House before May?,0.02,0.02,0.99,0.02,0.0,2026-04-30,Open,2026-04-27T22:54:56Z
+8709,What will be the matchup in the 2026 California governor's election?,Porter v. Hilton,0.02,0.1,0.98,0.02,0.0,NA,Open,2026-04-27T22:54:56Z
+8709,What will be the matchup in the 2026 California governor's election?,Porter v. Bianco,0.02,0.05,0.98,0.02,0.0,NA,Open,2026-04-27T22:54:56Z
+8737,What will the RCP Iran Action approval rating be on Apr. 28?,41.2% to 41.4%,0.02,0.5,0.98,0.02,0.0,04/28/2026,Open,2026-04-27T22:54:56Z
+8747,Who will be the next Cabinet member to leave office?,Marco Rubio,0.02,0.03,0.99,0.02,0.0,NA,Open,2026-04-27T22:54:56Z
+8753,"How many ""truths"" will Trump post from April 23 through April 29?",201 to 220,0.02,0.53,0.99,,,2026-04-30,Open,2026-04-27T22:54:56Z
+8152,Who will win the 2028 Republican presidential nomination?,Kristi Noem,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8152,Who will win the 2028 Republican presidential nomination?,Pete Hegseth,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8152,Who will win the 2028 Republican presidential nomination?,Rand Paul,0.01,0.02,0.99,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8153,Who will win the 2028 Democratic presidential nomination?,Stephen A Smith,0.01,0.02,0.99,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8153,Who will win the 2028 Democratic presidential nomination?,Elissa Slotkin,0.01,0.02,0.99,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8165,Who will win the 2026 Texas Republican Senate nomination?,Wesley Hunt,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8165,Who will win the 2026 Texas Republican Senate nomination?,Ronny Jackson,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8166,Who will win the 2026 election for governor of California?,Kamala Harris,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8166,Who will win the 2026 election for governor of California?,Toni Atkins,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8166,Who will win the 2026 election for governor of California?,Rick Caruso,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8166,Who will win the 2026 election for governor of California?,Eleni Kounalakis,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8166,Who will win the 2026 election for governor of California?,Antonio Villaraigosa,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8166,Who will win the 2026 election for governor of California?,Ché Ahn,0.01,0.02,0.99,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8166,Who will win the 2026 election for governor of California?,Alex Padilla,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8166,Who will win the 2026 election for governor of California?,Eric Swalwell,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8166,Who will win the 2026 election for governor of California?,Rob Bonta,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8167,Who will win the 2026 Michigan Democratic Senate nomination?,Dana Nessel,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8167,Who will win the 2026 Michigan Democratic Senate nomination?,Rashida Tlaib,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8171,Who will win the 2028 US presidential election?,Tulsi Gabbard,0.01,0.02,0.99,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8172,Which party will win the 2026 US Senate election in Nebraska?,Democratic,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8178,Who will win the 2026 Georgia Republican Senate nomination?,John King,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8178,Who will win the 2026 Georgia Republican Senate nomination?,Rick Allen,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8178,Who will win the 2026 Georgia Republican Senate nomination?,Tyler Harper,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8178,Who will win the 2026 Georgia Republican Senate nomination?,Rich McCormick,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8178,Who will win the 2026 Georgia Republican Senate nomination?,Doug Collins,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8178,Who will win the 2026 Georgia Republican Senate nomination?,Brian Jack,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8178,Who will win the 2026 Georgia Republican Senate nomination?,Brad Raffensperger,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8197,Who will win the 2026 Iowa Republican Senate nomination?,Joni Ernst,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8201,Who will win the 2026 New York Republican nomination for governor?,Mike Lawler,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8202,Who will win the 2026 Arizona Republican nomination for governor?,Karrin Taylor Robson,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8203,Who will win the 2026 Georgia Republican nomination for governor?,Chris Carr,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8203,Who will win the 2026 Georgia Republican nomination for governor?,M. Taylor Greene,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8206,Who will win the 2026 Michigan Democratic nomination for governor?,Garlin Gilchrist,0.01,0.02,0.99,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8230,Who will win the 2026 Kentucky Republican Senate nomination?,Michael Faris,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8256,Who will win the 2026 Maine Democratic Senate nomination?,Dan Kleban,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8271,Which party will win the 2026 US Senate election in Alaska?,Independent,0.01,0.02,0.99,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8294,Who will win the 2026 Wisconsin Democratic nomination for governor?,Missy Hughes,0.01,0.03,0.99,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8298,Who will win the 2026 Minnesota Republican nomination for governor?,Scott Jensen,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8298,Who will win the 2026 Minnesota Republican nomination for governor?,Brad Kohler,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8298,Who will win the 2026 Minnesota Republican nomination for governor?,Julia Coleman,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8298,Who will win the 2026 Minnesota Republican nomination for governor?,Kristin Robbins,0.01,0.02,0.99,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8357,Who will win the 2028 Republican presidential primary in New Hampshire?,Kristi Noem,0.01,0.02,0.99,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8357,Who will win the 2028 Republican presidential primary in New Hampshire?,Tulsi Gabbard,0.01,0.02,0.99,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8359,Who will win the 2026 Massachusetts Democratic Senate nomination?,Ayanna Pressley,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8364,Who will win the Democratic nomination in the NY-12 House primary?,Erik Bottcher,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8364,Who will win the Democratic nomination in the NY-12 House primary?,Laura Dunn,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8364,Who will win the Democratic nomination in the NY-12 House primary?,Liam Elkind,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8364,Who will win the Democratic nomination in the NY-12 House primary?,Jami Floyd,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8364,Who will win the Democratic nomination in the NY-12 House primary?,Cameron Kasky,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8364,Who will win the Democratic nomination in the NY-12 House primary?,Alan Pardee,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8364,Who will win the Democratic nomination in the NY-12 House primary?,Mathew Shurka,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8370,Who will be elected Los Angeles mayor in 2026?,Austin Beutner,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8370,Who will be elected Los Angeles mayor in 2026?,Asaad Alnajjar,0.01,0.04,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8370,Who will be elected Los Angeles mayor in 2026?,Vincent Wali,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8370,Who will be elected Los Angeles mayor in 2026?,Rick Caruso,0.01,0.02,0.99,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8370,Who will be elected Los Angeles mayor in 2026?,Adam Miller,0.01,0.04,0.98,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8373,Who will win the 2026 Peruvian presidential election?,Phillip Butters,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8373,Who will win the 2026 Peruvian presidential election?,César Acuña,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8373,Who will win the 2026 Peruvian presidential election?,Alfredo Barnechea,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8373,Who will win the 2026 Peruvian presidential election?,Alfonso López Chau,0.01,0.06,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8373,Who will win the 2026 Peruvian presidential election?,Vladimir Cerrón,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8373,Who will win the 2026 Peruvian presidential election?,José Luna,0.01,0.02,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8373,Who will win the 2026 Peruvian presidential election?,George Forsyth,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8373,Who will win the 2026 Peruvian presidential election?,Roberto Chiabra,0.01,0.05,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8373,Who will win the 2026 Peruvian presidential election?,Enrique Valderrama,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8373,Who will win the 2026 Peruvian presidential election?,Fiorella Molinelli,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8373,Who will win the 2026 Peruvian presidential election?,Carlos Álvarez,0.01,0.03,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8373,Who will win the 2026 Peruvian presidential election?,Wolfgang Grozo,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8373,Who will win the 2026 Peruvian presidential election?,Mario Vizcarra,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8374,Who will win the 2026 Florida Republican nomination for governor?,Charles Burkett,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8374,Who will win the 2026 Florida Republican nomination for governor?,Paul Renner,0.01,0.02,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8393,Who will win the 2026 Louisiana Republican Senate nomination?,Julie Emerson,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8393,Who will win the 2026 Louisiana Republican Senate nomination?,Blake Miguez,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8393,Who will win the 2026 Louisiana Republican Senate nomination?,Eric Skrmetta,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8397,Which party will win the 2026 US Senate election in New Mexico?,Republican,0.01,0.03,0.98,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8425,Who will win the Democratic nomination in the NY-10 House primary?,Alexa Avilés,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8427,Who will win the 2026 Texas Republican attorney general nomination?,Joan Huffman,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8427,Who will win the 2026 Texas Republican attorney general nomination?,Aaron Reitz,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8429,What will be the matchup in the 2026 US Senate election in Texas?,Talarico v. Hunt,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8429,What will be the matchup in the 2026 US Senate election in Texas?,Crockett v. Paxton,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8429,What will be the matchup in the 2026 US Senate election in Texas?,Crockett v. Cornyn,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8429,What will be the matchup in the 2026 US Senate election in Texas?,Crockett v. Hunt,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8443,Who will win the Democratic nomination in the TX-18 House primary?,Amanda Edwards,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8452,Who will win the 2026 Minnesota Republican Senate nomination?,Chris Madel,0.01,0.55,0.95,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8453,Who will win the Republican nomination in the TX-19 House primary?,Jason Corley,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8453,Who will win the Republican nomination in the TX-19 House primary?,Matt Smith,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8459,Who will win the Republican nomination in the TX-32 House primary?,Ryan Binkley,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8459,Who will win the Republican nomination in the TX-32 House primary?,Paul Bondar,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8459,Who will win the Republican nomination in the TX-32 House primary?,Darrell Day,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8463,Who will win the 2026 Colorado Republican nomination for governor?,Mark Baisley,0.01,0.02,0.99,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8465,Who will win the 2026 Wyoming Republican Senate nomination?,Reid Rasner,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8465,Who will win the 2026 Wyoming Republican Senate nomination?,Jimmy Skovgard,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8465,Who will win the 2026 Wyoming Republican Senate nomination?,Mark Gordon,0.01,0.17,0.99,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8467,Who will win the Republican nomination in the TX-35 House primary?,Josh Cortez,0.01,0.8,0.99,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8468,Who will win the Republican nomination in the TX-38 House primary?,Barrett McNabb,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8475,Who will win the 2026 New Mexico Democratic nomination for governor?,Ken Miyagishima,0.01,0.02,0.99,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8483,Who will win the 2026 Minnesota Democratic nomination for governor?,Steve Simon,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8495,Who will win the 2026 Colombian presidential election?,Efraín Cepeda,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8495,Who will win the 2026 Colombian presidential election?,Mauricio Gómez Amín,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8495,Who will win the 2026 Colombian presidential election?,L.G. Murillo,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8495,Who will win the 2026 Colombian presidential election?,Sergio Fajardo,0.01,0.05,0.99,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8495,Who will win the 2026 Colombian presidential election?,Juan Manuel Galán,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8495,Who will win the 2026 Colombian presidential election?,Germán Vargas Lleras,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8495,Who will win the 2026 Colombian presidential election?,Vicky Dávila,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8495,Who will win the 2026 Colombian presidential election?,Claudia López,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8503,Will Jerome Powell leave the office of Fed Chair before May?,Will Jerome Powell leave the office of Fed Chair before May?,0.01,0.01,,0.01,0.0,2026-04-30,Open,2026-04-27T22:54:56Z
+8524,Will Denmark expel the US ambassador before June?,Will Denmark expel the US ambassador before June?,0.01,0.02,0.99,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8528,Which of these 10 European leaders will leave office next?,Volodymyr Zelenskyy,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8528,Which of these 10 European leaders will leave office next?,Mette Frederiksen,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8528,Which of these 10 European leaders will leave office next?,Pedro Sánchez,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8528,Which of these 10 European leaders will leave office next?,Alexander Lukashenko,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8528,Which of these 10 European leaders will leave office next?,Friedrich Merz,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8528,Which of these 10 European leaders will leave office next?,Vladimir Putin,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8528,Which of these 10 European leaders will leave office next?,Giorgia Meloni,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8528,Which of these 10 European leaders will leave office next?,Keir Starmer,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8528,Which of these 10 European leaders will leave office next?,Emmanuel Macron,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8544,Who will win the 2026 Brazilian presidential election?,Romeu Zema,0.01,0.02,0.99,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8575,Will the Senate pass a bill to remove Trump's tariffs by April 30?,Will the Senate pass a bill to remove Trump's tariffs by Apr,0.01,0.01,,0.01,0.0,2026-04-30,Open,2026-04-27T22:54:56Z
+8580,Who will win the 2026 Georgia Democratic nomination for governor?,Michael Thurmond,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8580,Who will win the 2026 Georgia Democratic nomination for governor?,Ruwa Romman,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8600,What will be the balance of power in Congress after the 2026 election?,"R House, D Senate",0.01,0.02,0.99,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8603,Who will win the OH-01 Republican primary?,Steven Erbeck,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8620,"Who will win the Democratic primary in the Washington, DC mayoral election?",Vincent Orange,0.01,0.77,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8625,How many votes to confirm Kevin Warsh as Fed Chair by May 30?,62 or 63,0.01,0.05,0.99,0.01,0.0,2026-05-30,Open,2026-04-27T22:54:56Z
+8625,How many votes to confirm Kevin Warsh as Fed Chair by May 30?,64 or 65,0.01,0.05,0.99,0.01,0.0,2026-05-30,Open,2026-04-27T22:54:56Z
+8630,Who will win the 2026 Oklahoma Republican Senate nomination?,Josh Brecheen,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8630,Who will win the 2026 Oklahoma Republican Senate nomination?,Stephanie Bice,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8630,Who will win the 2026 Oklahoma Republican Senate nomination?,Kevin Stitt,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8630,Who will win the 2026 Oklahoma Republican Senate nomination?,Markwayne Mullin,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8635,How many House and Senate seats will Dems control after the 2026 midterms?,≥54 and ≤232,0.01,0.02,0.99,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8636,Will the Senate pass supplemental Iran funding by April 30?,Will the Senate pass supplemental Iran funding by April 30?,0.01,0.01,,0.01,0.0,2026-04-30,Open,2026-04-27T22:54:56Z
+8643,Who will be the Prime Minister of Israel after the 2026 election?,Avigdor Lieberman,0.01,0.09,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8644,Who will win the South Carolina primary for Lindsey Graham's Senate seat?,Paul Dans,0.01,0.02,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8644,Who will win the South Carolina primary for Lindsey Graham's Senate seat?,Mark Sanford,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8654,Who will place first in the California Governor's primary?,Katie Porter,0.01,0.05,0.99,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8654,Who will place first in the California Governor's primary?,Rick Caruso,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8654,Who will place first in the California Governor's primary?,Antonio Villaraigosa,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8654,Who will place first in the California Governor's primary?,Eric Swalwell,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8684,What will be the margin in the Virginia redistricting referendum?,Approve ≥ 16%,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8684,What will be the margin in the Virginia redistricting referendum?,Approve 12% - 14%,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8684,What will be the margin in the Virginia redistricting referendum?,Approve 10% - 12%,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8684,What will be the margin in the Virginia redistricting referendum?,Approve 8% - 10%,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8684,What will be the margin in the Virginia redistricting referendum?,Approve 6% - 8%,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8684,What will be the margin in the Virginia redistricting referendum?,Approve 4% - 6%,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8684,What will be the margin in the Virginia redistricting referendum?,Approve under 2%,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8684,What will be the margin in the Virginia redistricting referendum?,Reject Wins,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8687,Who will Trump nominate to replace Pam Bondi as Attorney General?,Ron DeSantis,0.01,0.08,0.99,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8687,Who will Trump nominate to replace Pam Bondi as Attorney General?,Sam Ramer,0.01,0.33,0.99,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8691,Who will win the 2026 Oregon Republican nomination for governor?,Christine Drazan,0.01,0.99,0.9,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8699,Will Eric Swalwell advance to the general election for Governor of California?,Will Eric Swalwell advance to the general election for Gover,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8709,What will be the matchup in the 2026 California governor's election?,Steyer v. Bianco,0.01,0.02,0.99,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8709,What will be the matchup in the 2026 California governor's election?,Porter v. Steyer,0.01,0.09,0.98,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8709,What will be the matchup in the 2026 California governor's election?,Mahan v. Steyer,0.01,0.01,,0.01,0.0,NA,Open,2026-04-27T22:54:56Z
+8753,"How many ""truths"" will Trump post from April 23 through April 29?",80 or fewer,0.01,0.3,,0.01,0.0,2026-04-30,Open,2026-04-27T22:54:56Z
+8753,"How many ""truths"" will Trump post from April 23 through April 29?",81 to 100,0.01,0.45,0.99,0.01,0.0,2026-04-30,Open,2026-04-27T22:54:56Z
+8622,Who will win the Republican nomination in the AL-01 House primary?,Josh McKee,0.0,0.96,0.93,,,NA,Open,2026-04-27T22:54:56Z
+8645,Who will win the 2026 Colorado Democratic Senate nomination?,Julie Gonzales,0.0,0.87,0.95,,,NA,Open,2026-04-27T22:54:56Z
+8656,Which of these Democratic candidates will announce a 2028 POTUS run first?,Gretchen Whitmer,0.0,0.09,0.99,,,NA,Open,2026-04-27T22:54:56Z
+8656,Which of these Democratic candidates will announce a 2028 POTUS run first?,Josh Shapiro,0.0,0.23,0.98,,,NA,Open,2026-04-27T22:54:56Z
+8656,Which of these Democratic candidates will announce a 2028 POTUS run first?,Jon Ossoff,0.0,0.19,0.97,,,NA,Open,2026-04-27T22:54:56Z
+8656,Which of these Democratic candidates will announce a 2028 POTUS run first?,Mark Kelly,0.0,0.19,0.99,,,NA,Open,2026-04-27T22:54:56Z
+8658,Who will win the Democratic nomination in the NY-13 House primary?,D. Avila Chevalier,0.0,0.86,0.75,,,NA,Open,2026-04-27T22:54:56Z
+8658,Who will win the Democratic nomination in the NY-13 House primary?,Adriano Espaillat,0.0,0.74,0.98,,,NA,Open,2026-04-27T22:54:56Z
+8658,Who will win the Democratic nomination in the NY-13 House primary?,Oscar Romero,0.0,0.86,0.98,,,NA,Open,2026-04-27T22:54:56Z
+8659,Who will win the 2026 Rhode Island Democratic nomination for governor?,Helena Foulkes,0.0,0.87,0.4,,,NA,Open,2026-04-27T22:54:56Z
+8659,Who will win the 2026 Rhode Island Democratic nomination for governor?,Dan McKee,0.0,0.28,0.98,,,NA,Open,2026-04-27T22:54:56Z
+8659,Who will win the 2026 Rhode Island Democratic nomination for governor?,Gina Raimondo,0.0,0.1,0.98,,,NA,Open,2026-04-27T22:54:56Z
+8668,How many of these Elizabeth Warren endorsees will win Senate primaries?,2,0.0,0.99,0.98,,,NA,Open,2026-04-27T22:54:56Z
+8668,How many of these Elizabeth Warren endorsees will win Senate primaries?,3,0.0,0.6,0.59,,,NA,Open,2026-04-27T22:54:56Z
+8672,Who will win the Republican nomination in the GA-09 House primary?,Andrew Clyde,0.0,0.99,0.3,,,NA,Open,2026-04-27T22:54:56Z
+8672,Who will win the Republican nomination in the GA-09 House primary?,Sam Couvillon,0.0,0.95,0.8,,,NA,Open,2026-04-27T22:54:56Z
+8672,Who will win the Republican nomination in the GA-09 House primary?,Gregg Poole,0.0,0.29,0.95,,,NA,Open,2026-04-27T22:54:56Z
+8673,Who will win the 2026 South Dakota Republican nomination for governor?,Larry Rhoden,0.0,0.99,0.9,,,NA,Open,2026-04-27T22:54:56Z
+8673,Who will win the 2026 South Dakota Republican nomination for governor?,Jon Hansen,0.0,0.99,0.95,,,NA,Open,2026-04-27T22:54:56Z
+8673,Who will win the 2026 South Dakota Republican nomination for governor?,Dusty Johnson,0.0,0.99,0.6,,,NA,Open,2026-04-27T22:54:56Z
+8673,Who will win the 2026 South Dakota Republican nomination for governor?,Toby Doeden,0.0,0.99,0.6,,,NA,Open,2026-04-27T22:54:56Z
+8680,Who will place first in round one of the 2026 Colombian presidential election?,Iván Cepeda,0.0,0.99,0.5,,,NA,Open,2026-04-27T22:54:56Z
+8680,Who will place first in round one of the 2026 Colombian presidential election?,Paloma Valencia,0.0,0.99,0.97,,,NA,Open,2026-04-27T22:54:56Z
+8680,Who will place first in round one of the 2026 Colombian presidential election?,Sergio Fajardo,0.0,0.99,0.98,,,NA,Open,2026-04-27T22:54:56Z
+8680,Who will place first in round one of the 2026 Colombian presidential election?,A. de la Espriella,0.0,0.99,0.98,,,NA,Open,2026-04-27T22:54:56Z
+8680,Who will place first in round one of the 2026 Colombian presidential election?,Claudia López,0.0,0.99,0.98,,,NA,Open,2026-04-27T22:54:56Z
+8688,Will Tucker Carlson announce a run for President before 2028?,Will Tucker Carlson announce a run for President before 2028,0.0,0.61,0.95,,,2027-12-31,Open,2026-04-27T22:54:56Z
+8691,Who will win the 2026 Oregon Republican nomination for governor?,Danielle Bethell,0.0,0.95,0.96,,,NA,Open,2026-04-27T22:54:56Z
+8691,Who will win the 2026 Oregon Republican nomination for governor?,Ed Diehl,0.0,0.95,0.95,,,NA,Open,2026-04-27T22:54:56Z
+8711,Who will win the most votes in the CA-17 House primary?,Ethan Agarwal,0.0,0.99,0.99,,,NA,Open,2026-04-27T22:54:56Z
+8713,Who will win the Democratic nomination in the NJ-12 House primary?,Sue Altman,0.0,0.99,0.98,,,NA,Open,2026-04-27T22:54:56Z
+8713,Who will win the Democratic nomination in the NJ-12 House primary?,Brad Cohen,0.0,0.99,0.98,,,NA,Open,2026-04-27T22:54:56Z
+8713,Who will win the Democratic nomination in the NJ-12 House primary?,Adam Hamawy,0.0,0.99,0.95,,,NA,Open,2026-04-27T22:54:56Z
+8713,Who will win the Democratic nomination in the NJ-12 House primary?,Adrian Mapp,0.0,0.99,0.98,,,NA,Open,2026-04-27T22:54:56Z
+8713,Who will win the Democratic nomination in the NJ-12 House primary?,Shanel Robinson,0.0,0.99,0.98,,,NA,Open,2026-04-27T22:54:56Z
+8713,Who will win the Democratic nomination in the NJ-12 House primary?,V. Reynolds-Jackson,0.0,0.99,0.98,,,NA,Open,2026-04-27T22:54:56Z
+8713,Who will win the Democratic nomination in the NJ-12 House primary?,Jay Vaingankar,0.0,0.99,0.95,,,NA,Open,2026-04-27T22:54:56Z
+8713,Who will win the Democratic nomination in the NJ-12 House primary?,Sam Wang,0.0,0.99,0.87,,,NA,Open,2026-04-27T22:54:56Z
+8714,Who will win the Democratic nomination in the NJ-07 House primary?,Rebecca Bennett,0.0,0.99,0.98,,,NA,Open,2026-04-27T22:54:56Z
+8714,Who will win the Democratic nomination in the NJ-07 House primary?,Michael Roth,0.0,0.99,0.98,,,NA,Open,2026-04-27T22:54:56Z
+8714,Who will win the Democratic nomination in the NJ-07 House primary?,Tina Shah,0.0,0.99,0.98,,,NA,Open,2026-04-27T22:54:56Z
+8714,Who will win the Democratic nomination in the NJ-07 House primary?,Brian Varela,0.0,0.99,0.98,,,NA,Open,2026-04-27T22:54:56Z
+8715,Who will win the Democratic nomination in the NJ-08 House primary?,Mussab Ali,0.0,0.99,0.98,,,NA,Open,2026-04-27T22:54:56Z
+8715,Who will win the Democratic nomination in the NJ-08 House primary?,Rob Menendez,0.0,0.99,0.97,,,NA,Open,2026-04-27T22:54:56Z
+8716,Who will win the Republican nomination in the NJ-09 House primary?,Tiffany Burress,0.0,0.99,0.98,,,NA,Open,2026-04-27T22:54:56Z
+8716,Who will win the Republican nomination in the NJ-09 House primary?,Rosie Pino,0.0,0.99,0.98,,,NA,Open,2026-04-27T22:54:56Z
+8717,Who will win the Democratic nomination in the NJ-11 House primary?,Donald Cresitello,0.0,0.98,0.96,,,NA,Open,2026-04-27T22:54:56Z
+8717,Who will win the Democratic nomination in the NJ-11 House primary?,Analilia Mejia,0.0,0.99,0.5,,,NA,Open,2026-04-27T22:54:56Z
+8719,Who will win the 2026 Indiana Republican nomination for Secretary of State?,Diego Morales,0.0,0.99,0.6,,,NA,Open,2026-04-27T22:54:56Z
+8719,Who will win the 2026 Indiana Republican nomination for Secretary of State?,David Shelton,0.0,0.99,0.89,,,NA,Open,2026-04-27T22:54:56Z
+8720,Will the Ninth Circuit allow Kalshi's sports contracts in 2026?,Will the Ninth Circuit allow Kalshi's sports contracts in 20,0.0,0.98,0.95,,,2026-12-31,Open,2026-04-27T22:54:56Z
+8721,Who will win the most votes in the CA-01 House primary?,Audrey Denney,0.0,0.99,0.95,,,NA,Open,2026-04-27T22:54:56Z
+8721,Who will win the most votes in the CA-01 House primary?,Mike McGuire,0.0,0.99,0.96,,,NA,Open,2026-04-27T22:54:56Z
+8722,Who will win the most votes in the CA-03 House primary?,Chris Bennett,0.0,0.89,0.99,,,NA,Open,2026-04-27T22:54:56Z
+8722,Who will win the most votes in the CA-03 House primary?,Ami Bera,0.0,0.99,0.96,,,NA,Open,2026-04-27T22:54:56Z
+8722,Who will win the most votes in the CA-03 House primary?,Robb Tucker,0.0,0.99,0.98,,,NA,Open,2026-04-27T22:54:56Z
+8723,Who will win the most votes in the CA-04 House primary?,Eric Jones,0.0,0.99,0.96,,,NA,Open,2026-04-27T22:54:56Z
+8723,Who will win the most votes in the CA-04 House primary?,Mike Thompson,0.0,0.99,0.98,,,NA,Open,2026-04-27T22:54:56Z
+8724,Who will win the most votes in the CA-06 House primary?,Lauren B. Tomlinson,0.0,0.95,0.98,,,NA,Open,2026-04-27T22:54:56Z
+8724,Who will win the most votes in the CA-06 House primary?,Kevin Kiley,0.0,0.99,0.96,,,NA,Open,2026-04-27T22:54:56Z
+8724,Who will win the most votes in the CA-06 House primary?,Martha Guerrero,0.0,0.95,0.98,,,NA,Open,2026-04-27T22:54:56Z
+8724,Who will win the most votes in the CA-06 House primary?,Thien Ho,0.0,0.95,0.99,,,NA,Open,2026-04-27T22:54:56Z
+8724,Who will win the most votes in the CA-06 House primary?,Richard Pan,0.0,0.99,0.97,,,NA,Open,2026-04-27T22:54:56Z
+8725,Who will win the most votes in the CA-07 House primary?,Doris Matsui,0.0,0.98,0.95,,,NA,Open,2026-04-27T22:54:56Z
+8725,Who will win the most votes in the CA-07 House primary?,Mai Vang,0.0,0.91,0.95,,,NA,Open,2026-04-27T22:54:56Z
+8726,Who will win the most votes in the CA-11 House primary?,Connie Chan,0.0,0.99,0.92,,,NA,Open,2026-04-27T22:54:56Z
+8728,Who will win the most votes in the CA-13 House primary?,Adam Gray,0.0,0.99,0.99,,,NA,Open,2026-04-27T22:54:56Z
+8728,Who will win the most votes in the CA-13 House primary?,Kevin Lincoln,0.0,0.99,0.99,,,NA,Open,2026-04-27T22:54:56Z
+8728,Who will win the most votes in the CA-13 House primary?,Vin Kruttiventi,0.0,0.95,0.99,,,NA,Open,2026-04-27T22:54:56Z
+8729,Who will win the most votes in the CA-14 House primary?,Aisha Wahab,0.0,0.99,0.98,,,NA,Open,2026-04-27T22:54:56Z
+8729,Who will win the most votes in the CA-14 House primary?,Matt Ortega,0.0,0.99,0.99,,,NA,Open,2026-04-27T22:54:56Z
+8729,Who will win the most votes in the CA-14 House primary?,Melissa Hernandez,0.0,0.99,0.98,,,NA,Open,2026-04-27T22:54:56Z
+8730,Who will win the most votes in the CA-22 House primary?,Jasmeet Bains,0.0,0.99,0.98,,,NA,Open,2026-04-27T22:54:56Z
+8730,Who will win the most votes in the CA-22 House primary?,David Valadao,0.0,0.99,0.96,,,NA,Open,2026-04-27T22:54:56Z
+8730,Who will win the most votes in the CA-22 House primary?,Randy Villegas,0.0,0.91,0.98,,,NA,Open,2026-04-27T22:54:56Z
+8731,Who will win the most votes in the CA-29 House primary?,Rudy Melendez,0.0,0.99,0.96,,,NA,Open,2026-04-27T22:54:56Z
+8731,Who will win the most votes in the CA-29 House primary?,Luz Rivas,0.0,0.99,0.98,,,NA,Open,2026-04-27T22:54:56Z
+8731,Who will win the most votes in the CA-29 House primary?,Angélica M. Dueñas,0.0,0.99,0.98,,,NA,Open,2026-04-27T22:54:56Z
+8732,Who will win the most votes in the CA-32 House primary?,Chris Ahuja,0.0,,0.98,,,NA,Open,2026-04-27T22:54:56Z
+8732,Who will win the most votes in the CA-32 House primary?,Jake Levine,0.0,0.99,0.95,,,NA,Open,2026-04-27T22:54:56Z
+8732,Who will win the most votes in the CA-32 House primary?,Brad Sherman,0.0,,0.6,,,NA,Open,2026-04-27T22:54:56Z
+8733,Who will win the most votes in the CA-34 House primary?,Jimmy Gomez,0.0,,0.96,,,NA,Open,2026-04-27T22:54:56Z
+8733,Who will win the most votes in the CA-34 House primary?,A. Gonzales-Torres,0.0,0.99,0.77,,,NA,Open,2026-04-27T22:54:56Z
+8734,Who will win the most votes in the CA-38 House primary?,Monica Sánchez,0.0,,0.98,,,NA,Open,2026-04-27T22:54:56Z
+8734,Who will win the most votes in the CA-38 House primary?,Hilda Solis,0.0,,0.98,,,NA,Open,2026-04-27T22:54:56Z
+8734,Who will win the most votes in the CA-38 House primary?,Erik Lutz,0.0,,0.98,,,NA,Open,2026-04-27T22:54:56Z
+8735,Who will win the most votes in the CA-40 House primary?,Ken Calvert,0.0,,0.98,,,NA,Open,2026-04-27T22:54:56Z
+8735,Who will win the most votes in the CA-40 House primary?,Joe Kerr,0.0,,0.98,,,NA,Open,2026-04-27T22:54:56Z
+8735,Who will win the most votes in the CA-40 House primary?,Esther Kim Varet,0.0,,0.98,,,NA,Open,2026-04-27T22:54:56Z
+8735,Who will win the most votes in the CA-40 House primary?,Young Kim,0.0,,0.98,,,NA,Open,2026-04-27T22:54:56Z
+8735,Who will win the most votes in the CA-40 House primary?,Lisa Ramirez,0.0,,0.98,,,NA,Open,2026-04-27T22:54:56Z
+8735,Who will win the most votes in the CA-40 House primary?,Nina Linh,0.0,,0.98,,,NA,Open,2026-04-27T22:54:56Z
+8736,Who will win the most votes in the CA-41 House primary?,Hector De La Torre,0.0,,0.98,,,NA,Open,2026-04-27T22:54:56Z
+8736,Who will win the most votes in the CA-41 House primary?,Linda Sánchez,0.0,,0.98,,,NA,Open,2026-04-27T22:54:56Z
+8738,Who will win the OH-07 Democratic primary?,Michael Eisner,0.0,0.99,0.98,,,NA,Open,2026-04-27T22:54:56Z
+8738,Who will win the OH-07 Democratic primary?,Brian Poindexter,0.0,0.99,0.98,,,NA,Open,2026-04-27T22:54:56Z
+8738,Who will win the OH-07 Democratic primary?,Ed FitzGerald,0.0,0.99,0.98,,,NA,Open,2026-04-27T22:54:56Z
+8738,Who will win the OH-07 Democratic primary?,Scott Schulz,0.0,0.99,0.98,,,NA,Open,2026-04-27T22:54:56Z
+8739,Who will win the OH-13 Republican primary?,Carey Coleman,0.0,0.99,0.98,,,NA,Open,2026-04-27T22:54:56Z
+8739,Who will win the OH-13 Republican primary?,Kevin Siembida,0.0,0.29,0.96,,,NA,Open,2026-04-27T22:54:56Z
+8739,Who will win the OH-13 Republican primary?,Margaret Briem,0.0,0.98,0.96,,,NA,Open,2026-04-27T22:54:56Z
+8739,Who will win the OH-13 Republican primary?,Neil Patel,0.0,,0.97,,,NA,Open,2026-04-27T22:54:56Z
+8740,Who will win the Democratic nomination in the NE-02 House primary?,Kishla Askins,0.0,0.99,0.98,,,NA,Open,2026-04-27T22:54:56Z
+8740,Who will win the Democratic nomination in the NE-02 House primary?,John Cavanaugh,0.0,0.99,0.98,,,NA,Open,2026-04-27T22:54:56Z
+8740,Who will win the Democratic nomination in the NE-02 House primary?,Denise Powell,0.0,0.99,0.98,,,NA,Open,2026-04-27T22:54:56Z
+8740,Who will win the Democratic nomination in the NE-02 House primary?,Crystal Rhoades,0.0,0.99,0.98,,,NA,Open,2026-04-27T22:54:56Z
+8740,Who will win the Democratic nomination in the NE-02 House primary?,James Leuschen,0.0,0.99,0.98,,,NA,Open,2026-04-27T22:54:56Z
+8741,Who will win the IN-01 Republican primary?,Barb Regnitz,0.0,0.99,0.98,,,NA,Open,2026-04-27T22:54:56Z
+8741,Who will win the IN-01 Republican primary?,Jim Schenke,0.0,0.99,0.98,,,NA,Open,2026-04-27T22:54:56Z
+8742,Who will win the IN-07 Democratic primary?,André Carson,0.0,0.99,0.98,,,NA,Open,2026-04-27T22:54:56Z
+8742,Who will win the IN-07 Democratic primary?,George Hornedo,0.0,0.99,0.98,,,NA,Open,2026-04-27T22:54:56Z
+8742,Who will win the IN-07 Democratic primary?,Destiny Wells,0.0,0.99,0.98,,,NA,Open,2026-04-27T22:54:56Z
+8744,Who will win the Republican nomination in the LA-05 House primary?,Michael Echols,0.0,0.99,0.98,,,NA,Open,2026-04-27T22:54:56Z
+8744,Who will win the Republican nomination in the LA-05 House primary?,Sammy Wyatt,0.0,0.99,0.96,,,NA,Open,2026-04-27T22:54:56Z
+8744,Who will win the Republican nomination in the LA-05 House primary?,Blake Miguez,0.0,0.99,0.6,,,NA,Open,2026-04-27T22:54:56Z
+8745,Who will win the Republican nomination in the KY-06 House primary?,Ralph Alvarado,0.0,0.99,0.98,,,NA,Open,2026-04-27T22:54:56Z
+8745,Who will win the Republican nomination in the KY-06 House primary?,Adam Perez Arquette,0.0,0.99,0.96,,,NA,Open,2026-04-27T22:54:56Z
+8745,Who will win the Republican nomination in the KY-06 House primary?,Ryan Dotson,0.0,0.99,0.98,,,NA,Open,2026-04-27T22:54:56Z
+8745,Who will win the Republican nomination in the KY-06 House primary?,Greg Plucinski,0.0,0.99,0.96,,,NA,Open,2026-04-27T22:54:56Z
+8746,Who will win the Democratic primary for GA-13? (Regular election),Jasmine Clark,0.0,0.99,0.46,,,NA,Open,2026-04-27T22:54:56Z
+8746,Who will win the Democratic primary for GA-13? (Regular election),Emanuel Jones,0.0,0.49,0.96,,,NA,Open,2026-04-27T22:54:56Z
+8746,Who will win the Democratic primary for GA-13? (Regular election),Heavenly Kimes,0.0,0.49,0.96,,,NA,Open,2026-04-27T22:54:56Z
+8747,Who will be the next Cabinet member to leave office?,Pete Hegseth,0.0,0.8,0.86,,,NA,Open,2026-04-27T22:54:56Z
+8747,Who will be the next Cabinet member to leave office?,Lee Zeldin,0.0,0.99,0.92,,,NA,Open,2026-04-27T22:54:56Z
+8747,Who will be the next Cabinet member to leave office?,R. F. Kennedy Jr.,0.0,0.99,0.96,,,NA,Open,2026-04-27T22:54:56Z
+8747,Who will be the next Cabinet member to leave office?,Sean Duffy,0.0,0.04,0.99,,,NA,Open,2026-04-27T22:54:56Z
+8747,Who will be the next Cabinet member to leave office?,Markwayne Mullin,0.0,0.03,0.99,,,NA,Open,2026-04-27T22:54:56Z
+8747,Who will be the next Cabinet member to leave office?,Tulsi Gabbard,0.0,0.8,0.92,,,NA,Open,2026-04-27T22:54:56Z
+8747,Who will be the next Cabinet member to leave office?,Russell Vought,0.0,0.03,0.99,,,NA,Open,2026-04-27T22:54:56Z
+8747,Who will be the next Cabinet member to leave office?,Chris Wright,0.0,0.99,0.96,,,NA,Open,2026-04-27T22:54:56Z
+8747,Who will be the next Cabinet member to leave office?,Jamieson Greer,0.0,0.03,0.99,,,NA,Open,2026-04-27T22:54:56Z
+8747,Who will be the next Cabinet member to leave office?,Kelly Loeffler,0.0,0.03,0.99,,,NA,Open,2026-04-27T22:54:56Z
+8748,Who will win the Democratic nomination in the OR-04 House primary?,Melissa Bird,0.0,0.99,0.96,,,NA,Open,2026-04-27T22:54:56Z
+8748,Who will win the Democratic nomination in the OR-04 House primary?,Val Hoyle,0.0,0.99,0.47,,,NA,Open,2026-04-27T22:54:56Z
+8749,Who will win the Democratic nomination in the PA-01 House primary?,Bob Harvie,0.0,0.95,0.5,,,NA,Open,2026-04-27T22:54:56Z
+8749,Who will win the Democratic nomination in the PA-01 House primary?,Lucia Simonelli,0.0,0.99,0.92,,,NA,Open,2026-04-27T22:54:56Z
+8750,Who will win the Democratic nomination in the PA-03 House primary?,Chris Rabb,0.0,0.99,0.92,,,NA,Open,2026-04-27T22:54:56Z
+8750,Who will win the Democratic nomination in the PA-03 House primary?,Ala Stanford,0.0,0.95,0.96,,,NA,Open,2026-04-27T22:54:56Z
+8750,Who will win the Democratic nomination in the PA-03 House primary?,Sharif Street,0.0,0.99,0.99,,,NA,Open,2026-04-27T22:54:56Z
+8751,Who will win the Democratic nomination in the PA-07 House primary?,Bob Brooks,0.0,0.99,0.99,,,NA,Open,2026-04-27T22:54:56Z
+8751,Who will win the Democratic nomination in the PA-07 House primary?,Ryan Crosswell,0.0,0.99,0.99,,,NA,Open,2026-04-27T22:54:56Z
+8751,Who will win the Democratic nomination in the PA-07 House primary?,Lamont McClure,0.0,0.99,0.99,,,NA,Open,2026-04-27T22:54:56Z
+8751,Who will win the Democratic nomination in the PA-07 House primary?,C. Obando-Derstine,0.0,0.99,0.99,,,NA,Open,2026-04-27T22:54:56Z
+8752,Who will win the Democratic nomination in the PA-10 House primary?,Janelle Stelson,0.0,0.96,0.5,,,NA,Open,2026-04-27T22:54:56Z
+8752,Who will win the Democratic nomination in the PA-10 House primary?,Justin Douglas,0.0,0.99,0.96,,,NA,Open,2026-04-27T22:54:56Z
+8753,"How many ""truths"" will Trump post from April 23 through April 29?",101 to 120,0.0,0.5,0.95,,,2026-04-30,Open,2026-04-27T22:54:56Z
+8753,"How many ""truths"" will Trump post from April 23 through April 29?",121 to 140,0.0,0.53,0.9,,,2026-04-30,Open,2026-04-27T22:54:56Z
+8753,"How many ""truths"" will Trump post from April 23 through April 29?",141 to 160,0.0,0.53,0.97,,,2026-04-30,Open,2026-04-27T22:54:56Z
+8753,"How many ""truths"" will Trump post from April 23 through April 29?",161 to 180,0.0,0.53,0.98,,,2026-04-30,Open,2026-04-27T22:54:56Z
+8753,"How many ""truths"" will Trump post from April 23 through April 29?",181 to 200,0.0,0.53,0.98,,,2026-04-30,Open,2026-04-27T22:54:56Z
+8754,Who will win the most votes in the CA-45 House primary?,Derek Tran,0.0,0.99,0.98,,,NA,Open,2026-04-27T22:54:56Z
+8754,Who will win the most votes in the CA-45 House primary?,Tom Vo ,0.0,0.99,0.98,,,NA,Open,2026-04-27T22:54:56Z
+8754,Who will win the most votes in the CA-45 House primary?,Chuong Vo,0.0,0.99,0.99,,,NA,Open,2026-04-27T22:54:56Z
+8754,Who will win the most votes in the CA-45 House primary?,Chi Charlie Nguyen,0.0,0.99,0.99,,,NA,Open,2026-04-27T22:54:56Z
+8755,Who will win the most votes in the CA-47 House primary?,Dave Min,0.0,0.99,0.98,,,NA,Open,2026-04-27T22:54:56Z
+8755,Who will win the most votes in the CA-47 House primary?,Jenny Le Roux,0.0,0.99,0.98,,,NA,Open,2026-04-27T22:54:56Z
+8755,Who will win the most votes in the CA-47 House primary?,Michael Maxsenti ,0.0,0.99,0.98,,,NA,Open,2026-04-27T22:54:56Z
+8755,Who will win the most votes in the CA-47 House primary?,Eric Troutman,0.0,0.99,0.98,,,NA,Open,2026-04-27T22:54:56Z
+8756,Who will win the most votes in the CA-48 House primary?,Ammar Campa-Najjar,0.0,0.99,0.99,,,NA,Open,2026-04-27T22:54:56Z
+8756,Who will win the most votes in the CA-48 House primary?,Jim Desmond,0.0,0.99,0.99,,,NA,Open,2026-04-27T22:54:56Z
+8756,Who will win the most votes in the CA-48 House primary?,Brandon Riker,0.0,0.99,0.99,,,NA,Open,2026-04-27T22:54:56Z
+8756,Who will win the most votes in the CA-48 House primary?,Marni von Wilpert,0.0,0.99,0.99,,,NA,Open,2026-04-27T22:54:56Z
+8757,Who will win the Democratic nomination in the IA-02 House primary?,Lindsay James,0.0,0.99,0.99,,,NA,Open,2026-04-27T22:54:56Z
+8757,Who will win the Democratic nomination in the IA-02 House primary?,Clint Twedt-Ball,0.0,0.99,0.99,,,NA,Open,2026-04-27T22:54:56Z
+8758,Who will win the Republican nomination in the MT-01 House primary?,Aaron Flint,0.0,0.99,0.98,,,NA,Open,2026-04-27T22:54:56Z
+8758,Who will win the Republican nomination in the MT-01 House primary?,Christi Jacobson,0.0,0.99,0.96,,,NA,Open,2026-04-27T22:54:56Z
+8759,Who will win the Democratic nomination in the MT-01 House primary?,Ryan Busse,0.0,0.99,0.97,,,NA,Open,2026-04-27T22:54:56Z
+8759,Who will win the Democratic nomination in the MT-01 House primary?,Russell Cleveland,0.0,0.99,0.96,,,NA,Open,2026-04-27T22:54:56Z
+8759,Who will win the Democratic nomination in the MT-01 House primary?,Samuel Forstag,0.0,0.99,0.97,,,NA,Open,2026-04-27T22:54:56Z
+8759,Who will win the Democratic nomination in the MT-01 House primary?,Matt Rains,0.0,0.99,0.92,,,NA,Open,2026-04-27T22:54:56Z
+8761,"Trump's DDHQ job approval rating on May 1? (New URL, see Rules)",39.3% or lower,0.0,0.12,0.97,,,05/01/2026,Open,2026-04-27T22:54:56Z
+8761,"Trump's DDHQ job approval rating on May 1? (New URL, see Rules)",39.4% to 39.6%,0.0,0.13,0.97,,,05/01/2026,Open,2026-04-27T22:54:56Z
+8761,"Trump's DDHQ job approval rating on May 1? (New URL, see Rules)",39.7% to 39.9%,0.0,0.13,0.93,,,05/01/2026,Open,2026-04-27T22:54:56Z
+8762,Will Florida enact a redistricting law by May 29?,Will Florida enact a redistricting law by May 29?,0.0,0.82,0.93,,,2026-05-29,Open,2026-04-27T22:54:56Z
+8763,Will the President sign a reconciliation bill by July 1?,Will the President sign a reconciliation bill by July 1?,0.0,,0.97,,,2026-07-01,Open,2026-04-27T22:54:56Z

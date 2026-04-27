@@ -1,0 +1,56 @@
+/* docs/lib/admin-unlock.css — global override that hides every paywall element
+ * when the body has .edge-pro-unlocked, .edge-reader-unlocked, or .edge-admin.
+ *
+ * Loaded site-wide so any legacy page using common paywall selectors
+ * automatically unlocks for admin / Pro / Reader without per-page edits.
+ */
+
+/* When admin / Pro: nothing should be locked */
+body.edge-admin .tr-blur,
+body.edge-pro-unlocked .tr-blur,
+body.edge-admin .paywall-row,
+body.edge-pro-unlocked .paywall-row,
+body.edge-admin .paywall-overlay,
+body.edge-pro-unlocked .paywall-overlay,
+body.edge-admin .tier-unlock-overlay,
+body.edge-pro-unlocked .tier-unlock-overlay,
+body.edge-admin .locked,
+body.edge-pro-unlocked .locked,
+body.edge-admin tr.locked td,
+body.edge-pro-unlocked tr.locked td,
+body.edge-admin .reader-paywall,
+body.edge-pro-unlocked .reader-paywall,
+body.edge-admin .pro-paywall,
+body.edge-pro-unlocked .pro-paywall {
+  filter: none !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  user-select: auto !important;
+  display: revert !important;
+  visibility: visible !important;
+}
+
+/* Hide the upgrade-CTA rows themselves when admin (the row is no longer needed) */
+body.edge-admin .paywall-row,
+body.edge-pro-unlocked .paywall-row,
+body.edge-admin .tier-unlock-overlay,
+body.edge-pro-unlocked .tier-unlock-overlay {
+  display: none !important;
+}
+
+/* Reader gets paid surfaces too (DCF requires Pro, but Reader unlocks JACKPOT) */
+body.edge-reader-unlocked .tr-blur,
+body.edge-reader-unlocked .locked,
+body.edge-reader-unlocked tr.locked td {
+  filter: none !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  user-select: auto !important;
+}
+body.edge-reader-unlocked .paywall-row[data-tier="reader"],
+body.edge-reader-unlocked .tier-unlock-overlay[data-min="reader"] {
+  display: none !important;
+}
+
+/* (admin badge removed — admins know they're unlocked because the paywalls
+ * are gone; no visor needed) */

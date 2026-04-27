@@ -1,0 +1,15 @@
+{
+  "date": "2026-03-19",
+  "top5_tickers": [
+    "FNV",
+    "ALAB",
+    "DHT",
+    "ANET",
+    "COLL"
+  ],
+  "gapper_count": 11,
+  "value_count": 8,
+  "moat_count": 6,
+  "total_combined": 139,
+  "top_pick": "FNV"
+}

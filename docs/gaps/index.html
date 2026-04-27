@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Gap Scanner — Stocks Gapping Up & Down Today | Catalyst Edge</title>
+<meta name="description" content="Real-time gap scanner showing stocks gapping up and down premarket. Volume spikes, accumulation signals, and gap scores. Updated daily before market open.">
+<meta property="og:title" content="Gap Scanner — Catalyst Edge">
+<link rel="canonical" href="https://catalystedgescanner.com/gaps/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#070a12;--surface:#0f1420;--gold:#d4a843;--green:#22c55e;--red:#ef4444;--cyan:#06b6d4;--text:#e2e8f0;--dim:#94a3b8;--muted:#64748b;--border:#1e293b}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
+.wrap{max-width:1100px;margin:0 auto;padding:1.5rem}
+.nav{position:sticky;top:0;z-index:100;background:rgba(7,10,18,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:.75rem 1.5rem;display:flex;align-items:center;gap:1rem}
+.nav a{color:var(--gold);font-weight:600;font-size:.95rem}
+.nav .sep{color:var(--muted)}
+.hero{text-align:center;padding:2.5rem 0 2rem;border-bottom:1px solid var(--border);margin-bottom:1.5rem}
+.hero h1{font-size:clamp(1.5rem,4vw,2.2rem);font-weight:800;line-height:1.2;margin-bottom:.4rem}
+.hero h1 .up{color:var(--green)}.hero h1 .dn{color:var(--red)}
+.hero .sub{color:var(--dim);font-size:.9rem;max-width:560px;margin:0 auto}
+.live-dot{display:inline-block;width:8px;height:8px;background:var(--green);border-radius:50%;margin-right:6px;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.stats-bar{display:flex;justify-content:center;gap:2rem;margin:1rem 0;flex-wrap:wrap}
+.sb-item{text-align:center}
+.sb-val{font-size:1.3rem;font-weight:800;color:var(--gold)}
+.sb-lbl{font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.filters{display:flex;gap:8px;margin:1.5rem 0 1rem;flex-wrap:wrap}
+.fbtn{padding:6px 14px;background:var(--surface);border:1px solid var(--border);border-radius:6px;color:var(--dim);font-size:.78rem;font-weight:600;cursor:pointer;font-family:inherit;transition:all .2s}
+.fbtn:hover{border-color:var(--gold);color:var(--gold)}
+.fbtn.active{background:rgba(212,168,67,.12);border-color:var(--gold);color:var(--gold)}
+.gap-table{width:100%;border-collapse:collapse;margin:1rem 0}
+.gap-table th{text-align:left;padding:8px 10px;font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;border-bottom:1px solid var(--border);position:sticky;top:52px;background:var(--bg);cursor:pointer}
+.gap-table th:hover{color:var(--gold)}
+.gap-table td{padding:8px 10px;font-size:.82rem;border-bottom:1px solid rgba(30,41,59,.5)}
+.gap-table tr:hover{background:rgba(212,168,67,.04)}
+.tk{font-weight:800;color:var(--text);font-size:.9rem}
+.mono{font-family:'IBM Plex Mono',monospace;font-size:.78rem}
+.gap-up{color:var(--green);font-weight:700}
+.gap-dn{color:var(--red);font-weight:700}
+.vol-hot{color:var(--gold);font-weight:700}
+.score-bar{display:inline-block;height:6px;border-radius:3px;vertical-align:middle;margin-right:6px}
+.accum-badge{display:inline-block;padding:2px 6px;border-radius:4px;font-size:.65rem;font-weight:700;text-transform:uppercase}
+.accum-heavy{background:rgba(34,197,94,.12);color:var(--green)}
+.accum-moderate{background:rgba(212,168,67,.12);color:var(--gold)}
+.accum-light{background:rgba(100,116,139,.12);color:var(--muted)}
+.cta-bar{background:var(--surface);border:1px solid var(--gold);border-radius:10px;padding:1.25rem;text-align:center;margin:2rem 0}
+.cta-bar h3{color:var(--gold);font-size:1rem;margin-bottom:.3rem}
+.cta-bar p{color:var(--dim);font-size:.8rem;margin-bottom:.75rem}
+.cta-bar a{display:inline-block;padding:.5rem 1.4rem;background:linear-gradient(135deg,var(--gold),#f1ce88);color:#070a12;font-weight:700;border-radius:6px;font-size:.85rem}
+.footer{text-align:center;padding:1.5rem;font-size:.72rem;color:var(--muted);border-top:1px solid var(--border);margin-top:2rem}
+.footer a{color:var(--muted)}
+.table-wrap{overflow-x:auto}
+</style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@800;900&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/lib/cinematic-hero.css">
+  <link rel="stylesheet" href="/lib/cyber-shell.css">
+  <link rel="stylesheet" href="/lib/polish-tokens.css">
+</head>
+<body>
+  <div class="cy-bg" aria-hidden="true"></div>
+  <div class="cy-floor" aria-hidden="true"></div>
+  <div class="cy-vignette" aria-hidden="true"></div>
+  <div class="cy-scan" aria-hidden="true"></div>
+<div class="nav">
+  <a href="/">Catalyst Edge</a>
+  <span class="sep">/</span>
+  <span style="color:var(--dim);font-size:.9rem">Gap Scanner</span>
+</div>
+
+<div class="wrap">
+<section class="cin-hero cy-neon-hero cy-shimmer">
+    <div class="cin-grid">
+      <div class="cin-stat-stack">
+        <div class="cin-eyebrow"><span class="cin-live-dot"></span>PRE-MARKET GAPPERS · LIVE</div>
+        <div class="cin-colossal">
+          <div class="cin-num-row"><span class="cin-num">±2%</span></div>
+          <div class="cin-side">
+          <span class="cin-tag">pre-market <b>floor</b></span>
+          <span class="cin-tag">open-volume confirm</span>
+          <span class="cin-tag">gap × catalyst overlay</span>
+          </div>
+        </div>
+        <div class="cin-stamp">GAP//SCANNER · v1.5 · <b>LIVE</b></div>
+      </div>
+      <div class="cin-h1-block">
+        <div class="cin-h1-eyebrow">📈 Gap Scanner · Pre-Market Gappers Up & Down</div>
+        <h1 class="cin-headline">Every <em>pre-market gap</em>—paired with the SEC catalyst conviction score that turns a gap into a <span class="cin-accent">tradable setup</span>.</h1>
+        <p class="cin-lede">Gappers Up and Down ranked by gap %, pre-market volume, and overlay with our catalyst score. The intersection of gap + catalyst is the highest-conviction layer in the scanner — same engine driving /jackpot/.</p>
+        <div class="cin-cta-row">
+          <a href="#gap-table" class="cin-btn-primary">See gappers ↓</a>
+          <a href="/jackpot/" class="cin-btn-ghost">Open JACKPOT</a>
+        </div>
+        <div class="cin-strip">
+          <div class="cin-cell"><div class="cin-k">Gappers Up</div><div class="cin-v bull" id="g-up">–</div></div>
+          <div class="cin-cell"><div class="cin-k">Gappers Dn</div><div class="cin-v bear" id="g-dn">–</div></div>
+          <div class="cin-cell"><div class="cin-k">With catalyst</div><div class="cin-v gold" id="g-cat">–</div></div>
+          <div class="cin-cell"><div class="cin-k">Avg gap %</div><div class="cin-v cyan" id="g-avg">–</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="stats-bar" style="display:none">
+    <div class="sb-item"><span id="g-total"></span><span id="g-hot"></span></div>
+  </div>
+
+  <div class="filters" id="filters"></div>
+
+  <div class="table-wrap">
+    <table class="gap-table">
+      <thead>
+        <tr>
+          <th>Ticker</th>
+          <th>Price</th>
+          <th>Gap %</th>
+          <th>Volume</th>
+          <th>Vol Ratio</th>
+          <th>Accum</th>
+          <th>Score</th>
+        </tr>
+      </thead>
+      <tbody id="gap-body"></tbody>
+    </table>
+  </div>
+
+  <div class="cta-bar">
+    <h3>Get gap alerts before market open</h3>
+    <p>Free daily email with gap scanners, squeeze candidates, insider clusters, and SEC catalysts at 4 AM ET.</p>
+    <a href="/preview/">Subscribe Free</a>
+  </div>
+</div>
+
+<div class="footer">
+  &copy; 2026 Catalyst Edge &middot;
+  <a href="/">Scanner</a> &middot;
+  <a href="/jackpot/" style="color:#22c55e">🎯 JACKPOT</a>
+  <a href="/dcf/" style="color:#06b6d4">💰 DCF</a> &middot;
+  <a href="/squeeze/">Squeeze</a> &middot;
+  <a href="/insiders/">Insiders</a> &middot;
+  <a href="/lockups/">Lockups</a> &middot;
+  <a href="/congress/">Congress</a> &middot;
+  <a href="/glossary/">Glossary</a> &middot;
+  Not financial advice.
+</div>
+
+<script>
+(function(){
+  var allGaps = [];
+  var activeFilter = 'all';
+
+  var filterNames = ['All','Gapping Up','Gapping Down','Heavy Volume'];
+  var filtersDiv = document.getElementById('filters');
+  filterNames.forEach(function(name){
+    var btn = document.createElement('button');
+    btn.className = 'fbtn' + (name === 'All' ? ' active' : '');
+    btn.textContent = name;
+    btn.addEventListener('click', function(){
+      activeFilter = name.toLowerCase().replace(/\s/g,'_');
+      var btns = filtersDiv.querySelectorAll('.fbtn');
+      for(var i=0;i<btns.length;i++) btns[i].className='fbtn';
+      btn.className='fbtn active';
+      renderTable(filterGaps(allGaps));
+    });
+    filtersDiv.appendChild(btn);
+  });
+
+  function filterGaps(gaps){
+    if(activeFilter==='all') return gaps;
+    return gaps.filter(function(g){
+      var pct = parseFloat(g.gap_pct)||0;
+      var vr = parseFloat(g.vol_ratio)||0;
+      if(activeFilter==='gapping_up') return pct > 0;
+      if(activeFilter==='gapping_down') return pct < 0;
+      if(activeFilter==='heavy_volume') return vr >= 5;
+      return true;
+    });
+  }
+
+  function fmtVol(v){
+    var n = parseInt(v)||0;
+    if(n >= 1e9) return (n/1e9).toFixed(1)+'B';
+    if(n >= 1e6) return (n/1e6).toFixed(1)+'M';
+    if(n >= 1e3) return (n/1e3).toFixed(0)+'K';
+    return n.toString();
+  }
+
+  function accumClass(label){
+    var l = (label||'').toUpperCase();
+    if(l==='HEAVY') return 'accum-heavy';
+    if(l==='MODERATE') return 'accum-moderate';
+    return 'accum-light';
+  }
+
+  function renderTable(gaps){
+    var tbody = document.getElementById('gap-body');
+    while(tbody.firstChild) tbody.removeChild(tbody.firstChild);
+
+    gaps.forEach(function(g){
+      var tr = document.createElement('tr');
+      var pct = parseFloat(g.gap_pct)||0;
+      var vr = parseFloat(g.vol_ratio)||0;
+      var score = parseInt(g.gap_score)||0;
+
+      var tdTk = document.createElement('td');
+      tdTk.className='tk';
+      tdTk.textContent = g.ticker||'';
+      tr.appendChild(tdTk);
+
+      var tdPr = document.createElement('td');
+      tdPr.className='mono';
+      tdPr.textContent = g.price ? '$'+parseFloat(g.price).toFixed(2) : '--';
+      tr.appendChild(tdPr);
+
+      var tdGap = document.createElement('td');
+      tdGap.className = pct >= 0 ? 'gap-up mono' : 'gap-dn mono';
+      tdGap.textContent = (pct > 0 ? '+' : '') + pct.toFixed(1) + '%';
+      tr.appendChild(tdGap);
+
+      var tdVol = document.createElement('td');
+      tdVol.className='mono';
+      tdVol.textContent = fmtVol(g.volume);
+      tr.appendChild(tdVol);
+
+      var tdVR = document.createElement('td');
+      tdVR.className = 'mono' + (vr >= 5 ? ' vol-hot' : '');
+      tdVR.textContent = vr.toFixed(1) + 'x';
+      tr.appendChild(tdVR);
+
+      var tdAcc = document.createElement('td');
+      var badge = document.createElement('span');
+      badge.className = 'accum-badge ' + accumClass(g.accum_label);
+      badge.textContent = g.accum_label || '--';
+      tdAcc.appendChild(badge);
+      tr.appendChild(tdAcc);
+
+      var tdScore = document.createElement('td');
+      tdScore.className='mono';
+      var bar = document.createElement('span');
+      bar.className='score-bar';
+      var w = Math.min(score, 100);
+      bar.style.width = w + 'px';
+      bar.style.background = score >= 70 ? 'var(--green)' : score >= 40 ? 'var(--gold)' : 'var(--muted)';
+      tdScore.appendChild(bar);
+      var scoreText = document.createTextNode(score.toString());
+      tdScore.appendChild(scoreText);
+      tr.appendChild(tdScore);
+
+      tbody.appendChild(tr);
+    });
+  }
+
+  fetch('/api/gaps').then(function(r){return r.json()}).then(function(d){
+    allGaps = d.gaps || [];
+    document.getElementById('g-total').textContent = allGaps.length;
+    var up=0,dn=0,hot=0;
+    allGaps.forEach(function(g){
+      var pct=parseFloat(g.gap_pct)||0;
+      if(pct>0) up++; else dn++;
+      if(parseFloat(g.vol_ratio)>=5) hot++;
+    });
+    document.getElementById('g-up').textContent = up;
+    document.getElementById('g-dn').textContent = dn;
+    document.getElementById('g-hot').textContent = hot;
+    renderTable(allGaps);
+  });
+})();
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KV1VDK22VC"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-KV1VDK22VC');</script>
+  <script src="/lib/cy-strip-mirror.js" defer></script>
+</body>
+</html>

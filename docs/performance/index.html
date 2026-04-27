@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Performance Tracker — Historical Pick Results | Catalyst Edge</title>
+<meta name="description" content="See how our SEC catalyst picks performed. Historical trade log with gap percentages, intraday highs, and win/loss outcomes tracked daily.">
+<meta property="og:title" content="Performance Tracker — Catalyst Edge">
+<link rel="canonical" href="https://catalystedgescanner.com/performance/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#070a12;--surface:#0f1420;--gold:#d4a843;--green:#22c55e;--red:#ef4444;--cyan:#06b6d4;--text:#e2e8f0;--dim:#94a3b8;--muted:#64748b;--border:#1e293b}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
+.wrap{max-width:1100px;margin:0 auto;padding:1.5rem}
+.nav{position:sticky;top:0;z-index:100;background:rgba(7,10,18,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:.75rem 1.5rem;display:flex;align-items:center;gap:1rem}
+.nav a{color:var(--gold);font-weight:600;font-size:.95rem}
+.nav .sep{color:var(--muted)}
+.hero{text-align:center;padding:2.5rem 0 2rem;border-bottom:1px solid var(--border);margin-bottom:1.5rem}
+.hero h1{font-size:clamp(1.5rem,4vw,2.2rem);font-weight:800;line-height:1.2;margin-bottom:.4rem}
+.hero h1 em{font-style:normal;color:var(--green)}
+.hero .sub{color:var(--dim);font-size:.9rem;max-width:580px;margin:0 auto}
+.stats-bar{display:flex;justify-content:center;gap:2rem;margin:1rem 0;flex-wrap:wrap}
+.sb-item{text-align:center}
+.sb-val{font-size:1.3rem;font-weight:800;color:var(--gold)}
+.sb-lbl{font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.perf-table{width:100%;border-collapse:collapse;margin:1.5rem 0}
+.perf-table th{text-align:left;padding:8px 10px;font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;border-bottom:1px solid var(--border);position:sticky;top:52px;background:var(--bg)}
+.perf-table td{padding:8px 10px;font-size:.82rem;border-bottom:1px solid rgba(30,41,59,.5)}
+.perf-table tr:hover{background:rgba(34,197,94,.04)}
+.tk{font-weight:800;font-size:.9rem}
+.mono{font-family:'IBM Plex Mono',monospace;font-size:.78rem}
+.change-up{color:var(--green);font-weight:700}
+.change-dn{color:var(--red);font-weight:700}
+.change-flat{color:var(--muted)}
+.outcome-badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:.65rem;font-weight:700;text-transform:uppercase}
+.outcome-win{background:rgba(34,197,94,.12);color:var(--green)}
+.outcome-loss{background:rgba(239,68,68,.12);color:var(--red)}
+.outcome-flat{background:rgba(100,116,139,.12);color:var(--muted)}
+.hit-badge{display:inline-block;padding:1px 4px;border-radius:2px;font-size:.6rem;font-weight:700;margin-right:2px}
+.hit-yes{background:rgba(34,197,94,.15);color:var(--green)}
+.hit-no{background:rgba(100,116,139,.08);color:var(--muted)}
+.cta-bar{background:var(--surface);border:1px solid var(--gold);border-radius:10px;padding:1.25rem;text-align:center;margin:2rem 0}
+.cta-bar h3{color:var(--gold);font-size:1rem;margin-bottom:.3rem}
+.cta-bar p{color:var(--dim);font-size:.8rem;margin-bottom:.75rem}
+.cta-bar a{display:inline-block;padding:.5rem 1.4rem;background:linear-gradient(135deg,var(--gold),#f1ce88);color:#070a12;font-weight:700;border-radius:6px;font-size:.85rem}
+.footer{text-align:center;padding:1.5rem;font-size:.72rem;color:var(--muted);border-top:1px solid var(--border);margin-top:2rem}
+.footer a{color:var(--muted)}
+.table-wrap{overflow-x:auto}
+</style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@800;900&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/lib/cinematic-hero.css">
+  <link rel="stylesheet" href="/lib/cyber-shell.css">
+  <link rel="stylesheet" href="/lib/polish-tokens.css">
+</head>
+<body>
+  <div class="cy-bg" aria-hidden="true"></div>
+  <div class="cy-floor" aria-hidden="true"></div>
+  <div class="cy-vignette" aria-hidden="true"></div>
+  <div class="cy-scan" aria-hidden="true"></div>
+<div class="nav">
+  <a href="/">Catalyst Edge</a>
+  <span class="sep">/</span>
+  <span style="color:var(--dim);font-size:.9rem">Performance</span>
+</div>
+<div class="wrap">
+<section class="cin-hero cy-neon-hero cy-shimmer">
+    <div class="cin-grid">
+      <div class="cin-stat-stack">
+        <div class="cin-eyebrow"><span class="cin-live-dot"></span>PERFORMANCE TRACKER · LIVE</div>
+        <div class="cin-colossal">
+          <div class="cin-num-row"><span class="cin-num">89%</span></div>
+          <div class="cin-side">
+          <span class="cin-tag"><b>hit rate</b> · gap+catalyst</span>
+          <span class="cin-tag">90-day rolling audit</span>
+          <span class="cin-tag">open-audit ledger</span>
+          </div>
+        </div>
+        <div class="cin-stamp">PERF//AUDIT · v1.0 · <b>LIVE</b></div>
+      </div>
+      <div class="cin-h1-block">
+        <div class="cin-h1-eyebrow">📊 Performance Tracker · The Auditable Record</div>
+        <h1 class="cin-headline">Every pick, every signal, every <em>realized outcome</em>—on a <span class="cin-accent">single open-audit page</span>.</h1>
+        <p class="cin-lede">The historical hit rate by signal layer and intersection. Gap × catalyst is 89%; baseline 41%. Numbers refresh daily as new outcomes settle.</p>
+        <div class="cin-cta-row">
+          <a href="#perf-table" class="cin-btn-primary">See ledger ↓</a>
+          <a href="/trust/" class="cin-btn-ghost">Methodology</a>
+        </div>
+        <div class="cin-strip">
+          <div class="cin-cell"><div class="cin-k">Hit (gap+cat)</div><div class="cin-v bull">89%</div></div>
+          <div class="cin-cell"><div class="cin-k">Baseline</div><div class="cin-v bear">41%</div></div>
+          <div class="cin-cell"><div class="cin-k">Ledger rows</div><div class="cin-v gold" id="pf-rows">–</div></div>
+          <div class="cin-cell"><div class="cin-k">Window</div><div class="cin-v cyan">90d</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="stats-bar">
+    <div class="sb-item"><div class="sb-val" id="p-total">--</div><div class="sb-lbl">Tracked Trades</div></div>
+    <div class="sb-item"><div class="sb-val" id="p-hit2" style="color:var(--green)">--</div><div class="sb-lbl">Hit 2%+</div></div>
+    <div class="sb-item"><div class="sb-val" id="p-hit5" style="color:var(--gold)">--</div><div class="sb-lbl">Hit 5%+</div></div>
+    <div class="sb-item"><div class="sb-val" id="p-avg">--</div><div class="sb-lbl">Avg Max Move</div></div>
+  </div>
+  <div class="table-wrap">
+    <table class="perf-table">
+      <thead><tr><th>Date</th><th>Ticker</th><th>#</th><th>Score</th><th>Gap %</th><th>Max Intraday</th><th>Close %</th><th>Targets</th><th>Outcome</th></tr></thead>
+      <tbody id="p-body"></tbody>
+    </table>
+  </div>
+  <div class="cta-bar">
+    <h3>Track performance + get daily picks</h3>
+    <p>Free daily email with ranked picks, performance updates, and convergence signals at 4 AM ET.</p>
+    <a href="/preview/">Subscribe Free</a>
+  </div>
+</div>
+<div class="footer">
+  &copy; 2026 Catalyst Edge &middot;
+  <a href="/">Scanner</a> &middot;
+  <a href="/rankings/">Rankings</a> &middot;
+  <a href="/gaps/">Gaps</a> &middot;
+  <a href="/jackpot/" style="color:#22c55e">🎯 JACKPOT</a>
+  <a href="/dcf/" style="color:#06b6d4">💰 DCF</a> &middot;
+  <a href="/squeeze/">Squeeze</a> &middot;
+  <a href="/darkpool/">Dark Pool</a> &middot;
+  <a href="/convergence/">Convergence</a> &middot;
+  <a href="/deepvalue/">Deep Value</a> &middot;
+  <a href="/news/">News</a> &middot;
+  <a href="/congress/">Congress</a> &middot;
+  <a href="/glossary/">Glossary</a> &middot;
+  Not financial advice.
+</div>
+<script>
+(function(){
+  fetch('/api/performance').then(function(r){return r.json()}).then(function(d){
+    var trades = d.trades || [];
+    document.getElementById('p-total').textContent = trades.length;
+    var hit2=0, hit5=0, totalMax=0;
+    trades.forEach(function(t){
+      if(t.hit_2pct==='1') hit2++;
+      if(t.hit_5pct==='1') hit5++;
+      totalMax += Math.abs(parseFloat(t.max_intraday_pct||0));
+    });
+    document.getElementById('p-hit2').textContent = hit2;
+    document.getElementById('p-hit5').textContent = hit5;
+    document.getElementById('p-avg').textContent = trades.length ? (totalMax/trades.length).toFixed(1)+'%' : '0%';
+
+    var tbody = document.getElementById('p-body');
+    trades.forEach(function(t){
+      var tr = document.createElement('tr');
+
+      var td0 = document.createElement('td');td0.className='mono';td0.textContent=t.session_date;tr.appendChild(td0);
+      var td1 = document.createElement('td');td1.className='tk';td1.textContent=t.ticker;tr.appendChild(td1);
+      var td2 = document.createElement('td');td2.className='mono';td2.textContent=t.rank;td2.style.color='var(--gold)';tr.appendChild(td2);
+      var td3 = document.createElement('td');td3.className='mono';td3.textContent=parseFloat(t.total_score||0).toFixed(1);tr.appendChild(td3);
+
+      var gap = parseFloat(t.open_gap_pct||0);
+      var td4 = document.createElement('td');
+      td4.className='mono '+(gap>0?'change-up':gap<0?'change-dn':'change-flat');
+      td4.textContent=(gap>0?'+':'')+gap.toFixed(1)+'%';tr.appendChild(td4);
+
+      var maxm = parseFloat(t.max_intraday_pct||0);
+      var td5 = document.createElement('td');
+      td5.className='mono '+(maxm>0?'change-up':'change-flat');
+      td5.textContent=(maxm>0?'+':'')+maxm.toFixed(1)+'%';tr.appendChild(td5);
+
+      var cl = parseFloat(t.close_pct||0);
+      var td6 = document.createElement('td');
+      td6.className='mono '+(cl>0?'change-up':cl<0?'change-dn':'change-flat');
+      td6.textContent=(cl>0?'+':'')+cl.toFixed(1)+'%';tr.appendChild(td6);
+
+      var td7 = document.createElement('td');
+      var h2 = document.createElement('span');h2.className='hit-badge '+(t.hit_2pct==='1'?'hit-yes':'hit-no');h2.textContent='2%';td7.appendChild(h2);
+      var h5 = document.createElement('span');h5.className='hit-badge '+(t.hit_5pct==='1'?'hit-yes':'hit-no');h5.textContent='5%';td7.appendChild(h5);
+      var h10 = document.createElement('span');h10.className='hit-badge '+(t.hit_10pct==='1'?'hit-yes':'hit-no');h10.textContent='10%';td7.appendChild(h10);
+      tr.appendChild(td7);
+
+      var td8 = document.createElement('td');
+      var ob = document.createElement('span');
+      var oc = (t.outcome||'FLAT').toUpperCase();
+      ob.className = 'outcome-badge outcome-'+(oc==='WIN'?'win':oc==='LOSS'?'loss':'flat');
+      ob.textContent = oc;
+      td8.appendChild(ob);
+      tr.appendChild(td8);
+
+      tbody.appendChild(tr);
+    });
+  });
+})();
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KV1VDK22VC"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-KV1VDK22VC');</script>
+</body>
+</html>

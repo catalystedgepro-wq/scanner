@@ -1,0 +1,28 @@
+{
+  "name": "Catalyst Edge Scanner",
+  "short_name": "CE Scanner",
+  "description": "Free SEC catalyst stock scanner \u2014 pre-market build plus hourly market-day refreshes with live prices",
+  "start_url": "/?source=pwa",
+  "display": "standalone",
+  "background_color": "#0d1117",
+  "theme_color": "#2ea043",
+  "orientation": "portrait-primary",
+  "categories": [
+    "finance",
+    "business"
+  ],
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

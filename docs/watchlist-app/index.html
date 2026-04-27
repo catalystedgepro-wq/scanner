@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>My Watchlist — Track Your Catalyst Stocks | Catalyst Edge</title>
+<meta name="description" content="Build your personal catalyst watchlist. Save tickers, track signals daily, and see which of your picks are firing catalysts. No login required.">
+<meta property="og:title" content="My Watchlist — Catalyst Edge">
+<link rel="canonical" href="https://catalystedgescanner.com/watchlist-app/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#070a12;--surface:#0f1420;--surface2:#151c2c;--gold:#d4a843;--green:#22c55e;--red:#ef4444;--cyan:#06b6d4;--text:#e2e8f0;--dim:#94a3b8;--muted:#64748b;--border:#1e293b}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
+.wrap{max-width:900px;margin:0 auto;padding:1.5rem}
+.nav{position:sticky;top:0;z-index:100;background:rgba(7,10,18,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:.75rem 1.5rem;display:flex;align-items:center;gap:1rem}
+.nav a{color:var(--gold);font-weight:600;font-size:.95rem}
+.nav .sep{color:var(--muted)}
+.hero{text-align:center;padding:2rem 0 1.5rem}
+.hero h1{font-size:clamp(1.3rem,4vw,2rem);font-weight:800;margin-bottom:.3rem}
+.hero h1 em{font-style:normal;color:var(--gold)}
+.hero .sub{color:var(--dim);font-size:.85rem;margin-bottom:1.5rem}
+.add-row{display:flex;gap:.5rem;max-width:420px;margin:0 auto 1.5rem}
+.add-row input{flex:1;padding:.65rem 1rem;background:var(--surface);border:2px solid var(--border);border-radius:10px;color:var(--text);font-family:'Space Grotesk',sans-serif;font-size:1rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;outline:none;transition:border-color .2s}
+.add-row input:focus{border-color:var(--gold)}
+.add-row input::placeholder{color:var(--muted);text-transform:none;font-weight:400;letter-spacing:0;font-size:.85rem}
+.add-row button{padding:.65rem 1.2rem;background:linear-gradient(135deg,var(--gold),#f1ce88);color:#070a12;font-weight:700;border:none;border-radius:10px;cursor:pointer;font-family:'Space Grotesk',sans-serif;font-size:.9rem}
+.add-row button:hover{transform:scale(1.02)}
+.wl-stats{display:flex;justify-content:center;gap:2rem;margin:1rem 0;flex-wrap:wrap}
+.ws-item{text-align:center}
+.ws-val{font-size:1.3rem;font-weight:800}
+.ws-lbl{font-size:.6rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.wl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:.75rem;margin:1.5rem 0}
+.wl-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1rem;position:relative;transition:border-color .2s,transform .2s}
+.wl-card:hover{border-color:var(--gold);transform:translateY(-2px)}
+.wl-card.has-signals{border-left:3px solid var(--green)}
+.wl-card.no-signals{border-left:3px solid var(--muted)}
+.wl-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:.5rem}
+.wl-ticker{font-size:1.3rem;font-weight:800;color:var(--gold)}
+.wl-remove{width:24px;height:24px;border-radius:50%;border:1px solid var(--border);background:none;color:var(--muted);font-size:.9rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.wl-remove:hover{border-color:var(--red);color:var(--red);background:rgba(239,68,68,.08)}
+.wl-score-row{display:flex;gap:.5rem;margin-bottom:.4rem}
+.wl-score{font-size:.85rem;font-weight:700;font-family:'IBM Plex Mono',monospace}
+.wl-rank{font-size:.7rem;color:var(--muted)}
+.wl-signals{display:flex;flex-wrap:wrap;gap:.25rem;margin-bottom:.4rem}
+.wl-sig{padding:2px 6px;border-radius:4px;font-size:.6rem;font-weight:600;text-transform:uppercase}
+.wl-sig.active{background:rgba(34,197,94,.1);color:var(--green)}
+.wl-sig.inactive{background:rgba(100,116,139,.06);color:var(--muted)}
+.wl-sec{font-size:.7rem;color:var(--dim);margin-top:.3rem}
+.wl-links{display:flex;gap:.5rem;margin-top:.4rem}
+.wl-links a{font-size:.7rem;color:var(--cyan)}
+.empty-state{text-align:center;padding:3rem 1rem;color:var(--muted)}
+.empty-state h3{color:var(--dim);margin-bottom:.3rem}
+.cta-bar{background:var(--surface);border:1px solid var(--gold);border-radius:10px;padding:1.25rem;text-align:center;margin:2rem 0}
+.cta-bar h3{color:var(--gold);font-size:1rem;margin-bottom:.3rem}
+.cta-bar p{color:var(--dim);font-size:.8rem;margin-bottom:.75rem}
+.cta-bar a{display:inline-block;padding:.5rem 1.4rem;background:linear-gradient(135deg,var(--gold),#f1ce88);color:#070a12;font-weight:700;border-radius:6px;font-size:.85rem}
+.footer{text-align:center;padding:1.5rem;font-size:.72rem;color:var(--muted);border-top:1px solid var(--border);margin-top:2rem}
+.footer a{color:var(--muted)}
+.loading-card{text-align:center;padding:1rem;color:var(--muted);font-size:.8rem}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Catalyst Edge Watchlist","url":"https://catalystedgescanner.com/watchlist-app/","description":"Personal catalyst watchlist with daily signal tracking. No login required.","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<link rel="stylesheet" href="/lib/polish-tokens.css">
+</head>
+<body>
+<div class="nav">
+  <a href="/">Catalyst Edge</a>
+  <span class="sep">/</span>
+  <span style="color:var(--dim);font-size:.9rem">My Watchlist</span>
+</div>
+<div class="wrap">
+  <div class="hero">
+    <h1><em>My</em> Watchlist</h1>
+    <p class="sub">Track your tickers. Add any stock and see its daily signal profile update automatically. Saved in your browser — no login needed.</p>
+    <div class="add-row">
+      <input type="text" id="add-input" placeholder="Add ticker (e.g. AAPL)" maxlength="10" autocomplete="off">
+      <button id="add-btn">Add</button>
+    </div>
+  </div>
+  <div class="wl-stats">
+    <div class="ws-item"><div class="ws-val" id="ws-count" style="color:var(--gold)">0</div><div class="ws-lbl">Watching</div></div>
+    <div class="ws-item"><div class="ws-val" id="ws-active" style="color:var(--green)">0</div><div class="ws-lbl">With Signals</div></div>
+    <div class="ws-item"><div class="ws-val" id="ws-total" style="color:var(--cyan)">0</div><div class="ws-lbl">Total Signals</div></div>
+  </div>
+  <div id="wl-grid" class="wl-grid"></div>
+  <div class="cta-bar">
+    <h3>Get watchlist alerts by email</h3>
+    <p>Free daily email at 4 AM ET with ranked picks, signal alerts, and performance tracking.</p>
+    <a href="/preview/">Subscribe Free</a>
+  </div>
+</div>
+<div class="footer">
+  &copy; 2026 Catalyst Edge &middot;
+  <a href="/">Scanner</a> &middot;
+  <a href="/rankings/">Rankings</a> &middot;
+  <a href="/screener/">Screener</a> &middot;
+  <a href="/spotlight/">Spotlight</a> &middot;
+  <a href="/lookup/">Lookup</a> &middot;
+  <a href="/hot-streaks/">Hot Streaks</a> &middot;
+  <a href="/filings-feed/">Filings</a> &middot;
+  <a href="/calendar/">Calendar</a> &middot;
+  <a href="/vs/">Compare</a> &middot;
+  <a href="/glossary/">Glossary</a> &middot;
+  Not financial advice.
+</div>
+<script>
+(function(){
+  var grid = document.getElementById('wl-grid');
+  var addInput = document.getElementById('add-input');
+  var addBtn = document.getElementById('add-btn');
+  var STORAGE_KEY = 'ce_watchlist';
+
+  function el(tag, cls, text) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text) e.textContent = text;
+    return e;
+  }
+
+  function getWatchlist() {
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; }
+    catch(e) { return []; }
+  }
+
+  function saveWatchlist(list) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+  }
+
+  function addTicker(ticker) {
+    ticker = ticker.toUpperCase().trim();
+    if (!ticker || ticker.length > 10) return;
+    var list = getWatchlist();
+    if (list.indexOf(ticker) !== -1) return;
+    list.push(ticker);
+    saveWatchlist(list);
+    refreshAll();
+  }
+
+  function removeTicker(ticker) {
+    var list = getWatchlist().filter(function(t){ return t !== ticker; });
+    saveWatchlist(list);
+    refreshAll();
+  }
+
+  function renderCard(ticker, profile) {
+    var card = el('div', 'wl-card ' + (profile && profile.signal_count > 0 ? 'has-signals' : 'no-signals'));
+
+    var header = el('div','wl-header');
+    var tickerLink = document.createElement('a');
+    tickerLink.href = '/lookup/#' + ticker;
+    tickerLink.className = 'wl-ticker';
+    tickerLink.textContent = ticker;
+    header.appendChild(tickerLink);
+
+    var removeBtn = document.createElement('button');
+    removeBtn.className = 'wl-remove';
+    removeBtn.textContent = '\u00D7';
+    removeBtn.addEventListener('click', function(){ removeTicker(ticker); });
+    header.appendChild(removeBtn);
+    card.appendChild(header);
+
+    if (profile && profile.found) {
+      // Score
+      if (profile.total_score) {
+        var scoreRow = el('div','wl-score-row');
+        var score = el('span','wl-score','Score: ' + parseFloat(profile.total_score).toFixed(1));
+        score.style.color = parseFloat(profile.total_score) >= 12 ? 'var(--green)' : 'var(--gold)';
+        scoreRow.appendChild(score);
+        if (profile.rank) {
+          scoreRow.appendChild(el('span','wl-rank',' \u00B7 Rank #' + profile.rank));
+        }
+        card.appendChild(scoreRow);
+      }
+
+      // Signals
+      var allSigs = ['ranking','gapper','squeeze','insider','deepvalue','darkpool','convergence','smart_money','merger'];
+      var sigLabels = {ranking:'Ranked',gapper:'Gap',squeeze:'Squeeze',insider:'Insider',deepvalue:'Value',darkpool:'DarkPool',convergence:'Conv',smart_money:'SmartMoney',merger:'Merger'};
+      var sigDiv = el('div','wl-signals');
+      allSigs.forEach(function(s){
+        var has = profile.signals && profile.signals.indexOf(s) !== -1;
+        if (has) sigDiv.appendChild(el('span','wl-sig active',sigLabels[s]));
+      });
+      if (sigDiv.children.length === 0) {
+        sigDiv.appendChild(el('span','wl-sig inactive','No active signals'));
+      }
+      card.appendChild(sigDiv);
+
+      // SEC filing
+      if (profile.sec_form) {
+        card.appendChild(el('div','wl-sec','Filing: ' + profile.sec_form + (profile.sec_updated ? ' \u00B7 ' + profile.sec_updated.split('T')[0] : '')));
+      }
+    } else {
+      card.appendChild(el('div','wl-sec','Not in today\'s scan'));
+    }
+
+    // Links
+    var links = el('div','wl-links');
+    var l1 = document.createElement('a');
+    l1.href = '/lookup/#' + ticker;
+    l1.textContent = 'Profile';
+    links.appendChild(l1);
+    var l2 = document.createElement('a');
+    l2.href = '/vs/#' + ticker + '-vs-';
+    l2.textContent = 'Compare';
+    links.appendChild(l2);
+    card.appendChild(links);
+
+    return card;
+  }
+
+  function refreshAll() {
+    var list = getWatchlist();
+    grid.textContent = '';
+    document.getElementById('ws-count').textContent = list.length;
+
+    if (list.length === 0) {
+      var empty = el('div','empty-state');
+      empty.appendChild(el('h3','','Your watchlist is empty'));
+      empty.appendChild(el('p','','Add tickers above to start tracking their daily signals.'));
+      grid.appendChild(empty);
+      grid.style.gridTemplateColumns = '1fr';
+      document.getElementById('ws-active').textContent = '0';
+      document.getElementById('ws-total').textContent = '0';
+      return;
+    }
+    grid.style.gridTemplateColumns = '';
+
+    // Show loading cards
+    list.forEach(function(ticker){
+      var card = el('div','wl-card');
+      card.appendChild(el('div','wl-header'));
+      card.firstChild.appendChild(el('span','wl-ticker',ticker));
+      card.appendChild(el('div','loading-card','Loading...'));
+      grid.appendChild(card);
+    });
+
+    // Fetch all profiles in parallel
+    var fetches = list.map(function(ticker){
+      return fetch('/api/profile/' + encodeURIComponent(ticker))
+        .then(function(r){ return r.ok ? r.json() : null; })
+        .catch(function(){ return null; });
+    });
+
+    Promise.all(fetches).then(function(results){
+      grid.textContent = '';
+      var activeCount = 0;
+      var totalSignals = 0;
+
+      list.forEach(function(ticker, i){
+        var profile = results[i] ? results[i].profile : null;
+        if (profile && profile.signal_count > 0) {
+          activeCount++;
+          totalSignals += profile.signal_count;
+        }
+        grid.appendChild(renderCard(ticker, profile));
+      });
+
+      document.getElementById('ws-active').textContent = activeCount;
+      document.getElementById('ws-total').textContent = totalSignals;
+    });
+  }
+
+  addBtn.addEventListener('click', function(){ addTicker(addInput.value); addInput.value = ''; });
+  addInput.addEventListener('keydown', function(e){ if(e.key==='Enter'){ addTicker(addInput.value); addInput.value = ''; } });
+
+  refreshAll();
+})();
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KV1VDK22VC"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-KV1VDK22VC');</script>
+</body>
+</html>

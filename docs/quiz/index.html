@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Catalyst Quiz — Test Your Trading Signal IQ | Catalyst Edge</title>
+<meta name="description" content="Test your knowledge of SEC filings, catalyst signals, and trading strategies. Score points, track your streak, and learn what drives stock catalysts.">
+<meta property="og:title" content="Catalyst Quiz — Catalyst Edge">
+<link rel="canonical" href="https://catalystedgescanner.com/quiz/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#070a12;--surface:#0f1420;--surface2:#151c2c;--gold:#d4a843;--green:#22c55e;--red:#ef4444;--cyan:#06b6d4;--text:#e2e8f0;--dim:#94a3b8;--muted:#64748b;--border:#1e293b;--purple:#a855f7}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
+.wrap{max-width:700px;margin:0 auto;padding:1.5rem}
+.nav{position:sticky;top:0;z-index:100;background:rgba(7,10,18,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:.75rem 1.5rem;display:flex;align-items:center;gap:1rem}
+.nav a{color:var(--gold);font-weight:600;font-size:.95rem}
+.nav .sep{color:var(--muted)}
+.hero{text-align:center;padding:2rem 0 1.5rem;border-bottom:1px solid var(--border);margin-bottom:1.5rem}
+.hero h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:800;margin-bottom:.3rem}
+.hero h1 em{font-style:normal;color:var(--purple)}
+.hero .sub{color:var(--dim);font-size:.85rem}
+.score-bar{display:flex;justify-content:center;gap:2rem;margin:1rem 0;flex-wrap:wrap}
+.sc-item{text-align:center}
+.sc-val{font-size:1.5rem;font-weight:800;font-family:'IBM Plex Mono',monospace}
+.sc-lbl{font-size:.6rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.progress{height:6px;border-radius:3px;background:var(--surface2);margin:1rem 0;overflow:hidden}
+.progress-fill{height:100%;border-radius:3px;background:var(--gold);transition:width .4s}
+.question-card{background:var(--surface);border:2px solid var(--border);border-radius:14px;padding:1.5rem;margin:1.5rem 0;transition:border-color .3s}
+.question-card.correct{border-color:var(--green);animation:flash-green .4s}
+.question-card.wrong{border-color:var(--red);animation:flash-red .4s}
+@keyframes flash-green{0%{background:rgba(34,197,94,.08)}100%{background:var(--surface)}}
+@keyframes flash-red{0%{background:rgba(239,68,68,.08)}100%{background:var(--surface)}}
+.q-number{font-size:.7rem;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.5rem}
+.q-text{font-size:1.05rem;font-weight:700;margin-bottom:1rem;line-height:1.5}
+.q-options{display:flex;flex-direction:column;gap:.5rem}
+.q-option{padding:.75rem 1rem;border:2px solid var(--border);border-radius:10px;background:var(--surface2);cursor:pointer;font-family:'Space Grotesk',sans-serif;font-size:.9rem;font-weight:600;color:var(--text);transition:all .2s;text-align:left}
+.q-option:hover{border-color:var(--gold);background:rgba(212,168,67,.04)}
+.q-option.selected{border-color:var(--cyan);background:rgba(6,182,212,.06)}
+.q-option.correct-answer{border-color:var(--green);background:rgba(34,197,94,.08);color:var(--green)}
+.q-option.wrong-answer{border-color:var(--red);background:rgba(239,68,68,.06);color:var(--red)}
+.q-option.disabled{pointer-events:none;opacity:.7}
+.q-explain{margin-top:.75rem;padding:.75rem;background:rgba(6,182,212,.04);border:1px solid rgba(6,182,212,.15);border-radius:8px;font-size:.8rem;color:var(--dim);display:none}
+.q-explain.show{display:block}
+.q-next{margin-top:1rem;padding:.6rem 1.2rem;background:linear-gradient(135deg,var(--gold),#f1ce88);color:#070a12;font-weight:700;border:none;border-radius:8px;cursor:pointer;font-family:'Space Grotesk',sans-serif;font-size:.85rem;display:none}
+.q-next.show{display:inline-block}
+.results{text-align:center;padding:2rem;background:var(--surface);border:2px solid var(--gold);border-radius:14px;margin:1.5rem 0;display:none}
+.results.show{display:block}
+.results h2{font-size:1.3rem;font-weight:800;margin-bottom:.5rem}
+.results .r-score{font-size:3rem;font-weight:800;font-family:'IBM Plex Mono',monospace;margin:.5rem 0}
+.results .r-grade{font-size:1.2rem;font-weight:800;margin-bottom:.5rem}
+.results .r-detail{font-size:.8rem;color:var(--dim);margin-bottom:1rem}
+.results button{padding:.6rem 1.5rem;background:linear-gradient(135deg,var(--gold),#f1ce88);color:#070a12;font-weight:700;border:none;border-radius:8px;cursor:pointer;font-family:'Space Grotesk',sans-serif;font-size:.9rem}
+.cta-bar{background:var(--surface);border:1px solid var(--gold);border-radius:10px;padding:1.25rem;text-align:center;margin:2rem 0}
+.cta-bar h3{color:var(--gold);font-size:1rem;margin-bottom:.3rem}
+.cta-bar p{color:var(--dim);font-size:.8rem;margin-bottom:.75rem}
+.cta-bar a{display:inline-block;padding:.5rem 1.4rem;background:linear-gradient(135deg,var(--gold),#f1ce88);color:#070a12;font-weight:700;border-radius:6px;font-size:.85rem}
+.footer{text-align:center;padding:1.5rem;font-size:.72rem;color:var(--muted);border-top:1px solid var(--border);margin-top:2rem}
+.footer a{color:var(--muted)}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Catalyst Edge Quiz","url":"https://catalystedgescanner.com/quiz/","description":"Test your knowledge of SEC filings, catalyst signals, and trading strategies","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@800;900&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/lib/cinematic-hero.css">
+  <link rel="stylesheet" href="/lib/cyber-shell.css">
+  <link rel="stylesheet" href="/lib/polish-tokens.css">
+</head>
+<body>
+  <div class="cy-bg" aria-hidden="true"></div>
+  <div class="cy-floor" aria-hidden="true"></div>
+  <div class="cy-vignette" aria-hidden="true"></div>
+  <div class="cy-scan" aria-hidden="true"></div>
+<div class="nav">
+  <a href="/">Catalyst Edge</a>
+  <span class="sep">/</span>
+  <span style="color:var(--dim);font-size:.9rem">Catalyst Quiz</span>
+</div>
+<div class="wrap">
+<section class="cin-hero cy-neon-hero cy-narrow cy-shimmer">
+    <div class="cin-grid">
+      <div class="cin-stat-stack">
+        <div class="cin-eyebrow"><span class="cin-live-dot"></span>QUIZ · 15 QUESTIONS · LIVE</div>
+        <div class="cin-colossal">
+          <div class="cin-num-row"><span class="cin-num">15</span><span class="cin-pct">Q</span></div>
+          <div class="cin-side">
+          <span class="cin-tag"><b>SEC + catalyst</b> knowledge</span>
+          <span class="cin-tag">streak scoring</span>
+          <span class="cin-tag">instant feedback</span>
+          </div>
+        </div>
+        <div class="cin-stamp">QUIZ//STREAK · v1.0 · <b>LIVE</b></div>
+      </div>
+      <div class="cin-h1-block">
+        <div class="cin-h1-eyebrow">🎯 Catalyst Quiz · Test Your SEC IQ</div>
+        <h1 class="cin-headline">15 questions. <em>Streak-scored</em>. The fastest way to <span class="cin-accent">stress-test</span> your SEC + catalyst knowledge.</h1>
+        <p class="cin-lede">Drill SEC form recognition, catalyst signal interpretation, and the trader's playbook on each. Streak scoring rewards consistency.</p>
+        <div class="cin-cta-row">
+          <a href="#quiz-app" class="cin-btn-primary">Start quiz ↓</a>
+          <a href="/glossary/" class="cin-btn-ghost">Brush up first</a>
+        </div>
+        <div class="cin-strip">
+          <div class="cin-cell"><div class="cin-k">Questions</div><div class="cin-v">15</div></div>
+          <div class="cin-cell"><div class="cin-k">Topics</div><div class="cin-v cyan">5</div></div>
+          <div class="cin-cell"><div class="cin-k">Streak bonus</div><div class="cin-v gold">yes</div></div>
+          <div class="cin-cell"><div class="cin-k">Players</div><div class="cin-v bull">live</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="score-bar">
+    <div class="sc-item"><div class="sc-val" id="q-score" style="color:var(--green)">0</div><div class="sc-lbl">Score</div></div>
+    <div class="sc-item"><div class="sc-val" id="q-streak" style="color:var(--gold)">0</div><div class="sc-lbl">Streak</div></div>
+    <div class="sc-item"><div class="sc-val" id="q-best" style="color:var(--purple)">0</div><div class="sc-lbl">Best Streak</div></div>
+    <div class="sc-item"><div class="sc-val" id="q-progress" style="color:var(--cyan)">0/15</div><div class="sc-lbl">Progress</div></div>
+  </div>
+  <div class="progress"><div class="progress-fill" id="q-bar" style="width:0%"></div></div>
+  <div id="quiz-area"></div>
+  <div id="results" class="results">
+    <h2>Quiz Complete</h2>
+    <div class="r-score" id="r-score">0/15</div>
+    <div class="r-grade" id="r-grade"></div>
+    <div class="r-detail" id="r-detail"></div>
+    <button id="r-retry">Try Again</button>
+  </div>
+  <div class="cta-bar">
+    <h3>Learn by doing</h3>
+    <p>Free daily email at 4 AM ET with real catalyst picks, signal breakdowns, and market intelligence.</p>
+    <a href="/preview/">Subscribe Free</a>
+  </div>
+</div>
+<div class="footer">
+  &copy; 2026 Catalyst Edge &middot;
+  <a href="/">Scanner</a> &middot;
+  <a href="/rankings/">Rankings</a> &middot;
+  <a href="/screener/">Screener</a> &middot;
+  <a href="/spotlight/">Spotlight</a> &middot;
+  <a href="/lookup/">Lookup</a> &middot;
+  <a href="/signals/">Signals</a> &middot;
+  <a href="/winners/">Winners</a> &middot;
+  <a href="/digest/">Digest</a> &middot;
+  <a href="/glossary/">Glossary</a> &middot;
+  Not financial advice.
+</div>
+<script>
+(function(){
+  var QUESTIONS = [
+    {q:"What SEC form reports material events like mergers, acquisitions, or management changes?",o:["Form 4","8-K","10-K","S-3"],a:1,x:"An 8-K is filed to report significant events that shareholders should know about, such as mergers, bankruptcy, or executive departures."},
+    {q:"What does a 'convergence alert' mean in catalyst trading?",o:["A single strong signal","Multiple independent signals hitting the same ticker","A price target convergence","A sector rotation signal"],a:1,x:"Convergence means multiple independent catalysts (insider buying + squeeze setup + SEC filing) are all pointing to the same ticker simultaneously."},
+    {q:"SEC Form 4 primarily reports what type of activity?",o:["Quarterly earnings","Insider stock transactions","Company registration","Annual audit results"],a:1,x:"Form 4 must be filed within 2 business days when company insiders (officers, directors, 10%+ holders) buy or sell company stock."},
+    {q:"What is a 'short squeeze'?",o:["Selling stock short at a loss","When short sellers are forced to buy back shares, driving the price up rapidly","A trading halt on short selling","When a stock's price drops to zero"],a:1,x:"A short squeeze occurs when heavily shorted stocks rise, forcing short sellers to buy back shares to cover losses, which pushes the price even higher."},
+    {q:"What filing type indicates a company is registering new shares for potential sale?",o:["8-K","Form 4","S-3 Registration","SC 13D"],a:2,x:"An S-3 shelf registration allows a company to register securities in advance and sell them over time, potentially diluting existing shareholders."},
+    {q:"Dark pool trading volume is significant because:",o:["It always means illegal activity","It indicates institutional interest or large block trades occurring off-exchange","It means the stock is delisted","It only happens after hours"],a:1,x:"Dark pools are private exchanges where large institutional orders are executed without moving the public market. Unusual dark pool volume can signal institutional accumulation or distribution."},
+    {q:"What does SC 13D filing indicate?",o:["A company bankruptcy","An activist investor acquiring 5%+ ownership stake","A routine quarterly report","An employee stock option grant"],a:1,x:"SC 13D must be filed within 10 days when any person or group acquires beneficial ownership of more than 5% of a company's voting shares. It often signals activist intentions."},
+    {q:"In catalyst scoring, which combination typically produces the highest conviction signal?",o:["High volume alone","Insider buying + short squeeze setup + SEC filing convergence","A single analyst upgrade","Historical price support"],a:1,x:"Signal convergence — when multiple independent catalysts stack on the same ticker — produces the highest conviction because each signal independently validates the thesis."},
+    {q:"What is a 'gap play' in pre-market trading?",o:["Trading stocks that have overnight price gaps due to news or filings","Buying stocks at the close","A arbitrage strategy","Trading during market gaps"],a:0,x:"Gap plays target stocks that show significant price gaps between the previous close and pre-market open, typically driven by overnight catalysts like SEC filings or earnings."},
+    {q:"A 'hot streak' in catalyst scanning means:",o:["A stock that went up 5 days in a row","A ticker appearing in multiple consecutive daily catalyst scans","A sector in a bull market","A stock hitting new highs"],a:1,x:"Hot streaks track tickers that keep appearing in the daily catalyst scan. Repeat appearances signal persistent institutional interest and sustained momentum."},
+    {q:"What is 'deep value' in catalyst context?",o:["Stocks trading below book value","Fundamentally undervalued stocks that also have active catalyst triggers","Penny stocks under $1","Stocks with high dividend yields"],a:1,x:"Deep value combines fundamental undervaluation (low P/E, below book value) with active catalysts — the catalyst provides the timing element that pure value investing lacks."},
+    {q:"Why are SEC filings considered 'hard data' for trading?",o:["They are always accurate","They are legally required disclosures with penalties for false statements","They contain stock tips","They are published by analysts"],a:1,x:"SEC filings are mandatory legal documents. Officers and directors face personal liability (including criminal penalties) for false or misleading statements, making them far more reliable than voluntary disclosures."},
+    {q:"What does 'smart money' typically refer to in market analysis?",o:["Retail day traders","Institutional investors, hedge funds, and well-informed market participants","Government funds","Index funds"],a:1,x:"Smart money refers to capital invested by institutions, hedge funds, and sophisticated investors who are presumed to have informational advantages or superior analysis capabilities."},
+    {q:"What makes a 'catalyst' different from regular stock analysis?",o:["Catalysts only apply to tech stocks","Catalysts are specific events or filings that can trigger near-term price movement","Catalysts are long-term predictions","Catalysts only matter for options"],a:1,x:"Catalysts are specific, identifiable events (SEC filings, insider transactions, squeeze setups) with defined timing, unlike general fundamental analysis which lacks a timing mechanism."},
+    {q:"How many business days do insiders have to file Form 4 after a transaction?",o:["5 days","2 days","10 days","30 days"],a:1,x:"Insiders must file Form 4 with the SEC within 2 business days of the transaction. This tight deadline means insider activity signals are timely and actionable."}
+  ];
+
+  var area = document.getElementById('quiz-area');
+  var resultsEl = document.getElementById('results');
+  var current = 0;
+  var score = 0;
+  var streak = 0;
+  var bestStreak = 0;
+  var answered = false;
+  var shuffled = [];
+
+  function el(tag, cls, text) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text) e.textContent = text;
+    return e;
+  }
+
+  function shuffle(arr) {
+    var a = arr.slice();
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = a[i]; a[i] = a[j]; a[j] = t;
+    }
+    return a;
+  }
+
+  function updateUI() {
+    document.getElementById('q-score').textContent = score;
+    document.getElementById('q-streak').textContent = streak;
+    document.getElementById('q-best').textContent = bestStreak;
+    document.getElementById('q-progress').textContent = current + '/' + shuffled.length;
+    document.getElementById('q-bar').style.width = (current / shuffled.length * 100) + '%';
+  }
+
+  function showQuestion(idx) {
+    if (idx >= shuffled.length) {
+      showResults();
+      return;
+    }
+    answered = false;
+    var q = shuffled[idx];
+    area.textContent = '';
+
+    var card = el('div', 'question-card');
+    card.appendChild(el('div', 'q-number', 'Question ' + (idx + 1) + ' of ' + shuffled.length));
+    card.appendChild(el('div', 'q-text', q.q));
+
+    var optionsDiv = el('div', 'q-options');
+    q.o.forEach(function(opt, i) {
+      var btn = document.createElement('button');
+      btn.className = 'q-option';
+      btn.textContent = opt;
+      btn.addEventListener('click', function() {
+        if (answered) return;
+        answered = true;
+
+        var isCorrect = i === q.a;
+        if (isCorrect) {
+          score++;
+          streak++;
+          if (streak > bestStreak) bestStreak = streak;
+          btn.className = 'q-option correct-answer';
+          card.className = 'question-card correct';
+        } else {
+          streak = 0;
+          btn.className = 'q-option wrong-answer';
+          card.className = 'question-card wrong';
+          // Highlight correct
+          optionsDiv.children[q.a].className = 'q-option correct-answer';
+        }
+
+        Array.from(optionsDiv.children).forEach(function(b) {
+          b.classList.add('disabled');
+        });
+
+        explainDiv.className = 'q-explain show';
+        nextBtn.className = 'q-next show';
+        updateUI();
+
+        // Save best to localStorage
+        var saved = parseInt(localStorage.getItem('ce_quiz_best') || '0');
+        if (score > saved) localStorage.setItem('ce_quiz_best', String(score));
+      });
+      optionsDiv.appendChild(btn);
+    });
+    card.appendChild(optionsDiv);
+
+    var explainDiv = el('div', 'q-explain', q.x);
+    card.appendChild(explainDiv);
+
+    var nextBtn = document.createElement('button');
+    nextBtn.className = 'q-next';
+    nextBtn.textContent = idx < shuffled.length - 1 ? 'Next Question' : 'See Results';
+    nextBtn.addEventListener('click', function() {
+      current++;
+      updateUI();
+      showQuestion(current);
+    });
+    card.appendChild(nextBtn);
+
+    area.appendChild(card);
+  }
+
+  function showResults() {
+    area.style.display = 'none';
+    resultsEl.className = 'results show';
+
+    var pct = Math.round((score / shuffled.length) * 100);
+    document.getElementById('r-score').textContent = score + '/' + shuffled.length;
+
+    var grade, color;
+    if (pct >= 90) { grade = 'Catalyst Master'; color = 'var(--green)'; }
+    else if (pct >= 70) { grade = 'Signal Pro'; color = 'var(--gold)'; }
+    else if (pct >= 50) { grade = 'Market Learner'; color = 'var(--cyan)'; }
+    else { grade = 'Rookie Trader'; color = 'var(--red)'; }
+
+    var gradeEl = document.getElementById('r-grade');
+    gradeEl.textContent = grade;
+    gradeEl.style.color = color;
+
+    document.getElementById('r-detail').textContent = pct + '% correct | Best streak: ' + bestStreak + ' | All-time best: ' + localStorage.getItem('ce_quiz_best');
+  }
+
+  function startQuiz() {
+    shuffled = shuffle(QUESTIONS);
+    current = 0;
+    score = 0;
+    streak = 0;
+    bestStreak = 0;
+    answered = false;
+    area.style.display = '';
+    resultsEl.className = 'results';
+    updateUI();
+    showQuestion(0);
+  }
+
+  document.getElementById('r-retry').addEventListener('click', startQuiz);
+  startQuiz();
+})();
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KV1VDK22VC"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-KV1VDK22VC');</script>
+</body>
+</html>

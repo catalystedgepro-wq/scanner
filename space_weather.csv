@@ -1,0 +1,10 @@
+metric,value,scale_level,issued_at,message,captured_at
+kp_current,0.67,,2026-04-27T23:05:00,Planetary K-index now 0.67,2026-04-27T23:10:05Z
+kp_max_7d,5.00,G1,2026-04-20T18:00:00,Max Kp over past 7 days = 5.00,2026-04-27T23:10:05Z
+alert,K04W,,2026-04-26 23:33:07.687,Space Weather Message Code: WARK04 Serial Number: 5330 Issue Time: 2026 Apr 26 2333 UTC  EXTENDED WARNING: Geomagnetic K-index of 4 expected Extension to Serial Number: 5329 Valid From: 2026 Apr 26 03,2026-04-27T23:10:05Z
+alert,K04W,,2026-04-26 11:47:56.280,Space Weather Message Code: WARK04 Serial Number: 5329 Issue Time: 2026 Apr 26 1147 UTC  EXTENDED WARNING: Geomagnetic K-index of 4 expected Extension to Serial Number: 5328 Valid From: 2026 Apr 26 03,2026-04-27T23:10:05Z
+alert,K04W,,2026-04-26 06:01:29.970,Space Weather Message Code: WARK04 Serial Number: 5328 Issue Time: 2026 Apr 26 0601 UTC  WARNING: Geomagnetic K-index of 4 expected Valid From: 2026 Apr 26 0359 UTC Valid To: 2026 Apr 26 1200 UTC Warn,2026-04-27T23:10:05Z
+alert,K04A,,2026-04-26 05:59:50.883,Space Weather Message Code: ALTK04 Serial Number: 2652 Issue Time: 2026 Apr 26 0559 UTC  ALERT: Geomagnetic K-index of 4  Threshold Reached: 2026 Apr 26 0559 UTC Synoptic Period: 0300-0600 UTC   Activ,2026-04-27T23:10:05Z
+alert,K04W,,2026-04-25 01:37:16.980,Space Weather Message Code: WARK04 Serial Number: 5327 Issue Time: 2026 Apr 25 0137 UTC  WARNING: Geomagnetic K-index of 4 expected Valid From: 2026 Apr 25 0137 UTC Valid To: 2026 Apr 25 2359 UTC Warn,2026-04-27T23:10:05Z
+flare_1d_M,70,,2026-04-27T00:00:00,M-class flare prob 1-day = 70%,2026-04-27T23:10:05Z
+flare_1d_X,25,,2026-04-27T00:00:00,X-class flare prob 1-day = 25%,2026-04-27T23:10:05Z

@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>DCF Top Picks — Catalyst Edge widget</title>
+  <meta name="description" content="Embeddable DCF top-picks widget by Catalyst Edge Scanner. Live A-graded fair-value picks." />
+  <meta name="robots" content="noindex" />
+  <style>
+    :root{
+      --bg:#0a1424; --ink:#e6f1ff; --ink-dim:#9bb0c8; --ink-mute:#6e8198;
+      --cyan:#5ad7ff; --gold:#f5c662; --bull:#5cf2a4; --bear:#ff6b8b;
+      --line:rgba(110,140,180,0.18); --glass: linear-gradient(180deg, rgba(15,28,48,0.95), rgba(7,14,28,0.95));
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:transparent;color:var(--ink);
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      -webkit-font-smoothing:antialiased;
+    }
+    a{color:var(--cyan);text-decoration:none}
+    a:hover{text-decoration:underline}
+
+    .widget{
+      background:var(--glass);border:1px solid var(--line);border-radius:14px;padding:16px;
+      max-width:420px;margin:0 auto;display:flex;flex-direction:column;gap:10px;
+    }
+    .hd{display:flex;justify-content:space-between;align-items:center;gap:8px}
+    .title{font-size:14px;color:var(--ink);font-weight:600;margin:0}
+    .tag{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:9.5px;letter-spacing:0.18em;color:var(--gold);
+      text-transform:uppercase;padding:3px 8px;border-radius:6px;background:rgba(245,198,98,0.08);border:1px solid rgba(245,198,98,0.32)}
+    .sub{font-size:11.5px;color:var(--ink-mute);margin:0;font-family:"IBM Plex Mono",ui-monospace,monospace;letter-spacing:0.06em}
+
+    ul.list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+    ul.list li{display:grid;grid-template-columns:auto 1fr auto auto;gap:10px;align-items:center;
+      background:rgba(4,10,20,0.4);border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:12.5px}
+    ul.list li .rank{font-family:"IBM Plex Mono",monospace;color:var(--ink-mute);font-size:10.5px;letter-spacing:0.14em}
+    ul.list li .ticker{font-family:"JetBrains Mono",ui-monospace,monospace;color:var(--ink);font-weight:600}
+    ul.list li .grade{font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:0.16em;
+      padding:2px 7px;border-radius:6px;border:1px solid rgba(92,242,164,0.5);color:var(--bull);background:rgba(92,242,164,0.08)}
+    ul.list li .upside{font-family:"JetBrains Mono",monospace;color:var(--bull);font-variant-numeric:tabular-nums}
+
+    .skel li .ticker, .skel li .upside{color:transparent;background:linear-gradient(90deg, rgba(110,140,180,0.18), rgba(110,140,180,0.32), rgba(110,140,180,0.18));
+      background-size:200% 100%;animation:sk 1.4s ease-in-out infinite;border-radius:4px;height:14px;display:inline-block;min-width:56px}
+    @keyframes sk{0%{background-position:200% 0}100%{background-position:-200% 0}}
+
+    .ft{display:flex;justify-content:space-between;align-items:center;padding-top:6px;border-top:1px dashed var(--line);font-size:10.5px}
+    .powered{font-family:"IBM Plex Mono",ui-monospace,monospace;letter-spacing:0.14em;color:var(--gold);text-transform:uppercase;font-size:9.5px}
+    .powered a{color:var(--gold)}
+    .updated{font-family:"IBM Plex Mono",ui-monospace,monospace;color:var(--ink-mute);font-size:9.5px;letter-spacing:0.1em}
+
+    .err{font-size:12px;color:var(--bear);background:rgba(255,107,139,0.06);border:1px solid rgba(255,107,139,0.4);
+      border-radius:8px;padding:10px 12px}
+  </style>
+<link rel="stylesheet" href="/lib/polish-tokens.css">
+</head>
+<body>
+  <div class="widget" id="root">
+    <div class="hd">
+      <h3 class="title">Today's top DCF picks <span class="tag" style="margin-left:6px">A-graded</span></h3>
+      <span class="sub" id="count">…</span>
+    </div>
+    <ul class="list skel" id="list">
+      <li><span class="rank">01</span><span class="ticker">…</span><span class="grade">A</span><span class="upside">…</span></li>
+      <li><span class="rank">02</span><span class="ticker">…</span><span class="grade">A</span><span class="upside">…</span></li>
+      <li><span class="rank">03</span><span class="ticker">…</span><span class="grade">A</span><span class="upside">…</span></li>
+      <li><span class="rank">04</span><span class="ticker">…</span><span class="grade">A</span><span class="upside">…</span></li>
+      <li><span class="rank">05</span><span class="ticker">…</span><span class="grade">A</span><span class="upside">…</span></li>
+    </ul>
+    <div class="ft">
+      <span class="powered" id="powered">⚡ Powered by <a href="https://catalystedgescanner.com/?ref=embed" target="_blank" rel="noopener">Catalyst Edge</a></span>
+      <span class="updated" id="updated">—</span>
+    </div>
+  </div>
+
+  <script>
+    const SOURCES = ['/data/intl_dcf.json', '/data/dcf_top.json'];
+    const list = document.getElementById('list');
+    const updatedEl = document.getElementById('updated');
+    const countEl = document.getElementById('count');
+    const poweredEl = document.getElementById('powered');
+
+    const params = new URLSearchParams(location.search);
+    const partner = params.get('partner') || '';
+    const noBadge = params.get('nobadge') === '1';
+    // Only allow nobadge for partner=enterprise (signed verification belongs server-side; client gate is best-effort).
+    if (noBadge && partner === 'enterprise') {
+      poweredEl.style.display = 'none';
+    }
+    // Append partner attribution to outbound link if provided.
+    const outLink = poweredEl.querySelector('a');
+    if (outLink && partner) {
+      outLink.href = 'https://catalystedgescanner.com/?ref=' + encodeURIComponent(partner);
+    }
+
+    function fmtPct(n){
+      const v = Number(n);
+      if (!isFinite(v)) return '—';
+      const sign = v >= 0 ? '+' : '';
+      return sign + v.toFixed(1) + '%';
+    }
+    function fmtTs(d){
+      if (!d) return '—';
+      const pad = n => String(n).padStart(2,'0');
+      return d.getUTCFullYear() + '-' + pad(d.getUTCMonth()+1) + '-' + pad(d.getUTCDate())
+        + ' ' + pad(d.getUTCHours()) + ':' + pad(d.getUTCMinutes()) + 'Z';
+    }
+    function showError(msg){
+      const wrap = document.getElementById('root');
+      const div = document.createElement('div');
+      div.className = 'err';
+      div.textContent = msg;
+      list.replaceChildren();
+      wrap.insertBefore(div, list);
+    }
+
+    function pickTop(rows){
+      // Tolerant filter: A-grade, sorted by upside desc.
+      const a = rows.filter(r => {
+        const g = (r.grade || r.dcf_grade || '').toString().toUpperCase();
+        return g === 'A';
+      });
+      a.sort((x, y) => Number(y.upside_pct ?? y.upside ?? 0) - Number(x.upside_pct ?? x.upside ?? 0));
+      return a.slice(0, 5);
+    }
+
+    function rowsFromPayload(p){
+      if (!p) return [];
+      if (Array.isArray(p)) return p;
+      if (Array.isArray(p.top_undervalued)) return p.top_undervalued;
+      if (Array.isArray(p.rows)) return p.rows;
+      if (Array.isArray(p.data)) return p.data;
+      if (Array.isArray(p.picks)) return p.picks;
+      return [];
+    }
+
+    async function fetchFirst(){
+      for (const u of SOURCES){
+        try {
+          const r = await fetch(u, { cache: 'no-store' });
+          if (!r.ok) continue;
+          const lm = r.headers.get('Last-Modified');
+          const json = await r.json();
+          return { rows: rowsFromPayload(json), lm };
+        } catch (e) { /* try next */ }
+      }
+      return { rows: [], lm: null };
+    }
+
+    function render(top, lm){
+      list.classList.remove('skel');
+      const frag = document.createDocumentFragment();
+      if (!top.length){
+        const li = document.createElement('li');
+        li.style.gridTemplateColumns = '1fr';
+        li.textContent = 'No A-grade picks available right now. Check back in 5 minutes.';
+        frag.appendChild(li);
+      } else {
+        top.forEach((r, i) => {
+          const li = document.createElement('li');
+          const rank = document.createElement('span'); rank.className = 'rank'; rank.textContent = String(i+1).padStart(2,'0');
+          const ticker = document.createElement('span'); ticker.className = 'ticker';
+          ticker.textContent = (r.ticker || r.symbol || r.bloomberg_ticker || '?').toString();
+          const grade = document.createElement('span'); grade.className = 'grade'; grade.textContent = (r.grade || r.dcf_grade || 'A').toString().toUpperCase();
+          const upside = document.createElement('span'); upside.className = 'upside';
+          upside.textContent = fmtPct(r.upside_pct ?? r.upside ?? r.fair_value_upside_pct);
+          li.appendChild(rank); li.appendChild(ticker); li.appendChild(grade); li.appendChild(upside);
+          frag.appendChild(li);
+        });
+      }
+      list.replaceChildren(frag);
+      countEl.textContent = top.length + ' picks';
+      const d = lm ? new Date(lm) : new Date();
+      updatedEl.textContent = 'updated ' + fmtTs(d);
+    }
+
+    async function refresh(){
+      try {
+        const { rows, lm } = await fetchFirst();
+        if (!rows.length){
+          showError('Source feed unavailable. Try again shortly.');
+          return;
+        }
+        render(pickTop(rows), lm);
+      } catch (e){
+        showError('Widget error · ' + (e.message || 'unknown'));
+      }
+    }
+    refresh();
+    setInterval(refresh, 5 * 60 * 1000);
+  </script>
+</body>
+</html>

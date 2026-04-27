@@ -1,0 +1,21 @@
+date,kind,defendant,case,court,docket,cause,docket_id,captured_at
+2026-04-24,institutional_class,Globant S.A.,Ohio Carpenters Pension Fund v. Globant S.A.,"District Court, S.D. New York",1:26-cv-03405,15:78m(a) Securities Exchange Act,73242627,2026-04-27T22:54:37Z
+2026-04-24,class_action,Regencell Bioscience Holdings Limited,Matassa v. Regencell Bioscience Holdings Limited,"District Court, D. Maryland",1:26-cv-01602,15:78m(a) Securities Exchange Act,73241501,2026-04-27T22:54:37Z
+2026-04-23,class_action,Van Dyke,Commodity Futures Trading Commission v. Van Dyke,"District Court, S.D. New York",1:26-cv-03369,07:0013a-1 Enjoin or restrain violations Contract Market rul,73237753,2026-04-27T22:54:37Z
+2026-04-23,class_action,"ZSpace, Inc.","Kovaleski v. ZSpace, Inc.","District Court, E.D. New York",1:26-cv-02432,15:77 Securities Fraud,73236075,2026-04-27T22:54:37Z
+2026-04-23,class_action,Mahoney,Feder v. Mahoney,"District Court, D. Massachusetts",1:26-cv-11864,15:78m(a) Securities Exchange Act,73235816,2026-04-27T22:54:37Z
+2026-04-23,class_action,Arrive AI Inc.,Donoghue v. Arrive AI Inc.,"District Court, S.D. New York",1:26-cv-03343,28:1331sv Fed. Question: Securities Violation,73232767,2026-04-27T22:54:37Z
+2026-04-22,class_action,LKQ Corporation,City of Miami General Employees' & Sanitation Employees' Retirement Trust v. LKQ Corporation,"District Court, M.D. Tennessee",3:26-cv-00498,15:78m(a) Securities Exchange Act,73229235,2026-04-27T22:54:37Z
+2026-04-22,class_action,"Gemini Titan, LLC","People Of The State Of New York, By Letitia James v. Gemini Titan, LLC","District Court, S.D. New York",1:26-cv-03318,28:1331 Fed. Question,73227517,2026-04-27T22:54:37Z
+2026-04-20,sec_enforcement,"Voyager Pacific Capital Management, LLC","Securities and Exchange Commission v. Voyager Pacific Capital Management, LLC","District Court, E.D. California",1:26-cv-02985,15:77 Securities Fraud,73220616,2026-04-27T22:54:37Z
+2026-04-20,sec_enforcement,Patel,Securities and Exchange Commission v. Patel,"District Court, S.D. New York",1:26-cv-03203,15:77 Securities Fraud,73213665,2026-04-27T22:54:37Z
+2026-04-17,class_action,Credit Agricole Group,Berger v. Credit Agricole Group,"District Court, S.D. New York",1:26-cv-03186,7:6(b) Federal Commodity Exchange Regulation,73211561,2026-04-27T22:54:37Z
+2026-04-17,class_action,Fitness Champs Holdings Ltd.,Yen Nee v. Fitness Champs Holdings Ltd.,"District Court, S.D. New York",1:26-cv-03182,15:78j(b)ss Stockholder Suit,73211008,2026-04-27T22:54:37Z
+2026-04-17,class_action,"MERCURY FINANCIAL, LLC","MAPP v. MERCURY FINANCIAL, LLC","District Court, M.D. North Carolina",1:26-cv-00352,18:1961 Racketeering (RICO) Act,73208003,2026-04-27T22:54:37Z
+2026-04-16,class_action,"EB5 Affiliate Network, LLC","Saurabh v. EB5 Affiliate Network, LLC","District Court, D. Puerto Rico",3:26-cv-01228,28:1331 Fed. Question: Securities Violation,73205558,2026-04-27T22:54:37Z
+2026-04-15,sec_enforcement,Nambiar,Securities And Exchange Commission v. Nambiar,"District Court, N.D. California",5:26-cv-03203,12:22 Securities Fraud,73198411,2026-04-27T22:54:37Z
+2026-04-15,class_action,"BROWN, M.D.","WILSON v. BROWN, M.D.","District Court, D. New Jersey",3:26-cv-03982,15:78m(a) Securities Exchange Act,73195211,2026-04-27T22:54:37Z
+2026-04-14,class_action,"Babcock & Wilcox Enterprises, Inc.","Cho v. Babcock & Wilcox Enterprises, Inc.","District Court, N.D. Ohio",5:26-cv-00886,15:78m(a) Securities Exchange Act,73191647,2026-04-27T22:54:37Z
+2026-04-14,class_action,Fields,Peerally v. Fields,"District Court, N.D. California",3:26-cv-03167,15:78m(a) Securities Exchange Act,73190947,2026-04-27T22:54:37Z
+2026-04-13,class_action,"SAI Fort Myers B, LLC","Tyne v. SAI Fort Myers B, LLC","District Court, M.D. Florida",2:26-cv-01133,15:0078m(a) Securities Exchange Act,73193274,2026-04-27T22:54:37Z
+2026-04-10,class_action,"United Homes Group, Inc.","Kadiyam v. United Homes Group, Inc.","District Court, S.D. New York",1:26-cv-02989,15:78m(a) Securities Exchange Act,73177859,2026-04-27T22:54:37Z

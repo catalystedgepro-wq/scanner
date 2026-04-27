@@ -1,0 +1,471 @@
+{
+  "date": "2026-04-27",
+  "sector_etfs": {
+    "tech": "XLK",
+    "financials": "XLF",
+    "biotech": "XBI",
+    "energy": "XLE",
+    "utilities": "XLU",
+    "real_estate": "XLRE",
+    "consumer": "XLY",
+    "staples": "XLP",
+    "materials": "XLB",
+    "industrials": "XLI",
+    "comms": "XLC",
+    "semis": "SMH"
+  },
+  "correlation_matrix": {
+    "biotech": {
+      "biotech": 1.0,
+      "comms": 0.5821,
+      "consumer": 0.3454,
+      "energy": 0.019,
+      "financials": 0.6018,
+      "industrials": -0.4184,
+      "materials": 0.1738,
+      "real_estate": -0.5052,
+      "semis": 0.1221,
+      "staples": -0.4829,
+      "tech": 0.6428,
+      "utilities": -0.5193
+    },
+    "comms": {
+      "biotech": 0.5821,
+      "comms": 1.0,
+      "consumer": -0.3142,
+      "energy": 0.0867,
+      "financials": 0.6573,
+      "industrials": 0.4539,
+      "materials": 0.2653,
+      "real_estate": 0.1581,
+      "semis": -0.3245,
+      "staples": 0.1492,
+      "tech": -0.0953,
+      "utilities": 0.2164
+    },
+    "consumer": {
+      "biotech": 0.3454,
+      "comms": -0.3142,
+      "consumer": 1.0,
+      "energy": -0.4005,
+      "financials": -0.2101,
+      "industrials": -0.4814,
+      "materials": 0.5993,
+      "real_estate": -0.0701,
+      "semis": 0.9397,
+      "staples": -0.2106,
+      "tech": 0.9345,
+      "utilities": -0.1906
+    },
+    "energy": {
+      "biotech": 0.019,
+      "comms": 0.0867,
+      "consumer": -0.4005,
+      "energy": 1.0,
+      "financials": -0.3861,
+      "industrials": -0.0837,
+      "materials": -0.4763,
+      "real_estate": -0.2982,
+      "semis": -0.3387,
+      "staples": 0.306,
+      "tech": -0.2488,
+      "utilities": -0.2673
+    },
+    "financials": {
+      "biotech": 0.6018,
+      "comms": 0.6573,
+      "consumer": -0.2101,
+      "energy": -0.3861,
+      "financials": 1.0,
+      "industrials": -0.0009,
+      "materials": -0.0576,
+      "real_estate": -0.258,
+      "semis": -0.4309,
+      "staples": -0.5637,
+      "tech": 0.0057,
+      "utilities": -0.1944
+    },
+    "industrials": {
+      "biotech": -0.4184,
+      "comms": 0.4539,
+      "consumer": -0.4814,
+      "energy": -0.0837,
+      "financials": -0.0009,
+      "industrials": 1.0,
+      "materials": 0.3882,
+      "real_estate": 0.8854,
+      "semis": -0.2152,
+      "staples": 0.7782,
+      "tech": -0.6151,
+      "utilities": 0.934
+    },
+    "materials": {
+      "biotech": 0.1738,
+      "comms": 0.2653,
+      "consumer": 0.5993,
+      "energy": -0.4763,
+      "financials": -0.0576,
+      "industrials": 0.3882,
+      "materials": 1.0,
+      "real_estate": 0.6605,
+      "semis": 0.741,
+      "staples": 0.42,
+      "tech": 0.477,
+      "utilities": 0.5861
+    },
+    "real_estate": {
+      "biotech": -0.5052,
+      "comms": 0.1581,
+      "consumer": -0.0701,
+      "energy": -0.2982,
+      "financials": -0.258,
+      "industrials": 0.8854,
+      "materials": 0.6605,
+      "real_estate": 1.0,
+      "semis": 0.228,
+      "staples": 0.8108,
+      "tech": -0.3159,
+      "utilities": 0.992
+    },
+    "semis": {
+      "biotech": 0.1221,
+      "comms": -0.3245,
+      "consumer": 0.9397,
+      "energy": -0.3387,
+      "financials": -0.4309,
+      "industrials": -0.2152,
+      "materials": 0.741,
+      "real_estate": 0.228,
+      "semis": 1.0,
+      "staples": 0.1279,
+      "tech": 0.7936,
+      "utilities": 0.104
+    },
+    "staples": {
+      "biotech": -0.4829,
+      "comms": 0.1492,
+      "consumer": -0.2106,
+      "energy": 0.306,
+      "financials": -0.5637,
+      "industrials": 0.7782,
+      "materials": 0.42,
+      "real_estate": 0.8108,
+      "semis": 0.1279,
+      "staples": 1.0,
+      "tech": -0.3763,
+      "utilities": 0.8072
+    },
+    "tech": {
+      "biotech": 0.6428,
+      "comms": -0.0953,
+      "consumer": 0.9345,
+      "energy": -0.2488,
+      "financials": 0.0057,
+      "industrials": -0.6151,
+      "materials": 0.477,
+      "real_estate": -0.3159,
+      "semis": 0.7936,
+      "staples": -0.3763,
+      "tech": 1.0,
+      "utilities": -0.4197
+    },
+    "utilities": {
+      "biotech": -0.5193,
+      "comms": 0.2164,
+      "consumer": -0.1906,
+      "energy": -0.2673,
+      "financials": -0.1944,
+      "industrials": 0.934,
+      "materials": 0.5861,
+      "real_estate": 0.992,
+      "semis": 0.104,
+      "staples": 0.8072,
+      "tech": -0.4197,
+      "utilities": 1.0
+    }
+  },
+  "sympathy_pairs": [
+    {
+      "sector_a": "real_estate",
+      "sector_b": "utilities",
+      "correlation": 0.992,
+      "strength": 0.992,
+      "polarity": "sympathetic"
+    },
+    {
+      "sector_a": "consumer",
+      "sector_b": "semis",
+      "correlation": 0.9397,
+      "strength": 0.9397,
+      "polarity": "sympathetic"
+    },
+    {
+      "sector_a": "consumer",
+      "sector_b": "tech",
+      "correlation": 0.9345,
+      "strength": 0.9345,
+      "polarity": "sympathetic"
+    },
+    {
+      "sector_a": "industrials",
+      "sector_b": "utilities",
+      "correlation": 0.934,
+      "strength": 0.934,
+      "polarity": "sympathetic"
+    },
+    {
+      "sector_a": "industrials",
+      "sector_b": "real_estate",
+      "correlation": 0.8854,
+      "strength": 0.8854,
+      "polarity": "sympathetic"
+    },
+    {
+      "sector_a": "real_estate",
+      "sector_b": "staples",
+      "correlation": 0.8108,
+      "strength": 0.8108,
+      "polarity": "sympathetic"
+    },
+    {
+      "sector_a": "staples",
+      "sector_b": "utilities",
+      "correlation": 0.8072,
+      "strength": 0.8072,
+      "polarity": "sympathetic"
+    },
+    {
+      "sector_a": "semis",
+      "sector_b": "tech",
+      "correlation": 0.7936,
+      "strength": 0.7936,
+      "polarity": "sympathetic"
+    },
+    {
+      "sector_a": "industrials",
+      "sector_b": "staples",
+      "correlation": 0.7782,
+      "strength": 0.7782,
+      "polarity": "sympathetic"
+    },
+    {
+      "sector_a": "materials",
+      "sector_b": "semis",
+      "correlation": 0.741,
+      "strength": 0.741,
+      "polarity": "sympathetic"
+    },
+    {
+      "sector_a": "materials",
+      "sector_b": "real_estate",
+      "correlation": 0.6605,
+      "strength": 0.6605,
+      "polarity": "sympathetic"
+    },
+    {
+      "sector_a": "comms",
+      "sector_b": "financials",
+      "correlation": 0.6573,
+      "strength": 0.6573,
+      "polarity": "sympathetic"
+    },
+    {
+      "sector_a": "biotech",
+      "sector_b": "tech",
+      "correlation": 0.6428,
+      "strength": 0.6428,
+      "polarity": "sympathetic"
+    },
+    {
+      "sector_a": "industrials",
+      "sector_b": "tech",
+      "correlation": -0.6151,
+      "strength": 0,
+      "polarity": "divergent"
+    },
+    {
+      "sector_a": "biotech",
+      "sector_b": "financials",
+      "correlation": 0.6018,
+      "strength": 0.6018,
+      "polarity": "sympathetic"
+    },
+    {
+      "sector_a": "consumer",
+      "sector_b": "materials",
+      "correlation": 0.5993,
+      "strength": 0.5993,
+      "polarity": "sympathetic"
+    },
+    {
+      "sector_a": "materials",
+      "sector_b": "utilities",
+      "correlation": 0.5861,
+      "strength": 0.5861,
+      "polarity": "sympathetic"
+    },
+    {
+      "sector_a": "biotech",
+      "sector_b": "comms",
+      "correlation": 0.5821,
+      "strength": 0.5821,
+      "polarity": "sympathetic"
+    },
+    {
+      "sector_a": "financials",
+      "sector_b": "staples",
+      "correlation": -0.5637,
+      "strength": 0,
+      "polarity": "divergent"
+    },
+    {
+      "sector_a": "biotech",
+      "sector_b": "utilities",
+      "correlation": -0.5193,
+      "strength": 0,
+      "polarity": "divergent"
+    },
+    {
+      "sector_a": "biotech",
+      "sector_b": "real_estate",
+      "correlation": -0.5052,
+      "strength": 0,
+      "polarity": "divergent"
+    },
+    {
+      "sector_a": "biotech",
+      "sector_b": "staples",
+      "correlation": -0.4829,
+      "strength": 0,
+      "polarity": "divergent"
+    },
+    {
+      "sector_a": "consumer",
+      "sector_b": "industrials",
+      "correlation": -0.4814,
+      "strength": 0,
+      "polarity": "divergent"
+    },
+    {
+      "sector_a": "materials",
+      "sector_b": "tech",
+      "correlation": 0.477,
+      "strength": 0.477,
+      "polarity": "sympathetic"
+    },
+    {
+      "sector_a": "energy",
+      "sector_b": "materials",
+      "correlation": -0.4763,
+      "strength": 0,
+      "polarity": "divergent"
+    },
+    {
+      "sector_a": "comms",
+      "sector_b": "industrials",
+      "correlation": 0.4539,
+      "strength": 0.4539,
+      "polarity": "sympathetic"
+    },
+    {
+      "sector_a": "financials",
+      "sector_b": "semis",
+      "correlation": -0.4309,
+      "strength": 0,
+      "polarity": "divergent"
+    },
+    {
+      "sector_a": "materials",
+      "sector_b": "staples",
+      "correlation": 0.42,
+      "strength": 0.42,
+      "polarity": "sympathetic"
+    },
+    {
+      "sector_a": "tech",
+      "sector_b": "utilities",
+      "correlation": -0.4197,
+      "strength": 0,
+      "polarity": "divergent"
+    },
+    {
+      "sector_a": "biotech",
+      "sector_b": "industrials",
+      "correlation": -0.4184,
+      "strength": 0,
+      "polarity": "divergent"
+    },
+    {
+      "sector_a": "consumer",
+      "sector_b": "energy",
+      "correlation": -0.4005,
+      "strength": 0,
+      "polarity": "divergent"
+    },
+    {
+      "sector_a": "industrials",
+      "sector_b": "materials",
+      "correlation": 0.3882,
+      "strength": 0.3882,
+      "polarity": "sympathetic"
+    },
+    {
+      "sector_a": "energy",
+      "sector_b": "financials",
+      "correlation": -0.3861,
+      "strength": 0,
+      "polarity": "divergent"
+    },
+    {
+      "sector_a": "staples",
+      "sector_b": "tech",
+      "correlation": -0.3763,
+      "strength": 0,
+      "polarity": "divergent"
+    },
+    {
+      "sector_a": "biotech",
+      "sector_b": "consumer",
+      "correlation": 0.3454,
+      "strength": 0.3454,
+      "polarity": "sympathetic"
+    },
+    {
+      "sector_a": "energy",
+      "sector_b": "semis",
+      "correlation": -0.3387,
+      "strength": 0,
+      "polarity": "divergent"
+    },
+    {
+      "sector_a": "comms",
+      "sector_b": "semis",
+      "correlation": -0.3245,
+      "strength": 0,
+      "polarity": "divergent"
+    },
+    {
+      "sector_a": "real_estate",
+      "sector_b": "tech",
+      "correlation": -0.3159,
+      "strength": 0,
+      "polarity": "divergent"
+    },
+    {
+      "sector_a": "comms",
+      "sector_b": "consumer",
+      "correlation": -0.3142,
+      "strength": 0,
+      "polarity": "divergent"
+    },
+    {
+      "sector_a": "energy",
+      "sector_b": "staples",
+      "correlation": 0.306,
+      "strength": 0.306,
+      "polarity": "sympathetic"
+    }
+  ],
+  "ticker_sector_map_count": 16111,
+  "method": "5-day rolling return correlation (Lo & MacKinlay 1990)"
+}

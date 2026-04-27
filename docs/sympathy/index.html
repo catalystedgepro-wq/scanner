@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sympathy Chain Tracker — Sector Spillover Plays | Catalyst Edge</title>
+<meta name="description" content="When one stock moves on a catalyst, peers in the same sector follow. Track sympathy chain events and sector spillover plays from SEC filings.">
+<meta property="og:title" content="Sympathy Chain Tracker — Catalyst Edge">
+<link rel="canonical" href="https://catalystedgescanner.com/sympathy/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#070a12;--surface:#0f1420;--gold:#d4a843;--green:#22c55e;--red:#ef4444;--cyan:#06b6d4;--violet:#8b5cf6;--text:#e2e8f0;--dim:#94a3b8;--muted:#64748b;--border:#1e293b}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
+.wrap{max-width:1100px;margin:0 auto;padding:1.5rem}
+.nav{position:sticky;top:0;z-index:100;background:rgba(7,10,18,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:.75rem 1.5rem;display:flex;align-items:center;gap:1rem}
+.nav a{color:var(--gold);font-weight:600;font-size:.95rem}
+.nav .sep{color:var(--muted)}
+.hero{text-align:center;padding:2.5rem 0 2rem;border-bottom:1px solid var(--border);margin-bottom:1.5rem}
+.hero h1{font-size:clamp(1.5rem,4vw,2.2rem);font-weight:800;line-height:1.2;margin-bottom:.4rem}
+.hero h1 em{font-style:normal;color:var(--violet)}
+.hero .sub{color:var(--dim);font-size:.9rem;max-width:580px;margin:0 auto}
+.stats-bar{display:flex;justify-content:center;gap:2rem;margin:1rem 0;flex-wrap:wrap}
+.sb-item{text-align:center}
+.sb-val{font-size:1.3rem;font-weight:800;color:var(--gold)}
+.sb-lbl{font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.filters{display:flex;gap:8px;margin:1.5rem 0 1rem;flex-wrap:wrap}
+.fbtn{padding:6px 14px;background:var(--surface);border:1px solid var(--border);border-radius:6px;color:var(--dim);font-size:.78rem;font-weight:600;cursor:pointer;font-family:inherit;transition:all .2s}
+.fbtn:hover{border-color:var(--violet);color:var(--violet)}
+.fbtn.active{background:rgba(139,92,246,.12);border-color:var(--violet);color:var(--violet)}
+.chain-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px;margin:1rem 0}
+.chain-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.2rem;transition:border-color .2s}
+.chain-card:hover{border-color:var(--violet)}
+.cc-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:.4rem}
+.cc-trigger{font-size:1.2rem;font-weight:800}
+.cc-score{font-family:'IBM Plex Mono',monospace;font-size:.9rem;font-weight:700;padding:3px 8px;border-radius:6px;background:rgba(139,92,246,.12);color:var(--violet)}
+.cc-sector{display:inline-block;padding:3px 10px;border-radius:12px;font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;background:rgba(6,182,212,.1);color:var(--cyan);margin-bottom:.5rem}
+.cc-form{font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:var(--muted);margin-bottom:.5rem}
+.cc-peers{margin-top:.5rem}
+.cc-peers-label{font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
+.peer-tags{display:flex;gap:4px;flex-wrap:wrap}
+.peer-tag{padding:3px 8px;border-radius:4px;font-size:.72rem;font-weight:600;background:rgba(139,92,246,.08);color:var(--violet);font-family:'IBM Plex Mono',monospace}
+.cc-move{display:flex;gap:1rem;margin-top:.5rem;font-size:.78rem}
+.cc-move .lbl{color:var(--muted)}
+.move-up{color:var(--green);font-weight:700}
+.move-dn{color:var(--red);font-weight:700}
+.move-flat{color:var(--muted)}
+.cc-date{font-size:.72rem;color:var(--muted);margin-top:.4rem}
+.cta-bar{background:var(--surface);border:1px solid var(--gold);border-radius:10px;padding:1.25rem;text-align:center;margin:2rem 0}
+.cta-bar h3{color:var(--gold);font-size:1rem;margin-bottom:.3rem}
+.cta-bar p{color:var(--dim);font-size:.8rem;margin-bottom:.75rem}
+.cta-bar a{display:inline-block;padding:.5rem 1.4rem;background:linear-gradient(135deg,var(--gold),#f1ce88);color:#070a12;font-weight:700;border-radius:6px;font-size:.85rem}
+.explainer{margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border)}
+.explainer h2{font-size:1.1rem;margin-bottom:.8rem}
+.explainer p{color:var(--dim);font-size:.85rem;margin-bottom:.8rem}
+.footer{text-align:center;padding:1.5rem;font-size:.72rem;color:var(--muted);border-top:1px solid var(--border);margin-top:2rem}
+.footer a{color:var(--muted)}
+</style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@800;900&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/lib/cinematic-hero.css">
+  <link rel="stylesheet" href="/lib/cyber-shell.css">
+  <link rel="stylesheet" href="/lib/polish-tokens.css">
+</head>
+<body>
+  <div class="cy-bg" aria-hidden="true"></div>
+  <div class="cy-floor" aria-hidden="true"></div>
+  <div class="cy-vignette" aria-hidden="true"></div>
+  <div class="cy-scan" aria-hidden="true"></div>
+<div class="nav">
+  <a href="/">Catalyst Edge</a>
+  <span class="sep">/</span>
+  <span style="color:var(--dim);font-size:.9rem">Sympathy Chains</span>
+</div>
+<div class="wrap">
+<section class="cin-hero cy-neon-hero cy-shimmer">
+    <div class="cin-grid">
+      <div class="cin-stat-stack">
+        <div class="cin-eyebrow"><span class="cin-live-dot"></span>SYMPATHY CHAINS · LIVE</div>
+        <div class="cin-colossal">
+          <div class="cin-num-row"><span class="cin-num">2nd</span><span class="cin-pct">leg</span></div>
+          <div class="cin-side">
+          <span class="cin-tag"><b>sector</b> sympathy</span>
+          <span class="cin-tag">lead → follow chains</span>
+          <span class="cin-tag">90-day cluster lookback</span>
+          </div>
+        </div>
+        <div class="cin-stamp">SYMPATHY//CHAIN · v1.0 · <b>LIVE</b></div>
+      </div>
+      <div class="cin-h1-block">
+        <div class="cin-h1-eyebrow">🔗 Sympathy Plays · When One Moves, Who Follows?</div>
+        <h1 class="cin-headline">Lead-name moves, sector follows—the <em>sympathy chain</em> is where the <span class="cin-accent">second-leg trade</span> lives.</h1>
+        <p class="cin-lede">Cluster lookback over 90 days surfaces names that move in sympathy with the lead. When the lead fires a catalyst, the followers usually trade with a 30-90 minute lag — that's the second-leg edge.</p>
+        <div class="cin-cta-row">
+          <a href="#symp-table" class="cin-btn-primary">See chains ↓</a>
+          <a href="/scanner/" class="cin-btn-ghost">Open scanner</a>
+        </div>
+        <div class="cin-strip">
+          <div class="cin-cell"><div class="cin-k">Active chains</div><div class="cin-v" id="sm-chains">–</div></div>
+          <div class="cin-cell"><div class="cin-k">Lead names</div><div class="cin-v bull" id="sm-leads">–</div></div>
+          <div class="cin-cell"><div class="cin-k">Followers</div><div class="cin-v gold" id="sm-foll">–</div></div>
+          <div class="cin-cell"><div class="cin-k">Updated</div><div class="cin-v cyan">live</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="stats-bar">
+    <div class="sb-item"><div class="sb-val" id="sy-total">--</div><div class="sb-lbl">Chain Events</div></div>
+    <div class="sb-item"><div class="sb-val" id="sy-sectors" style="color:var(--violet)">--</div><div class="sb-lbl">Sectors Hit</div></div>
+    <div class="sb-item"><div class="sb-val" id="sy-peers">--</div><div class="sb-lbl">Peer Plays</div></div>
+  </div>
+  <div class="filters" id="filters"></div>
+  <div class="chain-grid" id="chain-grid"></div>
+  <div class="cta-bar">
+    <h3>Sympathy alerts before the crowd</h3>
+    <p>Free daily email with sympathy chains, SEC catalysts, and convergence signals at 4 AM ET.</p>
+    <a href="/preview/">Subscribe Free</a>
+  </div>
+  <div class="explainer">
+    <h2>How Sympathy Chains Work</h2>
+    <p>A sympathy play happens when a stock moves on a catalyst (8-K, earnings, FDA decision) and peers in the same sector or industry group move in the same direction — often within 1-2 trading days.</p>
+    <p>We track the trigger ticker, identify its sector peers, and measure the average peer move within T+1 day. High gap scores with multiple peers indicate the strongest sympathy chain setups.</p>
+  </div>
+</div>
+<div class="footer">
+  &copy; 2026 Catalyst Edge &middot;
+  <a href="/">Scanner</a> &middot;
+  <a href="/gaps/">Gaps</a> &middot;
+  <a href="/jackpot/" style="color:#22c55e">🎯 JACKPOT</a>
+  <a href="/dcf/" style="color:#06b6d4">💰 DCF</a> &middot;
+  <a href="/squeeze/">Squeeze</a> &middot;
+  <a href="/insiders/">Insiders</a> &middot;
+  <a href="/darkpool/">Dark Pool</a> &middot;
+  <a href="/convergence/">Convergence</a> &middot;
+  <a href="/deepvalue/">Deep Value</a> &middot;
+  <a href="/mergers/">Mergers</a> &middot;
+  <a href="/smart-money/">Smart Money</a> &middot;
+  <a href="/late-filings/">Late Filings</a> &middot;
+  <a href="/congress/">Congress</a> &middot;
+  <a href="/glossary/">Glossary</a> &middot;
+  Not financial advice.
+</div>
+<script>
+(function(){
+  var allEvents = [];
+  var activeFilter = 'All';
+  var sectorSet = {};
+
+  fetch('/api/sympathy').then(function(r){return r.json()}).then(function(d){
+    allEvents = d.events || [];
+
+    var totalPeers = 0;
+    allEvents.forEach(function(e){
+      var s = e.sector||'other';
+      sectorSet[s] = (sectorSet[s]||0) + 1;
+      if(e.peers) totalPeers += e.peers.split(',').length;
+    });
+
+    document.getElementById('sy-total').textContent = allEvents.length;
+    document.getElementById('sy-sectors').textContent = Object.keys(sectorSet).length;
+    document.getElementById('sy-peers').textContent = totalPeers;
+
+    var filterNames = ['All'];
+    var sortedSectors = Object.keys(sectorSet).sort(function(a,b){return sectorSet[b]-sectorSet[a]});
+    sortedSectors.slice(0,8).forEach(function(s){filterNames.push(s)});
+
+    var filtersDiv = document.getElementById('filters');
+    filterNames.forEach(function(name){
+      var btn = document.createElement('button');
+      btn.className = 'fbtn' + (name === 'All' ? ' active' : '');
+      btn.textContent = name;
+      btn.addEventListener('click', function(){
+        activeFilter = name;
+        var btns = filtersDiv.querySelectorAll('.fbtn');
+        for(var i=0;i<btns.length;i++) btns[i].className='fbtn';
+        btn.className='fbtn active';
+        renderGrid(filterEvents(allEvents));
+      });
+      filtersDiv.appendChild(btn);
+    });
+
+    renderGrid(allEvents);
+  });
+
+  function filterEvents(events){
+    if(activeFilter==='All') return events;
+    return events.filter(function(e){return (e.sector||'').toLowerCase()===activeFilter.toLowerCase()});
+  }
+
+  function renderGrid(events){
+    var grid = document.getElementById('chain-grid');
+    while(grid.firstChild) grid.removeChild(grid.firstChild);
+
+    events.forEach(function(e){
+      var card = document.createElement('div');
+      card.className = 'chain-card';
+
+      var top = document.createElement('div');
+      top.className = 'cc-top';
+      var trigger = document.createElement('span');
+      trigger.className = 'cc-trigger';
+      trigger.textContent = e.trigger_ticker;
+      var score = document.createElement('span');
+      score.className = 'cc-score';
+      score.textContent = parseFloat(e.gap_score||0).toFixed(0);
+      top.appendChild(trigger);
+      top.appendChild(score);
+      card.appendChild(top);
+
+      if(e.sector){
+        var sector = document.createElement('span');
+        sector.className = 'cc-sector';
+        sector.textContent = e.sector;
+        card.appendChild(sector);
+      }
+
+      if(e.form){
+        var form = document.createElement('div');
+        form.className = 'cc-form';
+        form.textContent = 'Catalyst: ' + e.form;
+        card.appendChild(form);
+      }
+
+      if(e.peers){
+        var peersDiv = document.createElement('div');
+        peersDiv.className = 'cc-peers';
+        var label = document.createElement('div');
+        label.className = 'cc-peers-label';
+        label.textContent = 'Sympathy Peers';
+        peersDiv.appendChild(label);
+        var tags = document.createElement('div');
+        tags.className = 'peer-tags';
+        e.peers.split(',').forEach(function(p){
+          if(p.trim()){
+            var tag = document.createElement('span');
+            tag.className = 'peer-tag';
+            tag.textContent = p.trim();
+            tags.appendChild(tag);
+          }
+        });
+        peersDiv.appendChild(tags);
+        card.appendChild(peersDiv);
+      }
+
+      var moveDiv = document.createElement('div');
+      moveDiv.className = 'cc-move';
+      var triggerMove = parseFloat(e.move_pct_t1day)||0;
+      var peerMove = parseFloat(e.peer_avg_move_pct_t1day)||0;
+      if(triggerMove){
+        var m1 = document.createElement('span');
+        var l1 = document.createElement('span');
+        l1.className = 'lbl';
+        l1.textContent = 'Trigger: ';
+        var v1 = document.createElement('span');
+        v1.className = triggerMove>0?'move-up':triggerMove<0?'move-dn':'move-flat';
+        v1.textContent = (triggerMove>0?'+':'')+triggerMove.toFixed(1)+'%';
+        m1.appendChild(l1);m1.appendChild(v1);
+        moveDiv.appendChild(m1);
+      }
+      if(peerMove){
+        var m2 = document.createElement('span');
+        var l2 = document.createElement('span');
+        l2.className = 'lbl';
+        l2.textContent = 'Peers: ';
+        var v2 = document.createElement('span');
+        v2.className = peerMove>0?'move-up':peerMove<0?'move-dn':'move-flat';
+        v2.textContent = (peerMove>0?'+':'')+peerMove.toFixed(1)+'%';
+        m2.appendChild(l2);m2.appendChild(v2);
+        moveDiv.appendChild(m2);
+      }
+      if(triggerMove || peerMove) card.appendChild(moveDiv);
+
+      if(e.date){
+        var dt = document.createElement('div');
+        dt.className = 'cc-date';
+        dt.textContent = e.date;
+        card.appendChild(dt);
+      }
+
+      grid.appendChild(card);
+    });
+  }
+})();
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KV1VDK22VC"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-KV1VDK22VC');</script>
+</body>
+</html>

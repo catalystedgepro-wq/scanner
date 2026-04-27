@@ -1,0 +1,9 @@
+site_id,site_name,region,flow_cfs_latest,flow_cfs_avg30,pct_vs_30d_avg,trade_signal,last_updated,captured_at
+08374550,Rio Grande at Foster Ranch,tx_ag,34,121,28.4,AG_STRESS (bearish AGCO/DE; bullish grain MOS/CF),2026-04-26T00:00:00.000,2026-04-27T23:00:51Z
+05082500,Red River at Grand Forks,plains_grain,6230,10270,60.7,normal,2026-04-26T00:00:00.000,2026-04-27T23:00:51Z
+07022000,Mississippi at Thebes IL,midwest_barge,429000,312059,137.5,normal,2026-04-26T00:00:00.000,2026-04-27T23:00:51Z
+02232500,St. Johns at Deland FL,se_citrus,483,354,136.3,normal,2026-04-26T00:00:00.000,2026-04-27T23:00:51Z
+07010000,Mississippi at St. Louis,midwest_barge,373000,293629,127.0,normal,2026-04-26T00:00:00.000,2026-04-27T23:00:51Z
+09428500,Colorado at Imperial Dam,lower_basin,738,893,82.6,normal,2026-04-27T00:00:00.000,2026-04-27T23:00:51Z
+09380000,Colorado at Lees Ferry AZ,western_compact,7140,8093,88.2,normal,2026-04-26T00:00:00.000,2026-04-27T23:00:51Z
+14105700,Columbia at The Dalles OR,nw_hydropower,192000,184914,103.8,normal,2026-04-26T00:00:00.000,2026-04-27T23:00:51Z

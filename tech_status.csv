@@ -1,0 +1,206 @@
+vendor,created_at,updated_at,status,impact,tickers,name,url,captured_at
+github,2026-04-27T16:31:07,2026-04-27T22:46:42,resolved,critical,MSFT,GitHub search is degraded,https://stspg.io/x5cnngb211t7,2026-04-27T22:54:39Z
+anthropic,2026-04-24T02:55:26,2026-04-24T03:34:28,resolved,critical,GOOGL|AMZN,Elevated errors on Sonnet 4.6,https://stspg.io/1bbclk6dkxh7,2026-04-27T22:54:39Z
+github,2026-04-23T16:12:47,2026-04-23T17:30:49,resolved,critical,MSFT,Incident with multiple GitHub services,https://stspg.io/1wm8c7d53454,2026-04-27T22:54:39Z
+github,2026-04-22T15:35:45,2026-04-27T21:28:07,resolved,critical,MSFT,Disruption with Copilot chat and Copilot Coding Agent,https://stspg.io/0m0g0r5htdxy,2026-04-27T22:54:39Z
+openai,2026-04-15T18:32:35,2026-04-15T18:55:03,resolved,critical,MSFT|NVDA,ChatGPT FedRAMP workspaces not loading,,2026-04-27T22:54:39Z
+anthropic,2026-04-15T14:53:02,2026-04-15T17:42:57,resolved,critical,GOOGL|AMZN,"Elevated errors on Claude.ai, API, Claude Code",https://stspg.io/k80mg4g9k3sf,2026-04-27T22:54:39Z
+anthropic,2026-04-13T15:40:43,2026-04-13T16:35:58,resolved,critical,GOOGL|AMZN,Claude.ai down,https://stspg.io/b0rjmf00qb07,2026-04-27T22:54:39Z
+snowflake,2026-04-07T18:26:15,2026-04-15T00:32:54,postmortem,critical,SNOW,Azure - East US 2 (Virginia): INC0155020,https://stspg.io/yqgmkmg47jhn,2026-04-27T22:54:39Z
+anthropic,2026-04-07T14:32:10,2026-04-07T15:59:16,resolved,critical,GOOGL|AMZN,Elevated errors on Claude.ai,https://stspg.io/jkzylwdkf66g,2026-04-27T22:54:39Z
+mongodb,2026-04-27T17:16:46,2026-04-27T20:50:07,resolved,major,MDB,Increase in Billing for Backup Usage,https://stspg.io/ryk00jrqkw7w,2026-04-27T22:54:39Z
+anthropic,2026-04-24T17:03:54,2026-04-24T17:32:16,resolved,major,GOOGL|AMZN,Issues with sign-ups on platform.claude.com,https://stspg.io/6f9452dhsjt6,2026-04-27T22:54:39Z
+datadog,2026-04-24T12:27:19,2026-04-24T12:50:36,resolved,major,DDOG,Delays in AWS and Azure cloud integration metrics ingestion,https://stspg.io/xw01xpvggm3n,2026-04-27T22:54:39Z
+openai,2026-04-22T00:56:29,2026-04-22T03:35:13,resolved,major,MSFT|NVDA,ChatGPT free users are seeing errors when having conversations,,2026-04-27T22:54:39Z
+openai,2026-04-20T14:35:33,2026-04-24T22:55:50,resolved,major,MSFT|NVDA,"Users unable to load ChatGPT, Codex and API Platform",,2026-04-27T22:54:39Z
+github,2026-04-20T13:28:48,2026-04-24T18:44:43,resolved,major,MSFT,Partial degradation for code scanning default setup and for code quality,https://stspg.io/qxk1qwhj9xdd,2026-04-27T22:54:39Z
+anthropic,2026-04-20T06:14:02,2026-04-20T07:25:21,resolved,major,GOOGL|AMZN,Claude Sonnet 4.5 error spike,https://stspg.io/9xlxt35zjzcp,2026-04-27T22:54:39Z
+discord,2026-04-18T19:37:27,2026-04-18T20:52:20,resolved,major,,User Profile Errors,https://stspg.io/jvy2q3ghtcyn,2026-04-27T22:54:39Z
+mongodb,2026-04-17T17:03:13,2026-04-21T13:45:37,resolved,major,MDB,MongoDB Atlas BI Connector: Connections and queries fail,https://stspg.io/gg0lkx6qf43g,2026-04-27T22:54:39Z
+anthropic,2026-04-16T19:24:38,2026-04-16T21:29:01,resolved,major,GOOGL|AMZN,Claude Cowork not starting for some users,https://stspg.io/zv6xsc3wm28c,2026-04-27T22:54:39Z
+github,2026-04-16T15:06:56,2026-04-21T15:52:29,resolved,major,MSFT,Incident with Codespaces,https://stspg.io/1pw46p8cqh5s,2026-04-27T22:54:39Z
+snowflake,2026-04-16T14:08:34,2026-04-23T22:14:43,postmortem,major,SNOW,GCP - US Central 1 (Iowa): INC0155608,https://stspg.io/vx546sd87qjx,2026-04-27T22:54:39Z
+datadog,2026-04-15T18:38:22,2026-04-15T20:37:38,resolved,major,DDOG,Delayed Metrics,https://stspg.io/32s2j42tn8xz,2026-04-27T22:54:39Z
+github,2026-04-13T19:56:04,2026-04-16T23:53:42,resolved,major,MSFT,Incident with Pages,https://stspg.io/4fgzqt720l93,2026-04-27T22:54:39Z
+anthropic,2026-04-11T00:00:20,2026-04-11T00:00:59,resolved,major,GOOGL|AMZN,Email login down,https://stspg.io/tp29skc2n4p9,2026-04-27T22:54:39Z
+datadog,2026-04-10T10:54:11,2026-04-10T17:14:38,resolved,major,DDOG,"Notifications to Pagerduty, VictorOps, Slack, Webhook, Microsoft Teams and OpsGenie are not delivered",https://stspg.io/18986pkc2dgr,2026-04-27T22:54:39Z
+github,2026-04-09T16:20:03,2026-04-16T13:17:39,resolved,major,MSFT,Disruption with some GitHub services,https://stspg.io/h8kh83zv9jyr,2026-04-27T22:54:39Z
+github,2026-04-09T09:50:21,2026-04-16T13:20:53,resolved,major,MSFT,Disruption with some GitHub services,https://stspg.io/v15brqnhy95t,2026-04-27T22:54:39Z
+anthropic,2026-04-08T06:23:25,2026-04-08T09:33:39,resolved,major,GOOGL|AMZN,Sonnet 4.6 elevated rate of errors,https://stspg.io/9p1s3snnkxrj,2026-04-27T22:54:39Z
+openai,2026-04-07T10:27:25,2026-04-07T11:49:38,resolved,major,MSFT|NVDA,Some users may experience issues accessing the ChatGPT website on VPN,,2026-04-27T22:54:39Z
+anthropic,2026-04-06T15:45:36,2026-04-06T17:16:41,resolved,major,GOOGL|AMZN,Elevated errors on Claude.ai,https://stspg.io/727c89jg5cdb,2026-04-27T22:54:39Z
+openai,2026-04-06T10:07:16,2026-04-06T10:39:36,resolved,major,MSFT|NVDA,GET /v1/responses endpoint is currently down and unable to serve requests,,2026-04-27T22:54:39Z
+anthropic,2026-04-03T18:12:45,2026-04-03T19:21:08,resolved,major,GOOGL|AMZN,Elevated errors on requests to Claude Sonnet 4.6,https://stspg.io/n5n5mg7xv9d8,2026-04-27T22:54:39Z
+openai,2026-04-02T14:17:56,2026-04-02T17:49:44,resolved,major,MSFT|NVDA,ChatGPT Dictation Elevated Error Rate,,2026-04-27T22:54:39Z
+anthropic,2026-04-01T22:15:35,2026-04-01T22:16:55,resolved,major,GOOGL|AMZN,Errors on the Claude.ai desktop application,https://stspg.io/tfgv19v6g9vk,2026-04-27T22:54:39Z
+github,2026-04-01T16:06:11,2026-04-02T03:17:14,resolved,major,MSFT,GitHub audit logs are unavailable,https://stspg.io/vs91g30yd70s,2026-04-27T22:54:39Z
+github,2026-04-01T15:02:54,2026-04-10T19:02:47,resolved,major,MSFT,Disruption with GitHub's code search,https://stspg.io/1zgx17jdj4k7,2026-04-27T22:54:39Z
+anthropic,2026-04-01T09:06:18,2026-04-01T10:40:39,resolved,major,GOOGL|AMZN,Elevated errors on requests to Claude Opus 4.6,https://stspg.io/6mq5vq24mwm8,2026-04-27T22:54:39Z
+anthropic,2026-04-01T07:01:04,2026-04-01T07:04:38,resolved,major,GOOGL|AMZN,Elevated timeouts on requests to Claude Opus 4.6 and Sonnet 4.6,https://stspg.io/0h1g3bkh1v1q,2026-04-27T22:54:39Z
+github,2026-04-27T16:48:18,2026-04-27T19:02:59,resolved,minor,MSFT,Disruption with some GitHub services,https://stspg.io/sqvl4sp1cfgz,2026-04-27T22:54:39Z
+twilio,2026-04-27T14:29:28,2026-04-27T15:46:55,monitoring,minor,TWLO,SMS Delivery Delays and Failures From a Subset of Twilio Alphanumeric Sender IDs and Long Codes to Jazz Pakistan,https://stspg.io/h493df108p7r,2026-04-27T22:54:39Z
+twilio,2026-04-27T08:44:27,2026-04-27T12:36:22,identified,minor,TWLO,SMS Delivery Delays from Twilio Phone Numbers to Orange Cameroon,https://stspg.io/tw0bwb92mpmh,2026-04-27T22:54:39Z
+cloudflare,2026-04-27T06:15:21,2026-04-27T07:09:24,resolved,minor,NET,Turnstile Challenge Issues,https://stspg.io/5tw81b1dw64k,2026-04-27T22:54:39Z
+cloudflare,2026-04-27T04:25:55,2026-04-27T04:50:49,resolved,minor,NET,Network Performance Issues in Brazil,https://stspg.io/9tf18yqjsvwm,2026-04-27T22:54:39Z
+twilio,2026-04-26T21:28:56,2026-04-26T21:59:11,resolved,minor,TWLO,Programmable Messaging - Service Interruption With Programmable Messaging for a Percentage of Messaging Services,https://stspg.io/1ybh5fqcy7sg,2026-04-27T22:54:39Z
+twilio,2026-04-25T14:00:27,2026-04-26T14:10:37,resolved,minor,TWLO,SMS Delivery Failures from Twilio to Telefonica Peru,https://stspg.io/qxpm82z7f0fc,2026-04-27T22:54:39Z
+anthropic,2026-04-25T08:43:51,2026-04-25T11:58:15,resolved,minor,GOOGL|AMZN,Elevated errors on Claude Opus 4.7,https://stspg.io/lvvp8ds1fzm1,2026-04-27T22:54:39Z
+anthropic,2026-04-25T07:48:30,2026-04-25T08:37:30,resolved,minor,GOOGL|AMZN,Elevated errors on Claude Opus 4.7,https://stspg.io/4zxh90tl95xk,2026-04-27T22:54:39Z
+anthropic,2026-04-25T01:45:32,2026-04-25T02:35:50,resolved,minor,GOOGL|AMZN,Claude Code v2.1.120 Crashes on Startup,https://stspg.io/7l6byl14vf9m,2026-04-27T22:54:39Z
+anthropic,2026-04-25T01:35:55,2026-04-25T02:34:30,resolved,minor,GOOGL|AMZN,Elevated error rates on Claude Opus 4.7,https://stspg.io/5vfcjppbplnt,2026-04-27T22:54:39Z
+twilio,2026-04-25T01:16:52,2026-04-25T17:46:36,resolved,minor,TWLO,SMS Delivery Delays from Twilio to Etisalat Afghanistan,https://stspg.io/dwn0brf34rfg,2026-04-27T22:54:39Z
+openai,2026-04-24T21:24:59,2026-04-24T22:15:07,resolved,minor,MSFT|NVDA,Elevated errors on model gpt-5.5 in codex,,2026-04-27T22:54:39Z
+github,2026-04-24T19:02:39,2026-04-25T00:36:04,resolved,minor,MSFT,Delays with Actions Jobs for Larger Runners using VNet Injection in the East US region,https://stspg.io/mcrpvdrwjzf3,2026-04-27T22:54:39Z
+twilio,2026-04-24T17:04:50,2026-04-24T21:31:32,resolved,minor,TWLO,Delays in Whatsapp Template Approvals,https://stspg.io/btq3qjh2hhcl,2026-04-27T22:54:39Z
+cloudflare,2026-04-24T14:34:53,2026-04-24T16:14:21,resolved,minor,NET,WARP connectivity issues in Bulgaria,https://stspg.io/78ntkzt74f6g,2026-04-27T22:54:39Z
+anthropic,2026-04-24T10:05:59,2026-04-24T10:59:52,resolved,minor,GOOGL|AMZN,Elevated errors on Claude Opus 4.7,https://stspg.io/qzp2n5sx9zvd,2026-04-27T22:54:39Z
+cloudflare,2026-04-24T03:46:59,2026-04-24T03:48:00,resolved,minor,NET,Network Performance Issues in Miami,https://stspg.io/lmmgw8jsv440,2026-04-27T22:54:39Z
+cloudflare,2026-04-24T02:40:12,2026-04-24T10:35:25,resolved,minor,NET,Cloudflare Health check issues,https://stspg.io/ft6dsfgmrcpv,2026-04-27T22:54:39Z
+cloudflare,2026-04-24T00:35:23,2026-04-24T09:47:14,resolved,minor,NET,Load Balancing Dashboard Issues,https://stspg.io/2nh93s2fb279,2026-04-27T22:54:39Z
+twilio,2026-04-23T23:05:32,2026-04-23T23:40:17,resolved,minor,TWLO,User Authentication Identity Gateway API Failure Increase in United States,https://stspg.io/k6mnvmlrv2s5,2026-04-27T22:54:39Z
+cloudflare,2026-04-23T21:05:59,2026-04-24T23:53:43,resolved,minor,NET,Intermittent 5xx errors for Cloudflare Access authentication requests,https://stspg.io/q3f65t2gdy8w,2026-04-27T22:54:39Z
+github,2026-04-23T19:50:51,2026-04-26T18:15:30,resolved,minor,MSFT,Incident with Pull Requests,https://stspg.io/byp3p9jymrpl,2026-04-27T22:54:39Z
+github,2026-04-23T19:28:42,2026-04-23T19:42:25,resolved,minor,MSFT,Disruption with users unable to start Claude and Codex agent task from the web,https://stspg.io/nwmzvw3twyyg,2026-04-27T22:54:39Z
+openai,2026-04-23T18:23:01,2026-04-23T20:29:59,resolved,minor,MSFT|NVDA,Elevated errors in Codex,,2026-04-27T22:54:39Z
+cloudflare,2026-04-23T17:03:31,2026-04-23T20:34:31,resolved,minor,NET,Web Analytics Delays,https://stspg.io/f5nt37xkcs2z,2026-04-27T22:54:39Z
+openai,2026-04-23T16:44:18,2026-04-23T17:57:19,resolved,minor,MSFT|NVDA,Elevated error rates and latency for Moderation API,,2026-04-27T22:54:39Z
+anthropic,2026-04-23T15:29:04,2026-04-23T15:59:21,resolved,minor,GOOGL|AMZN,Elevated errors on Claude Opus 4.7,https://stspg.io/pkskbt30gw7r,2026-04-27T22:54:39Z
+github,2026-04-23T14:40:17,2026-04-23T15:18:41,resolved,minor,MSFT,Investigating errors on GitHub,https://stspg.io/v510xk27crlr,2026-04-27T22:54:39Z
+twilio,2026-04-23T11:16:26,2026-04-23T13:37:57,resolved,minor,TWLO,Delay in Transcription Processing,https://stspg.io/w571w0qhh7zh,2026-04-27T22:54:39Z
+cloudflare,2026-04-23T10:37:29,2026-04-23T11:48:33,resolved,minor,NET,Cloudflare Dashboard API Issues Affecting R2 Buckets,https://stspg.io/dr2wr5zr3gn4,2026-04-27T22:54:39Z
+twilio,2026-04-23T10:31:40,2026-04-23T14:46:20,resolved,minor,TWLO,Intermittent Issues with API Recording Downloads,https://stspg.io/wm4zr9fdzjmd,2026-04-27T22:54:39Z
+twilio,2026-04-23T08:44:20,2026-04-23T08:44:37,resolved,minor,TWLO,SMS Delivery Delays and Failures from Twilio Numbers to Telefonica O2 UK,https://stspg.io/kkmwxvyqxn18,2026-04-27T22:54:39Z
+twilio,2026-04-23T08:13:08,2026-04-23T13:28:04,resolved,minor,TWLO,SMS Delivery Delays from Twilio to Antel Uruguay,https://stspg.io/lf811x54ylj7,2026-04-27T22:54:39Z
+twilio,2026-04-23T07:07:19,2026-04-23T15:06:40,resolved,minor,TWLO,SMS Delivery Delays and Failures from Twilio to Etisalat Afghanistan,https://stspg.io/ptq6z6jh4nfn,2026-04-27T22:54:39Z
+cloudflare,2026-04-23T03:57:10,2026-04-23T04:36:26,resolved,minor,NET,Network Connectivity Issues in Ashburn Virginia Area.,https://stspg.io/r2zsf7jglg1z,2026-04-27T22:54:39Z
+anthropic,2026-04-23T00:41:43,2026-04-23T02:09:00,resolved,minor,GOOGL|AMZN,MCP apps unavailable on Claude.ai,https://stspg.io/rx62k66jm0lj,2026-04-27T22:54:39Z
+twilio,2026-04-23T00:39:41,2026-04-23T10:46:16,resolved,minor,TWLO,SMS Delivery Delays from Twilio to Orange Cameroon,https://stspg.io/zqm5fb0mtjzg,2026-04-27T22:54:39Z
+zoom,2026-04-22T21:11:17,2026-04-22T21:42:44,resolved,minor,ZM,Service Degradation Affecting Zoom Phone Services in North America.,https://stspg.io/qpx6ghlbp6mj,2026-04-27T22:54:39Z
+cloudflare,2026-04-22T20:46:49,2026-04-22T22:37:37,resolved,minor,NET,Cloudflare Registration Data Access Protocol (RDAP) Issues,https://stspg.io/q1hr4tb3zgf5,2026-04-27T22:54:39Z
+github,2026-04-22T19:53:49,2026-04-27T20:53:58,resolved,minor,MSFT,Disruption with some GitHub services,https://stspg.io/xmhs8h2d6zlj,2026-04-27T22:54:39Z
+cloudflare,2026-04-22T15:34:01,2026-04-22T16:21:07,resolved,minor,NET,Email Delivery Delays,https://stspg.io/9p4dqdqmxqsh,2026-04-27T22:54:39Z
+twilio,2026-04-22T14:35:02,2026-04-22T21:16:14,resolved,minor,TWLO,SMS Delivery Delays from Twilio to Tigo Honduras,https://stspg.io/fkd8v6m7mgqf,2026-04-27T22:54:39Z
+openai,2026-04-22T13:51:00,2026-04-22T19:23:34,resolved,minor,MSFT|NVDA,"Enterprise, business & education workspaces seeing elevated rate of conversation errors",,2026-04-27T22:54:39Z
+cloudflare,2026-04-22T13:01:39,2026-04-22T13:53:46,resolved,minor,NET,Analytics Engine API increased errors,https://stspg.io/2d4m2j8rvr99,2026-04-27T22:54:39Z
+twilio,2026-04-22T11:01:54,2026-04-22T14:25:58,resolved,minor,TWLO,SMS Delivery Failures from Twilio Phone Numbers to Movicel Angola,https://stspg.io/6ptgmhs9rmj4,2026-04-27T22:54:39Z
+twilio,2026-04-22T09:32:12,2026-04-22T12:13:39,resolved,minor,TWLO,Issues with Inbound PSTN Call Verification,https://stspg.io/pz29044dqlmt,2026-04-27T22:54:39Z
+twilio,2026-04-22T08:59:15,2026-04-22T15:08:33,resolved,minor,TWLO,SMS Delivery Delays from Twilio Phone Numbers to Movistar Chile,https://stspg.io/6wn8f8wj01bl,2026-04-27T22:54:39Z
+cloudflare,2026-04-22T08:30:33,2026-04-22T14:42:07,resolved,minor,NET,Zone Activation Delays,https://stspg.io/7npv1q05wy5d,2026-04-27T22:54:39Z
+twilio,2026-04-22T03:33:18,2026-04-22T06:19:21,resolved,minor,TWLO,SMS Delivery Receipt Delays from Twilio to Multiple Networks in United Kingdom,https://stspg.io/4z1l1k7xl0s0,2026-04-27T22:54:39Z
+cloudflare,2026-04-21T19:36:02,2026-04-21T21:22:37,resolved,minor,NET,Cloudflare Gateway HTTP Logs issues,https://stspg.io/hk9hx1791nv9,2026-04-27T22:54:39Z
+cloudflare,2026-04-21T18:09:32,2026-04-21T20:19:39,resolved,minor,NET,Page Rules with Host Header Override issues,https://stspg.io/9p9vgg6l0pxv,2026-04-27T22:54:39Z
+cloudflare,2026-04-21T17:46:46,2026-04-21T21:30:17,resolved,minor,NET,Investigating potential impact to Realtime services in Bombay,https://stspg.io/lh8twdj7dxvy,2026-04-27T22:54:39Z
+cloudflare,2026-04-21T16:48:00,2026-04-22T10:21:40,resolved,minor,NET,Unavailability of Sampled Logs and Suspicious Activity in Security Analytics,https://stspg.io/wjg0ls664z8s,2026-04-27T22:54:39Z
+cloudflare,2026-04-21T16:03:06,2026-04-21T18:03:05,resolved,minor,NET,"Network Performance Issues in Seattle, Washington",https://stspg.io/tbl4c1v3nwvg,2026-04-27T22:54:39Z
+cloudflare,2026-04-21T15:46:28,2026-04-21T18:07:41,resolved,minor,NET,Cloudflare Pages build issues,https://stspg.io/5blp49sjrlpr,2026-04-27T22:54:39Z
+github,2026-04-21T15:03:21,2026-04-22T01:24:13,resolved,minor,MSFT,Disruption with projects service,https://stspg.io/z7byhh6vyyrb,2026-04-27T22:54:39Z
+cloudflare,2026-04-21T15:02:55,2026-04-21T16:49:16,resolved,minor,NET,Log Explorer Issues,https://stspg.io/1mk2pp00c8wq,2026-04-27T22:54:39Z
+cloudflare,2026-04-21T12:58:49,2026-04-22T03:37:47,resolved,minor,NET,Cloudflare Access Availability Issues,https://stspg.io/f3wd3n0mh3br,2026-04-27T22:54:39Z
+twilio,2026-04-21T09:54:26,2026-04-21T14:44:12,resolved,minor,TWLO,SMS Delivery Delays from Twilio to MTN Benin,https://stspg.io/n3x1r5vyz16x,2026-04-27T22:54:39Z
+twilio,2026-04-21T09:53:20,2026-04-21T13:39:54,resolved,minor,TWLO,Degraded service for Voice and Video,https://stspg.io/b7jp0dx37wd9,2026-04-27T22:54:39Z
+twilio,2026-04-21T05:21:28,2026-04-21T12:32:57,resolved,minor,TWLO,Issue with Phone Number Port In,https://stspg.io/zj7yvmxf6l6g,2026-04-27T22:54:39Z
+cloudflare,2026-04-21T04:58:39,2026-04-21T05:27:15,resolved,minor,NET,"Degraded network performance for some users around Dallas, Texas",https://stspg.io/06f1463fh8rs,2026-04-27T22:54:39Z
+twilio,2026-04-21T03:46:32,2026-04-21T12:31:55,resolved,minor,TWLO,SMS Delivery Delays from a Subset of Twilio Short Codes and Long Codes to United States,https://stspg.io/7jfy19g07w8x,2026-04-27T22:54:39Z
+cloudflare,2026-04-21T03:25:08,2026-04-21T06:56:14,resolved,minor,NET,Increased HTTP 5xx Errors in Sydney,https://stspg.io/05hx1cvzjg5k,2026-04-27T22:54:39Z
+twilio,2026-04-21T03:04:35,2026-04-21T06:06:45,resolved,minor,TWLO,SMS Delivery Delays from a Subset of Twilio Short Codes to T-Mobile United States,https://stspg.io/yh3npkbjmwxh,2026-04-27T22:54:39Z
+cloudflare,2026-04-21T03:00:00,2026-04-22T17:56:44,resolved,minor,NET,"Issues with Cloudflare One Appliance, Cloudflare Tunnel, and Cloudflare Mesh connections on 2026-04-21",https://stspg.io/1nxxtxkbx9fp,2026-04-27T22:54:39Z
+openai,2026-04-21T02:34:32,2026-04-21T04:33:18,resolved,minor,MSFT|NVDA,Some users may encounter issues with GPT-5.4-C model in Codex,,2026-04-27T22:54:39Z
+openai,2026-04-20T23:16:43,2026-04-20T23:42:43,resolved,minor,MSFT|NVDA,Some users will see higher error rates on Codex,,2026-04-27T22:54:39Z
+openai,2026-04-20T17:29:30,2026-04-20T19:17:46,resolved,minor,MSFT|NVDA,Elevated errors for ChatGPT conversations in Europe,,2026-04-27T22:54:39Z
+cloudflare,2026-04-20T17:00:00,2026-04-22T08:38:06,resolved,minor,NET,Network Performance Issues in parts of Asia and Europe.,https://stspg.io/8zx8mvdxwcg9,2026-04-27T22:54:39Z
+anthropic,2026-04-20T13:31:05,2026-04-20T14:21:06,resolved,minor,GOOGL|AMZN,Elevated errors for uploading files,https://stspg.io/85x6j0cg0yhs,2026-04-27T22:54:39Z
+twilio,2026-04-20T13:15:26,2026-04-20T17:17:59,resolved,minor,TWLO,MMS Delivery Receipt Delays and Delivery Failures between a Subset of Twilio Short Codes and Multiple Networks in United States,https://stspg.io/gylxfs2dyfzf,2026-04-27T22:54:39Z
+twilio,2026-04-20T10:33:55,2026-04-22T08:13:29,resolved,minor,TWLO,Customers Delayed for Emergency Address Registrations,https://stspg.io/sc8nm669lcy7,2026-04-27T22:54:39Z
+cloudflare,2026-04-20T10:13:18,2026-04-20T23:04:17,resolved,minor,NET,Rulesets Rate Limiting accuracy,https://stspg.io/3mmqvlvvynx0,2026-04-27T22:54:39Z
+twilio,2026-04-20T08:39:11,2026-04-20T13:55:04,resolved,minor,TWLO,SMS Delivery Delays from a Subset of Twilio Alphanumeric Sender IDs and Long Codes to MTN Ghana,https://stspg.io/h8qzc12n9y1q,2026-04-27T22:54:39Z
+cloudflare,2026-04-20T05:01:37,2026-04-20T05:55:23,resolved,minor,NET,Issues solving Challenges,https://stspg.io/lsx7tm6wc4xx,2026-04-27T22:54:39Z
+twilio,2026-04-20T03:28:39,2026-04-20T06:48:50,resolved,minor,TWLO,MMS Delivery Delays from a Subset of Twilio Phone Numbers to United States,https://stspg.io/6mndk9t5szdk,2026-04-27T22:54:39Z
+zoom,2026-04-19T23:05:56,2026-04-20T03:06:28,resolved,minor,ZM,Service Degradation Affecting Live Transcriptions in Zoom Client 7.0.0 and Above,https://stspg.io/wjdnf9j0lmfp,2026-04-27T22:54:39Z
+cloudflare,2026-04-19T05:07:45,2026-04-19T05:20:35,resolved,minor,NET,R2 customers may see an increase of HTTP 500s in KIX,https://stspg.io/59f74034q1bf,2026-04-27T22:54:39Z
+twilio,2026-04-18T23:40:20,2026-04-20T00:08:49,resolved,minor,TWLO,SMS Delivery Delays from Twilio to Tigo Honduras,https://stspg.io/wzpmd6bf7q6m,2026-04-27T22:54:39Z
+twilio,2026-04-18T18:25:34,2026-04-19T07:50:57,resolved,minor,TWLO,Voice Call Failures From Networks to Twilio Norway Phone Numbers,https://stspg.io/jg1k25sl54kz,2026-04-27T22:54:39Z
+cloudflare,2026-04-18T16:36:31,2026-04-21T13:27:58,resolved,minor,NET,WARP connectivity,https://stspg.io/325rcprhq75l,2026-04-27T22:54:39Z
+twilio,2026-04-18T13:09:28,2026-04-18T16:56:55,resolved,minor,TWLO,SMS Delivery Delays from Twilio to Multiple Networks in India,https://stspg.io/qs1jp8lb2nx2,2026-04-27T22:54:39Z
+cloudflare,2026-04-18T09:42:33,2026-04-20T16:27:20,resolved,minor,NET,HTTP Log Analytics Issue,https://stspg.io/z7555fn7b5zz,2026-04-27T22:54:39Z
+cloudflare,2026-04-17T22:17:48,2026-04-18T02:18:50,resolved,minor,NET,Cloudflare Workers AI Issues,https://stspg.io/59thrhmf2jzq,2026-04-27T22:54:39Z
+cloudflare,2026-04-17T21:50:37,2026-04-18T02:00:29,resolved,minor,NET,DNS resolution intermittently failing for .co domains,https://stspg.io/lfrt10h5kw0p,2026-04-27T22:54:39Z
+cloudflare,2026-04-17T20:19:32,2026-04-17T20:31:53,resolved,minor,NET,Increase in API errors and latency,https://stspg.io/s9rvn0m28nkd,2026-04-27T22:54:39Z
+twilio,2026-04-17T20:00:00,2026-04-17T23:31:30,resolved,minor,TWLO,RCS Messages and Receipts are delayed on AT&T Network,https://stspg.io/x4qj3pqxy0v7,2026-04-27T22:54:39Z
+zoom,2026-04-17T19:29:05,2026-04-18T00:22:56,resolved,minor,ZM,Service Degradation Affecting SMS Delivery in North America Region.,https://stspg.io/p5bmppq36bgk,2026-04-27T22:54:39Z
+anthropic,2026-04-17T18:59:56,2026-04-17T19:56:32,resolved,minor,GOOGL|AMZN,Errors uploading documents to Google Drive in Claude.ai,https://stspg.io/1085mzzhwf2v,2026-04-27T22:54:39Z
+twilio,2026-04-17T18:58:04,2026-04-18T07:36:00,resolved,minor,TWLO,SMS and MMS Delivery Delays and Failures Between Twilio and AT&T in United States,https://stspg.io/vt6j6031fb8j,2026-04-27T22:54:39Z
+cloudflare,2026-04-17T18:01:21,2026-04-17T19:50:39,resolved,minor,NET,Increased errors in Seattle or Argo Smart Routing,https://stspg.io/fy74hfnqftkg,2026-04-27T22:54:39Z
+cloudflare,2026-04-17T16:57:33,2026-04-17T17:23:17,resolved,minor,NET,Elevated 502 errors returned from some locations,https://stspg.io/n9kg418k1vdv,2026-04-27T22:54:39Z
+cloudflare,2026-04-17T15:13:06,2026-04-17T20:02:18,resolved,minor,NET,co ccTLD DNS errors,https://stspg.io/mtdkfhzdhq5j,2026-04-27T22:54:39Z
+github,2026-04-17T14:56:22,2026-04-21T14:20:24,resolved,minor,MSFT,Disruption with some GitHub services,https://stspg.io/96xp38b8l8rn,2026-04-27T22:54:39Z
+twilio,2026-04-17T05:24:58,2026-04-17T16:30:03,resolved,minor,TWLO,SMS Delivery Delays and Failures Between Twilio Long Codes and Multiple Networks in Germany,https://stspg.io/7zkp5y1h4wnh,2026-04-27T22:54:39Z
+twilio,2026-04-17T01:56:37,2026-04-17T03:55:51,resolved,minor,TWLO,Voice Call Failures from Network Subscribers to a Subset of Twilio Philippines Phone Numbers,https://stspg.io/336sdd3sn6vv,2026-04-27T22:54:39Z
+twilio,2026-04-17T01:06:13,2026-04-17T04:43:39,resolved,minor,TWLO,SMS and MMS Delivery Receipt Delays from Twilio to Verizon United States,https://stspg.io/twc2mmfkcspg,2026-04-27T22:54:39Z
+anthropic,2026-04-16T22:26:00,2026-04-16T22:41:12,resolved,minor,GOOGL|AMZN,Failures to add Credentials to Vaults,https://stspg.io/hn2qr6ds399k,2026-04-27T22:54:39Z
+cloudflare,2026-04-16T22:10:27,2026-04-17T09:54:57,resolved,minor,NET,CF1 Client DEX - Device analytics overtime gaps,https://stspg.io/q6n170rsxwck,2026-04-27T22:54:39Z
+openai,2026-04-16T19:40:52,2026-04-16T21:21:07,resolved,minor,MSFT|NVDA,Responses API Streaming Error,,2026-04-27T22:54:39Z
+cloudflare,2026-04-16T14:22:38,2026-04-16T23:55:58,resolved,minor,NET,API Analytics Delays,https://stspg.io/r2wt6gb0g1qb,2026-04-27T22:54:39Z
+cloudflare,2026-04-16T13:02:13,2026-04-16T13:34:34,resolved,minor,NET,API Analytics Delays,https://stspg.io/rljkyyp1c523,2026-04-27T22:54:39Z
+discord,2026-04-16T12:47:09,2026-04-16T13:32:27,resolved,minor,,Issues with invites,https://stspg.io/ktpv1rcvk1dr,2026-04-27T22:54:39Z
+zoom,2026-04-16T09:24:11,2026-04-16T13:54:27,resolved,minor,ZM,Service Degradation Affecting Zoom Rooms Microsoft Teams Meeting Direct Guest join feature.,https://stspg.io/n7xwnydbb4wq,2026-04-27T22:54:39Z
+anthropic,2026-04-16T06:50:56,2026-04-16T07:46:41,resolved,minor,GOOGL|AMZN,Opus 4.6 elevated rate of errors,https://stspg.io/90n2vmmkj1df,2026-04-27T22:54:39Z
+zoom,2026-04-16T00:12:22,2026-04-16T04:37:15,resolved,minor,ZM,Service Degradation Affecting Meeting Joins for Users with WEBRTC 2.0 feature in Amsterdam and Germany.,https://stspg.io/0nfhj88kfyqr,2026-04-27T22:54:39Z
+openai,2026-04-14T16:49:17,2026-04-14T17:09:21,resolved,minor,MSFT|NVDA,Account Creation Issues,,2026-04-27T22:54:39Z
+twilio,2026-04-14T14:41:01,2026-04-17T18:05:14,resolved,minor,TWLO,SMS Delivery Delays and Failures from Twilio to Orange Guinea,https://stspg.io/jxrgdct2ybm2,2026-04-27T22:54:39Z
+anthropic,2026-04-14T09:24:51,2026-04-14T15:21:03,resolved,minor,GOOGL|AMZN,Degraded service on usage and analytics admin API endpoints,https://stspg.io/w2qlkm4lprv5,2026-04-27T22:54:39Z
+zoom,2026-04-14T09:18:44,2026-04-14T11:26:06,resolved,minor,ZM,Service degradation affecting Trimming Meeting Recording in Europe Region,https://stspg.io/xm4tsf91773j,2026-04-27T22:54:39Z
+github,2026-04-14T01:57:55,2026-04-17T16:57:17,resolved,minor,MSFT,Disruption with some GitHub services,https://stspg.io/gnnrv0yd0d3m,2026-04-27T22:54:39Z
+github,2026-04-13T16:41:27,2026-04-17T01:48:32,resolved,minor,MSFT,Disruption with some GitHub services,https://stspg.io/qg4svxjjz3hm,2026-04-27T22:54:39Z
+openai,2026-04-12T20:40:24,2026-04-14T08:41:42,resolved,minor,MSFT|NVDA,Elevated 401 errors for API endpoints,,2026-04-27T22:54:39Z
+zoom,2026-04-11T02:01:10,2026-04-11T02:51:11,resolved,minor,ZM,Service Degradation Affecting Zoom Blog and Contact Us Webpages.,https://stspg.io/zrn871v6zmq1,2026-04-27T22:54:39Z
+twilio,2026-04-10T19:48:25,2026-04-22T14:03:26,resolved,minor,TWLO,"SMS Delivery Delays from Twilio Short Codes, Long Codes, and Alphanumeric Sender IDs to Datora Brazil",https://stspg.io/018pfl7txck7,2026-04-27T22:54:39Z
+anthropic,2026-04-10T16:30:38,2026-04-10T16:51:44,resolved,minor,GOOGL|AMZN,Elevated errors on requests to Claude models,https://stspg.io/hfbfvplmg5s1,2026-04-27T22:54:39Z
+anthropic,2026-04-10T14:00:00,2026-04-10T17:38:28,resolved,minor,GOOGL|AMZN,Some Claude.ai share links were inaccessible,https://stspg.io/x2g8g3pkcqtk,2026-04-27T22:54:39Z
+github,2026-04-10T13:07:21,2026-04-14T17:56:47,resolved,minor,MSFT,Problems with third-party Claude and Codex Agent sessions not being listed in the agents tab dashboard,https://stspg.io/3lyzg9tk7fl8,2026-04-27T22:54:39Z
+openai,2026-04-10T05:10:59,2026-04-10T05:20:19,resolved,minor,MSFT|NVDA,Issue with API platform login and account creation,,2026-04-27T22:54:39Z
+anthropic,2026-04-10T04:28:06,2026-04-10T04:38:02,resolved,minor,GOOGL|AMZN,Degraded Performance on Vaults,https://stspg.io/fzv1qyjb3j1b,2026-04-27T22:54:39Z
+anthropic,2026-04-09T16:54:18,2026-04-09T17:34:00,resolved,minor,GOOGL|AMZN,Elevated Connector Error Rates,https://stspg.io/3qh7qtgrvprd,2026-04-27T22:54:39Z
+anthropic,2026-04-09T08:07:21,2026-04-09T08:53:20,resolved,minor,GOOGL|AMZN,Sonnet 4.6 elevated rate of errors,https://stspg.io/f2kvgw1r8ky0,2026-04-27T22:54:39Z
+github,2026-04-09T04:42:06,2026-04-15T18:52:20,resolved,minor,MSFT,Disruption with GitHub notifications,https://stspg.io/jndfpdy29y94,2026-04-27T22:54:39Z
+zoom,2026-04-08T21:19:41,2026-04-08T22:05:31,resolved,minor,ZM,Service Degradation Affecting Zoom Meetings via Web Client in Saudi Arabia.,https://stspg.io/y5fdsyrkzx0s,2026-04-27T22:54:39Z
+anthropic,2026-04-08T17:46:29,2026-04-08T17:50:17,resolved,minor,GOOGL|AMZN,"Elevated errors on Claude.ai, API, Claude Code",https://stspg.io/klpxt3yk80m8,2026-04-27T22:54:39Z
+openai,2026-04-08T17:23:19,2026-04-08T17:44:56,resolved,minor,MSFT|NVDA,Elevated Errors with Login,,2026-04-27T22:54:39Z
+anthropic,2026-04-06T21:26:57,2026-04-06T21:45:48,resolved,minor,GOOGL|AMZN,Sonnet 4.6 elevated rate of errors,https://stspg.io/2tdwsnhyqjgs,2026-04-27T22:54:39Z
+discord,2026-04-06T18:48:05,2026-04-06T19:52:03,resolved,minor,,Embeds not working,https://stspg.io/ll3l61zny6dp,2026-04-27T22:54:39Z
+openai,2026-04-06T06:10:38,2026-04-06T08:35:49,resolved,minor,MSFT|NVDA,Some users may experience empty response from ChatGPT in web,,2026-04-27T22:54:39Z
+github,2026-04-02T17:49:36,2026-04-06T17:17:13,resolved,minor,MSFT,Disruption with some GitHub services,https://stspg.io/5b7098zw5zw7,2026-04-27T22:54:39Z
+github,2026-04-02T16:18:04,2026-04-07T19:09:23,resolved,minor,MSFT,Copilot Coding Agent failing to start some jobs,https://stspg.io/qrn1lx3vp2cn,2026-04-27T22:54:39Z
+openai,2026-04-02T07:36:25,2026-04-02T09:42:05,resolved,minor,MSFT|NVDA,High error rate for completionsapi-gpt-5-nano,,2026-04-27T22:54:39Z
+zoom,2026-04-01T14:24:00,2026-04-03T22:21:46,resolved,minor,ZM,Service Degradation Affecting A Subset of Users with Zoom Chat in the North America Region,https://stspg.io/t0gg4gdwt4pt,2026-04-27T22:54:39Z
+github,2026-04-01T09:58:13,2026-04-03T19:59:42,resolved,minor,MSFT,Incident with Copilot,https://stspg.io/2xwjn4t1r8jy,2026-04-27T22:54:39Z
+github,2026-03-31T15:05:39,2026-04-03T19:37:17,resolved,minor,MSFT,Incident with Pull Requests: High percentage of 500s,https://stspg.io/lvkqg4h1rntp,2026-04-27T22:54:39Z
+openai,2026-03-31T14:36:59,2026-03-31T15:00:24,resolved,minor,MSFT|NVDA,Elevated failures for some users joining ChatGPT Enterprise and ChatGPT Edu workspaces via SSO.,,2026-04-27T22:54:39Z
+github,2026-03-31T13:47:46,2026-04-03T01:49:10,resolved,minor,MSFT,Issues with metered billing report generation,https://stspg.io/4pyzfm2phb3b,2026-04-27T22:54:39Z
+zoom,2026-03-31T06:38:02,2026-03-31T08:56:51,resolved,minor,ZM,Service Degradation Affecting Zoom Phone Outbound Calls in India.,https://stspg.io/4ptcldw1r2x4,2026-04-27T22:54:39Z
+github,2026-03-30T13:02:28,2026-04-02T21:56:56,resolved,minor,MSFT,Elevated delays in Actions workflow runs and Pull Request status updates,https://stspg.io/q4lmbp37zyrn,2026-04-27T22:54:39Z
+zoom,2026-03-30T09:55:53,2026-03-30T10:55:00,resolved,minor,ZM,Service Degradation Affecting Zoom Phone and Zoom Contact Center PCI Integration,https://stspg.io/4bvpsg0wfgmk,2026-04-27T22:54:39Z
+openai,2026-03-29T05:58:45,2026-03-29T07:00:23,resolved,minor,MSFT|NVDA,Account creation and login are unstable across all surfaces,,2026-04-27T22:54:39Z
+zoom,2026-04-14T06:31:48,2026-04-14T18:31:55,resolved,maintenance,ZM,"Service Degradation Affecting Client login, AI Chat Compose, Meeting joining features & Dashboards in the Europe Region",https://stspg.io/042vq6d132zl,2026-04-27T22:54:39Z
+anthropic,2026-04-27T14:11:29,2026-04-27T15:18:47,resolved,none,GOOGL|AMZN,Elevated billing related errors on Claude.ai,https://stspg.io/rfmsz6xdfs5c,2026-04-27T22:54:39Z
+twilio,2026-04-27T11:49:08,2026-04-27T14:44:53,resolved,none,TWLO,Increased rate of 11200 warnings from Programmable Video,https://stspg.io/2vplxdkgqr3d,2026-04-27T22:54:39Z
+zoom,2026-04-27T04:45:34,2026-04-27T05:14:47,resolved,none,ZM,Service Degradation Affecting Zoom Contact Center in Europe region,https://stspg.io/w1nfjb1hymyh,2026-04-27T22:54:39Z
+anthropic,2026-04-25T18:42:40,2026-04-25T19:02:15,resolved,none,GOOGL|AMZN,Investigated elevated errors and slower responses on claude.ai,https://stspg.io/32rqp9dyk7ry,2026-04-27T22:54:39Z
+zoom,2026-04-23T08:14:22,2026-04-23T08:41:04,resolved,none,ZM,Service Degradation in Zoom Virtual Agent - Voice bot in North America region,https://stspg.io/czgp1dmdr5ps,2026-04-27T22:54:39Z
+anthropic,2026-04-23T02:00:00,2026-04-23T21:25:21,resolved,none,GOOGL|AMZN,Issues with responses using structured outputs on the API,https://stspg.io/w2jwfp21p198,2026-04-27T22:54:39Z
+twilio,2026-04-21T02:56:31,2026-04-21T02:56:56,resolved,none,TWLO,Delays for Subset of SMPP API Mobile Originated Messages,https://stspg.io/2yvrd45wpvbp,2026-04-27T22:54:39Z
+twilio,2026-04-20T16:30:00,2026-04-21T08:47:27,resolved,none,TWLO,Whatsapp Sandbox console page not loading,https://stspg.io/kbqdgd7xmtgp,2026-04-27T22:54:39Z
+openai,2026-04-20T07:13:42,2026-04-20T19:33:19,resolved,none,MSFT|NVDA,Users may encounter issue with ChatGPT Business after upgrade or adding new seats for up to an hour,,2026-04-27T22:54:39Z
+anthropic,2026-04-19T22:44:32,2026-04-20T00:00:15,resolved,none,GOOGL|AMZN,Elevated errors on Opus 4.6,https://stspg.io/qlwclyv64k56,2026-04-27T22:54:39Z
+openai,2026-04-11T01:04:36,2026-04-11T02:00:58,resolved,none,MSFT|NVDA,Some users may experience issues accessing ChatGPT,,2026-04-27T22:54:39Z
+openai,2026-04-10T04:32:54,2026-04-10T04:46:12,resolved,none,MSFT|NVDA,Issues with share link creation on web UI,,2026-04-27T22:54:39Z
+anthropic,2026-04-08T23:57:07,2026-04-08T23:57:07,resolved,none,GOOGL|AMZN,Errors when connecting to Claude.ai,https://stspg.io/7kl6qq3lldmg,2026-04-27T22:54:39Z
+anthropic,2026-04-08T19:22:09,2026-04-08T19:40:06,resolved,none,GOOGL|AMZN,Outage affecting Workspace Creation,https://stspg.io/vxzqkwltrx9k,2026-04-27T22:54:39Z
+zoom,2026-04-07T10:17:28,2026-04-07T10:28:23,resolved,none,ZM,Service Degradation Affecting Zoom Phone and Zoom Contact Center in the Singapore Region,https://stspg.io/1syv1r4y301s,2026-04-27T22:54:39Z
+anthropic,2026-04-04T17:30:00,2026-04-04T18:24:55,resolved,none,GOOGL|AMZN,Sonnet 4.6 and Opus 4.6 elevated error rate,https://stspg.io/bppjxlqtspvj,2026-04-27T22:54:39Z
+zoom,2026-04-04T01:22:16,2026-04-04T01:32:05,resolved,none,ZM,Service Degradation of Zoom Phone Calls Affected a Subset of Users in North America Region.,https://stspg.io/1nr7ndxr02vm,2026-04-27T22:54:39Z
+zoom,2026-04-02T14:05:38,2026-04-02T14:18:31,resolved,none,ZM,Service Degradation Affecting Zoom Contact Center in North America Region,https://stspg.io/fys7sy2wvtlv,2026-04-27T22:54:39Z
+mongodb,2026-04-01T12:55:24,2026-04-01T12:55:24,resolved,none,MDB,Atlas Charts users unable to login,https://stspg.io/w3mhl4vn1q1t,2026-04-27T22:54:39Z
+zoom,2026-03-31T10:28:21,2026-03-31T10:28:21,resolved,none,ZM,Service Degradation Affecting Sign In and Joining Meetings,https://stspg.io/3dw3gwkqw5vd,2026-04-27T22:54:39Z
+zoom,2026-03-31T05:36:04,2026-03-31T05:51:54,resolved,none,ZM,Issue affecting Zoom Phone Outbound calls in Hyderabad Region,https://stspg.io/vm4xzblj17ld,2026-04-27T22:54:39Z
+discord,2026-03-30T22:11:48,2026-03-30T22:36:51,resolved,none,,Captchas Not Showing,https://stspg.io/0lg0s3rbj1cp,2026-04-27T22:54:39Z
+mongodb,2026-03-30T21:47:40,2026-03-30T23:10:14,resolved,none,MDB,Delays in cluster creation and adding new cluster nodes in Azure East US 2 region,https://stspg.io/3vjd3s0kkmlm,2026-04-27T22:54:39Z

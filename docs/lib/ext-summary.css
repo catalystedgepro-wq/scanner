@@ -1,0 +1,100 @@
+/* ext-summary.css — Catalyst Edge unified outbound-link summary tooltip.
+ *
+ * Pair with /lib/ext-summary.js. Visual treatment: navy/cyan/gold tactical
+ * panel matching the canonical /scanner/ aesthetic. Glass surface, IBM Plex
+ * Mono on the eyebrow, Space Grotesk / system sans on the body.
+ */
+.ext-link {
+  position: relative;
+  cursor: help;
+}
+.ext-link:focus-visible {
+  outline: 2px solid #5ad7ff;
+  outline-offset: 2px;
+}
+
+#ce-ext-summary-tooltip {
+  position: absolute;
+  z-index: 9999;
+  max-width: 360px;
+  min-width: 240px;
+  padding: 14px 16px 12px;
+  border-radius: 12px;
+  background: linear-gradient(180deg, rgba(15, 28, 48, 0.96), rgba(7, 14, 28, 0.96));
+  border: 1px solid rgba(245, 198, 98, 0.32);
+  color: #e6f1ff;
+  font-family: ui-sans-serif, "Space Grotesk", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  font-size: 13px;
+  line-height: 1.55;
+  box-shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(90, 215, 255, 0.10);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.14s ease, transform 0.14s ease;
+}
+#ce-ext-summary-tooltip.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+#ce-ext-summary-tooltip::after {
+  content: "";
+  position: absolute;
+  bottom: -7px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  width: 12px;
+  height: 12px;
+  background: rgba(7, 14, 28, 0.96);
+  border-right: 1px solid rgba(245, 198, 98, 0.32);
+  border-bottom: 1px solid rgba(245, 198, 98, 0.32);
+}
+#ce-ext-summary-tooltip.flip::after {
+  bottom: auto;
+  top: -7px;
+  border-right: none;
+  border-bottom: none;
+  border-left: 1px solid rgba(245, 198, 98, 0.32);
+  border-top: 1px solid rgba(245, 198, 98, 0.32);
+}
+
+.ce-ext-tip-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.ce-ext-tip-ticker {
+  font-family: "JetBrains Mono", "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #5ad7ff;
+}
+.ce-ext-tip-form {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #f5c662;
+  padding: 2px 8px;
+  border-radius: 5px;
+  background: rgba(245, 198, 98, 0.08);
+  border: 1px solid rgba(245, 198, 98, 0.32);
+}
+.ce-ext-tip-detail {
+  color: #9bb0c8;
+  font-size: 12.5px;
+  line-height: 1.55;
+  margin-bottom: 10px;
+}
+.ce-ext-tip-cta {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #f5c662;
+  padding-top: 8px;
+  border-top: 1px dashed rgba(110, 140, 180, 0.32);
+}

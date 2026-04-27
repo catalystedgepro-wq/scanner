@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="LinkedIn posts from Catalyst Edge — daily SEC catalyst playbooks, audited DCF picks, and trading methodology breakdowns. Follow on LinkedIn for live updates.">
+<meta property="og:title" content="LinkedIn — Catalyst Edge Scanner">
+<meta property="og:description" content="Daily SEC catalyst playbooks. Free public archive. Follow on LinkedIn for new posts.">
+<meta property="og:url" content="https://catalystedgescanner.com/linkedin/">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://catalystedgescanner.com/og/default.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@catalystEdgePro">
+<link rel="canonical" href="https://catalystedgescanner.com/linkedin/">
+<title>LinkedIn — Catalyst Edge SEC Catalyst Posts</title>
+<style>
+:root {
+  --bg: #0b0f17;
+  --surface: #121826;
+  --surface-2: #1a2235;
+  --border: #1f2a3f;
+  --text: #e2e8f0;
+  --dim: #94a3b8;
+  --accent: #0a66c2;
+  --accent-hover: #0958a8;
+  --gold: #f5c443;
+  --green: #22c55e;
+  --red: #ef4444;
+  --purple: #a855f7;
+  --cyan: #06b6d4;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+}
+/* Public access. Gate removed 2026-04-26 — was blocking SEO + outreach. */
+#root { display: block !important; }
+.follow-bar { background: linear-gradient(135deg,#0a66c2,#0958a8); padding: 14px 18px; text-align: center; color: #fff; font-weight: 600; font-size: 0.95rem; }
+.follow-bar a { color: #fff; text-decoration: underline; }
+nav.nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  font-size: 0.9rem;
+}
+nav.nav a {
+  color: var(--dim);
+  text-decoration: none;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+}
+nav.nav a:hover { color: var(--text); background: var(--surface-2); }
+header.page {
+  padding: 2rem 1.5rem 1rem;
+  max-width: 56rem;
+  margin: 0 auto;
+}
+header.page h1 {
+  margin: 0 0 0.25rem;
+  font-size: 1.75rem;
+  color: var(--accent);
+}
+header.page .sub { color: var(--dim); margin: 0; font-size: 0.95rem; }
+.meta-bar {
+  max-width: 56rem;
+  margin: 0 auto;
+  padding: 0.5rem 1.5rem;
+  display: flex;
+  gap: 1.5rem;
+  font-size: 0.85rem;
+  color: var(--dim);
+  flex-wrap: wrap;
+}
+.meta-bar span strong { color: var(--text); }
+main {
+  max-width: 56rem;
+  margin: 0 auto;
+  padding: 1rem 1.5rem 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.post-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.post-head {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.post-title {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text);
+}
+.post-angle {
+  font-size: 0.75rem;
+  color: var(--dim);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 0.25rem;
+}
+.post-meta {
+  font-size: 0.8rem;
+  color: var(--dim);
+  display: flex;
+  gap: 0.75rem;
+}
+.post-body {
+  padding: 1rem 1.25rem;
+  white-space: pre-wrap;
+  font-family: -apple-system, system-ui, sans-serif;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  background: var(--surface-2);
+  max-height: 24rem;
+  overflow-y: auto;
+}
+.post-tags {
+  padding: 0.75rem 1.25rem;
+  font-size: 0.85rem;
+  color: var(--accent);
+  border-top: 1px solid var(--border);
+}
+.post-actions {
+  padding: 0.75rem 1.25rem;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  border-top: 1px solid var(--border);
+}
+.btn {
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text);
+  padding: 0.5rem 0.9rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+.btn:hover { background: var(--bg); }
+.btn-primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: white;
+}
+.btn-primary:hover { background: var(--accent-hover); }
+.btn-copied {
+  background: var(--green);
+  border-color: var(--green);
+  color: white;
+}
+.empty {
+  padding: 3rem 1.5rem;
+  text-align: center;
+  color: var(--dim);
+}
+</style>
+<link rel="stylesheet" href="/lib/polish-tokens.css">
+<link rel="stylesheet" href="/lib/cinematic.css">
+</head>
+<body>
+<!-- CINEMATIC SHELL — utopian-cyberpunk atmosphere overlay -->
+<div class="ce-field" aria-hidden="true">
+  <div class="ce-field-orb a"></div><div class="ce-field-orb b"></div><div class="ce-field-orb c"></div>
+  <div class="ce-scanline"></div><div class="ce-scanline" style="animation-delay:-3s;opacity:.3"></div>
+  <div class="ce-vignette"></div>
+</div>
+<canvas id="ce-particles" aria-hidden="true"></canvas>
+
+
+<div class="follow-bar">
+  <span>📣 Read our daily SEC catalyst posts on LinkedIn —</span>
+  <a href="https://www.linkedin.com/in/catalyst-edge/" target="_blank" rel="noopener">Follow @catalyst-edge →</a>
+</div>
+
+<div id="root">
+
+<nav class="nav">
+  <a href="/">Catalyst Edge</a>
+  <a href="/scanner/">Scanner</a>
+  <a href="/jackpot/" style="color:#22c55e">🎯 JACKPOT</a>
+  <a href="/dcf/" style="color:#06b6d4">💰 DCF</a>
+  <a href="/trust/">Trust Ledger</a>
+  <a href="/blog/">Blog</a>
+  <a href="/pricing/">Pricing</a>
+  <a href="/linkedin/" style="color:#0a66c2;font-weight:600">in LinkedIn</a>
+</nav>
+
+<header class="page">
+  <h1>LinkedIn Posts — Catalyst Edge</h1>
+  <p class="sub">Daily SEC catalyst playbooks, audited DCF picks, and trading
+     methodology breakdowns. Each post is generated from our live scanner —
+     every figure traces to public SEC filings. Free archive, public forever.
+     <a href="https://www.linkedin.com/in/catalyst-edge/" target="_blank" rel="noopener" style="color:#0a66c2;font-weight:600">Follow on LinkedIn →</a>
+  </p>
+</header>
+
+<div class="meta-bar" id="meta-bar">
+  <span>Generated: <strong id="generated">—</strong></span>
+  <span>Posts: <strong id="post-count">—</strong></span>
+  <span>Total chars: <strong id="char-total">—</strong></span>
+</div>
+
+<main id="posts"></main>
+
+</div>
+
+<script>
+(function(){
+  // 2026-04-26: paywall removed. /linkedin/ is now public outreach content.
+  // Posts load on every page visit, no auth required.
+  loadPosts();
+  return;
+
+  function escapeHtml(s){
+    return String(s).replace(/[&<>"']/g, function(c){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+    });
+  }
+
+  function buildCard(post){
+    var card = document.createElement('div');
+    card.className = 'post-card';
+
+    var head = document.createElement('div');
+    head.className = 'post-head';
+    var titleWrap = document.createElement('div');
+    var h = document.createElement('h2');
+    h.className = 'post-title';
+    h.textContent = post.title || post.id;
+    var angle = document.createElement('div');
+    angle.className = 'post-angle';
+    angle.textContent = post.angle || '';
+    titleWrap.appendChild(h);
+    titleWrap.appendChild(angle);
+    var meta = document.createElement('div');
+    meta.className = 'post-meta';
+    var charSpan = document.createElement('span');
+    charSpan.textContent = (post.char_count || 0) + ' chars';
+    meta.appendChild(charSpan);
+    head.appendChild(titleWrap);
+    head.appendChild(meta);
+
+    var body = document.createElement('div');
+    body.className = 'post-body';
+    body.textContent = post.body || '';
+
+    var tags = document.createElement('div');
+    tags.className = 'post-tags';
+    tags.textContent = (post.hashtags || []).join(' ');
+
+    var actions = document.createElement('div');
+    actions.className = 'post-actions';
+    var copyBtn = document.createElement('button');
+    copyBtn.className = 'btn btn-primary';
+    copyBtn.type = 'button';
+    copyBtn.textContent = '📋 Copy full post';
+    copyBtn.onclick = function(){
+      navigator.clipboard.writeText(post.full_text || (post.body + '\n\n' + (post.hashtags||[]).join(' '))).then(function(){
+        copyBtn.textContent = '✓ Copied';
+        copyBtn.className = 'btn btn-copied';
+        setTimeout(function(){
+          copyBtn.textContent = '📋 Copy full post';
+          copyBtn.className = 'btn btn-primary';
+        }, 2000);
+      });
+    };
+    var liBtn = document.createElement('a');
+    liBtn.className = 'btn';
+    liBtn.href = 'https://www.linkedin.com/feed/?shareActive=true';
+    liBtn.target = '_blank';
+    liBtn.rel = 'noopener';
+    liBtn.textContent = '↗ Open LinkedIn composer';
+    actions.appendChild(copyBtn);
+    actions.appendChild(liBtn);
+
+    card.appendChild(head);
+    card.appendChild(body);
+    card.appendChild(tags);
+    card.appendChild(actions);
+    return card;
+  }
+
+  function loadPosts(){
+    fetch('/data/linkedin_posts.json?cb=' + Date.now(), { cache: 'no-store' })
+      .then(function(r){ if (!r.ok) throw new Error('no posts'); return r.json(); })
+      .then(function(d){
+        var gen = d.generated_at ? new Date(d.generated_at).toLocaleString() : '—';
+        document.getElementById('generated').textContent = gen;
+        document.getElementById('post-count').textContent = d.post_count || (d.posts || []).length;
+        var total = (d.posts || []).reduce(function(s,p){ return s + (p.char_count||0); }, 0);
+        document.getElementById('char-total').textContent = total;
+        var main = document.getElementById('posts');
+        main.textContent = '';
+        (d.posts || []).forEach(function(p){ main.appendChild(buildCard(p)); });
+      })
+      .catch(function(){
+        var main = document.getElementById('posts');
+        var e = document.createElement('div');
+        e.className = 'empty';
+        e.textContent = 'No posts yet. Run: python3 build_linkedin_posts.py';
+        main.appendChild(e);
+      });
+  }
+})();
+</script>
+
+<script src="/lib/cinematic.js"></script>
+</body>
+</html>

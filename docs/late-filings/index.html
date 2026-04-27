@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Late Filing Radar — NT 10-K/10-Q Notifications | Catalyst Edge</title>
+<meta name="description" content="Companies that can't file financials on time are waving red flags. Track NT 10-K and NT 10-Q late filing notifications from the SEC.">
+<meta property="og:title" content="Late Filing Radar — Catalyst Edge">
+<link rel="canonical" href="https://catalystedgescanner.com/late-filings/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#070a12;--surface:#0f1420;--gold:#d4a843;--green:#22c55e;--red:#ef4444;--cyan:#06b6d4;--amber:#f59e0b;--text:#e2e8f0;--dim:#94a3b8;--muted:#64748b;--border:#1e293b}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
+.wrap{max-width:1080px;margin:0 auto;padding:1.5rem}
+.nav{position:sticky;top:0;z-index:100;background:rgba(7,10,18,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:.75rem 1.5rem;display:flex;align-items:center;gap:1rem}
+.nav a{color:var(--gold);font-weight:600;font-size:.95rem}
+.nav .sep{color:var(--muted)}
+.hero{text-align:center;padding:2.5rem 0 2rem;border-bottom:1px solid var(--border);margin-bottom:1.5rem}
+.hero h1{font-size:clamp(1.5rem,4vw,2.2rem);font-weight:800;line-height:1.2;margin-bottom:.4rem}
+.hero h1 em{font-style:normal;color:var(--amber)}
+.hero .sub{color:var(--dim);font-size:.9rem;max-width:580px;margin:0 auto}
+.stats-bar{display:flex;justify-content:center;gap:2rem;margin:1rem 0;flex-wrap:wrap}
+.sb-item{text-align:center}
+.sb-val{font-size:1.3rem;font-weight:800;color:var(--gold)}
+.sb-lbl{font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.nt-table{width:100%;border-collapse:collapse;margin:1.5rem 0}
+.nt-table th{text-align:left;padding:8px 10px;font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;border-bottom:1px solid var(--border);position:sticky;top:52px;background:var(--bg)}
+.nt-table td{padding:8px 10px;font-size:.82rem;border-bottom:1px solid rgba(30,41,59,.5)}
+.nt-table tr:hover{background:rgba(245,158,11,.04)}
+.tk{font-weight:800;font-size:.9rem}
+.mono{font-family:'IBM Plex Mono',monospace;font-size:.78rem}
+.nt-badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:.65rem;font-weight:700;text-transform:uppercase}
+.nt-caution{background:rgba(245,158,11,.12);color:var(--amber)}
+.nt-critical{background:rgba(239,68,68,.12);color:var(--red)}
+.insider-yes{color:var(--green);font-weight:700}
+.insider-no{color:var(--muted)}
+.filer-name{font-size:.75rem;color:var(--dim);max-width:250px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cta-bar{background:var(--surface);border:1px solid var(--gold);border-radius:10px;padding:1.25rem;text-align:center;margin:2rem 0}
+.cta-bar h3{color:var(--gold);font-size:1rem;margin-bottom:.3rem}
+.cta-bar p{color:var(--dim);font-size:.8rem;margin-bottom:.75rem}
+.cta-bar a{display:inline-block;padding:.5rem 1.4rem;background:linear-gradient(135deg,var(--gold),#f1ce88);color:#070a12;font-weight:700;border-radius:6px;font-size:.85rem}
+.explainer{margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border)}
+.explainer h2{font-size:1.1rem;margin-bottom:.8rem}
+.explainer p{color:var(--dim);font-size:.85rem;margin-bottom:.8rem}
+.footer{text-align:center;padding:1.5rem;font-size:.72rem;color:var(--muted);border-top:1px solid var(--border);margin-top:2rem}
+.footer a{color:var(--muted)}
+.table-wrap{overflow-x:auto}
+.lf-controls{display:flex;flex-wrap:wrap;gap:.4rem;align-items:center;margin:1.2rem 0 .8rem}
+.lf-controls .lbl{color:var(--muted);font-size:.65rem;text-transform:uppercase;letter-spacing:.08em;margin-right:.3rem}
+.fbtn{padding:5px 12px;border-radius:18px;border:1px solid var(--border);background:var(--surface);color:var(--dim);font-size:.7rem;font-weight:600;cursor:pointer;font-family:inherit;transition:all 200ms cubic-bezier(0.16,1,0.3,1);white-space:nowrap}
+.fbtn:hover{border-color:var(--cyan);color:var(--text);transform:translateY(-1px);box-shadow:0 8px 24px -8px rgba(6,182,212,.32)}
+.fbtn.active{background:rgba(6,182,212,.12);border-color:var(--cyan);color:var(--cyan);font-weight:700}
+.fbtn.toggle.active{background:rgba(34,197,94,.12);border-color:var(--green);color:var(--green)}
+</style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@800;900&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/lib/cinematic-hero.css">
+  <link rel="stylesheet" href="/lib/cyber-shell.css">
+  <link rel="stylesheet" href="/lib/polish-tokens.css">
+</head>
+<body>
+  <div class="cy-bg" aria-hidden="true"></div>
+  <div class="cy-floor" aria-hidden="true"></div>
+  <div class="cy-vignette" aria-hidden="true"></div>
+  <div class="cy-scan" aria-hidden="true"></div>
+<div class="nav">
+  <a href="/">Catalyst Edge</a>
+  <span class="sep">/</span>
+  <span style="color:var(--dim);font-size:.9rem">Late Filing Radar</span>
+</div>
+<div class="wrap">
+<section class="cin-hero cy-neon-hero cy-shimmer">
+    <div class="cin-grid">
+      <div class="cin-stat-stack">
+        <div class="cin-eyebrow"><span class="cin-live-dot"></span>NT-10K · NT-10Q · 12B-25 · LIVE</div>
+        <div class="cin-colossal">
+          <div class="cin-num-row"><span class="cin-num">NT</span></div>
+          <div class="cin-side">
+          <span class="cin-tag"><b>12b-25</b> notifications</span>
+          <span class="cin-tag">going-concern flags</span>
+          <span class="cin-tag">audit-risk tag</span>
+          </div>
+        </div>
+        <div class="cin-stamp">LATE//FILINGS · v1.0 · <b>LIVE</b></div>
+      </div>
+      <div class="cin-h1-block">
+        <div class="cin-h1-eyebrow">⏰ Late Filing Radar · NT Notifications</div>
+        <h1 class="cin-headline">Companies that <em>can't file on time</em>—the most <span class="cin-accent">underrated short signal</span> in the SEC dataset.</h1>
+        <p class="cin-lede">NT-10K and NT-10Q notifications, ranked by recency and severity. Going-concern flags from prior filings are stitched in. We surface names where the late-filing pattern repeats across consecutive periods — the audit-risk smoke signal.</p>
+        <div class="cin-cta-row">
+          <a href="#lf-table" class="cin-btn-primary">See NT filings ↓</a>
+          <a href="https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&type=NT" class="cin-btn-ghost">EDGAR ↗</a>
+        </div>
+        <div class="cin-strip">
+          <div class="cin-cell"><div class="cin-k">NT-10K (90d)</div><div class="cin-v bear" id="lf-10k">–</div></div>
+          <div class="cin-cell"><div class="cin-k">NT-10Q (90d)</div><div class="cin-v gold" id="lf-10q">–</div></div>
+          <div class="cin-cell"><div class="cin-k">Going concern</div><div class="cin-v bear" id="lf-gc">–</div></div>
+          <div class="cin-cell"><div class="cin-k">Latest</div><div class="cin-v cyan" id="lf-latest">–</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="lf-controls" id="lf-controls" role="toolbar" aria-label="Late filing filters">
+    <span class="lbl">Form</span>
+    <button class="fbtn active" data-form="all">All</button>
+    <button class="fbtn" data-form="NT 10-K">NT 10-K</button>
+    <button class="fbtn" data-form="NT 10-Q">NT 10-Q</button>
+    <button class="fbtn" data-form="12B-25">12b-25</button>
+    <span class="lbl" style="margin-left:.6rem">Toggle</span>
+    <button class="fbtn toggle" data-toggle="insider">With insider buy</button>
+    <button class="fbtn toggle" data-toggle="gc">Going-concern</button>
+  </div>
+  <div class="table-wrap">
+    <table class="nt-table">
+      <thead><tr><th>Ticker</th><th>Form</th><th>Filed</th><th>Filer</th><th>Insider Buy</th><th>SEC Filing</th></tr></thead>
+      <tbody id="nt-body"></tbody>
+    </table>
+  </div>
+  <div class="cta-bar">
+    <h3>Red flag alerts in your inbox</h3>
+    <p>Free daily email with late filing warnings, SEC catalysts, and convergence signals at 4 AM ET.</p>
+    <a href="/preview/">Subscribe Free</a>
+  </div>
+  <div class="explainer">
+    <h2>Why Late Filings Matter</h2>
+    <p>An NT (Notification of Late Filing) is required when a company can't meet its SEC deadline. Common reasons: accounting restatements, auditor changes, internal control weaknesses, or pending material events.</p>
+    <p>Historically, NT filers underperform the market in the following 90 days. But when insiders are simultaneously buying, it can signal the delay is procedural rather than substantive — creating a contrarian setup.</p>
+  </div>
+</div>
+<div class="footer">
+  &copy; 2026 Catalyst Edge &middot;
+  <a href="/">Scanner</a> &middot;
+  <a href="/gaps/">Gaps</a> &middot;
+  <a href="/jackpot/" style="color:#22c55e">🎯 JACKPOT</a>
+  <a href="/dcf/" style="color:#06b6d4">💰 DCF</a> &middot;
+  <a href="/squeeze/">Squeeze</a> &middot;
+  <a href="/insiders/">Insiders</a> &middot;
+  <a href="/darkpool/">Dark Pool</a> &middot;
+  <a href="/convergence/">Convergence</a> &middot;
+  <a href="/deepvalue/">Deep Value</a> &middot;
+  <a href="/mergers/">Mergers</a> &middot;
+  <a href="/congress/">Congress</a> &middot;
+  <a href="/glossary/">Glossary</a> &middot;
+  Not financial advice.
+</div>
+<script>
+(function(){
+  var allFilings = [];
+  var formFilter = 'all';
+  var insiderToggle = false;
+  var gcToggle = false;
+
+  function passes(f){
+    if(formFilter !== 'all'){
+      var fm = (f.nt_form || '').toUpperCase();
+      if(fm.indexOf(formFilter.toUpperCase()) === -1) return false;
+    }
+    if(insiderToggle && !(f.has_insider_buy === 'True' || f.has_insider_buy === true)) return false;
+    if(gcToggle){
+      var st = (f.signal_type || '').toUpperCase() + ' ' + (f.flags || '').toUpperCase();
+      if(st.indexOf('GOING_CONCERN') === -1 && st.indexOf('GOING CONCERN') === -1) return false;
+    }
+    return true;
+  }
+
+  function renderRows(){
+    var tbody = document.getElementById('nt-body');
+    while(tbody.firstChild) tbody.removeChild(tbody.firstChild);
+    var filings = allFilings.filter(passes);
+    filings.forEach(function(f){
+      var tr = document.createElement('tr');
+
+      var td1 = document.createElement('td');
+      td1.className='tk';td1.textContent=f.ticker;tr.appendChild(td1);
+
+      var td2 = document.createElement('td');
+      var badge = document.createElement('span');
+      badge.className = 'nt-badge ' + ((f.nt_form||'').indexOf('10-K')!==-1?'nt-critical':'nt-caution');
+      badge.textContent = f.nt_form||'NT';
+      td2.appendChild(badge);tr.appendChild(td2);
+
+      var td3 = document.createElement('td');
+      td3.className='mono';td3.textContent=f.filed_date||'--';tr.appendChild(td3);
+
+      var td4 = document.createElement('td');
+      td4.className='filer-name';td4.textContent=f.filer_name||'--';td4.title=f.filer_name||'';tr.appendChild(td4);
+
+      var td5 = document.createElement('td');
+      if(f.has_insider_buy==='True'){
+        td5.className='insider-yes';
+        td5.textContent='YES' + (f.insider_count?' ('+f.insider_count+')':'');
+      } else {
+        td5.className='insider-no';td5.textContent='No';
+      }
+      tr.appendChild(td5);
+
+      var td6 = document.createElement('td');
+      if(f.link){
+        var a = document.createElement('a');
+        a.href=f.link;a.target='_blank';a.rel='noopener';a.textContent='View';a.style.fontSize='.75rem';
+        td6.appendChild(a);
+      } else {
+        td6.textContent='--';td6.style.color='var(--muted)';
+      }
+      tr.appendChild(td6);
+
+      tbody.appendChild(tr);
+    });
+  }
+
+  function wireControls(){
+    document.querySelectorAll('#lf-controls .fbtn[data-form]').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        formFilter = btn.dataset.form;
+        document.querySelectorAll('#lf-controls .fbtn[data-form]').forEach(function(b){ b.classList.remove('active'); });
+        btn.classList.add('active');
+        renderRows();
+      });
+    });
+    document.querySelectorAll('#lf-controls .fbtn[data-toggle]').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var t = btn.dataset.toggle;
+        if(t === 'insider'){ insiderToggle = !insiderToggle; btn.classList.toggle('active', insiderToggle); }
+        if(t === 'gc'){ gcToggle = !gcToggle; btn.classList.toggle('active', gcToggle); }
+        renderRows();
+      });
+    });
+  }
+
+  fetch('/api/late-filings').then(function(r){return r.json()}).then(function(d){
+    allFilings = d.filings || [];
+    wireControls();
+    renderRows();
+  });
+})();
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KV1VDK22VC"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-KV1VDK22VC');</script>
+<script>
+(function(){
+  var f=function(id,v){var n=document.getElementById(id); if(n && v!=null) n.textContent=v;};
+  fetch('/api/late-filings').then(function(r){return r.json();}).then(function(d){
+    var rows=(d&&d.filings)||[];
+    var n10k=0, n10q=0, gc=0, latest='';
+    rows.forEach(function(r){
+      var fm=(r.nt_form||'').toUpperCase();
+      if(fm.indexOf('NT 10-K')>=0) n10k++;
+      else if(fm.indexOf('NT 10-Q')>=0) n10q++;
+      var st=(r.signal_type||'').toUpperCase();
+      if(st.indexOf('GOING_CONCERN')>=0 || st.indexOf('CAUTION')>=0) gc++;
+    });
+    if(rows[0] && rows[0].ticker) latest = rows[0].ticker;
+    f('lf-10k', n10k.toLocaleString());
+    f('lf-10q', n10q.toLocaleString());
+    f('lf-gc', gc.toLocaleString());
+    f('lf-latest', latest || 'live');
+  }).catch(function(){});
+})();
+</script>
+</body>
+</html>

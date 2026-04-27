@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Revenue Dashboard (admin) | Catalyst Edge</title>
+<link rel="canonical" href="https://catalystedgescanner.com/revenue/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#070a12;--gold:#d4a843;--green:#22c55e;--red:#ef4444;--cyan:#06b6d4;--navy:#0a1529;--text:#e2e8f0;--dim:#94a3b8;--muted:#64748b;--border:#1e293b}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--text);line-height:1.55}
+a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
+#root{display:none}
+body.access-granted #root{display:block}
+.gate{position:fixed;inset:0;background:#000;display:flex;align-items:center;justify-content:center;z-index:99999;font-family:'IBM Plex Mono',monospace;color:var(--gold)}
+.gate-card{background:var(--navy);border:1px solid rgba(215,180,106,.4);border-radius:12px;padding:32px 36px;max-width:440px;text-align:center;box-shadow:0 24px 56px rgba(0,0,0,.6)}
+.gate-card h2{font-size:1.2rem;margin:0 0 10px;color:#f4ece0}
+.gate-card p{color:var(--dim);font-size:.85rem;line-height:1.6;margin:8px 0}
+.gate-card a{display:inline-block;padding:9px 22px;background:var(--gold);color:#070a12;border-radius:999px;font-weight:700;text-decoration:none;margin-top:8px}
+.nav{position:sticky;top:0;z-index:100;background:rgba(7,10,18,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:.75rem 1.5rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+.nav a{color:var(--gold);font-weight:600;font-size:.92rem}
+.wrap{max-width:1180px;margin:0 auto;padding:1.5rem}
+.hero{padding:1.6rem 0 1.4rem;border-bottom:1px solid var(--border);margin-bottom:1.25rem}
+.hero h1{font-size:1.6rem;font-weight:800;margin-bottom:.3rem}
+.hero h1 em{font-style:normal;color:var(--green)}
+.hero .sub{color:var(--dim);font-size:.85rem}
+.live-dot{display:inline-block;width:8px;height:8px;background:var(--green);border-radius:50%;margin-right:6px;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.kpi-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-bottom:1.5rem}
+.kpi{background:linear-gradient(180deg,rgba(10,21,41,.92),rgba(10,21,41,.55));border:1px solid var(--border);border-radius:8px;padding:1.05rem 1.15rem;position:relative;overflow:hidden}
+.kpi::before{content:'';position:absolute;inset:0;border-top:2px solid var(--cyan);opacity:.4}
+.kpi.green::before{border-color:var(--green)}.kpi.gold::before{border-color:var(--gold)}.kpi.red::before{border-color:var(--red)}
+.kpi-val{font-size:1.85rem;font-weight:800;font-family:'IBM Plex Mono',monospace;line-height:1;margin-bottom:.3rem;color:var(--cyan)}
+.kpi.green .kpi-val{color:var(--green)}.kpi.gold .kpi-val{color:var(--gold)}.kpi.red .kpi-val{color:var(--red)}
+.kpi-lbl{font-size:.62rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-weight:700}
+.kpi-sub{font-size:.7rem;color:var(--dim);margin-top:.3rem;font-family:'IBM Plex Mono',monospace}
+.section{background:var(--navy);border:1px solid var(--border);border-radius:8px;padding:1.25rem 1.4rem;margin-bottom:1.25rem}
+.section-title{font-size:.82rem;color:var(--gold);font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.7rem;padding-bottom:.4rem;border-bottom:1px solid var(--border)}
+table{width:100%;border-collapse:collapse;font-size:.82rem}
+th{text-align:left;padding:.5rem;color:var(--muted);font-size:.65rem;text-transform:uppercase;letter-spacing:.06em;border-bottom:1px solid var(--border)}
+td{padding:.55rem .5rem;border-bottom:1px solid rgba(30,41,59,.55);font-family:'IBM Plex Mono',monospace}
+.streams{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+@media(max-width:760px){.streams{grid-template-columns:1fr}}
+.stream-row{display:flex;justify-content:space-between;align-items:center;padding:.6rem 0;border-bottom:1px dashed rgba(212,168,67,.18);font-size:.84rem}
+.stream-row:last-child{border:none}
+.stream-name{color:var(--text);font-weight:600}
+.stream-val{color:var(--green);font-weight:700;font-family:'IBM Plex Mono',monospace}
+.stream-val.zero{color:var(--muted)}
+.tag{display:inline-block;background:rgba(34,197,94,.15);color:var(--green);padding:.1rem .45rem;border-radius:4px;font-size:.62rem;font-weight:700;margin-left:.4rem;vertical-align:middle}
+.tag.warn{background:rgba(212,168,67,.15);color:var(--gold)}
+.tag.muted{background:rgba(100,116,139,.15);color:var(--muted)}
+</style>
+<link rel="stylesheet" href="/lib/polish-tokens.css">
+</head>
+<body>
+
+<div id="gate" class="gate">
+  <div class="gate-card">
+    <h2>🔒 Admin dashboard</h2>
+    <p id="gate-msg">Verifying tier…</p>
+    <p style="color:var(--muted);font-size:.7rem">Edge Pro tier required. <a href="/unlock/" style="color:var(--gold);background:none;padding:0;text-decoration:underline">Sign in</a> if you have a key.</p>
+  </div>
+</div>
+
+<div id="root">
+<nav class="nav">
+  <a href="/">Catalyst Edge</a>
+  <a href="/jackpot/" style="color:#22c55e">🎯 JACKPOT</a>
+  <a href="/dcf/" style="color:#06b6d4">💰 DCF</a>
+  <a href="/numerai/" style="color:#a855f7">🤖 Numerai</a>
+  <a href="/revenue/" style="color:var(--green);font-weight:700">💵 Revenue</a>
+  <a href="/spokes/" style="color:#06b6d4">📊 Spokes</a>
+  <a href="/scanner/">Scanner</a>
+</nav>
+<div class="wrap">
+
+  <section class="hero">
+    <h1>💵 <em>Revenue</em> Dashboard</h1>
+    <div class="sub"><span class="live-dot"></span>Live MRR + Numerai status + affiliate inventory · Stripe restricted-key, refresh every 2h via autonomous_loop · <span style="color:var(--muted)">last refresh:</span> <span id="last-refresh">–</span></div>
+  </section>
+
+  <div class="kpi-row">
+    <div class="kpi green"><div class="kpi-val" id="k-mrr">–</div><div class="kpi-lbl">MRR</div><div class="kpi-sub" id="k-arr">–</div></div>
+    <div class="kpi"><div class="kpi-val" id="k-subs">–</div><div class="kpi-lbl">Active Subs</div><div class="kpi-sub" id="k-trial">–</div></div>
+    <div class="kpi gold"><div class="kpi-val" id="k-pending">–</div><div class="kpi-lbl">Pending Payout</div><div class="kpi-sub" id="k-avail">–</div></div>
+    <div class="kpi"><div class="kpi-val" id="k-30d">–</div><div class="kpi-lbl">30-Day Gross</div><div class="kpi-sub" id="k-30d-cnt">–</div></div>
+  </div>
+
+  <div class="streams">
+    <div class="section">
+      <div class="section-title">🟢 Active streams</div>
+      <div id="active-streams"></div>
+    </div>
+    <div class="section">
+      <div class="section-title">⏸ Awaiting activation</div>
+      <div id="pending-streams"></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">📊 Numerai Round status</div>
+    <table>
+      <tr><th>Round</th><th>Submitted</th><th>Scoring starts</th><th>Resolves</th><th>Predictions</th></tr>
+      <tr>
+        <td id="n-round">–</td>
+        <td id="n-submitted">–</td>
+        <td id="n-start">–</td>
+        <td id="n-resolve">–</td>
+        <td id="n-rows">–</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <div class="section-title">💸 Compute burn vs revenue</div>
+    <div id="burn-row"></div>
+  </div>
+
+</div>
+</div>
+
+<script>
+(function(){
+  var gate = document.getElementById('gate');
+  var gateMsg = document.getElementById('gate-msg');
+  function lock(msg){
+    if (gateMsg) gateMsg.textContent = msg || 'Edge Pro unlock required.';
+  }
+  function unlock(){
+    document.body.classList.add('access-granted');
+    if (gate && gate.parentNode) gate.parentNode.removeChild(gate);
+    loadDashboard();
+  }
+
+  fetch('/api/tier', {credentials:'include', cache:'no-store'})
+    .then(function(r){ return r.json(); })
+    .then(function(d){
+      if (d && d.tier === 'pro') unlock();
+      else lock('Edge Pro tier required to view revenue.');
+    })
+    .catch(function(){ lock('Tier check failed — try /unlock/ to sign in.'); });
+
+  function setText(id, v){ var e=document.getElementById(id); if(e) e.textContent = v; }
+  function fmtMoney(n){
+    n = Number(n) || 0;
+    if (Math.abs(n) >= 1000) return '$'+(n/1000).toFixed(1)+'k';
+    return '$'+n.toFixed(2);
+  }
+
+  function loadDashboard(){
+    Promise.all([
+      fetch('/data/revenue.json', {cache:'no-store'}).then(function(r){return r.json()}).catch(function(){return {}}),
+      fetch('/data/numerai_submit_status.json', {cache:'no-store'}).then(function(r){return r.json()}).catch(function(){return {}}),
+    ]).then(function(results){
+      var rev = results[0] || {};
+      var nu  = results[1] || {};
+
+      // Top KPIs
+      setText('last-refresh', rev.generated_at ? new Date(rev.generated_at).toLocaleString() : '–');
+      setText('k-mrr', fmtMoney(rev.mrr_usd));
+      setText('k-arr', 'ARR ' + fmtMoney(rev.arr_usd));
+      var subs = rev.subscribers || {};
+      setText('k-subs', subs.active || 0);
+      setText('k-trial', (subs.trialing||0) + ' trial · ' + (subs.canceled||0) + ' churned');
+      var bal = rev.balance || {};
+      setText('k-pending', fmtMoney(bal.pending_usd));
+      setText('k-avail', 'Avail ' + fmtMoney(bal.available_usd));
+      var d30 = rev.last_30_days || {};
+      setText('k-30d', fmtMoney(d30.gross_volume_usd));
+      setText('k-30d-cnt', (d30.charge_count||0) + ' charges, ' + fmtMoney(d30.refunds_usd) + ' refunded');
+
+      // Numerai
+      setText('n-round', nu.round || '–');
+      setText('n-submitted', nu.last_attempt_utc ? new Date(nu.last_attempt_utc).toISOString().slice(0,10) : '–');
+      setText('n-start', nu.scoring_starts || '–');
+      setText('n-resolve', nu.scoring_resolves || '–');
+      setText('n-rows', (nu.rows_submitted||0).toLocaleString());
+
+      // Streams panels
+      var active = document.getElementById('active-streams');
+      var pending = document.getElementById('pending-streams');
+      while(active.firstChild) active.removeChild(active.firstChild);
+      while(pending.firstChild) pending.removeChild(pending.firstChild);
+
+      function streamRow(parent, name, value, badge, badgeClass){
+        var row = document.createElement('div'); row.className = 'stream-row';
+        var n = document.createElement('span'); n.className = 'stream-name'; n.textContent = name;
+        if (badge) {
+          var t = document.createElement('span');
+          t.className = 'tag ' + (badgeClass||'');
+          t.textContent = badge;
+          n.appendChild(t);
+        }
+        var v = document.createElement('span');
+        v.className = 'stream-val' + ((value === '$0.00' || value === '0') ? ' zero' : '');
+        v.textContent = value;
+        row.appendChild(n); row.appendChild(v);
+        parent.appendChild(row);
+      }
+
+      streamRow(active, 'Stripe (Edge Reader $9/mo)', fmtMoney(rev.mrr_usd), 'live');
+      streamRow(active, 'Stripe pending payout',     fmtMoney(bal.pending_usd), 'live');
+      streamRow(active, 'Numerai Signals (Round '+(nu.round||'')+')', '$0 NMR · scoring '+(nu.scoring_starts||''), 'awaiting score', 'warn');
+      streamRow(active, 'Simply Wall St affiliate', '$0 · tracking active', 'live');
+      streamRow(active, 'Composer.trade symphony',  '$0 · distribution-only', 'live');
+
+      streamRow(pending, 'Moomoo Marketing Partner',     '$0', 'pending', 'warn');
+      streamRow(pending, 'Webull / Public / IBKR / Alpaca', '$0', 'placeholders', 'muted');
+      streamRow(pending, 'Twitter cookie reactivation',  '—',  'login needed', 'warn');
+      streamRow(pending, 'Replicate lip-sync (optional)','—',  'static avatar OK', 'muted');
+
+      // Burn row — rough estimate, replace when invoices arrive
+      var burnRow = document.getElementById('burn-row');
+      var burn_estimate = 60; // monthly compute
+      var net = (rev.mrr_usd || 0) - burn_estimate;
+      var burnHtml = document.createElement('div');
+      burnHtml.style.cssText = 'display:flex;justify-content:space-between;font-size:.92rem;font-family:IBM Plex Mono,monospace';
+      var leftDiv = document.createElement('div');
+      leftDiv.appendChild(document.createTextNode('Compute (droplet + tools): '));
+      var compStr = document.createElement('strong');
+      compStr.style.color = 'var(--red)';
+      compStr.textContent = '−' + fmtMoney(burn_estimate);
+      leftDiv.appendChild(compStr);
+      var rightDiv = document.createElement('div');
+      rightDiv.appendChild(document.createTextNode('Net: '));
+      var netStr = document.createElement('strong');
+      netStr.style.color = net >= 0 ? 'var(--green)' : 'var(--red)';
+      netStr.textContent = (net >= 0 ? '+' : '−') + fmtMoney(Math.abs(net));
+      rightDiv.appendChild(netStr);
+      burnHtml.appendChild(leftDiv);
+      burnHtml.appendChild(rightDiv);
+      burnRow.appendChild(burnHtml);
+    });
+  }
+})();
+</script>
+</body></html>

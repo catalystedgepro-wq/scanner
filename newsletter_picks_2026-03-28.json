@@ -1,0 +1,15 @@
+{
+  "date": "2026-03-28",
+  "top5_tickers": [
+    "CMPS",
+    "CAR",
+    "ERO",
+    "BAK",
+    "CMCL"
+  ],
+  "gapper_count": 0,
+  "value_count": 3,
+  "moat_count": 0,
+  "total_combined": 120,
+  "top_pick": "CMPS"
+}

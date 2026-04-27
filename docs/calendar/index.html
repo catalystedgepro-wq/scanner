@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Catalyst Calendar — Daily SEC Filing Activity | Catalyst Edge</title>
+<meta name="description" content="Historical calendar of SEC catalyst activity. See daily pick counts, top scores, and trending tickers for each trading day.">
+<meta property="og:title" content="Catalyst Calendar — Catalyst Edge">
+<link rel="canonical" href="https://catalystedgescanner.com/calendar/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#070a12;--surface:#0f1420;--gold:#d4a843;--green:#22c55e;--red:#ef4444;--cyan:#06b6d4;--text:#e2e8f0;--dim:#94a3b8;--muted:#64748b;--border:#1e293b}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
+.wrap{max-width:1000px;margin:0 auto;padding:1.5rem}
+.nav{position:sticky;top:0;z-index:100;background:rgba(7,10,18,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:.75rem 1.5rem;display:flex;align-items:center;gap:1rem}
+.nav a{color:var(--gold);font-weight:600;font-size:.95rem}
+.nav .sep{color:var(--muted)}
+.hero{text-align:center;padding:2.5rem 0 2rem;border-bottom:1px solid var(--border);margin-bottom:1.5rem}
+.hero h1{font-size:clamp(1.5rem,4vw,2.2rem);font-weight:800;margin-bottom:.4rem}
+.hero h1 em{font-style:normal;color:var(--gold)}
+.hero .sub{color:var(--dim);font-size:.9rem;max-width:580px;margin:0 auto}
+.stats-bar{display:flex;justify-content:center;gap:2rem;margin:1rem 0;flex-wrap:wrap}
+.sb-item{text-align:center}
+.sb-val{font-size:1.3rem;font-weight:800;color:var(--gold)}
+.sb-lbl{font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.timeline{margin:1.5rem 0}
+.day-card{display:grid;grid-template-columns:100px 1fr;gap:1rem;padding:1rem;margin-bottom:.5rem;background:var(--surface);border:1px solid var(--border);border-radius:10px;transition:border-color .2s}
+.day-card:hover{border-color:var(--gold)}
+.day-card.today{border-color:var(--gold);border-width:2px;background:rgba(212,168,67,.03)}
+.dc-date{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:.3rem}
+.dc-date .dd-day{font-size:1.6rem;font-weight:800;color:var(--gold);line-height:1}
+.dc-date .dd-month{font-size:.7rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.dc-date .dd-dow{font-size:.6rem;color:var(--muted)}
+.dc-body{display:flex;flex-wrap:wrap;align-items:center;gap:1rem}
+.dc-stat{text-align:center;min-width:70px}
+.dc-stat .ds-val{font-size:1.2rem;font-weight:800;font-family:'IBM Plex Mono',monospace}
+.dc-stat .ds-lbl{font-size:.55rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.dc-tickers{display:flex;gap:.3rem;flex-wrap:wrap;margin-left:auto}
+.dc-ticker{padding:3px 8px;border-radius:5px;font-size:.7rem;font-weight:700;background:rgba(212,168,67,.08);color:var(--gold);font-family:'IBM Plex Mono',monospace}
+.heat-bar{height:4px;border-radius:2px;background:rgba(212,168,67,.1);min-width:100px;flex:1}
+.heat-fill{height:100%;border-radius:2px}
+.cta-bar{background:var(--surface);border:1px solid var(--gold);border-radius:10px;padding:1.25rem;text-align:center;margin:2rem 0}
+.cta-bar h3{color:var(--gold);font-size:1rem;margin-bottom:.3rem}
+.cta-bar p{color:var(--dim);font-size:.8rem;margin-bottom:.75rem}
+.cta-bar a{display:inline-block;padding:.5rem 1.4rem;background:linear-gradient(135deg,var(--gold),#f1ce88);color:#070a12;font-weight:700;border-radius:6px;font-size:.85rem}
+.footer{text-align:center;padding:1.5rem;font-size:.72rem;color:var(--muted);border-top:1px solid var(--border);margin-top:2rem}
+.footer a{color:var(--muted)}
+.loading{text-align:center;padding:3rem;color:var(--muted)}
+@media(max-width:500px){.day-card{grid-template-columns:70px 1fr}.dc-date .dd-day{font-size:1.2rem}}
+.cal-controls{display:flex;flex-wrap:wrap;gap:.4rem;align-items:center;margin:1rem 0;justify-content:center}
+.cal-controls .lbl{color:var(--muted);font-size:.65rem;text-transform:uppercase;letter-spacing:.08em;margin-right:.3rem}
+.cal-fbtn{padding:5px 14px;border-radius:18px;border:1px solid var(--border);background:var(--surface);color:var(--dim);font-size:.72rem;font-weight:600;cursor:pointer;font-family:inherit;transition:all 200ms cubic-bezier(0.16,1,0.3,1);white-space:nowrap}
+.cal-fbtn:hover{border-color:var(--cyan);color:var(--text);transform:translateY(-1px);box-shadow:0 8px 24px -8px rgba(6,182,212,.32)}
+.cal-fbtn.active{background:rgba(6,182,212,.12);border-color:var(--cyan);color:var(--cyan);font-weight:700}
+.week-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1rem 1.2rem;margin-bottom:.6rem;display:grid;grid-template-columns:120px 1fr;gap:1rem;align-items:center;transition:all 200ms cubic-bezier(0.16,1,0.3,1)}
+.week-card:hover{border-color:var(--gold);transform:translateY(-1px);box-shadow:0 8px 24px -8px rgba(212,168,67,.18)}
+.week-card .wk-label{font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.week-card .wk-label b{display:block;color:var(--gold);font-size:1.05rem;font-family:'IBM Plex Mono',monospace;margin-top:.2rem}
+.week-card .wk-stats{display:flex;gap:1.2rem;flex-wrap:wrap}
+.week-card .wk-stat{text-align:center}
+.week-card .wk-stat .v{font-size:1.1rem;font-weight:800;font-family:'IBM Plex Mono',monospace;color:var(--text)}
+.week-card .wk-stat .l{font-size:.6rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Catalyst Edge Calendar","url":"https://catalystedgescanner.com/calendar/","description":"Historical calendar of daily SEC catalyst activity","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@800;900&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/lib/cinematic-hero.css">
+  <link rel="stylesheet" href="/lib/cyber-shell.css">
+  <link rel="stylesheet" href="/lib/polish-tokens.css">
+</head>
+<body>
+  <div class="cy-bg" aria-hidden="true"></div>
+  <div class="cy-floor" aria-hidden="true"></div>
+  <div class="cy-vignette" aria-hidden="true"></div>
+  <div class="cy-scan" aria-hidden="true"></div>
+<div class="nav">
+  <a href="/">Catalyst Edge</a>
+  <span class="sep">/</span>
+  <span style="color:var(--dim);font-size:.9rem">Catalyst Calendar</span>
+</div>
+<div class="wrap">
+<section class="cin-hero cy-neon-hero cy-shimmer">
+    <div class="cin-grid">
+      <div class="cin-stat-stack">
+        <div class="cin-eyebrow"><span class="cin-live-dot"></span>CATALYST CALENDAR · LIVE</div>
+        <div class="cin-colossal">
+          <div class="cin-num-row"><span class="cin-num">14d</span></div>
+          <div class="cin-side">
+          <span class="cin-tag"><b>upcoming</b> catalysts</span>
+          <span class="cin-tag">earnings + lockups</span>
+          <span class="cin-tag">M&A vote dates</span>
+          </div>
+        </div>
+        <div class="cin-stamp">CALENDAR//FORWARD · v1.0 · <b>LIVE</b></div>
+      </div>
+      <div class="cin-h1-block">
+        <div class="cin-h1-eyebrow">📅 Catalyst Calendar · The Forward 14-Day Window</div>
+        <h1 class="cin-headline">Every <em>scheduled catalyst</em>—earnings, lockup expirations, M&A votes, FDA dates—on a <span class="cin-accent">14-day forward calendar</span>.</h1>
+        <p class="cin-lede">Pre-positioning is everything. The calendar shows what's about to fire, when, with the relevant ticker, sector, and base-rate context for each event type.</p>
+        <div class="cin-cta-row">
+          <a href="#cal-grid" class="cin-btn-primary">Open calendar ↓</a>
+          <a href="/scanner/" class="cin-btn-ghost">Live scanner</a>
+        </div>
+        <div class="cin-strip">
+          <div class="cin-cell"><div class="cin-k">Events (14d)</div><div class="cin-v" id="cl-total">–</div></div>
+          <div class="cin-cell"><div class="cin-k">Earnings</div><div class="cin-v gold" id="cl-earn">–</div></div>
+          <div class="cin-cell"><div class="cin-k">Lockups</div><div class="cin-v cyan" id="cl-lock">–</div></div>
+          <div class="cin-cell"><div class="cin-k">FDA</div><div class="cin-v bull" id="cl-fda">–</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="stats-bar">
+    <div class="sb-item"><div class="sb-val" id="c-days">--</div><div class="sb-lbl">Days Tracked</div></div>
+    <div class="sb-item"><div class="sb-val" id="c-avg" style="color:var(--green)">--</div><div class="sb-lbl">Avg Picks/Day</div></div>
+    <div class="sb-item"><div class="sb-val" id="c-peak" style="color:var(--gold)">--</div><div class="sb-lbl">Peak Day Picks</div></div>
+  </div>
+  <div class="cal-controls" role="toolbar" aria-label="Calendar view toggle">
+    <span class="lbl">View</span>
+    <button class="cal-fbtn active" data-view="day" id="cal-view-day">Day</button>
+    <button class="cal-fbtn" data-view="week" id="cal-view-week">Week</button>
+  </div>
+  <div id="timeline" class="timeline">
+    <div class="loading">Loading calendar data...</div>
+  </div>
+  <div class="cta-bar">
+    <h3>Never miss a catalyst day</h3>
+    <p>Free daily email at 4 AM ET with ranked picks, convergence signals, and performance tracking.</p>
+    <a href="/preview/">Subscribe Free</a>
+  </div>
+</div>
+<div class="footer">
+  &copy; 2026 Catalyst Edge &middot;
+  <a href="/">Scanner</a> &middot;
+  <a href="/rankings/">Rankings</a> &middot;
+  <a href="/screener/">Screener</a> &middot;
+  <a href="/spotlight/">Spotlight</a> &middot;
+  <a href="/lookup/">Lookup</a> &middot;
+  <a href="/sectors/">Sectors</a> &middot;
+  <a href="/signal-strength/">Signal Strength</a> &middot;
+  <a href="/vs/">Compare</a> &middot;
+  <a href="/performance/">Performance</a> &middot;
+  <a href="/glossary/">Glossary</a> &middot;
+  Not financial advice.
+</div>
+<script>
+(function(){
+  var timeline = document.getElementById('timeline');
+  var dows = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  var allDays = [];
+  var peakDays = 0;
+  var viewMode = 'day';
+
+  function el(tag, cls, text) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text) e.textContent = text;
+    return e;
+  }
+
+  function isoWeek(date){
+    // Monday-based week
+    var d = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()));
+    var day = d.getUTCDay() || 7;
+    d.setUTCDate(d.getUTCDate() + 4 - day);
+    var yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+    var wn = Math.ceil((((d - yearStart)/86400000) + 1)/7);
+    return d.getUTCFullYear() + '-W' + String(wn).padStart(2, '0');
+  }
+
+  function renderWeek(){
+    timeline.textContent = '';
+    if(allDays.length === 0){
+      timeline.appendChild(el('div','loading','No calendar data available yet.'));
+      return;
+    }
+    var buckets = {};
+    allDays.forEach(function(day){
+      var dt = new Date(day.date + 'T12:00:00Z');
+      var key = isoWeek(dt);
+      if(!buckets[key]) buckets[key] = {key:key, days:[], pick_count:0, total_top:0, total_avg:0, n:0, sample_date:dt};
+      var b = buckets[key];
+      b.days.push(day);
+      b.pick_count += (day.pick_count || 0);
+      b.total_top += parseFloat(day.top_score || 0);
+      b.total_avg += parseFloat(day.avg_score || 0);
+      b.n += 1;
+    });
+    var weeks = Object.keys(buckets).sort().reverse().map(function(k){return buckets[k]});
+    weeks.forEach(function(b){
+      var card = el('div','week-card');
+      var wkLabel = el('div','wk-label');
+      wkLabel.appendChild(document.createTextNode('ISO ' + b.key));
+      var rangeStart = b.days[b.days.length-1] || b.days[0];
+      var rangeEnd = b.days[0] || b.days[b.days.length-1];
+      var rangeText = el('b'); rangeText.textContent = (rangeStart && rangeStart.date ? rangeStart.date.slice(5) : '') + ' → ' + (rangeEnd && rangeEnd.date ? rangeEnd.date.slice(5) : '');
+      wkLabel.appendChild(rangeText);
+      card.appendChild(wkLabel);
+
+      var stats = el('div','wk-stats');
+      var s1 = el('div','wk-stat'); var v1 = el('div','v', String(b.pick_count)); v1.style.color = 'var(--gold)'; s1.appendChild(v1); s1.appendChild(el('div','l','Total Picks'));
+      var s2 = el('div','wk-stat'); s2.appendChild(el('div','v', String(b.n))); s2.appendChild(el('div','l','Days'));
+      var s3 = el('div','wk-stat'); s3.appendChild(el('div','v', b.n ? (b.total_avg/b.n).toFixed(1) : '0')); s3.appendChild(el('div','l','Avg Score'));
+      var s4 = el('div','wk-stat'); var v4 = el('div','v', b.n ? Math.round(b.total_top/b.n).toString() : '0'); v4.style.color='var(--green)'; s4.appendChild(v4); s4.appendChild(el('div','l','Avg Top'));
+      stats.appendChild(s1); stats.appendChild(s2); stats.appendChild(s3); stats.appendChild(s4);
+      card.appendChild(stats);
+
+      timeline.appendChild(card);
+    });
+  }
+
+  function renderDays(){
+    timeline.textContent = '';
+    if(allDays.length === 0){
+      timeline.appendChild(el('div','loading','No calendar data available yet.'));
+      return;
+    }
+    var today = new Date().toISOString().slice(0,10);
+    var peakPicks = peakDays;
+    allDays.forEach(function(day){
+      var dt = new Date(day.date + 'T12:00:00Z');
+      var card = el('div','day-card' + (day.date === today ? ' today' : ''));
+
+      // Date column
+      var dateCol = el('div','dc-date');
+      dateCol.appendChild(el('div','dd-day',String(dt.getUTCDate())));
+      dateCol.appendChild(el('div','dd-month',months[dt.getUTCMonth()]));
+      dateCol.appendChild(el('div','dd-dow',dows[dt.getUTCDay()]));
+      card.appendChild(dateCol);
+
+      // Body
+      var body = el('div','dc-body');
+
+      var s1 = el('div','dc-stat');
+      var v1 = el('div','ds-val',String(day.pick_count));
+      v1.style.color = day.pick_count > 100 ? 'var(--green)' : day.pick_count > 50 ? 'var(--gold)' : 'var(--dim)';
+      s1.appendChild(v1);
+      s1.appendChild(el('div','ds-lbl','Picks'));
+      body.appendChild(s1);
+
+      var s2 = el('div','dc-stat');
+      s2.appendChild(el('div','ds-val',String(day.top_score)));
+      s2.appendChild(el('div','ds-lbl','Top Score'));
+      body.appendChild(s2);
+
+      var s3 = el('div','dc-stat');
+      s3.appendChild(el('div','ds-val',String(day.avg_score)));
+      s3.appendChild(el('div','ds-lbl','Avg Score'));
+      body.appendChild(s3);
+
+      // Heat bar
+      var hbar = el('div','heat-bar');
+      var hfill = el('div','heat-fill');
+      var pct = Math.min(100, (day.pick_count / Math.max(peakPicks, 1)) * 100);
+      hfill.style.width = pct + '%';
+      hfill.style.background = pct > 70 ? 'var(--green)' : pct > 40 ? 'var(--gold)' : 'var(--cyan)';
+      hbar.appendChild(hfill);
+      body.appendChild(hbar);
+
+      // Top tickers
+      if(day.top_tickers && day.top_tickers.length > 0){
+        var tDiv = el('div','dc-tickers');
+        day.top_tickers.forEach(function(t){
+          if(t) tDiv.appendChild(el('span','dc-ticker',t));
+        });
+        body.appendChild(tDiv);
+      }
+
+      card.appendChild(body);
+      timeline.appendChild(card);
+    });
+  }
+
+  function renderView(){
+    if(viewMode === 'week') renderWeek();
+    else renderDays();
+  }
+
+  // Wire toggle
+  var dayBtn = document.getElementById('cal-view-day');
+  var weekBtn = document.getElementById('cal-view-week');
+  if(dayBtn) dayBtn.addEventListener('click', function(){
+    viewMode = 'day'; dayBtn.classList.add('active'); if(weekBtn) weekBtn.classList.remove('active');
+    renderView();
+  });
+  if(weekBtn) weekBtn.addEventListener('click', function(){
+    viewMode = 'week'; weekBtn.classList.add('active'); if(dayBtn) dayBtn.classList.remove('active');
+    renderView();
+  });
+
+  fetch('/api/calendar').then(function(r){return r.json()}).then(function(d){
+    allDays = d.days || [];
+    document.getElementById('c-days').textContent = d.total_days || allDays.length;
+    var totalPicks = 0;
+    peakDays = 0;
+    allDays.forEach(function(day){
+      totalPicks += day.pick_count || 0;
+      if((day.pick_count || 0) > peakDays) peakDays = day.pick_count || 0;
+    });
+    document.getElementById('c-avg').textContent = allDays.length ? Math.round(totalPicks/allDays.length) : 0;
+    document.getElementById('c-peak').textContent = peakDays;
+    renderView();
+  }).catch(function(){
+    timeline.textContent = 'Could not load calendar data.';
+  });
+})();
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KV1VDK22VC"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-KV1VDK22VC');</script>
+</body>
+</html>

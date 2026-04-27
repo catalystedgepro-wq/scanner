@@ -1,0 +1,80 @@
+rank,hn_id,title,url,score,comments,age_hours,upvote_rate_per_hr,by,tickers,categories,captured_at
+1,47927526,NPM Website Is Down,https://status.npmjs.org,92,35,1.39,66.26,18nleung,,,2026-04-27T22:49:43Z
+2,47926861,Is my blue your blue?,https://ismy.blue/,195,110,2.42,80.59,theogravity,,,2026-04-27T22:49:43Z
+3,47921248,Microsoft and OpenAI end their exclusive and revenue-sharing deal,https://www.bloomberg.com/news/articles/2026-04-27/microsoft-to-stop-sharing-revenue-with-main-ai-partner-openai,684,621,9.45,72.38,helsinkiandrew,MSFT,"ai,climate",2026-04-27T22:49:43Z
+4,47927070,Three men are facing 44 charges in Toronto SMS Blaster arrests,https://www.tps.ca/media-centre/stories/unprecedented-sms-blaster-arrests/,50,22,2.09,23.91,gnabgib,,,2026-04-27T22:49:43Z
+5,47924813,Easyduino: Open Source PCB Devboards for KiCad,https://github.com/Hanqaqa/Easyduino,142,20,5.08,27.96,Hanqaqa,MSFT,"climate,security",2026-04-27T22:49:43Z
+6,47907175,Spanish archaeologists discover trove of ancient shipwrecks in Bay of Gibraltar,https://www.theguardian.com/science/2026/apr/15/hidden-treasures-spanish-archaeologists-discover-trove-of-ancient-shipwrecks-in-bay-of-gibraltar,62,6,42.95,1.44,1659447091,,,2026-04-27T22:49:43Z
+7,47920315,China blocks Meta's acquisition of AI startup Manus,https://www.cnbc.com/2026/04/27/meta-manus-china-blocks-acquisition-ai-startup.html,253,146,11.10,22.80,yakkomajuri,,ai,2026-04-27T22:49:43Z
+8,47903439,The quiet resurgence of RF engineering,https://atempleton.bearblog.dev/quiet-resurgence-of-rf-engineering/,83,39,52.40,1.58,merlinq,,climate,2026-04-27T22:49:43Z
+9,47923010,Networking changes coming in macOS 27,https://eclecticlight.co/2026/04/23/networking-changes-coming-in-macos-27/,175,155,7.23,24.22,pvtmert,AAPL,,2026-04-27T22:49:43Z
+10,47919630,4TB of voice samples just stolen from 40k AI contractors at Mercor,https://app.oravys.com/blog/mercor-breach-2026,406,153,12.88,31.53,Oravys,,"ai,security",2026-04-27T22:49:43Z
+11,47920074,Men who stare at walls,https://www.alexselimov.com/posts/men_who_stare_at_walls/,388,193,11.69,33.19,aselimov3,,,2026-04-27T22:49:43Z
+12,47922079,“Why not just use Lean?”,https://lawrencecpaulson.github.io//2026/04/23/Why_not_Lean.html,243,157,8.41,28.88,ibobev,MSFT,,2026-04-27T22:49:43Z
+13,47924877,Super ZSNES – GPU Powered SNES Emulator,https://zsnes.com/,195,48,4.99,39.05,haunter,,,2026-04-27T22:49:43Z
+14,47922957,The woes of sanitizing SVGs,https://muffin.ink/blog/scratch-svg-sanitization/,155,61,7.30,21.22,varun_ch,,,2026-04-27T22:49:43Z
+15,47909252,The Secret Life of NaN,https://anniecherkaev.com/the-secret-life-of-nan,14,3,35.89,0.39,prakashqwerty,,climate,2026-04-27T22:49:43Z
+16,47923357,GitHub Copilot is moving to usage-based billing,https://github.blog/news-insights/company-news/github-copilot-is-moving-to-usage-based-billing/,483,372,6.78,71.27,frizlab,MSFT,,2026-04-27T22:49:43Z
+17,47919997,Pgbackrest is no longer being maintained,https://github.com/pgbackrest/pgbackrest,387,196,11.89,32.56,c0l0,MSFT,,2026-04-27T22:49:43Z
+18,47920787,Show HN: OSS Agent I built topped the TerminalBench on Gemini-3-flash-preview,https://github.com/dirac-run/dirac,282,110,10.23,27.56,GodelNumbering,"GOOGL,MSFT","ai,climate",2026-04-27T22:49:43Z
+19,47904615,Magic by return of post: How mail order delivered the occult,https://publicdomainreview.org/essay/magic-by-return-of-post/,31,4,49.55,0.63,Vigier,,climate,2026-04-27T22:49:43Z
+20,47901433,Fully Featured Audio DSP Firmware for the Raspberry Pi Pico,https://github.com/WeebLabs/DSPi,246,70,57.36,4.29,BoingBoomTschak,MSFT,,2026-04-27T22:49:43Z
+21,47922940,US Supreme Court reviews police use of cell location data,https://www.nytimes.com/2026/04/27/us/politics/supreme-court-cell-data-geofence.html,202,122,7.34,27.54,unethical_ban,,climate,2026-04-27T22:49:43Z
+22,47919733,FDA approves first gene therapy for treatment of genetic hearing loss,https://www.fda.gov/news-events/press-announcements/fda-approves-first-ever-gene-therapy-treatment-genetic-hearing-loss-under-national-priority-voucher,194,74,12.58,15.43,JeanKage,,climate,2026-04-27T22:49:43Z
+23,47926480,L123: A Lotus 1-2-3–style terminal spreadsheet with modern Excel compatibility,https://github.com/duane1024/l123,45,14,2.94,15.31,duane1024,MSFT,,2026-04-27T22:49:43Z
+24,47875795,Flipdiscs,https://flipdisc.io,537,85,104.92,5.12,skogstokig,,,2026-04-27T22:49:43Z
+25,47904053,Adding a team was the wrong strategic decision,https://learnings.aleixmorgadas.dev/p/adding-a-team-was-the-wrong-strategic,65,21,50.94,1.28,milkglass,,climate,2026-04-27T22:49:43Z
+26,47924181,"Decoupled DiLoCo: Resilient, Distributed AI Training at Scale",https://deepmind.google/blog/decoupled-diloco/,39,4,5.87,6.64,metadat,GOOGL,ai,2026-04-27T22:49:43Z
+27,47919240,Quarkdown – Markdown with Superpowers,https://quarkdown.com/,235,77,13.91,16.89,amai,,,2026-04-27T22:49:43Z
+28,47921626,Show HN: Utilyze – an open source GPU monitoring tool more accurate than nvtop,https://www.systalyze.com/utilyze,78,22,8.90,8.76,ManyaGhobadi,,security,2026-04-27T22:49:43Z
+29,47923121,Supreme Court to hear arguments in landmark Roundup weedkiller case,https://www.nytimes.com/2026/04/26/climate/supreme-court-bayer-monsanto-roundup-glyphosate.html,110,136,7.08,15.54,mikhael,,,2026-04-27T22:49:43Z
+30,47893516,Den stora Älgvandringen – The great moose migration (live),https://www.svtplay.se/video/jXv3A5G/den-stora-algvandringen/idag-00-00,83,10,77.07,1.08,donjoe,,,2026-04-27T22:49:43Z
+31,47921377,Tendril – a self-extending agent that builds and registers its own tools,https://github.com/serverless-dna/tendril,67,31,9.25,7.24,walmsles,MSFT,ai,2026-04-27T22:49:43Z
+32,47925679,Our principles,https://openai.com/index/our-principles/,65,91,3.91,16.61,tosh,MSFT,,2026-04-27T22:49:43Z
+33,47920289,Show HN: A terminal spreadsheet editor with Vim keybindings,https://github.com/garritfra/cell,82,43,11.17,7.34,garritfra,MSFT,,2026-04-27T22:49:43Z
+34,47916890,TurboQuant: A first-principles walkthrough,https://arkaung.github.io/interactive-turboquant/,280,56,20.92,13.38,kweezar,MSFT,,2026-04-27T22:49:43Z
+35,47922703,I analyzed 571M Amazon reviews to find the most profanity-filled customer rants,https://burla-cloud.github.io/amazon-review-distiller/,33,5,7.63,4.33,jmp1062,"AMZN,MSFT",climate,2026-04-27T22:49:43Z
+36,47924775,GitHub is having issues now,https://www.githubstatus.com,288,101,5.13,56.19,SenHeng,MSFT,,2026-04-27T22:49:43Z
+37,47917026,The Prompt API,https://developer.chrome.com/docs/ai/prompt-api,251,126,20.51,12.24,gslin,GOOGL,climate,2026-04-27T22:49:43Z
+38,47899399,Managing the Unmanaged Switch,https://watchmysys.com/blog/2026/03/managing-the-unmanaged-switch/,58,32,63.63,0.91,luu,,,2026-04-27T22:49:43Z
+39,47921064,Running local LLMs offline on a ten-hour flight,https://deploy.live/blog/running-local-llms-offline-on-a-ten-hour-flight/,103,77,9.73,10.58,darccio,,ai,2026-04-27T22:49:43Z
+40,47900649,Getting my daily news from a dot matrix printer 2024,https://aschmelyun.com/blog/getting-my-daily-news-from-a-dot-matrix-printer/,88,20,59.17,1.49,xupybd,,,2026-04-27T22:49:43Z
+41,47925425,United Wizards of the Coast,https://unitedwizardsofthecoast.com/news/announcing-united-wizards-coast-cwa,198,182,4.26,46.52,d4mi3n,,,2026-04-27T22:49:43Z
+42,47914165,I bought Friendster for $30k – Here's what I'm doing with it,https://ca98am79.medium.com/i-bought-friendster-for-30k-heres-what-i-m-doing-with-it-d5e8ddb3991d,1058,573,26.15,40.46,ca98am79,,,2026-04-27T22:49:43Z
+43,47903541,Three constraints before I build anything,https://jordanlord.co.uk/blog/3-constraints/,342,54,52.15,6.56,nervous_north,,,2026-04-27T22:49:43Z
+44,47905761,Understanding the short circuit in solid-state batteries,https://www.mpie.de/5151287/short-circuit-solid-state-batteries,38,6,47.11,0.81,hhs,,,2026-04-27T22:49:43Z
+45,47926259,U.S. companies back Sam Altman's World ID even as much of the world pushes back,https://restofworld.org/2026/sam-altman-worldcoin-zoom-tinder-partnerships/,117,82,3.24,36.14,kelnos,,climate,2026-04-27T22:49:43Z
+46,47922712,Dutch central bank ditches AWS and chooses Lidl for European Cloud,https://www.techzine.eu/news/infrastructure/140634/dutch-central-bank-chooses-lidl-for-european-cloud/,293,127,7.62,38.45,benterix,AMZN,,2026-04-27T22:49:43Z
+47,47925845,You have to have an account to read IMDB reviews now,https://old.reddit.com/r/enshittification/comments/1srjamd/you_have_to_have_an_account_to_read_imdb_reviews/,30,7,3.73,8.05,Markoff,"AMD,RDDT",climate,2026-04-27T22:49:43Z
+48,47913650,"AI should elevate your thinking, not replace it",https://www.koshyjohn.com/blog/ai-should-elevate-your-thinking-not-replace-it/,807,565,26.78,30.14,koshyjohn,,"ai,climate",2026-04-27T22:49:43Z
+49,47927410,"Iran war disrupts the circuit board supply chain, raises costs for tech firms",https://www.reuters.com/world/middle-east/iran-war-disrupts-the-circuit-board-supply-chain-raises-costs-tech-firms-2026-04-27/,7,0,1.57,4.47,WarOnPrivacy,,,2026-04-27T22:49:43Z
+50,47906666,A Guide to CubeSat Mission and Bus Design,https://pressbooks-dev.oer.hawaii.edu/epet302/,78,9,44.57,1.75,o4c,,climate,2026-04-27T22:49:43Z
+51,47887907,Electrostatics and High Voltage Links,http://amasci.com/static/electrostatic1.html,39,6,85.04,0.46,ludicrousdispla,,,2026-04-27T22:49:43Z
+52,47878231,Box to save memory in Rust,https://dystroy.org/blog/box-to-save-memory/,174,50,101.79,1.71,emschwartz,,,2026-04-27T22:49:43Z
+53,47915632,FreeBSD Device Drivers Book,https://github.com/ebrandi/FDD-book,131,35,23.95,5.47,myth_drannon,MSFT,climate,2026-04-27T22:49:43Z
+54,47914350,Sawe becomes first athlete to run a sub-two-hour marathon in a competitive race,https://www.bbc.com/sport/athletics/articles/crm1m7e0zwzo,499,328,25.89,19.27,berkeleyjunk,,,2026-04-27T22:49:43Z
+55,47918961,It's OK to abandon your side-project (2024),https://robbowen.digital/wrote-about/abandoned-side-projects/,179,85,14.64,12.22,hisamafahri,,,2026-04-27T22:49:43Z
+56,47924188,Canada's first sovereign wealth fund,https://www.cbc.ca/news/politics/sovereign-wealth-fund-carney-major-projects-9.7178238,133,86,5.86,22.68,geox,,,2026-04-27T22:49:43Z
+57,47908051,Self-updating screenshots,https://interblah.net/self-updating-screenshots,455,72,39.82,11.43,bjhess,,,2026-04-27T22:49:43Z
+58,47923527,EFF Challenges Secrecy in Eastern District of Texas Patent Case,https://www.eff.org/deeplinks/2026/04/eff-challenges-secrecy-eastern-district-texas-patent-case,45,1,6.59,6.83,hn_acker,,,2026-04-27T22:49:43Z
+59,47924676,Git-based cache saves 50% on token usage,https://old.reddit.com/r/vibecoding/comments/1sx4agk/gitbased_cache_saves_50_on_token_usage/,25,0,5.23,4.78,syumei,RDDT,,2026-04-27T22:49:43Z
+60,47916909,EvanFlow – A TDD driven feedback loop for Claude Code,https://github.com/evanklem/evanflow,102,54,20.89,4.88,evanklem2004,MSFT,climate,2026-04-27T22:49:43Z
+61,47924920,An open-source spec for Codex orchestration: Symphony,https://openai.com/index/open-source-codex-orchestration-symphony/,4,0,4.95,0.81,xngbuilds,MSFT,security,2026-04-27T22:49:43Z
+62,47899199,Mystery Cpuid Bit,http://www.os2museum.com/wp/mystery-cpuid-bit/,36,3,64.38,0.56,userbinator,,,2026-04-27T22:49:43Z
+63,47885719,Running Bare-Metal Rust Alongside ESP-IDF on the ESP32-S3's Second Core,https://tingouw.com/blog/embedded/esp32/run_rust_on_app_core,94,18,89.88,1.05,MrBuddyCasino,,,2026-04-27T22:49:43Z
+64,47914677,"Butterflies are in decline across North America, a look at the Western Monarch",https://www.smithsonianmag.com/science-nature/butterflies-are-in-dramatic-decline-across-north-america-a-close-look-at-the-western-monarch-shows-why-180988582/,235,81,25.44,9.24,1659447091,,,2026-04-27T22:49:43Z
+65,47911644,The Visible Zorker: Zork 1,https://eblong.com/infocom/visi/zork1/,140,36,30.13,4.65,PLenz,,,2026-04-27T22:49:43Z
+66,47876071,Show HN: Turning a Gaussian Splat into a videogame,https://blog.playcanvas.com/turning-a-gaussian-splat-into-a-videogame/,226,57,104.52,2.16,yak32,,,2026-04-27T22:49:43Z
+68,47924124,Intel Ends Open Ecosystem Community/Evangelism Projects,https://www.phoronix.com/news/Intel-Ends-OSS-Evangelism-Repos,26,2,5.93,4.38,abdelhousni,INTC,climate,2026-04-27T22:49:43Z
+69,47910287,Branimir Lambov from IBM on Cassandra,https://theconsensus.dev/p/2026/04/26/branimir-lambov-from-ibm-on-cassandra.html,52,12,33.08,1.57,eatonphil,IBM,climate,2026-04-27T22:49:43Z
+70,47922518,Canva apologizes after its AI tool replaces 'Palestine' in designs,https://www.theverge.com/ai-artificial-intelligence/919028/canva-magic-layers-ai-replacing-palestine,63,27,7.85,8.02,alex_suzuki,INTC,"ai,climate",2026-04-27T22:49:43Z
+71,47911350,Clay PCB Tutorial,https://feministhackerspaces.cargo.site/Clay-PCB-Tutorial,238,147,30.80,7.73,j0r0b0,,,2026-04-27T22:49:43Z
+72,47925817,Don't Stop Me from Pasting Passwords,https://ciamweekly.substack.com/p/dont-stop-me-from-pasting-passwords,14,3,3.76,3.72,mooreds,,,2026-04-27T22:49:43Z
+73,47913855,Fast16: High-precision software sabotage 5 years before Stuxnet,https://www.sentinelone.com/labs/fast16-mystery-shadowbrokers-reference-reveals-high-precision-software-sabotage-5-years-before-stuxnet/,330,88,26.52,12.44,dd23,,climate,2026-04-27T22:49:43Z
+74,47885012,"Dear friend, you have built a Kubernetes (2024)",https://www.macchaffee.com/blog/2024/you-have-built-a-kubernetes/,127,165,91.70,1.38,Wingy,"AAPL,UBER",,2026-04-27T22:49:43Z
+75,47925649,Healthcare is driving America's economy,https://www.ft.com/content/6b1bcbab-21d4-49a3-9940-d7550f042e5d,15,8,3.95,3.80,kamikazeturtles,,,2026-04-27T22:49:43Z
+76,47918657,The Mushroom That Makes People Have the Exact Same Hallucination,https://www.vice.com/en/article/meet-the-mushroom-that-make-people-have-the-exact-same-hallucination/,117,77,15.48,7.56,thunderbong,,,2026-04-27T22:49:43Z
+77,47927760,California's Billionaire Tax Has the Signatures to Make the Ballot,https://sfstandard.com/2026/04/26/california-billionaire-tax-2026/,9,0,1.10,8.21,m463,,,2026-04-27T22:49:43Z
+78,47910388,SWE-bench Verified no longer measures frontier coding capabilities,https://openai.com/index/why-we-no-longer-evaluate-swe-bench-verified/,339,179,32.86,10.32,kmdupree,MSFT,climate,2026-04-27T22:49:43Z
+79,47909226,Asahi Linux Progress Linux 7.0,https://asahilinux.org/2026/04/progress-report-7-0/,639,341,35.99,17.75,elisaado,,,2026-04-27T22:49:43Z
+80,47909860,Interview with Bob Odenkirk,https://www.nytimes.com/2026/04/25/magazine/bob-odenkirk-interview.html,138,131,34.13,4.04,wslh,,,2026-04-27T22:49:43Z

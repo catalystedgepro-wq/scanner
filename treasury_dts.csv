@@ -1,0 +1,22 @@
+record_date,category,transaction_type,today_usd_mm,mtd_usd_mm,fytd_usd_mm,captured_at
+2026-04-24,HHS - Medicare Premiums,Deposits,406,4838,39621,2026-04-27T23:05:15Z
+2026-04-24,State Unemployment Insurance Deposits,Deposits,546,2210,14470,2026-04-27T23:05:15Z
+2026-04-24,Dept of State (DOS),Deposits,11,2139,6873,2026-04-27T23:05:15Z
+2026-04-24,Dept of Defense (DoD) - misc,Deposits,61,1588,14448,2026-04-27T23:05:15Z
+2026-04-24,Dept of Veterans Affairs (VA),Deposits,64,878,6262,2026-04-27T23:05:15Z
+2026-04-24,USDA - Commodity Credit Corporation,Deposits,31,604,5673,2026-04-27T23:05:15Z
+2026-04-24,Dept of Homeland Security (DHS) - misc,Deposits,28,593,5166,2026-04-27T23:05:15Z
+2026-04-24,Dept of Energy (DOE),Deposits,33,507,5365,2026-04-27T23:05:15Z
+2026-04-24,Dept of Agriculture (USDA) - misc,Deposits,15,318,2426,2026-04-27T23:05:15Z
+2026-04-24,Dept of Transportation (DOT),Deposits,6,67,1069,2026-04-27T23:05:15Z
+2026-04-24,RRB - Unemployment Insurance,Deposits,1,4,30,2026-04-27T23:05:15Z
+2026-04-24,Dept of Defense (DoD) - misc,Withdrawals,1936,34505,280364,2026-04-27T23:05:15Z
+2026-04-24,HHS - Medicare Prescription Drugs,Withdrawals,2,18176,103375,2026-04-27T23:05:15Z
+2026-04-24,Federal Salaries (EFT),Withdrawals,4632,16660,142489,2026-04-27T23:05:15Z
+2026-04-24,Dept of Veterans Affairs (VA),Withdrawals,277,8074,64255,2026-04-27T23:05:15Z
+2026-04-24,Dept of Energy (DOE),Withdrawals,497,4289,34817,2026-04-27T23:05:15Z
+2026-04-24,Dept of Agriculture (USDA) - misc,Withdrawals,228,2006,15616,2026-04-27T23:05:15Z
+2026-04-24,Dept of Homeland Security (DHS) - misc,Withdrawals,100,1905,17369,2026-04-27T23:05:15Z
+2026-04-24,Dept of State (DOS),Withdrawals,29,1786,14879,2026-04-27T23:05:15Z
+2026-04-24,Dept of Transportation (DOT) - misc,Withdrawals,22,357,3248,2026-04-27T23:05:15Z
+2026-04-24,USDA - Commodity Credit Corporation,Withdrawals,5,195,10859,2026-04-27T23:05:15Z

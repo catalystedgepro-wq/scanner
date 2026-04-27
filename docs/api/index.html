@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Catalyst Edge API — SEC EDGAR Catalyst Data Feed for Quants &amp; Prop Desks</title>
+<meta name="description" content="Machine-readable SEC EDGAR catalyst data feed. 300+ filings scored daily by 3:30 AM ET. JSON/CSV output. Gap score, squeeze signal, insider cluster, dark pool. For quants, prop desks, and algorithmic traders.">
+<meta property="og:title" content="Catalyst Edge API — SEC Catalyst Data Feed">
+<meta property="og:description" content="Structured SEC filing intelligence delivered before market open. Integrate into your Python model, algo, or terminal.">
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KV1VDK22VC"></script>
+<script>
+window.dataLayer=window.dataLayer||[];
+function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());
+gtag('config','G-KV1VDK22VC');
+</script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0d1117;color:#e6edf3;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.6}
+a{color:#58a6ff;text-decoration:none}a:hover{text-decoration:underline}
+.wrap{max-width:860px;margin:0 auto;padding:60px 24px}
+h1{font-size:2.2em;font-weight:800;margin-bottom:12px;line-height:1.2}
+h2{font-size:1.35em;font-weight:700;margin:40px 0 12px;color:#e6edf3}
+h3{font-size:1.05em;font-weight:600;margin:24px 0 8px;color:#3fb950}
+p{color:#8b949e;margin-bottom:14px;font-size:.97em}
+.hero-tag{display:inline-block;background:#1a2e1a;color:#3fb950;border:1px solid #3fb95044;
+  border-radius:20px;padding:4px 14px;font-size:.8em;font-weight:600;margin-bottom:20px}
+.stat-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin:32px 0}
+.stat-card{background:#161b22;border:1px solid #21262d;border-radius:10px;padding:20px;text-align:center}
+.stat-n{font-size:2em;font-weight:800;color:#3fb950}
+.stat-l{font-size:.8em;color:#8b949e;margin-top:4px}
+.endpoint{background:#161b22;border:1px solid #21262d;border-radius:8px;padding:20px;margin:16px 0}
+.endpoint code{font-family:'SFMono-Regular',Consolas,monospace;font-size:.88em}
+pre{background:#161b22;border:1px solid #21262d;border-radius:8px;padding:20px;
+  overflow-x:auto;font-size:.84em;line-height:1.6;margin:16px 0}
+pre code{color:#3fb950}
+.field-table{width:100%;border-collapse:collapse;font-size:.87em;margin:16px 0}
+.field-table th{background:#161b22;color:#8b949e;padding:10px 14px;text-align:left;
+  border-bottom:1px solid #21262d;font-weight:600;text-transform:uppercase;font-size:.78em}
+.field-table td{padding:10px 14px;border-bottom:1px solid #161b22;vertical-align:top}
+.field-table td:first-child{color:#58a6ff;font-family:monospace;white-space:nowrap}
+.field-table td:nth-child(2){color:#3fb950;white-space:nowrap}
+.pill{display:inline-block;background:#1a2e1a;color:#3fb950;border:1px solid #3fb95044;
+  border-radius:4px;padding:1px 8px;font-size:.78em;font-weight:600;margin:2px}
+.pill.warn{background:#2d1800;color:#f0883e;border-color:#f0883e44}
+.cta-box{background:#161b22;border:2px solid #3fb950;border-radius:12px;padding:32px;
+  text-align:center;margin:48px 0}
+.cta-box h2{margin:0 0 12px;color:#3fb950;font-size:1.5em}
+.cta-box p{margin-bottom:20px}
+.btn-green{background:#3fb950;color:#0d1117;padding:12px 28px;border-radius:8px;
+  font-weight:700;font-size:1em;display:inline-block}
+.btn-green:hover{background:#3fb950cc;text-decoration:none}
+.tier-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;margin:24px 0}
+.tier-card{background:#161b22;border:1px solid #21262d;border-radius:10px;padding:24px}
+.tier-card.featured{border-color:#3fb950;background:#0f1f0f}
+.tier-price{font-size:2em;font-weight:800;color:#3fb950;margin:8px 0}
+.tier-period{font-size:.78em;color:#8b949e}
+.tier-features{list-style:none;margin-top:16px}
+.tier-features li{padding:6px 0;font-size:.9em;color:#8b949e;border-bottom:1px solid #21262d22}
+.tier-features li::before{content:"✓ ";color:#3fb950;font-weight:700}
+nav{background:#161b22;border-bottom:1px solid #21262d;padding:14px 24px;display:flex;align-items:center;gap:16px}
+nav a{font-size:.88em;color:#8b949e}nav a:hover{color:#e6edf3}
+.nav-brand{font-weight:700;color:#e6edf3;font-size:.95em;margin-right:auto}
+</style>
+</head>
+<body>
+<nav>
+  <span class="nav-brand">⚡ Catalyst Edge</span>
+  <a href="/">Scanner</a>
+  <a href="/methodology/">Methodology</a>
+  <a href="/api/">API</a>
+  <a href="https://catalystedge.agency" target="_blank" rel="noopener noreferrer">Newsletter</a>
+</nav>
+
+<div class="wrap">
+  <div class="hero-tag">Alternative Data · API Access</div>
+  <h1>SEC Catalyst Data Feed<br><span style="color:#3fb950">for Quants &amp; Prop Desks</span></h1>
+  <p style="font-size:1.05em;color:#c9d1d9;max-width:600px">
+    894 EDGAR filings parsed, scored, and structured every night by 3:30 AM ET.
+    Plug our gap scores, squeeze signals, and insider clusters directly into your
+    Python models, algo strategies, or Bloomberg workflows — no scraping required.
+  </p>
+
+  <div class="stat-row">
+    <div class="stat-card"><div class="stat-n">894</div><div class="stat-l">Filings parsed daily</div></div>
+    <div class="stat-card"><div class="stat-n">599+</div><div class="stat-l">Tickers scored</div></div>
+    <div class="stat-card"><div class="stat-n">3:30 AM</div><div class="stat-l">ET delivery</div></div>
+    <div class="stat-card"><div class="stat-n">57%</div><div class="stat-l">Hit +2% intraday (90-day)</div></div>
+  </div>
+
+  <h2>Data Fields</h2>
+  <p>Each row in the daily feed includes the following structured fields:</p>
+  <table class="field-table">
+    <thead><tr><th>Field</th><th>Type</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><td>ticker</td><td>string</td><td>Exchange symbol (filtered: no warrants, no derivatives)</td></tr>
+      <tr><td>gap_score</td><td>float 0–20</td><td>Proprietary catalyst scoring. &gt;14 = high conviction gapper setup</td></tr>
+      <tr><td>form_type</td><td>string</td><td>SEC form filed: 8-K, Form 4, S-3, 13D/G, 6-K, NT, etc.</td></tr>
+      <tr><td>filing_url</td><td>url</td><td>Direct link to SEC EDGAR filing index page</td></tr>
+      <tr><td>filing_time_et</td><td>datetime</td><td>Time filing hit EDGAR (ET). 6 AM filings historically outperform.</td></tr>
+      <tr><td>sentiment</td><td>float −1..1</td><td>NLP sentiment extracted from filing full text</td></tr>
+      <tr><td>squeeze_score</td><td>float 0–100</td><td>Short interest + days-to-cover squeeze pressure index</td></tr>
+      <tr><td>short_float_pct</td><td>float</td><td>Percentage of float held short</td></tr>
+      <tr><td>insider_cluster</td><td>int</td><td>Number of insider buy transactions clustered within 10 days</td></tr>
+      <tr><td>dark_pool_vol</td><td>int</td><td>Block volume ratio signal from dark pool feed</td></tr>
+      <tr><td>avg_volume</td><td>int</td><td>30-day average daily volume</td></tr>
+      <tr><td>market_cap</td><td>int</td><td>Market cap in USD (used for moat/value filtering)</td></tr>
+      <tr><td>price</td><td>float</td><td>Last known price at pipeline run time</td></tr>
+      <tr><td>category</td><td>string</td><td>gapper / value / moat_core / moat_emerging</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Sample Output (JSON)</h2>
+<pre><code>{
+  "generated_at": "2026-03-30T03:28:14-04:00",
+  "tickers": [
+    {
+      "ticker": "PMNT",
+      "gap_score": 16.5,
+      "form_type": "8-K",
+      "filing_url": "https://www.sec.gov/Archives/edgar/data/.../index.htm",
+      "filing_time_et": "2026-03-29T18:41:00",
+      "sentiment": 0.74,
+      "squeeze_score": 31.2,
+      "short_float_pct": 18.4,
+      "insider_cluster": 3,
+      "dark_pool_vol": 2400000,
+      "avg_volume": 890000,
+      "market_cap": 420000000,
+      "price": 3.87,
+      "category": "gapper"
+    }
+  ]
+}</code></pre>
+
+  <h2>Delivery Methods</h2>
+  <div class="endpoint">
+    <h3>📁 Daily CSV Drop</h3>
+    <p>Structured CSV delivered to your S3 bucket, SFTP endpoint, or shared drive by 3:30 AM ET.
+    Compatible with pandas, Excel, or any data pipeline. 15 fields per row, 200–400 scored tickers/day.</p>
+    <code>pd.read_csv("catalyst_edge_YYYY-MM-DD.csv")</code>
+  </div>
+  <div class="endpoint">
+    <h3>🔌 REST API <span style="background:#2d1800;color:#f0883e;border:1px solid #f0883e44;
+      border-radius:4px;padding:1px 8px;font-size:.75em;font-weight:600;vertical-align:middle">Beta Q3 2026</span></h3>
+    <p>JSON endpoint for on-demand or scheduled pulls. Rate-limited per license tier.
+    Authentication via API key header. Webhook delivery also available.
+    <strong style="color:#f0883e">Early access seats available — join the waitlist below.</strong></p>
+    <code>GET https://api.catalystedgescanner.com/v1/daily?date=2026-03-30&amp;category=gapper</code>
+  </div>
+  <div class="endpoint">
+    <h3>🐍 Python SDK <span style="background:#2d1800;color:#f0883e;border:1px solid #f0883e44;
+      border-radius:4px;padding:1px 8px;font-size:.75em;font-weight:600;vertical-align:middle">Beta Q3 2026</span></h3>
+    <p>Drop-in pandas integration. One line to pull the morning feed into your backtest framework.
+    <strong style="color:#f0883e">Available to Pro tier early-access members.</strong></p>
+    <code>import catalyst_edge; df = catalyst_edge.today(category="gapper", min_score=14)</code>
+  </div>
+
+  <h2>Pricing</h2>
+  <div class="tier-grid">
+    <div class="tier-card">
+      <div style="font-weight:700">Retail Premium</div>
+      <div class="tier-price">$49<span class="tier-period">/mo</span></div>
+      <ul class="tier-features">
+        <li>Full 1,600+ ticker CSV daily</li>
+        <li>All 14 data fields</li>
+        <li>Historical archive (90 days)</li>
+        <li>Email delivery by 3:30 AM ET</li>
+        <li>Priority support</li>
+      </ul>
+    </div>
+    <div class="tier-card featured">
+      <div style="font-weight:700;color:#3fb950">Pro / Prop Desk
+        <span style="background:#1a2e1a;color:#3fb950;border:1px solid #3fb95044;
+          border-radius:4px;padding:1px 7px;font-size:.72em;margin-left:6px">Early Access</span>
+      </div>
+      <div class="tier-price">$99<span class="tier-period">/mo</span></div>
+      <ul class="tier-features">
+        <li>Everything in Retail Premium</li>
+        <li>S3 / SFTP bucket delivery (live now)</li>
+        <li>API + Python SDK beta access (Q3 2026)</li>
+        <li>Full scoring source code (licensed)</li>
+        <li>Dedicated Slack channel</li>
+        <li>Custom field requests</li>
+      </ul>
+    </div>
+    <div class="tier-card">
+      <div style="font-weight:700">Enterprise / Fund</div>
+      <div class="tier-price" style="font-size:1.4em">Custom</div>
+      <ul class="tier-features">
+        <li>White-label the engine</li>
+        <li>Co-branding options</li>
+        <li>Revenue-share model available</li>
+        <li>Bloomberg / Symphony integration</li>
+        <li>SLA &amp; uptime guarantee</li>
+        <li>On-site data room access</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="cta-box">
+    <h2>Request Sample Data</h2>
+    <p>We send a sample CSV from last week's feed — no commitment required.<br>
+    We'll also include the 90-day backtest spreadsheet on request.</p>
+    <a href="mailto:api@catalystedgescanner.com?subject=API%20Sample%20Data%20Request&body=Hi%2C%20I%27d%20like%20to%20see%20a%20sample%20CSV%20from%20the%20Catalyst%20Edge%20data%20feed." class="btn-green">Request Sample →</a>
+    <div style="margin-top:12px;font-size:.8em;color:#8b949e">
+      Replies from <strong style="color:#e6edf3">api@catalystedgescanner.com</strong> within one business day.
+    </div>
+  </div>
+
+  <h2>Already Used By</h2>
+  <p style="color:#8b949e">Currently powering the <strong style="color:#e6edf3">Catalyst Edge newsletter</strong>,
+  delivered daily to active retail traders. Pipeline has evaluated
+  <strong style="color:#e6edf3">115 picks</strong> over 90 days with a
+  <strong style="color:#e6edf3">57% hit rate at +2% intraday</strong>.</p>
+  <p>Institutional licensing inquiries:
+  <a href="mailto:api@catalystedgescanner.com?subject=Institutional%20Licensing%20Inquiry">api@catalystedgescanner.com</a></p>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cross-Border Convergence Terminal — ADR ↔ Home-Listing Pairs | Catalyst Edge</title>
+<meta name="description" content="Live cross-border convergence terminal: ADR vs home-listing gap pairs across 11 markets. 4-point convergence score, sector-tagged, real-time.">
+<meta property="og:title" content="Cross-Border Convergence Terminal — Catalyst Edge">
+<meta property="og:description" content="Cyberpunk-grade cross-border terminal: ADR ↔ home-listing convergence pairs with 4-point score and sector tags.">
+<link rel="canonical" href="https://catalystedgescanner.com/cross-border/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Orbitron:wght@500;700;900&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg-0: #050214;
+    --bg-1: #0a0524;
+    --ink: #e8f0ff;
+    --ink-dim: #93a4c9;
+    --ink-mute: #5a6c92;
+    --neon-cyan: #00ffff;
+    --neon-magenta: #ff2a8a;
+    --neon-purple: #b026ff;
+    --neon-lime: #d6ff3a;
+    --neon-amber: #ffb347;
+    --bull: #5cf2a4;
+    --bear: #ff5577;
+    --grid-line: rgba(0, 255, 255, 0.04);
+    --grid-line-strong: rgba(176, 38, 255, 0.10);
+    --border-soft: rgba(150, 170, 220, 0.08);
+    --border-strong: rgba(255, 42, 138, 0.32);
+    --panel: linear-gradient(180deg, rgba(20, 12, 50, 0.78), rgba(10, 5, 36, 0.82));
+    --panel-glass: rgba(15, 8, 40, 0.55);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--bg-0); color: var(--ink); }
+  body {
+    font-family: "Inter Tight", system-ui, sans-serif;
+    line-height: 1.55;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--neon-cyan); text-decoration: none; }
+  a:hover { color: var(--neon-magenta); }
+
+  .cyber-bg { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+  .cyber-bg::before {
+    content: ""; position: absolute; inset: -20%;
+    background:
+      radial-gradient(900px 540px at 18% 8%, rgba(255, 42, 138, 0.20), transparent 65%),
+      radial-gradient(720px 480px at 85% 18%, rgba(0, 255, 255, 0.16), transparent 65%),
+      radial-gradient(1100px 700px at 50% 100%, rgba(176, 38, 255, 0.18), transparent 60%);
+  }
+  .cyber-bg::after {
+    content: ""; position: absolute; inset: 0;
+    background-image:
+      linear-gradient(var(--grid-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px),
+      linear-gradient(var(--grid-line-strong) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line-strong) 1px, transparent 1px);
+    background-size: 32px 32px, 32px 32px, 256px 256px, 256px 256px;
+    mask-image: radial-gradient(ellipse 90% 70% at 50% 30%, #000 30%, transparent 80%);
+  }
+  .cyber-floor {
+    position: fixed; bottom: -50%; left: -25%; width: 150%; height: 70%;
+    background-image:
+      linear-gradient(rgba(0, 255, 255, 0.32) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 42, 138, 0.20) 1px, transparent 1px);
+    background-size: 60px 60px;
+    transform: perspective(720px) rotateX(62deg);
+    transform-origin: 50% 0;
+    opacity: 0.55; z-index: 0; pointer-events: none;
+    mask-image: linear-gradient(180deg, transparent 0%, #000 35%, transparent 100%);
+    animation: floor-scroll 8s linear infinite;
+  }
+  @keyframes floor-scroll { from { background-position: 0 0; } to { background-position: 0 60px; } }
+  .cyber-scan {
+    position: fixed; inset: 0; pointer-events: none; z-index: 50;
+    background: repeating-linear-gradient(180deg, transparent 0, transparent 3px,
+      rgba(255, 255, 255, 0.012) 3px, rgba(255, 255, 255, 0.012) 4px);
+  }
+  .cyber-scan::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(0, 255, 255, 0.05), transparent 12%, transparent 88%, rgba(255, 42, 138, 0.05));
+    animation: scan-sweep 6s linear infinite;
+  }
+  @keyframes scan-sweep { 0% { transform: translateY(-100%); } 100% { transform: translateY(100vh); } }
+  .cyber-vignette {
+    position: fixed; inset: 0; pointer-events: none; z-index: 1;
+    background: radial-gradient(ellipse at center, transparent 50%, rgba(5, 2, 20, 0.65) 100%);
+  }
+
+  .cyber-tape {
+    position: relative; z-index: 10;
+    background: linear-gradient(90deg, rgba(255, 42, 138, 0.08), rgba(176, 38, 255, 0.08), rgba(0, 255, 255, 0.08));
+    border-top: 1px solid var(--border-strong);
+    border-bottom: 1px solid var(--border-strong);
+    overflow: hidden; height: 38px;
+    display: flex; align-items: center;
+    backdrop-filter: blur(8px);
+  }
+  .tape-track {
+    display: flex; gap: 36px; white-space: nowrap;
+    animation: tape-scroll 80s linear infinite;
+    padding-right: 36px;
+  }
+  @keyframes tape-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  .tape-coin {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12px; color: var(--ink-dim);
+  }
+  .tape-coin .sym { color: var(--neon-cyan); font-weight: 700; letter-spacing: 0.06em; }
+  .tape-coin .px  { color: var(--ink); }
+  .tape-coin .ch.up   { color: var(--bull); }
+  .tape-coin .ch.down { color: var(--bear); }
+
+  .cyber-nav {
+    position: sticky; top: 0; z-index: 60;
+    background: rgba(5, 2, 20, 0.78);
+    border-bottom: 1px solid var(--border-soft);
+    backdrop-filter: blur(14px);
+    padding: 10px 24px;
+    display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+  }
+  .cyber-nav a {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--ink-dim); font-weight: 600;
+  }
+  .cyber-nav a:hover { color: var(--neon-cyan); }
+  .cyber-nav .brand {
+    color: var(--neon-magenta);
+    font-family: "Orbitron", monospace;
+    font-weight: 900; letter-spacing: 0.10em; font-size: 13px;
+    text-shadow: 0 0 14px rgba(255, 42, 138, 0.55);
+  }
+  .cyber-nav .pulse {
+    margin-left: auto;
+    display: inline-flex; align-items: center; gap: 8px;
+    color: var(--bull);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px; letter-spacing: 0.10em; text-transform: uppercase;
+  }
+  .pulse .dot {
+    width: 8px; height: 8px;
+    background: var(--bull); border-radius: 50%;
+    animation: pulseDot 1.4s ease-out infinite;
+  }
+  @keyframes pulseDot {
+    0% { box-shadow: 0 0 0 0 rgba(92, 242, 164, 0.6); }
+    80% { box-shadow: 0 0 0 12px rgba(92, 242, 164, 0); }
+  }
+
+  .cyber-hero {
+    position: relative; z-index: 5;
+    max-width: 1400px; margin: 0 auto;
+    padding: 80px 28px 56px;
+  }
+  .cyber-hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 56px; align-items: center;
+  }
+  @media (max-width: 1100px) {
+    .cyber-hero-grid { grid-template-columns: 1fr; gap: 40px; }
+    .cyber-hero { padding: 56px 20px 44px; }
+  }
+
+  .cy-eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--neon-cyan);
+    padding: 7px 14px; border-radius: 999px;
+    background: rgba(0, 255, 255, 0.05);
+    border: 1px solid rgba(0, 255, 255, 0.32);
+    margin-bottom: 18px;
+    text-shadow: 0 0 8px rgba(0, 255, 255, 0.55);
+  }
+  .cy-eyebrow .dot {
+    width: 8px; height: 8px;
+    background: var(--neon-magenta); border-radius: 50%;
+    box-shadow: 0 0 8px var(--neon-magenta);
+    animation: pulseDot 1.6s ease-out infinite;
+  }
+  .cy-num-row { display: inline-flex; align-items: flex-end; gap: 14px; white-space: nowrap; line-height: 0.86; }
+  .cy-num {
+    font-family: "Orbitron", "Inter Tight", sans-serif;
+    font-weight: 900; font-size: clamp(96px, 14vw, 240px);
+    line-height: 0.85; letter-spacing: -0.04em;
+    background: linear-gradient(180deg, #ffffff 0%, var(--neon-cyan) 50%, var(--neon-magenta) 100%);
+    -webkit-background-clip: text; background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 80px rgba(255, 42, 138, 0.30);
+  }
+  .cy-suffix {
+    font-family: "Orbitron", monospace;
+    font-weight: 700; font-size: clamp(20px, 2.5vw, 36px);
+    color: var(--neon-magenta); letter-spacing: 0.04em;
+    text-shadow: 0 0 12px rgba(255, 42, 138, 0.6);
+  }
+  .cy-tags { display: flex; flex-wrap: wrap; gap: 8px 10px; margin: 16px 0 18px; }
+  .cy-tag {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--ink-dim);
+    padding: 6px 12px; border-radius: 6px;
+    background: rgba(176, 38, 255, 0.06);
+    border: 1px solid rgba(176, 38, 255, 0.30);
+  }
+  .cy-tag b { color: var(--neon-lime); }
+  .cy-stamp {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--ink-mute);
+    padding: 6px 10px; border-radius: 6px;
+    background: rgba(5, 2, 20, 0.6);
+    border: 1px solid var(--border-soft);
+  }
+  .cy-stamp b { color: var(--neon-cyan); }
+  .cy-h1-eyebrow {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px; letter-spacing: 0.20em;
+    text-transform: uppercase; color: var(--neon-magenta);
+    margin-bottom: 14px;
+    text-shadow: 0 0 8px rgba(255, 42, 138, 0.5);
+  }
+  .cy-headline {
+    font-family: "Inter Tight", sans-serif;
+    font-weight: 800; letter-spacing: -0.025em;
+    font-size: clamp(28px, 3.6vw, 52px);
+    line-height: 1.06; color: var(--ink); margin: 0 0 22px;
+  }
+  .cy-headline em { font-style: normal; color: var(--neon-magenta); text-shadow: 0 0 16px rgba(255, 42, 138, 0.45); }
+  .cy-headline .acc { color: var(--neon-cyan); text-shadow: 0 0 16px rgba(0, 255, 255, 0.45); }
+  .cy-headline .lime { color: var(--neon-lime); text-shadow: 0 0 12px rgba(214, 255, 58, 0.4); }
+  .cy-lede {
+    font-size: 17px; color: var(--ink-dim);
+    line-height: 1.62; max-width: 580px; margin: 0 0 28px;
+  }
+  .cy-lede strong { color: var(--ink); font-weight: 600; }
+  .cy-cta-row { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 26px; }
+  .cy-btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 14px 24px; border-radius: 8px;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px; letter-spacing: 0.14em;
+    text-transform: uppercase; font-weight: 700;
+    cursor: pointer; border: none; transition: all 0.2s ease;
+    text-decoration: none;
+  }
+  .cy-btn-primary {
+    background: linear-gradient(135deg, var(--neon-magenta), var(--neon-purple));
+    color: #fff; box-shadow: 0 0 24px rgba(255, 42, 138, 0.4);
+  }
+  .cy-btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 32px rgba(255, 42, 138, 0.7); color: #fff; }
+  .cy-btn-ghost { background: transparent; color: var(--neon-cyan); border: 1px solid var(--neon-cyan); }
+  .cy-btn-ghost:hover { background: rgba(0, 255, 255, 0.08); transform: translateY(-2px); color: var(--neon-cyan); }
+
+  .cy-strip {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 0; border: 1px solid var(--border-soft);
+    border-radius: 12px; overflow: hidden;
+    background: var(--panel-glass); backdrop-filter: blur(8px);
+  }
+  .cy-cell { padding: 14px 18px; border-right: 1px solid var(--border-soft); }
+  .cy-cell:last-child { border-right: none; }
+  .cy-k {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 9.5px; letter-spacing: 0.18em;
+    color: var(--ink-mute); text-transform: uppercase; margin-bottom: 4px;
+  }
+  .cy-v {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 18px; color: var(--ink); font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+  .cy-v.cyan { color: var(--neon-cyan); }
+  .cy-v.magenta { color: var(--neon-magenta); }
+  .cy-v.lime { color: var(--neon-lime); }
+  .cy-v.bull { color: var(--bull); }
+  .cy-v.bear { color: var(--bear); }
+  @media (max-width: 640px) {
+    .cy-strip { grid-template-columns: repeat(2, 1fr); }
+    .cy-cell:nth-child(2) { border-right: none; }
+  }
+
+  .cy-wrap {
+    position: relative; z-index: 5;
+    max-width: 1400px; margin: 0 auto;
+    padding: 0 28px 80px;
+  }
+  @media (max-width: 1100px) { .cy-wrap { padding: 0 20px 60px; } }
+
+  .cy-section-head {
+    display: flex; align-items: baseline;
+    justify-content: space-between;
+    margin: 56px 0 20px; gap: 16px; flex-wrap: wrap;
+  }
+  .cy-section-head h2 {
+    font-family: "Orbitron", sans-serif;
+    font-size: clamp(22px, 2.5vw, 30px);
+    font-weight: 800; letter-spacing: -0.01em; color: var(--ink);
+  }
+  .cy-section-head h2 .glyph { color: var(--neon-magenta); margin-right: 8px; }
+  .cy-section-head .meta {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--ink-mute);
+  }
+  .cy-section-head .meta b { color: var(--neon-cyan); }
+  .cy-section-sub {
+    color: var(--ink-dim); font-size: 14px;
+    margin-bottom: 16px; max-width: 880px;
+  }
+
+  .pair-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 14px; margin-bottom: 32px;
+  }
+  .pair-card {
+    position: relative; background: var(--panel);
+    border: 1px solid var(--border-soft);
+    border-radius: 14px; padding: 16px 18px 14px;
+    transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+    overflow: hidden;
+  }
+  .pair-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--neon-cyan);
+    box-shadow: 0 12px 32px -12px rgba(0, 255, 255, 0.32), 0 0 0 1px rgba(0, 255, 255, 0.16);
+  }
+  .pair-card::before {
+    content: ""; position: absolute;
+    top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--neon-cyan), transparent);
+    opacity: 0; transition: opacity 0.15s;
+  }
+  .pair-card:hover::before { opacity: 1; }
+  .pair-card.conviction-trade { border-color: rgba(214, 255, 58, 0.22); }
+  .pair-card.conviction-trade::before { background: linear-gradient(90deg, transparent, var(--neon-lime), transparent); opacity: 0.6; }
+  .pair-card.conviction-watch { border-color: rgba(255, 179, 71, 0.18); }
+
+  .pc-head {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 10px;
+  }
+  .pc-flag {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10.5px; font-weight: 700;
+    color: var(--neon-amber); letter-spacing: 0.18em;
+    padding: 3px 8px; border-radius: 4px;
+    background: rgba(255, 179, 71, 0.06);
+    border: 1px solid rgba(255, 179, 71, 0.22);
+  }
+  .pc-name {
+    font-family: "Inter Tight", sans-serif;
+    font-size: 14px; font-weight: 700; color: var(--ink);
+    flex: 1; min-width: 0;
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+  .pc-conviction {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 9.5px; font-weight: 700;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    padding: 3px 8px; border-radius: 4px;
+  }
+  .pc-conviction.trade { background: rgba(214, 255, 58, 0.10); color: var(--neon-lime); border: 1px solid rgba(214, 255, 58, 0.30); }
+  .pc-conviction.watch { background: rgba(255, 179, 71, 0.08); color: var(--neon-amber); border: 1px solid rgba(255, 179, 71, 0.30); }
+  .pc-conviction.skip  { background: rgba(150, 170, 220, 0.06); color: var(--ink-mute); border: 1px solid var(--border-soft); }
+
+  .pc-pair {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 10px; align-items: center;
+    margin: 8px 0 12px;
+  }
+  .pc-leg { padding: 10px 12px; background: rgba(5, 2, 20, 0.45); border-radius: 8px; border: 1px solid var(--border-soft); }
+  .pc-leg .lbl {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 9.5px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--ink-mute);
+    margin-bottom: 4px;
+  }
+  .pc-leg .tk {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 14px; font-weight: 700;
+    color: var(--neon-cyan); letter-spacing: 0.04em;
+  }
+  .pc-leg .gap {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 13px; font-weight: 700;
+    margin-top: 2px;
+    font-variant-numeric: tabular-nums;
+  }
+  .pc-leg .gap.up { color: var(--bull); }
+  .pc-leg .gap.dn { color: var(--bear); }
+  .pc-arrow {
+    font-family: "Orbitron", monospace;
+    font-size: 18px; font-weight: 800;
+    color: var(--neon-magenta);
+    text-shadow: 0 0 8px rgba(255, 42, 138, 0.5);
+  }
+
+  .pc-meta {
+    display: flex; justify-content: space-between;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10.5px; color: var(--ink-mute);
+    padding-top: 10px; border-top: 1px dashed var(--border-soft);
+    letter-spacing: 0.04em;
+  }
+  .pc-meta .v { color: var(--ink-dim); font-weight: 600; }
+  .pc-meta .score { color: var(--neon-lime); font-weight: 700; }
+  .pc-sector {
+    margin-top: 8px;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 9.5px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--ink-mute);
+  }
+
+  .pair-loading {
+    grid-column: 1 / -1;
+    padding: 80px 0; text-align: center;
+    color: var(--ink-mute);
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+  }
+  .pair-loading::after {
+    content: "▮▯▮▯▮▯";
+    display: block; margin-top: 12px;
+    color: var(--neon-cyan);
+    animation: blink 1s step-end infinite;
+  }
+  @keyframes blink { 50% { opacity: 0.3; } }
+
+  .pair-controls {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    align-items: center; margin-bottom: 16px;
+  }
+  .pair-search {
+    flex: 1; min-width: 200px;
+    background: rgba(15, 8, 40, 0.6);
+    border: 1px solid var(--border-soft);
+    border-radius: 8px; padding: 10px 14px;
+    color: var(--ink);
+    font-family: "JetBrains Mono", monospace; font-size: 13px;
+  }
+  .pair-search:focus { outline: none; border-color: var(--neon-cyan); box-shadow: 0 0 0 3px rgba(0, 255, 255, 0.10); }
+  .pair-search::placeholder { color: var(--ink-mute); }
+  .pair-filter {
+    background: transparent;
+    border: 1px solid var(--border-soft);
+    border-radius: 8px; padding: 9px 14px;
+    color: var(--ink-dim);
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px; letter-spacing: 0.10em;
+    text-transform: uppercase; cursor: pointer;
+    transition: all 0.15s;
+  }
+  .pair-filter.active {
+    background: rgba(255, 42, 138, 0.10);
+    border-color: var(--neon-magenta);
+    color: var(--neon-magenta);
+  }
+  .pair-filter:hover { color: var(--ink); border-color: var(--ink-dim); }
+
+  .suite-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px; margin-bottom: 32px;
+  }
+  .suite-card {
+    background: var(--panel);
+    border: 1px solid var(--border-soft);
+    border-radius: 10px; padding: 14px 16px;
+    transition: all 0.18s; text-decoration: none;
+    color: inherit; display: flex; flex-direction: column; gap: 4px;
+  }
+  .suite-card:hover { transform: translateY(-2px); border-color: var(--neon-magenta); color: inherit; }
+  .suite-card .glyph { font-size: 1.4rem; margin-bottom: 4px; }
+  .suite-card .lbl { font-weight: 700; font-size: 14px; color: var(--ink); }
+  .suite-card .sub { color: var(--ink-mute); font-size: 11px; }
+  .suite-card .arr { color: var(--neon-magenta); margin-top: 6px; font-size: 13px; }
+
+  .cy-footer {
+    position: relative; z-index: 5;
+    border-top: 1px solid var(--border-soft);
+    padding: 32px 28px 64px;
+    color: var(--ink-mute);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px; text-align: center; letter-spacing: 0.04em;
+  }
+  .cy-footer a { color: var(--ink-dim); }
+  .cy-footer a:hover { color: var(--neon-cyan); }
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Catalyst Edge — Cross-Border Convergence Terminal",
+  "description": "Live cross-border ADR vs home-listing convergence terminal with 4-point score and sector tags.",
+  "url": "https://catalystedgescanner.com/cross-border/",
+  "applicationCategory": "FinanceApplication"
+}
+</script>
+<link rel="stylesheet" href="/lib/polish-tokens.css">
+</head>
+
+<body>
+
+<div class="cyber-bg" aria-hidden="true"></div>
+<div class="cyber-floor" aria-hidden="true"></div>
+<div class="cyber-vignette" aria-hidden="true"></div>
+<div class="cyber-scan" aria-hidden="true"></div>
+
+<div class="cyber-tape" aria-label="Live cross-border tape">
+  <div class="tape-track" id="tape-track">
+    <span class="tape-coin"><span class="sym">LOADING</span><span class="px">…</span></span>
+  </div>
+</div>
+
+<nav class="cyber-nav">
+  <a href="/" class="brand">⟦ CATALYST EDGE ⟧</a>
+  <a href="/jackpot/">🎯 Jackpot</a>
+  <a href="/scanner/">Scanner</a>
+  <a href="/defi/">⟁ DeFi</a>
+  <a href="/cross-border/" style="color:var(--neon-magenta)">🌍 Cross-Border</a>
+  <a href="/sectors/">Sectors</a>
+  <a href="/news/">News</a>
+  <a href="/pricing/" style="color:var(--neon-lime)">Premium</a>
+  <span class="pulse"><span class="dot"></span><span>stream open</span></span>
+</nav>
+
+<section class="cyber-hero">
+  <div class="cyber-hero-grid">
+    <div>
+      <div class="cy-eyebrow"><span class="dot"></span>CROSS-BORDER · ADR ↔ HOME · LIVE</div>
+      <div class="cy-num-row"><span class="cy-num" id="hero-num">49</span><span class="cy-suffix">PAIRS</span></div>
+      <div class="cy-tags">
+        <span class="cy-tag"><b>11 markets</b> · home + ADR</span>
+        <span class="cy-tag">4-point <b>convergence</b> score</span>
+        <span class="cy-tag">sector-tagged</span>
+      </div>
+      <div class="cy-stamp">CROSS//BORDER · v2.0 · <b>ONLINE</b></div>
+    </div>
+    <div>
+      <div class="cy-h1-eyebrow">🌍 Cross-Border Convergence Terminal</div>
+      <h1 class="cy-headline">When the same name <em>gaps</em> on its <span class="acc">home exchange</span> AND its <span class="lime">US-listed ADR</span>—that's the strongest signal in cross-border.</h1>
+      <p class="cy-lede">
+        We pair every dual-listed name across 11 markets and score the gap convergence on 4 dimensions: same-direction, magnitude, volume confirmation, and sector beta. <strong>TRADE</strong> conviction = score ≥ 3 with both legs aligned.
+      </p>
+      <div class="cy-cta-row">
+        <a href="#pair-grid" class="cy-btn cy-btn-primary">⟁ See live pairs ↓</a>
+        <a href="/methodology/" class="cy-btn cy-btn-ghost">Score methodology</a>
+      </div>
+      <div class="cy-strip">
+        <div class="cy-cell"><div class="cy-k">Pairs scanned</div><div class="cy-v cyan" id="cb-pair-count">–</div></div>
+        <div class="cy-cell"><div class="cy-k">Trade signal</div><div class="cy-v lime" id="cb-trade-count">–</div></div>
+        <div class="cy-cell"><div class="cy-k">Watch</div><div class="cy-v" id="cb-watch-count">–</div></div>
+        <div class="cy-cell"><div class="cy-k">Updated</div><div class="cy-v magenta" id="cb-updated">–</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cy-wrap">
+  <div class="suite-cards">
+    <a href="#pair-grid" class="suite-card"><span class="glyph">🌍</span><span class="lbl">Cross-Border Pairs</span><span class="sub">ADR ↔ home convergence</span><span class="arr">›</span></a>
+    <a href="/international/" class="suite-card"><span class="glyph">🌐</span><span class="lbl">Intl Scanner</span><span class="sub">38 markets, gap + sympathy</span><span class="arr">›</span></a>
+    <a href="/dcf/international/" class="suite-card"><span class="glyph">🌍</span><span class="lbl">Intl DCF</span><span class="sub">Damodaran across 43 countries</span><span class="arr">›</span></a>
+    <a href="/jackpot/" class="suite-card"><span class="glyph">🎯</span><span class="lbl">JACKPOT</span><span class="sub">89%+ hit rate setups</span><span class="arr">›</span></a>
+    <a href="/scanner/" class="suite-card"><span class="glyph">📡</span><span class="lbl">Main Scanner</span><span class="sub">All catalyst rails</span><span class="arr">›</span></a>
+  </div>
+
+  <section id="pair-grid">
+    <div class="cy-section-head">
+      <h2><span class="glyph">🌍</span>Live Cross-Border Pairs</h2>
+      <div class="meta"><b id="grid-count">5</b> pairs · sorted by score · refresh 2h</div>
+    </div>
+    <p class="cy-section-sub">Each card pairs the home-market gap with the US-listed ADR/dual-listing gap. <strong>TRADE</strong> = score ≥ 3, both legs same direction. <strong>WATCH</strong> = score ≥ 2 or partial alignment.</p>
+    <div class="pair-controls">
+      <input type="text" class="pair-search" id="pair-search" placeholder="Search ticker or company (SAP, ASML, NVO…)">
+      <button class="pair-filter active" data-filter="all">All</button>
+      <button class="pair-filter" data-filter="trade">Trade conviction</button>
+      <button class="pair-filter" data-filter="watch">Watch</button>
+      <button class="pair-filter" data-filter="aligned">Same direction</button>
+    </div>
+    <div class="pair-grid" id="pair-grid-box" data-ssr-snapshot="2026-04-25T03:34:33+00:00">
+      <!-- SSR fallback: top 5 TRADE-conviction pairs from the most recent snapshot.
+           Replaced live by renderPairs() once /data/cross_border_convergence.json arrives. -->
+      <div class="pair-card conviction-trade" data-ssr="1">
+        <div class="pc-head">
+          <span class="pc-flag">DE</span>
+          <span class="pc-name">SAP</span>
+          <span class="pc-conviction trade">TRADE</span>
+        </div>
+        <div class="pc-pair">
+          <div class="pc-leg">
+            <div class="lbl">DE · SAP.DE</div>
+            <div class="tk">SAP.DE</div>
+            <div class="gap up">+4.68%</div>
+          </div>
+          <div class="pc-arrow">↔</div>
+          <div class="pc-leg">
+            <div class="lbl">US · dual</div>
+            <div class="tk">SAP</div>
+            <div class="gap up">+7.36%</div>
+          </div>
+        </div>
+        <div class="pc-sector">Sector · Information Technology</div>
+        <div class="pc-meta">
+          <span>Score <span class="score">3/4</span></span>
+          <span>Aligned · <span class="v">yes</span></span>
+          <span>Vol <span class="v">1.8x</span></span>
+        </div>
+      </div>
+      <div class="pair-card conviction-trade" data-ssr="1">
+        <div class="pc-head">
+          <span class="pc-flag">JP</span>
+          <span class="pc-name">SoftBank Group</span>
+          <span class="pc-conviction trade">TRADE</span>
+        </div>
+        <div class="pc-pair">
+          <div class="pc-leg">
+            <div class="lbl">JP · 9984.T</div>
+            <div class="tk">9984.T</div>
+            <div class="gap up">+2.16%</div>
+          </div>
+          <div class="pc-arrow">↔</div>
+          <div class="pc-leg">
+            <div class="lbl">US · ADR</div>
+            <div class="tk">SFTBY</div>
+            <div class="gap up">+7.26%</div>
+          </div>
+        </div>
+        <div class="pc-sector">Sector · Communication Services</div>
+        <div class="pc-meta">
+          <span>Score <span class="score">3/4</span></span>
+          <span>Aligned · <span class="v">yes</span></span>
+          <span>Vol <span class="v">0.3x</span></span>
+        </div>
+      </div>
+      <div class="pair-card conviction-trade" data-ssr="1">
+        <div class="pc-head">
+          <span class="pc-flag">JP</span>
+          <span class="pc-name">Nintendo</span>
+          <span class="pc-conviction trade">TRADE</span>
+        </div>
+        <div class="pc-pair">
+          <div class="pc-leg">
+            <div class="lbl">JP · 7974.T</div>
+            <div class="tk">7974.T</div>
+            <div class="gap dn">-3.25%</div>
+          </div>
+          <div class="pc-arrow">↔</div>
+          <div class="pc-leg">
+            <div class="lbl">US · ADR</div>
+            <div class="tk">NTDOY</div>
+            <div class="gap dn">-2.89%</div>
+          </div>
+        </div>
+        <div class="pc-sector">Sector · Communication Services</div>
+        <div class="pc-meta">
+          <span>Score <span class="score">3/4</span></span>
+          <span>Aligned · <span class="v">yes</span></span>
+          <span>Vol <span class="v">0.2x</span></span>
+        </div>
+      </div>
+      <div class="pair-card conviction-trade" data-ssr="1">
+        <div class="pc-head">
+          <span class="pc-flag">KR</span>
+          <span class="pc-name">LG Display</span>
+          <span class="pc-conviction trade">TRADE</span>
+        </div>
+        <div class="pc-pair">
+          <div class="pc-leg">
+            <div class="lbl">KR · 034220.KS</div>
+            <div class="tk">034220.KS</div>
+            <div class="gap dn">-3.62%</div>
+          </div>
+          <div class="pc-arrow">↔</div>
+          <div class="pc-leg">
+            <div class="lbl">US · ADR</div>
+            <div class="tk">LPL</div>
+            <div class="gap dn">-2.34%</div>
+          </div>
+        </div>
+        <div class="pc-sector">Sector · Information Technology</div>
+        <div class="pc-meta">
+          <span>Score <span class="score">3/4</span></span>
+          <span>Aligned · <span class="v">yes</span></span>
+          <span>Vol <span class="v">0.8x</span></span>
+        </div>
+      </div>
+      <div class="pair-card conviction-trade" data-ssr="1">
+        <div class="pc-head">
+          <span class="pc-flag">MX</span>
+          <span class="pc-name">Grupo Mexico</span>
+          <span class="pc-conviction trade">TRADE</span>
+        </div>
+        <div class="pc-pair">
+          <div class="pc-leg">
+            <div class="lbl">MX · GMEXICOB.MX</div>
+            <div class="tk">GMEXICOB.MX</div>
+            <div class="gap up">+1.76%</div>
+          </div>
+          <div class="pc-arrow">↔</div>
+          <div class="pc-leg">
+            <div class="lbl">US · ADR</div>
+            <div class="tk">GMBXF</div>
+            <div class="gap up">+3.36%</div>
+          </div>
+        </div>
+        <div class="pc-sector">Sector · Materials</div>
+        <div class="pc-meta">
+          <span>Score <span class="score">3/4</span></span>
+          <span>Aligned · <span class="v">yes</span></span>
+          <span>Vol <span class="v">0.2x</span></span>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<footer class="cy-footer">
+  <div>
+    <a href="/">Scanner</a> · <a href="/jackpot/">Jackpot</a> · <a href="/dcf/">DCF</a> · <a href="/international/">International</a> · <a href="/defi/">DeFi</a> · <a href="/trust/">Trust</a> · <a href="/pricing/">Premium</a>
+  </div>
+  <div style="margin-top:12px;color:var(--ink-mute)">© 2026 Catalyst Edge · ⟦ Cross-Border Terminal v2.0 ⟧</div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  function fmtPct(n) {
+    if (n == null || isNaN(n)) return "—";
+    return (n >= 0 ? "+" : "") + (+n).toFixed(2) + "%";
+  }
+  function fmtUsd(n) {
+    if (n == null || isNaN(n)) return "—";
+    var v = +n;
+    if (v >= 1) return "$" + v.toFixed(2);
+    if (v >= 0.01) return "$" + v.toFixed(4);
+    return "$" + v.toExponential(2);
+  }
+  function setText(id, t) { var node = document.getElementById(id); if (node) node.textContent = t; }
+
+  function el(tag, attrs, kids) {
+    var node = document.createElement(tag);
+    if (attrs) {
+      for (var k in attrs) {
+        if (!Object.prototype.hasOwnProperty.call(attrs, k)) continue;
+        var v = attrs[k];
+        if (v == null) continue;
+        if (k === "class") node.className = v;
+        else if (k === "text") node.textContent = v;
+        else node.setAttribute(k, v);
+      }
+    }
+    if (kids) {
+      if (!Array.isArray(kids)) kids = [kids];
+      kids.forEach(function (c) {
+        if (c == null) return;
+        if (typeof c === "string" || typeof c === "number") node.appendChild(document.createTextNode(String(c)));
+        else node.appendChild(c);
+      });
+    }
+    return node;
+  }
+  function clear(node) { while (node.firstChild) node.removeChild(node.firstChild); }
+
+  var SETUPS = [];
+  var filterMode = "all";
+  var searchQuery = "";
+
+  function buildPairCard(p) {
+    var conviction = (p.conviction || "").toUpperCase();
+    var convCls = conviction === "TRADE" ? "trade" : (conviction === "WATCH" ? "watch" : "skip");
+    var card = el("div", { "class": "pair-card conviction-" + convCls });
+
+    var head = el("div", { "class": "pc-head" }, [
+      el("span", { "class": "pc-flag", text: p.foreign_market || "—" }),
+      el("span", { "class": "pc-name", text: p.entity_name || p.us_ticker || "—" }),
+      el("span", { "class": "pc-conviction " + convCls, text: conviction || "—" })
+    ]);
+
+    var foreignGapCls = (p.foreign_gap_pct || 0) >= 0 ? "gap up" : "gap dn";
+    var usGapCls = (p.us_gap_pct || 0) >= 0 ? "gap up" : "gap dn";
+
+    var pair = el("div", { "class": "pc-pair" }, [
+      el("div", { "class": "pc-leg" }, [
+        el("div", { "class": "lbl", text: (p.foreign_market || "HOME") + " · " + (p.foreign_ticker || "—") }),
+        el("div", { "class": "tk", text: p.foreign_ticker || "—" }),
+        el("div", { "class": foreignGapCls, text: fmtPct(p.foreign_gap_pct) })
+      ]),
+      el("div", { "class": "pc-arrow", text: "↔" }),
+      el("div", { "class": "pc-leg" }, [
+        el("div", { "class": "lbl", text: "US · " + (p.us_listing_type || "ADR") }),
+        el("div", { "class": "tk", text: p.us_ticker || "—" }),
+        el("div", { "class": usGapCls, text: fmtPct(p.us_gap_pct) })
+      ])
+    ]);
+
+    var sector = el("div", { "class": "pc-sector", text: p.sector_gics ? "Sector · " + p.sector_gics : "" });
+
+    var meta = el("div", { "class": "pc-meta" }, [
+      el("span", null, [document.createTextNode("Score "), el("span", { "class": "score", text: (p.score != null ? p.score + "/4" : "—") })]),
+      el("span", null, [document.createTextNode("Aligned · "), el("span", { "class": "v", text: p.same_direction ? "yes" : "no" })]),
+      el("span", null, [document.createTextNode("Vol "), el("span", { "class": "v", text: (p.us_vol_ratio != null ? p.us_vol_ratio.toFixed(1) + "x" : "—") })])
+    ]);
+
+    card.appendChild(head);
+    card.appendChild(pair);
+    if (p.sector_gics) card.appendChild(sector);
+    card.appendChild(meta);
+    return card;
+  }
+
+  function renderPairs() {
+    var box = document.getElementById("pair-grid-box");
+    if (!box) return;
+    var rows = SETUPS.slice();
+    if (searchQuery) {
+      var q = searchQuery.toLowerCase();
+      rows = rows.filter(function (p) {
+        return ((p.entity_name || "") + " " + (p.us_ticker || "") + " " + (p.foreign_ticker || "")).toLowerCase().includes(q);
+      });
+    }
+    if (filterMode === "trade") rows = rows.filter(function (p) { return (p.conviction || "").toUpperCase() === "TRADE"; });
+    else if (filterMode === "watch") rows = rows.filter(function (p) { return (p.conviction || "").toUpperCase() === "WATCH"; });
+    else if (filterMode === "aligned") rows = rows.filter(function (p) { return p.same_direction; });
+    rows.sort(function (a, b) { return (b.score || 0) - (a.score || 0); });
+
+    clear(box);
+    if (!rows.length) {
+      box.appendChild(el("div", { "class": "pair-loading", text: "No pairs match the filter." }));
+      setText("grid-count", "0");
+      return;
+    }
+    var frag = document.createDocumentFragment();
+    rows.forEach(function (p) { frag.appendChild(buildPairCard(p)); });
+    box.appendChild(frag);
+    setText("grid-count", rows.length);
+  }
+
+  function renderTape() {
+    var top = SETUPS.slice(0, 20);
+    var track = document.getElementById("tape-track");
+    if (!track || !top.length) return;
+    clear(track);
+    var build = function (p) {
+      var ch = p.us_gap_pct;
+      var cls = ch == null ? "ch" : (ch >= 0 ? "ch up" : "ch down");
+      return el("span", { "class": "tape-coin" }, [
+        el("span", { "class": "sym", text: (p.us_ticker || p.foreign_ticker || "?").toUpperCase() }),
+        el("span", { "class": "px", text: fmtUsd(p.us_close) }),
+        el("span", { "class": cls, text: fmtPct(p.us_gap_pct) })
+      ]);
+    };
+    var frag = document.createDocumentFragment();
+    top.forEach(function (p) { frag.appendChild(build(p)); });
+    top.forEach(function (p) { frag.appendChild(build(p)); });
+    track.appendChild(frag);
+  }
+
+  function fetchPairs() {
+    fetch("/data/cross_border_convergence.json?cb=" + Date.now(), { cache: "no-store" })
+      .then(function (r) { return r.ok ? r.json() : Promise.reject(r.status); })
+      .then(function (d) {
+        SETUPS = d.top_setups || [];
+        setText("hero-num", d.pair_count || SETUPS.length);
+        setText("cb-pair-count", d.pair_count || SETUPS.length);
+        setText("cb-trade-count", d.trade_count != null ? d.trade_count : "—");
+        setText("cb-watch-count", d.watch_count != null ? d.watch_count : "—");
+        if (d.generated_at) {
+          var dt = new Date(d.generated_at);
+          setText("cb-updated", dt.toISOString().slice(11, 16) + " UTC");
+        }
+        renderTape();
+        renderPairs();
+      })
+      .catch(function () {
+        var box = document.getElementById("pair-grid-box");
+        if (box) {
+          clear(box);
+          box.appendChild(el("div", { "class": "pair-loading", style: "color:var(--bear)", text: "Pair feed unavailable. Retry shortly." }));
+        }
+      });
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    var input = document.getElementById("pair-search");
+    if (input) input.addEventListener("input", function (e) { searchQuery = e.target.value.trim(); renderPairs(); });
+    var filters = document.querySelectorAll(".pair-filter");
+    filters.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        filters.forEach(function (b) { b.classList.remove("active"); });
+        btn.classList.add("active");
+        filterMode = btn.getAttribute("data-filter") || "all";
+        renderPairs();
+      });
+    });
+
+    fetchPairs();
+    setInterval(fetchPairs, 600000);
+  });
+})();
+</script>
+</body>
+</html>

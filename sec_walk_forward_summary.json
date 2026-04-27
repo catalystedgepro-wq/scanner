@@ -1,0 +1,15 @@
+{
+  "list_name": "sec_clean_gappers",
+  "train_window_days": 90,
+  "holdout_window_days": 30,
+  "train_n": 490,
+  "train_hit_rate_2pct": 40.0,
+  "train_avg_alpha_pct": 0.305,
+  "train_avg_realistic_pnl_pct": -0.333,
+  "holdout_n": 111,
+  "holdout_hit_rate_2pct": 63.96,
+  "holdout_avg_alpha_pct": 0.984,
+  "holdout_avg_realistic_pnl_pct": 0.068,
+  "computed_at_utc": "2026-04-27T23:00:09.686714+00:00",
+  "decay_flag": false
+}

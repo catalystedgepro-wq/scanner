@@ -1,0 +1,5 @@
+ticker,form,updated_utc,recency_min,gapper_score,value_score,moat_score,insider_signal_score,risk_flags,market_flags,tags,items,price,avg_vol_3m,market_cap,link
+ARE,8-K,2026-04-27T16:39:01-04:00,141,23,18,18,0,,est_mcap_from_sec_shares,,,45.5600,2393105,7939717508,https://www.sec.gov/Archives/edgar/data/1035443/000103544326000045/0001035443-26-000045-index.htm
+BAH,8-K,2026-04-27T16:15:16-04:00,165,17,18,18,0,,est_mcap_from_sec_shares,,,76.1900,2074743,9188086497,https://www.sec.gov/Archives/edgar/data/1443646/000144364626000007/0001443646-26-000007-index.htm
+ALH,DEFA14A,2026-04-27T16:39:07-04:00,141,9,14,14,0,,est_mcap_from_sec_shares,,,24.6400,907708,4877358270,https://www.sec.gov/Archives/edgar/data/1317685/000162828026027536/0001628280-26-027536-index.htm
+ACI,10-K,2026-04-27T16:33:13-04:00,147,8,14,14,0,,est_mcap_from_sec_shares,,,16.5700,6606551,8515540414,https://www.sec.gov/Archives/edgar/data/1646972/000164697226000032/0001646972-26-000032-index.htm

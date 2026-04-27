@@ -1,0 +1,53 @@
+entity_name,foreign_ticker,foreign_market,us_ticker,us_listing_type,sector_gics,adr_ratio
+Petrobras,PETR4.SA,BR,PBR,ADR,Energy,2:1
+Vale,VALE3.SA,BR,VALE,ADR,Materials,1:1
+Itau Unibanco,ITUB4.SA,BR,ITUB,ADR,Financials,1:1
+Bradesco,BBDC4.SA,BR,BBD,ADR,Financials,1:1
+Ambev,ABEV3.SA,BR,ABEV,ADR,Consumer Staples,1:1
+Banco do Brasil,BBAS3.SA,BR,BDORY,ADR,Financials,1:1
+Toyota,7203.T,JP,TM,ADR,Consumer Discretionary,2:1
+Sony,6758.T,JP,SONY,ADR,Information Technology,1:1
+SoftBank Group,9984.T,JP,SFTBY,ADR,Communication Services,2:1
+Mitsubishi UFJ,8306.T,JP,MUFG,ADR,Financials,1:1
+NTT,9432.T,JP,NTTYY,ADR,Communication Services,1:1
+Nintendo,7974.T,JP,NTDOY,ADR,Communication Services,8:1
+Shell,SHEL.L,UK,SHEL,dual,Energy,1:1
+AstraZeneca,AZN.L,UK,AZN,ADR,Health Care,1:2
+HSBC,HSBA.L,UK,HSBC,ADR,Financials,5:1
+BP,BP.L,UK,BP,ADR,Energy,6:1
+Unilever,ULVR.L,UK,UL,ADR,Consumer Staples,1:1
+GSK,GSK.L,UK,GSK,ADR,Health Care,2:1
+Rio Tinto,RIO.L,UK,RIO,dual,Materials,1:1
+Barclays,BARC.L,UK,BCS,ADR,Financials,4:1
+Lloyds Banking,LLOY.L,UK,LYG,ADR,Financials,4:1
+NatWest,NWG.L,UK,NWG,ADR,Financials,2:1
+Vodafone,VOD.L,UK,VOD,ADR,Communication Services,10:1
+Diageo,DGE.L,UK,DEO,ADR,Consumer Staples,4:1
+SAP,SAP.DE,DE,SAP,dual,Information Technology,1:1
+Siemens,SIE.DE,DE,SIEGY,ADR,Industrials,2:1
+Deutsche Telekom,DTE.DE,DE,DTEGY,ADR,Communication Services,1:1
+Allianz,ALV.DE,DE,ALIZY,ADR,Financials,10:1
+BASF,BAS.DE,DE,BASFY,ADR,Materials,1:1
+BMW,BMW.DE,DE,BMWYY,ADR,Consumer Discretionary,3:1
+Tencent,0700.HK,HK,TCEHY,ADR,Communication Services,1:1
+Alibaba,9988.HK,HK,BABA,dual,Consumer Discretionary,1:8
+Meituan,3690.HK,HK,MPNGY,ADR,Consumer Discretionary,2:1
+China Construction Bank,0939.HK,HK,CICHY,ADR,Financials,2:1
+Reliance Industries,RELIANCE.NS,IN,RIGD,ADR,Energy,2:1
+Tata Consultancy,TCS.NS,IN,TCS,dual,Information Technology,1:1
+HDFC Bank,HDFCBANK.NS,IN,HDB,ADR,Financials,3:1
+Infosys,INFY.NS,IN,INFY,dual,Information Technology,1:1
+ICICI Bank,ICICIBANK.NS,IN,IBN,ADR,Financials,2:1
+BHP Group,BHP.AX,AU,BHP,dual,Materials,2:1
+Commonwealth Bank,CBA.AX,AU,CMWAY,ADR,Financials,1:1
+CSL Limited,CSL.AX,AU,CSLLY,ADR,Health Care,1:1
+Royal Bank of Canada,RY.TO,CA,RY,dual,Financials,1:1
+Shopify,SHOP.TO,CA,SHOP,dual,Information Technology,1:1
+TD Bank,TD.TO,CA,TD,dual,Financials,1:1
+Walmart Mexico,WALMEX.MX,MX,WMMVY,ADR,Consumer Staples,1:10
+America Movil,AMXB.MX,MX,AMX,ADR,Communication Services,1:20
+FEMSA,FEMSAUBD.MX,MX,FMX,ADR,Consumer Staples,1:10
+Grupo Mexico,GMEXICOB.MX,MX,GMBXF,ADR,Materials,1:1
+Samsung Electronics,005930.KS,KR,SSNLF,ADR,Information Technology,1:1
+Posco Holdings,005490.KS,KR,PKX,ADR,Materials,1:1
+LG Display,034220.KS,KR,LPL,ADR,Information Technology,2:1

@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Resources — Catalyst Edge Scanner</title>
+  <meta name="description" content="Catalyst Edge resource hub — Quickstart, API, SDK, Trust audit, Benchmarks, glossary of 12 finance terms. Free, public, no login required." />
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/lib/admin-unlock.css" />
+  <link rel="stylesheet" href="/lib/scanner-polish.css" />
+  <link rel="stylesheet" href="/lib/nav-fix.css" />
+  <style>
+    :root{
+      --navy:#040a14; --navy2:#0a1424; --navy3:#0e1a2e;
+      --ink:#e6f1ff; --ink-dim:#9bb0c8; --ink-mute:#6e8198;
+      --cyan:#5ad7ff; --gold:#f5c662; --bull:#5cf2a4; --bear:#ff6b8b;
+      --line:rgba(110,140,180,0.18); --line-strong:rgba(110,140,180,0.32);
+      --glass: linear-gradient(180deg, rgba(15,28,48,0.78), rgba(7,14,28,0.78));
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;background:#04070d;color:var(--ink);
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      -webkit-font-smoothing:antialiased; font-feature-settings:"ss01","cv11";
+    }
+    a{color:var(--cyan);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+    code{font-family:"JetBrains Mono","IBM Plex Mono",ui-monospace,monospace;font-size:0.92em;background:rgba(90,215,255,0.06);padding:1px 6px;border-radius:4px;color:var(--cyan)}
+
+    .topbar{position:sticky;top:0;z-index:50;background:rgba(4,7,13,0.86);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+    .topbar-row{display:flex;align-items:center;gap:18px;padding:14px 24px;max-width:1400px;margin:0 auto}
+    .brand{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:14px;letter-spacing:0.18em;color:var(--gold);text-transform:uppercase}
+    .brand b{color:var(--cyan)}
+    nav.nav{display:flex;gap:8px;flex:1;flex-wrap:nowrap;overflow-x:auto;scroll-padding-top:80px}
+    nav.nav a{font-size:13px;color:var(--ink-dim);padding:8px 12px;border-radius:8px;white-space:nowrap}
+    nav.nav a:hover{background:rgba(90,215,255,0.08);color:var(--ink);text-decoration:none}
+    nav.nav a.active{color:var(--gold);background:rgba(245,198,98,0.08)}
+    .topbar-cta{display:flex;gap:10px;align-items:center}
+    .pill-cta{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;
+      padding:8px 14px;border:1px solid var(--gold);color:var(--gold);border-radius:999px;cursor:pointer}
+    .pill-cta:hover{background:rgba(245,198,98,0.12);text-decoration:none}
+
+    .hero{padding:56px 0 36px;border-bottom:1px solid var(--line);position:relative;overflow:hidden}
+    .hero::before{content:"";position:absolute;inset:0;
+      background:radial-gradient(800px 400px at 30% 20%, rgba(90,215,255,0.12), transparent 60%),
+                 radial-gradient(600px 380px at 80% 60%, rgba(245,198,98,0.10), transparent 60%);pointer-events:none}
+    .hero .wrap{position:relative}
+    .eyebrow{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:0.22em;color:var(--gold);text-transform:uppercase;margin-bottom:14px}
+    .h1{font-size:clamp(36px,5.5vw,60px);line-height:1.05;letter-spacing:-0.01em;margin:0 0 14px;font-weight:700}
+    .h1 .glow{color:var(--cyan)}
+    .sub{font-size:17px;color:var(--ink-dim);max-width:760px;line-height:1.55}
+    .stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:32px}
+    .stat-box{background:var(--glass);border:1px solid var(--line);border-radius:14px;padding:18px}
+    .stat-box .lbl{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:0.18em;color:var(--ink-mute);text-transform:uppercase;margin-bottom:6px}
+    .stat-box .val{font-size:24px;font-weight:700;font-variant-numeric:tabular-nums;color:var(--cyan)}
+    .stat-box .ann{font-size:12px;color:var(--ink-dim);margin-top:4px}
+    @media (max-width:860px){.stats-row{grid-template-columns:repeat(2,1fr)}}
+
+    section.section{padding:48px 0;border-bottom:1px solid var(--line)}
+    .section h2{font-size:24px;margin:0 0 8px;letter-spacing:-0.01em}
+    .section .lead{color:var(--ink-dim);max-width:680px;margin:0 0 22px;font-size:14px}
+
+    /* category sections */
+    .cat{margin-bottom:32px}
+    .cat-hd{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+    .cat-num{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:0.18em;color:var(--gold);
+      padding:4px 10px;border-radius:8px;background:rgba(245,198,98,0.10);border:1px solid rgba(245,198,98,0.32);text-transform:uppercase}
+    .cat-title{font-size:20px;color:var(--ink);font-weight:600}
+    .cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+    @media (max-width:1000px){.cat-grid{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:560px){.cat-grid{grid-template-columns:1fr}}
+    .res{background:var(--glass);border:1px solid var(--line);border-radius:12px;padding:18px;
+      display:flex;flex-direction:column;gap:6px;transition:all .2s ease}
+    .res:hover{border-color:rgba(90,215,255,0.45);transform:translateY(-2px);text-decoration:none}
+    .res .ico{font-size:22px;line-height:1;margin-bottom:4px}
+    .res h4{margin:0;font-size:15px;color:var(--cyan)}
+    .res p{margin:0;color:var(--ink-dim);font-size:13px;line-height:1.55}
+    .res .path{margin-top:6px;font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--ink-mute)}
+
+    /* glossary */
+    .gloss-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+    @media (max-width:760px){.gloss-grid{grid-template-columns:1fr}}
+    .gloss{background:var(--glass);border:1px solid var(--line);border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:6px;transition:all .2s ease}
+    .gloss:hover{border-color:rgba(90,215,255,0.45)}
+    .gloss-hd{display:flex;align-items:baseline;gap:10px}
+    .gloss-term{font-size:16px;font-weight:700;color:var(--ink);font-family:"JetBrains Mono",monospace}
+    .gloss-tag{font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;
+      color:var(--gold);padding:3px 8px;border-radius:6px;background:rgba(245,198,98,0.08);border:1px solid rgba(245,198,98,0.32)}
+    .gloss p{margin:0;color:var(--ink-dim);font-size:13.5px;line-height:1.6}
+    .gloss .where{margin-top:6px;padding-top:8px;border-top:1px dashed var(--line);font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:0.14em;color:var(--ink-mute);text-transform:uppercase}
+    .gloss .where a{color:var(--cyan)}
+
+    .gloss-toc{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+    .gloss-toc a{font-family:"JetBrains Mono",monospace;font-size:12px;padding:6px 10px;border-radius:8px;
+      background:rgba(90,215,255,0.06);border:1px solid var(--line);color:var(--ink-dim)}
+    .gloss-toc a:hover{border-color:var(--cyan);color:var(--cyan);text-decoration:none}
+
+    footer{padding:36px 0;color:var(--ink-mute);font-size:12px;border-top:1px solid var(--line);text-align:center}
+    footer .links{display:flex;gap:14px;justify-content:center;margin-top:8px;flex-wrap:wrap}
+  </style>
+<link rel="stylesheet" href="/lib/polish-tokens.css">
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-row">
+      <div class="brand"><b>Catalyst</b> · Edge</div>
+      <nav class="nav">
+        <a href="/scanner/">Scanner</a>
+        <a href="/international/">Global</a>
+        <a href="/dcf/">DCF</a>
+        <a href="/cross-border/">Cross-Border</a>
+        <a href="/sdk/">SDK</a>
+        <a href="/data/api/">API</a>
+        <a href="/trust/">Trust</a>
+        <a href="/benchmarks/">Benchmarks</a>
+        <a href="/resources/" class="active">Resources</a>
+        <a href="/community/">Community</a>
+        <a href="/changelog/">Changelog</a>
+        <a href="/pricing/">Pricing</a>
+      </nav>
+      <div class="topbar-cta">
+        <a class="pill-cta" href="#glossary">Glossary ↓</a>
+      </div>
+    </div>
+  </div>
+
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow">📚 Free · Public · No login required</div>
+      <h1 class="h1">Resources — <span class="glow">everything you need to use Catalyst Edge well.</span></h1>
+      <p class="sub">A flat index of every public page plus a 12-term financial glossary so you can read DCF and cross-border outputs without alt-tabbing to Investopedia. Bookmark this page; it's the shortest route to the rest of the surface.</p>
+      <div class="stats-row">
+        <div class="stat-box"><div class="lbl">Pages indexed</div><div class="val">15</div><div class="ann">across 4 categories</div></div>
+        <div class="stat-box"><div class="lbl">Glossary terms</div><div class="val">12</div><div class="ann">finance + Catalyst Edge metrics</div></div>
+        <div class="stat-box"><div class="lbl">Code samples</div><div class="val">5</div><div class="ann">curl · Python · Node · R · Bash</div></div>
+        <div class="stat-box"><div class="lbl">Audit data</div><div class="val">Live</div><div class="ann">refreshes daily · public methodology</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+
+      <div class="cat">
+        <div class="cat-hd"><span class="cat-num">01</span><span class="cat-title">Get started</span></div>
+        <p class="lead">Your first 60 seconds. Pick the language, copy the snippet, run it.</p>
+        <div class="cat-grid">
+          <a class="res" href="/docs/quickstart/">
+            <div class="ico">⚡</div>
+            <h4>Quickstart</h4>
+            <p>From zero to first DCF query in 60 seconds. 6 steps with copy buttons.</p>
+            <div class="path">/docs/quickstart/</div>
+          </a>
+          <a class="res" href="/data/api/">
+            <div class="ico">🔌</div>
+            <h4>API reference</h4>
+            <p>22 documented endpoints, 4 rate-limit tiers, samples in curl/Python/Node/R/Bash.</p>
+            <div class="path">/data/api/</div>
+          </a>
+          <a class="res" href="/sdk/">
+            <div class="ico">📦</div>
+            <h4>SDK landing</h4>
+            <p><code>pip install catalyst-edge</code> · <code>npm install @catalyst-edge/sdk</code> · type-safe end-to-end.</p>
+            <div class="path">/sdk/</div>
+          </a>
+          <a class="res" href="/pricing/">
+            <div class="ico">💸</div>
+            <h4>Pricing</h4>
+            <p>5 tiers from Free → Enterprise. ROI calculator vs Bloomberg. Cancel anytime.</p>
+            <div class="path">/pricing/</div>
+          </a>
+        </div>
+      </div>
+
+      <div class="cat">
+        <div class="cat-hd"><span class="cat-num">02</span><span class="cat-title">Trust + audit</span></div>
+        <p class="lead">The numbers we publish about ourselves — and how to check them.</p>
+        <div class="cat-grid">
+          <a class="res" href="/trust/">
+            <div class="ico">🔬</div>
+            <h4>Trust + methodology</h4>
+            <p>89% audited hit rate. 50-row sample of 2026 catalyst calls. DCF audit. No survivorship bias.</p>
+            <div class="path">/trust/</div>
+          </a>
+          <a class="res" href="/benchmarks/">
+            <div class="ico">📊</div>
+            <h4>Benchmarks vs Bloomberg</h4>
+            <p>12-dimension head-to-head vs Bloomberg, FactSet, Refinitiv. Honest table — wins and ties marked.</p>
+            <div class="path">/benchmarks/</div>
+          </a>
+          <a class="res" href="/status/">
+            <div class="ico">🟢</div>
+            <h4>System status</h4>
+            <p>Live per-panel freshness pulled from <code>/data/*.json</code> Last-Modified. Auto-refreshes every 60s.</p>
+            <div class="path">/status/</div>
+          </a>
+          <a class="res" href="/changelog/">
+            <div class="ico">📜</div>
+            <h4>Public changelog</h4>
+            <p>Every phase shipped, dated. We ship daily; Bloomberg ships quarterly.</p>
+            <div class="path">/changelog/</div>
+          </a>
+        </div>
+      </div>
+
+      <div class="cat">
+        <div class="cat-hd"><span class="cat-num">03</span><span class="cat-title">Build with us</span></div>
+        <p class="lead">Where to send a bug report, a partnership idea, or your money.</p>
+        <div class="cat-grid">
+          <a class="res" href="/community/">
+            <div class="ico">👥</div>
+            <h4>Community</h4>
+            <p>Discord (opening this week), X/Twitter, GitHub, weekly newsletter, founder office hours.</p>
+            <div class="path">/community/</div>
+          </a>
+          <a class="res" href="/partners/">
+            <div class="ico">🤝</div>
+            <h4>Partners</h4>
+            <p>Affiliate (10% recurring), Reseller (25% margin), Embed Partner (15% co-branded). Apply in 60s.</p>
+            <div class="path">/partners/</div>
+          </a>
+          <a class="res" href="/enterprise/">
+            <div class="ico">🏢</div>
+            <h4>Enterprise</h4>
+            <p>Hedge funds, prop desks, RIAs. From $499/seat/mo with SOC2-ready audit logs + white-label.</p>
+            <div class="path">/enterprise/</div>
+          </a>
+          <a class="res" href="/case-studies/">
+            <div class="ico">📁</div>
+            <h4>Case studies</h4>
+            <p>Anonymized customer narratives — prop desk, quant fund, family office. Real workflows, real outcomes.</p>
+            <div class="path">/case-studies/</div>
+          </a>
+        </div>
+      </div>
+
+      <div class="cat">
+        <div class="cat-hd"><span class="cat-num">04</span><span class="cat-title">Legal + security</span></div>
+        <p class="lead">The boring fine print, written in plain English.</p>
+        <div class="cat-grid">
+          <a class="res" href="/security/">
+            <div class="ico">🔒</div>
+            <h4>Security</h4>
+            <p>Stripe-handled billing, TLS 1.3, no tracking pixels, NMR-paid bug bounty. OWASP-aligned.</p>
+            <div class="path">/security/</div>
+          </a>
+          <a class="res" href="/privacy/">
+            <div class="ico">🛡️</div>
+            <h4>Privacy policy</h4>
+            <p>Short-form, GDPR-aligned. We collect almost nothing, never sell what we collect.</p>
+            <div class="path">/privacy/</div>
+          </a>
+          <a class="res" href="/terms/">
+            <div class="ico">📃</div>
+            <h4>Terms of service</h4>
+            <p>12 numbered sections. Not investment advice. Cancel anytime. US (Delaware) jurisdiction.</p>
+            <div class="path">/terms/</div>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section" id="glossary">
+    <div class="wrap">
+      <h2>Glossary — 12 terms you'll see across the scanner</h2>
+      <p class="lead">Plain-English definitions of every metric and acronym used on Catalyst Edge. Each entry includes a "where you'll see it" link so you can ground the term in a real screen.</p>
+      <div class="gloss-toc">
+        <a href="#g-adr">ADR</a>
+        <a href="#g-beta">Beta</a>
+        <a href="#g-capex">Capex</a>
+        <a href="#g-cs">Convergence score</a>
+        <a href="#g-erp">Equity risk premium</a>
+        <a href="#g-fcf">FCF</a>
+        <a href="#g-gap">Gap %</a>
+        <a href="#g-ocf">OCF</a>
+        <a href="#g-symp">Sympathy chain</a>
+        <a href="#g-tg">Terminal growth</a>
+        <a href="#g-2sdcf">Two-stage DCF</a>
+        <a href="#g-wacc">WACC</a>
+      </div>
+      <div class="gloss-grid">
+
+        <div class="gloss" id="g-adr">
+          <div class="gloss-hd"><span class="gloss-term">ADR</span><span class="gloss-tag">Cross-listing</span></div>
+          <p>An <b>American Depositary Receipt</b> — a US-listed proxy share for a foreign company (e.g. BABA represents Alibaba shares listed primarily in Hong Kong as 9988.HK). One ADR usually equals a fixed ratio of home-listing shares.</p>
+          <div class="where">Where you'll see this · <a href="/cross-border/">/cross-border</a></div>
+        </div>
+
+        <div class="gloss" id="g-beta">
+          <div class="gloss-hd"><span class="gloss-term">Beta</span><span class="gloss-tag">Risk</span></div>
+          <p>A measure of a stock's volatility versus the broader market. <b>Beta = 1</b> tracks the market; <b>Beta &gt; 1</b> moves more than the market; <b>Beta &lt; 1</b> moves less. Used in WACC to discount equity cash flows by risk.</p>
+          <div class="where">Where you'll see this · <a href="/dcf/">/dcf</a></div>
+        </div>
+
+        <div class="gloss" id="g-capex">
+          <div class="gloss-hd"><span class="gloss-term">Capex</span><span class="gloss-tag">Cash flow</span></div>
+          <p><b>Capital expenditure</b> — money a company spends acquiring or upgrading long-lived assets (factories, servers, equipment). We use a 3-year average of capex when computing FCF to smooth lumpy investment cycles.</p>
+          <div class="where">Where you'll see this · <a href="/dcf/">/dcf · DCF input row</a></div>
+        </div>
+
+        <div class="gloss" id="g-cs">
+          <div class="gloss-hd"><span class="gloss-term">Convergence score</span><span class="gloss-tag">Catalyst Edge metric</span></div>
+          <p>A <b>4-point composite signal</b> for cross-border setups: (1) foreign gap ≥ 1.5%, (2) US gap ≥ 1.5%, (3) same direction, (4) both vol-ratio ≥ 1.5×. A score of 4/4 = STRONG; 3/4 = TRADE; 2/4 = watch; ≤1 = noise.</p>
+          <div class="where">Where you'll see this · <a href="/cross-border/">/cross-border · STRONG setups</a></div>
+        </div>
+
+        <div class="gloss" id="g-erp">
+          <div class="gloss-hd"><span class="gloss-term">Equity risk premium</span><span class="gloss-tag">WACC input</span></div>
+          <p>The extra return investors demand for holding stocks instead of risk-free bonds. We use a <b>5.5% ERP</b> per Damodaran's published estimates. Combined with beta and the risk-free rate, it produces the cost of equity component of WACC.</p>
+          <div class="where">Where you'll see this · <a href="/dcf/">/dcf · methodology block</a></div>
+        </div>
+
+        <div class="gloss" id="g-fcf">
+          <div class="gloss-hd"><span class="gloss-term">FCF</span><span class="gloss-tag">Cash flow</span></div>
+          <p><b>Free Cash Flow</b> = OCF − |capex|. The cash a company has left after maintaining its asset base. We compute FCF as a 3-year average to dampen accounting timing effects, then project it forward in the two-stage DCF.</p>
+          <div class="where">Where you'll see this · <a href="/dcf/">/dcf · DCF input table</a></div>
+        </div>
+
+        <div class="gloss" id="g-gap">
+          <div class="gloss-hd"><span class="gloss-term">Gap %</span><span class="gloss-tag">Price action</span></div>
+          <p>The percentage difference between today's open and yesterday's close (overnight gap), or the high vs prior close (intraday gap). On the scanner, "gap" usually means overnight; convergence-score uses gap from previous close to current price.</p>
+          <div class="where">Where you'll see this · <a href="/scanner/">/scanner</a> · <a href="/international/">/international</a></div>
+        </div>
+
+        <div class="gloss" id="g-ocf">
+          <div class="gloss-hd"><span class="gloss-term">OCF</span><span class="gloss-tag">Cash flow</span></div>
+          <p><b>Operating Cash Flow</b> — the cash a company generates from its core business activities (excluding investing and financing). Pulled directly from the cash-flow statement in SEC EDGAR XBRL filings (or yfinance for international names).</p>
+          <div class="where">Where you'll see this · <a href="/dcf/">/dcf · DCF input table</a></div>
+        </div>
+
+        <div class="gloss" id="g-symp">
+          <div class="gloss-hd"><span class="gloss-term">Sympathy chain</span><span class="gloss-tag">Catalyst Edge metric</span></div>
+          <p>A <b>cluster of tickers that historically move together</b> after a single named ticker fires. Example: a positive 8-K from NVDA pulls AMD, AVGO, TSM along the same vector. Currently 90 days into a correlation-data-collection window before publishing a hit rate.</p>
+          <div class="where">Where you'll see this · <a href="/spokes/">/spokes · sympathy explorer</a></div>
+        </div>
+
+        <div class="gloss" id="g-tg">
+          <div class="gloss-hd"><span class="gloss-term">Terminal growth rate</span><span class="gloss-tag">DCF input</span></div>
+          <p>The <b>perpetual growth rate</b> assumed after the explicit forecast period (years 6+). We clamp this at <b>2.5%</b> — slightly below long-run nominal GDP — because no company can outgrow the economy forever in steady state.</p>
+          <div class="where">Where you'll see this · <a href="/dcf/">/dcf · methodology block</a></div>
+        </div>
+
+        <div class="gloss" id="g-2sdcf">
+          <div class="gloss-hd"><span class="gloss-term">Two-stage DCF</span><span class="gloss-tag">Methodology</span></div>
+          <p><b>Damodaran's two-stage discounted cash flow model</b>: 5 years of explicit FCF growth (clamped 0-25% revenue CAGR) plus a Gordon-growth terminal value at 2.5%. We discount everything at WACC, add cash, subtract debt, and divide by share count.</p>
+          <div class="where">Where you'll see this · <a href="/dcf/">/dcf</a> · <a href="/trust/#methodology">/trust</a></div>
+        </div>
+
+        <div class="gloss" id="g-wacc">
+          <div class="gloss-hd"><span class="gloss-term">WACC</span><span class="gloss-tag">Discount rate</span></div>
+          <p><b>Weighted Average Cost of Capital</b> = (E/V × cost-of-equity) + (D/V × cost-of-debt × (1 − tax rate)). We use a <b>flat 9% WACC</b> across the universe as a conservative default — sensitivity analysis is on the roadmap for v0.0.6.</p>
+          <div class="where">Where you'll see this · <a href="/dcf/">/dcf · methodology block</a></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    Catalyst Edge Scanner · Resource hub · Audited 89% hit rate · Ships daily, not quarterly
+    <div class="links">
+      <a href="/scanner/">Scanner</a>
+      <a href="/changelog/">Changelog</a>
+      <a href="/trust/">Trust</a>
+      <a href="/pricing/">Pricing</a>
+      <a href="mailto:opensource@example.com">Contact</a>
+    </div>
+  </footer>
+
+  <script src="/lib/tier.js" defer></script>
+</body>
+</html>

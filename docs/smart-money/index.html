@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Smart Money Tracker — Institutional 13F Signals | Catalyst Edge</title>
+<meta name="description" content="Track institutional buying activity from 13F filings. See which stocks are attracting the most fund interest and institutional capital flows.">
+<meta property="og:title" content="Smart Money Tracker — Catalyst Edge">
+<link rel="canonical" href="https://catalystedgescanner.com/smart-money/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#070a12;--surface:#0f1420;--gold:#d4a843;--green:#22c55e;--red:#ef4444;--cyan:#06b6d4;--text:#e2e8f0;--dim:#94a3b8;--muted:#64748b;--border:#1e293b}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
+.wrap{max-width:1080px;margin:0 auto;padding:1.5rem}
+.nav{position:sticky;top:0;z-index:100;background:rgba(7,10,18,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:.75rem 1.5rem;display:flex;align-items:center;gap:1rem}
+.nav a{color:var(--gold);font-weight:600;font-size:.95rem}
+.nav .sep{color:var(--muted)}
+.hero{text-align:center;padding:2.5rem 0 2rem;border-bottom:1px solid var(--border);margin-bottom:1.5rem}
+.hero h1{font-size:clamp(1.5rem,4vw,2.2rem);font-weight:800;line-height:1.2;margin-bottom:.4rem}
+.hero h1 em{font-style:normal;color:var(--gold)}
+.hero .sub{color:var(--dim);font-size:.9rem;max-width:580px;margin:0 auto}
+.stats-bar{display:flex;justify-content:center;gap:2rem;margin:1rem 0;flex-wrap:wrap}
+.sb-item{text-align:center}
+.sb-val{font-size:1.3rem;font-weight:800;color:var(--gold)}
+.sb-lbl{font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.sm-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px;margin:1.5rem 0}
+.sm-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.2rem;transition:border-color .2s}
+.sm-card:hover{border-color:var(--gold)}
+.sm-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:.5rem}
+.sm-ticker{font-size:1.4rem;font-weight:800}
+.sm-count{font-family:'IBM Plex Mono',monospace;font-size:1.1rem;font-weight:800;color:var(--gold)}
+.sm-signal{display:inline-block;padding:3px 10px;border-radius:12px;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;background:rgba(212,168,67,.12);color:var(--gold)}
+.sm-fund{color:var(--dim);font-size:.78rem;margin-top:.5rem}
+.sm-fund strong{color:var(--text);font-weight:600}
+.sm-meta{display:flex;gap:1rem;font-size:.75rem;color:var(--muted);margin-top:.5rem}
+.sm-link{font-size:.75rem;margin-top:.4rem}
+.cta-bar{background:var(--surface);border:1px solid var(--gold);border-radius:10px;padding:1.25rem;text-align:center;margin:2rem 0}
+.cta-bar h3{color:var(--gold);font-size:1rem;margin-bottom:.3rem}
+.cta-bar p{color:var(--dim);font-size:.8rem;margin-bottom:.75rem}
+.cta-bar a{display:inline-block;padding:.5rem 1.4rem;background:linear-gradient(135deg,var(--gold),#f1ce88);color:#070a12;font-weight:700;border-radius:6px;font-size:.85rem}
+.explainer{margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border)}
+.explainer h2{font-size:1.1rem;margin-bottom:.8rem}
+.explainer p{color:var(--dim);font-size:.85rem;margin-bottom:.8rem}
+.footer{text-align:center;padding:1.5rem;font-size:.72rem;color:var(--muted);border-top:1px solid var(--border);margin-top:2rem}
+.footer a{color:var(--muted)}
+</style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@800;900&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/lib/cinematic-hero.css">
+  <link rel="stylesheet" href="/lib/cyber-shell.css">
+  <link rel="stylesheet" href="/lib/polish-tokens.css">
+</head>
+<body>
+  <div class="cy-bg" aria-hidden="true"></div>
+  <div class="cy-floor" aria-hidden="true"></div>
+  <div class="cy-vignette" aria-hidden="true"></div>
+  <div class="cy-scan" aria-hidden="true"></div>
+<div class="nav">
+  <a href="/">Catalyst Edge</a>
+  <span class="sep">/</span>
+  <span style="color:var(--dim);font-size:.9rem">Smart Money</span>
+</div>
+<div class="wrap">
+<section class="cin-hero cy-neon-hero cy-shimmer">
+    <div class="cin-grid">
+      <div class="cin-stat-stack">
+        <div class="cin-eyebrow"><span class="cin-live-dot"></span>13F + INSIDER + DARK POOL · LIVE</div>
+        <div class="cin-colossal">
+          <div class="cin-num-row"><span class="cin-num">3</span></div>
+          <div class="cin-side">
+          <span class="cin-tag"><b>13F</b> + insider + dark</span>
+          <span class="cin-tag">cross-signal</span>
+          <span class="cin-tag">institutional bias</span>
+          </div>
+        </div>
+        <div class="cin-stamp">SMART//MONEY · v1.0 · <b>LIVE</b></div>
+      </div>
+      <div class="cin-h1-block">
+        <div class="cin-h1-eyebrow">💼 Smart Money Tracker · Where Institutions Cluster</div>
+        <h1 class="cin-headline">Where the <em>13F filers</em>, the <span class="cin-accent">insiders</span>, and the dark-pool tape all point at the same name.</h1>
+        <p class="cin-lede">Cross-references quarterly 13F position changes, recent Form 4 insider buys, and dark-pool concentration. The intersection of all three is the most institutionally-validated edge layer in the scanner.</p>
+        <div class="cin-cta-row">
+          <a href="#sm-table" class="cin-btn-primary">See aligned names ↓</a>
+          <a href="/scanner/" class="cin-btn-ghost">Open scanner</a>
+        </div>
+        <div class="cin-strip">
+          <div class="cin-cell"><div class="cin-k">13F adds</div><div class="cin-v bull" id="sm-adds">–</div></div>
+          <div class="cin-cell"><div class="cin-k">Insider buys</div><div class="cin-v gold" id="sm-insider">–</div></div>
+          <div class="cin-cell"><div class="cin-k">Dark pool tag</div><div class="cin-v cyan" id="sm-dp">–</div></div>
+          <div class="cin-cell"><div class="cin-k">All three</div><div class="cin-v" id="sm-all">–</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="sm-grid" id="sm-grid"></div>
+  <div class="cta-bar">
+    <h3>Smart money alerts daily</h3>
+    <p>Free daily email with institutional signals, SEC catalysts, and convergence alerts at 4 AM ET.</p>
+    <a href="/preview/">Subscribe Free</a>
+  </div>
+  <div class="explainer">
+    <h2>What Is Smart Money Tracking?</h2>
+    <p>Institutional investors managing over $100M must disclose their holdings quarterly via SEC Form 13F. When multiple independent funds simultaneously increase positions in the same stock, it signals institutional consensus.</p>
+    <p>We aggregate 13F filings from EDGAR and rank stocks by the number of distinct funds holding or increasing positions. Higher fund counts with recent filing dates indicate fresh institutional conviction.</p>
+  </div>
+</div>
+<div class="footer">
+  &copy; 2026 Catalyst Edge &middot;
+  <a href="/">Scanner</a> &middot;
+  <a href="/gaps/">Gaps</a> &middot;
+  <a href="/jackpot/" style="color:#22c55e">🎯 JACKPOT</a>
+  <a href="/dcf/" style="color:#06b6d4">💰 DCF</a> &middot;
+  <a href="/squeeze/">Squeeze</a> &middot;
+  <a href="/insiders/">Insiders</a> &middot;
+  <a href="/darkpool/">Dark Pool</a> &middot;
+  <a href="/convergence/">Convergence</a> &middot;
+  <a href="/deepvalue/">Deep Value</a> &middot;
+  <a href="/mergers/">Mergers</a> &middot;
+  <a href="/late-filings/">Late Filings</a> &middot;
+  <a href="/congress/">Congress</a> &middot;
+  <a href="/glossary/">Glossary</a> &middot;
+  Not financial advice.
+</div>
+<script>
+(function(){
+  fetch('/api/smart-money').then(function(r){return r.json()}).then(function(d){
+    var stocks = d.stocks || [];
+    document.getElementById('sm-total').textContent = stocks.length;
+    var maxFunds=0, totalMentions=0;
+    stocks.forEach(function(s){
+      var fc = parseInt(s.fund_count)||0;
+      if(fc>maxFunds) maxFunds=fc;
+      totalMentions += parseInt(s.total_mentions)||0;
+    });
+    document.getElementById('sm-maxfunds').textContent = maxFunds;
+    document.getElementById('sm-mentions').textContent = totalMentions;
+
+    var grid = document.getElementById('sm-grid');
+    stocks.forEach(function(s){
+      var card = document.createElement('div');
+      card.className = 'sm-card';
+
+      var header = document.createElement('div');
+      header.className = 'sm-header';
+      var tk = document.createElement('span');
+      tk.className = 'sm-ticker';
+      tk.textContent = s.ticker;
+      var ct = document.createElement('span');
+      ct.className = 'sm-count';
+      ct.textContent = (s.fund_count||0) + ' funds';
+      header.appendChild(tk);
+      header.appendChild(ct);
+      card.appendChild(header);
+
+      var sig = document.createElement('span');
+      sig.className = 'sm-signal';
+      sig.textContent = (s.signal||'INSTITUTIONAL INTEREST').replace(/_/g,' ');
+      card.appendChild(sig);
+
+      if(s.latest_fund_name){
+        var fund = document.createElement('div');
+        fund.className = 'sm-fund';
+        var strong = document.createElement('strong');
+        strong.textContent = 'Latest: ';
+        fund.appendChild(strong);
+        fund.appendChild(document.createTextNode(s.latest_fund_name));
+        card.appendChild(fund);
+      }
+
+      var meta = document.createElement('div');
+      meta.className = 'sm-meta';
+      if(s.latest_filed_date){
+        var d1 = document.createElement('span');
+        d1.textContent = 'Filed: ' + s.latest_filed_date;
+        meta.appendChild(d1);
+      }
+      if(s.total_mentions){
+        var d2 = document.createElement('span');
+        d2.textContent = s.total_mentions + ' total mentions';
+        meta.appendChild(d2);
+      }
+      card.appendChild(meta);
+
+      if(s.primary_link){
+        var lnk = document.createElement('a');
+        lnk.className = 'sm-link';
+        lnk.href = s.primary_link;
+        lnk.target = '_blank';
+        lnk.rel = 'noopener';
+        lnk.textContent = 'View 13F Filing →';
+        card.appendChild(lnk);
+      }
+
+      grid.appendChild(card);
+    });
+  });
+})();
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KV1VDK22VC"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-KV1VDK22VC');</script>
+</body>
+</html>

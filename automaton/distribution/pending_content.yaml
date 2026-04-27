@@ -1,0 +1,493 @@
+# Distribution Automaton — content queue.
+# State machine:  queued -> drafted -> published -> promoted -> retired
+# Lower priority fires first.
+
+posts:
+
+- slug: free-sec-catalyst-scanner
+  state: promoted
+  priority: 1
+  title: "Free SEC catalyst scanner: what FlyOnTheWall and BamSEC charge $49–$89/mo for, audited and free"
+  h1: The free SEC catalyst scanner that replaces FlyOnTheWall and BamSEC
+  target_keyword: free SEC catalyst scanner
+  cta_target: "/preview/?utm_source=blog&utm_campaign=free-sec-catalyst-scanner"
+  word_count_target: 2000
+  target_search_intent: informational
+  drafted_at: 2026-04-26
+  published_at: 2026-04-26
+  promoted_at: 2026-04-26
+  secondary_keywords:
+    - "FlyOnTheWall alternative"
+    - "BamSEC alternative"
+    - "free 8-K scanner"
+    - "SEC EDGAR scanner free"
+    - "Benzinga Pro alternative"
+  rationale: >
+    ICP top-of-funnel kw. The exact phrase a $50–150K self-directed
+    catalyst trader googles when they're sick of paying $89/mo for
+    FlyOnTheWall but want a real scanner. Lead-magnet post. Positions free
+    tier as the wedge so the Reader and Pro tiers can sell themselves on
+    top.
+
+- slug: how-to-trade-8k-filings
+  state: promoted
+  priority: 2
+  title: "How to trade 8-K filings: the 5-form-type playbook with 5 real pre-market examples"
+  h1: How to trade 8-K filings (the 5 form-type playbook)
+  target_keyword: how to trade 8-K filings
+  cta_target: "/preview/?utm_source=blog&utm_campaign=how-to-trade-8k-filings"
+  word_count_target: 2500
+  target_search_intent: informational
+  drafted_at: 2026-04-26
+  published_at: 2026-04-26
+  promoted_at: 2026-04-26
+  secondary_keywords:
+    - "8-K trading strategy"
+    - "8-K item 5.02"
+    - "8-K item 1.01"
+    - "trade 8-K pre-market"
+    - "8-K catalyst trading"
+  rationale: >
+    Educational + commercial bridge. ICP knows 8-Ks matter but doesn't
+    have a structured playbook. Walks through Items 1.01, 2.02, 5.02,
+    7.01, 8.01 with 5 real recent setups, then shows how /scanner/
+    surfaces them by 8 AM ET. Drives Free → Reader by demonstrating the
+    speed advantage.
+
+- slug: insider-buying-signal-explained
+  state: promoted
+  priority: 3
+  title: "Insider buying signal: why CEO+CFO same-period clusters beat every generic Form 4 feed"
+  h1: The insider buying signal that actually predicts moves
+  target_keyword: insider buying signal
+  cta_target: "/preview/?utm_source=blog&utm_campaign=insider-buying-signal-explained"
+  word_count_target: 1800
+  target_search_intent: informational
+  drafted_at: 2026-04-26
+  published_at: 2026-04-26
+  promoted_at: 2026-04-26
+  secondary_keywords:
+    - "Form 4 cluster"
+    - "CEO insider buying"
+    - "CFO insider buying"
+    - "track insider trades"
+    - "Form 4 trading strategy"
+  rationale: >
+    Insider buying is a high-intent search. Most ICP traders track it via
+    OpenInsider or generic Form 4 feeds, which are noisy. We rank clusters
+    (CEO + CFO same period > 1 random VP) and show why /insiders/ is the
+    de-noised version. Drives free tier engagement and demonstrates depth.
+
+- slug: short-squeeze-setup-checklist
+  state: promoted
+  priority: 4
+  title: "Short squeeze setup checklist: the DTC + SI + borrow-rate triple filter, with /squeeze/ as the live tool"
+  h1: The short squeeze setup checklist (DTC × SI × borrow-rate)
+  target_keyword: short squeeze setup
+  cta_target: "/preview/?utm_source=blog&utm_campaign=short-squeeze-setup-checklist"
+  word_count_target: 1500
+  target_search_intent: commercial
+  drafted_at: 2026-04-26
+  published_at: 2026-04-26
+  promoted_at: 2026-04-26
+  secondary_keywords:
+    - "short squeeze checklist"
+    - "days to cover"
+    - "borrow rate squeeze"
+    - "short interest screener"
+    - "high short interest stocks"
+  rationale: >
+    Squeeze plays are pure ICP — high-volatility, catalyst-adjacent. The
+    DTC + SI + borrow-rate triple filter is the actual professional read,
+    not the WSB single-metric meme. Shows /squeeze/ as the live screener.
+    Strong commercial intent → high CTR to /preview/.
+
+- slug: dcf-intrinsic-value-explained
+  state: promoted
+  priority: 5
+  title: "DCF intrinsic value explained: a two-stage Damodaran walk-through, in 8 minutes"
+  h1: "DCF intrinsic value, explained: the two-stage Damodaran model in 8 minutes"
+  target_keyword: DCF intrinsic value
+  cta_target: "/preview/?utm_source=blog&utm_campaign=dcf-intrinsic-value-explained"
+  word_count_target: 2000
+  target_search_intent: commercial
+  drafted_at: 2026-04-27
+  published_at: 2026-04-27
+  promoted_at: 2026-04-27
+  secondary_keywords:
+    - "two-stage DCF"
+    - "Damodaran DCF"
+    - "intrinsic value calculator"
+    - "discounted cash flow stock valuation"
+    - "fair value calculator stocks"
+  rationale: >
+    /dcf/ is the Pro-tier upgrade lead. Bloomberg charges $24K/yr for the
+    same calc. This post walks through Damodaran two-stage with one
+    ticker, then routes to /preview/ → /pricing/ → Pro upgrade. High-LTV
+    reader. Commercial intent + paywall-gated tool = strongest upgrade
+    path.
+
+- slug: form-4-cluster-buying
+  state: promoted
+  priority: 6
+  title: "Form 4 cluster buying: the 3-insider rule that beats single-CEO trades by 2.4x"
+  h1: Form 4 cluster buying — the 3-insider rule
+  target_keyword: form 4 cluster buying
+  cta_target: "/preview/?utm_source=blog&utm_campaign=form-4-cluster-buying"
+  word_count_target: 1800
+  target_search_intent: informational
+  drafted_at: 2026-04-27
+  published_at: 2026-04-27
+  promoted_at: 2026-04-27
+  secondary_keywords:
+    - "insider cluster buying"
+    - "3 insiders buying"
+    - "OpenInsider alternative"
+    - "Form 4 screener"
+  rationale: >
+    ICP search "form 4 cluster" — beats OpenInsider for de-noised signal.
+    Drives /insiders/ engagement.
+
+- slug: dark-pool-prints-explained
+  state: promoted
+  priority: 7
+  title: "Dark pool prints explained: how to read FINRA ATS volume before it hits the tape"
+  h1: Dark pool prints — what FINRA ATS data tells you 4 hours early
+  target_keyword: dark pool prints
+  cta_target: "/preview/?utm_source=blog&utm_campaign=dark-pool-prints-explained"
+  word_count_target: 2000
+  target_search_intent: informational
+  drafted_at: 2026-04-27
+  published_at: 2026-04-27
+  promoted_at: 2026-04-27
+  secondary_keywords:
+    - "FINRA ATS data"
+    - "dark pool volume"
+    - "dark pool scanner"
+    - "block trade scanner"
+  rationale: >
+    Dark-pool searches are high-intent. /darkpool/ is one of our
+    strongest free tools. Drives /preview/ conversions.
+
+- slug: 13d-13g-filing-trading
+  state: queued
+  priority: 8
+  title: "Trading SC 13D and 13G filings: 7-day post-disclosure edge with real 2025 examples"
+  h1: How to trade SC 13D and 13G filings
+  target_keyword: 13d filing trading
+  cta_target: "/preview/?utm_source=blog&utm_campaign=13d-13g-filing-trading"
+  word_count_target: 2200
+  target_search_intent: informational
+  secondary_keywords:
+    - "SC 13D filing"
+    - "13G stock alert"
+    - "activist investor filing"
+    - "5% stake disclosure"
+  rationale: >
+    Activist disclosure is a clean event-driven setup. /scanner/ surfaces
+    13Ds in real time — competitor scanners gate this behind $89/mo.
+
+- slug: ftd-fails-to-deliver-trading
+  state: queued
+  priority: 9
+  title: "FTD fails-to-deliver trading: how to read SEC's biweekly file for short-squeeze setups"
+  h1: FTD fails-to-deliver — what SEC's biweekly file reveals
+  target_keyword: fails to deliver trading
+  cta_target: "/preview/?utm_source=blog&utm_campaign=ftd-fails-to-deliver"
+  word_count_target: 1700
+  target_search_intent: informational
+  secondary_keywords:
+    - "SEC FTD data"
+    - "fails to deliver list"
+    - "FTD short squeeze"
+    - "Reg SHO threshold"
+  rationale: >
+    FTD nerds = squeeze nerds = our ICP. /squeeze/ overlays FTD spike
+    onto borrow rate. Great Reader-tier hook.
+
+- slug: borrow-rate-explained
+  state: queued
+  priority: 10
+  title: "Borrow rate explained: why 50% borrow + DTC > 5 days = textbook squeeze fuel"
+  h1: Borrow rate — the squeeze fuel metric Robinhood doesn't show you
+  target_keyword: borrow rate stocks
+  cta_target: "/preview/?utm_source=blog&utm_campaign=borrow-rate-explained"
+  word_count_target: 1600
+  target_search_intent: informational
+  secondary_keywords:
+    - "stock borrow fee"
+    - "hard to borrow list"
+    - "short interest borrow rate"
+    - "Interactive Brokers borrow rate"
+  rationale: >
+    Borrow rate is invisible to most retail. We show it on /squeeze/
+    free. Educational → tool conversion.
+
+- slug: pre-market-scanner-free
+  state: queued
+  priority: 11
+  title: "Pre-market scanner (free): the 4 AM ET catalyst feed Wall Street pays $400/mo for"
+  h1: A free pre-market scanner that beats Benzinga Pro on catalysts
+  target_keyword: free pre-market scanner
+  cta_target: "/preview/?utm_source=blog&utm_campaign=pre-market-scanner-free"
+  word_count_target: 1900
+  target_search_intent: commercial
+  secondary_keywords:
+    - "free premarket scanner"
+    - "Benzinga Pro alternative"
+    - "pre-market gap scanner"
+    - "morning catalyst scanner"
+  rationale: >
+    Free pre-market scanner is the highest-volume bottom-funnel kw in our
+    space. Direct-response post.
+
+- slug: spac-warrants-trading
+  state: queued
+  priority: 12
+  title: "SPAC warrants trading: the 8-K trigger that prints in pre-market 80% of the time"
+  h1: SPAC warrants — the 8-K trigger that prints in pre-market
+  target_keyword: spac warrants trading
+  cta_target: "/preview/?utm_source=blog&utm_campaign=spac-warrants-trading"
+  word_count_target: 1500
+  target_search_intent: informational
+  secondary_keywords:
+    - "SPAC merger trade"
+    - "redemption deadline trade"
+    - "SPAC 8-K"
+    - "warrant arbitrage"
+  rationale: >
+    SPAC searches still have intent. /scanner/ surfaces SPAC trigger
+    8-Ks. Niche but converts.
+
+- slug: clinical-trial-catalyst-trading
+  state: queued
+  priority: 13
+  title: "Clinical trial catalyst trading: how to size before Phase 2 readout (with 6 case studies)"
+  h1: Clinical trial catalysts — sizing the binary event
+  target_keyword: clinical trial catalyst trading
+  cta_target: "/preview/?utm_source=blog&utm_campaign=clinical-trial-catalyst"
+  word_count_target: 2300
+  target_search_intent: informational
+  secondary_keywords:
+    - "biotech catalyst trade"
+    - "Phase 2 readout"
+    - "FDA PDUFA date"
+    - "clinicaltrials.gov scanner"
+  rationale: >
+    Biotech ICP segment. /scanner/ surfaces ClinicalTrials.gov + FDA in
+    same feed. Underpriced kw.
+
+- slug: fda-pdufa-calendar
+  state: queued
+  priority: 14
+  title: "FDA PDUFA calendar 2026: every binary event date, scored by squeeze risk"
+  h1: FDA PDUFA calendar 2026 — every binary date, scored
+  target_keyword: fda pdufa calendar
+  cta_target: "/preview/?utm_source=blog&utm_campaign=fda-pdufa-calendar"
+  word_count_target: 1800
+  target_search_intent: navigational
+  secondary_keywords:
+    - "PDUFA date list"
+    - "FDA approval calendar"
+    - "biotech catalyst calendar"
+    - "FDA decision date"
+  rationale: >
+    Annually-recurring nav-intent kw with consistent organic traffic.
+    Update annually.
+
+- slug: convergence-score-methodology
+  state: queued
+  priority: 15
+  title: "The convergence score: 42-layer signal stack that beats 5-factor Fama-French on event windows"
+  h1: Convergence score — the 42-layer methodology
+  target_keyword: stock convergence score
+  cta_target: "/preview/?utm_source=blog&utm_campaign=convergence-score"
+  word_count_target: 2400
+  target_search_intent: informational
+  secondary_keywords:
+    - "multi-factor stock scoring"
+    - "stock signal stack"
+    - "quantitative stock score"
+    - "factor stock model"
+  rationale: >
+    Differentiator post. Builds authority moat — no competitor publishes
+    their methodology. Reader-tier conversion.
+
+- slug: sec-13f-tracking
+  state: queued
+  priority: 16
+  title: "SEC 13F tracking: the 45-day-late filing that still moves stocks 3-7%"
+  h1: SEC 13F filings — why the 45-day-late data still works
+  target_keyword: sec 13f tracking
+  cta_target: "/preview/?utm_source=blog&utm_campaign=sec-13f-tracking"
+  word_count_target: 1700
+  target_search_intent: informational
+  secondary_keywords:
+    - "13F filing tracker"
+    - "hedge fund holdings tracker"
+    - "Whalewisdom alternative"
+    - "13F screener free"
+  rationale: >
+    13F searchers = serious traders. Whalewisdom charges $40/mo. We
+    undercut.
+
+- slug: cftc-cot-report-trading
+  state: queued
+  priority: 17
+  title: "CFTC COT report trading: how the smart-money bias in commodities leaks into equity sectors"
+  h1: CFTC COT report — smart-money bias for equity sectors
+  target_keyword: cftc cot report trading
+  cta_target: "/preview/?utm_source=blog&utm_campaign=cftc-cot-report-trading"
+  word_count_target: 1900
+  target_search_intent: informational
+  secondary_keywords:
+    - "Commitments of Traders report"
+    - "COT data analysis"
+    - "managed money positioning"
+    - "commercial traders bias"
+  rationale: >
+    New CFTC spoke just shipped. Drives /scanner/ macro-overlay
+    engagement.
+
+- slug: treasury-tic-flows
+  state: queued
+  priority: 18
+  title: "Treasury TIC flows: foreign buying that telegraphs USD/equity rotation 30 days early"
+  h1: Treasury TIC flows — the 30-day USD-rotation signal
+  target_keyword: treasury tic flows
+  cta_target: "/preview/?utm_source=blog&utm_campaign=treasury-tic-flows"
+  word_count_target: 1800
+  target_search_intent: informational
+  secondary_keywords:
+    - "treasury international capital"
+    - "foreign treasury holdings"
+    - "TIC data"
+    - "USD rotation signal"
+  rationale: >
+    New Treasury spoke. Macro-overlay differentiator vs retail-only
+    competitors.
+
+- slug: faa-data-equity-trading
+  state: queued
+  priority: 19
+  title: "FAA data for equity trading: airline ops + drone permits + flight ops as leading indicators"
+  h1: FAA data for traders — airlines, drones, ops as signals
+  target_keyword: faa data trading
+  cta_target: "/preview/?utm_source=blog&utm_campaign=faa-data-equity-trading"
+  word_count_target: 1600
+  target_search_intent: informational
+  secondary_keywords:
+    - "FAA flight data"
+    - "airline equity signals"
+    - "drone permit data"
+    - "alternative data trading"
+  rationale: >
+    New FAA spoke. Niche alt-data. Long-tail SEO.
+
+- slug: gap-up-gap-down-trading
+  state: queued
+  priority: 20
+  title: "Gap-up / gap-down trading: the catalyst-tagged playbook (not the WSB version)"
+  h1: Gap-up / gap-down trading with catalyst tags
+  target_keyword: gap up trading strategy
+  cta_target: "/preview/?utm_source=blog&utm_campaign=gap-up-gap-down-trading"
+  word_count_target: 1700
+  target_search_intent: informational
+  secondary_keywords:
+    - "gap fill strategy"
+    - "premarket gap scanner"
+    - "gap and go strategy"
+    - "fade the gap"
+  rationale: >
+    High-volume kw. /scanner/ tags every gap with the underlying
+    catalyst. Educational + tool demo.
+
+- slug: free-stock-screener-comparison
+  state: queued
+  priority: 21
+  title: "Free stock screeners compared 2026: Finviz vs TradingView vs Catalyst Edge (audited)"
+  h1: Free stock screeners 2026 — head-to-head audit
+  target_keyword: best free stock screener
+  cta_target: "/preview/?utm_source=blog&utm_campaign=free-stock-screener-comparison"
+  word_count_target: 2500
+  target_search_intent: commercial
+  secondary_keywords:
+    - "Finviz alternative"
+    - "TradingView screener review"
+    - "free stock screener comparison"
+    - "best free screener"
+  rationale: >
+    Bottom-funnel comparison kw. We win on catalyst tagging. Updated
+    annually.
+
+- slug: bamsec-vs-edgar-direct
+  state: queued
+  priority: 22
+  title: "BamSEC vs EDGAR direct vs Catalyst Edge: which SEC filings tool actually saves time?"
+  h1: BamSEC vs EDGAR vs Catalyst Edge — the 3-tool head-to-head
+  target_keyword: bamsec alternative
+  cta_target: "/preview/?utm_source=blog&utm_campaign=bamsec-vs-edgar-direct"
+  word_count_target: 2000
+  target_search_intent: commercial
+  secondary_keywords:
+    - "BamSEC review"
+    - "BamSEC pricing"
+    - "EDGAR full-text search"
+    - "free SEC filings tool"
+  rationale: >
+    Direct competitor capture. ICP googling "is bamsec worth it" lands
+    here.
+
+- slug: flyonthewall-alternative
+  state: queued
+  priority: 23
+  title: "FlyOnTheWall alternative: the free catalyst feed that beats $89/mo on coverage and latency"
+  h1: A free FlyOnTheWall alternative — coverage and latency benchmarked
+  target_keyword: flyonthewall alternative
+  cta_target: "/preview/?utm_source=blog&utm_campaign=flyonthewall-alternative"
+  word_count_target: 2100
+  target_search_intent: commercial
+  secondary_keywords:
+    - "FlyOnTheWall review"
+    - "TheFly news alternative"
+    - "free catalyst feed"
+    - "Benzinga Squawk alternative"
+  rationale: >
+    Direct competitor capture. Bottom-funnel.
+
+- slug: jackpot-convergence-picks
+  state: queued
+  priority: 24
+  title: "The /jackpot/ list explained: how 4-of-5 signal convergence found 18% wins last quarter"
+  h1: The /jackpot/ list — 4-of-5 signal convergence, audited
+  target_keyword: stock convergence picks
+  cta_target: "/preview/?utm_source=blog&utm_campaign=jackpot-convergence-picks"
+  word_count_target: 1800
+  target_search_intent: commercial
+  secondary_keywords:
+    - "high conviction stock picks"
+    - "convergence trading signals"
+    - "multi-signal stock picks"
+    - "audited stock picks"
+  rationale: >
+    Pro-tier conversion driver. Shows audited track record from /trust/.
+    Strong upgrade pull.
+
+- slug: live-trade-audit-public
+  state: queued
+  priority: 25
+  title: "Why we publish every trade: the live audit ledger most newsletters won't show you"
+  h1: Live trade audit — every pick, every outcome, public forever
+  target_keyword: audited trading newsletter
+  cta_target: "/preview/?utm_source=blog&utm_campaign=live-trade-audit-public"
+  word_count_target: 1500
+  target_search_intent: trust
+  secondary_keywords:
+    - "verified track record newsletter"
+    - "transparent stock newsletter"
+    - "audited stock picks"
+    - "live trade ledger"
+  rationale: >
+    Trust-builder + differentiator. /trust/ is the page nobody else has.
+    Closes Reader → Pro objection.
+

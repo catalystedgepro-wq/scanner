@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>What is SEC Form 4? Insider Trading Signals Explained | Catalyst Edge</title>
+<meta name="description" content="Learn how SEC Form 4 reveals insider buying and selling, why it matters for traders, and how Catalyst Edge tracks insider transactions to find high-conviction setups.">
+<link rel="canonical" href="https://catalystedgescanner.com/glossary/what-is-form-4/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How quickly do Form 4 filings appear on EDGAR?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Form 4 filings must be submitted within 2 business days of the transaction. Most appear on EDGAR within hours. Catalyst Edge checks EDGAR every 15 minutes during market hours."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is insider buying always bullish?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not always, but statistically it's a strong signal. Insider purchases outperform the market by 7-10% per year on average. The strongest signals come from cluster buys (multiple insiders buying within days) and large purchases relative to the insider's compensation."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a Form 4 cluster buy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A cluster buy occurs when 3 or more insiders at the same company file Form 4 purchase reports within a 14-day window. Catalyst Edge automatically detects and flags these patterns."
+      }
+    }
+  ]
+}
+</script>
+<style>
+:root {
+  --bg: #0a0e1a;
+  --surface: #111827;
+  --surface-2: #1a2035;
+  --border: #1e293b;
+  --text: #e2e8f0;
+  --text-dim: #94a3b8;
+  --accent: #d4a853;
+  --accent-glow: rgba(212, 168, 83, 0.15);
+  --blue: #3b82f6;
+  --green: #10b981;
+  --red: #ef4444;
+  --font: 'Space Grotesk', system-ui, sans-serif;
+  --mono: 'IBM Plex Mono', monospace;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+.container { max-width: 800px; margin: 0 auto; padding: 2rem 1.5rem; }
+
+/* Nav */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(10, 14, 26, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0.75rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+}
+nav a { color: var(--accent); text-decoration: none; font-weight: 600; font-size: 0.95rem; }
+nav a:hover { text-decoration: underline; }
+nav .sep { color: var(--text-dim); }
+
+/* Hero */
+.hero {
+  text-align: center;
+  padding: 4rem 0 3rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 2rem;
+}
+.hero h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 800;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+}
+.hero .subtitle {
+  font-size: 1.15rem;
+  color: var(--text-dim);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Content sections */
+.content-section {
+  margin-bottom: 2.5rem;
+}
+.content-section h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--accent-glow);
+}
+.content-section p {
+  color: var(--text-dim);
+  font-size: 1.05rem;
+}
+
+/* FAQ */
+.faq-section { margin-top: 3rem; }
+.faq-section h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--accent);
+}
+.faq-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
+  overflow: hidden;
+}
+.faq-item summary {
+  padding: 1rem 1.25rem;
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.faq-item summary::before {
+  content: '+';
+  font-family: var(--mono);
+  color: var(--accent);
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+.faq-item[open] summary::before { content: '−'; }
+.faq-item p {
+  padding: 0 1.25rem 1rem;
+  color: var(--text-dim);
+  line-height: 1.6;
+}
+
+/* CTA */
+.cta-box {
+  background: linear-gradient(135deg, var(--surface) 0%, var(--surface-2) 100%);
+  border: 1px solid var(--accent);
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  margin: 3rem 0;
+}
+.cta-box h3 {
+  color: var(--accent);
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+}
+.cta-box p {
+  color: var(--text-dim);
+  margin-bottom: 1.25rem;
+}
+.cta-box a {
+  display: inline-block;
+  background: var(--accent);
+  color: var(--bg);
+  font-weight: 700;
+  padding: 0.75rem 2rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.cta-box a:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px var(--accent-glow);
+}
+
+/* Related */
+.related {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+.related h3 {
+  font-size: 1rem;
+  color: var(--text-dim);
+  margin-bottom: 0.75rem;
+}
+.related a {
+  color: var(--blue);
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+.related a:hover { text-decoration: underline; }
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 2rem 0;
+  color: var(--text-dim);
+  font-size: 0.85rem;
+  border-top: 1px solid var(--border);
+  margin-top: 2rem;
+}
+footer a { color: var(--accent); text-decoration: none; }
+</style>
+</head>
+<body>
+<nav>
+  <a href="/">Catalyst Edge</a>
+  <span class="sep">/</span>
+  <a href="/glossary/sec-filing-types-for-traders/">Glossary</a>
+  <span class="sep">/</span>
+  <span style="color:var(--text-dim);font-size:0.9rem">What is SEC Form 4?</span>
+</nav>
+
+<div class="container">
+  <div class="hero">
+    <h1>What is SEC Form 4?</h1>
+    <p class="subtitle">Insider Trading Signals Every Trader Should Watch</p>
+  </div>
+
+    <section class="content-section">
+      <h2>What is a Form 4 filing?</h2>
+      <p>SEC Form 4 is filed whenever a company insider (director, officer, or 10%+ shareholder) buys or sells shares. These filings must be submitted within 2 business days of the transaction, making them one of the fastest public signals of insider sentiment. When a CEO buys $500K of their own stock on the open market, that&#x27;s a Form 4.</p>
+    </section>
+    <section class="content-section">
+      <h2>Why traders watch Form 4 filings</h2>
+      <p>Insiders know their company better than any analyst. When multiple insiders buy simultaneously (a &#x27;cluster buy&#x27;), it often precedes positive catalysts like earnings beats, FDA approvals, or M&amp;A announcements. Academic research shows insider purchases outperform the market by 7-10% annually. Catalyst Edge scans every Form 4 filed with EDGAR and flags cluster buys automatically.</p>
+    </section>
+    <section class="content-section">
+      <h2>How to read a Form 4</h2>
+      <p>The key fields are: Transaction Code (P = purchase, S = sale, A = award), shares transacted, price per share, and shares owned after the transaction. Open-market purchases (Code P) carry the strongest signal because insiders are spending their own money. Derivative transactions (options exercises) are less meaningful.</p>
+    </section>
+    <section class="content-section">
+      <h2>Form 4 vs Form 3 vs Form 5</h2>
+      <p>Form 3 is the initial ownership report when someone becomes an insider. Form 4 reports changes in ownership. Form 5 is an annual summary of transactions that should have been reported on Form 4 but were exempt. For traders, Form 4 is the one that matters — it shows real-time insider activity.</p>
+    </section>
+
+  <div class="cta-box">
+    <h3>Try the Free Scanner</h3>
+    <p>Catalyst Edge scans 300+ SEC filings every day and publishes a ranked watchlist before market open.</p>
+    <a href="https://catalystedgescanner.com/">Open Scanner</a>
+  </div>
+
+  <div class="faq-section">
+    <h2>Frequently Asked Questions</h2>
+
+      <details class="faq-item">
+        <summary>How quickly do Form 4 filings appear on EDGAR?</summary>
+        <p>Form 4 filings must be submitted within 2 business days of the transaction. Most appear on EDGAR within hours. Catalyst Edge checks EDGAR every 15 minutes during market hours.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Is insider buying always bullish?</summary>
+        <p>Not always, but statistically it&#x27;s a strong signal. Insider purchases outperform the market by 7-10% per year on average. The strongest signals come from cluster buys (multiple insiders buying within days) and large purchases relative to the insider&#x27;s compensation.</p>
+      </details>
+      <details class="faq-item">
+        <summary>What is a Form 4 cluster buy?</summary>
+        <p>A cluster buy occurs when 3 or more insiders at the same company file Form 4 purchase reports within a 14-day window. Catalyst Edge automatically detects and flags these patterns.</p>
+      </details>
+  </div>
+
+  <div class="related">
+    <h3>Related Topics</h3>
+    <p><a href="/glossary/what-is-sc-13d/">What is Schedule 13D?</a> &middot; <a href="/glossary/what-is-gap-up-stock/">What is a Gap Up Stock?</a> &middot; <a href="/glossary/sec-filing-types-for-traders/">SEC Filing Types for Traders</a> &middot; <a href="/glossary/what-is-lockup-expiration/">What is IPO Lockup Expiration?</a> &middot; <a href="/glossary/premarket-gap-scanner/">Pre-Market Gap Scanner</a> &middot; <a href="/glossary/insider-buying-signals/">Insider Buying Signals</a> &middot; <a href="/glossary/what-is-sympathy-play/">What is a Sympathy Play?</a> &middot; <a href="/glossary/what-is-deep-value-investing/">What is Deep Value Investing?</a></p>
+  </div>
+</div>
+
+<footer>
+  <a href="https://catalystedgescanner.com/">Catalyst Edge Scanner</a> &middot;
+  <a href="https://catalystedge.agency">Daily Newsletter</a> &middot;
+  &copy; 2026 Catalyst Edge
+</footer>
+</body>
+</html>

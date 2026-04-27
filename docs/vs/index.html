@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Compare Stocks — Side-by-Side Signal Analysis | Catalyst Edge</title>
+<meta name="description" content="Compare two stocks side-by-side. See signal differences in SEC filings, insider activity, squeeze potential, deep value scores, and more.">
+<meta property="og:title" content="Compare Stocks — Catalyst Edge">
+<link rel="canonical" href="https://catalystedgescanner.com/vs/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#070a12;--surface:#0f1420;--surface2:#151c2c;--gold:#d4a843;--green:#22c55e;--red:#ef4444;--cyan:#06b6d4;--text:#e2e8f0;--dim:#94a3b8;--muted:#64748b;--border:#1e293b}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
+.wrap{max-width:1000px;margin:0 auto;padding:1.5rem}
+.nav{position:sticky;top:0;z-index:100;background:rgba(7,10,18,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:.75rem 1.5rem;display:flex;align-items:center;gap:1rem}
+.nav a{color:var(--gold);font-weight:600;font-size:.95rem}
+.nav .sep{color:var(--muted)}
+.compare-hero{text-align:center;padding:2.5rem 0 1.5rem}
+.compare-hero h1{font-size:clamp(1.3rem,4vw,2rem);font-weight:800;margin-bottom:.3rem}
+.compare-hero h1 em{font-style:normal;color:var(--gold)}
+.compare-hero .sub{color:var(--dim);font-size:.85rem;margin-bottom:1.5rem}
+.input-row{display:flex;gap:.75rem;justify-content:center;align-items:center;flex-wrap:wrap;margin-bottom:2rem}
+.input-row input{padding:.7rem 1rem;background:var(--surface);border:2px solid var(--border);border-radius:10px;color:var(--text);font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;outline:none;width:140px;text-align:center;transition:border-color .2s}
+.input-row input:focus{border-color:var(--gold)}
+.input-row input::placeholder{color:var(--muted);text-transform:none;font-weight:400;font-size:.85rem;letter-spacing:0}
+.vs-badge{font-size:1.2rem;font-weight:800;color:var(--muted);padding:0 .5rem}
+.input-row button{padding:.7rem 1.5rem;background:linear-gradient(135deg,var(--gold),#f1ce88);color:#070a12;font-weight:700;border:none;border-radius:10px;cursor:pointer;font-family:'Space Grotesk',sans-serif;font-size:.95rem;transition:transform .1s}
+.input-row button:hover{transform:scale(1.03)}
+#result{margin-top:1rem}
+.compare-grid{display:grid;grid-template-columns:1fr 100px 1fr;gap:0;margin:1.5rem 0}
+.col-left,.col-right{display:flex;flex-direction:column;gap:.5rem}
+.col-center{display:flex;flex-direction:column;gap:.5rem;align-items:center;justify-content:flex-start}
+.col-header{text-align:center;padding:1rem;background:var(--surface);border:2px solid var(--gold);border-radius:12px;margin-bottom:.5rem}
+.col-header .ch-ticker{font-size:1.8rem;font-weight:800;color:var(--gold)}
+.col-header .ch-score{font-size:1rem;font-weight:700;color:var(--text)}
+.col-header .ch-rank{font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.col-header.winner{border-color:var(--green);background:rgba(34,197,94,.04)}
+.center-label{padding:.6rem 0;font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);text-align:center;height:44px;display:flex;align-items:center;justify-content:center}
+.compare-cell{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:.6rem .8rem;text-align:center;min-height:44px;display:flex;flex-direction:column;justify-content:center}
+.compare-cell .cc-val{font-size:1rem;font-weight:800;font-family:'IBM Plex Mono',monospace}
+.compare-cell .cc-sub{font-size:.6rem;color:var(--muted)}
+.compare-cell.better{border-color:var(--green);background:rgba(34,197,94,.03)}
+.compare-cell.worse{border-color:rgba(239,68,68,.2)}
+.signal-compare{margin:1.5rem 0}
+.signal-compare h3{font-size:.9rem;font-weight:700;margin-bottom:.5rem;color:var(--dim)}
+.signal-table{width:100%;border-collapse:collapse}
+.signal-table th{text-align:left;padding:6px 8px;font-size:.65rem;color:var(--muted);text-transform:uppercase;border-bottom:1px solid var(--border)}
+.signal-table td{padding:6px 8px;font-size:.8rem;border-bottom:1px solid rgba(30,41,59,.5)}
+.check{color:var(--green);font-weight:700}
+.cross{color:var(--muted)}
+.not-found{text-align:center;padding:2rem;color:var(--muted)}
+.loading{text-align:center;padding:2rem;color:var(--muted)}
+.cta-bar{background:var(--surface);border:1px solid var(--gold);border-radius:10px;padding:1.25rem;text-align:center;margin:2rem 0}
+.cta-bar h3{color:var(--gold);font-size:1rem;margin-bottom:.3rem}
+.cta-bar p{color:var(--dim);font-size:.8rem;margin-bottom:.75rem}
+.cta-bar a{display:inline-block;padding:.5rem 1.4rem;background:linear-gradient(135deg,var(--gold),#f1ce88);color:#070a12;font-weight:700;border-radius:6px;font-size:.85rem}
+.footer{text-align:center;padding:1.5rem;font-size:.72rem;color:var(--muted);border-top:1px solid var(--border);margin-top:2rem}
+.footer a{color:var(--muted)}
+@media(max-width:700px){.compare-grid{grid-template-columns:1fr 60px 1fr}.col-header .ch-ticker{font-size:1.3rem}}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Catalyst Edge Ticker Compare","url":"https://catalystedgescanner.com/vs/","description":"Compare two stocks side-by-side with full signal analysis","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<link rel="stylesheet" href="/lib/polish-tokens.css">
+</head>
+<body>
+<div class="nav">
+  <a href="/">Catalyst Edge</a>
+  <span class="sep">/</span>
+  <span style="color:var(--dim);font-size:.9rem">Compare</span>
+</div>
+<div class="wrap">
+  <div class="compare-hero">
+    <h1><em>Compare</em> Tickers</h1>
+    <p class="sub">Put two stocks head-to-head. Compare signals, scores, and catalyst strength side by side.</p>
+  </div>
+  <div class="input-row">
+    <input type="text" id="t1" placeholder="Ticker 1" maxlength="10" autocomplete="off">
+    <span class="vs-badge">VS</span>
+    <input type="text" id="t2" placeholder="Ticker 2" maxlength="10" autocomplete="off">
+    <button id="compare-btn">Compare</button>
+  </div>
+  <div id="result"></div>
+  <div class="cta-bar">
+    <h3>Get daily picks before market open</h3>
+    <p>Free daily email at 4 AM ET with ranked picks, convergence signals, and performance tracking.</p>
+    <a href="/preview/">Subscribe Free</a>
+  </div>
+</div>
+<div class="footer">
+  &copy; 2026 Catalyst Edge &middot;
+  <a href="/">Scanner</a> &middot;
+  <a href="/rankings/">Rankings</a> &middot;
+  <a href="/screener/">Screener</a> &middot;
+  <a href="/spotlight/">Spotlight</a> &middot;
+  <a href="/lookup/">Lookup</a> &middot;
+  <a href="/sectors/">Sectors</a> &middot;
+  <a href="/signal-strength/">Signal Strength</a> &middot;
+  <a href="/performance/">Performance</a> &middot;
+  <a href="/glossary/">Glossary</a> &middot;
+  Not financial advice.
+</div>
+<script>
+(function(){
+  var result = document.getElementById('result');
+  var btn = document.getElementById('compare-btn');
+  var t1Input = document.getElementById('t1');
+  var t2Input = document.getElementById('t2');
+
+  function el(tag, cls, text) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text) e.textContent = text;
+    return e;
+  }
+
+  function compare() {
+    var t1 = t1Input.value.trim().toUpperCase();
+    var t2 = t2Input.value.trim().toUpperCase();
+    if (!t1 || !t2) return;
+    if (t1 === t2) { result.textContent = 'Enter two different tickers.'; return; }
+
+    result.textContent = '';
+    result.appendChild(el('div','loading','Loading profiles...'));
+
+    Promise.all([
+      fetch('/api/profile/' + encodeURIComponent(t1)).then(function(r){ return r.ok ? r.json() : null; }).catch(function(){return null}),
+      fetch('/api/profile/' + encodeURIComponent(t2)).then(function(r){ return r.ok ? r.json() : null; }).catch(function(){return null})
+    ]).then(function(results){
+      result.textContent = '';
+      var p1 = results[0] ? results[0].profile : null;
+      var p2 = results[1] ? results[1].profile : null;
+
+      if (!p1 && !p2) {
+        result.appendChild(el('div','not-found','Neither ticker found in today\'s scan.'));
+        return;
+      }
+      if (!p1) { p1 = {ticker:t1,signals:[],signal_count:0,found:false}; }
+      if (!p2) { p2 = {ticker:t2,signals:[],signal_count:0,found:false}; }
+
+      var s1 = parseFloat(p1.total_score||0);
+      var s2 = parseFloat(p2.total_score||0);
+      var winner = s1 > s2 ? 1 : s2 > s1 ? 2 : 0;
+
+      // Compare grid
+      var grid = el('div','compare-grid');
+
+      // Headers
+      var h1 = el('div','col-header' + (winner===1?' winner':''));
+      h1.appendChild(el('div','ch-ticker',p1.ticker));
+      h1.appendChild(el('div','ch-score','Score: ' + s1.toFixed(1)));
+      if(p1.rank) h1.appendChild(el('div','ch-rank','Rank #' + p1.rank));
+      else h1.appendChild(el('div','ch-rank', p1.found ? 'In scan' : 'Not in scan'));
+
+      var hc = el('div','');
+      hc.style.height = '80px';
+      hc.style.display = 'flex';
+      hc.style.alignItems = 'center';
+      hc.style.justifyContent = 'center';
+      var vsText = el('div','vs-badge','VS');
+      vsText.style.fontSize = '1.5rem';
+      hc.appendChild(vsText);
+
+      var h2 = el('div','col-header' + (winner===2?' winner':''));
+      h2.appendChild(el('div','ch-ticker',p2.ticker));
+      h2.appendChild(el('div','ch-score','Score: ' + s2.toFixed(1)));
+      if(p2.rank) h2.appendChild(el('div','ch-rank','Rank #' + p2.rank));
+      else h2.appendChild(el('div','ch-rank', p2.found ? 'In scan' : 'Not in scan'));
+
+      var colL = el('div','col-left');
+      colL.appendChild(h1);
+      var colC = el('div','col-center');
+      colC.appendChild(hc);
+      var colR = el('div','col-right');
+      colR.appendChild(h2);
+
+      // Score rows
+      var scoreFields = [
+        {key:'sec_score',label:'SEC Filing'},
+        {key:'news_score',label:'News'},
+        {key:'gapper_score',label:'Gap Potential'},
+        {key:'value_score',label:'Value'},
+        {key:'moat_score',label:'Moat'},
+        {key:'signal_count',label:'Signals'}
+      ];
+
+      scoreFields.forEach(function(sf){
+        var v1 = parseFloat(p1[sf.key]||0);
+        var v2 = parseFloat(p2[sf.key]||0);
+        var c1 = el('div','compare-cell' + (v1>v2?' better':v1<v2?' worse':''));
+        c1.appendChild(el('div','cc-val',v1.toFixed(sf.key==='signal_count'?0:1)));
+        colL.appendChild(c1);
+
+        colC.appendChild(el('div','center-label',sf.label));
+
+        var c2 = el('div','compare-cell' + (v2>v1?' better':v2<v1?' worse':''));
+        c2.appendChild(el('div','cc-val',v2.toFixed(sf.key==='signal_count'?0:1)));
+        colR.appendChild(c2);
+      });
+
+      grid.appendChild(colL);
+      grid.appendChild(colC);
+      grid.appendChild(colR);
+      result.appendChild(grid);
+
+      // Signal comparison table
+      var allSignals = ['ranking','gapper','squeeze','insider','deepvalue','darkpool','convergence','smart_money','merger'];
+      var sigLabels = {ranking:'Ranked',gapper:'Gap Play',squeeze:'Squeeze',insider:'Insider',deepvalue:'Deep Value',darkpool:'Dark Pool',convergence:'Convergence',smart_money:'Smart Money',merger:'Merger'};
+
+      var sigDiv = el('div','signal-compare');
+      sigDiv.appendChild(el('h3','','Signal Comparison'));
+      var table = document.createElement('table');
+      table.className = 'signal-table';
+      var thead = document.createElement('thead');
+      var hrow = document.createElement('tr');
+      hrow.appendChild(el('th','','Signal'));
+      hrow.appendChild(el('th','',p1.ticker));
+      hrow.appendChild(el('th','',p2.ticker));
+      thead.appendChild(hrow);
+      table.appendChild(thead);
+      var tbody = document.createElement('tbody');
+
+      allSignals.forEach(function(sig){
+        var tr = document.createElement('tr');
+        tr.appendChild(el('td','',sigLabels[sig]||sig));
+        var has1 = p1.signals && p1.signals.indexOf(sig) !== -1;
+        var has2 = p2.signals && p2.signals.indexOf(sig) !== -1;
+        var td1 = el('td', has1?'check':'cross', has1?'YES':'--');
+        var td2 = el('td', has2?'check':'cross', has2?'YES':'--');
+        tr.appendChild(td1);
+        tr.appendChild(td2);
+        tbody.appendChild(tr);
+      });
+
+      table.appendChild(tbody);
+      sigDiv.appendChild(table);
+      result.appendChild(sigDiv);
+
+      // Links to individual lookups
+      var linkDiv = el('div','');
+      linkDiv.style.textAlign = 'center';
+      linkDiv.style.margin = '1.5rem 0';
+      linkDiv.style.fontSize = '.85rem';
+      var l1 = document.createElement('a');
+      l1.href = '/lookup/#' + p1.ticker;
+      l1.textContent = 'Full ' + p1.ticker + ' profile';
+      linkDiv.appendChild(l1);
+      linkDiv.appendChild(document.createTextNode('  \u00B7  '));
+      var l2 = document.createElement('a');
+      l2.href = '/lookup/#' + p2.ticker;
+      l2.textContent = 'Full ' + p2.ticker + ' profile';
+      linkDiv.appendChild(l2);
+      result.appendChild(linkDiv);
+    });
+  }
+
+  btn.addEventListener('click', compare);
+  t1Input.addEventListener('keydown', function(e){ if(e.key==='Enter'){t2Input.focus()} });
+  t2Input.addEventListener('keydown', function(e){ if(e.key==='Enter'){compare()} });
+
+  // Auto from URL hash: #AAPL-vs-MSFT
+  if (window.location.hash) {
+    var parts = window.location.hash.slice(1).split('-vs-');
+    if (parts.length === 2) {
+      t1Input.value = parts[0].toUpperCase();
+      t2Input.value = parts[1].toUpperCase();
+      compare();
+    }
+  }
+})();
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KV1VDK22VC"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-KV1VDK22VC');</script>
+</body>
+</html>

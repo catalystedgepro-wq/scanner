@@ -1,0 +1,66 @@
+ticker,market,exchange,country_full,country_iso,currency,sector_gics,listing_type,primary_isin
+PETR4.SA,BR,B3,Brazil,BRA,BRL,Energy,ordinary,BRPETRACNPR6
+VALE3.SA,BR,B3,Brazil,BRA,BRL,Materials,ordinary,BRVALEACNOR0
+ITUB4.SA,BR,B3,Brazil,BRA,BRL,Financials,ordinary,BRITUBACNPR1
+BBDC4.SA,BR,B3,Brazil,BRA,BRL,Financials,ordinary,BRBBDCACNPR8
+ABEV3.SA,BR,B3,Brazil,BRA,BRL,Consumer Staples,ordinary,BRABEVACNOR1
+MGLU3.SA,BR,B3,Brazil,BRA,BRL,Consumer Discretionary,ordinary,BRMGLUACNOR2
+B3SA3.SA,BR,B3,Brazil,BRA,BRL,Financials,ordinary,BRB3SAACNOR9
+JBSS3.SA,BR,B3,Brazil,BRA,BRL,Consumer Staples,ordinary,BRJBSSACNOR8
+BBAS3.SA,BR,B3,Brazil,BRA,BRL,Financials,ordinary,BRBBASACNOR3
+RAIL3.SA,BR,B3,Brazil,BRA,BRL,Industrials,ordinary,BRRAILACNOR4
+SUZB3.SA,BR,B3,Brazil,BRA,BRL,Materials,ordinary,BRSUZBACNOR0
+RENT3.SA,BR,B3,Brazil,BRA,BRL,Industrials,ordinary,BRRENTACNOR8
+7203.T,JP,TSE,Japan,JPN,JPY,Consumer Discretionary,ordinary,JP3633400001
+6758.T,JP,TSE,Japan,JPN,JPY,Information Technology,ordinary,JP3435000009
+9984.T,JP,TSE,Japan,JPN,JPY,Communication Services,ordinary,JP3436100006
+6861.T,JP,TSE,Japan,JPN,JPY,Information Technology,ordinary,JP3236200006
+8306.T,JP,TSE,Japan,JPN,JPY,Financials,ordinary,JP3902900004
+9432.T,JP,TSE,Japan,JPN,JPY,Communication Services,ordinary,JP3735400008
+7974.T,JP,TSE,Japan,JPN,JPY,Communication Services,ordinary,JP3756600007
+6098.T,JP,TSE,Japan,JPN,JPY,Industrials,ordinary,JP3970300004
+SHEL.L,UK,LSE,United Kingdom,GBR,GBP,Energy,ordinary,GB00BP6MXD84
+AZN.L,UK,LSE,United Kingdom,GBR,GBP,Health Care,ordinary,GB0009895292
+HSBA.L,UK,LSE,United Kingdom,GBR,GBP,Financials,ordinary,GB0005405286
+BP.L,UK,LSE,United Kingdom,GBR,GBP,Energy,ordinary,GB0007980591
+ULVR.L,UK,LSE,United Kingdom,GBR,GBP,Consumer Staples,ordinary,GB00B10RZP78
+GSK.L,UK,LSE,United Kingdom,GBR,GBP,Health Care,ordinary,GB00BN7SWP63
+RIO.L,UK,LSE,United Kingdom,GBR,GBP,Materials,ordinary,GB0007188757
+BARC.L,UK,LSE,United Kingdom,GBR,GBP,Financials,ordinary,GB0031348658
+LLOY.L,UK,LSE,United Kingdom,GBR,GBP,Financials,ordinary,GB0008706128
+NWG.L,UK,LSE,United Kingdom,GBR,GBP,Financials,ordinary,GB00BM8PJY71
+VOD.L,UK,LSE,United Kingdom,GBR,GBP,Communication Services,ordinary,GB00BH4HKS39
+DGE.L,UK,LSE,United Kingdom,GBR,GBP,Consumer Staples,ordinary,GB0002374006
+WALMEX.MX,MX,BMV,Mexico,MEX,MXN,Consumer Staples,ordinary,MXP810541204
+AMXB.MX,MX,BMV,Mexico,MEX,MXN,Communication Services,ordinary,MXP001691213
+GFNORTEO.MX,MX,BMV,Mexico,MEX,MXN,Financials,ordinary,MXP370711014
+FEMSAUBD.MX,MX,BMV,Mexico,MEX,MXN,Consumer Staples,ordinary,MXP320321310
+GMEXICOB.MX,MX,BMV,Mexico,MEX,MXN,Materials,ordinary,MXP4948K1056
+BIMBOA.MX,MX,BMV,Mexico,MEX,MXN,Consumer Staples,ordinary,MXP495211028
+CEMEXCPO.MX,MX,BMV,Mexico,MEX,MXN,Materials,ordinary,MXP225611567
+005930.KS,KR,KRX,South Korea,KOR,KRW,Information Technology,ordinary,KR7005930003
+000660.KS,KR,KRX,South Korea,KOR,KRW,Information Technology,ordinary,KR7000660001
+035420.KS,KR,KRX,South Korea,KOR,KRW,Communication Services,ordinary,KR7035420009
+207940.KS,KR,KRX,South Korea,KOR,KRW,Health Care,ordinary,KR7207940008
+373220.KS,KR,KRX,South Korea,KOR,KRW,Industrials,ordinary,KR7373220003
+SAP.DE,DE,XETRA,Germany,DEU,EUR,Information Technology,ordinary,DE0007164600
+SIE.DE,DE,XETRA,Germany,DEU,EUR,Industrials,ordinary,DE0007236101
+DTE.DE,DE,XETRA,Germany,DEU,EUR,Communication Services,ordinary,DE0005557508
+ALV.DE,DE,XETRA,Germany,DEU,EUR,Financials,ordinary,DE0008404005
+BAS.DE,DE,XETRA,Germany,DEU,EUR,Materials,ordinary,DE000BASF111
+BMW.DE,DE,XETRA,Germany,DEU,EUR,Consumer Discretionary,ordinary,DE0005190003
+0700.HK,HK,HKEX,Hong Kong,HKG,HKD,Communication Services,ordinary,KYG875721634
+9988.HK,HK,HKEX,Hong Kong,HKG,HKD,Consumer Discretionary,dual_listed,KYG017191142
+3690.HK,HK,HKEX,Hong Kong,HKG,HKD,Consumer Discretionary,ordinary,KYG596691041
+0939.HK,HK,HKEX,Hong Kong,HKG,HKD,Financials,ordinary,CNE1000002H1
+RELIANCE.NS,IN,NSE,India,IND,INR,Energy,ordinary,INE002A01018
+TCS.NS,IN,NSE,India,IND,INR,Information Technology,ordinary,INE467B01029
+HDFCBANK.NS,IN,NSE,India,IND,INR,Financials,ordinary,INE040A01034
+INFY.NS,IN,NSE,India,IND,INR,Information Technology,dual_listed,INE009A01021
+ICICIBANK.NS,IN,NSE,India,IND,INR,Financials,dual_listed,INE090A01021
+BHP.AX,AU,ASX,Australia,AUS,AUD,Materials,dual_listed,AU000000BHP4
+CBA.AX,AU,ASX,Australia,AUS,AUD,Financials,ordinary,AU000000CBA7
+CSL.AX,AU,ASX,Australia,AUS,AUD,Health Care,ordinary,AU000000CSL8
+RY.TO,CA,TSX,Canada,CAN,CAD,Financials,dual_listed,CA7800871021
+SHOP.TO,CA,TSX,Canada,CAN,CAD,Information Technology,dual_listed,CA82509L1076
+TD.TO,CA,TSX,Canada,CAN,CAD,Financials,dual_listed,CA8911605092

@@ -1,0 +1,12 @@
+{
+  "promoted_at": "2026-04-27T09:00:21+00:00",
+  "strategy_id": "dual_momentum",
+  "tp": 0.15,
+  "sl": 0.06,
+  "max_hold_h": 336,
+  "params": {},
+  "alpha_vs_bh": 0.01491,
+  "weighted_hit_rate": 0.75,
+  "total_trades_60d": 12,
+  "verdict": "EDGE"
+}

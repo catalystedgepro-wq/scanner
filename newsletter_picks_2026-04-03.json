@@ -1,0 +1,15 @@
+{
+  "date": "2026-04-03",
+  "top5_tickers": [
+    "AAPL",
+    "ALAB",
+    "BITF",
+    "AUPH",
+    "BATL"
+  ],
+  "gapper_count": 4,
+  "value_count": 10,
+  "moat_count": 7,
+  "total_combined": 330,
+  "top_pick": "AAPL"
+}

@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Congress Stock Trades — Track What Politicians Are Buying | Catalyst Edge</title>
+<meta name="description" content="Track congressional stock trades from House and Senate financial disclosures. See what politicians are buying and selling, cross-referenced with SEC catalysts. Updated daily.">
+<meta property="og:title" content="Congress Stock Trades Tracker — Catalyst Edge">
+<meta property="og:description" content="Track what Congress is buying and selling. House and Senate financial disclosures cross-referenced with SEC catalysts.">
+<meta property="og:url" content="https://catalystedgescanner.com/congress/">
+<link rel="canonical" href="https://catalystedgescanner.com/congress/">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Congressional Stock Trade Tracker",
+  "description": "Track congressional stock trades from House and Senate financial disclosures, cross-referenced with SEC filing catalysts.",
+  "url": "https://catalystedgescanner.com/congress/",
+  "applicationCategory": "FinanceApplication",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+  "author": {"@type": "Organization", "name": "Catalyst Edge"}
+}
+</script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#070a12;--surface:#0f1420;--surface2:#161d2e;--gold:#d4a843;--green:#22c55e;
+  --cyan:#06b6d4;--red:#ef4444;--blue:#3b82f6;--text:#e2e8f0;--dim:#94a3b8;--muted:#64748b;--border:#1e293b}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);
+  color:var(--text);line-height:1.7;-webkit-font-smoothing:antialiased}
+a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
+.wrap{max-width:860px;margin:0 auto;padding:0 1.5rem}
+.hero{padding:3rem 1.5rem 2rem;text-align:center;background:linear-gradient(180deg,#0f1629,var(--bg));border-bottom:1px solid var(--border)}
+.hero-badge{display:inline-block;padding:.3rem .8rem;background:rgba(59,130,246,.12);border:1px solid rgba(59,130,246,.25);
+  border-radius:20px;font-size:.72rem;color:var(--blue);text-transform:uppercase;letter-spacing:.08em;margin-bottom:1rem}
+.hero h1{font-size:clamp(1.6rem,3.5vw,2.2rem);font-weight:800;line-height:1.15;margin-bottom:.6rem}
+.hero-sub{font-size:.92rem;color:var(--dim);max-width:540px;margin:0 auto 1.5rem}
+.search-bar{display:flex;gap:.5rem;max-width:440px;margin:0 auto}
+.search-input{flex:1;padding:.7rem 1rem;background:var(--bg);border:1px solid var(--border);border-radius:8px;
+  color:var(--text);font-size:1rem;text-transform:uppercase;outline:none;font-weight:700;letter-spacing:.05em}
+.search-input:focus{border-color:var(--blue)}
+.search-input::placeholder{text-transform:none;font-weight:400;letter-spacing:0;color:var(--muted)}
+.search-btn{padding:.7rem 1.2rem;background:var(--blue);color:#fff;font-weight:700;border:none;border-radius:8px;cursor:pointer;font-size:.9rem}
+.search-btn:hover{opacity:.85}
+.filter-row{display:flex;gap:.5rem;justify-content:center;margin-top:1rem;flex-wrap:wrap}
+.filter-btn{padding:.35rem .9rem;background:var(--surface);border:1px solid var(--border);border-radius:6px;
+  color:var(--dim);font-size:.75rem;cursor:pointer;font-family:inherit;text-transform:uppercase;letter-spacing:.05em}
+.filter-btn:hover,.filter-btn.active{border-color:var(--blue);color:var(--blue)}
+.trades-table{width:100%;border-collapse:collapse;margin-top:1.5rem;font-size:.85rem}
+.trades-table th{background:var(--surface);color:var(--muted);padding:10px 8px;text-align:left;
+  border-bottom:1px solid var(--border);font-weight:600;font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;cursor:pointer}
+.trades-table th:hover{color:var(--gold)}
+.trades-table td{padding:9px 8px;border-bottom:1px solid rgba(255,255,255,.04);vertical-align:middle}
+.trades-table .ticker-col{font-weight:800;color:var(--gold);font-size:.9rem}
+.trades-table .buy{color:var(--green);font-weight:700}
+.trades-table .sell{color:var(--red);font-weight:700}
+.trades-table .name-col{color:var(--cyan);font-size:.82rem}
+.trades-table .amt-col{color:var(--dim);font-size:.8rem}
+.trades-table .date-col{color:var(--muted);font-size:.78rem}
+.trades-table .party-d{color:#60a5fa}.trades-table .party-r{color:#f87171}
+.loading{text-align:center;padding:3rem;color:var(--muted)}
+.spinner{display:inline-block;width:22px;height:22px;border:2px solid var(--border);
+  border-top-color:var(--blue);border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.stats-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:1.5rem 0}
+.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px;text-align:center}
+.stat-n{font-size:1.5rem;font-weight:800;color:var(--green)}
+.stat-l{font-size:.66rem;color:var(--muted);margin-top:4px;text-transform:uppercase;letter-spacing:.08em}
+.empty-msg{text-align:center;padding:2rem;color:var(--muted);font-size:.88rem}
+.section{padding:2rem 0;border-top:1px solid var(--border)}
+.section h2{font-size:1.15rem;font-weight:700;margin-bottom:.8rem}
+p{color:var(--dim);margin-bottom:1rem;font-size:.9rem}
+ul{color:var(--dim);margin:0 0 1rem 1.5rem;font-size:.9rem}
+li{margin-bottom:.3rem}
+.alert-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.5rem;margin-top:1.5rem;text-align:center}
+.alert-card h3{font-size:1rem;margin-bottom:.4rem}
+.alert-card p{font-size:.82rem;color:var(--dim);margin-bottom:.8rem}
+.alert-form{display:flex;gap:.5rem;max-width:360px;margin:0 auto}
+.alert-input{flex:1;padding:.5rem .8rem;background:var(--bg);border:1px solid var(--border);border-radius:6px;color:var(--text);font-size:.85rem;outline:none}
+.alert-btn{padding:.5rem 1rem;background:var(--gold);color:#000;font-weight:700;border:none;border-radius:6px;cursor:pointer;font-size:.82rem}
+.alert-ok{display:none;color:var(--green);font-weight:700;font-size:.85rem;margin-top:.5rem}
+.cta{background:var(--surface);border:2px solid var(--gold);border-radius:12px;padding:2rem;text-align:center;margin:2rem 0}
+.cta h3{color:var(--gold);margin:0 0 .5rem;font-size:1.05rem}
+.cta p{color:var(--dim);font-size:.85rem;margin-bottom:1rem}
+.cta-btn{display:inline-block;padding:.6rem 1.8rem;background:linear-gradient(135deg,var(--gold),#f1ce88);color:#070a12;font-weight:700;border-radius:8px}
+.footer{text-align:center;padding:1.5rem;font-size:.72rem;color:var(--muted);border-top:1px solid var(--border);margin-top:1rem}
+@media(max-width:640px){.search-bar,.alert-form{flex-direction:column}.trades-table{font-size:.75rem}
+  .trades-table .hide-mobile{display:none}}
+</style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@800;900&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/lib/cinematic-hero.css">
+  <link rel="stylesheet" href="/lib/cyber-shell.css">
+  <link rel="stylesheet" href="/lib/polish-tokens.css">
+<link rel="stylesheet" href="/lib/cinematic.css">
+</head>
+<body>
+<!-- CINEMATIC SHELL -->
+<div class="ce-field" aria-hidden="true">
+  <div class="ce-field-orb a"></div><div class="ce-field-orb b"></div><div class="ce-field-orb c"></div>
+  <div class="ce-scanline"></div><div class="ce-scanline" style="animation-delay:-3s;opacity:.3"></div>
+  <div class="ce-vignette"></div>
+</div>
+<canvas id="ce-particles" aria-hidden="true"></canvas>
+
+  <div class="cy-bg" aria-hidden="true"></div>
+  <div class="cy-floor" aria-hidden="true"></div>
+  <div class="cy-vignette" aria-hidden="true"></div>
+  <div class="cy-scan" aria-hidden="true"></div>
+<div style="position:sticky;top:0;z-index:100;background:rgba(7,10,18,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:.75rem 1.5rem;display:flex;align-items:center;gap:1rem">
+  <a href="/" style="color:var(--gold);font-weight:600;font-size:.95rem;text-decoration:none">Catalyst Edge</a>
+  <span style="color:var(--muted)">/</span>
+  <span style="color:var(--dim);font-size:.9rem">Congress Trades</span>
+</div>
+<div class="ce-breadcrumb" style="max-width:1400px;margin:8px auto 0;padding:0 28px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-mute,#5a6c92);"><a href="/scanner/" style="color:var(--neon-cyan,#00ffff);text-decoration:none">&larr; Scanner</a><span style="color:var(--ink-mute,#5a6c92);margin:0 8px">&middot;</span><span>CONGRESS TRADES</span></div>
+
+<section class="cin-hero cy-neon-hero cy-shimmer">
+    <div class="cin-grid">
+      <div class="cin-stat-stack">
+        <div class="cin-eyebrow"><span class="cin-live-dot"></span>STOCK ACT DISCLOSURES · LIVE</div>
+        <div class="cin-colossal">
+          <div class="cin-num-row"><span class="cin-num">535</span></div>
+          <div class="cin-side">
+          <span class="cin-tag">House + Senate</span>
+          <span class="cin-tag"><b>STOCK Act</b> filings</span>
+          <span class="cin-tag">45-day disclosure window</span>
+          </div>
+        </div>
+        <div class="cin-stamp">CONGRESS//TRADES · v1.1 · <b>LIVE</b></div>
+      </div>
+      <div class="cin-h1-block">
+        <div class="cin-h1-eyebrow">🏛️ Congressional Trades · Front-Run the Hearings</div>
+        <h1 class="cin-headline">When a <em>committee chair</em> buys before a hearing, that's a <span class="cin-accent">data point</span>—not a coincidence.</h1>
+        <p class="cin-lede">Every Periodic Transaction Report from House and Senate STOCK Act disclosures, mapped to the trader's committee assignments. Cluster signals when multiple members hit the same ticker within 30 days.</p>
+        <div class="cin-cta-row">
+          <a href="#congress-table" class="cin-btn-primary">See latest filings ↓</a>
+          <a href="https://disclosures-clerk.house.gov/" class="cin-btn-ghost">House source ↗</a>
+        </div>
+        <div class="cin-strip">
+          <div class="cin-cell"><div class="cin-k">Filings (90d)</div><div class="cin-v" id="cg-total" data-mirror="s-total">–</div></div>
+          <div class="cin-cell"><div class="cin-k">Buys</div><div class="cin-v bull" id="cg-buys" data-mirror="s-buys">–</div></div>
+          <div class="cin-cell"><div class="cin-k">Cluster signals</div><div class="cin-v gold" id="cg-clusters" data-mirror="s-sells">–</div></div>
+          <div class="cin-cell"><div class="cin-k">Latest</div><div class="cin-v cyan" id="cg-latest">–</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <h1>Congress Stock Trades</h1>
+  <p class="hero-sub">Track what politicians are buying and selling. House and Senate financial disclosures cross-referenced with SEC catalysts.</p>
+  <form class="search-bar" onsubmit="filterTicker(event)">
+    <input type="text" class="search-input" placeholder="Filter by ticker (e.g. NVDA)" id="search-input" maxlength="10">
+    <button type="submit" class="search-btn">Filter</button>
+  </form>
+  <div class="filter-row" role="toolbar" aria-label="Trade type and chamber">
+    <button class="filter-btn active" onclick="setFilter('all')">All</button>
+    <button class="filter-btn" onclick="setFilter('buy')">Buys</button>
+    <button class="filter-btn" onclick="setFilter('sell')">Sells</button>
+    <button class="filter-btn" onclick="setFilter('house')">House</button>
+    <button class="filter-btn" onclick="setFilter('senate')">Senate</button>
+  </div>
+  <div class="filter-row" role="toolbar" aria-label="Party filter">
+    <span style="color:var(--muted);font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;align-self:center">Party</span>
+    <button class="filter-btn party-btn active" data-party="all" onclick="setParty('all',this)">All</button>
+    <button class="filter-btn party-btn" data-party="D" onclick="setParty('D',this)" style="color:#60a5fa;border-color:rgba(96,165,250,.32)">D</button>
+    <button class="filter-btn party-btn" data-party="R" onclick="setParty('R',this)" style="color:#f87171;border-color:rgba(248,113,113,.32)">R</button>
+    <button class="filter-btn party-btn" data-party="I" onclick="setParty('I',this)">I</button>
+  </div>
+  <div class="filter-row" role="toolbar" aria-label="Date range filter">
+    <span style="color:var(--muted);font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;align-self:center">Window</span>
+    <button class="filter-btn date-btn" data-days="7" onclick="setDateRange('7',this)">7d</button>
+    <button class="filter-btn date-btn" data-days="30" onclick="setDateRange('30',this)">30d</button>
+    <button class="filter-btn date-btn active" data-days="90" onclick="setDateRange('90',this)">90d</button>
+    <button class="filter-btn date-btn" data-days="ytd" onclick="setDateRange('ytd',this)">YTD</button>
+    <button class="filter-btn date-btn" data-days="all" onclick="setDateRange('all',this)">All</button>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="stats-row" id="stats-row" style="display:none">
+    <div class="stat-card"><div class="stat-n" id="s-total">0</div><div class="stat-l">Total Disclosures</div></div>
+    <div class="stat-card"><div class="stat-n" id="s-buys" style="color:var(--green)">0</div><div class="stat-l">Buy Transactions</div></div>
+    <div class="stat-card"><div class="stat-n" id="s-sells" style="color:var(--red)">0</div><div class="stat-l">Sell Transactions</div></div>
+    <div class="stat-card"><div class="stat-n" id="s-members" style="color:var(--cyan)">0</div><div class="stat-l">Members Trading</div></div>
+  </div>
+
+  <div id="table-wrap" style="scroll-margin-top:113px">
+    <a id="congress-table" style="position:relative;top:-113px"></a>
+    <div class="loading" id="loading"><div class="spinner"></div><p style="margin-top:.8rem">Loading congressional trades...</p></div>
+  </div>
+  <p id="pending-note" style="display:none;font-size:.78rem;color:var(--muted);margin:.6rem 0 0;padding:.55rem .8rem;border-left:2px solid var(--gold);background:rgba(241,206,136,.04);border-radius:0 6px 6px 0">
+    <span id="pending-count">0</span> additional House PTR filings disclosed but not yet parsed — ticker-level details arrive once the PDF disclosure is machine-readable.
+  </p>
+
+  <div class="alert-card" id="alert-card" style="display:none">
+    <h3>Get alerts when Congress trades</h3>
+    <p>We track financial disclosures daily and cross-reference with SEC catalyst filings.</p>
+    <form class="alert-form" onsubmit="handleAlert(event)">
+      <input type="email" class="alert-input" placeholder="your@email.com" required id="alert-email">
+      <button type="submit" class="alert-btn">Set Alert</button>
+    </form>
+    <div class="alert-ok" id="alert-ok">Alerts activated. You'll also get our daily catalyst picks.</div>
+  </div>
+
+  <div class="section">
+    <h2>Why Track Congressional Trades?</h2>
+    <p>Members of Congress have access to non-public briefings, regulatory previews, and policy decisions that move markets. The STOCK Act requires them to disclose trades within 45 days, but the information edge can still be significant.</p>
+    <ul>
+      <li><strong>Timing advantage</strong> — Congress often trades ahead of policy announcements</li>
+      <li><strong>Committee insight</strong> — Members on banking, energy, or defense committees trade in their sectors</li>
+      <li><strong>Cluster signals</strong> — Multiple members buying the same stock is a high-conviction indicator</li>
+      <li><strong>Bipartisan alignment</strong> — When both parties buy the same stock, the signal strengthens</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>Congress + SEC Catalysts</h2>
+    <p>The most powerful trades happen when congressional activity aligns with SEC filing catalysts:</p>
+    <ul>
+      <li>Congress buys + 8-K material event = institutional front-running confirmation</li>
+      <li>Senator sells + S-3 dilution filing = smart money exit before retail</li>
+      <li>Committee member buys + Form 4 insider cluster = triple-validated conviction</li>
+    </ul>
+    <p>Our <a href="/">main scanner</a> combines these signals automatically.</p>
+  </div>
+
+  <div class="cta">
+    <h3>Full scanner with congressional overlay</h3>
+    <p>See congressional trades alongside catalyst scores, squeeze radar, and dark pool signals.</p>
+    <a href="/" class="cta-btn">Open Scanner</a>
+  </div>
+</div>
+
+<div class="footer">
+  &copy; 2026 Catalyst Edge &middot;
+  <a href="/">Scanner</a> &middot;
+  <a href="/jackpot/" style="color:#22c55e">🎯 JACKPOT</a>
+  <a href="/dcf/" style="color:#06b6d4">💰 DCF</a> &middot;
+  <a href="/squeeze/">Squeeze</a> &middot;
+  <a href="/insiders/">Insiders</a> &middot;
+  <a href="/lockups/">Lockups</a> &middot;
+  <a href="/glossary/">Glossary</a> &middot;
+  Not financial advice.
+</div>
+
+<script>
+var allTrades = [];
+var currentFilter = 'all';
+var tickerFilter = '';
+var partyFilter = 'all';
+var dateWindow = '90'; // '7' | '30' | '90' | 'ytd' | 'all'
+
+function _windowCutoff(){
+  if(dateWindow === 'all') return null;
+  var now = new Date();
+  if(dateWindow === 'ytd') return new Date(now.getFullYear(), 0, 1);
+  var days = parseInt(dateWindow, 10);
+  if(isNaN(days)) return null;
+  var d = new Date(now); d.setDate(d.getDate() - days); return d;
+}
+function _normParty(p){
+  p = (p || '').toUpperCase();
+  if(p === 'DEMOCRAT' || p === 'D') return 'D';
+  if(p === 'REPUBLICAN' || p === 'R') return 'R';
+  if(p === 'INDEPENDENT' || p === 'I') return 'I';
+  return p || '';
+}
+
+function renderTable(trades) {
+  var wrap = document.getElementById('table-wrap');
+  var loading = document.getElementById('loading');
+  if (loading) loading.style.display = 'none';
+
+  var existing = document.getElementById('ctable');
+  if (existing) existing.remove();
+
+  if (trades.length === 0) {
+    var empty = document.createElement('div');
+    empty.className = 'empty-msg';
+    empty.textContent = 'No trades match your filters. Try broadening your search.';
+    wrap.appendChild(empty);
+    return;
+  }
+
+  var table = document.createElement('table');
+  table.className = 'trades-table';
+  table.id = 'ctable';
+
+  var thead = document.createElement('thead');
+  var headerRow = document.createElement('tr');
+  var cols = ['Date', 'Member', 'Party', 'Chamber', 'Ticker', 'Type', 'Amount'];
+  cols.forEach(function(col) {
+    var th = document.createElement('th');
+    th.textContent = col;
+    if (col === 'Party' || col === 'Chamber') th.className = 'hide-mobile';
+    headerRow.appendChild(th);
+  });
+  thead.appendChild(headerRow);
+  table.appendChild(thead);
+
+  var tbody = document.createElement('tbody');
+  trades.forEach(function(t) {
+    var tr = document.createElement('tr');
+
+    var tdDate = document.createElement('td');
+    tdDate.className = 'date-col';
+    tdDate.textContent = t.transaction_date || t.date || t.disclosure_date || '—';
+    tr.appendChild(tdDate);
+
+    var tdName = document.createElement('td');
+    tdName.className = 'name-col';
+    tdName.textContent = t.member_name || t.member || t.name || '—';
+    tr.appendChild(tdName);
+
+    var tdParty = document.createElement('td');
+    tdParty.className = 'hide-mobile';
+    var party = (t.party || '').toUpperCase();
+    if (party === 'D' || party === 'DEMOCRAT') { tdParty.className += ' party-d'; tdParty.textContent = 'D'; }
+    else if (party === 'R' || party === 'REPUBLICAN') { tdParty.className += ' party-r'; tdParty.textContent = 'R'; }
+    else { tdParty.textContent = party || '—'; }
+    tr.appendChild(tdParty);
+
+    var tdChamber = document.createElement('td');
+    tdChamber.className = 'hide-mobile';
+    tdChamber.textContent = t.chamber || '—';
+    tdChamber.style.fontSize = '.78rem';
+    tdChamber.style.color = '#64748b';
+    tr.appendChild(tdChamber);
+
+    var tdTicker = document.createElement('td');
+    tdTicker.className = 'ticker-col';
+    tdTicker.textContent = t.ticker || '—';
+    tr.appendChild(tdTicker);
+
+    var tdType = document.createElement('td');
+    var txType = (t.type || t.transaction_type || '').toLowerCase();
+    if (txType.indexOf('purchase') !== -1 || txType.indexOf('buy') !== -1) {
+      tdType.className = 'buy'; tdType.textContent = 'BUY';
+    } else if (txType.indexOf('sale') !== -1 || txType.indexOf('sell') !== -1) {
+      tdType.className = 'sell'; tdType.textContent = 'SELL';
+    } else {
+      tdType.textContent = t.type || t.transaction_type || '—';
+      tdType.style.color = '#94a3b8';
+    }
+    tr.appendChild(tdType);
+
+    var tdAmt = document.createElement('td');
+    tdAmt.className = 'amt-col';
+    tdAmt.textContent = t.amount || t.amount_range || '—';
+    tr.appendChild(tdAmt);
+
+    tbody.appendChild(tr);
+  });
+  table.appendChild(tbody);
+  wrap.appendChild(table);
+}
+
+function applyFilters() {
+  var cutoff = _windowCutoff();
+  var filtered = allTrades.filter(function(t) {
+    if (tickerFilter) {
+      var tk = (t.ticker || '').toUpperCase();
+      if (tk.indexOf(tickerFilter) === -1) return false;
+    }
+    if (partyFilter !== 'all' && _normParty(t.party) !== partyFilter) return false;
+    if (cutoff) {
+      var ds = t.transaction_date || t.date || t.disclosure_date;
+      if (ds) {
+        var dt = new Date(ds);
+        if (!isNaN(dt) && dt < cutoff) return false;
+      }
+    }
+    if (currentFilter === 'all') return true;
+    if (currentFilter === 'buy') {
+      var tp = (t.type || t.transaction_type || '').toLowerCase();
+      return tp.indexOf('purchase') !== -1 || tp.indexOf('buy') !== -1;
+    }
+    if (currentFilter === 'sell') {
+      var tp2 = (t.type || t.transaction_type || '').toLowerCase();
+      return tp2.indexOf('sale') !== -1 || tp2.indexOf('sell') !== -1;
+    }
+    if (currentFilter === 'house') return (t.chamber || '').toLowerCase() === 'house';
+    if (currentFilter === 'senate') return (t.chamber || '').toLowerCase() === 'senate';
+    return true;
+  });
+
+  var buys = 0, sells = 0, members = {};
+  allTrades.forEach(function(t) {
+    var tp3 = (t.type || t.transaction_type || '').toLowerCase();
+    if (tp3.indexOf('purchase') !== -1 || tp3.indexOf('buy') !== -1) buys++;
+    else if (tp3.indexOf('sale') !== -1 || tp3.indexOf('sell') !== -1) sells++;
+    members[t.member_name || t.member || t.name || 'unknown'] = true;
+  });
+  document.getElementById('s-total').textContent = allTrades.length;
+  document.getElementById('s-buys').textContent = buys;
+  document.getElementById('s-sells').textContent = sells;
+  document.getElementById('s-members').textContent = Object.keys(members).length;
+  document.getElementById('stats-row').style.display = '';
+
+  renderTable(filtered);
+}
+
+function setFilter(f) {
+  currentFilter = f;
+  // Only update the trade-type / chamber filter row (not party / date)
+  var btns = document.querySelectorAll('.filter-btn:not(.party-btn):not(.date-btn)');
+  for (var i = 0; i < btns.length; i++) {
+    btns[i].classList.remove('active');
+    if (btns[i].textContent.toLowerCase().replace(/\s/g,'') === f) btns[i].classList.add('active');
+  }
+  applyFilters();
+}
+
+function setParty(p, btn) {
+  partyFilter = p;
+  document.querySelectorAll('.party-btn').forEach(function(b){ b.classList.remove('active'); });
+  if (btn) btn.classList.add('active');
+  applyFilters();
+}
+
+function setDateRange(d, btn) {
+  dateWindow = String(d);
+  document.querySelectorAll('.date-btn').forEach(function(b){ b.classList.remove('active'); });
+  if (btn) btn.classList.add('active');
+  applyFilters();
+}
+
+function filterTicker(e) {
+  e.preventDefault();
+  var input = document.getElementById('search-input');
+  tickerFilter = input.value.trim().toUpperCase().replace(/[^A-Z0-9.-]/g, '');
+  applyFilters();
+}
+
+fetch('/api/congress')
+  .then(function(r) { return r.json(); })
+  .then(function(data) {
+    var raw = data.trades || data || [];
+    // Belt-and-suspenders: even if the API regresses, skip stub rows
+    // (House PTR disclosures with no parsed ticker/type/amount).
+    allTrades = raw.filter(function(t) { return (t.ticker || '').trim() !== ''; });
+    var pending = (data && typeof data.pending_parse === 'number')
+      ? data.pending_parse
+      : (raw.length - allTrades.length);
+    if (pending > 0) {
+      document.getElementById('pending-count').textContent = pending;
+      document.getElementById('pending-note').style.display = 'block';
+    }
+    document.getElementById('alert-card').style.display = 'block';
+    applyFilters();
+  })
+  .catch(function() {
+    var loading = document.getElementById('loading');
+    if (loading) loading.style.display = 'none';
+    var wrap = document.getElementById('table-wrap');
+    var msg = document.createElement('div');
+    msg.className = 'empty-msg';
+    msg.textContent = 'Congressional trade data is being compiled. Check back soon or set an alert below.';
+    wrap.appendChild(msg);
+    document.getElementById('alert-card').style.display = 'block';
+  });
+
+function handleAlert(e) {
+  e.preventDefault();
+  var email = document.getElementById('alert-email').value.trim();
+  if (!email) return;
+  fetch('/api/subscribe', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({email: email, ticker: 'CONGRESS', source: 'congress-tracker'})
+  }).then(function() {
+    document.getElementById('alert-ok').style.display = 'block';
+    document.querySelector('.alert-form').style.display = 'none';
+  });
+  try {
+    var leads = JSON.parse(localStorage.getItem('ce_leads') || '[]');
+    leads.push({email: email, ticker: 'CONGRESS', ts: Date.now(), src: 'congress'});
+    localStorage.setItem('ce_leads', JSON.stringify(leads));
+  } catch(ex) {}
+  if (typeof gtag === 'function') {
+    gtag('event', 'congress_alert_signup', {event_category: 'conversion', event_label: 'congress_tracker'});
+  }
+}
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KV1VDK22VC"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-KV1VDK22VC');</script>
+  <script src="/lib/cy-strip-mirror.js" defer></script>
+<script src="/lib/cinematic.js"></script>
+</body>
+</html>

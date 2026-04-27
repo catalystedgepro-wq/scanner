@@ -1,0 +1,3 @@
+date,head,n_folds,mean_auc,ml_topdecile_hit,baseline_topdecile_hit,lift_pts,folds_beat_baseline,concept,notes
+2026-04-14,hit_2pct,5,0.586,0.501,0.433,6.8,4/5,W1_LightGBM_baseline,day0 train; 14d train / 3d test / 1d embargo; 26 features; 8444 rows
+2026-04-14,hit_5pct,5,0.622,0.321,0.223,9.8,5/5,W1_LightGBM_baseline,day0 train; day-14 hit_5pct gate (>=32%) hit early

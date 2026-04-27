@@ -1,0 +1,20 @@
+{
+  "benzinga_emily": {
+    "name": "Emily Goldvekht",
+    "company": "Benzinga",
+    "email": "emilygoldvekht@benzinga.com",
+    "send_date": "2026-03-31",
+    "subject": "SEC Catalyst Intelligence Feed \u2014 Licensing Inquiry",
+    "body": "Hi Emily,\n\nI run Catalyst Edge \u2014 a daily SEC research intelligence feed that surfaces high-probability catalyst setups before market open. Saw your role covers API partnerships at Benzinga and thought this might be worth 5 minutes of your time.\n\nWhat the feed delivers each morning by 3:30 AM ET:\n- 300+ EDGAR filings parsed daily (8-K, Form 4, S-3, 13D/G)\n- 1,600+ tickers scored on gap probability, volume ratio, filing sentiment, and insider signal\n- Structured output: ticker, catalyst type, score, filing URL, squeeze signal\n- 90-day live track record: 41% of picks hit +2% intraday, 5.0% avg intraday high\n\nThis is a research intelligence feed \u2014 it surfaces what's worth watching, not what to trade. Analysts and subscribers make the call.\n\nCurrently powering a free newsletter (catalystedge.beehiiv.com) with a 44% open rate among active traders.\n\nOpen to a licensing arrangement, API feed, or white-label integration. Happy to send a sample data file so you can evaluate the signal quality directly.\n\nWorth a quick call?\n\nBest,\nFrantz\nCatalyst Edge\nopensource@example.com\nhttps://catalystedge.beehiiv.com",
+    "sent": "2026-03-31"
+  },
+  "quantconnect_jared": {
+    "name": "Jared Broad",
+    "company": "QuantConnect",
+    "email": "jared.broad@quantconnect.com",
+    "send_date": "2026-06-01",
+    "subject": "Re: SEC EDGAR Gap Scanner \u2014 Following Up (June)",
+    "body": "Hi Jared,\n\nFollowing up as promised \u2014 you mentioned touching base in 2-4 months, so June felt right.\n\nSince we last spoke, the scanner has processed 90+ days of live picks. Current performance across ~1,800 picks:\n- 41% hit +2% intraday\n- 20% hit +5% intraday\n- 5.0% average intraday high\n\nThe data feed runs nightly at 3:30 AM ET \u2014 structured CSV output (ticker, gap score, catalyst type, filing URL, volume ratio) \u2014 ready before pre-market opens.\n\nStill open to licensing the feed, a white-label integration, or a rev-share. Happy to share a sample data file if useful.\n\nWorth a 20-minute call?\n\nBest,\nFrantz\nCatalyst Edge\nopensource@example.com\nhttps://catalystedge.beehiiv.com",
+    "sent": null
+  }
+}

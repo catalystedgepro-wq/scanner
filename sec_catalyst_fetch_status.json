@@ -1,0 +1,9 @@
+{
+  "kind": "sec_catalyst_fetch_status",
+  "generated_at": "2026-04-27T23:00:53.908374+00:00",
+  "mode": "live",
+  "source": "edgar",
+  "reason": null,
+  "stale_hours": 0,
+  "artifact_path": "/home/operator/.openclaw/workspace/sec_catalyst_latest.csv"
+}

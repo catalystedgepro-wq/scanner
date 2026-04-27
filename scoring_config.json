@@ -1,0 +1,124 @@
+{
+  "version": 28,
+  "precision": {
+    "require_explicit_ticker_news": true
+  },
+  "news": {
+    "combined_news_weight": 0.8,
+    "source_weight_overrides": {
+      "bloomberg": 1.0,
+      "alphavantage": 1.0,
+      "reuters_business": 1.0,
+      "reuters_world": 1.0,
+      "marketwatch_top": 1.0,
+      "yahoo_finance": 1.0,
+      "noaa_nhc": 1.0,
+      "eia_today": 1.0
+    }
+  },
+  "investability": {
+    "min_price": 3.0,
+    "min_avg_vol": 500000,
+    "min_mcap": 300000000
+  },
+  "execution_costs": {
+    "round_trip_pct": 0.2,
+    "slippage_pct_smallcap": 0.3,
+    "smallcap_mcap_ceiling": 1000000000
+  },
+  "catalyst_signs": {
+    "S-3": -1,
+    "S-3/A": -1,
+    "S-1": -1,
+    "S-1/A": -1,
+    "424B": -1,
+    "424B1": -1,
+    "424B2": -1,
+    "424B3": -1,
+    "424B4": -1,
+    "424B5": -1,
+    "424B7": -1,
+    "8-K_4.02": -1,
+    "8-K_5.02_departure": -1,
+    "4_buy": 1,
+    "4_sell": -1,
+    "13D": 1,
+    "13G": 0,
+    "SC 13D": 1,
+    "SC 13G": 0,
+    "8-K_2.01_acquisition": 1,
+    "8-K_1.01_material": 0
+  },
+  "regime_buckets": {
+    "vix_low_ceiling": 18,
+    "vix_high_floor": 28,
+    "spy_trend_threshold_pct": 1.5
+  },
+  "score_min_floor_for_publication": 15,
+  "moat_core": {
+    "min_price": 5.0,
+    "min_avg_vol": 500000,
+    "min_mcap": 2000000000
+  },
+  "clean_presets": {
+    "max_rows": 40,
+    "severe_risks": [
+      "offering",
+      "private placement",
+      "default",
+      "bankruptcy",
+      "delist",
+      "going concern"
+    ],
+    "blocked_forms": [
+      "424B1",
+      "424B2",
+      "424B3",
+      "424B4",
+      "424B5",
+      "424B7",
+      "424",
+      "S-3",
+      "S-3/A",
+      "S-3ASR",
+      "S-1",
+      "S-1/A",
+      "FWP",
+      "NT 10-K",
+      "NT 10-Q"
+    ],
+    "blocked_when_largecap": [
+      "8-K",
+      "4"
+    ],
+    "drop_when_score_lt_15_and_gap_down_pct": -2,
+    "gappers": {
+      "min_score": 15,
+      "max_recency_min": 1440
+    },
+    "value": {
+      "min_score": 12,
+      "min_price": 5.0,
+      "min_avg_vol": 500000
+    },
+    "moat_core": {
+      "min_score": 14
+    },
+    "volume_floor": {
+      "min_vol_day": 100000
+    }
+  },
+  "auto_tune": {
+    "enabled": true,
+    "min_rows_required": 20,
+    "target_hit_rate_3pct": {
+      "sec_clean_gappers": 25.0,
+      "combined_priority": 20.0
+    },
+    "step_limits": {
+      "gappers_min_score": 1,
+      "gappers_max_recency_min": 60,
+      "combined_news_weight": 0.05
+    }
+  }
+}

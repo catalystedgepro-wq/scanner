@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>What is IPO Lockup Expiration? Trading the Unlock | Catalyst Edge</title>
+<meta name="description" content="Learn how IPO lockup expirations create trading opportunities, when insiders can sell, and how to position ahead of lockup dates with Catalyst Edge.">
+<link rel="canonical" href="https://catalystedgescanner.com/glossary/what-is-lockup-expiration/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How long is a typical IPO lockup?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most lockups are 180 days (6 months), but they can range from 90 to 365 days. Some IPOs have staggered lockups where different insider groups can sell at different times."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do stocks always drop at lockup expiration?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not always. On average, stocks decline 1-3% around lockup expiration, but if insiders choose to hold (or buy more), the stock often rallies on the positive signal."
+      }
+    }
+  ]
+}
+</script>
+<style>
+:root {
+  --bg: #0a0e1a;
+  --surface: #111827;
+  --surface-2: #1a2035;
+  --border: #1e293b;
+  --text: #e2e8f0;
+  --text-dim: #94a3b8;
+  --accent: #d4a853;
+  --accent-glow: rgba(212, 168, 83, 0.15);
+  --blue: #3b82f6;
+  --green: #10b981;
+  --red: #ef4444;
+  --font: 'Space Grotesk', system-ui, sans-serif;
+  --mono: 'IBM Plex Mono', monospace;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+.container { max-width: 800px; margin: 0 auto; padding: 2rem 1.5rem; }
+
+/* Nav */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(10, 14, 26, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0.75rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+}
+nav a { color: var(--accent); text-decoration: none; font-weight: 600; font-size: 0.95rem; }
+nav a:hover { text-decoration: underline; }
+nav .sep { color: var(--text-dim); }
+
+/* Hero */
+.hero {
+  text-align: center;
+  padding: 4rem 0 3rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 2rem;
+}
+.hero h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 800;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+}
+.hero .subtitle {
+  font-size: 1.15rem;
+  color: var(--text-dim);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Content sections */
+.content-section {
+  margin-bottom: 2.5rem;
+}
+.content-section h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--accent-glow);
+}
+.content-section p {
+  color: var(--text-dim);
+  font-size: 1.05rem;
+}
+
+/* FAQ */
+.faq-section { margin-top: 3rem; }
+.faq-section h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--accent);
+}
+.faq-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
+  overflow: hidden;
+}
+.faq-item summary {
+  padding: 1rem 1.25rem;
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.faq-item summary::before {
+  content: '+';
+  font-family: var(--mono);
+  color: var(--accent);
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+.faq-item[open] summary::before { content: '−'; }
+.faq-item p {
+  padding: 0 1.25rem 1rem;
+  color: var(--text-dim);
+  line-height: 1.6;
+}
+
+/* CTA */
+.cta-box {
+  background: linear-gradient(135deg, var(--surface) 0%, var(--surface-2) 100%);
+  border: 1px solid var(--accent);
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  margin: 3rem 0;
+}
+.cta-box h3 {
+  color: var(--accent);
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+}
+.cta-box p {
+  color: var(--text-dim);
+  margin-bottom: 1.25rem;
+}
+.cta-box a {
+  display: inline-block;
+  background: var(--accent);
+  color: var(--bg);
+  font-weight: 700;
+  padding: 0.75rem 2rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.cta-box a:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px var(--accent-glow);
+}
+
+/* Related */
+.related {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+.related h3 {
+  font-size: 1rem;
+  color: var(--text-dim);
+  margin-bottom: 0.75rem;
+}
+.related a {
+  color: var(--blue);
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+.related a:hover { text-decoration: underline; }
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 2rem 0;
+  color: var(--text-dim);
+  font-size: 0.85rem;
+  border-top: 1px solid var(--border);
+  margin-top: 2rem;
+}
+footer a { color: var(--accent); text-decoration: none; }
+</style>
+</head>
+<body>
+<nav>
+  <a href="/">Catalyst Edge</a>
+  <span class="sep">/</span>
+  <a href="/glossary/sec-filing-types-for-traders/">Glossary</a>
+  <span class="sep">/</span>
+  <span style="color:var(--text-dim);font-size:0.9rem">What is IPO Lockup Expiration?</span>
+</nav>
+
+<div class="container">
+  <div class="hero">
+    <h1>What is IPO Lockup Expiration?</h1>
+    <p class="subtitle">Trading the Insider Unlock Window</p>
+  </div>
+
+    <section class="content-section">
+      <h2>What is a lockup period?</h2>
+      <p>After an IPO, insiders (founders, executives, early investors) are restricted from selling their shares for a set period — typically 90-180 days. This &#x27;lockup period&#x27; prevents a flood of insider selling from crashing the stock immediately after the IPO. When the lockup expires, insiders can finally sell.</p>
+    </section>
+    <section class="content-section">
+      <h2>Why lockup expirations move stocks</h2>
+      <p>When the lockup expires, the number of shares available for trading can increase by 3-10x overnight. Even if insiders don&#x27;t sell immediately, the market anticipates selling pressure and often prices it in 1-2 weeks before the expiration date. Stocks typically drop 1-3% around lockup expiration, but the setup is more nuanced than &#x27;just short it.&#x27;</p>
+    </section>
+    <section class="content-section">
+      <h2>How to trade lockup expirations</h2>
+      <p>The contrarian play: if a stock drops 5-10% into a lockup expiration but insiders file Form 4s showing they&#x27;re NOT selling, the relief bounce can be significant. Catalyst Edge cross-references lockup dates with Form 4 filings to identify these &#x27;lockup + hold&#x27; setups. When insiders buy during their first opportunity to sell, it&#x27;s one of the strongest bullish signals in the market.</p>
+    </section>
+    <section class="content-section">
+      <h2>Finding lockup dates</h2>
+      <p>Lockup terms are disclosed in the S-1 filing (IPO prospectus). Catalyst Edge parses S-1 filings to extract lockup dates and tracks them on a rolling calendar. The scanner alerts you when lockup expirations are approaching and cross-references with insider transaction data.</p>
+    </section>
+
+  <div class="cta-box">
+    <h3>Try the Free Scanner</h3>
+    <p>Catalyst Edge scans 300+ SEC filings every day and publishes a ranked watchlist before market open.</p>
+    <a href="https://catalystedgescanner.com/">Open Scanner</a>
+  </div>
+
+  <div class="faq-section">
+    <h2>Frequently Asked Questions</h2>
+
+      <details class="faq-item">
+        <summary>How long is a typical IPO lockup?</summary>
+        <p>Most lockups are 180 days (6 months), but they can range from 90 to 365 days. Some IPOs have staggered lockups where different insider groups can sell at different times.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Do stocks always drop at lockup expiration?</summary>
+        <p>Not always. On average, stocks decline 1-3% around lockup expiration, but if insiders choose to hold (or buy more), the stock often rallies on the positive signal.</p>
+      </details>
+  </div>
+
+  <div class="related">
+    <h3>Related Topics</h3>
+    <p><a href="/glossary/what-is-form-4/">What is SEC Form 4?</a> &middot; <a href="/glossary/what-is-sc-13d/">What is Schedule 13D?</a> &middot; <a href="/glossary/what-is-gap-up-stock/">What is a Gap Up Stock?</a> &middot; <a href="/glossary/sec-filing-types-for-traders/">SEC Filing Types for Traders</a> &middot; <a href="/glossary/premarket-gap-scanner/">Pre-Market Gap Scanner</a> &middot; <a href="/glossary/insider-buying-signals/">Insider Buying Signals</a> &middot; <a href="/glossary/what-is-sympathy-play/">What is a Sympathy Play?</a> &middot; <a href="/glossary/what-is-deep-value-investing/">What is Deep Value Investing?</a></p>
+  </div>
+</div>
+
+<footer>
+  <a href="https://catalystedgescanner.com/">Catalyst Edge Scanner</a> &middot;
+  <a href="https://catalystedge.agency">Daily Newsletter</a> &middot;
+  &copy; 2026 Catalyst Edge
+</footer>
+</body>
+</html>

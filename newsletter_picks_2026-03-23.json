@@ -1,0 +1,15 @@
+{
+  "date": "2026-03-23",
+  "top5_tickers": [
+    "EXAS",
+    "CDLR",
+    "ABT",
+    "AGRO",
+    "FMX"
+  ],
+  "gapper_count": 13,
+  "value_count": 6,
+  "moat_count": 4,
+  "total_combined": 129,
+  "top_pick": "EXAS"
+}

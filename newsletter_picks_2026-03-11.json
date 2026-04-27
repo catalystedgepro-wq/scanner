@@ -1,0 +1,15 @@
+{
+  "date": "2026-03-11",
+  "top5_tickers": [
+    "GD",
+    "DNN",
+    "AG",
+    "ALV",
+    "BNS"
+  ],
+  "gapper_count": 2,
+  "value_count": 6,
+  "moat_count": 4,
+  "total_combined": 117,
+  "top_pick": "GD"
+}

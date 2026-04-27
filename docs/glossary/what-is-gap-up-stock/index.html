@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>What is a Gap Up? How to Find Gap Stocks Before Market Open | Catalyst Edge</title>
+<meta name="description" content="Learn what gap-up stocks are, why they happen, and how SEC filing scanners find gap candidates before the market opens. Free daily gap scanner from Catalyst Edge.">
+<link rel="canonical" href="https://catalystedgescanner.com/glossary/what-is-gap-up-stock/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What causes stocks to gap up?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The most common catalysts are earnings surprises, FDA approvals, merger announcements, activist investor filings (13D), insider buying clusters (Form 4), and favorable analyst upgrades. SEC filings often contain these catalysts before they hit mainstream news."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I find gap stocks before the market opens?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use an SEC filing scanner like Catalyst Edge that monitors EDGAR overnight. The scanner identifies material filings, scores them for gap potential, and publishes a watchlist before the pre-market session."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do gap stocks always keep going up?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Studies show about 60-70% of gaps eventually fill (the stock returns to the pre-gap price). The key is distinguishing between strong catalysts (material 8-K, activist 13D) that sustain momentum and weak catalysts that produce exhaustion gaps."
+      }
+    }
+  ]
+}
+</script>
+<style>
+:root {
+  --bg: #0a0e1a;
+  --surface: #111827;
+  --surface-2: #1a2035;
+  --border: #1e293b;
+  --text: #e2e8f0;
+  --text-dim: #94a3b8;
+  --accent: #d4a853;
+  --accent-glow: rgba(212, 168, 83, 0.15);
+  --blue: #3b82f6;
+  --green: #10b981;
+  --red: #ef4444;
+  --font: 'Space Grotesk', system-ui, sans-serif;
+  --mono: 'IBM Plex Mono', monospace;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+.container { max-width: 800px; margin: 0 auto; padding: 2rem 1.5rem; }
+
+/* Nav */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(10, 14, 26, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0.75rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+}
+nav a { color: var(--accent); text-decoration: none; font-weight: 600; font-size: 0.95rem; }
+nav a:hover { text-decoration: underline; }
+nav .sep { color: var(--text-dim); }
+
+/* Hero */
+.hero {
+  text-align: center;
+  padding: 4rem 0 3rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 2rem;
+}
+.hero h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 800;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+}
+.hero .subtitle {
+  font-size: 1.15rem;
+  color: var(--text-dim);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Content sections */
+.content-section {
+  margin-bottom: 2.5rem;
+}
+.content-section h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--accent-glow);
+}
+.content-section p {
+  color: var(--text-dim);
+  font-size: 1.05rem;
+}
+
+/* FAQ */
+.faq-section { margin-top: 3rem; }
+.faq-section h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--accent);
+}
+.faq-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
+  overflow: hidden;
+}
+.faq-item summary {
+  padding: 1rem 1.25rem;
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.faq-item summary::before {
+  content: '+';
+  font-family: var(--mono);
+  color: var(--accent);
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+.faq-item[open] summary::before { content: '−'; }
+.faq-item p {
+  padding: 0 1.25rem 1rem;
+  color: var(--text-dim);
+  line-height: 1.6;
+}
+
+/* CTA */
+.cta-box {
+  background: linear-gradient(135deg, var(--surface) 0%, var(--surface-2) 100%);
+  border: 1px solid var(--accent);
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  margin: 3rem 0;
+}
+.cta-box h3 {
+  color: var(--accent);
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+}
+.cta-box p {
+  color: var(--text-dim);
+  margin-bottom: 1.25rem;
+}
+.cta-box a {
+  display: inline-block;
+  background: var(--accent);
+  color: var(--bg);
+  font-weight: 700;
+  padding: 0.75rem 2rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.cta-box a:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px var(--accent-glow);
+}
+
+/* Related */
+.related {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+.related h3 {
+  font-size: 1rem;
+  color: var(--text-dim);
+  margin-bottom: 0.75rem;
+}
+.related a {
+  color: var(--blue);
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+.related a:hover { text-decoration: underline; }
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 2rem 0;
+  color: var(--text-dim);
+  font-size: 0.85rem;
+  border-top: 1px solid var(--border);
+  margin-top: 2rem;
+}
+footer a { color: var(--accent); text-decoration: none; }
+</style>
+</head>
+<body>
+<nav>
+  <a href="/">Catalyst Edge</a>
+  <span class="sep">/</span>
+  <a href="/glossary/sec-filing-types-for-traders/">Glossary</a>
+  <span class="sep">/</span>
+  <span style="color:var(--text-dim);font-size:0.9rem">What is a Gap Up Stock?</span>
+</nav>
+
+<div class="container">
+  <div class="hero">
+    <h1>What is a Gap Up Stock?</h1>
+    <p class="subtitle">Finding Pre-Market Gaps Before the Crowd</p>
+  </div>
+
+    <section class="content-section">
+      <h2>What is a gap up?</h2>
+      <p>A gap up occurs when a stock opens significantly higher than its previous closing price, creating a visible &#x27;gap&#x27; on the chart. Gaps happen because of overnight news — earnings reports, FDA decisions, merger announcements, or SEC filings — that shift the stock&#x27;s value before regular trading begins.</p>
+    </section>
+    <section class="content-section">
+      <h2>Types of gaps traders watch</h2>
+      <p>Breakaway gaps occur at the start of a new trend and often hold. Continuation gaps happen mid-trend and signal strong momentum. Exhaustion gaps appear at the end of a move and frequently fill. For SEC catalyst traders, the most profitable are breakaway gaps triggered by material filings (8-K events, insider cluster buys, activist 13D filings).</p>
+    </section>
+    <section class="content-section">
+      <h2>How Catalyst Edge finds gap candidates</h2>
+      <p>Most traders scan for gaps after the market opens — by then, the easy money is gone. Catalyst Edge scans SEC EDGAR filings overnight and scores each ticker based on filing type, insider activity, price momentum, and sector rotation signals. The daily scanner publishes results before 8 AM ET, giving subscribers a head start on gap identification.</p>
+    </section>
+    <section class="content-section">
+      <h2>Gap trading strategies</h2>
+      <p>Gap and Go: Buy the gap if volume confirms and the catalyst is strong (8-K material event, insider cluster buy). Gap Fill: Short if the gap was caused by a weak catalyst (routine filing, small insider sale) and the stock shows exhaustion at the open. Fade the Gap: Wait for the initial euphoria to fade, then enter on the pullback to the gap level.</p>
+    </section>
+
+  <div class="cta-box">
+    <h3>Try the Free Scanner</h3>
+    <p>Catalyst Edge scans 300+ SEC filings every day and publishes a ranked watchlist before market open.</p>
+    <a href="https://catalystedgescanner.com/">Open Scanner</a>
+  </div>
+
+  <div class="faq-section">
+    <h2>Frequently Asked Questions</h2>
+
+      <details class="faq-item">
+        <summary>What causes stocks to gap up?</summary>
+        <p>The most common catalysts are earnings surprises, FDA approvals, merger announcements, activist investor filings (13D), insider buying clusters (Form 4), and favorable analyst upgrades. SEC filings often contain these catalysts before they hit mainstream news.</p>
+      </details>
+      <details class="faq-item">
+        <summary>How do I find gap stocks before the market opens?</summary>
+        <p>Use an SEC filing scanner like Catalyst Edge that monitors EDGAR overnight. The scanner identifies material filings, scores them for gap potential, and publishes a watchlist before the pre-market session.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Do gap stocks always keep going up?</summary>
+        <p>No. Studies show about 60-70% of gaps eventually fill (the stock returns to the pre-gap price). The key is distinguishing between strong catalysts (material 8-K, activist 13D) that sustain momentum and weak catalysts that produce exhaustion gaps.</p>
+      </details>
+  </div>
+
+  <div class="related">
+    <h3>Related Topics</h3>
+    <p><a href="/glossary/what-is-form-4/">What is SEC Form 4?</a> &middot; <a href="/glossary/what-is-sc-13d/">What is Schedule 13D?</a> &middot; <a href="/glossary/sec-filing-types-for-traders/">SEC Filing Types for Traders</a> &middot; <a href="/glossary/what-is-lockup-expiration/">What is IPO Lockup Expiration?</a> &middot; <a href="/glossary/premarket-gap-scanner/">Pre-Market Gap Scanner</a> &middot; <a href="/glossary/insider-buying-signals/">Insider Buying Signals</a> &middot; <a href="/glossary/what-is-sympathy-play/">What is a Sympathy Play?</a> &middot; <a href="/glossary/what-is-deep-value-investing/">What is Deep Value Investing?</a></p>
+  </div>
+</div>
+
+<footer>
+  <a href="https://catalystedgescanner.com/">Catalyst Edge Scanner</a> &middot;
+  <a href="https://catalystedge.agency">Daily Newsletter</a> &middot;
+  &copy; 2026 Catalyst Edge
+</footer>
+</body>
+</html>

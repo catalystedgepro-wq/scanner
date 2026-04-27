@@ -1,0 +1,682 @@
+{
+  "generated_at": "2026-04-27T22:58:00.621657+00:00",
+  "total_picks_scored": 8440,
+  "form_type_stats": [
+    {
+      "form": "424B1",
+      "label": "424B1",
+      "picks": 9,
+      "hit_rate_3pct": 66.7,
+      "hit_rate_5pct": 0.0,
+      "avg_move": 2.45,
+      "wins": 6,
+      "losses": 0
+    },
+    {
+      "form": "RW",
+      "label": "RW",
+      "picks": 54,
+      "hit_rate_3pct": 50.0,
+      "hit_rate_5pct": 27.8,
+      "avg_move": 9.29,
+      "wins": 24,
+      "losses": 30
+    },
+    {
+      "form": "S-3",
+      "label": "S-3 (Shelf Registration)",
+      "picks": 825,
+      "hit_rate_3pct": 43.3,
+      "hit_rate_5pct": 26.2,
+      "avg_move": 3.65,
+      "wins": 321,
+      "losses": 432
+    },
+    {
+      "form": "424B5",
+      "label": "424B5",
+      "picks": 891,
+      "hit_rate_3pct": 40.1,
+      "hit_rate_5pct": 27.6,
+      "avg_move": 4.78,
+      "wins": 366,
+      "losses": 441
+    },
+    {
+      "form": "NT 10-Q",
+      "label": "NT 10-Q (Late Quarterly)",
+      "picks": 75,
+      "hit_rate_3pct": 40.0,
+      "hit_rate_5pct": 28.0,
+      "avg_move": 3.02,
+      "wins": 24,
+      "losses": 24
+    },
+    {
+      "form": "424B4",
+      "label": "424B4 (Prospectus)",
+      "picks": 114,
+      "hit_rate_3pct": 39.5,
+      "hit_rate_5pct": 28.9,
+      "avg_move": 3.88,
+      "wins": 42,
+      "losses": 63
+    },
+    {
+      "form": "8-K",
+      "label": "8-K (Material Event)",
+      "picks": 2251,
+      "hit_rate_3pct": 37.0,
+      "hit_rate_5pct": 23.5,
+      "avg_move": 5.92,
+      "wins": 944,
+      "losses": 1024
+    },
+    {
+      "form": "NT 10-K",
+      "label": "NT 10-K (Late Annual)",
+      "picks": 454,
+      "hit_rate_3pct": 35.0,
+      "hit_rate_5pct": 25.8,
+      "avg_move": 6.8,
+      "wins": 147,
+      "losses": 175
+    },
+    {
+      "form": "6-K",
+      "label": "6-K (Foreign Issuer)",
+      "picks": 2241,
+      "hit_rate_3pct": 34.6,
+      "hit_rate_5pct": 22.9,
+      "avg_move": 3.12,
+      "wins": 805,
+      "losses": 1080
+    },
+    {
+      "form": "424B3",
+      "label": "424B3",
+      "picks": 575,
+      "hit_rate_3pct": 31.0,
+      "hit_rate_5pct": 19.0,
+      "avg_move": 2.65,
+      "wins": 206,
+      "losses": 267
+    },
+    {
+      "form": "4",
+      "label": "Form 4 (Insider Trade)",
+      "picks": 571,
+      "hit_rate_3pct": 28.5,
+      "hit_rate_5pct": 12.1,
+      "avg_move": 2.69,
+      "wins": 233,
+      "losses": 299
+    },
+    {
+      "form": "424B2",
+      "label": "424B2",
+      "picks": 380,
+      "hit_rate_3pct": 9.5,
+      "hit_rate_5pct": 3.9,
+      "avg_move": 1.25,
+      "wins": 129,
+      "losses": 116
+    }
+  ],
+  "catalyst_tag_stats": [
+    {
+      "catalyst": "Cost Reduction",
+      "picks": 24,
+      "hit_rate_3pct": 75.0,
+      "hit_rate_5pct": 33.3,
+      "avg_move": 6.07,
+      "wins": 11,
+      "losses": 13
+    },
+    {
+      "catalyst": "FDA Approval",
+      "picks": 12,
+      "hit_rate_3pct": 66.7,
+      "hit_rate_5pct": 33.3,
+      "avg_move": 13.67,
+      "wins": 4,
+      "losses": 8
+    },
+    {
+      "catalyst": "Contract Award",
+      "picks": 8,
+      "hit_rate_3pct": 50.0,
+      "hit_rate_5pct": 50.0,
+      "avg_move": 3.89,
+      "wins": 4,
+      "losses": 4
+    },
+    {
+      "catalyst": "Patent / IP",
+      "picks": 70,
+      "hit_rate_3pct": 48.6,
+      "hit_rate_5pct": 48.6,
+      "avg_move": 33.24,
+      "wins": 28,
+      "losses": 32
+    },
+    {
+      "catalyst": "Cash Flow Signal",
+      "picks": 252,
+      "hit_rate_3pct": 37.3,
+      "hit_rate_5pct": 24.6,
+      "avg_move": 3.75,
+      "wins": 94,
+      "losses": 132
+    },
+    {
+      "catalyst": "Share Buyback",
+      "picks": 165,
+      "hit_rate_3pct": 29.7,
+      "hit_rate_5pct": 15.8,
+      "avg_move": 1.41,
+      "wins": 53,
+      "losses": 63
+    },
+    {
+      "catalyst": "Record Revenue",
+      "picks": 17,
+      "hit_rate_3pct": 23.5,
+      "hit_rate_5pct": 23.5,
+      "avg_move": 0.55,
+      "wins": 4,
+      "losses": 13
+    },
+    {
+      "catalyst": "Merger / Acquisition",
+      "picks": 192,
+      "hit_rate_3pct": 23.4,
+      "hit_rate_5pct": 14.6,
+      "avg_move": 1.97,
+      "wins": 44,
+      "losses": 122
+    }
+  ],
+  "list_by_form_stats": [
+    {
+      "list": "\u26a1 Gappers (All)",
+      "form": "RW",
+      "picks": 18,
+      "hit_rate_3pct": 50.0,
+      "hit_rate_5pct": 27.8,
+      "avg_move": 9.29,
+      "wins": 8,
+      "losses": 10
+    },
+    {
+      "list": "\ud83c\udf31 Moat Emerging",
+      "form": "RW",
+      "picks": 18,
+      "hit_rate_3pct": 50.0,
+      "hit_rate_5pct": 27.8,
+      "avg_move": 9.29,
+      "wins": 8,
+      "losses": 10
+    },
+    {
+      "list": "\ud83d\udc8e Value (All)",
+      "form": "RW",
+      "picks": 18,
+      "hit_rate_3pct": 50.0,
+      "hit_rate_5pct": 27.8,
+      "avg_move": 9.29,
+      "wins": 8,
+      "losses": 10
+    },
+    {
+      "list": "\ud83c\udff0 Moat Core (All)",
+      "form": "S-3 (Shelf Registration)",
+      "picks": 14,
+      "hit_rate_3pct": 50.0,
+      "hit_rate_5pct": 21.4,
+      "avg_move": 3.86,
+      "wins": 6,
+      "losses": 8
+    },
+    {
+      "list": "\ud83c\udff0 Moat Core",
+      "form": "6-K (Foreign Issuer)",
+      "picks": 29,
+      "hit_rate_3pct": 44.8,
+      "hit_rate_5pct": 31.0,
+      "avg_move": 3.12,
+      "wins": 15,
+      "losses": 14
+    },
+    {
+      "list": "\u26a1 Gappers (All)",
+      "form": "S-3 (Shelf Registration)",
+      "picks": 274,
+      "hit_rate_3pct": 43.4,
+      "hit_rate_5pct": 26.3,
+      "avg_move": 3.67,
+      "wins": 107,
+      "losses": 143
+    },
+    {
+      "list": "\ud83d\udc8e Value (All)",
+      "form": "S-3 (Shelf Registration)",
+      "picks": 274,
+      "hit_rate_3pct": 43.4,
+      "hit_rate_5pct": 26.3,
+      "avg_move": 3.67,
+      "wins": 107,
+      "losses": 143
+    },
+    {
+      "list": "\ud83c\udf31 Moat Emerging",
+      "form": "S-3 (Shelf Registration)",
+      "picks": 260,
+      "hit_rate_3pct": 43.1,
+      "hit_rate_5pct": 26.5,
+      "avg_move": 3.66,
+      "wins": 101,
+      "losses": 135
+    },
+    {
+      "list": "\ud83d\udc8e Value",
+      "form": "6-K (Foreign Issuer)",
+      "picks": 40,
+      "hit_rate_3pct": 42.5,
+      "hit_rate_5pct": 30.0,
+      "avg_move": 2.86,
+      "wins": 20,
+      "losses": 20
+    },
+    {
+      "list": "\ud83c\udf31 Moat Emerging",
+      "form": "424B5",
+      "picks": 280,
+      "hit_rate_3pct": 41.1,
+      "hit_rate_5pct": 29.3,
+      "avg_move": 4.98,
+      "wins": 117,
+      "losses": 135
+    },
+    {
+      "list": "\u26a1 Gappers (All)",
+      "form": "424B5",
+      "picks": 297,
+      "hit_rate_3pct": 40.1,
+      "hit_rate_5pct": 27.6,
+      "avg_move": 4.78,
+      "wins": 122,
+      "losses": 147
+    },
+    {
+      "list": "\ud83d\udc8e Value (All)",
+      "form": "424B5",
+      "picks": 297,
+      "hit_rate_3pct": 40.1,
+      "hit_rate_5pct": 27.6,
+      "avg_move": 4.78,
+      "wins": 122,
+      "losses": 147
+    },
+    {
+      "list": "\ud83c\udff0 Moat Core (All)",
+      "form": "6-K (Foreign Issuer)",
+      "picks": 35,
+      "hit_rate_3pct": 40.0,
+      "hit_rate_5pct": 28.6,
+      "avg_move": 2.81,
+      "wins": 17,
+      "losses": 18
+    },
+    {
+      "list": "\u26a1 Gappers (All)",
+      "form": "NT 10-Q (Late Quarterly)",
+      "picks": 25,
+      "hit_rate_3pct": 40.0,
+      "hit_rate_5pct": 28.0,
+      "avg_move": 3.02,
+      "wins": 8,
+      "losses": 8
+    },
+    {
+      "list": "\ud83c\udf31 Moat Emerging",
+      "form": "NT 10-Q (Late Quarterly)",
+      "picks": 25,
+      "hit_rate_3pct": 40.0,
+      "hit_rate_5pct": 28.0,
+      "avg_move": 3.02,
+      "wins": 8,
+      "losses": 8
+    },
+    {
+      "list": "\ud83d\udc8e Value (All)",
+      "form": "NT 10-Q (Late Quarterly)",
+      "picks": 25,
+      "hit_rate_3pct": 40.0,
+      "hit_rate_5pct": 28.0,
+      "avg_move": 3.02,
+      "wins": 8,
+      "losses": 8
+    },
+    {
+      "list": "\u26a1 Gappers (All)",
+      "form": "424B4 (Prospectus)",
+      "picks": 38,
+      "hit_rate_3pct": 39.5,
+      "hit_rate_5pct": 28.9,
+      "avg_move": 3.88,
+      "wins": 14,
+      "losses": 21
+    },
+    {
+      "list": "\ud83c\udf31 Moat Emerging",
+      "form": "424B4 (Prospectus)",
+      "picks": 38,
+      "hit_rate_3pct": 39.5,
+      "hit_rate_5pct": 28.9,
+      "avg_move": 3.88,
+      "wins": 14,
+      "losses": 21
+    },
+    {
+      "list": "\ud83d\udc8e Value (All)",
+      "form": "424B4 (Prospectus)",
+      "picks": 38,
+      "hit_rate_3pct": 39.5,
+      "hit_rate_5pct": 28.9,
+      "avg_move": 3.88,
+      "wins": 14,
+      "losses": 21
+    },
+    {
+      "list": "\u26a1 Gappers",
+      "form": "8-K (Material Event)",
+      "picks": 399,
+      "hit_rate_3pct": 37.8,
+      "hit_rate_5pct": 24.6,
+      "avg_move": 6.52,
+      "wins": 177,
+      "losses": 170
+    },
+    {
+      "list": "\ud83c\udf31 Moat Emerging",
+      "form": "8-K (Material Event)",
+      "picks": 568,
+      "hit_rate_3pct": 37.5,
+      "hit_rate_5pct": 23.9,
+      "avg_move": 6.09,
+      "wins": 231,
+      "losses": 260
+    },
+    {
+      "list": "\u26a1 Gappers (All)",
+      "form": "8-K (Material Event)",
+      "picks": 598,
+      "hit_rate_3pct": 37.0,
+      "hit_rate_5pct": 23.4,
+      "avg_move": 5.89,
+      "wins": 246,
+      "losses": 275
+    },
+    {
+      "list": "\ud83d\udc8e Value (All)",
+      "form": "8-K (Material Event)",
+      "picks": 598,
+      "hit_rate_3pct": 37.0,
+      "hit_rate_5pct": 23.4,
+      "avg_move": 5.89,
+      "wins": 246,
+      "losses": 275
+    },
+    {
+      "list": "\u26a1 Gappers",
+      "form": "6-K (Foreign Issuer)",
+      "picks": 186,
+      "hit_rate_3pct": 36.0,
+      "hit_rate_5pct": 23.1,
+      "avg_move": 2.39,
+      "wins": 71,
+      "losses": 83
+    },
+    {
+      "list": "\u26a1 Gappers (All)",
+      "form": "NT 10-K (Late Annual)",
+      "picks": 151,
+      "hit_rate_3pct": 35.1,
+      "hit_rate_5pct": 25.8,
+      "avg_move": 6.82,
+      "wins": 49,
+      "losses": 58
+    },
+    {
+      "list": "\ud83c\udf31 Moat Emerging",
+      "form": "NT 10-K (Late Annual)",
+      "picks": 151,
+      "hit_rate_3pct": 35.1,
+      "hit_rate_5pct": 25.8,
+      "avg_move": 6.82,
+      "wins": 49,
+      "losses": 58
+    },
+    {
+      "list": "\ud83d\udc8e Value (All)",
+      "form": "NT 10-K (Late Annual)",
+      "picks": 151,
+      "hit_rate_3pct": 35.1,
+      "hit_rate_5pct": 25.8,
+      "avg_move": 6.82,
+      "wins": 49,
+      "losses": 58
+    },
+    {
+      "list": "\u26a1 Gappers (All)",
+      "form": "6-K (Foreign Issuer)",
+      "picks": 662,
+      "hit_rate_3pct": 34.1,
+      "hit_rate_5pct": 22.7,
+      "avg_move": 3.2,
+      "wins": 233,
+      "losses": 321
+    },
+    {
+      "list": "\ud83d\udc8e Value (All)",
+      "form": "6-K (Foreign Issuer)",
+      "picks": 662,
+      "hit_rate_3pct": 34.1,
+      "hit_rate_5pct": 22.7,
+      "avg_move": 3.2,
+      "wins": 233,
+      "losses": 321
+    },
+    {
+      "list": "\ud83c\udf31 Moat Emerging",
+      "form": "6-K (Foreign Issuer)",
+      "picks": 627,
+      "hit_rate_3pct": 33.8,
+      "hit_rate_5pct": 22.3,
+      "avg_move": 3.22,
+      "wins": 216,
+      "losses": 303
+    },
+    {
+      "list": "\ud83c\udf31 Moat Emerging",
+      "form": "424B3",
+      "picks": 184,
+      "hit_rate_3pct": 32.1,
+      "hit_rate_5pct": 19.6,
+      "avg_move": 2.71,
+      "wins": 66,
+      "losses": 84
+    },
+    {
+      "list": "\ud83d\udc8e Value",
+      "form": "8-K (Material Event)",
+      "picks": 38,
+      "hit_rate_3pct": 31.6,
+      "hit_rate_5pct": 21.1,
+      "avg_move": 3.02,
+      "wins": 19,
+      "losses": 19
+    },
+    {
+      "list": "\ud83c\udf31 Moat Emerging",
+      "form": "Form 4 (Insider Trade)",
+      "picks": 153,
+      "hit_rate_3pct": 31.4,
+      "hit_rate_5pct": 13.7,
+      "avg_move": 2.93,
+      "wins": 64,
+      "losses": 76
+    },
+    {
+      "list": "\u26a1 Gappers (All)",
+      "form": "424B3",
+      "picks": 189,
+      "hit_rate_3pct": 31.2,
+      "hit_rate_5pct": 19.0,
+      "avg_move": 2.67,
+      "wins": 68,
+      "losses": 87
+    },
+    {
+      "list": "\ud83d\udc8e Value (All)",
+      "form": "424B3",
+      "picks": 189,
+      "hit_rate_3pct": 31.2,
+      "hit_rate_5pct": 19.0,
+      "avg_move": 2.67,
+      "wins": 68,
+      "losses": 87
+    },
+    {
+      "list": "\ud83c\udff0 Moat Core",
+      "form": "8-K (Material Event)",
+      "picks": 20,
+      "hit_rate_3pct": 30.0,
+      "hit_rate_5pct": 20.0,
+      "avg_move": 2.1,
+      "wins": 10,
+      "losses": 10
+    },
+    {
+      "list": "\u26a1 Gappers (All)",
+      "form": "Form 4 (Insider Trade)",
+      "picks": 175,
+      "hit_rate_3pct": 29.1,
+      "hit_rate_5pct": 12.6,
+      "avg_move": 2.75,
+      "wins": 72,
+      "losses": 90
+    },
+    {
+      "list": "\ud83d\udc8e Value (All)",
+      "form": "Form 4 (Insider Trade)",
+      "picks": 175,
+      "hit_rate_3pct": 29.1,
+      "hit_rate_5pct": 12.6,
+      "avg_move": 2.75,
+      "wins": 72,
+      "losses": 90
+    },
+    {
+      "list": "\ud83c\udff0 Moat Core (All)",
+      "form": "8-K (Material Event)",
+      "picks": 30,
+      "hit_rate_3pct": 26.7,
+      "hit_rate_5pct": 13.3,
+      "avg_move": 2.08,
+      "wins": 15,
+      "losses": 15
+    },
+    {
+      "list": "\ud83d\udc8e Value",
+      "form": "Form 4 (Insider Trade)",
+      "picks": 28,
+      "hit_rate_3pct": 25.0,
+      "hit_rate_5pct": 7.1,
+      "avg_move": 2.12,
+      "wins": 11,
+      "losses": 17
+    },
+    {
+      "list": "\ud83c\udff0 Moat Core (All)",
+      "form": "424B5",
+      "picks": 17,
+      "hit_rate_3pct": 23.5,
+      "hit_rate_5pct": 0.0,
+      "avg_move": 1.45,
+      "wins": 5,
+      "losses": 12
+    },
+    {
+      "list": "\ud83c\udff0 Moat Core",
+      "form": "Form 4 (Insider Trade)",
+      "picks": 18,
+      "hit_rate_3pct": 16.7,
+      "hit_rate_5pct": 5.6,
+      "avg_move": 1.63,
+      "wins": 6,
+      "losses": 12
+    },
+    {
+      "list": "\ud83c\udff0 Moat Core (All)",
+      "form": "Form 4 (Insider Trade)",
+      "picks": 22,
+      "hit_rate_3pct": 13.6,
+      "hit_rate_5pct": 4.5,
+      "avg_move": 1.5,
+      "wins": 8,
+      "losses": 14
+    },
+    {
+      "list": "\ud83c\udf31 Moat Emerging",
+      "form": "424B2",
+      "picks": 108,
+      "hit_rate_3pct": 11.1,
+      "hit_rate_5pct": 4.6,
+      "avg_move": 1.38,
+      "wins": 35,
+      "losses": 29
+    },
+    {
+      "list": "\u26a1 Gappers (All)",
+      "form": "424B2",
+      "picks": 122,
+      "hit_rate_3pct": 9.8,
+      "hit_rate_5pct": 4.1,
+      "avg_move": 1.28,
+      "wins": 41,
+      "losses": 37
+    },
+    {
+      "list": "\ud83d\udc8e Value (All)",
+      "form": "424B2",
+      "picks": 122,
+      "hit_rate_3pct": 9.8,
+      "hit_rate_5pct": 4.1,
+      "avg_move": 1.28,
+      "wins": 41,
+      "losses": 37
+    },
+    {
+      "list": "\ud83c\udff0 Moat Core (All)",
+      "form": "424B2",
+      "picks": 14,
+      "hit_rate_3pct": 0.0,
+      "hit_rate_5pct": 0.0,
+      "avg_move": 0.5,
+      "wins": 6,
+      "losses": 8
+    },
+    {
+      "list": "\u26a1 Gappers",
+      "form": "424B2",
+      "picks": 8,
+      "hit_rate_3pct": 0.0,
+      "hit_rate_5pct": 0.0,
+      "avg_move": 0.15,
+      "wins": 2,
+      "losses": 3
+    }
+  ]
+}

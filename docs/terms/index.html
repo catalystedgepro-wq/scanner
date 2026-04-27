@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Terms of Service — Catalyst Edge Scanner</title>
+  <meta name="description" content="Short-form, plain-English Terms of Service for Catalyst Edge Scanner. As-is, not investment advice, US (Delaware) jurisdiction." />
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/lib/admin-unlock.css" />
+  <link rel="stylesheet" href="/lib/scanner-polish.css" />
+  <link rel="stylesheet" href="/lib/nav-fix.css" />
+  <style>
+    :root{
+      --navy:#040a14; --navy2:#0a1424; --navy3:#0e1a2e;
+      --ink:#e6f1ff; --ink-dim:#9bb0c8; --ink-mute:#6e8198;
+      --cyan:#5ad7ff; --gold:#f5c662; --bull:#5cf2a4; --bear:#ff6b8b;
+      --line:rgba(110,140,180,0.18); --line-strong:rgba(110,140,180,0.32);
+      --glass: linear-gradient(180deg, rgba(15,28,48,0.78), rgba(7,14,28,0.78));
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;background:#04070d;color:var(--ink);
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      -webkit-font-smoothing:antialiased; font-feature-settings:"ss01","cv11";
+    }
+    a{color:var(--cyan);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+    code{font-family:"JetBrains Mono","IBM Plex Mono",ui-monospace,monospace;font-size:0.92em;background:rgba(90,215,255,0.06);padding:1px 6px;border-radius:4px;color:var(--cyan)}
+
+    .topbar{position:sticky;top:0;z-index:50;background:rgba(4,7,13,0.86);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+    .topbar-row{display:flex;align-items:center;gap:18px;padding:14px 24px;max-width:1400px;margin:0 auto}
+    .brand{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:14px;letter-spacing:0.18em;color:var(--gold);text-transform:uppercase}
+    .brand b{color:var(--cyan)}
+    nav.nav{display:flex;gap:8px;flex:1;flex-wrap:nowrap;overflow-x:auto;scroll-padding-top:80px}
+    nav.nav a{font-size:13px;color:var(--ink-dim);padding:8px 12px;border-radius:8px;white-space:nowrap}
+    nav.nav a:hover{background:rgba(90,215,255,0.08);color:var(--ink);text-decoration:none}
+    nav.nav a.active{color:var(--gold);background:rgba(245,198,98,0.08)}
+
+    .hero{padding:56px 0 36px;border-bottom:1px solid var(--line);position:relative;overflow:hidden}
+    .hero::before{content:"";position:absolute;inset:0;
+      background:radial-gradient(700px 360px at 30% 20%, rgba(245,198,98,0.10), transparent 60%);pointer-events:none}
+    .hero .wrap{position:relative}
+    .eyebrow{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:0.22em;color:var(--gold);text-transform:uppercase;margin-bottom:14px}
+    .h1{font-size:clamp(32px,5vw,52px);line-height:1.05;letter-spacing:-0.01em;margin:0 0 14px;font-weight:700}
+    .h1 .glow{color:var(--cyan)}
+    .sub{font-size:16px;color:var(--ink-dim);max-width:720px;line-height:1.55}
+
+    .alert{margin-top:26px;padding:22px 26px;border-radius:14px;background:linear-gradient(135deg, rgba(255,107,139,0.10), rgba(245,198,98,0.08));
+      border:1px solid rgba(255,107,139,0.4)}
+    .alert .tag{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:0.2em;text-transform:uppercase;color:var(--bear);margin-bottom:8px}
+    .alert h3{margin:0 0 6px;font-size:18px;color:var(--ink)}
+    .alert p{margin:0;color:var(--ink-dim);font-size:14px;line-height:1.6}
+    .alert b{color:var(--ink)}
+
+    .updated-bar{display:inline-flex;gap:10px;align-items:center;background:var(--glass);border:1px solid var(--line);
+      border-radius:999px;padding:8px 14px;font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:0.14em;color:var(--ink-dim)}
+    .updated-bar b{color:var(--gold)}
+
+    .layout{display:grid;grid-template-columns:240px 1fr;gap:36px;padding:48px 0}
+    @media (max-width:860px){.layout{grid-template-columns:1fr;gap:24px}}
+    .toc{position:sticky;top:88px;align-self:flex-start;background:var(--glass);border:1px solid var(--line);border-radius:14px;padding:18px;max-height:calc(100vh - 110px);overflow-y:auto}
+    .toc h4{margin:0 0 10px;font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink-mute)}
+    .toc ol{margin:0;padding-left:22px;display:flex;flex-direction:column;gap:6px;font-size:13px;color:var(--ink-dim)}
+    .toc ol li::marker{color:var(--gold);font-family:"IBM Plex Mono",monospace}
+    .toc a{color:var(--ink-dim)}
+    .toc a:hover{color:var(--cyan)}
+    @media (max-width:860px){.toc{position:static;max-height:none}}
+
+    .body section{margin-bottom:24px;background:var(--glass);border:1px solid var(--line);border-radius:14px;padding:24px;scroll-margin-top:90px}
+    .body section h2{margin:0 0 10px;font-size:20px;color:var(--ink);display:flex;align-items:center;gap:10px}
+    .body section h2 .num{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:0.16em;color:var(--gold);
+      padding:4px 10px;border-radius:8px;background:rgba(245,198,98,0.10);border:1px solid rgba(245,198,98,0.32)}
+    .body section.danger{border-color:rgba(255,107,139,0.4);background:linear-gradient(180deg, rgba(255,107,139,0.06), rgba(7,14,28,0.78))}
+    .body section.danger h2 .num{color:var(--bear);background:rgba(255,107,139,0.08);border-color:rgba(255,107,139,0.4)}
+    .body section p{margin:0 0 10px;color:var(--ink-dim);font-size:14px;line-height:1.65}
+    .body section ul{margin:6px 0 0;padding-left:22px;color:var(--ink-dim);font-size:14px;line-height:1.7}
+    .body section ul li{margin-bottom:4px}
+    .body section ul li b{color:var(--ink)}
+    .body section a{font-weight:500}
+    .body section.danger p b{color:var(--bear)}
+
+    footer{padding:36px 0;color:var(--ink-mute);font-size:12px;border-top:1px solid var(--line);text-align:center}
+    footer .links{display:flex;gap:14px;justify-content:center;margin-top:8px;flex-wrap:wrap}
+  </style>
+<link rel="stylesheet" href="/lib/polish-tokens.css">
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-row">
+      <div class="brand"><b>Catalyst</b> · Edge</div>
+      <nav class="nav">
+        <a href="/scanner/">Scanner</a>
+        <a href="/international/">Global</a>
+        <a href="/dcf/">DCF</a>
+        <a href="/security/">Security</a>
+        <a href="/privacy/">Privacy</a>
+        <a href="/terms/" class="active">Terms</a>
+        <a href="/changelog/">Changelog</a>
+        <a href="/community/">Community</a>
+        <a href="/pricing/">Pricing</a>
+      </nav>
+    </div>
+  </div>
+
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow">📜 Last updated 2026-04-25 · As-is · Not investment advice · US jurisdiction</div>
+      <h1 class="h1">Terms of service — <span class="glow">boring on purpose.</span></h1>
+      <p class="sub">Plain English. Twelve numbered sections. Most important: nothing on this site is investment advice, the service is provided as-is, and our liability is capped at fees paid in the prior 12 months. Read sections 5 and 7 carefully — those are the ones that matter.</p>
+      <div style="margin-top:18px"><span class="updated-bar">Effective date · <b>2026-04-25</b></span></div>
+
+      <div class="alert">
+        <div class="tag">⚠ Critical disclaimer</div>
+        <h3>Catalyst Edge is NOT a registered investment advisor.</h3>
+        <p>Nothing on this site, in any email, in any API response, or in any SDK output is investment advice, a recommendation to buy or sell any security, or a solicitation. <b>Trading involves risk of loss.</b> Past performance does not predict future results. You assume <b>all</b> risk of trading on information presented here. If this is not acceptable to you, do not use the service.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap layout">
+    <aside class="toc">
+      <h4>On this page</h4>
+      <ol>
+        <li><a href="#s1">Service description</a></li>
+        <li><a href="#s2">Account terms</a></li>
+        <li><a href="#s3">Acceptable use</a></li>
+        <li><a href="#s4">Subscription &amp; billing</a></li>
+        <li><a href="#s5">Not investment advice</a></li>
+        <li><a href="#s6">Service availability</a></li>
+        <li><a href="#s7">Limitation of liability</a></li>
+        <li><a href="#s8">Warranty disclaimer</a></li>
+        <li><a href="#s9">Indemnification</a></li>
+        <li><a href="#s10">Changes to terms</a></li>
+        <li><a href="#s11">Jurisdiction</a></li>
+        <li><a href="#s12">Contact</a></li>
+      </ol>
+    </aside>
+
+    <div class="body">
+      <section id="s1">
+        <h2><span class="num">01</span>Service description</h2>
+        <p>Catalyst Edge Scanner ("the Service") provides a US + international catalyst scanner, a discounted-cash-flow (DCF) valuation engine sourced from SEC EDGAR XBRL companyfacts, a cross-border ADR ↔ home-listing convergence panel, daily catalyst emails, and a JSON API + SDK for programmatic access. Operated by the founder as a sole proprietorship pending incorporation. Domain: <code>catalystedgescanner.com</code>.</p>
+      </section>
+
+      <section id="s2">
+        <h2><span class="num">02</span>Account terms</h2>
+        <ul>
+          <li>You must be <b>18 years or older</b> to create an account.</li>
+          <li><b>One account per person.</b> Sharing a single account across multiple traders or seats violates the Free, Reader, and Pro tiers; multi-seat use requires Team or Enterprise.</li>
+          <li>Your email address and any password or API key on your account are <b>your responsibility</b>. Notify us immediately at <a href="mailto:opensource@example.com">opensource@example.com</a> if you suspect your credentials are compromised.</li>
+          <li>You are responsible for keeping your billing and contact email current.</li>
+        </ul>
+      </section>
+
+      <section id="s3">
+        <h2><span class="num">03</span>Acceptable use</h2>
+        <p>You agree not to:</p>
+        <ul>
+          <li><b>Scrape</b> the public site or API at unfair rates beyond the documented rate-limits for your tier.</li>
+          <li><b>Resell or redistribute</b> the data without an Enterprise tier contract permitting it.</li>
+          <li><b>Multi-account</b> on the Free tier to circumvent rate-limits.</li>
+          <li><b>Reverse-engineer</b> the SDK or API beyond the openly published schema.</li>
+          <li><b>Attempt to compromise</b> the service or other users' accounts (other than via the documented bug-bounty program — see <a href="/security/#bounty">/security</a>).</li>
+          <li>Use the service to <b>violate any law</b> in your jurisdiction or ours.</li>
+        </ul>
+        <p>Violation may result in temporary 429s, account suspension, or in egregious cases termination without refund.</p>
+      </section>
+
+      <section id="s4">
+        <h2><span class="num">04</span>Subscription &amp; billing</h2>
+        <ul>
+          <li>Paid plans are <b>monthly recurring</b> and processed via <a href="https://stripe.com" target="_blank" rel="noopener">Stripe</a>. We never see your card number.</li>
+          <li><b>Cancel anytime</b> via the Stripe receipt link. You retain access through the end of the current billing period.</li>
+          <li><b>14-day refund</b> on Reader and Pro for any reason. Email <a href="mailto:opensource@example.com">opensource@example.com</a>.</li>
+          <li><b>Team and Enterprise</b> refunds prorated by seat-month per the contract.</li>
+          <li>Pricing changes apply only at the next renewal — never mid-cycle. Material price changes are emailed at least 14 days in advance.</li>
+        </ul>
+      </section>
+
+      <section id="s5" class="danger">
+        <h2><span class="num">05</span>Not investment advice</h2>
+        <p><b>This is the most important section. Read it.</b></p>
+        <p>Catalyst Edge Scanner is <b>not a registered investment advisor</b>, broker-dealer, or financial planner. The Service is published for <b>informational and educational purposes only</b>. No content on the Service — including but not limited to scanner output, DCF grades, cross-border setups, alerts, sympathy chains, audit pages, hit rates, case studies, or commentary — constitutes:</p>
+        <ul>
+          <li>investment advice,</li>
+          <li>a recommendation to buy or sell any security,</li>
+          <li>a solicitation, offer, or endorsement of any financial product, or</li>
+          <li>tax or legal advice.</li>
+        </ul>
+        <p><b>Trading involves substantial risk of loss</b> and is not suitable for every investor. Past performance, including any "audited 89% hit rate" or backtested figure, <b>does not predict future results</b>. You assume <b>all</b> risk for any decisions you make based on information presented by the Service. Consult a licensed advisor before making any investment decision.</p>
+      </section>
+
+      <section id="s6">
+        <h2><span class="num">06</span>Service availability</h2>
+        <ul>
+          <li>The Service is provided on a <b>best-effort</b> basis. There is no SLA on Free, Reader, or Pro tiers.</li>
+          <li><b>Team and Enterprise</b> tiers include an SLA per the signed contract (typically 99.5%+ monthly uptime).</li>
+          <li>Planned maintenance windows are announced in <a href="/changelog/">/changelog</a> at least 24 hours in advance.</li>
+          <li>Live API health is published on the public status page (see <a href="/status/">/status</a>).</li>
+        </ul>
+      </section>
+
+      <section id="s7" class="danger">
+        <h2><span class="num">07</span>Limitation of liability</h2>
+        <p><b>To the maximum extent permitted by law:</b></p>
+        <ul>
+          <li>We are <b>not liable for trading losses</b>, lost profits, lost data, or any other consequential, incidental, indirect, punitive, or special damages arising from your use of the Service.</li>
+          <li>Our total liability for any claim is <b>capped at the fees you paid us in the 12 months</b> prior to the event giving rise to the claim. For Free-tier users, the cap is <b>$0</b>.</li>
+          <li>This cap applies even if a remedy fails its essential purpose.</li>
+        </ul>
+      </section>
+
+      <section id="s8">
+        <h2><span class="num">08</span>Warranty disclaimer</h2>
+        <p>The Service is provided <b>"as-is" and "as-available"</b>, without warranties of any kind, express or implied. We disclaim all implied warranties of merchantability, fitness for a particular purpose, accuracy, completeness, and non-infringement. No oral or written information from us creates a warranty not expressly stated here.</p>
+      </section>
+
+      <section id="s9">
+        <h2><span class="num">09</span>Indemnification</h2>
+        <p>You agree to indemnify and hold harmless Catalyst Edge Scanner, the founder, and any employees or contractors from any claim or demand arising out of: (a) your misuse of the Service, (b) your violation of these Terms, or (c) your violation of any third-party right, including any intellectual property right.</p>
+      </section>
+
+      <section id="s10">
+        <h2><span class="num">10</span>Changes to terms</h2>
+        <p>We may update these Terms. Material changes (liability scope, billing terms, jurisdiction) will be emailed to <b>Pro and higher</b> subscribers at least 14 days before they take effect, and posted on <a href="/changelog/">/changelog</a>. Continued use after the effective date constitutes acceptance. If you do not agree, cancel before the effective date for a prorated refund.</p>
+      </section>
+
+      <section id="s11">
+        <h2><span class="num">11</span>Jurisdiction</h2>
+        <p>These Terms are governed by the laws of the <b>State of Delaware</b>, without regard to conflict-of-laws principles. Any dispute will be resolved exclusively in the state or federal courts located in Delaware, USA. The parties waive any objection to venue in those courts.</p>
+      </section>
+
+      <section id="s12">
+        <h2><span class="num">12</span>Contact</h2>
+        <p>Questions about these Terms? Email <a href="mailto:opensource@example.com">opensource@example.com</a>. The founder reads every message and replies within 24 hours.</p>
+      </section>
+    </div>
+  </div>
+
+  <footer>
+    Catalyst Edge Scanner · Boring legal on purpose · Audited 89% hit rate
+    <div class="links">
+      <a href="/scanner/">Scanner</a>
+      <a href="/security/">Security</a>
+      <a href="/privacy/">Privacy</a>
+      <a href="/changelog/">Changelog</a>
+      <a href="mailto:opensource@example.com">Contact</a>
+    </div>
+  </footer>
+
+  <script src="/lib/tier.js" defer></script>
+</body>
+</html>

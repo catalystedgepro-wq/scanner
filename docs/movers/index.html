@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Top Movers — Biggest Catalyst Score Changes | Catalyst Edge</title>
+<meta name="description" content="Today's biggest catalyst score movers. See which tickers gained the most signals, jumped in rankings, or showed the largest score increases.">
+<meta property="og:title" content="Top Movers — Catalyst Edge">
+<link rel="canonical" href="https://catalystedgescanner.com/movers/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#070a12;--surface:#0f1420;--surface2:#151c2c;--gold:#d4a843;--green:#22c55e;--red:#ef4444;--cyan:#06b6d4;--text:#e2e8f0;--dim:#94a3b8;--muted:#64748b;--border:#1e293b}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
+.wrap{max-width:1000px;margin:0 auto;padding:1.5rem}
+.nav{position:sticky;top:0;z-index:100;background:rgba(7,10,18,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:.75rem 1.5rem;display:flex;align-items:center;gap:1rem}
+.nav a{color:var(--gold);font-weight:600;font-size:.95rem}
+.nav .sep{color:var(--muted)}
+.hero{text-align:center;padding:2rem 0 1.5rem;border-bottom:1px solid var(--border);margin-bottom:1.5rem}
+.hero h1{font-size:clamp(1.3rem,4vw,2rem);font-weight:800;margin-bottom:.3rem}
+.hero h1 .up{color:var(--green)}
+.hero h1 .dn{color:var(--red)}
+.hero .sub{color:var(--dim);font-size:.85rem}
+.tabs{display:flex;gap:.4rem;justify-content:center;margin:1rem 0}
+.tab{padding:6px 16px;border-radius:8px;border:2px solid var(--border);background:var(--surface);color:var(--dim);font-size:.78rem;font-weight:700;cursor:pointer;font-family:'Space Grotesk',sans-serif;transition:all .2s}
+.tab.active-up{border-color:var(--green);color:var(--green);background:rgba(34,197,94,.06)}
+.tab.active-down{border-color:var(--red);color:var(--red);background:rgba(239,68,68,.06)}
+.tab:hover{border-color:var(--gold)}
+.mover-list{margin:1.5rem 0}
+.mover-header{display:grid;grid-template-columns:35px 75px 1fr 75px 75px 80px;gap:.5rem;padding:.5rem .6rem;font-size:.58rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;border-bottom:2px solid var(--border)}
+.mover-row{display:grid;grid-template-columns:35px 75px 1fr 75px 75px 80px;gap:.5rem;padding:.65rem .6rem;border-bottom:1px solid rgba(30,41,59,.4);align-items:center;transition:background .15s}
+.mover-row:hover{background:rgba(34,197,94,.02)}
+.mr-rank{font-size:.8rem;font-weight:800;font-family:'IBM Plex Mono',monospace;text-align:center}
+.mr-ticker{font-size:.9rem;font-weight:800;color:var(--gold)}
+.mr-bar{height:5px;border-radius:3px;background:var(--surface2);overflow:hidden}
+.mr-bar-fill{height:100%;border-radius:3px}
+.mr-val{font-size:.78rem;font-weight:700;font-family:'IBM Plex Mono',monospace;text-align:center}
+.mr-delta{font-size:.78rem;font-weight:800;font-family:'IBM Plex Mono',monospace;text-align:center;padding:2px 6px;border-radius:4px}
+.mr-delta.up{background:rgba(34,197,94,.1);color:var(--green)}
+.mr-delta.down{background:rgba(239,68,68,.1);color:var(--red)}
+.empty{text-align:center;padding:2rem;color:var(--muted)}
+.cta-bar{background:var(--surface);border:1px solid var(--gold);border-radius:10px;padding:1.25rem;text-align:center;margin:2rem 0}
+.cta-bar h3{color:var(--gold);font-size:1rem;margin-bottom:.3rem}
+.cta-bar p{color:var(--dim);font-size:.8rem;margin-bottom:.75rem}
+.cta-bar a{display:inline-block;padding:.5rem 1.4rem;background:linear-gradient(135deg,var(--gold),#f1ce88);color:#070a12;font-weight:700;border-radius:6px;font-size:.85rem}
+.footer{text-align:center;padding:1.5rem;font-size:.72rem;color:var(--muted);border-top:1px solid var(--border);margin-top:2rem}
+.footer a{color:var(--muted)}
+.loading{text-align:center;padding:3rem;color:var(--muted)}
+@media(max-width:600px){.mover-header,.mover-row{grid-template-columns:30px 65px 1fr 60px 65px}.mover-header>:nth-child(5),.mover-row>:nth-child(5){display:none}}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Catalyst Edge Top Movers","url":"https://catalystedgescanner.com/movers/","description":"Biggest catalyst score changes today — rising and falling movers","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@800;900&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/lib/cinematic-hero.css">
+  <link rel="stylesheet" href="/lib/cyber-shell.css">
+  <link rel="stylesheet" href="/lib/polish-tokens.css">
+</head>
+<body>
+  <div class="cy-bg" aria-hidden="true"></div>
+  <div class="cy-floor" aria-hidden="true"></div>
+  <div class="cy-vignette" aria-hidden="true"></div>
+  <div class="cy-scan" aria-hidden="true"></div>
+<div class="nav">
+  <a href="/">Catalyst Edge</a>
+  <span class="sep">/</span>
+  <span style="color:var(--dim);font-size:.9rem">Top Movers</span>
+</div>
+<div class="wrap">
+<section class="cin-hero cy-neon-hero cy-shimmer">
+    <div class="cin-grid">
+      <div class="cin-stat-stack">
+        <div class="cin-eyebrow"><span class="cin-live-dot"></span>TOP MOVERS · INTRADAY · LIVE</div>
+        <div class="cin-colossal">
+          <div class="cin-num-row"><span class="cin-num">±5%</span></div>
+          <div class="cin-side">
+          <span class="cin-tag">intraday <b>floor</b></span>
+          <span class="cin-tag">volume confirmation</span>
+          <span class="cin-tag">sector + catalyst tag</span>
+          </div>
+        </div>
+        <div class="cin-stamp">MOVERS//RADAR · v1.0 · <b>LIVE</b></div>
+      </div>
+      <div class="cin-h1-block">
+        <div class="cin-h1-eyebrow">🚀 Top Movers · Real-Time Intraday Leaders</div>
+        <h1 class="cin-headline">Where the tape is <em>actually moving right now</em>—not yesterday's leaderboard, <span class="cin-accent">today's</span>.</h1>
+        <p class="cin-lede">Intraday gainers and losers ranked by % move and volume. Each row tagged with its sector and any active SEC catalyst — so you can see whether the move is news-driven or pure momentum.</p>
+        <div class="cin-cta-row">
+          <a href="#movers-table" class="cin-btn-primary">See movers ↓</a>
+          <a href="/scanner/" class="cin-btn-ghost">Open scanner</a>
+        </div>
+        <div class="cin-strip">
+          <div class="cin-cell"><div class="cin-k">Up >5%</div><div class="cin-v bull" id="m-up">–</div></div>
+          <div class="cin-cell"><div class="cin-k">Down >5%</div><div class="cin-v bear" id="m-dn">–</div></div>
+          <div class="cin-cell"><div class="cin-k">With catalyst</div><div class="cin-v gold" id="m-cat">–</div></div>
+          <div class="cin-cell"><div class="cin-k">Updated</div><div class="cin-v cyan">live</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="tabs">
+    <button class="tab active-up" id="tab-up">Gainers</button>
+    <button class="tab" id="tab-down">Losers</button>
+  </div>
+  <div id="mover-list" class="mover-list">
+    <div class="loading">Loading movers...</div>
+  </div>
+  <div class="cta-bar">
+    <h3>Catch movers before market open</h3>
+    <p>Free daily email at 4 AM ET with ranked picks, momentum alerts, and convergence signals.</p>
+    <a href="/preview/">Subscribe Free</a>
+  </div>
+</div>
+<div class="footer">
+  &copy; 2026 Catalyst Edge &middot;
+  <a href="/">Scanner</a> &middot;
+  <a href="/rankings/">Rankings</a> &middot;
+  <a href="/screener/">Screener</a> &middot;
+  <a href="/signals/">Signals</a> &middot;
+  <a href="/spotlight/">Spotlight</a> &middot;
+  <a href="/lookup/">Lookup</a> &middot;
+  <a href="/momentum/">Momentum</a> &middot;
+  <a href="/winners/">Winners</a> &middot;
+  <a href="/map/">Map</a> &middot;
+  <a href="/digest/">Digest</a> &middot;
+  <a href="/glossary/">Glossary</a> &middot;
+  Not financial advice.
+</div>
+<script>
+(function(){
+  var list = document.getElementById('mover-list');
+  var tabUp = document.getElementById('tab-up');
+  var tabDown = document.getElementById('tab-down');
+  var rising = [];
+  var falling = [];
+  var activeTab = 'up';
+
+  function el(tag, cls, text) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text) e.textContent = text;
+    return e;
+  }
+
+  function renderList(movers, direction) {
+    list.textContent = '';
+    if (movers.length === 0) {
+      list.appendChild(el('div', 'empty', 'No ' + (direction === 'up' ? 'gainers' : 'losers') + ' detected. Need multiple days of data.'));
+      return;
+    }
+
+    var header = el('div', 'mover-header');
+    ['#', 'Ticker', 'Change', 'Current', 'Prior', 'Delta'].forEach(function(h) {
+      header.appendChild(el('span', '', h));
+    });
+    list.appendChild(header);
+
+    var maxDelta = Math.abs(movers[0].delta || 1);
+
+    movers.forEach(function(m, i) {
+      var row = el('div', 'mover-row');
+
+      var rank = el('span', 'mr-rank', String(i + 1));
+      rank.style.color = i < 3 ? (direction === 'up' ? 'var(--green)' : 'var(--red)') : 'var(--muted)';
+      row.appendChild(rank);
+
+      var tickerLink = document.createElement('a');
+      tickerLink.href = '/lookup/#' + m.ticker;
+      tickerLink.className = 'mr-ticker';
+      tickerLink.textContent = m.ticker;
+      var tickerCell = el('span', '');
+      tickerCell.appendChild(tickerLink);
+      row.appendChild(tickerCell);
+
+      // Bar
+      var barWrap = el('div', '');
+      var bar = el('div', 'mr-bar');
+      var fill = el('div', 'mr-bar-fill');
+      fill.style.width = Math.min(Math.abs(m.delta) / maxDelta * 100, 100) + '%';
+      fill.style.background = direction === 'up' ? 'var(--green)' : 'var(--red)';
+      bar.appendChild(fill);
+      barWrap.appendChild(bar);
+      row.appendChild(barWrap);
+
+      var curr = el('span', 'mr-val', String(m.current_score));
+      curr.style.color = direction === 'up' ? 'var(--green)' : 'var(--red)';
+      row.appendChild(curr);
+
+      row.appendChild(el('span', 'mr-val', String(m.prior_avg)));
+
+      var delta = el('span', 'mr-delta ' + (direction === 'up' ? 'up' : 'down'));
+      delta.textContent = (m.delta > 0 ? '+' : '') + m.delta + ' (' + (m.pct_change > 0 ? '+' : '') + m.pct_change + '%)';
+      row.appendChild(delta);
+
+      list.appendChild(row);
+    });
+  }
+
+  function switchTab(tab) {
+    activeTab = tab;
+    if (tab === 'up') {
+      tabUp.className = 'tab active-up';
+      tabDown.className = 'tab';
+      renderList(rising, 'up');
+    } else {
+      tabUp.className = 'tab';
+      tabDown.className = 'tab active-down';
+      renderList(falling, 'down');
+    }
+  }
+
+  tabUp.addEventListener('click', function(){ switchTab('up'); });
+  tabDown.addEventListener('click', function(){ switchTab('down'); });
+
+  fetch('/api/momentum').then(function(r){ return r.json(); }).then(function(d) {
+    rising = d.rising || [];
+    falling = d.falling || [];
+    switchTab('up');
+  }).catch(function() {
+    list.textContent = 'Could not load movers data.';
+  });
+})();
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KV1VDK22VC"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-KV1VDK22VC');</script>
+<script>
+(function(){
+  var f=function(id,v){var n=document.getElementById(id); if(n && v!=null) n.textContent=v;};
+  fetch('/api/momentum').then(function(r){return r.json();}).then(function(d){
+    var rising=(d&&d.rising)||[];
+    var falling=(d&&d.falling)||[];
+    var up=rising.filter(function(x){return Math.abs(parseFloat(x.pct_change||0))>=5;}).length;
+    var dn=falling.filter(function(x){return Math.abs(parseFloat(x.pct_change||0))>=5;}).length;
+    var cat=rising.filter(function(x){return parseFloat(x.current_score||0)>=10;}).length;
+    f('m-up', up.toLocaleString());
+    f('m-dn', dn.toLocaleString());
+    f('m-cat', cat.toLocaleString());
+  }).catch(function(){});
+})();
+</script>
+</body>
+</html>

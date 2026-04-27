@@ -1,0 +1,13 @@
+date=2026-04-02
+subject=8 pre-market gap plays for Apr 2 -- scanner results
+html_size=125,732 bytes
+sent_ok=8
+sent_fail=0
+  OK  [free] shekerah@gmail.com
+  OK  [free] leteztus@gmail.com
+  OK  [free] opensource@example.com
+  OK  [free] mfilsaim@alumni.nd.edu
+  OK  [free] pozanda@gmail.com
+  OK  [free] suzettpierre@aol.com
+  OK  [free] xraygarden@aol.com
+  OK  [free] tacomell446@gmail.com

@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>What is a Short Squeeze? Identifying Squeeze Candidates | Catalyst Edge</title>
+<meta name="description" content="Understand short squeeze mechanics, how to identify squeeze candidates using short interest data and SEC filings, and how Catalyst Edge&#x27;s squeeze radar works.">
+<link rel="canonical" href="https://catalystedgescanner.com/glossary/what-is-squeeze-play/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What short interest level indicates a potential squeeze?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Generally, 15%+ of float shorted is considered elevated. Combined with a days-to-cover ratio above 5 and rising borrow rates, the conditions for a squeeze are forming. But without a catalyst (earnings beat, insider buying, viral social media attention), high short interest alone rarely triggers a squeeze."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does Catalyst Edge find squeeze candidates?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The squeeze radar cross-references short interest data with SEC filing catalysts. When a heavily shorted stock receives a positive 8-K filing or insider cluster buy, the system flags it as COILED \u2014 conditions are set for a potential squeeze."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is short squeeze trading legal?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Buying a stock because you believe it will go up \u2014 even if that belief is based on short squeeze potential \u2014 is legal. What's illegal is coordinating purchases to manipulate the price. Individual analysis and independent trading decisions are perfectly legal."
+      }
+    }
+  ]
+}
+</script>
+<style>
+:root {
+  --bg: #0a0e1a;
+  --surface: #111827;
+  --surface-2: #1a2035;
+  --border: #1e293b;
+  --text: #e2e8f0;
+  --text-dim: #94a3b8;
+  --accent: #d4a853;
+  --accent-glow: rgba(212, 168, 83, 0.15);
+  --blue: #3b82f6;
+  --green: #10b981;
+  --red: #ef4444;
+  --font: 'Space Grotesk', system-ui, sans-serif;
+  --mono: 'IBM Plex Mono', monospace;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+.container { max-width: 800px; margin: 0 auto; padding: 2rem 1.5rem; }
+
+/* Nav */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(10, 14, 26, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0.75rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+}
+nav a { color: var(--accent); text-decoration: none; font-weight: 600; font-size: 0.95rem; }
+nav a:hover { text-decoration: underline; }
+nav .sep { color: var(--text-dim); }
+
+/* Hero */
+.hero {
+  text-align: center;
+  padding: 4rem 0 3rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 2rem;
+}
+.hero h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 800;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+}
+.hero .subtitle {
+  font-size: 1.15rem;
+  color: var(--text-dim);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Content sections */
+.content-section {
+  margin-bottom: 2.5rem;
+}
+.content-section h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--accent-glow);
+}
+.content-section p {
+  color: var(--text-dim);
+  font-size: 1.05rem;
+}
+
+/* FAQ */
+.faq-section { margin-top: 3rem; }
+.faq-section h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--accent);
+}
+.faq-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
+  overflow: hidden;
+}
+.faq-item summary {
+  padding: 1rem 1.25rem;
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.faq-item summary::before {
+  content: '+';
+  font-family: var(--mono);
+  color: var(--accent);
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+.faq-item[open] summary::before { content: '−'; }
+.faq-item p {
+  padding: 0 1.25rem 1rem;
+  color: var(--text-dim);
+  line-height: 1.6;
+}
+
+/* CTA */
+.cta-box {
+  background: linear-gradient(135deg, var(--surface) 0%, var(--surface-2) 100%);
+  border: 1px solid var(--accent);
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  margin: 3rem 0;
+}
+.cta-box h3 {
+  color: var(--accent);
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+}
+.cta-box p {
+  color: var(--text-dim);
+  margin-bottom: 1.25rem;
+}
+.cta-box a {
+  display: inline-block;
+  background: var(--accent);
+  color: var(--bg);
+  font-weight: 700;
+  padding: 0.75rem 2rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.cta-box a:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px var(--accent-glow);
+}
+
+/* Related */
+.related {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+.related h3 {
+  font-size: 1rem;
+  color: var(--text-dim);
+  margin-bottom: 0.75rem;
+}
+.related a {
+  color: var(--blue);
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+.related a:hover { text-decoration: underline; }
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 2rem 0;
+  color: var(--text-dim);
+  font-size: 0.85rem;
+  border-top: 1px solid var(--border);
+  margin-top: 2rem;
+}
+footer a { color: var(--accent); text-decoration: none; }
+</style>
+</head>
+<body>
+<nav>
+  <a href="/">Catalyst Edge</a>
+  <span class="sep">/</span>
+  <a href="/glossary/sec-filing-types-for-traders/">Glossary</a>
+  <span class="sep">/</span>
+  <span style="color:var(--text-dim);font-size:0.9rem">What is a Short Squeeze?</span>
+</nav>
+
+<div class="container">
+  <div class="hero">
+    <h1>What is a Short Squeeze?</h1>
+    <p class="subtitle">Mechanics, Signals, and How to Find Candidates</p>
+  </div>
+
+    <section class="content-section">
+      <h2>Short squeeze mechanics</h2>
+      <p>A short squeeze occurs when a heavily shorted stock rises sharply, forcing short sellers to buy shares to cover their positions. This buying creates more upward pressure, forcing more shorts to cover, creating a feedback loop. The result: explosive, parabolic price moves that can send a stock up 50-500% in days. GameStop (GME) in January 2021 is the most famous example.</p>
+    </section>
+    <section class="content-section">
+      <h2>Identifying squeeze candidates</h2>
+      <p>The ingredients for a squeeze: (1) High short interest — 15%+ of float shorted, (2) Low float — fewer shares available means shorts are more trapped, (3) Rising borrow rate — harder to maintain short positions, (4) A catalyst — the spark that starts the covering. SEC filings provide the catalyst layer: an 8-K with positive news or insider buying can ignite a squeeze that pure price-action scanners miss.</p>
+    </section>
+    <section class="content-section">
+      <h2>The Catalyst Edge squeeze radar</h2>
+      <p>The scanner monitors all squeeze ingredients: short interest percentage, days-to-cover (how long it would take shorts to exit), borrow rates, float size, and SEC filing catalysts. Stocks are classified into stages: WATCH (conditions building), COILED (high short interest + catalyst detected), IGNITION (social media discovery + price breakout), and ACTIVE (squeeze in progress).</p>
+    </section>
+    <section class="content-section">
+      <h2>Squeeze trading risks</h2>
+      <p>Squeezes are high-reward but high-risk. Timing is critical — entering too early means holding through pain, entering too late means buying the top. Always use stops. Size positions small relative to your portfolio. And remember: most squeeze candidates never actually squeeze. The ones that do require the convergence of high short interest, a real catalyst, and retail/institutional attention.</p>
+    </section>
+
+  <div class="cta-box">
+    <h3>Try the Free Scanner</h3>
+    <p>Catalyst Edge scans 300+ SEC filings every day and publishes a ranked watchlist before market open.</p>
+    <a href="https://catalystedgescanner.com/">Open Scanner</a>
+  </div>
+
+  <div class="faq-section">
+    <h2>Frequently Asked Questions</h2>
+
+      <details class="faq-item">
+        <summary>What short interest level indicates a potential squeeze?</summary>
+        <p>Generally, 15%+ of float shorted is considered elevated. Combined with a days-to-cover ratio above 5 and rising borrow rates, the conditions for a squeeze are forming. But without a catalyst (earnings beat, insider buying, viral social media attention), high short interest alone rarely triggers a squeeze.</p>
+      </details>
+      <details class="faq-item">
+        <summary>How does Catalyst Edge find squeeze candidates?</summary>
+        <p>The squeeze radar cross-references short interest data with SEC filing catalysts. When a heavily shorted stock receives a positive 8-K filing or insider cluster buy, the system flags it as COILED — conditions are set for a potential squeeze.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Is short squeeze trading legal?</summary>
+        <p>Yes. Buying a stock because you believe it will go up — even if that belief is based on short squeeze potential — is legal. What&#x27;s illegal is coordinating purchases to manipulate the price. Individual analysis and independent trading decisions are perfectly legal.</p>
+      </details>
+  </div>
+
+  <div class="related">
+    <h3>Related Topics</h3>
+    <p><a href="/glossary/what-is-form-4/">What is SEC Form 4?</a> &middot; <a href="/glossary/what-is-sc-13d/">What is Schedule 13D?</a> &middot; <a href="/glossary/what-is-gap-up-stock/">What is a Gap Up Stock?</a> &middot; <a href="/glossary/sec-filing-types-for-traders/">SEC Filing Types for Traders</a> &middot; <a href="/glossary/what-is-lockup-expiration/">What is IPO Lockup Expiration?</a> &middot; <a href="/glossary/premarket-gap-scanner/">Pre-Market Gap Scanner</a> &middot; <a href="/glossary/insider-buying-signals/">Insider Buying Signals</a> &middot; <a href="/glossary/what-is-sympathy-play/">What is a Sympathy Play?</a></p>
+  </div>
+</div>
+
+<footer>
+  <a href="https://catalystedgescanner.com/">Catalyst Edge Scanner</a> &middot;
+  <a href="https://catalystedge.agency">Daily Newsletter</a> &middot;
+  &copy; 2026 Catalyst Edge
+</footer>
+</body>
+</html>

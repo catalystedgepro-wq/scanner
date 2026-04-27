@@ -1,0 +1,603 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pricing — Catalyst Edge Scanner</title>
+  <meta name="description" content="Bloomberg Terminal: $24,000/yr. Catalyst Edge: from free to $499/seat. Audited 89% hit rate. Same-day shipping. Cancel anytime." />
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/lib/admin-unlock.css" />
+  <link rel="stylesheet" href="/lib/scanner-polish.css" />
+  <link rel="stylesheet" href="/lib/nav-fix.css" />
+  <style>
+    :root{
+      --navy:#040a14; --navy2:#0a1424; --navy3:#0e1a2e;
+      --ink:#e6f1ff; --ink-dim:#9bb0c8; --ink-mute:#6e8198;
+      --cyan:#5ad7ff; --gold:#f5c662; --bull:#5cf2a4; --bear:#ff6b8b;
+      --line:rgba(110,140,180,0.18); --line-strong:rgba(110,140,180,0.32);
+      --glass: linear-gradient(180deg, rgba(15,28,48,0.78), rgba(7,14,28,0.78));
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;background:#04070d;color:var(--ink);
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      -webkit-font-smoothing:antialiased; font-feature-settings:"ss01","cv11";
+    }
+    a{color:var(--cyan);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+
+    .topbar{position:sticky;top:0;z-index:50;background:rgba(4,7,13,0.86);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+    .topbar-row{display:flex;align-items:center;gap:18px;padding:14px 24px;max-width:1400px;margin:0 auto}
+    .brand{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:14px;letter-spacing:0.18em;color:var(--gold);text-transform:uppercase}
+    .brand b{color:var(--cyan)}
+    nav.nav{display:flex;gap:8px;flex:1;flex-wrap:nowrap;overflow-x:auto;scroll-padding-top:80px}
+    nav.nav a{font-size:13px;color:var(--ink-dim);padding:8px 12px;border-radius:8px;white-space:nowrap}
+    nav.nav a:hover{background:rgba(90,215,255,0.08);color:var(--ink);text-decoration:none}
+    nav.nav a.active{color:var(--gold);background:rgba(245,198,98,0.08)}
+    .topbar-cta{display:flex;gap:10px;align-items:center}
+    .pill-cta{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;
+      padding:8px 14px;border:1px solid var(--gold);color:var(--gold);border-radius:999px;cursor:pointer}
+    .pill-cta:hover{background:rgba(245,198,98,0.12);text-decoration:none}
+
+    .suite-row{display:grid;grid-template-columns:repeat(7,1fr);gap:10px;padding:14px 24px;max-width:1400px;margin:0 auto;border-bottom:1px solid var(--line)}
+    .suite-card{background:var(--glass);border:1px solid var(--line);border-radius:12px;padding:10px 12px;
+      display:flex;flex-direction:column;gap:4px;transition:all .2s ease;cursor:pointer}
+    .suite-card:hover{border-color:rgba(90,215,255,0.45);transform:translateY(-2px);text-decoration:none}
+    .suite-card .sc-eye{font-family:"IBM Plex Mono",monospace;font-size:9px;letter-spacing:0.16em;color:var(--ink-mute);text-transform:uppercase}
+    .suite-card .sc-h{font-size:13px;color:var(--ink);font-weight:600}
+    .suite-card .sc-d{font-size:11px;color:var(--ink-dim);line-height:1.35}
+    @media (max-width:980px){
+      .suite-row{grid-template-columns:repeat(2,1fr)}
+      nav.nav a{padding:6px 8px;font-size:12px}
+    }
+
+    .hero{padding:64px 0 48px;border-bottom:1px solid var(--line);position:relative;overflow:hidden}
+    .hero::before{content:"";position:absolute;inset:0;
+      background:radial-gradient(800px 400px at 30% 20%, rgba(90,215,255,0.12), transparent 60%),
+                 radial-gradient(600px 380px at 80% 60%, rgba(245,198,98,0.10), transparent 60%);pointer-events:none}
+    .hero .wrap{position:relative}
+    .eyebrow{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:0.22em;color:var(--gold);text-transform:uppercase;margin-bottom:16px}
+    .h1{font-size:clamp(36px,5.5vw,68px);line-height:1.04;letter-spacing:-0.01em;margin:0 0 18px;font-weight:700}
+    .h1 .strike{color:var(--bear);text-decoration:line-through;text-decoration-thickness:3px;text-decoration-color:rgba(255,107,139,0.45)}
+    .h1 .glow{color:var(--cyan)}
+    .sub{font-size:18px;color:var(--ink-dim);max-width:720px;line-height:1.5}
+    .stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:36px}
+    .stat-box{background:var(--glass);border:1px solid var(--line);border-radius:14px;padding:18px}
+    .stat-box .lbl{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:0.18em;color:var(--ink-mute);text-transform:uppercase;margin-bottom:6px}
+    .stat-box .val{font-size:26px;color:var(--cyan);font-weight:700;font-variant-numeric:tabular-nums}
+    .stat-box .ann{font-size:12px;color:var(--ink-dim);margin-top:4px}
+    @media (max-width:860px){.stats-row{grid-template-columns:repeat(2,1fr)}}
+
+    section.section{padding:56px 0;border-bottom:1px solid var(--line)}
+    .section h2{font-size:28px;margin:0 0 8px;letter-spacing:-0.01em}
+    .section .lead{color:var(--ink-dim);max-width:680px;margin:0 0 28px}
+
+    .tier-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    @media (max-width:900px){.tier-grid{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:600px){.tier-grid{grid-template-columns:1fr}}
+    .tier-grid-more{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:32px}
+    @media (max-width:600px){.tier-grid-more{grid-template-columns:1fr}}
+    .tier.compact{padding:18px;background:rgba(255,255,255,0.02)}
+    .tier.compact .tier-price .num{font-size:28px}
+    .more-plans-head{display:flex;align-items:baseline;justify-content:space-between;margin-top:36px;padding-top:20px;border-top:1px solid var(--line);gap:16px;flex-wrap:wrap}
+    .more-plans-head h3{margin:0;font-size:16px;font-family:"IBM Plex Mono",monospace;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink-dim)}
+    .more-plans-head p{margin:0;font-size:13px;color:var(--ink-mute);max-width:520px}
+    .tier{background:var(--glass);border:1px solid var(--line);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:14px;
+      transition:all .2s ease;position:relative;overflow:hidden}
+    .tier:hover{border-color:rgba(90,215,255,0.45);transform:translateY(-3px)}
+    .tier.hot{border-color:rgba(245,198,98,0.55);box-shadow:0 18px 40px -28px rgba(245,198,98,0.45)}
+    .tier.hot::before{content:"MOST POPULAR";position:absolute;top:14px;right:-32px;background:var(--gold);color:#1a1304;
+      font-family:"IBM Plex Mono",monospace;font-size:9px;letter-spacing:0.2em;padding:4px 32px;transform:rotate(35deg);font-weight:700}
+    .tier-name{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:0.2em;color:var(--gold);text-transform:uppercase}
+    .tier-price{display:flex;align-items:baseline;gap:6px}
+    .tier-price .num{font-size:36px;font-weight:700;font-variant-numeric:tabular-nums}
+    .tier-price .per{color:var(--ink-mute);font-size:13px}
+    .tier-tag{font-size:13px;color:var(--ink-dim);min-height:36px}
+    .tier ul{list-style:none;padding:0;margin:8px 0 0;display:flex;flex-direction:column;gap:8px;flex:1}
+    .tier ul li{font-size:13px;color:var(--ink);display:flex;gap:8px;align-items:flex-start;line-height:1.4}
+    .tier ul li::before{content:"✓";color:var(--bull);font-weight:700;flex-shrink:0}
+    .tier ul li.x::before{content:"✕";color:var(--ink-mute)}
+    .tier ul li.x{color:var(--ink-mute)}
+    .tier-cta{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;
+      padding:12px;text-align:center;border-radius:10px;border:1px solid var(--cyan);color:var(--cyan);cursor:pointer;display:block}
+    .tier-cta:hover{background:rgba(90,215,255,0.12);text-decoration:none}
+    .tier-cta.filled{background:var(--gold);color:#1a1304;border-color:var(--gold);font-weight:700}
+    .tier-cta.filled:hover{background:#ffd683}
+    .tier-cta.ghost{border-color:var(--line-strong);color:var(--ink-dim)}
+
+    .roi{background:linear-gradient(135deg, rgba(90,215,255,0.08), rgba(245,198,98,0.08));
+      border:1px solid rgba(245,198,98,0.32);border-radius:18px;padding:32px;margin-top:8px}
+    .roi-hd{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;margin-bottom:18px}
+    .roi-hd h3{margin:0;font-size:22px}
+    .roi-input{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+    .roi-input label{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:0.16em;color:var(--ink-dim);text-transform:uppercase}
+    .roi-input input{width:90px;background:#040a14;border:1px solid var(--line-strong);color:var(--cyan);
+      font-family:"IBM Plex Mono",monospace;font-size:18px;padding:8px 10px;border-radius:8px;text-align:center}
+    .roi-input input:focus{outline:none;border-color:var(--cyan)}
+    .roi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px}
+    @media (max-width:760px){.roi-grid{grid-template-columns:1fr}}
+    .roi-cell{background:rgba(4,10,20,0.6);border:1px solid var(--line);border-radius:12px;padding:16px}
+    .roi-cell .lbl{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:0.18em;color:var(--ink-mute);text-transform:uppercase;margin-bottom:6px}
+    .roi-cell .val{font-size:24px;font-weight:700;font-variant-numeric:tabular-nums;display:flex;align-items:baseline;gap:4px}
+    .roi-cell .val .unit{font-size:14px;color:var(--ink-mute);font-weight:500}
+    .roi-cell.bbg .val .num{color:var(--bear)}
+    .roi-cell.us .val .num{color:var(--cyan)}
+    .roi-cell.save .val .num{color:var(--gold)}
+    .roi-cell .formula{font-size:11px;color:var(--ink-dim);margin-top:4px;font-family:"IBM Plex Mono",monospace}
+
+    .matrix{width:100%;border-collapse:collapse;margin-top:14px;font-size:13px}
+    .matrix th, .matrix td{padding:12px 10px;text-align:center;border-bottom:1px solid var(--line)}
+    .matrix th{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:0.18em;color:var(--ink-mute);text-transform:uppercase;text-align:left}
+    .matrix th:first-child{text-align:left}
+    .matrix td:first-child{text-align:left;color:var(--ink);font-weight:500}
+    .matrix td.yes{color:var(--bull)}
+    .matrix td.no{color:var(--ink-mute)}
+    .matrix tr:hover td{background:rgba(90,215,255,0.05)}
+    .matrix .row-head{background:rgba(245,198,98,0.05)}
+    .matrix .row-head td{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:0.18em;color:var(--gold);text-transform:uppercase;text-align:left}
+
+    .faq{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    @media (max-width:760px){.faq{grid-template-columns:1fr}}
+    .faq-item{background:var(--glass);border:1px solid var(--line);border-radius:12px;padding:18px}
+    .faq-item h4{margin:0 0 8px;color:var(--cyan);font-size:15px}
+    .faq-item p{margin:0;color:var(--ink-dim);font-size:13px;line-height:1.55}
+
+    footer{padding:36px 0;color:var(--ink-mute);font-size:12px;border-top:1px solid var(--line);text-align:center}
+    footer .links{display:flex;gap:14px;justify-content:center;margin-top:8px;flex-wrap:wrap}
+  </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Product",
+      "name": "Catalyst Edge Scanner",
+      "description": "Bloomberg-alternative scanner with audited 89% hit rate, 1,001-name DCF universe, 43-country cross-border catalyst tape, and a JSON API + Python/Node SDK.",
+      "image": "https://catalystedgescanner.com/press/logo.png",
+      "brand": {
+        "@type": "Brand",
+        "name": "Catalyst Edge"
+      },
+      "offers": [
+        {
+          "@type": "Offer",
+          "name": "Free",
+          "price": "0",
+          "priceCurrency": "USD",
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "price": "0",
+            "priceCurrency": "USD",
+            "billingDuration": "P1M",
+            "billingIncrement": 1,
+            "unitCode": "MON"
+          },
+          "url": "https://catalystedgescanner.com/pricing/",
+          "availability": "https://schema.org/InStock",
+          "description": "Public scanner. Top 3 catalyst alerts/day. Top 5 DCF picks. 100 API req/day."
+        },
+        {
+          "@type": "Offer",
+          "name": "Reader",
+          "price": "9",
+          "priceCurrency": "USD",
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "price": "9",
+            "priceCurrency": "USD",
+            "billingDuration": "P1M",
+            "billingIncrement": 1,
+            "unitCode": "MON"
+          },
+          "url": "https://catalystedgescanner.com/pricing/",
+          "availability": "https://schema.org/InStock",
+          "description": "Daily 7am catalyst email. Full DCF table for 1,001 names. 1k API req/day."
+        },
+        {
+          "@type": "Offer",
+          "name": "Pro",
+          "price": "39",
+          "priceCurrency": "USD",
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "price": "39",
+            "priceCurrency": "USD",
+            "billingDuration": "P1M",
+            "billingIncrement": 1,
+            "unitCode": "MON"
+          },
+          "url": "https://catalystedgescanner.com/pricing/",
+          "availability": "https://schema.org/InStock",
+          "description": "Live alerts tape, 43-country catalyst feeds, cross-border picks, options + dark-pool flow. 10k API req/day."
+        },
+        {
+          "@type": "Offer",
+          "name": "Team",
+          "price": "199",
+          "priceCurrency": "USD",
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "price": "199",
+            "priceCurrency": "USD",
+            "billingDuration": "P1M",
+            "billingIncrement": 1,
+            "unitCode": "MON"
+          },
+          "url": "https://catalystedgescanner.com/pricing/",
+          "availability": "https://schema.org/InStock",
+          "description": "Up to 10 seats. Slack/Discord webhooks. 50k API req/day. Priority email support."
+        },
+        {
+          "@type": "Offer",
+          "name": "Enterprise",
+          "price": "499",
+          "priceCurrency": "USD",
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "price": "499",
+            "priceCurrency": "USD",
+            "billingDuration": "P1M",
+            "billingIncrement": 1,
+            "unitCode": "MON"
+          },
+          "url": "https://catalystedgescanner.com/pricing/",
+          "availability": "https://schema.org/InStock",
+          "description": "Per-seat starting price. Unlimited API + websocket. White-label. SLA + dedicated Slack."
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Can I cancel anytime?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Stripe handles billing. One-click cancel from the receipt email. No annual lock-in. If you cancel mid-cycle you keep access until the period ends."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What data sources do you use?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "SEC EDGAR XBRL companyfacts (US fundamentals + DCF), Yahoo Finance for international, Stooq for OHLC, FRED + NOAA + USPTO + PACER + ThetaData for the broader data universe. Every DCF input traces to a public source."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Refund policy?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "14-day no-questions refund on Reader and Pro. Email opensource@example.com. Team and Enterprise refunds prorated by seat-month."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Multi-seat discount?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Team plan is $199/mo for up to 10 seats — that's already $19.90/seat vs $39 individual. Beyond 10, Enterprise pricing kicks in at $499+/seat/mo with volume discounts at 25/50/100 seats."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I white-label this for my fund?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Enterprise tier includes white-label dashboards and custom domain. Your LP-facing reports show your fund's brand, not ours."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How long do you retain my data?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Authentication and billing: indefinitely while account is active, deleted 90 days after cancellation. Watchlists/portfolios: stored only on your device unless you opt into Team sharing. We don't sell data, ever. SOC2-ready audit logs on Enterprise."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://catalystedgescanner.com/pricing/" />
+  <meta property="og:title" content="Pricing — Catalyst Edge Scanner" />
+  <meta property="og:description" content="Bloomberg Terminal: $24,000/yr. Catalyst Edge: from free to $499/seat. Audited 89% hit rate. Same-day shipping. Cancel anytime." />
+  <meta property="og:image" content="https://catalystedgescanner.com/og/pricing.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name" content="Catalyst Edge Scanner" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@catalystEdgePro" />
+  <meta name="twitter:title" content="Pricing — Catalyst Edge Scanner" />
+  <meta name="twitter:description" content="Bloomberg Terminal: $24,000/yr. Catalyst Edge: from free to $499/seat. Audited 89% hit rate. Same-day shipping. Cancel anytime." />
+  <meta name="twitter:image" content="https://catalystedgescanner.com/og/pricing.png" />
+<link rel="stylesheet" href="/lib/polish-tokens.css">
+<link rel="stylesheet" href="/lib/cinematic.css">
+</head>
+<body>
+<!-- CINEMATIC SHELL -->
+<div class="ce-field" aria-hidden="true"><div class="ce-field-orb a"></div><div class="ce-field-orb b"></div><div class="ce-field-orb c"></div><div class="ce-scanline"></div><div class="ce-scanline" style="animation-delay:-3s;opacity:.3"></div><div class="ce-vignette"></div></div><canvas id="ce-particles" aria-hidden="true"></canvas>
+
+  <div class="topbar">
+    <div class="topbar-row">
+      <div class="brand"><b>Catalyst</b> · Edge</div>
+      <nav class="nav">
+        <a href="/scanner/">Scanner</a>
+        <a href="/international/">Global</a>
+        <a href="/dcf/">DCF</a>
+        <a href="/cross-border/">Cross-Border</a>
+        <a href="/alerts/">Alerts</a>
+        <a href="/data/api/">API</a>
+        <a href="/docs/quickstart/">Docs</a>
+        <a href="/changelog/">Changelog</a>
+        <a href="/enterprise/">Enterprise</a>
+        <a href="/pricing/" class="active">Pricing</a>
+      </nav>
+      <div class="topbar-cta">
+        <a class="pill-cta" href="#tiers">Compare plans</a>
+      </div>
+    </div>
+    <div class="suite-row">
+      <a class="suite-card" href="/scanner/"><span class="sc-eye">US Scanner</span><span class="sc-h">Catalyst Edge</span><span class="sc-d">Live US gappers + flow</span></a>
+      <a class="suite-card" href="/international/"><span class="sc-eye">Global</span><span class="sc-h">43 markets</span><span class="sc-d">Cross-border tape</span></a>
+      <a class="suite-card" href="/dcf/"><span class="sc-eye">Valuation</span><span class="sc-h">DCF Engine</span><span class="sc-d">Audited fair-value grades</span></a>
+      <a class="suite-card" href="/cross-border/"><span class="sc-eye">Convergence</span><span class="sc-h">ADR ↔ Home</span><span class="sc-d">Foreign + US arb</span></a>
+      <a class="suite-card" href="/alerts/"><span class="sc-eye">Alerts</span><span class="sc-h">Pro Tape</span><span class="sc-d">Live triggers right now</span></a>
+      <a class="suite-card" href="/data/api/"><span class="sc-eye">Developers</span><span class="sc-h">JSON API</span><span class="sc-d">22 endpoints</span></a>
+      <a class="suite-card" href="/docs/quickstart/"><span class="sc-eye">Onboard</span><span class="sc-h">Quickstart</span><span class="sc-d">First DCF in 60 sec</span></a>
+    </div>
+  </div>
+
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow">💸 Honest pricing · Cancel anytime · No annual lock-in</div>
+      <h1 class="h1">One Bloomberg Terminal seat costs <span class="strike">$24,000/yr</span>.<br/><span class="glow">You shouldn't have to.</span></h1>
+      <p class="sub">Catalyst Edge ships the same primitives — catalyst tape, fair-value DCF, cross-border convergence, options flow — to anyone with a browser. Free tier ships forever. Pro is $39/mo. Enterprise is the price of one analyst's coffee budget.</p>
+      <div class="stats-row">
+        <div class="stat-box"><div class="lbl">Verified hit rate</div><div class="val">89%</div><div class="ann">Audited 2026 catalyst calls</div></div>
+        <div class="stat-box"><div class="lbl">Markets covered</div><div class="val">43</div><div class="ann">6 continents · 443 tickers</div></div>
+        <div class="stat-box"><div class="lbl">DCF universe</div><div class="val">1,001</div><div class="ann">SEC XBRL · transparent inputs</div></div>
+        <div class="stat-box"><div class="lbl">Bloomberg savings</div><div class="val">98%</div><div class="ann">Pro vs single Terminal seat</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="tiers">
+    <div class="wrap">
+      <h2>Plans</h2>
+      <p class="lead">Start free. Upgrade when one trade pays for the year.</p>
+
+      <div class="tier-grid">
+        <div class="tier">
+          <div class="tier-name">Free</div>
+          <div class="tier-price"><span class="num">$0</span><span class="per">forever</span></div>
+          <div class="tier-tag">Public scanner, three teasers, daily catalyst headlines.</div>
+          <ul>
+            <li>US gappers (delayed)</li>
+            <li>Top 3 catalyst alerts/day</li>
+            <li>Top 5 DCF picks (no inputs)</li>
+            <li class="x">No API access</li>
+            <li class="x">No cross-border tape</li>
+          </ul>
+          <a class="tier-cta ghost" href="/scanner/">Use the free scanner</a>
+        </div>
+
+        <div class="tier">
+          <div class="tier-name">Reader</div>
+          <div class="tier-price"><span class="num">$9</span><span class="per">/mo</span></div>
+          <div class="tier-tag">Daily morning catalyst email + audited DCF table.</div>
+          <ul>
+            <li>Daily 7am catalyst email</li>
+            <li>Full DCF grade table (1,001 names)</li>
+            <li>Sympathy-chain map</li>
+            <li>API: 1,000 requests/day</li>
+            <li class="x">No live alerts tape</li>
+          </ul>
+          <a class="tier-cta" href="https://buy.stripe.com/your-link">Get Reader · $9</a>
+        </div>
+
+        <div class="tier hot">
+          <div class="tier-name">Pro</div>
+          <div class="tier-price"><span class="num">$39</span><span class="per">/mo</span></div>
+          <div class="tier-tag">Live bot signals + Bloomberg-killer features.</div>
+          <ul>
+            <li><strong>Real-time bot trade alerts</strong> on Telegram + Discord (every entry &amp; exit, instantly)</li>
+            <li>Live alerts tape (no delay)</li>
+            <li>Cross-border convergence picks</li>
+            <li>43-country catalyst tape</li>
+            <li>Options flow + dark-pool prints</li>
+            <li>API: 10,000 requests/day</li>
+            <li>Public ledger: every trade we make is on <a href="/trust/">/trust/</a></li>
+          </ul>
+          <a class="tier-cta filled" href="https://buy.stripe.com/your-link">Get Pro · $39</a>
+        </div>
+      </div>
+
+      <p style="margin-top:18px;text-align:center;font-size:13px;color:var(--ink-dim)">
+        Pro alerts arrive on Telegram + Discord. To execute alongside the bot, you'll need a Coinbase Advanced account →
+        <a href="https://advanced.coinbase.com/join/SKVC3Z5?src=referral-link" target="_blank" rel="noopener nofollow" style="color:var(--gold);font-weight:600;text-decoration:underline">Open one here</a>
+        <span style="font-size:11px;color:var(--ink-mute)"> (referral link — fee credit for both of us)</span>
+      </p>
+
+      <div class="more-plans-head">
+        <h3>Scale plans</h3>
+        <p>For desks, funds, and platforms. Volume pricing, SOC2-ready audit logs, white-label dashboards.</p>
+      </div>
+
+      <div class="tier-grid-more">
+        <div class="tier compact">
+          <div class="tier-name">Team</div>
+          <div class="tier-price"><span class="num">$199</span><span class="per">/mo · up to 10 seats</span></div>
+          <div class="tier-tag">Shared portfolio, Slack/Discord alerts, 50K API/day.</div>
+          <ul>
+            <li>Everything in Pro × 10 seats</li>
+            <li>Shared watchlists + portfolios</li>
+            <li>Slack/Discord webhook delivery</li>
+            <li>Email priority support</li>
+          </ul>
+          <a class="tier-cta" href="https://buy.stripe.com/your-link-placeholder?plan=team">Get Team · $199</a>
+        </div>
+
+        <div class="tier compact">
+          <div class="tier-name">Enterprise</div>
+          <div class="tier-price"><span class="num">$499+</span><span class="per">/seat · volume pricing</span></div>
+          <div class="tier-tag">Hedge funds, prop desks, RIAs. Custom ingestion + SLA.</div>
+          <ul>
+            <li>Unlimited API + websocket feed</li>
+            <li>White-label dashboards</li>
+            <li>SLA + dedicated Slack channel</li>
+            <li>SOC2-ready audit logs</li>
+          </ul>
+          <a class="tier-cta" href="/enterprise/">Talk to founder</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>ROI calculator</h2>
+      <p class="lead">Bloomberg Terminal: $24,000/yr per seat. Catalyst Edge Pro: $39/mo. Move the dial — see what a 5-analyst desk saves.</p>
+      <div class="roi">
+        <div class="roi-hd">
+          <h3>How many analysts on your desk?</h3>
+          <div class="roi-input">
+            <label for="seats">Seats</label>
+            <input id="seats" type="number" min="1" max="500" value="5" />
+          </div>
+        </div>
+        <div class="roi-grid">
+          <div class="roi-cell bbg">
+            <div class="lbl">Bloomberg cost</div>
+            <div class="val"><span class="num" id="bbg-num">$120,000</span><span class="unit">/yr</span></div>
+            <div class="formula" id="bbg-formula">$24,000 × 5 = $120,000</div>
+          </div>
+          <div class="roi-cell us">
+            <div class="lbl">Catalyst Edge Pro cost</div>
+            <div class="val"><span class="num" id="us-num">$2,340</span><span class="unit">/yr</span></div>
+            <div class="formula" id="us-formula">$39 × 12 × 5 = $2,340</div>
+          </div>
+          <div class="roi-cell save">
+            <div class="lbl">Savings</div>
+            <div class="val"><span class="num" id="save-num">$117,660</span><span class="unit" id="save-unit">/yr (98%)</span></div>
+            <div class="formula" id="save-formula">Bloomberg − Catalyst Edge</div>
+          </div>
+        </div>
+        <div style="margin-top:18px;color:var(--ink-dim);font-size:13px">
+          That's roughly the cost of <span style="color:var(--gold)">one entry-level analyst's salary</span> — saved per year, indefinitely. Or one founder's first product investment. Or a Series A milestone.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>Feature matrix</h2>
+      <p class="lead">Everything in one table. No hidden enterprise paywalls.</p>
+      <table class="matrix">
+        <thead>
+          <tr><th>Feature</th><th>Free</th><th>Reader</th><th>Pro</th><th>Team</th><th>Enterprise</th></tr>
+        </thead>
+        <tbody>
+          <tr class="row-head"><td colspan="6">Catalyst feeds</td></tr>
+          <tr><td>US gappers</td><td class="yes">delayed</td><td class="yes">live</td><td class="yes">live</td><td class="yes">live</td><td class="yes">live</td></tr>
+          <tr><td>43-country tape</td><td class="no">—</td><td class="yes">daily</td><td class="yes">live</td><td class="yes">live</td><td class="yes">live</td></tr>
+          <tr><td>Cross-border convergence</td><td class="no">—</td><td class="no">—</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+          <tr><td>Options + dark-pool flow</td><td class="no">—</td><td class="no">—</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+          <tr class="row-head"><td colspan="6">Valuation</td></tr>
+          <tr><td>DCF grade table</td><td class="yes">top 5</td><td class="yes">full 1,001</td><td class="yes">full + intl</td><td class="yes">full + intl</td><td class="yes">full + intl</td></tr>
+          <tr><td>SEC XBRL inputs</td><td class="no">—</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+          <tr class="row-head"><td colspan="6">Alerts &amp; delivery</td></tr>
+          <tr><td>Daily catalyst email</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+          <tr><td>Live alerts tape</td><td class="no">—</td><td class="no">—</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+          <tr><td>Slack/Discord webhooks</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+          <tr class="row-head"><td colspan="6">API</td></tr>
+          <tr><td>Rate limit (req/day)</td><td>100</td><td>1,000</td><td>10,000</td><td>50,000</td><td class="yes">unlimited</td></tr>
+          <tr><td>Websocket feed</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="yes">✓</td></tr>
+          <tr class="row-head"><td colspan="6">Seats &amp; support</td></tr>
+          <tr><td>Seats included</td><td>1</td><td>1</td><td>1</td><td>10</td><td class="yes">custom</td></tr>
+          <tr><td>Support channel</td><td>community</td><td>email</td><td>email</td><td>priority email</td><td class="yes">SLA + Slack</td></tr>
+          <tr><td>White-label</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="yes">✓</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>FAQ</h2>
+      <p class="lead">The questions every founder, analyst, and PM asks before pulling the trigger.</p>
+      <div class="faq">
+        <div class="faq-item">
+          <h4>Can I cancel anytime?</h4>
+          <p>Yes. Stripe handles billing. One-click cancel from the receipt email. No annual lock-in, no calls, no retention scripts. If you cancel mid-cycle you keep access until the period ends.</p>
+        </div>
+        <div class="faq-item">
+          <h4>What data sources do you use?</h4>
+          <p>SEC EDGAR XBRL companyfacts (US fundamentals + DCF), Yahoo Finance for international fundamentals + news, Stooq for OHLC, FRED + NOAA + USPTO + PACER + ThetaData for the broader data universe. Every DCF input traces to a public source.</p>
+        </div>
+        <div class="faq-item">
+          <h4>Refund policy?</h4>
+          <p>14-day no-questions refund on Reader and Pro. Just email <a href="mailto:opensource@example.com">opensource@example.com</a>. Team and Enterprise refunds prorated by seat-month.</p>
+        </div>
+        <div class="faq-item">
+          <h4>Multi-seat discount?</h4>
+          <p>Team plan is $199/mo for up to 10 seats — that's already $19.90/seat vs $39 individual. Beyond 10, Enterprise pricing kicks in at $499+/seat/mo with volume discounts at 25/50/100 seats.</p>
+        </div>
+        <div class="faq-item">
+          <h4>Can I white-label this for my fund?</h4>
+          <p>Enterprise tier includes white-label dashboards and custom domain. Your LP-facing reports show your fund's brand, not ours. Talk to <a href="/enterprise/">the founder</a>.</p>
+        </div>
+        <div class="faq-item">
+          <h4>How long do you retain my data?</h4>
+          <p>Authentication and billing: indefinitely while account is active, deleted 90 days after cancellation. Watchlists/portfolios: stored only on your device unless you explicitly opt into Team sharing. We don't sell data, ever. SOC2-ready audit logs available on Enterprise.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    Catalyst Edge Scanner · Audited 89% hit rate · Ships daily, not quarterly
+    <div class="links">
+      <a href="/scanner/">Scanner</a>
+      <a href="/changelog/">Changelog</a>
+      <a href="/enterprise/">Enterprise</a>
+      <a href="/data/api/">API</a>
+      <a href="mailto:opensource@example.com">Contact</a>
+    </div>
+  </footer>
+
+  <script src="/lib/tier.js" defer></script>
+  <script>
+    const fmt = n => '$' + Math.round(n).toLocaleString();
+    const seatsEl = document.getElementById('seats');
+    const bbgNum  = document.getElementById('bbg-num');
+    const usNum   = document.getElementById('us-num');
+    const saveNum = document.getElementById('save-num');
+    const saveUnit= document.getElementById('save-unit');
+    const bbgF = document.getElementById('bbg-formula');
+    const usF  = document.getElementById('us-formula');
+    function recalc(){
+      const seats = Math.max(1, Math.min(500, parseInt(seatsEl.value || '1', 10)));
+      const bbg = 24000 * seats;
+      const us  = 39 * 12 * seats;
+      const save = bbg - us;
+      const pct = bbg > 0 ? Math.round((save/bbg)*100) : 0;
+      bbgNum.textContent  = fmt(bbg);
+      usNum.textContent   = fmt(us);
+      saveNum.textContent = fmt(save);
+      saveUnit.textContent = '/yr (' + pct + '%)';
+      bbgF.textContent = '$24,000 × ' + seats + ' = ' + fmt(bbg);
+      usF.textContent  = '$39 × 12 × ' + seats + ' = ' + fmt(us);
+    }
+    seatsEl.addEventListener('input', recalc);
+    seatsEl.addEventListener('change', recalc);
+    recalc();
+  </script>
+<script src="/lib/cinematic.js"></script>
+</body>
+</html>

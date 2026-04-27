@@ -1,0 +1,64 @@
+<!-- Reference: paste this SVG inline anywhere as the Catalyst Edge brand emblem.
+     Animations are pure CSS; no JS dependency.
+     Sized at width:140; height:140 by default — adjust via container CSS. -->
+<svg class="ce-emblem" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <!-- Outer dashed orbit — slow rotate -->
+  <circle cx="100" cy="100" r="92" fill="none" stroke="rgba(231,183,108,.32)"
+    stroke-width="1" stroke-dasharray="3 6" class="ce-em-ring-outer"/>
+  <!-- Mid solid cyan orbit -->
+  <circle cx="100" cy="100" r="68" fill="none" stroke="rgba(114,229,255,.42)"
+    stroke-width="1" class="ce-em-ring-mid"/>
+  <!-- Inner dashed purple orbit (counter-rotate) -->
+  <circle cx="100" cy="100" r="44" fill="none" stroke="rgba(167,139,250,.4)"
+    stroke-width="1" stroke-dasharray="2 3" class="ce-em-ring-inner"/>
+
+  <!-- Cardinal hairline ticks (signal axes) -->
+  <line x1="100" y1="2" x2="100" y2="14" stroke="#72e5ff" stroke-width="1.2" opacity=".82"/>
+  <line x1="100" y1="186" x2="100" y2="198" stroke="#72e5ff" stroke-width="1.2" opacity=".82"/>
+  <line x1="2" y1="100" x2="14" y2="100" stroke="#72e5ff" stroke-width="1.2" opacity=".82"/>
+  <line x1="186" y1="100" x2="198" y2="100" stroke="#72e5ff" stroke-width="1.2" opacity=".82"/>
+
+  <!-- Gold satellite node on outer orbit -->
+  <g class="ce-em-sat-outer">
+    <circle cx="100" cy="8" r="4" fill="#e7b76c"/>
+    <circle cx="100" cy="8" r="9" fill="none" stroke="#e7b76c" opacity=".4"/>
+  </g>
+  <!-- Cyan satellite on mid -->
+  <g class="ce-em-sat-mid">
+    <circle cx="168" cy="100" r="3.5" fill="#72e5ff"/>
+  </g>
+  <!-- Purple satellite on inner -->
+  <g class="ce-em-sat-inner">
+    <circle cx="56" cy="100" r="3" fill="#a78bfa"/>
+  </g>
+
+  <!-- Concentric core: gold core inside cyan halo with pulse -->
+  <circle cx="100" cy="100" r="22" fill="none" stroke="rgba(231,183,108,.6)" stroke-width="1.4"/>
+  <circle cx="100" cy="100" r="14" class="ce-em-halo"
+    fill="url(#ce-em-halo-grad)" opacity=".7"/>
+  <circle cx="100" cy="100" r="6" class="ce-em-core"
+    fill="url(#ce-em-core-grad)"/>
+  <circle cx="100" cy="100" r="2.2" fill="#fff" opacity=".95"/>
+
+  <!-- Diagonal signal-beam slash through the core (subtle) -->
+  <line x1="46" y1="46" x2="154" y2="154" stroke="url(#ce-em-beam-grad)"
+    stroke-width="1.4" opacity=".5" class="ce-em-beam"/>
+
+  <defs>
+    <radialGradient id="ce-em-core-grad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffd9a3"/>
+      <stop offset="60%" stop-color="#e7b76c"/>
+      <stop offset="100%" stop-color="#a3742d"/>
+    </radialGradient>
+    <radialGradient id="ce-em-halo-grad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#e7b76c" stop-opacity=".5"/>
+      <stop offset="60%" stop-color="#72e5ff" stop-opacity=".25"/>
+      <stop offset="100%" stop-color="#72e5ff" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="ce-em-beam-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#72e5ff" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#e7b76c" stop-opacity=".9"/>
+      <stop offset="100%" stop-color="#a78bfa" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+</svg>

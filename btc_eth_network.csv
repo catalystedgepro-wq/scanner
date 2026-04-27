@@ -1,0 +1,25 @@
+metric_type,metric_name,value,unit,detail,captured_at
+eth_gas,eth_gas_safe,0.444469984,gwei,block_24974587,2026-04-27T23:11:40Z
+eth_gas,eth_gas_propose,0.454469984,gwei,block_24974587,2026-04-27T23:11:40Z
+eth_gas,eth_gas_fast,0.499916982,gwei,block_24974587,2026-04-27T23:11:40Z
+eth_gas,eth_base_fee,0.444469984,gwei,block_24974587,2026-04-27T23:11:40Z
+btc_fee,btc_fee_fastest,1,sat_vbyte,,2026-04-27T23:11:40Z
+btc_fee,btc_fee_30min,1,sat_vbyte,,2026-04-27T23:11:40Z
+btc_fee,btc_fee_1h,1,sat_vbyte,,2026-04-27T23:11:40Z
+btc_fee,btc_fee_economy,1,sat_vbyte,,2026-04-27T23:11:40Z
+btc_fee,btc_fee_minimum,1,sat_vbyte,,2026-04-27T23:11:40Z
+btc_mempool,btc_mempool_tx_count,44647,tx,,2026-04-27T23:11:40Z
+btc_mempool,btc_mempool_vsize,32360007,vbytes,,2026-04-27T23:11:40Z
+btc_mempool,btc_mempool_total_fee,4957439,sats,,2026-04-27T23:11:40Z
+btc_pool_24h,pool_Foundry USA,53,blocks,rank_1,2026-04-27T23:11:40Z
+btc_pool_24h,pool_AntPool,23,blocks,rank_2,2026-04-27T23:11:40Z
+btc_pool_24h,pool_ViaBTC,17,blocks,rank_3,2026-04-27T23:11:40Z
+btc_pool_24h,pool_F2Pool,12,blocks,rank_4,2026-04-27T23:11:40Z
+btc_pool_24h,pool_SECPOOL,8,blocks,rank_5,2026-04-27T23:11:40Z
+btc_pool_24h,pool_SpiderPool,8,blocks,rank_6,2026-04-27T23:11:40Z
+btc_pool_24h,pool_MARA Pool,6,blocks,rank_7,2026-04-27T23:11:40Z
+btc_pool_24h,pool_OCEAN,5,blocks,rank_8,2026-04-27T23:11:40Z
+btc_pool_24h,pool_Binance Pool,3,blocks,rank_9,2026-04-27T23:11:40Z
+btc_pool_24h,pool_Braiins Pool,2,blocks,rank_10,2026-04-27T23:11:40Z
+btc_pool_24h,pool_BTC.com,1,blocks,rank_11,2026-04-27T23:11:40Z
+btc_pool_24h,pool_SBI Crypto,1,blocks,rank_12,2026-04-27T23:11:40Z

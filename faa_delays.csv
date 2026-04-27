@@ -1,0 +1,12 @@
+event_type,airport,reason,metric,value,captured_at
+ground_delay,ORD,thunderstorms,avg_delay,3 hours and 30 minutes,2026-04-27T23:10:03Z
+ground_delay,ORD,thunderstorms,max_delay,10 hours and 59 minutes,2026-04-27T23:10:03Z
+departure_delay,SAN,VOL:Compacted Demand,min_delay,31 minutes,2026-04-27T23:10:03Z
+departure_delay,SAN,VOL:Compacted Demand,max_delay,45 minutes,2026-04-27T23:10:03Z
+departure_delay,SAN,VOL:Compacted Demand,trend,Increasing,2026-04-27T23:10:03Z
+closure,ASE,!ASE 04/103 ASE AD AP CLSD EXC MEDIVAC HEL AND SAR HEL 2604231500-2605220100,start,Apr 23 at 15:00 UTC.,2026-04-27T23:10:03Z
+closure,ASE,!ASE 04/103 ASE AD AP CLSD EXC MEDIVAC HEL AND SAR HEL 2604231500-2605220100,reopen,May 22 at 01:00 UTC.,2026-04-27T23:10:03Z
+closure,SAN,!SAN 03/071 SAN AD AP CLSD TO NON SKED TRANSIENT GA ACFT EXC PPR 619-298-7704 26,start,Mar 18 at 13:00 UTC.,2026-04-27T23:10:03Z
+closure,SAN,!SAN 03/071 SAN AD AP CLSD TO NON SKED TRANSIENT GA ACFT EXC PPR 619-298-7704 26,reopen,Oct 01 at 08:00 UTC.,2026-04-27T23:10:03Z
+closure,LAS,!LAS 01/129 LAS AD AP CLSD TO NON SKED TRANSIENT GA ACFT EXC 24HR PPR 702-261-77,start,Jan 27 at 19:12 UTC.,2026-04-27T23:10:03Z
+closure,LAS,!LAS 01/129 LAS AD AP CLSD TO NON SKED TRANSIENT GA ACFT EXC 24HR PPR 702-261-77,reopen,Apr 29 at 23:00 UTC.,2026-04-27T23:10:03Z

@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Daily Rankings — Top SEC Catalyst Picks Scored | Catalyst Edge</title>
+<meta name="description" content="Today's top stock picks ranked by composite score: SEC filing strength, news momentum, gap potential, value thesis, and moat quality. Updated daily.">
+<meta property="og:title" content="Daily Rankings — Catalyst Edge">
+<link rel="canonical" href="https://catalystedgescanner.com/rankings/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#070a12;--surface:#0f1420;--gold:#d4a843;--green:#22c55e;--red:#ef4444;--cyan:#06b6d4;--text:#e2e8f0;--dim:#94a3b8;--muted:#64748b;--border:#1e293b}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
+.wrap{max-width:1100px;margin:0 auto;padding:1.5rem}
+.nav{position:sticky;top:0;z-index:100;background:rgba(7,10,18,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:.75rem 1.5rem;display:flex;align-items:center;gap:1rem}
+.nav a{color:var(--gold);font-weight:600;font-size:.95rem}
+.nav .sep{color:var(--muted)}
+.hero{text-align:center;padding:2.5rem 0 2rem;border-bottom:1px solid var(--border);margin-bottom:1.5rem}
+.hero h1{font-size:clamp(1.5rem,4vw,2.2rem);font-weight:800;line-height:1.2;margin-bottom:.4rem}
+.hero h1 em{font-style:normal;color:var(--gold)}
+.hero .sub{color:var(--dim);font-size:.9rem;max-width:580px;margin:0 auto}
+.stats-bar{display:flex;justify-content:center;gap:2rem;margin:1rem 0;flex-wrap:wrap}
+.sb-item{text-align:center}
+.sb-val{font-size:1.3rem;font-weight:800;color:var(--gold)}
+.sb-lbl{font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.rank-table{width:100%;border-collapse:collapse;margin:1.5rem 0}
+.rank-table th{text-align:left;padding:8px 10px;font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;border-bottom:1px solid var(--border);position:sticky;top:52px;background:var(--bg)}
+.rank-table td{padding:8px 10px;font-size:.82rem;border-bottom:1px solid rgba(30,41,59,.5)}
+.rank-table tr:hover{background:rgba(212,168,67,.04)}
+.tk{font-weight:800;font-size:.9rem}
+.mono{font-family:'IBM Plex Mono',monospace;font-size:.78rem}
+.rank-num{font-size:1rem;font-weight:800;color:var(--gold);text-align:center;min-width:30px}
+.rank-num.top3{color:var(--gold);font-size:1.1rem}
+.score-bar{height:6px;border-radius:3px;background:rgba(212,168,67,.15);position:relative;min-width:60px}
+.score-fill{height:100%;border-radius:3px;background:var(--gold)}
+.sub-scores{display:flex;gap:4px}
+.sub-score{padding:2px 5px;border-radius:3px;font-size:.6rem;font-weight:600;font-family:'IBM Plex Mono',monospace}
+.ss-sec{background:rgba(6,182,212,.1);color:var(--cyan)}
+.ss-gap{background:rgba(34,197,94,.1);color:var(--green)}
+.ss-val{background:rgba(212,168,67,.1);color:var(--gold)}
+.ss-news{background:rgba(59,130,246,.1);color:#3b82f6}
+.tag-sm{padding:2px 5px;border-radius:3px;font-size:.6rem;font-weight:600;background:rgba(139,92,246,.08);color:#a78bfa}
+.rk-controls{display:flex;flex-wrap:wrap;gap:.4rem;align-items:center;margin:1.2rem 0 .8rem}
+.rk-fbtn{padding:5px 12px;border-radius:18px;border:1px solid var(--border);background:var(--surface);color:var(--dim);font-size:.72rem;font-weight:600;cursor:pointer;font-family:inherit;transition:all 200ms cubic-bezier(0.16,1,0.3,1);white-space:nowrap}
+.rk-fbtn:hover{border-color:var(--cyan);color:var(--text);transform:translateY(-1px);box-shadow:0 8px 24px -8px rgba(6,182,212,.32)}
+.rk-fbtn.active{background:rgba(6,182,212,.12);border-color:var(--cyan);color:var(--cyan);font-weight:700}
+.rk-fbtn.rk-clear{display:none;background:rgba(34,211,238,.08);border-color:rgba(34,211,238,.42);color:#22d3ee}
+.rk-fbtn.rk-clear.visible{display:inline-block}
+.rk-fbtn.rk-clear:hover{background:rgba(34,211,238,.18);border-color:#22d3ee;color:#fff}
+.rank-table th.rk-sort{cursor:pointer;user-select:none;transition:color .15s}
+.rank-table th.rk-sort:hover{color:var(--gold)}
+.rank-table th.rk-sort::after{content:'';display:inline-block;width:0;height:0;margin-left:6px;opacity:.35;border-left:4px solid transparent;border-right:4px solid transparent;border-top:5px solid currentColor;vertical-align:middle}
+.rank-table th.rk-sort.sort-asc{color:var(--gold)}
+.rank-table th.rk-sort.sort-asc::after{border-top:0;border-bottom:5px solid currentColor;opacity:1}
+.rank-table th.rk-sort.sort-desc{color:var(--gold)}
+.rank-table th.rk-sort.sort-desc::after{opacity:1}
+.cta-bar{background:var(--surface);border:1px solid var(--gold);border-radius:10px;padding:1.25rem;text-align:center;margin:2rem 0}
+.cta-bar h3{color:var(--gold);font-size:1rem;margin-bottom:.3rem}
+.cta-bar p{color:var(--dim);font-size:.8rem;margin-bottom:.75rem}
+.cta-bar a{display:inline-block;padding:.5rem 1.4rem;background:linear-gradient(135deg,var(--gold),#f1ce88);color:#070a12;font-weight:700;border-radius:6px;font-size:.85rem}
+.footer{text-align:center;padding:1.5rem;font-size:.72rem;color:var(--muted);border-top:1px solid var(--border);margin-top:2rem}
+.footer a{color:var(--muted)}
+.table-wrap{overflow-x:auto}
+</style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@800;900&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/lib/cinematic-hero.css">
+  <link rel="stylesheet" href="/lib/cyber-shell.css">
+  <link rel="stylesheet" href="/lib/polish-tokens.css">
+</head>
+<body>
+  <div class="cy-bg" aria-hidden="true"></div>
+  <div class="cy-floor" aria-hidden="true"></div>
+  <div class="cy-vignette" aria-hidden="true"></div>
+  <div class="cy-scan" aria-hidden="true"></div>
+<div class="nav">
+  <a href="/">Catalyst Edge</a>
+  <span class="sep">/</span>
+  <span style="color:var(--dim);font-size:.9rem">Daily Rankings</span>
+</div>
+<div class="wrap">
+<div class="ce-breadcrumb" style="max-width:1400px;margin:8px auto 0;padding:0 28px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-mute,#5a6c92);"><a href="/scanner/" style="color:var(--neon-cyan,#00ffff);text-decoration:none">&larr; Scanner</a><span style="color:var(--ink-mute,#5a6c92);margin:0 8px">&middot;</span><span>RANKINGS</span></div>
+
+<section class="cin-hero cy-neon-hero cy-narrow cy-shimmer">
+    <div class="cin-grid">
+      <div class="cin-stat-stack">
+        <div class="cin-eyebrow"><span class="cin-live-dot"></span>DAILY RANKINGS · LIVE</div>
+        <div class="cin-colossal">
+          <div class="cin-num-row"><span class="cin-num">Top 100</span></div>
+          <div class="cin-side">
+          <span class="cin-tag">daily <b>top picks</b></span>
+          <span class="cin-tag">composite catalyst score</span>
+          <span class="cin-tag">historical archive</span>
+          </div>
+        </div>
+        <div class="cin-stamp">RANK//FEED · v1.0 · <b>LIVE</b></div>
+      </div>
+      <div class="cin-h1-block">
+        <div class="cin-h1-eyebrow">🏆 Daily Rankings · The Composite Leaderboard</div>
+        <h1 class="cin-headline">Every name in the universe, <em>ranked daily</em>—the composite score that aggregates <span class="cin-accent">all 9 signal layers</span>.</h1>
+        <p class="cin-lede">The leaderboard updates every morning before the open. Top 100 are the names where the most catalyst layers are firing simultaneously — same engine driving /jackpot/ and /spotlight/.</p>
+        <div class="cin-cta-row">
+          <a href="#rankings-table" class="cin-btn-primary">See rankings ↓</a>
+          <a href="/spotlight/" class="cin-btn-ghost">Top pick spotlight</a>
+        </div>
+        <div class="cin-strip">
+          <div class="cin-cell"><div class="cin-k">Top 100</div><div class="cin-v">100</div></div>
+          <div class="cin-cell"><div class="cin-k">Updated</div><div class="cin-v cyan">daily</div></div>
+          <div class="cin-cell"><div class="cin-k">Score range</div><div class="cin-v gold" id="rk-range" data-mirror="r-top">–</div></div>
+          <div class="cin-cell"><div class="cin-k">Leader</div><div class="cin-v bull" id="rk-leader">–</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="stats-bar" style="display:none">
+    <div class="sb-item"><div class="sb-val" id="r-total">--</div><div class="sb-lbl">Picks Today</div></div>
+    <div class="sb-item"><div class="sb-val" id="r-top" style="color:var(--gold)">--</div><div class="sb-lbl">Top Score</div></div>
+    <div class="sb-item"><div class="sb-val" id="r-avg">--</div><div class="sb-lbl">Avg Score</div></div>
+  </div>
+  <div class="rk-controls" id="rk-controls" role="toolbar" aria-label="Rankings filters">
+    <button class="rk-fbtn active" data-rk-filter="all">All Sectors</button>
+    <button class="rk-fbtn rk-clear" id="rk-clear" data-rk-filter="all" aria-label="Clear sector filter">× Clear</button>
+  </div>
+  <div class="table-wrap">
+    <table class="rank-table" id="rank-table">
+      <thead><tr>
+        <th class="rk-sort" data-sortkey="rank">#</th>
+        <th>Ticker</th>
+        <th class="rk-sort sort-desc" data-sortkey="score">Total</th>
+        <th class="rk-sort" data-sortkey="delta">Score Breakdown</th>
+        <th>Sectors</th>
+      </tr></thead>
+      <tbody id="r-body"></tbody>
+    </table>
+  </div>
+  <div class="cta-bar">
+    <h3>Get the rankings before market open</h3>
+    <p>Free daily email with ranked picks, SEC catalysts, and convergence signals at 4 AM ET.</p>
+    <a href="/preview/">Subscribe Free</a>
+  </div>
+</div>
+<div class="footer">
+  &copy; 2026 Catalyst Edge &middot;
+  <a href="/">Scanner</a> &middot;
+  <a href="/gaps/">Gaps</a> &middot;
+  <a href="/jackpot/" style="color:#22c55e">🎯 JACKPOT</a>
+  <a href="/dcf/" style="color:#06b6d4">💰 DCF</a> &middot;
+  <a href="/squeeze/">Squeeze</a> &middot;
+  <a href="/darkpool/">Dark Pool</a> &middot;
+  <a href="/convergence/">Convergence</a> &middot;
+  <a href="/deepvalue/">Deep Value</a> &middot;
+  <a href="/news/">News</a> &middot;
+  <a href="/performance/">Performance</a> &middot;
+  <a href="/congress/">Congress</a> &middot;
+  <a href="/glossary/">Glossary</a> &middot;
+  Not financial advice.
+</div>
+<script>
+(function(){
+  var allPicks = [];
+  var maxScoreGlobal = 0;
+  var activeSector = 'all';
+  var sortKey = 'score'; // 'rank' | 'score' | 'delta'
+  var sortDir = 'desc';
+
+  function getPickSector(p){
+    return (p.sector_tags || '').split(';').map(function(s){return s.trim().toLowerCase()}).filter(Boolean);
+  }
+  function getDelta(p){
+    var d = parseFloat(p.score_delta || p.delta || p.score_change || 0);
+    return isNaN(d) ? 0 : d;
+  }
+  function getRank(p){
+    return parseInt(p.rank || p._rank || 0, 10);
+  }
+
+  function buildSectorChips(picks){
+    var bar = document.getElementById('rk-controls');
+    // Try sector_tags first; if empty, fall back to score-tier chips so the row stays useful.
+    var counts = {};
+    picks.forEach(function(p){
+      getPickSector(p).forEach(function(s){
+        if(s) counts[s] = (counts[s]||0)+1;
+      });
+    });
+    var sectorKeys = Object.keys(counts);
+
+    if(sectorKeys.length > 0){
+      var sorted = sectorKeys.sort(function(a,b){return counts[b]-counts[a]}).slice(0,9);
+      sorted.forEach(function(s){
+        var btn = document.createElement('button');
+        btn.className = 'rk-fbtn';
+        btn.dataset.rkFilter = s;
+        btn.textContent = s.replace(/_/g,' ').replace(/\b\w/g, function(c){return c.toUpperCase()}) + ' (' + counts[s] + ')';
+        btn.addEventListener('click', function(){ setSector(s, btn); });
+        bar.appendChild(btn);
+      });
+    } else {
+      // Fallback: score-tier filters when API has no sector tags
+      var tiers = [
+        { key: 'high',    label: 'High score (≥30)',    test: function(p){ return parseFloat(p.total_score||0) >= 30; } },
+        { key: 'mid',     label: 'Mid (15–30)',         test: function(p){ var s=parseFloat(p.total_score||0); return s>=15 && s<30; } },
+        { key: 'sec',     label: 'SEC catalyst',        test: function(p){ return parseFloat(p.sec_score||0) > 0; } },
+        { key: 'gapper',  label: 'Gappers',             test: function(p){ return parseFloat(p.gapper_score||0) > 0; } },
+        { key: 'value',   label: 'Value',               test: function(p){ return parseFloat(p.value_score||0) > 0; } },
+        { key: 'news',    label: 'News heat',           test: function(p){ return parseFloat(p.news_score||0) > 0; } },
+      ];
+      window._rkTierTests = {};
+      tiers.forEach(function(t){
+        var n = picks.filter(t.test).length;
+        if(n === 0) return;
+        window._rkTierTests[t.key] = t.test;
+        var btn = document.createElement('button');
+        btn.className = 'rk-fbtn';
+        btn.dataset.rkFilter = 'tier:' + t.key;
+        btn.textContent = t.label + ' (' + n + ')';
+        btn.addEventListener('click', function(){ setSector('tier:' + t.key, btn); });
+        bar.appendChild(btn);
+      });
+      // Add a hint label so users know why the row looks like score buckets, not sectors
+      var hint = document.createElement('span');
+      hint.style.cssText = 'color:var(--muted);font-size:.65rem;margin-left:.4rem;align-self:center;font-style:italic';
+      hint.textContent = '(sector tags unavailable today — filtered by score signal)';
+      bar.appendChild(hint);
+    }
+    var allBtn = bar.querySelector('[data-rk-filter="all"]:not(.rk-clear)');
+    if(allBtn) allBtn.addEventListener('click', function(){ setSector('all', allBtn); });
+    var clearBtn = document.getElementById('rk-clear');
+    if(clearBtn) clearBtn.addEventListener('click', function(){
+      var ab = document.querySelector('.rk-fbtn[data-rk-filter="all"]:not(.rk-clear)');
+      if(ab) setSector('all', ab);
+    });
+  }
+
+  function setSector(s, btn){
+    activeSector = s;
+    document.querySelectorAll('.rk-fbtn').forEach(function(b){
+      if(b.classList.contains('rk-clear')) return;
+      b.classList.toggle('active', b === btn);
+    });
+    var clr = document.getElementById('rk-clear');
+    if(clr) clr.classList.toggle('visible', s !== 'all');
+    render();
+  }
+
+  function setSort(key){
+    if(sortKey === key) sortDir = (sortDir === 'desc') ? 'asc' : 'desc';
+    else { sortKey = key; sortDir = (key === 'rank') ? 'asc' : 'desc'; }
+    document.querySelectorAll('.rank-table th.rk-sort').forEach(function(th){
+      th.classList.remove('sort-asc','sort-desc');
+      if(th.dataset.sortkey === sortKey) th.classList.add(sortDir === 'asc' ? 'sort-asc' : 'sort-desc');
+    });
+    render();
+  }
+
+  function render(){
+    var rows = allPicks.slice();
+    if(activeSector !== 'all'){
+      if(activeSector.indexOf('tier:') === 0){
+        var tierKey = activeSector.slice(5);
+        var test = (window._rkTierTests || {})[tierKey];
+        if(test) rows = rows.filter(test);
+      } else {
+        rows = rows.filter(function(p){
+          return getPickSector(p).indexOf(activeSector) !== -1;
+        });
+      }
+    }
+    rows.sort(function(a,b){
+      var av, bv;
+      if(sortKey === 'rank'){ av = getRank(a) || 9999; bv = getRank(b) || 9999; }
+      else if(sortKey === 'delta'){ av = getDelta(a); bv = getDelta(b); }
+      else { av = parseFloat(a.total_score||0); bv = parseFloat(b.total_score||0); }
+      return sortDir === 'asc' ? (av - bv) : (bv - av);
+    });
+
+    var tbody = document.getElementById('r-body');
+    while(tbody.firstChild) tbody.removeChild(tbody.firstChild);
+    rows.forEach(function(p, i){
+      var tr = document.createElement('tr');
+      var ts = parseFloat(p.total_score||0);
+
+      var td0 = document.createElement('td');
+      td0.className = 'rank-num'+(i<3?' top3':'');
+      td0.textContent = i+1;
+      tr.appendChild(td0);
+
+      var td1 = document.createElement('td');
+      td1.className = 'tk';
+      td1.textContent = p.ticker;
+      tr.appendChild(td1);
+
+      var td2 = document.createElement('td');
+      var barWrap = document.createElement('div');
+      var scoreText = document.createElement('div');
+      scoreText.className = 'mono';
+      scoreText.style.marginBottom = '2px';
+      scoreText.style.fontWeight = '800';
+      scoreText.textContent = ts.toFixed(1);
+      barWrap.appendChild(scoreText);
+      var bar = document.createElement('div');
+      bar.className = 'score-bar';
+      var fill = document.createElement('div');
+      fill.className = 'score-fill';
+      fill.style.width = Math.min(100, (ts/(maxScoreGlobal||1))*100)+'%';
+      bar.appendChild(fill);
+      barWrap.appendChild(bar);
+      td2.appendChild(barWrap);
+      tr.appendChild(td2);
+
+      var td3 = document.createElement('td');
+      var subs = document.createElement('div');
+      subs.className = 'sub-scores';
+      var sec = parseFloat(p.sec_score||0);
+      var gap = parseFloat(p.gapper_score||0);
+      var val = parseFloat(p.value_score||0);
+      var news = parseFloat(p.news_score||0);
+      if(sec>0){var s=document.createElement('span');s.className='sub-score ss-sec';s.textContent='SEC '+sec.toFixed(0);subs.appendChild(s)}
+      if(gap>0){var s=document.createElement('span');s.className='sub-score ss-gap';s.textContent='GAP '+gap.toFixed(0);subs.appendChild(s)}
+      if(val>0){var s=document.createElement('span');s.className='sub-score ss-val';s.textContent='VAL '+val.toFixed(0);subs.appendChild(s)}
+      if(news>0){var s=document.createElement('span');s.className='sub-score ss-news';s.textContent='NEWS '+news.toFixed(0);subs.appendChild(s)}
+      td3.appendChild(subs);
+      tr.appendChild(td3);
+
+      var td4 = document.createElement('td');
+      var tags = document.createElement('div');
+      tags.style.display = 'flex';
+      tags.style.gap = '3px';
+      tags.style.flexWrap = 'wrap';
+      if(p.sector_tags){
+        p.sector_tags.split(';').forEach(function(t){
+          if(t.trim()){
+            var tag = document.createElement('span');
+            tag.className = 'tag-sm';
+            tag.textContent = t.trim();
+            tags.appendChild(tag);
+          }
+        });
+      }
+      td4.appendChild(tags);
+      tr.appendChild(td4);
+
+      tbody.appendChild(tr);
+    });
+  }
+
+  fetch('/api/rankings').then(function(r){return r.json()}).then(function(d){
+    allPicks = d.picks || [];
+    var totalScore = 0;
+    allPicks.forEach(function(p, idx){
+      var s = parseFloat(p.total_score||0);
+      if(s > maxScoreGlobal) maxScoreGlobal = s;
+      totalScore += s;
+      if(p.rank == null && p._rank == null) p._rank = idx + 1;
+    });
+    var rTotal = document.getElementById('r-total'); if(rTotal) rTotal.textContent = allPicks.length;
+    var rTop = document.getElementById('r-top'); if(rTop) rTop.textContent = maxScoreGlobal.toFixed(0);
+    var rAvg = document.getElementById('r-avg'); if(rAvg) rAvg.textContent = allPicks.length ? (totalScore/allPicks.length).toFixed(1) : '0';
+
+    buildSectorChips(allPicks);
+    document.querySelectorAll('.rank-table th.rk-sort').forEach(function(th){
+      th.addEventListener('click', function(){ setSort(th.dataset.sortkey); });
+    });
+    render();
+  });
+})();
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KV1VDK22VC"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-KV1VDK22VC');</script>
+  <script src="/lib/cy-strip-mirror.js" defer></script>
+</body>
+</html>

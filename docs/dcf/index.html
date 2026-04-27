@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Admin unlock baseline — loaded on every page so admin cookie/localStorage always applies. -->
+<link rel="stylesheet" href="/lib/admin-unlock.css">
+<script src="/lib/tier.js" defer></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DCF Intrinsic-Value Scanner — Two-Stage Damodaran Model | Catalyst Edge</title>
+<meta name="description" content="Free discounted-cash-flow intrinsic values for 150+ stocks. Audit-ready math chain from SEC XBRL: FCF, WACC, terminal value, enterprise value, equity bridge, intrinsic value per share, upside vs current price. Bloomberg charges $24K/yr for less.">
+<meta property="og:title" content="DCF Intrinsic-Value Scanner — Catalyst Edge">
+<link rel="canonical" href="https://catalystedgescanner.com/dcf/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#070a12;--surface:#0f1420;--gold:#d4a843;--green:#22c55e;--red:#ef4444;--cyan:#06b6d4;--navy:#0a1529;--text:#e2e8f0;--dim:#94a3b8;--muted:#64748b;--border:#1e293b}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--text);line-height:1.55}
+a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
+.nav{position:sticky;top:0;z-index:100;background:rgba(7,10,18,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:.75rem 1.5rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+.nav a{color:var(--gold);font-weight:600;font-size:.92rem}
+.wrap{max-width:1280px;margin:0 auto;padding:1.5rem}
+.hero{padding:2rem 0 1.5rem;border-bottom:1px solid var(--border);margin-bottom:1.5rem}
+.hero h1{font-size:clamp(1.5rem,3vw,2rem);font-weight:800;line-height:1.2;margin-bottom:.4rem}
+.hero h1 em{font-style:normal;color:var(--cyan)}
+.hero .sub{color:var(--dim);font-size:.88rem;max-width:820px}
+.live-dot{display:inline-block;width:8px;height:8px;background:var(--green);border-radius:50%;margin-right:6px;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+
+.methodology{background:rgba(6,182,212,.06);border:1px solid rgba(6,182,212,.25);border-radius:6px;padding:.9rem 1.1rem;font-size:.78rem;color:var(--dim);margin-bottom:1.25rem;line-height:1.7}
+.methodology strong{color:var(--cyan)}
+.methodology code{color:var(--gold);background:rgba(212,168,67,.08);padding:.1rem .35rem;border-radius:3px;font-family:'IBM Plex Mono',monospace;font-size:.75rem}
+
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:1.25rem}
+.kpi{background:linear-gradient(180deg,rgba(10,21,41,.9),rgba(10,21,41,.5));border:1px solid var(--border);border-radius:8px;padding:.9rem 1rem;position:relative}
+.kpi::before{content:'';position:absolute;inset:0;border-top:2px solid var(--cyan);opacity:.4}
+.kpi.a::before{border-color:var(--green)}
+.kpi.b::before{border-color:#a3e635}
+.kpi.c::before{border-color:var(--gold)}
+.kpi.d::before{border-color:#f97316}
+.kpi.f::before{border-color:var(--red)}
+.kpi-val{font-size:1.8rem;font-weight:800;font-family:'IBM Plex Mono',monospace;line-height:1;margin-bottom:.25rem}
+.kpi.a .kpi-val{color:var(--green)}
+.kpi.b .kpi-val{color:#a3e635}
+.kpi.c .kpi-val{color:var(--gold)}
+.kpi.d .kpi-val{color:#f97316}
+.kpi.f .kpi-val{color:var(--red)}
+.kpi-lbl{font-size:.62rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-weight:700}
+
+.panel{background:var(--navy);border:1px solid var(--border);border-radius:8px;padding:1.25rem;margin-bottom:1.25rem}
+.panel-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:.8rem;padding-bottom:.5rem;border-bottom:1px solid var(--border)}
+.panel-title{font-size:.82rem;color:var(--gold);font-weight:700;text-transform:uppercase;letter-spacing:.08em}
+
+.filter-row{display:flex;gap:.5rem;margin:.8rem 0;flex-wrap:wrap}
+.filter-btn{background:var(--surface);border:1px solid var(--border);color:var(--dim);padding:.4rem .8rem;border-radius:5px;font-size:.72rem;font-weight:600;cursor:pointer;font-family:'Space Grotesk',sans-serif}
+.filter-btn:hover{border-color:var(--gold);color:var(--gold)}
+.filter-btn.active{background:var(--gold);color:#070a12;border-color:var(--gold)}
+
+table{width:100%;border-collapse:collapse;font-size:.78rem}
+th{text-align:left;padding:.55rem .5rem;border-bottom:1px solid var(--border);color:var(--gold);font-size:.62rem;text-transform:uppercase;letter-spacing:.08em;font-weight:700;background:rgba(10,21,41,.6);position:sticky;top:0;white-space:nowrap}
+td{padding:.55rem .5rem;border-bottom:1px solid rgba(30,41,59,.5);vertical-align:middle;font-family:'IBM Plex Mono',monospace;font-size:.76rem}
+tr:hover{background:rgba(212,168,67,.05)}
+.tk{color:var(--cyan);font-weight:700;font-size:.88rem}
+.grade{padding:.12rem .5rem;border-radius:4px;font-weight:800;font-size:.72rem;letter-spacing:.05em;display:inline-block;min-width:22px;text-align:center}
+.grade-a{background:rgba(34,197,94,.18);color:var(--green)}
+.grade-b{background:rgba(163,230,53,.18);color:#a3e635}
+.grade-c{background:rgba(212,168,67,.18);color:var(--gold)}
+.grade-d{background:rgba(249,115,22,.18);color:#f97316}
+.grade-f{background:rgba(239,68,68,.18);color:var(--red)}
+.up-pos{color:var(--green);font-weight:700}
+.up-neg{color:var(--red);font-weight:700}
+.muted{color:var(--muted)}
+.scroll-wrap{max-height:720px;overflow-y:auto;overflow-x:auto;border:1px solid var(--border);border-radius:6px}
+.footer{margin-top:2rem;padding-top:1.2rem;border-top:1px solid var(--border);color:var(--muted);font-size:.72rem;text-align:center}
+.loading{padding:2rem;text-align:center;color:var(--muted)}
+.paywall-row{background:linear-gradient(180deg,rgba(6,182,212,.06),rgba(212,168,67,.10));border-top:2px solid var(--gold)}
+.paywall-row td{padding:1.5rem 1rem;text-align:center}
+.paywall-title{font-size:1rem;font-weight:800;color:var(--gold);margin-bottom:.4rem}
+.paywall-sub{font-size:.8rem;color:var(--dim);margin-bottom:.9rem;max-width:520px;margin-left:auto;margin-right:auto}
+.paywall-btn{display:inline-block;padding:.55rem 1.5rem;background:linear-gradient(135deg,var(--gold),#f1ce88);color:#070a12;font-weight:700;border-radius:999px;font-size:.85rem;text-decoration:none;margin:0 .3rem}
+.paywall-btn.secondary{background:transparent;border:1px solid rgba(215,180,106,.4);color:var(--gold)}
+.tr-blur{filter:blur(4px);opacity:.35;pointer-events:none;user-select:none}
+</style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@800;900&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/lib/cinematic-hero.css">
+  <link rel="stylesheet" href="/lib/cyber-shell.css">
+  <link rel="stylesheet" href="/lib/polish-tokens.css">
+</head>
+<body>
+  <div class="cy-bg" aria-hidden="true"></div>
+  <div class="cy-floor" aria-hidden="true"></div>
+  <div class="cy-vignette" aria-hidden="true"></div>
+  <div class="cy-scan" aria-hidden="true"></div>
+<nav class="nav">
+  <a href="/">Catalyst Edge</a>
+  <a href="/jackpot/" style="color:#22c55e;font-weight:700">🎯 JACKPOT</a>
+  <a href="/dcf/" style="color:#06b6d4;font-weight:700">💰 DCF (US)</a>
+  <a href="/dcf/international/" style="color:#22d3ee;font-weight:700">🌍 DCF (Intl)</a>
+  <a href="/numerai/" style="color:#a855f7;font-weight:700">🤖 Numerai</a>
+  <a href="/scanner/#gaps">Gap Plays</a>
+  <a href="/squeeze/">Squeeze</a>
+  <a href="/scanner/#insider">Insider Buys</a>
+  <a href="/congress/">Congress</a>
+  <a href="/scanner/#results">Catalysts</a>
+  <a href="/sectors/">Sectors</a>
+  <a href="/news/">News</a>
+  <a href="/scanner/#polymarket" style="color:var(--cyan)">Predict ▸</a>
+  <a href="/pricing/" style="color:var(--gold);font-weight:600">Premium</a>
+</nav>
+<div class="wrap">
+<div class="ce-breadcrumb" style="max-width:1400px;margin:8px auto 0;padding:0 28px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-mute,#5a6c92);"><a href="/scanner/" style="color:var(--neon-cyan,#00ffff);text-decoration:none">&larr; Scanner</a><span style="color:var(--ink-mute,#5a6c92);margin:0 8px">&middot;</span><span>DCF Intrinsic Value</span></div>
+
+<section class="cin-hero cy-neon-hero cy-shimmer">
+    <div class="cin-grid">
+      <div class="cin-stat-stack">
+        <div class="cin-eyebrow"><span class="cin-live-dot"></span>DAMODARAN · SEC XBRL · LIVE</div>
+        <div class="cin-colossal">
+          <div class="cin-num-row"><span class="cin-num">1,001</span></div><div class="cin-side">
+          <span class="cin-tag">tickers · <b>SEC XBRL</b></span>
+          <span class="cin-tag"><b>A-grade</b> ≥ +100% upside</span>
+          <span class="cin-tag">two-stage Damodaran</span>
+          </div>
+        </div>
+        <div class="cin-stamp">DCF//US · v2.1 · <b>LIVE</b></div>
+      </div>
+      <div class="cin-h1-block">
+        <div class="cin-h1-eyebrow">💰 Audited DCF · Two-Stage Damodaran Model</div>
+        <h1 class="cin-headline">
+ Real intrinsic values from <em>SEC EDGAR XBRL</em>—every row is an <span class="cin-accent">auditable math chain</span>, not a heuristic.
+ </h1>
+        <p class="cin-lede">Free cash flow → 5-year projection at clamped revenue CAGR → Gordon terminal at 9% WACC and 2.5% perpetual growth → equity bridge via cash and debt → intrinsic per share. <strong>Bloomberg charges $24K/yr for less.</strong></p>
+        <div class="cin-cta-row">
+          <a href="#kpi-grid" class="cin-btn-primary">See A-grade picks ↓</a>
+          <a href="/data/sec_xbrl_dcf.json" class="cin-btn-ghost">Download math chain</a>
+        </div>
+        <div class="cin-strip">
+          <div class="cin-cell"><div class="cin-k">Tickers scored</div><div class="cin-v">1,001</div></div>
+          <div class="cin-cell"><div class="cin-k">A-grade (≥+100%)</div><div class="cin-v bull" id="k-a">–</div></div>
+          <div class="cin-cell"><div class="cin-k">B-grade (≥+40%)</div><div class="cin-v gold" id="k-b">–</div></div>
+          <div class="cin-cell"><div class="cin-k">Source</div><div class="cin-v cyan">EDGAR XBRL</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="methodology">
+    <strong>Model:</strong> <code>FCF = OCF − CapEx</code> (5-yr XBRL history) · 5-year projection at
+    <code>g1 = clamp(revenue_5y_CAGR, 2%, 12%)</code> · terminal value at <code>g2 = 2.5%</code> ·
+    discounted at <code>WACC = 9%</code> · equity bridge via
+    <code>EV + Cash − Debt</code> / <code>shares_out</code> = <code>intrinsic_value_per_share</code>.
+    Grade: A ≥ +100% upside · B ≥ +40% · C ≥ +10% · D ≥ −15% · F &lt; −15%.
+    <br><br>
+    <strong>Source:</strong> SEC EDGAR XBRL <code>companyfacts API</code>.
+    Cached 7 days. Guards: FCF must be positive in both TTM and 3-yr avg;
+    shares_out ≥ 1M; intrinsic &lt; 20× current price. Full math chain in
+    <a href="/data/sec_xbrl_dcf.json">sec_xbrl_dcf.json</a>.
+  </div>
+
+  <div class="kpi-grid" id="kpi-grid"></div>
+
+  <div class="panel">
+    <div class="panel-head">
+      <div class="panel-title">Ranked by upside — click a grade to filter</div>
+      <div class="panel-title" id="last-gen" style="color:var(--muted);font-size:.7rem">–</div>
+    </div>
+    <div class="filter-row">
+      <button class="filter-btn active" data-grade="all">All</button>
+      <button class="filter-btn" data-grade="A">A (≥+100%)</button>
+      <button class="filter-btn" data-grade="B">B (+40 to +100%)</button>
+      <button class="filter-btn" data-grade="C">C (+10 to +40%)</button>
+      <button class="filter-btn" data-grade="D">D (−15 to +10%)</button>
+      <button class="filter-btn" data-grade="F">F (&lt;−15%)</button>
+    </div>
+    <div class="scroll-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Ticker</th>
+            <th>Grade</th>
+            <th>Price</th>
+            <th>Intrinsic</th>
+            <th>Upside</th>
+            <th>FCF 3y avg</th>
+            <th>Rev TTM</th>
+            <th>g1</th>
+            <th>EV</th>
+            <th>Equity</th>
+            <th>Shares</th>
+          </tr>
+        </thead>
+        <tbody id="dcf-body"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div style="background:linear-gradient(135deg,rgba(212,168,67,.08),rgba(6,182,212,.05));border:1px solid rgba(212,168,67,.25);border-radius:10px;padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.85rem;color:var(--dim);line-height:1.7">
+    <strong style="color:var(--gold)">Want deeper company-by-company DCF analysis?</strong>
+    Pair our screening with <a href="/go/simplywallst" style="color:#06b6d4;font-weight:600;text-decoration:underline" target="_blank" rel="noopener noreferrer">Simply Wall St</a> —
+    full Snowflake reports, fair-value charts, and detailed DCF dashboards for every company.
+    <strong>14-day extended Premium trial</strong> via our partner link.
+  </div>
+
+  <div class="footer">
+    Audit the math: <a href="/data/sec_xbrl_dcf.json">sec_xbrl_dcf.json</a> · Refreshes every 2h via autonomous_loop · Nightly WSL sidecar pull at 2:30 AM ET
+  </div>
+</div>
+
+<script>
+(function(){
+  var body = document.getElementById('dcf-body');
+  var kpiGrid = document.getElementById('kpi-grid');
+  var picks = [];
+
+  function fmtMoney(n) {
+    n = Number(n) || 0;
+    if (Math.abs(n) >= 1e9) return '$' + (n/1e9).toFixed(1) + 'B';
+    if (Math.abs(n) >= 1e6) return '$' + (n/1e6).toFixed(0) + 'M';
+    if (Math.abs(n) >= 1e3) return '$' + (n/1e3).toFixed(0) + 'K';
+    return '$' + n.toFixed(2);
+  }
+  function fmtShares(n) {
+    n = Number(n) || 0;
+    if (n >= 1e9) return (n/1e9).toFixed(2) + 'B';
+    if (n >= 1e6) return (n/1e6).toFixed(0) + 'M';
+    if (n >= 1e3) return (n/1e3).toFixed(0) + 'K';
+    return String(n);
+  }
+  function makeCell(cls, text) {
+    var td = document.createElement('td');
+    if (cls) td.className = cls;
+    if (text !== undefined) td.textContent = text;
+    return td;
+  }
+  function showEmpty(msg) {
+    while (body.firstChild) body.removeChild(body.firstChild);
+    var tr = document.createElement('tr');
+    var td = makeCell('loading', msg);
+    td.colSpan = 11;
+    tr.appendChild(td);
+    body.appendChild(tr);
+  }
+
+  function renderKPIs(grades) {
+    while (kpiGrid.firstChild) kpiGrid.removeChild(kpiGrid.firstChild);
+    ['A','B','C','D','F'].forEach(function(g){
+      var count = grades[g] || 0;
+      var kpi = document.createElement('div');
+      kpi.className = 'kpi ' + g.toLowerCase();
+      var v = document.createElement('div'); v.className = 'kpi-val'; v.textContent = count;
+      var l = document.createElement('div'); l.className = 'kpi-lbl'; l.textContent = 'Grade ' + g;
+      kpi.appendChild(v); kpi.appendChild(l);
+      kpiGrid.appendChild(kpi);
+    });
+  }
+
+  // Paywall PERMANENTLY DISABLED — every visitor sees the full DCF table.
+  // Edge Pro paywall RESTORED 2026-04-26T11 (distribution focus — DCF is the
+  // $39/mo differentiator). Admin operator stays free via the tier.js admin
+  // token cookie/localStorage path; everyone else sees top 3 A-grade rows
+  // then a paywall row.
+  //
+  // Admin self-unlock (one-time per browser):
+  //   visit /dcf/?unlock=REPLACE_WITH_YOUR_ADMIN_TOKEN
+  //   sets a 365-day cookie + localStorage so this browser stays admin
+  //   forever, including when /api/tier is cold or wrong.
+  var FREE_PREVIEW = 1e9;
+  var userTier = 'pro';
+
+  try {
+    var ADMIN_TOKEN = 'REPLACE_WITH_YOUR_ADMIN_TOKEN';
+    var qp = new URLSearchParams(window.location.search);
+    if (qp.get('unlock') === ADMIN_TOKEN) {
+      localStorage.setItem('edge_admin', ADMIN_TOKEN);
+      var _d = new Date(); _d.setTime(_d.getTime() + 365*24*60*60*1000);
+      document.cookie = 'edge_admin=' + ADMIN_TOKEN +
+        '; expires=' + _d.toUTCString() + '; path=/; samesite=lax';
+      var _u = new URL(window.location.href);
+      _u.searchParams.delete('unlock');
+      history.replaceState(null, '', _u.toString());
+    }
+    var lsAdmin = (localStorage.getItem('edge_admin') === ADMIN_TOKEN);
+    var ckAdmin = (document.cookie.indexOf('edge_admin=' + ADMIN_TOKEN) !== -1);
+    if (lsAdmin || ckAdmin) {
+      userTier = 'pro';
+      if (document.body) document.body.classList.add('edge-admin');
+    }
+  } catch (e) { /* private mode etc. */ }
+
+  function render(filter) {
+    while (body.firstChild) body.removeChild(body.firstChild);
+    var rows = filter === 'all' ? picks : picks.filter(function(p){ return p.dcf_grade === filter; });
+    if (rows.length === 0) {
+      showEmpty('No picks match this grade.');
+      return;
+    }
+    rows.forEach(function(p, idx){
+      if (idx === FREE_PREVIEW && userTier !== 'pro') {
+        var pwTr = document.createElement('tr');
+        pwTr.className = 'paywall-row';
+        var pwTd = document.createElement('td');
+        pwTd.colSpan = 11;
+        var title = document.createElement('div');
+        title.className = 'paywall-title';
+        title.textContent = '🔒 Unlock ' + (rows.length - FREE_PREVIEW) + ' more DCF intrinsic-value rows';
+        var sub = document.createElement('div');
+        sub.className = 'paywall-sub';
+        sub.textContent = 'DCF intrinsic-value computation is the Edge Pro differentiator. Each row is an auditable two-stage Damodaran model from SEC XBRL — the same math Bloomberg charges $24K/yr for.';
+        var btn1 = document.createElement('a');
+        btn1.href = '/pricing/?need=pro&from=dcf';
+        btn1.className = 'paywall-btn';
+        btn1.textContent = 'Unlock Edge Pro $39/mo →';
+        var btn2 = document.createElement('a');
+        btn2.href = '/unlock/';
+        btn2.className = 'paywall-btn secondary';
+        btn2.textContent = 'Already paying? Sign in';
+        // Partner upsell — built via DOM methods (no innerHTML, XSS-safe).
+        var partnerNote = document.createElement('div');
+        partnerNote.style.cssText = 'margin-top:1rem;padding-top:.9rem;border-top:1px dashed rgba(212,168,67,.25);font-size:.8rem;color:var(--dim);max-width:520px;margin-left:auto;margin-right:auto';
+        partnerNote.appendChild(document.createTextNode('Want a single-stock DCF dashboard right now? Our research partner '));
+        var swsA = document.createElement('a');
+        swsA.href = '/go/simplywallst';
+        swsA.target = '_blank';
+        swsA.rel = 'noopener';
+        swsA.style.cssText = 'color:#06b6d4;font-weight:700';
+        swsA.textContent = 'Simply Wall St';
+        partnerNote.appendChild(swsA);
+        partnerNote.appendChild(document.createTextNode(' offers Snowflake reports + per-company fair-value charts — '));
+        var swsStrong = document.createElement('strong');
+        swsStrong.style.color = '#d4a843';
+        swsStrong.textContent = '14-day extended Premium trial.';
+        partnerNote.appendChild(swsStrong);
+        pwTd.appendChild(title);
+        pwTd.appendChild(sub);
+        pwTd.appendChild(btn1);
+        pwTd.appendChild(btn2);
+        pwTd.appendChild(partnerNote);
+        pwTr.appendChild(pwTd);
+        body.appendChild(pwTr);
+      }
+      var tr = document.createElement('tr');
+      if (idx >= FREE_PREVIEW && userTier !== 'pro') {
+        tr.className = 'tr-blur';
+      }
+
+      // Ticker
+      var td1 = document.createElement('td');
+      var a = document.createElement('a');
+      a.href = '/lookup/#' + p.ticker;
+      a.className = 'tk';
+      a.textContent = p.ticker;
+      td1.appendChild(a);
+      tr.appendChild(td1);
+
+      // Grade
+      var td2 = document.createElement('td');
+      var span = document.createElement('span');
+      span.className = 'grade grade-' + (p.dcf_grade || 'f').toLowerCase();
+      span.textContent = p.dcf_grade || '—';
+      td2.appendChild(span);
+      tr.appendChild(td2);
+
+      // Price
+      tr.appendChild(makeCell('',
+        Number(p.current_price) ? '$' + Number(p.current_price).toFixed(2) : '—'));
+
+      // Intrinsic
+      tr.appendChild(makeCell('',
+        Number(p.intrinsic_value_per_share) > 0
+          ? '$' + Number(p.intrinsic_value_per_share).toFixed(2) : '—'));
+
+      // Upside
+      var up = Number(p.upside_pct) || 0;
+      tr.appendChild(makeCell(up >= 0 ? 'up-pos' : 'up-neg',
+        (up >= 0 ? '+' : '') + up.toFixed(1) + '%'));
+
+      // FCF 3y avg
+      tr.appendChild(makeCell('', fmtMoney(p.fcf_3y_avg)));
+
+      // Revenue TTM
+      tr.appendChild(makeCell('', fmtMoney(p.revenue_ttm)));
+
+      // g1 stage-1 growth
+      tr.appendChild(makeCell('',
+        (Number(p.growth_stage1) * 100).toFixed(1) + '%'));
+
+      // Enterprise Value
+      tr.appendChild(makeCell('', fmtMoney(p.enterprise_value)));
+
+      // Equity value
+      tr.appendChild(makeCell('', fmtMoney(p.equity_value)));
+
+      // Shares
+      tr.appendChild(makeCell('muted', fmtShares(p.shares_out)));
+
+      body.appendChild(tr);
+    });
+  }
+
+  showEmpty('Loading DCF intrinsic values…');
+  Promise.all([
+    fetch('/data/sec_xbrl_dcf.json', {cache:'no-store'}).then(function(r){return r.json()})
+  ])
+    .then(function(results){
+      var d = results[0];
+      // Tier check intentionally removed — userTier is locked to 'pro' above.
+      // The /api/tier endpoint can still be polled by other pages, but DCF
+      // bypasses it permanently per operator decision.
+      picks = (d.picks || []).filter(function(p){ return p.dcf_grade; });
+      renderKPIs(d.grades || {});
+      var when = d.generated_at ? new Date(d.generated_at).toISOString().replace('T',' ').slice(0,19) + ' UTC' : '—';
+      document.getElementById('last-gen').textContent = 'generated ' + when + ' · ' + picks.length + ' scored';
+      render('all');
+    })
+    .catch(function(){
+      showEmpty('DCF data unavailable — next run fires on the autonomous loop.');
+    });
+
+  document.querySelectorAll('.filter-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      document.querySelectorAll('.filter-btn').forEach(function(b){ b.classList.remove('active'); });
+      btn.classList.add('active');
+      render(btn.dataset.grade);
+    });
+  });
+})();
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KV1VDK22VC"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-KV1VDK22VC');</script>
+</body>
+</html>

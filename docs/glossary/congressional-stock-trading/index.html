@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Congressional Stock Trading — How to Track What Politicians Buy | Catalyst Edge</title>
+<meta name="description" content="How to track congressional stock trades and use them as trading signals. Learn which politicians trade most actively, how to find their disclosures, and how to combine them with SEC catalysts.">
+<link rel="canonical" href="https://catalystedgescanner.com/glossary/congressional-stock-trading/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is congressional stock trading legal?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, members of Congress can legally trade stocks. The STOCK Act of 2012 prohibits trading on material non-public information obtained through official duties and requires disclosure within 45 days. However, enforcement has been criticized as weak, with only a $200 fine for late reporting."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I find what stocks Congress is buying?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Congressional stock trades are filed as Periodic Transaction Reports (PTRs) with the Clerk of the House or Secretary of the Senate. You can search them on disclosures.house.gov and efdsearch.senate.gov, or use aggregation tools like Catalyst Edge's Congress Tracker at catalystedgescanner.com/congress/."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do congressional stock trades outperform the market?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Multiple academic studies have found that congressional portfolios outperform the S&P 500 by 6-12% annually. A 2004 study by Ziobrowski et al. found Senate portfolios beat the market by 12.3% per year. While later studies show narrower margins, the persistent alpha suggests an information advantage."
+      }
+    }
+  ]
+}
+</script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#070a12;--surface:#0f1420;--gold:#d4a843;--green:#22c55e;--cyan:#06b6d4;
+  --red:#ef4444;--blue:#3b82f6;--text:#e2e8f0;--dim:#94a3b8;--muted:#64748b;--border:#1e293b}
+body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--text);line-height:1.8;-webkit-font-smoothing:antialiased}
+a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
+.wrap{max-width:720px;margin:0 auto;padding:2.5rem 1.5rem}
+.breadcrumb{font-size:.75rem;color:var(--muted);margin-bottom:1.5rem}
+.breadcrumb a{color:var(--muted)}
+h1{font-size:clamp(1.6rem,3.5vw,2.2rem);font-weight:800;line-height:1.2;margin-bottom:1rem}
+h2{font-size:1.15rem;font-weight:700;margin:2rem 0 .8rem;color:var(--gold)}
+h3{font-size:1rem;font-weight:600;margin:1.5rem 0 .5rem}
+p{margin-bottom:1rem;color:var(--dim);font-size:.92rem}
+ul,ol{margin:0 0 1.2rem 1.5rem;color:var(--dim);font-size:.92rem}
+li{margin-bottom:.4rem}
+strong{color:var(--text)}
+.highlight{background:var(--surface);border-left:3px solid var(--blue);padding:1rem 1.2rem;border-radius:0 8px 8px 0;margin:1.5rem 0}
+.highlight p{margin:0;color:var(--text);font-size:.9rem}
+.signal-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:1.5rem 0}
+.signal-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px}
+.signal-card h4{font-size:.85rem;font-weight:700;margin-bottom:.4rem;color:var(--cyan)}
+.signal-card p{font-size:.82rem;margin:0}
+.cta{background:var(--surface);border:2px solid var(--gold);border-radius:12px;padding:2rem;text-align:center;margin:2.5rem 0}
+.cta h3{color:var(--gold);margin:0 0 .5rem;font-size:1.1rem}
+.cta p{color:var(--dim);font-size:.88rem;margin-bottom:1rem}
+.cta-btn{display:inline-block;padding:.6rem 1.8rem;background:linear-gradient(135deg,var(--gold),#f1ce88);color:#070a12;font-weight:700;border-radius:8px;margin:0 .3rem}
+.footer{text-align:center;padding:1.5rem;font-size:.72rem;color:var(--muted);border-top:1px solid var(--border);margin-top:2rem}
+table{width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:.85rem}
+th{background:var(--surface);color:var(--muted);padding:8px 10px;text-align:left;border-bottom:1px solid var(--border);font-size:.72rem;text-transform:uppercase;letter-spacing:.06em}
+td{padding:8px 10px;border-bottom:1px solid rgba(255,255,255,.04);color:var(--dim)}
+</style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@800;900&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/lib/cinematic-hero.css">
+  <link rel="stylesheet" href="/lib/cyber-shell.css">
+  <link rel="stylesheet" href="/lib/polish-tokens.css">
+</head>
+<body>
+  <div class="cy-bg" aria-hidden="true"></div>
+  <div class="cy-floor" aria-hidden="true"></div>
+  <div class="cy-vignette" aria-hidden="true"></div>
+  <div class="cy-scan" aria-hidden="true"></div>
+<div class=\"wrap\">
+<section class="cin-hero cy-neon-hero cy-narrow cy-shimmer">
+    <div class="cin-grid">
+      <div class="cin-stat-stack">
+        <div class="cin-eyebrow"><span class="cin-live-dot"></span>STOCK ACT · CONGRESS · LIVE</div>
+        <div class="cin-colossal">
+          <div class="cin-num-row"><span class="cin-num">535</span></div>
+          <div class="cin-side">
+          <span class="cin-tag"><b>STOCK Act</b> filings</span>
+          <span class="cin-tag">45-day window</span>
+          <span class="cin-tag">committee mapping</span>
+          </div>
+        </div>
+        <div class="cin-stamp">GLOSSARY · CONGRESSIONAL STOCK TRAD · v1.0 · <b>LIVE</b></div>
+      </div>
+      <div class="cin-h1-block">
+        <div class="cin-h1-eyebrow">📚 Congressional Stock Trading</div>
+        <h1 class="cin-headline"><em>STOCK Act trades</em>—the <span class="cin-accent">front-running the hearings</span>.</h1>
+        <p class="cin-lede">House and Senate members must disclose trades within 45 days. We index every disclosure, map to committee assignments, and surface the cluster signals when multiple members hit the same ticker.</p>
+        <div class="cin-cta-row">
+          <a href="#article-body" class="cin-btn-primary">Read article ↓</a>
+          <a href="/glossary/" class="cin-btn-ghost">Glossary index</a>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+</div>
+<div class="wrap">
+  <div class="breadcrumb"><a href="/">Scanner</a> / <a href="/glossary/congressional-stock-trading/">Glossary</a> / Congressional Stock Trading</div>
+
+  <h1>Congressional Stock Trading: How to Track What Politicians Are Buying and Selling</h1>
+
+  <p>Congressional stock trading is one of the most controversial — and potentially profitable — signals in the market. Members of Congress routinely trade stocks in industries they regulate, with access to non-public briefings, upcoming legislation, and regulatory decisions that move markets.</p>
+
+  <div class="highlight">
+    <p>A 2004 study by Ziobrowski et al. found that U.S. Senators' stock portfolios beat the market by 12.3% per year. Even after the STOCK Act, research suggests congressional portfolios continue to outperform — raising questions about whether disclosure requirements alone prevent informational advantages.</p>
+  </div>
+
+  <h2>How Congressional Trade Disclosure Works</h2>
+  <p>Under the <a href="/glossary/what-is-stock-act/">STOCK Act</a>, members of Congress must file a <strong>Periodic Transaction Report (PTR)</strong> within 45 days of any securities transaction over $1,000. These reports include:</p>
+  <ul>
+    <li>Asset name and ticker symbol</li>
+    <li>Transaction type (purchase, sale, exchange)</li>
+    <li>Date of transaction</li>
+    <li>Amount range (e.g., $15,001 - $50,000)</li>
+    <li>Whether it's a joint, spouse, or dependent account</li>
+  </ul>
+
+  <h2>Where to Find Congressional Trade Data</h2>
+  <table>
+    <tr><th>Source</th><th>Coverage</th><th>Format</th></tr>
+    <tr><td>House Financial Disclosures (disclosures.house.gov)</td><td>All House members</td><td>PDF filings</td></tr>
+    <tr><td>Senate eFD (efdsearch.senate.gov)</td><td>All Senators</td><td>Searchable database</td></tr>
+    <tr><td><a href="/congress/">Catalyst Edge Congress Tracker</a></td><td>House + Senate combined</td><td>Searchable, filterable, SEC cross-referenced</td></tr>
+  </table>
+
+  <h2>Trading Signals from Congressional Disclosures</h2>
+  <div class="signal-grid">
+    <div class="signal-card">
+      <h4>Committee-Aligned Trades</h4>
+      <p>Members trading stocks in sectors their committees oversee. Banking committee + bank stocks. Energy committee + oil stocks.</p>
+    </div>
+    <div class="signal-card">
+      <h4>Bipartisan Clusters</h4>
+      <p>When members of both parties buy the same stock within a 30-day window, the signal is significantly stronger.</p>
+    </div>
+    <div class="signal-card">
+      <h4>Pre-Legislation Timing</h4>
+      <p>Trades that occur before major bills, regulatory changes, or government contract announcements.</p>
+    </div>
+    <div class="signal-card">
+      <h4>Spouse/Family Trades</h4>
+      <p>Trades filed under spouse or dependent accounts may represent lower-profile positioning on inside knowledge.</p>
+    </div>
+  </div>
+
+  <h2>Combining Congressional Trades with SEC Catalysts</h2>
+  <p>The most powerful setups emerge when congressional buying aligns with SEC filing catalysts:</p>
+  <ul>
+    <li><strong>Congress buys + 8-K material event</strong> — Double validation of upcoming positive catalyst</li>
+    <li><strong>Congress buys + Form 4 insider cluster</strong> — Both political and corporate insiders are accumulating</li>
+    <li><strong>Congress sells + S-3 shelf registration</strong> — Smart money exiting ahead of potential dilution</li>
+    <li><strong>Bipartisan buys + high catalyst score</strong> — The highest-conviction setup available</li>
+  </ul>
+
+  <h2>Limitations to Consider</h2>
+  <ul>
+    <li><strong>Reporting delay:</strong> 45 days means trades are stale by the time they're public</li>
+    <li><strong>Amount ranges:</strong> Exact position sizes are hidden behind broad ranges ($1K-$15K, $15K-$50K, etc.)</li>
+    <li><strong>Not all trades are informational:</strong> Some are routine portfolio rebalancing or tax-loss harvesting</li>
+    <li><strong>Blind trusts:</strong> Some members use blind trusts that are exempt from disclosure</li>
+  </ul>
+
+  <div class="cta">
+    <h3>Track congressional trades alongside SEC catalysts</h3>
+    <p>Our Congress Tracker cross-references political disclosures with filing catalysts, insider clusters, and squeeze signals.</p>
+    <a href="/congress/" class="cta-btn">Congress Tracker</a>
+    <a href="/" class="cta-btn" style="background:var(--surface);color:var(--gold);border:1px solid var(--gold)">Full Scanner</a>
+  </div>
+
+  <h2>Related Glossary</h2>
+  <ul>
+    <li><a href="/glossary/what-is-stock-act/">What Is the STOCK Act?</a> — The law governing congressional disclosures</li>
+    <li><a href="/glossary/what-is-form-4/">What Is Form 4?</a> — Corporate insider trade disclosures</li>
+    <li><a href="/glossary/insider-buying-signals/">Insider Buying Signals</a> — How to read insider purchase clusters</li>
+    <li><a href="/glossary/what-is-8k/">What Is an 8-K Filing?</a> — Material events that move stocks</li>
+    <li><a href="/glossary/dark-pool-signals/">Dark Pool Signals</a> — Off-exchange volume and institutional positioning</li>
+  </ul>
+</div>
+
+<div class="footer">
+  &copy; 2026 Catalyst Edge &middot;
+  <a href="/">Scanner</a> &middot;
+  <a href="/congress/">Congress Tracker</a> &middot;
+  <a href="/heatmap/">Heatmap</a> &middot;
+  <a href="/options-flow/">Options Flow</a> &middot;
+  Not financial advice.
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KV1VDK22VC"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-KV1VDK22VC');</script>
+</body>
+</html>

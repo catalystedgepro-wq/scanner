@@ -1,0 +1,59 @@
+bucket,rank,repo,stars,forks,language,created,description,captured_at
+trending_30d,1,ultraworkers/claw-code,188809,109380,Rust,2026-03-31,The repo is finally unlocked. enjoy the party! The fastest repo in history to surpass 100K stars ⭐. ,2026-04-27T23:11:47Z
+trending_30d,2,VoltAgent/awesome-design-md,66731,8209,,2026-03-31,A collection of DESIGN.md files inspired by popular brand design systems. Drop one into your project,2026-04-27T23:11:47Z
+trending_30d,3,MemPalace/mempalace,50011,6563,Python,2026-04-05,The best-benchmarked open-source AI memory system. And it's free.,2026-04-27T23:11:47Z
+trending_30d,4,JuliusBrussee/caveman,48093,2546,Python,2026-04-04,🪨 why use many token when few token do trick — Claude Code skill that cuts 65% of tokens by talking ,2026-04-27T23:11:47Z
+trending_30d,5,santifer/career-ops,40305,8332,JavaScript,2026-04-04,"AI-powered job search system built on Claude Code. 14 skill modes, Go dashboard, PDF generation, bat",2026-04-27T23:11:47Z
+trending_30d,6,safishamsi/graphify,36431,4045,Python,2026-04-03,"AI coding assistant skill (Claude Code, Codex, OpenCode, Cursor, Gemini CLI, GitHub Copilot CLI, Ope",2026-04-27T23:11:47Z
+trending_30d,7,Gitlawb/openclaude,24697,8075,TypeScript,2026-04-01,"Open Claude Is Open-source coding-agent CLI for OpenAI, Gemini, DeepSeek, Ollama, Codex, GitHub Mode",2026-04-27T23:11:47Z
+trending_30d,8,claude-code-best/claude-code,17065,15493,TypeScript,2026-03-31,"原汁原昧 Claude Code 可运行,可构建, 可调试版; Typescript 类型全修复; 企业级可靠性; 安全无毒, lock 文件保真, 可直接 bun i; bun run dev 启动",2026-04-27T23:11:47Z
+trending_30d,9,titanwings/colleague-skill,16780,1702,Python,2026-03-30,将冰冷的离别化为温暖的 Skill，欢迎加入数字生命1.0！Transforming cold farewells into warm skills? It's giving rebirth era.,2026-04-27T23:11:47Z
+trending_30d,10,openai/codex-plugin-cc,16413,925,JavaScript,2026-03-30,Use Codex from Claude Code to review code or delegate tasks.,2026-04-27T23:11:47Z
+trending_30d,11,alchaincyf/nuwa-skill,15576,2513,Python,2026-04-05,你想蒸馏的下一个员工，何必是同事。蒸馏任何人的思维方式——心智模型、决策启发式、表达DNA。Distill how anyone thinks.,2026-04-27T23:11:47Z
+trending_30d,12,garrytan/gbrain,11794,1429,TypeScript,2026-04-05,Garry's Opinionated OpenClaw/Hermes Agent Brain,2026-04-27T23:11:47Z
+trending_30d,13,sanbuphy/learn-coding-agent,11749,19740,,2026-03-31,Research on Coding Agents,2026-04-27T23:11:47Z
+trending_30d,14,HKUDS/OpenHarness,11402,1925,Python,2026-04-01,"""OpenHarness: Open Agent Harness with a Built-in Personal Agent--Ohmo!""",2026-04-27T23:11:47Z
+trending_30d,15,kyegomez/OpenMythos,10836,2419,Python,2026-04-18,"A theoretical reconstruction of the Claude Mythos architecture, built from first principles using th",2026-04-27T23:11:47Z
+trending_30d,16,emdash-cms/emdash,10079,857,TypeScript,2026-04-01,EmDash is a full-stack TypeScript CMS based on Astro; the spiritual successor to WordPress,2026-04-27T23:11:47Z
+trending_30d,17,google-labs-code/design.md,9343,771,TypeScript,2026-04-10,A format specification for describing a visual identity to coding agents. DESIGN.md gives agents a p,2026-04-27T23:11:47Z
+trending_30d,18,Kuberwastaken/claurst,9334,7796,Rust,2026-03-31,"Your favorite Terminal Coding Agent, now in Rust",2026-04-27T23:11:47Z
+trending_30d,19,ChinaSiro/claude-code-sourcemap,9038,14567,TypeScript,2026-03-31,,2026-04-27T23:11:47Z
+trending_30d,20,NanmiCoder/cc-haha,8835,7321,TypeScript,2026-03-31,Claude Code 泄露源码 - 本地可运行版本，新增跨平台桌面端软件补齐Computer Use（附带核心模块解析）,2026-04-27T23:11:47Z
+trending_30d,21,alchaincyf/huashu-design,8337,1249,HTML,2026-04-19,Huashu Design · HTML-native design skill for Claude Code · Claude Code 里 HTML 原生的设计 skill · 高保真原型 / ,2026-04-27T23:11:47Z
+trending_30d,22,paoloanzn/free-code,8146,1890,TypeScript,2026-03-31,"The free build of Claude Code. All telemetry removed, security-prompt guardrails stripped, all exper",2026-04-27T23:11:47Z
+trending_30d,23,browser-use/browser-harness,7574,675,Python,2026-04-17,Browser Harness | Self-healing harness that enables LLMs to complete any task.,2026-04-27T23:11:47Z
+trending_30d,24,h4ckf0r0day/obscura,7100,416,Rust,2026-04-13,The headless browser for AI agents and web scraping,2026-04-27T23:11:47Z
+trending_30d,25,ultraworkers/claw-code-parity,6689,5419,Rust,2026-04-02,Join Discord: https://discord.gg/5TUQKqFWd /  claw-code Rust port parity work - it is temporary work,2026-04-27T23:11:47Z
+trending_7d,1,op7418/guizang-ppt-skill,3428,351,HTML,2026-04-23,"A Claude Code Skill that turns prompts into horizontal-swipe magazine-style HTML decks — 10 layouts,",2026-04-27T23:11:47Z
+trending_7d,2,Einsia/OpenChronicle,1580,112,Python,2026-04-21,,2026-04-27T23:11:47Z
+trending_7d,3,ConardLi/garden-skills,1542,278,JavaScript,2026-04-21,"ConardLi's open-source Skills collection, featuring web design, knowledge retrieval, image generatio",2026-04-27T23:11:47Z
+trending_7d,4,victorchen96/deepseek_v4_rolepaly_instruct,1289,65,,2026-04-24,对于DeepSeek-V4角色扮演的特殊控制指令的说明,2026-04-27T23:11:47Z
+trending_7d,5,deepseek-ai/TileKernels,1279,104,Python,2026-04-22,A kernel library written in tilelang,2026-04-27T23:11:47Z
+trending_7d,6,freestylefly/awesome-gpt-image-2,1225,228,,2026-04-25,Prompt as Code | GPT-Image2 工业级提示词引擎与模板库 - 329个案例逆向工程，13套工业级模板,2026-04-27T23:11:47Z
+trending_7d,7,openclaw/clawsweeper,1191,125,JavaScript,2026-04-23,"ClawSweeper scans all issues and PRs and suggest what we can close, and why. It runs every PR / Issu",2026-04-27T23:11:47Z
+trending_7d,8,earthtojake/text-to-cad,945,149,JavaScript,2026-04-22,An open source harness for generating CAD models,2026-04-27T23:11:47Z
+trending_7d,9,0x0funky/agent-sprite-forge,864,81,Python,2026-04-23,"Agent Skill for generating 2D sprite sheets and map, transparent PNG frames, and animated GIFs from ",2026-04-27T23:11:47Z
+trending_7d,10,therealaleph/MasterHttpRelayVPN-RUST,850,107,Rust,2026-04-21,Rust port of @masterking32's MasterHttpRelayVPN — all credit to @masterking32 for the original idea ,2026-04-27T23:11:47Z
+trending_7d,11,Russell-cell/PPT-Design-Prompt,824,63,Python,2026-04-22,,2026-04-27T23:11:47Z
+trending_7d,12,wuyoscar/gpt_image_2_skill,814,79,Python,2026-04-22,"GPT Image 2 prompt gallery, image prompt library, agentic skill, and CLI for OpenAI image generation",2026-04-27T23:11:47Z
+trending_7d,13,GammaLabTechnologies/harmonist,745,294,Python,2026-04-23,"Portable AI agent orchestration with mechanical protocol enforcement. 186 agents, zero runtime depen",2026-04-27T23:11:47Z
+trending_7d,14,future-agi/future-agi,640,102,Python,2026-04-23,"Open-source, end-to-end platform for evaluating, observing, and improving LLM and AI agent applicati",2026-04-27T23:11:47Z
+trending_7d,15,tashfeenahmed/freellmapi,592,109,TypeScript,2026-04-21,OpenAI-compatible proxy that aggregates free-tier keys from ~14 AI providers with automatic failover,2026-04-27T23:11:47Z
+trending_7d,16,avaco-cloud/Vercel-XHTTP,538,2473,JavaScript,2026-04-26,XHTTP relay for Xray/V2Ray on Vercel Edge — Complete Persian setup guide. Hide your origin server IP,2026-04-27T23:11:47Z
+trending_7d,17,epoko77-ai/im-not-ai,510,52,Python,2026-04-24,AI가 쓴 글이 아닌 것처럼 윤문해주는 스킬,2026-04-27T23:11:47Z
+trending_7d,18,levelsio/superlevels,420,44,JavaScript,2026-04-23,A super Chrome extension I made that's safer than installing external malware/spyware-filled extensi,2026-04-27T23:11:47Z
+trending_7d,19,alash3al/stash,414,18,Go,2026-04-24,"Stash — persistent memory layer for AI agents. Episodes, facts, and working context stored in Postgr",2026-04-27T23:11:47Z
+trending_7d,20,NullLatency/FlowDriver,413,37,Go,2026-04-23,Bypass restrictive networks by tunneling SOCKS5 traffic through legitimate Google Drive API requests,2026-04-27T23:11:47Z
+trending_7d,21,chekusu/wanman,386,64,TypeScript,2026-04-22,wanman is an open-source agent matrix runtime inspired by Japanese one-man trains. It lets human use,2026-04-27T23:11:47Z
+trending_7d,22,chiefautism/privacy-parser,364,31,Python,2026-04-23,"Reverse of OpenAI Privacy Filter: same 1.5B model, returns PII as structured spans instead of maskin",2026-04-27T23:11:47Z
+trending_7d,23,charlie947/social-media-skills,363,104,Shell,2026-04-22,,2026-04-27T23:11:47Z
+trending_7d,24,CookSleep/gpt_image_playground,358,109,TypeScript,2026-04-23,基于 OpenAI gpt-image-2 接口的图片生成与编辑工具,2026-04-27T23:11:47Z
+trending_7d,25,worldwonderer/oh-story-claudecode,356,125,Shell,2026-04-22,网文写作 skill 包，覆盖长篇与短篇网络小说的扫榜、拆文、写作、去AI味全流程,2026-04-27T23:11:47Z
+ai_7d,1,earthtojake/text-to-cad,945,149,JavaScript,2026-04-22,An open source harness for generating CAD models,2026-04-27T23:11:47Z
+ai_7d,2,future-agi/future-agi,640,102,Python,2026-04-23,"Open-source, end-to-end platform for evaluating, observing, and improving LLM and AI agent applicati",2026-04-27T23:11:47Z
+ai_7d,3,alash3al/stash,414,18,Go,2026-04-24,"Stash — persistent memory layer for AI agents. Episodes, facts, and working context stored in Postgr",2026-04-27T23:11:47Z
+ai_7d,4,baidu-baige/LoongForge,139,14,Python,2026-04-23,"A modular, scalable, and highly efficient training framework for language, multimodal, and embodied ",2026-04-27T23:11:47Z
+ai_7d,5,riverscn/intro-agentic-ai,107,28,Vue,2026-04-21,认识 Agentic AI：从神经网络到智能体,2026-04-27T23:11:47Z
+ai_7d,6,chaohong-ai/ai-auto-work,104,11,Shell,2026-04-21,Automatically completes the full workflow from requirement research → research review → planning → p,2026-04-27T23:11:47Z
+ai_7d,7,Zafer-Liu/VizPilot_AI,91,21,HTML,2026-04-21,"上传数据，智能推荐图表，一键生成交互式可视化。 Upload data, get chart recommendations, and generate interactive visualizati",2026-04-27T23:11:47Z
+ai_7d,8,maria-rcks/clawd.rip,58,9,TypeScript,2026-04-27,Everything that *went* wrong with Claude.,2026-04-27T23:11:47Z

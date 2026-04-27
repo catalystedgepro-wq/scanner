@@ -1,0 +1,21 @@
+exchange_id,name,country,year,oi_btc,volume_btc,perp_pairs,futures_pairs,captured_at
+binance_futures,Binance (Futures),Cayman Islands,2019,313819.30,634630.05,605,45,2026-04-27T22:58:38Z
+bybit,Bybit (Futures),Seychelles,2018,145978.51,185796.45,650,68,2026-04-27T22:58:38Z
+coinw_futures,CoinW (Futures),United Arab Emirates,2017,142711.84,276399.70,159,0,2026-04-27T22:58:38Z
+gate_futures,Gate (Futures),Panama,2013,133222.08,178892.55,694,0,2026-04-27T22:58:38Z
+mxc_futures,MEXC (Futures),Seychelles,2020,128323.81,213199.59,898,0,2026-04-27T22:58:38Z
+lbank-futures,LBank (Futures),British Virgin Islands,2015,112193.83,93686.25,885,0,2026-04-27T22:58:38Z
+bitmart_futures,Bitmart Futures,Cayman Islands,1996,111038.78,128036.90,762,0,2026-04-27T22:58:38Z
+bydfi-futures,BYDFi (Futures),Singapore,2020,105327.53,7230.60,529,0,2026-04-27T22:58:38Z
+weex-futures,WEEX (Futures),Singapore,2018,102120.96,191139.75,730,0,2026-04-27T22:58:38Z
+hyperliquid,Hyperliquid (Futures),Cayman Islands,2023,99236.08,75987.25,331,0,2026-04-27T22:58:38Z
+bitget_futures,Bitget Futures,Seychelles,2019,92831.05,119890.67,660,0,2026-04-27T22:58:38Z
+okex_swap,OKX (Futures),United States,2021,92481.63,309283.40,313,22,2026-04-27T22:58:38Z
+xt_derivatives,XT.COM (Derivatives),Seychelles,2018,82376.39,101272.07,622,13,2026-04-27T22:58:38Z
+kumex,KuCoin Futures,Seychelles,2019,79443.89,31636.92,593,1,2026-04-27T22:58:38Z
+toobit_derivatives,Toobit Futures,Cayman Islands,2023,75084.83,213308.56,619,0,2026-04-27T22:58:38Z
+huobi_dm,HTX Futures,Seychelles,2018,59278.80,36672.13,234,8,2026-04-27T22:58:38Z
+bingx_futures,BingX (Futures),British Virgin Islands,2020,57111.78,120067.76,637,0,2026-04-27T22:58:38Z
+coinup-futures,CoinUp.io (Futures),Singapore,2021,57015.69,217061.58,113,0,2026-04-27T22:58:38Z
+whitebit_futures,WhiteBIT Futures,Lithuania,2022,54892.37,87397.42,296,0,2026-04-27T22:58:38Z
+phemex_futures,Phemex (Futures),Samoa,2019,42771.86,24605.60,549,0,2026-04-27T22:58:38Z

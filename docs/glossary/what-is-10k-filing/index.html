@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>What is a 10-K Filing? Annual Report Guide for Traders | Catalyst Edge</title>
+<meta name="description" content="The SEC 10-K annual report contains a company's full financial picture. Learn what to look for in a 10-K, how it differs from a 10-Q, and why traders use it to find deep value plays.">
+<link rel="canonical" href="https://catalystedgescanner.com/glossary/what-is-10k-filing/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the difference between a 10-K and an annual report?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A 10-K is the SEC-mandated annual filing with standardized sections and audited financials. A company's glossy annual report is a marketing document. The 10-K is the legally binding version with the complete, unvarnished numbers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How is a 10-K different from a 10-Q?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The 10-K covers the full fiscal year with audited financials and comprehensive disclosures. The 10-Q covers a single quarter with unaudited numbers and abbreviated discussion. 10-K filings are far more detailed and include risk factors, legal proceedings, and executive compensation."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "When are 10-K filings due?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Large accelerated filers (public float over $700M) must file within 60 days of fiscal year end. Accelerated filers ($75M-$700M) have 75 days. Non-accelerated and smaller reporting companies have 90 days."
+      }
+    }
+  ]
+}
+</script>
+<style>
+:root {
+  --bg: #0a0e1a;
+  --surface: #111827;
+  --surface-2: #1a2035;
+  --border: #1e293b;
+  --text: #e2e8f0;
+  --text-dim: #94a3b8;
+  --accent: #d4a853;
+  --accent-glow: rgba(212, 168, 83, 0.15);
+  --blue: #3b82f6;
+  --green: #10b981;
+  --red: #ef4444;
+  --font: 'Space Grotesk', system-ui, sans-serif;
+  --mono: 'IBM Plex Mono', monospace;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+.container { max-width: 800px; margin: 0 auto; padding: 2rem 1.5rem; }
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(10, 14, 26, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0.75rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+}
+nav a { color: var(--accent); text-decoration: none; font-weight: 600; font-size: 0.95rem; }
+nav a:hover { text-decoration: underline; }
+nav .sep { color: var(--text-dim); }
+.hero {
+  text-align: center;
+  padding: 4rem 0 3rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 2rem;
+}
+.hero h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 800;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+}
+.hero .subtitle {
+  font-size: 1.15rem;
+  color: var(--text-dim);
+  max-width: 600px;
+  margin: 0 auto;
+}
+.content-section { margin-bottom: 2.5rem; }
+.content-section h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--accent-glow);
+}
+.content-section p, .content-section li {
+  color: var(--text-dim);
+  font-size: 1.05rem;
+}
+.content-section ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 0.5rem;
+}
+.content-section li {
+  padding: 0.35rem 0 0.35rem 1.5rem;
+  position: relative;
+}
+.content-section li::before {
+  content: '\25B8';
+  color: var(--accent);
+  position: absolute;
+  left: 0;
+}
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 0.95rem;
+}
+.data-table th, .data-table td {
+  padding: 0.6rem 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+.data-table th {
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.data-table td { color: var(--text-dim); }
+.data-table tr:hover td { color: var(--text); }
+.faq-section { margin-top: 3rem; }
+.faq-section h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--accent);
+}
+.faq-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
+  overflow: hidden;
+}
+.faq-item summary {
+  padding: 1rem 1.25rem;
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.faq-item summary::before {
+  content: '+';
+  font-family: var(--mono);
+  color: var(--accent);
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+.faq-item[open] summary::before { content: '\2212'; }
+.faq-item p {
+  padding: 0 1.25rem 1rem;
+  color: var(--text-dim);
+  line-height: 1.6;
+}
+.cta-box {
+  background: linear-gradient(135deg, var(--surface) 0%, var(--surface-2) 100%);
+  border: 1px solid var(--accent);
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  margin: 3rem 0;
+}
+.cta-box h3 {
+  color: var(--accent);
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+}
+.cta-box p {
+  color: var(--text-dim);
+  margin-bottom: 1.25rem;
+}
+.cta-box a {
+  display: inline-block;
+  background: var(--accent);
+  color: var(--bg);
+  font-weight: 700;
+  padding: 0.75rem 2rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.cta-box a:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px var(--accent-glow);
+}
+.related {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+.related h3 {
+  font-size: 1rem;
+  color: var(--text-dim);
+  margin-bottom: 0.75rem;
+}
+.related a {
+  color: var(--blue);
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+.related a:hover { text-decoration: underline; }
+footer {
+  text-align: center;
+  padding: 2rem 0;
+  color: var(--text-dim);
+  font-size: 0.85rem;
+  border-top: 1px solid var(--border);
+  margin-top: 2rem;
+}
+footer a { color: var(--accent); text-decoration: none; }
+</style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@800;900&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/lib/cinematic-hero.css">
+  <link rel="stylesheet" href="/lib/cyber-shell.css">
+  <link rel="stylesheet" href="/lib/polish-tokens.css">
+</head>
+<body>
+  <div class="cy-bg" aria-hidden="true"></div>
+  <div class="cy-floor" aria-hidden="true"></div>
+  <div class="cy-vignette" aria-hidden="true"></div>
+  <div class="cy-scan" aria-hidden="true"></div>
+<nav>
+  <a href="/">Catalyst Edge</a>
+  <span class="sep">/</span>
+  <a href="/glossary/">Glossary</a>
+  <span class="sep">/</span>
+  <span style="color:var(--text-dim);font-size:0.9rem">What is a 10-K Filing?</span>
+</nav>
+
+<div class="container">
+<section class="cin-hero cy-neon-hero cy-narrow cy-shimmer">
+    <div class="cin-grid">
+      <div class="cin-stat-stack">
+        <div class="cin-eyebrow"><span class="cin-live-dot"></span>10-K · ANNUAL · DEEP</div>
+        <div class="cin-colossal">
+          <div class="cin-num-row"><span class="cin-num">10-K</span></div>
+          <div class="cin-side">
+          <span class="cin-tag"><b>annual</b> filing</span>
+          <span class="cin-tag">auditor opinion</span>
+          <span class="cin-tag">risk-factor diffs</span>
+          </div>
+        </div>
+        <div class="cin-stamp">GLOSSARY · WHAT IS A 10-K FILING? · v1.0 · <b>LIVE</b></div>
+      </div>
+      <div class="cin-h1-block">
+        <div class="cin-h1-eyebrow">📚 What is a 10-K Filing?</div>
+        <h1 class="cin-headline"><em>Annual deep dive</em>—the <span class="cin-accent">the canonical fundamental file</span>.</h1>
+        <p class="cin-lede">The 10-K is the most comprehensive annual filing — auditor opinion, full financials, risk factors, MD&A. Reading the risk-factor changes year-over-year is one of the highest-signal exercises in fundamental analysis.</p>
+        <div class="cin-cta-row">
+          <a href="#article-body" class="cin-btn-primary">Read article ↓</a>
+          <a href="/glossary/" class="cin-btn-ghost">Glossary index</a>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <h2>10-K overview</h2>
+    <p>The 10-K is the most comprehensive public document a company files with the SEC. It is the audited annual report covering the full fiscal year: revenue, expenses, cash flow, debt, risk factors, legal proceedings, executive compensation, and segment breakdowns. Unlike the glossy shareholder letter, the 10-K contains raw, legally binding financials that analysts and traders actually read.</p>
+  </section>
+
+  <section class="content-section">
+    <h2>Key sections traders focus on</h2>
+    <table class="data-table">
+      <thead>
+        <tr><th>Section</th><th>What to look for</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Item 1A &mdash; Risk Factors</td><td>New risks added vs. prior year. Sudden additions signal material changes management sees coming.</td></tr>
+        <tr><td>Item 7 &mdash; MD&amp;A</td><td>Management discussion of results. Tone shifts between years reveal internal sentiment.</td></tr>
+        <tr><td>Item 8 &mdash; Financial Statements</td><td>Audited income statement, balance sheet, and cash flow. Compare margins and cash conversion year over year.</td></tr>
+        <tr><td>Item 1C &mdash; Cybersecurity</td><td>New SEC requirement since 2023. Reveals breach history and risk management maturity.</td></tr>
+        <tr><td>Item 15 &mdash; Exhibits</td><td>Material contracts, executive employment agreements, and subsidiary list. Gold mine for M&amp;A due diligence.</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="content-section">
+    <h2>10-K vs 10-Q vs 8-K</h2>
+    <table class="data-table">
+      <thead>
+        <tr><th>Filing</th><th>Frequency</th><th>Audited?</th><th>Signal speed</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>10-K</td><td>Annual</td><td>Yes</td><td>Slow (60-90 day lag)</td></tr>
+        <tr><td>10-Q</td><td>Quarterly</td><td>No</td><td>Moderate (40-45 day lag)</td></tr>
+        <tr><td><a href="/glossary/what-is-8k/" style="color:var(--blue)">8-K</a></td><td>Event-driven</td><td>No</td><td>Fast (4 business days)</td></tr>
+      </tbody>
+    </table>
+    <p style="margin-top:0.75rem">For trading catalysts, 8-K filings matter most because they report material events in near real-time. The 10-K matters for building a fundamental thesis &mdash; especially for <a href="/glossary/what-is-deep-value-investing/" style="color:var(--blue)">deep value plays</a> where you need the full financial picture.</p>
+  </section>
+
+  <section class="content-section">
+    <h2>Filing deadlines by company size</h2>
+    <table class="data-table">
+      <thead>
+        <tr><th>Filer category</th><th>Public float</th><th>10-K deadline</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Large accelerated</td><td>&gt; $700M</td><td>60 days after fiscal year end</td></tr>
+        <tr><td>Accelerated</td><td>$75M &ndash; $700M</td><td>75 days</td></tr>
+        <tr><td>Non-accelerated / SRC</td><td>&lt; $75M</td><td>90 days</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="content-section">
+    <h2>How Catalyst Edge uses 10-K data</h2>
+    <p>The scanner reads 10-K filings for sentiment analysis, extracting risk language and financial metrics that feed into the <a href="/glossary/what-is-catalyst-score/" style="color:var(--blue)">Catalyst Score</a>. When a company with strong 10-K fundamentals also shows insider buying or a catalyst 8-K, the convergence gets flagged as a high-conviction setup.</p>
+  </section>
+
+  <div class="cta-box">
+    <h3>Get the Daily Scanner</h3>
+    <p>Catalyst Edge scans every SEC filing that matters and ranks them by trading potential before market open.</p>
+    <a href="https://catalystedgescanner.com/">Open Scanner</a>
+  </div>
+
+  <div class="faq-section">
+    <h2>Frequently Asked Questions</h2>
+    <details class="faq-item">
+      <summary>What is the difference between a 10-K and an annual report?</summary>
+      <p>A 10-K is the SEC-mandated annual filing with standardized sections and audited financials. A company's glossy annual report is a marketing document. The 10-K is the legally binding version with the complete, unvarnished numbers.</p>
+    </details>
+    <details class="faq-item">
+      <summary>How is a 10-K different from a 10-Q?</summary>
+      <p>The 10-K covers the full fiscal year with audited financials and comprehensive disclosures. The 10-Q covers a single quarter with unaudited numbers and abbreviated discussion. 10-K filings are far more detailed and include risk factors, legal proceedings, and executive compensation.</p>
+    </details>
+    <details class="faq-item">
+      <summary>When are 10-K filings due?</summary>
+      <p>Large accelerated filers (public float over $700M) must file within 60 days of fiscal year end. Accelerated filers ($75M-$700M) have 75 days. Non-accelerated and smaller reporting companies have 90 days.</p>
+    </details>
+  </div>
+
+  <div class="related">
+    <h3>Related Topics</h3>
+    <p><a href="/glossary/what-is-8k/">What is an 8-K?</a> &middot; <a href="/glossary/how-to-read-sec-filings/">How to Read SEC Filings</a> &middot; <a href="/glossary/what-is-deep-value-investing/">Deep Value Investing</a> &middot; <a href="/glossary/what-is-form-13f/">What is Form 13F?</a> &middot; <a href="/glossary/sec-filing-types-for-traders/">SEC Filing Types for Traders</a></p>
+  </div>
+</div>
+
+<footer>
+  <a href="https://catalystedgescanner.com/">Catalyst Edge Scanner</a> &middot;
+  <a href="https://catalystedge.agency">Daily Newsletter</a> &middot;
+  &copy; 2026 Catalyst Edge
+</footer>
+</body>
+</html>

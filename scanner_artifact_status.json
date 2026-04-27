@@ -1,0 +1,19 @@
+{
+  "counts": {
+    "darkpool": 8,
+    "gappers": 10,
+    "insiders": 6,
+    "ranked": 12,
+    "sectors": 6,
+    "squeezes": 8
+  },
+  "display_total": 50,
+  "existing_index_present": true,
+  "generated_at": "2026-04-27T19:14:02.830599-04:00",
+  "index_path": "docs/index.html",
+  "isodate": "2026-04-27",
+  "kind": "scanner_artifact_status",
+  "page_bytes": 489841,
+  "reason": null,
+  "valid": true
+}

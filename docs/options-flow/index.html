@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Options Flow Scanner — Unusual Call/Put Activity | Catalyst Edge</title>
+<meta name="description" content="Track unusual options activity, gamma exposure, and put/call ratios. See which stocks have heavy call volume and institutional options flow.">
+<meta property="og:title" content="Options Flow Scanner — Catalyst Edge">
+<link rel="canonical" href="https://catalystedgescanner.com/options-flow/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#070a12;--surface:#0f1420;--gold:#d4a843;--green:#22c55e;--red:#ef4444;--cyan:#06b6d4;--text:#e2e8f0;--dim:#94a3b8;--muted:#64748b;--border:#1e293b}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
+.wrap{max-width:1080px;margin:0 auto;padding:1.5rem}
+.nav{position:sticky;top:0;z-index:100;background:rgba(7,10,18,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:.75rem 1.5rem;display:flex;align-items:center;gap:1rem}
+.nav a{color:var(--gold);font-weight:600;font-size:.95rem}
+.nav .sep{color:var(--muted)}
+.hero{text-align:center;padding:2.5rem 0 2rem;border-bottom:1px solid var(--border);margin-bottom:1.5rem}
+.hero h1{font-size:clamp(1.5rem,4vw,2.2rem);font-weight:800;line-height:1.2;margin-bottom:.4rem}
+.hero h1 em{font-style:normal;color:var(--green)}
+.hero .sub{color:var(--dim);font-size:.9rem;max-width:560px;margin:0 auto}
+.stats-bar{display:flex;justify-content:center;gap:2rem;margin:1rem 0;flex-wrap:wrap}
+.sb-item{text-align:center}
+.sb-val{font-size:1.3rem;font-weight:800;color:var(--gold)}
+.sb-lbl{font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.of-table{width:100%;border-collapse:collapse;margin:1.5rem 0}
+.of-table th{text-align:left;padding:8px 10px;font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;border-bottom:1px solid var(--border);position:sticky;top:52px;background:var(--bg)}
+.of-table td{padding:8px 10px;font-size:.82rem;border-bottom:1px solid rgba(30,41,59,.5)}
+.of-table tr:hover{background:rgba(34,197,94,.04)}
+.tk{font-weight:800;font-size:.9rem}
+.mono{font-family:'IBM Plex Mono',monospace;font-size:.78rem}
+.bullish{color:var(--green);font-weight:700}
+.bearish{color:var(--red);font-weight:700}
+.neutral{color:var(--muted)}
+.gamma-badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:.65rem;font-weight:700;text-transform:uppercase}
+.gamma-high{background:rgba(34,197,94,.12);color:var(--green)}
+.gamma-low{background:rgba(100,116,139,.12);color:var(--muted)}
+.unusual-badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:.65rem;font-weight:700;background:rgba(212,168,67,.12);color:var(--gold)}
+.cta-bar{background:var(--surface);border:1px solid var(--gold);border-radius:10px;padding:1.25rem;text-align:center;margin:2rem 0}
+.cta-bar h3{color:var(--gold);font-size:1rem;margin-bottom:.3rem}
+.cta-bar p{color:var(--dim);font-size:.8rem;margin-bottom:.75rem}
+.cta-bar a{display:inline-block;padding:.5rem 1.4rem;background:linear-gradient(135deg,var(--gold),#f1ce88);color:#070a12;font-weight:700;border-radius:6px;font-size:.85rem}
+.thin-banner{display:none;margin:1rem 0 1.5rem;padding:1rem 1.2rem;background:linear-gradient(135deg,rgba(212,168,67,.06),rgba(6,182,212,.04));border:1px solid rgba(212,168,67,.24);border-left:3px solid var(--gold);border-radius:8px;box-shadow:0 8px 24px -8px rgba(212,168,67,.18)}
+.thin-banner.visible{display:block}
+.thin-banner h4{font-size:.82rem;color:var(--gold);margin-bottom:.4rem;letter-spacing:.04em;font-weight:700}
+.thin-banner p{font-size:.78rem;color:var(--dim);line-height:1.55;margin-bottom:.5rem}
+.thin-banner .links{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.6rem}
+.thin-banner .links a{display:inline-block;padding:.35rem .7rem;font-size:.7rem;background:rgba(6,182,212,.08);border:1px solid rgba(6,182,212,.32);border-radius:5px;color:var(--cyan);text-decoration:none;transition:all .2s ease}
+.thin-banner .links a:hover{background:rgba(6,182,212,.16);transform:translateY(-1px);text-decoration:none}
+.thin-banner code{background:rgba(0,0,0,.32);padding:.1rem .4rem;border-radius:3px;font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:var(--gold)}
+.explainer{margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border)}
+.explainer h2{font-size:1.1rem;margin-bottom:.8rem}
+.explainer p{color:var(--dim);font-size:.85rem;margin-bottom:.8rem}
+.footer{text-align:center;padding:1.5rem;font-size:.72rem;color:var(--muted);border-top:1px solid var(--border);margin-top:2rem}
+.footer a{color:var(--muted)}
+.table-wrap{overflow-x:auto}
+</style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@800;900&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/lib/cinematic-hero.css">
+  <link rel="stylesheet" href="/lib/cyber-shell.css">
+  <link rel="stylesheet" href="/lib/polish-tokens.css">
+</head>
+<body>
+  <div class="cy-bg" aria-hidden="true"></div>
+  <div class="cy-floor" aria-hidden="true"></div>
+  <div class="cy-vignette" aria-hidden="true"></div>
+  <div class="cy-scan" aria-hidden="true"></div>
+<div class="nav">
+  <a href="/">Catalyst Edge</a>
+  <span class="sep">/</span>
+  <span style="color:var(--dim);font-size:.9rem">Options Flow</span>
+</div>
+<div class="wrap">
+<div class="ce-breadcrumb" style="max-width:1400px;margin:8px auto 0;padding:0 28px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-mute,#5a6c92);"><a href="/scanner/" style="color:var(--neon-cyan,#00ffff);text-decoration:none">&larr; Scanner</a><span style="color:var(--ink-mute,#5a6c92);margin:0 8px">&middot;</span><span>OPTIONS FLOW</span></div>
+
+<section class="cin-hero cy-neon-hero cy-shimmer">
+    <div class="cin-grid">
+      <div class="cin-stat-stack">
+        <div class="cin-eyebrow"><span class="cin-live-dot"></span>UNUSUAL OPTIONS FLOW · LIVE</div>
+        <div class="cin-colossal">
+          <div class="cin-num-row"><span class="cin-num">2x+</span></div>
+          <div class="cin-side">
+          <span class="cin-tag">volume vs <b>OI</b></span>
+          <span class="cin-tag">sweep + block prints</span>
+          <span class="cin-tag">IV percentile tag</span>
+          </div>
+        </div>
+        <div class="cin-stamp">OPTIONS//FLOW · v1.0 · <b>LIVE</b></div>
+      </div>
+      <div class="cin-h1-block">
+        <div class="cin-h1-eyebrow">📊 Options Flow · Where The Smart Money Buys</div>
+        <h1 class="cin-headline">Unusual <em>premium prints</em>—when volume runs <span class="cin-accent">2x open interest</span>, someone knows something.</h1>
+        <p class="cin-lede">Sweeps and blocks where today's volume exceeds 2x the open interest, IV percentile tagged. We show the directional bias (call-heavy vs put-heavy) and pair each row with the underlying's catalyst status.</p>
+        <div class="cin-cta-row">
+          <a href="#opt-table" class="cin-btn-primary">See unusual flow ↓</a>
+          <a href="/scanner/" class="cin-btn-ghost">Open scanner</a>
+        </div>
+        <div class="cin-strip">
+          <div class="cin-cell"><div class="cin-k">Unusual rows</div><div class="cin-v" id="opt-total">–</div></div>
+          <div class="cin-cell"><div class="cin-k">Call-heavy</div><div class="cin-v bull" id="opt-calls">–</div></div>
+          <div class="cin-cell"><div class="cin-k">Put-heavy</div><div class="cin-v bear" id="opt-puts">–</div></div>
+          <div class="cin-cell"><div class="cin-k">IV pct ≥80</div><div class="cin-v gold" id="opt-iv">–</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="thin-banner" id="thin-banner" role="status" aria-live="polite">
+    <h4>Why so few rows today?</h4>
+    <p>Live unusual-volume threshold is intentionally tight — we only flag legs where today's volume runs <code>≥ 2x open interest</code> with sweep or block prints. On low-VIX days, fewer names trip the filter. Drop the threshold by combining with broader signals on the main scanner, or check the cross-asset sweep on convergence.</p>
+    <div class="links">
+      <a href="/scanner/?q=opt">Scanner · broader options screen ↗</a>
+      <a href="/squeeze/">Squeeze radar ↗</a>
+      <a href="/convergence/">Convergence (multi-signal) ↗</a>
+    </div>
+  </div>
+  <div class="table-wrap">
+    <table class="of-table">
+      <thead><tr><th>Ticker</th><th>Price</th><th>Call OI</th><th>Put OI</th><th>P/C Ratio</th><th>Gamma</th><th>Max Pain</th><th>IV</th><th>Unusual</th></tr></thead>
+      <tbody id="of-body"></tbody>
+    </table>
+  </div>
+  <div class="cta-bar">
+    <h3>Options flow alerts daily</h3>
+    <p>Free daily email with unusual options activity, SEC catalysts, and convergence signals at 4 AM ET.</p>
+    <a href="/preview/">Subscribe Free</a>
+  </div>
+  <div class="explainer">
+    <h2>Reading the Options Flow</h2>
+    <p><strong>P/C Ratio:</strong> Put/Call ratio below 0.5 is bullish (more calls than puts). Above 1.0 is bearish. Between is neutral.</p>
+    <p><strong>Gamma Score:</strong> High gamma exposure means market makers are hedging aggressively — expect amplified price moves in either direction.</p>
+    <p><strong>Max Pain:</strong> The strike price where the most options expire worthless. Price often gravitates here near expiration.</p>
+    <p><strong>Unusual Call Volume:</strong> Flagged when call volume significantly exceeds normal levels — often precedes a directional move.</p>
+  </div>
+</div>
+<div class="footer">
+  &copy; 2026 Catalyst Edge &middot;
+  <a href="/">Scanner</a> &middot;
+  <a href="/gaps/">Gaps</a> &middot;
+  <a href="/jackpot/" style="color:#22c55e">🎯 JACKPOT</a>
+  <a href="/dcf/" style="color:#06b6d4">💰 DCF</a> &middot;
+  <a href="/squeeze/">Squeeze</a> &middot;
+  <a href="/darkpool/">Dark Pool</a> &middot;
+  <a href="/convergence/">Convergence</a> &middot;
+  <a href="/deepvalue/">Deep Value</a> &middot;
+  <a href="/mergers/">Mergers</a> &middot;
+  <a href="/smart-money/">Smart Money</a> &middot;
+  <a href="/sympathy/">Sympathy</a> &middot;
+  <a href="/congress/">Congress</a> &middot;
+  <a href="/glossary/">Glossary</a> &middot;
+  Not financial advice.
+</div>
+<script>
+(function(){
+  fetch('/api/options-flow').then(function(r){return r.json()}).then(function(d){
+    var flows = d.flows || [];
+    // Show explainer banner when live data is thin (≤5 rows)
+    if(flows.length <= 5){
+      var banner = document.getElementById('thin-banner');
+      if(banner) banner.classList.add('visible');
+    }
+
+    var tbody = document.getElementById('of-body');
+    flows.forEach(function(f){
+      var tr = document.createElement('tr');
+      var pcr = parseFloat(f.pc_ratio||0);
+
+      var td1 = document.createElement('td');td1.className='tk';td1.textContent=f.ticker;tr.appendChild(td1);
+      var td2 = document.createElement('td');td2.className='mono';td2.textContent='$'+(parseFloat(f.current_price||f.price||0)).toFixed(2);tr.appendChild(td2);
+      var td3 = document.createElement('td');td3.className='mono bullish';td3.textContent=f.call_oi||'--';tr.appendChild(td3);
+      var td4 = document.createElement('td');td4.className='mono bearish';td4.textContent=f.put_oi||'--';tr.appendChild(td4);
+
+      var td5 = document.createElement('td');
+      td5.className='mono '+(pcr<0.5?'bullish':pcr>1?'bearish':'neutral');
+      td5.textContent=pcr.toFixed(3);tr.appendChild(td5);
+
+      var td6 = document.createElement('td');
+      var gs = parseInt(f.gamma_score||0);
+      var gb = document.createElement('span');
+      gb.className = 'gamma-badge '+(gs>=1?'gamma-high':'gamma-low');
+      gb.textContent = gs>=1?'HIGH':'LOW';
+      td6.appendChild(gb);tr.appendChild(td6);
+
+      var td7 = document.createElement('td');td7.className='mono';td7.textContent='$'+(parseFloat(f.max_pain||0)).toFixed(0);tr.appendChild(td7);
+
+      var td8 = document.createElement('td');td8.className='mono';
+      var iv = parseFloat(f.atm_call_iv||0);
+      td8.textContent = iv>0?(iv*100).toFixed(0)+'%':'--';
+      td8.style.color = iv>0.5?'var(--gold)':'var(--dim)';
+      tr.appendChild(td8);
+
+      var td9 = document.createElement('td');
+      if(f.unusual_call_vol==='1' || f.unusual_call_vol===1){
+        var ub = document.createElement('span');ub.className='unusual-badge';ub.textContent='UNUSUAL';td9.appendChild(ub);
+      } else {td9.textContent='--';td9.style.color='var(--muted)'}
+      tr.appendChild(td9);
+
+      tbody.appendChild(tr);
+    });
+  });
+})();
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KV1VDK22VC"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-KV1VDK22VC');</script>
+<script>
+(function(){
+  var f=function(id,v){var n=document.getElementById(id); if(n && v!=null) n.textContent=v;};
+  fetch('/api/options-flow').then(function(r){return r.json();}).then(function(d){
+    var rows=(d&&d.flows)||[];
+    var calls=0, puts=0, ivhi=0;
+    rows.forEach(function(r){
+      var pc=parseFloat(r.pc_ratio||'0');
+      if(pc<1 && pc>0) calls++;
+      if(pc>=1) puts++;
+      var iv=parseFloat(r.atm_call_iv||'0');
+      if(iv>=0.8) ivhi++;
+    });
+    f('opt-total', rows.length.toLocaleString());
+    f('opt-calls', calls.toLocaleString());
+    f('opt-puts', puts.toLocaleString());
+    f('opt-iv', ivhi.toLocaleString());
+  }).catch(function(){});
+})();
+</script>
+</body>
+</html>

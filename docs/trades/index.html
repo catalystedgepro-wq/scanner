@@ -1,0 +1,728 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Trades — Catalyst Edge Scanner</title>
+  <meta name="description" content="We trade our own signals in public, in paper, with the misses. Live agent decisions and active brackets — the audit page nobody else publishes." />
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/lib/admin-unlock.css" />
+  <link rel="stylesheet" href="/lib/scanner-polish.css" />
+  <link rel="stylesheet" href="/lib/nav-fix.css" />
+  <style>
+    :root{
+      --navy:#040a14; --navy2:#0a1424; --navy3:#0e1a2e;
+      --ink:#e6f1ff; --ink-dim:#9bb0c8; --ink-mute:#6e8198;
+      --cyan:#5ad7ff; --gold:#f5c662; --bull:#5cf2a4; --bear:#ff6b8b;
+      --line:rgba(110,140,180,0.18); --line-strong:rgba(110,140,180,0.32);
+      --glass: linear-gradient(180deg, rgba(15,28,48,0.78), rgba(7,14,28,0.78));
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;background:#04070d;color:var(--ink);
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      -webkit-font-smoothing:antialiased; font-feature-settings:"ss01","cv11";
+    }
+    a{color:var(--cyan);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+    code{font-family:"JetBrains Mono","IBM Plex Mono",ui-monospace,monospace;font-size:0.92em;background:rgba(90,215,255,0.06);padding:1px 6px;border-radius:4px;color:var(--cyan)}
+
+    .topbar{position:sticky;top:0;z-index:50;background:rgba(4,7,13,0.86);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+    .topbar-row{display:flex;align-items:center;gap:18px;padding:14px 24px;max-width:1400px;margin:0 auto}
+    .brand{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:14px;letter-spacing:0.18em;color:var(--gold);text-transform:uppercase}
+    .brand b{color:var(--cyan)}
+    nav.nav{display:flex;gap:8px;flex:1;flex-wrap:nowrap;overflow-x:auto;scroll-padding-top:80px}
+    nav.nav a{font-size:13px;color:var(--ink-dim);padding:8px 12px;border-radius:8px;white-space:nowrap}
+    nav.nav a:hover{background:rgba(90,215,255,0.08);color:var(--ink);text-decoration:none}
+    nav.nav a.active{color:var(--gold);background:rgba(245,198,98,0.08)}
+    .topbar-cta{display:flex;gap:10px;align-items:center}
+    .live-pill{display:inline-flex;align-items:center;gap:8px;padding:7px 12px;border-radius:999px;
+      border:1px solid rgba(92,242,164,0.5);color:var(--bull);background:rgba(92,242,164,0.08);
+      font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase}
+    .live-pill .dot{width:8px;height:8px;border-radius:50%;background:var(--bull);
+      box-shadow:0 0 0 0 rgba(92,242,164,0.7);animation:pulse 1.6s ease-out infinite}
+    .live-pill.dry{border-color:rgba(245,198,98,0.5);color:var(--gold);background:rgba(245,198,98,0.08)}
+    .live-pill.dry .dot{background:var(--gold);animation:none}
+    @keyframes pulse{
+      0%{box-shadow:0 0 0 0 rgba(92,242,164,0.7)}
+      80%{box-shadow:0 0 0 12px rgba(92,242,164,0)}
+      100%{box-shadow:0 0 0 0 rgba(92,242,164,0)}
+    }
+
+    .hero{padding:48px 0 28px;border-bottom:1px solid var(--line);position:relative;overflow:hidden}
+    .hero::before{content:"";position:absolute;inset:0;
+      background:radial-gradient(800px 400px at 30% 20%, rgba(92,242,164,0.10), transparent 60%),
+                 radial-gradient(600px 380px at 80% 60%, rgba(245,198,98,0.08), transparent 60%);pointer-events:none}
+    .hero .wrap{position:relative}
+    .eyebrow{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:0.22em;color:var(--gold);text-transform:uppercase;margin-bottom:14px}
+    .h1{font-size:clamp(34px,5vw,52px);line-height:1.05;letter-spacing:-0.01em;margin:0 0 14px;font-weight:700}
+    .h1 .glow{color:var(--cyan)}
+    .sub{font-size:17px;color:var(--ink-dim);max-width:760px;line-height:1.55}
+
+    .disclaimer{margin-top:24px;padding:16px 22px;border-radius:14px;background:rgba(245,198,98,0.06);border:1px solid rgba(245,198,98,0.32)}
+    .disclaimer .tag{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:0.2em;color:var(--gold);text-transform:uppercase;margin-bottom:6px}
+    .disclaimer p{margin:0;color:var(--ink-dim);font-size:13.5px;line-height:1.6}
+    .disclaimer p b{color:var(--ink)}
+
+    .stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:28px}
+    .stat-box{background:var(--glass);border:1px solid var(--line);border-radius:14px;padding:18px}
+    .stat-box .lbl{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:0.18em;color:var(--ink-mute);text-transform:uppercase;margin-bottom:6px}
+    .stat-box .val{font-size:26px;font-weight:700;font-variant-numeric:tabular-nums;color:var(--cyan)}
+    .stat-box .val.bull{color:var(--bull)}
+    .stat-box .val.bear{color:var(--bear)}
+    .stat-box .val.gold{color:var(--gold)}
+    .stat-box .ann{font-size:12px;color:var(--ink-dim);margin-top:4px;font-family:"IBM Plex Mono",monospace}
+    @media (max-width:860px){.stats-row{grid-template-columns:repeat(2,1fr)}}
+
+    section.section{padding:40px 0;border-bottom:1px solid var(--line)}
+    .section h2{font-size:22px;margin:0 0 8px;letter-spacing:-0.01em}
+    .section .lead{color:var(--ink-dim);max-width:680px;margin:0 0 18px;font-size:14px}
+
+    .refresh-bar{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:14px}
+    .refresh-bar .last{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:0.14em;color:var(--ink-mute);text-transform:uppercase}
+    .refresh-bar .last b{color:var(--cyan)}
+    .refresh-bar button{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;
+      padding:8px 14px;border-radius:8px;background:transparent;color:var(--cyan);border:1px solid var(--cyan);cursor:pointer}
+    .refresh-bar button:hover{background:rgba(90,215,255,0.10)}
+
+    .tbl-wrap{overflow-x:auto;border-radius:14px;border:1px solid var(--line)}
+    table.tbl{width:100%;border-collapse:collapse;font-size:13px;background:var(--glass)}
+    table.tbl th, table.tbl td{padding:11px 14px;border-bottom:1px solid var(--line);text-align:left;vertical-align:middle}
+    table.tbl thead th{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:0.18em;color:var(--ink-mute);text-transform:uppercase;background:rgba(4,10,20,0.55)}
+    table.tbl tbody td{font-family:"JetBrains Mono",monospace;font-size:12.5px;color:var(--ink-dim)}
+    table.tbl tbody td b{color:var(--ink)}
+    table.tbl tbody tr:hover td{background:rgba(90,215,255,0.04)}
+    table.tbl td.pos{color:var(--bull)}
+    table.tbl td.neg{color:var(--bear)}
+    .badge{display:inline-flex;align-items:center;gap:6px;font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;
+      padding:3px 9px;border-radius:999px;border:1px solid var(--line-strong);color:var(--ink-mute)}
+    .badge.placed{border-color:rgba(92,242,164,0.5);color:var(--bull);background:rgba(92,242,164,0.08)}
+    .badge.dry_run{border-color:rgba(245,198,98,0.5);color:var(--gold);background:rgba(245,198,98,0.08)}
+    .badge.skipped{border-color:var(--line-strong);color:var(--ink-mute)}
+    .badge.rejected{border-color:rgba(255,107,139,0.5);color:var(--bear);background:rgba(255,107,139,0.08)}
+    .badge.accepted{border-color:rgba(90,215,255,0.5);color:var(--cyan);background:rgba(90,215,255,0.08)}
+    .badge.filled{border-color:rgba(92,242,164,0.5);color:var(--bull);background:rgba(92,242,164,0.08)}
+    .badge.canceled{border-color:rgba(255,107,139,0.4);color:var(--bear)}
+
+    .empty{padding:36px 24px;text-align:center;color:var(--ink-mute);font-size:14px}
+    .empty .ico{font-size:28px;margin-bottom:6px}
+
+    /* guardrails callout */
+    .guards{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;background:var(--glass);border:1px solid var(--line);border-radius:14px;padding:16px}
+    @media (max-width:760px){.guards{grid-template-columns:repeat(2,1fr)}}
+    .guard{display:flex;flex-direction:column;gap:4px;padding:10px 12px;border-radius:10px;background:rgba(4,10,20,0.4);border:1px solid var(--line)}
+    .guard .lbl{font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:0.16em;color:var(--ink-mute);text-transform:uppercase}
+    .guard .val{font-family:"JetBrains Mono",monospace;font-size:14px;color:var(--cyan);font-weight:600}
+
+    /* how-it-works */
+    .how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    @media (max-width:860px){.how-grid{grid-template-columns:1fr}}
+    .how{background:var(--glass);border:1px solid var(--line);border-radius:14px;padding:20px;display:flex;flex-direction:column;gap:8px;transition:all .2s ease}
+    .how:hover{border-color:rgba(90,215,255,0.45);transform:translateY(-2px)}
+    .how .num{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:0.18em;color:var(--gold);text-transform:uppercase}
+    .how h4{margin:0;font-size:16px;color:var(--ink)}
+    .how p{margin:0;color:var(--ink-dim);font-size:13px;line-height:1.55}
+    .how a.cta{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--cyan);margin-top:6px}
+
+    footer{padding:36px 0;color:var(--ink-mute);font-size:12px;border-top:1px solid var(--line);text-align:center}
+    footer .links{display:flex;gap:14px;justify-content:center;margin-top:8px;flex-wrap:wrap}
+  </style>
+<link rel="stylesheet" href="/lib/polish-tokens.css">
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-row">
+      <div class="brand"><b>Catalyst</b> · Edge</div>
+      <nav class="nav">
+        <a href="/scanner/">Scanner</a>
+        <a href="/dcf/">DCF</a>
+        <a href="/cross-border/">Cross-Border</a>
+        <a href="/alerts/">Alerts</a>
+        <a href="/sdk/">SDK</a>
+        <a href="/trust/">Trust</a>
+        <a href="/trades/" class="active">Trades</a>
+        <a href="/status/">Status</a>
+        <a href="/blog/">Blog</a>
+        <a href="/changelog/">Changelog</a>
+        <a href="/pricing/">Pricing</a>
+      </nav>
+      <div class="topbar-cta">
+        <span class="live-pill" id="mode-pill"><span class="dot"></span><span id="mode-text">checking…</span></span>
+      </div>
+    </div>
+  </div>
+
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow">🤖 Live agent · Paper account · 89% audited · trades placed since 2026-04-25</div>
+      <h1 class="h1">We trade our own signals. <span class="glow">In public, in paper, with the misses.</span></h1>
+      <p class="sub">An autonomous agent reads the same scanner you see at <a href="/scanner/">/scanner</a>, sizes a small position per signal, and queues a bracket order on the Alpaca paper account every cycle. Every decision below is real and timestamped. The page auto-refreshes every 60 seconds.</p>
+
+      <div class="disclaimer">
+        <div class="tag">⚠ paper trading disclaimer</div>
+        <p><b>PAPER TRADING.</b> No real capital is at risk. All orders are simulated against Alpaca's paper-trading environment with $100,000 starter equity. This is the agent grading itself in production — every decision visible, every miss visible. None of this is investment advice.</p>
+      </div>
+
+      <div class="stats-row">
+        <div class="stat-box"><div class="lbl">Account equity</div><div class="val" id="stat-equity">…</div><div class="ann" id="stat-equity-ann">paper account</div></div>
+        <div class="stat-box"><div class="lbl">P/L today</div><div class="val" id="stat-pl">…</div><div class="ann" id="stat-pl-ann">vs last session close</div></div>
+        <div class="stat-box"><div class="lbl">Open positions</div><div class="val" id="stat-positions">…</div><div class="ann" id="stat-positions-ann">currently held</div></div>
+        <div class="stat-box"><div class="lbl">Trades today</div><div class="val" id="stat-trades">…</div><div class="ann" id="stat-trades-ann">decisions logged</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>Guardrails</h2>
+      <p class="lead">Hardcoded limits the agent can't violate. Read straight from the live JSON.</p>
+      <div class="guards">
+        <div class="guard"><span class="lbl">Max position</span><span class="val" id="g-pos">$50</span></div>
+        <div class="guard"><span class="lbl">Daily-loss kill</span><span class="val" id="g-loss">$200</span></div>
+        <div class="guard"><span class="lbl">Max open</span><span class="val" id="g-open">5</span></div>
+        <div class="guard"><span class="lbl">Take-profit</span><span class="val" id="g-tp">+5.0%</span></div>
+        <div class="guard"><span class="lbl">Stop-loss</span><span class="val" id="g-sl">−3.0%</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="refresh-bar">
+        <h2 style="margin:0">Today's decisions</h2>
+        <div class="last">last refreshed · <b id="last-refresh">—</b> · <button id="refresh-now">↻ Refresh now</button></div>
+      </div>
+      <p class="lead">Every signal the agent looked at this cycle. Color-coded by status — green = placed, gold = dry-run, dim = skipped, red = rejected.</p>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead>
+            <tr><th>Time</th><th>Ticker</th><th>Signal</th><th>Status</th><th>Qty</th><th>Price</th><th>Est. pos</th><th>TP</th><th>SL</th><th>Reason / order ID</th></tr>
+          </thead>
+          <tbody id="decisions-tbody">
+            <tr><td colspan="10" class="empty"><div class="ico">⏳</div>loading decisions…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>Crypto decisions <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.16em;color:var(--gold);text-transform:uppercase;margin-left:8px">BTC · ETH · SOL · LTC · AVAX</span></h2>
+      <p class="lead">Multi-factor crypto signal: BTC ETF flows + DeFi calm + ETH gas relief. Score ≥ 2 of 3 fires a $25 paper position with a +3% TP and −2% SL leg.</p>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead>
+            <tr><th>Time</th><th>Symbol</th><th>Score</th><th>Status</th><th>Px</th><th>Est qty</th><th>Pos $</th><th>TP</th><th>SL</th><th>Reason / order</th></tr>
+          </thead>
+          <tbody id="crypto-tbody">
+            <tr><td colspan="10" class="empty"><div class="ico">⏳</div>loading crypto decisions…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>DeFi shadow signals <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.16em;color:var(--gold);text-transform:uppercase;margin-left:8px">no venue · validation only</span></h2>
+      <p class="lead">Top 10 DeFi protocols by TVL. The agent records theoretical 5-day-horizon entries (no orders placed) so we can grade DeFi signal accuracy alongside equity, crypto, and options.</p>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead>
+            <tr><th>Protocol</th><th>Signal</th><th>TVL</th><th>1d %</th><th>7d %</th><th>Stress</th><th>Horizon</th><th>TP / SL</th></tr>
+          </thead>
+          <tbody id="defi-tbody">
+            <tr><td colspan="8" class="empty"><div class="ico">⏳</div>loading DeFi signals…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>Options decisions <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.16em;color:var(--gold);text-transform:uppercase;margin-left:8px">long calls · unusual flow</span></h2>
+      <p class="lead">Top 5 unusual-flow call legs by volume from <code>/data/options_flow.json</code>. Single-leg market buy, $200/contract cap, 3 max open option positions. Long-only on the first cut.</p>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead>
+            <tr><th>Time</th><th>OCC symbol</th><th>Underlying</th><th>Expiry</th><th>Strike</th><th>Status</th><th>Qty</th><th>Est cost</th><th>Reason / order</th></tr>
+          </thead>
+          <tbody id="options-tbody">
+            <tr><td colspan="9" class="empty"><div class="ico">⏳</div>loading options decisions…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>Active brackets</h2>
+      <p class="lead">Live open positions and pending bracket orders, pulled from Alpaca's account API every 60 seconds.</p>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead>
+            <tr><th>Ticker</th><th>Qty</th><th>Side</th><th>Avg entry</th><th>Current</th><th>Unrealized P/L %</th><th>Submitted</th><th>Status</th></tr>
+          </thead>
+          <tbody id="brackets-tbody">
+            <tr><td colspan="8" class="empty"><div class="ico">⏳</div>loading positions…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>How this works</h2>
+      <p class="lead">Three steps. Open source where it matters.</p>
+      <div class="how-grid">
+        <div class="how">
+          <span class="num">01 · Signals</span>
+          <h4>Scanner + cross-border feed</h4>
+          <p>The agent reads <code>combined_priority.csv</code> and the cross-border STRONG/TRADE setups. Top 5 candidates by composite score, US-listed only on the first cut.</p>
+          <a class="cta" href="/scanner/">/scanner →</a>
+        </div>
+        <div class="how">
+          <span class="num">02 · Sizing</span>
+          <h4>$50 cap, 5 max open</h4>
+          <p>Each signal gets at most $50 of position. Daily-loss kill switch at −$200 — agent halts itself rather than chase. Idempotent client-order-IDs prevent re-fires.</p>
+          <a class="cta" href="/cross-border/">/cross-border →</a>
+        </div>
+        <div class="how">
+          <span class="num">03 · Execution</span>
+          <h4>Alpaca paper bracket</h4>
+          <p>Market order with attached take-profit (+5%) and stop-loss (−3%). Fills, fills, and misses all logged to <code>/data/alpaca_orders.json</code> for public audit.</p>
+          <a class="cta" href="/status/">/status →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    Catalyst Edge Scanner · Live agent paper trades · Audited 89% hit rate · Ships daily, not quarterly
+    <div class="links">
+      <a href="/sdk/">Read the agent code</a>
+      <a href="/trust/">Why paper first?</a>
+      <a href="/changelog/">Changelog</a>
+      <a href="/pricing/">Pricing</a>
+      <a href="mailto:opensource@example.com">Contact</a>
+    </div>
+  </footer>
+
+  <script src="/lib/tier.js" defer></script>
+  <script>
+    const ORDERS_URL = "/data/alpaca_orders.json";
+    const ACCOUNT_URL = "/data/alpaca_account.json";
+    const CRYPTO_URL = "/data/alpaca_crypto.json";
+    const DEFI_URL = "/data/defi_shadow.json";
+    const OPTIONS_URL = "/data/alpaca_options.json";
+
+    const modePill = document.getElementById("mode-pill");
+    const modeText = document.getElementById("mode-text");
+    const lastRefresh = document.getElementById("last-refresh");
+    const decisionsTbody = document.getElementById("decisions-tbody");
+    const bracketsTbody = document.getElementById("brackets-tbody");
+
+    function fmtUsd(v, signed) {
+      if (v == null) return "—";
+      const n = Number(v);
+      if (!isFinite(n)) return "—";
+      const sign = signed && n >= 0 ? "+" : "";
+      return sign + "$" + n.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+    function fmtPct(v, signed) {
+      if (v == null) return "—";
+      const n = Number(v);
+      if (!isFinite(n)) return "—";
+      const sign = signed && n >= 0 ? "+" : "";
+      return sign + (n * 100).toFixed(2) + "%";
+    }
+    function fmtTs(iso) {
+      if (!iso) return "—";
+      try {
+        const d = new Date(iso);
+        const pad = n => String(n).padStart(2, "0");
+        return pad(d.getUTCHours()) + ":" + pad(d.getUTCMinutes()) + ":" + pad(d.getUTCSeconds()) + "Z";
+      } catch (e) { return iso; }
+    }
+    function fmtRefresh(d) {
+      const pad = n => String(n).padStart(2, "0");
+      return pad(d.getUTCHours()) + ":" + pad(d.getUTCMinutes()) + ":" + pad(d.getUTCSeconds()) + " UTC";
+    }
+
+    function badge(status) {
+      const span = document.createElement("span");
+      span.className = "badge " + (status || "skipped");
+      span.textContent = status || "—";
+      return span;
+    }
+
+    function emptyRow(cols, text, ico) {
+      const tr = document.createElement("tr");
+      const td = document.createElement("td");
+      td.colSpan = cols;
+      td.className = "empty";
+      const i = document.createElement("div"); i.className = "ico"; i.textContent = ico || "·";
+      const t = document.createElement("div"); t.textContent = text;
+      td.appendChild(i); td.appendChild(t);
+      tr.appendChild(td);
+      return tr;
+    }
+
+    function renderDecisions(orders) {
+      const frag = document.createDocumentFragment();
+      const decisions = (orders && orders.decisions) || [];
+      const ts = orders && orders.last_attempt_utc;
+
+      if (!decisions.length) {
+        frag.appendChild(emptyRow(10, "No decisions logged yet — agent runs every cron cycle.", "🤖"));
+        decisionsTbody.replaceChildren(frag);
+        return;
+      }
+
+      decisions.forEach(d => {
+        const tr = document.createElement("tr");
+        const cells = [
+          fmtTs(ts),
+          d.ticker || "?",
+          d.signal || "?",
+          null,                                // status badge cell
+          d.qty != null ? String(d.qty) : "—",
+          d.est_price != null ? fmtUsd(d.est_price) : "—",
+          d.est_position_usd != null ? fmtUsd(d.est_position_usd) : "—",
+          d.take_profit_price != null ? fmtUsd(d.take_profit_price) : "—",
+          d.stop_loss_price != null ? fmtUsd(d.stop_loss_price) : "—",
+          d.alpaca_order_id ? d.alpaca_order_id.slice(0, 18) + "…" : (d.reason || "—"),
+        ];
+        cells.forEach((c, i) => {
+          const td = document.createElement("td");
+          if (i === 1) {
+            const b = document.createElement("b"); b.textContent = c;
+            td.appendChild(b);
+          } else if (i === 3) {
+            td.appendChild(badge(d.status));
+          } else {
+            td.textContent = c;
+          }
+          tr.appendChild(td);
+        });
+        frag.appendChild(tr);
+      });
+      decisionsTbody.replaceChildren(frag);
+    }
+
+    function renderBrackets(account) {
+      const frag = document.createDocumentFragment();
+      const positions = (account && account.positions) || [];
+      const orders = (account && account.open_orders) || [];
+
+      if (!positions.length && !orders.length) {
+        frag.appendChild(emptyRow(8, "No open positions or pending orders. Next cron cycle may add some.", "📭"));
+        bracketsTbody.replaceChildren(frag);
+        return;
+      }
+
+      // Existing positions
+      positions.forEach(p => {
+        const tr = document.createElement("tr");
+        const cells = [
+          { v: p.symbol, bold: true },
+          { v: p.qty != null ? String(p.qty) : "—" },
+          { v: (p.side || "—").toUpperCase() },
+          { v: p.avg_entry_price != null ? fmtUsd(p.avg_entry_price) : "—" },
+          { v: p.current_price != null ? fmtUsd(p.current_price) : "—" },
+          {
+            v: p.unrealized_plpc != null ? fmtPct(p.unrealized_plpc, true) : "—",
+            cls: p.unrealized_plpc != null
+              ? (Number(p.unrealized_plpc) >= 0 ? "pos" : "neg")
+              : "",
+          },
+          { v: "—" },
+          { v: null, badge: "filled" },
+        ];
+        cells.forEach(c => {
+          const td = document.createElement("td");
+          if (c.cls) td.className = c.cls;
+          if (c.bold) {
+            const b = document.createElement("b"); b.textContent = c.v;
+            td.appendChild(b);
+          } else if (c.badge) {
+            td.appendChild(badge(c.badge));
+          } else {
+            td.textContent = c.v;
+          }
+          tr.appendChild(td);
+        });
+        frag.appendChild(tr);
+      });
+
+      // Pending orders
+      orders.forEach(o => {
+        const tr = document.createElement("tr");
+        const cells = [
+          { v: o.symbol, bold: true },
+          { v: o.qty != null ? String(o.qty) : "—" },
+          { v: (o.side || "—").toUpperCase() },
+          { v: "—" },
+          { v: "—" },
+          { v: "—" },
+          { v: fmtTs(o.submitted_at) },
+          { v: null, badge: o.status || "accepted" },
+        ];
+        cells.forEach(c => {
+          const td = document.createElement("td");
+          if (c.bold) {
+            const b = document.createElement("b"); b.textContent = c.v;
+            td.appendChild(b);
+          } else if (c.badge) {
+            td.appendChild(badge(c.badge));
+          } else {
+            td.textContent = c.v;
+          }
+          tr.appendChild(td);
+        });
+        frag.appendChild(tr);
+      });
+
+      bracketsTbody.replaceChildren(frag);
+    }
+
+    function renderGuardrails(orders) {
+      const g = (orders && orders.guardrails) || {};
+      document.getElementById("g-pos").textContent  = "$" + (g.max_position_usd ?? 50);
+      document.getElementById("g-loss").textContent = "$" + (g.max_daily_loss_usd ?? 200);
+      document.getElementById("g-open").textContent = String(g.max_open_positions ?? 5);
+      document.getElementById("g-tp").textContent   = "+" + ((g.take_profit_pct ?? 0.05) * 100).toFixed(1) + "%";
+      document.getElementById("g-sl").textContent   = "−" + ((g.stop_loss_pct ?? 0.03) * 100).toFixed(1) + "%";
+    }
+
+    function renderModePill(orders) {
+      modePill.classList.remove("dry");
+      if (!orders) {
+        modeText.textContent = "checking…";
+        return;
+      }
+      if (orders.live_orders_enabled === false) {
+        modePill.classList.add("dry");
+        modeText.textContent = "dry-run mode";
+      } else if (orders.is_paper) {
+        modeText.textContent = "live · paper";
+      } else {
+        modeText.textContent = "live · LIVE $$";
+      }
+    }
+
+    function renderStats(orders, account) {
+      const equityEl = document.getElementById("stat-equity");
+      const plEl     = document.getElementById("stat-pl");
+      const plAnn    = document.getElementById("stat-pl-ann");
+      const posEl    = document.getElementById("stat-positions");
+      const posAnn   = document.getElementById("stat-positions-ann");
+      const trEl     = document.getElementById("stat-trades");
+      const trAnn    = document.getElementById("stat-trades-ann");
+
+      const acc = account && account.account ? account.account : {};
+      equityEl.textContent = acc.equity != null ? fmtUsd(acc.equity) : "—";
+
+      const pl = account && account.pl_today_usd != null ? Number(account.pl_today_usd) : null;
+      if (pl != null) {
+        plEl.textContent = (pl >= 0 ? "+" : "") + "$" + Math.abs(pl).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        plEl.className = "val " + (pl > 0 ? "bull" : pl < 0 ? "bear" : "");
+        const pct = account && account.pl_today_pct != null ? Number(account.pl_today_pct) : null;
+        plAnn.textContent = pct != null ? ((pct >= 0 ? "+" : "") + pct.toFixed(2) + "% vs last close") : "vs last session close";
+      } else {
+        plEl.textContent = "—";
+      }
+
+      posEl.textContent = account && account.positions_count != null ? String(account.positions_count) : "—";
+      const openOrders = account && account.open_orders_count != null ? account.open_orders_count : 0;
+      posAnn.textContent = openOrders + " pending order" + (openOrders === 1 ? "" : "s");
+
+      const decisions = (orders && orders.decisions) || [];
+      const placed = decisions.filter(d => d.status === "placed").length;
+      const dry = decisions.filter(d => d.status === "dry_run").length;
+      trEl.textContent = String(decisions.length);
+      trEl.className = "val " + (placed > 0 ? "bull" : "");
+      trAnn.textContent = placed + " placed · " + dry + " dry-run · " + (decisions.length - placed - dry) + " skipped";
+    }
+
+    async function fetchJSON(url) {
+      try {
+        const r = await fetch(url, { cache: "no-store" });
+        if (!r.ok) return null;
+        return await r.json();
+      } catch (e) { return null; }
+    }
+
+    function renderCrypto(crypto) {
+      const tbody = document.getElementById("crypto-tbody");
+      if (!tbody) return;
+      const frag = document.createDocumentFragment();
+      const decisions = (crypto && crypto.decisions) || [];
+      const ts = crypto && crypto.last_attempt_utc;
+      if (!decisions.length) {
+        frag.appendChild(emptyRow(10, "No crypto decisions yet — agent runs every cron cycle.", "🤖"));
+        tbody.replaceChildren(frag);
+        return;
+      }
+      decisions.forEach(d => {
+        const tr = document.createElement("tr");
+        const cells = [
+          fmtTs(ts),
+          d.ticker || "?",
+          String(d.score != null ? d.score : "—") + "/3",
+          null,                                 // status badge
+          d.est_price != null ? fmtUsd(d.est_price) : "—",
+          d.est_qty != null ? Number(d.est_qty).toFixed(6) : "—",
+          d.est_position_usd != null ? fmtUsd(d.est_position_usd) : "—",
+          d.take_profit_price != null ? fmtUsd(d.take_profit_price) : "—",
+          d.stop_loss_price != null ? fmtUsd(d.stop_loss_price) : "—",
+          d.alpaca_order_id_entry
+            ? d.alpaca_order_id_entry.slice(0, 18) + "…"
+            : (d.reason || "—"),
+        ];
+        cells.forEach((c, i) => {
+          const td = document.createElement("td");
+          if (i === 1) {
+            const b = document.createElement("b"); b.textContent = c;
+            td.appendChild(b);
+          } else if (i === 3) {
+            td.appendChild(badge(d.status));
+          } else {
+            td.textContent = c;
+          }
+          tr.appendChild(td);
+        });
+        frag.appendChild(tr);
+      });
+      tbody.replaceChildren(frag);
+    }
+
+    function fmtTvl(v) {
+      const n = Number(v);
+      if (!isFinite(n)) return "—";
+      if (n >= 1e9) return "$" + (n / 1e9).toFixed(2) + "B";
+      if (n >= 1e6) return "$" + (n / 1e6).toFixed(2) + "M";
+      return "$" + Math.round(n).toLocaleString();
+    }
+
+    function renderDefi(defi) {
+      const tbody = document.getElementById("defi-tbody");
+      if (!tbody) return;
+      const frag = document.createDocumentFragment();
+      const signals = (defi && defi.signals) || [];
+      if (!signals.length) {
+        frag.appendChild(emptyRow(8, "No DeFi shadow signals fired this cycle.", "🦄"));
+        tbody.replaceChildren(frag);
+        return;
+      }
+      signals.forEach(s => {
+        const tr = document.createElement("tr");
+        const sig = s.signal || "neutral";
+        const sigShort = sig.replace("defi_shadow_", "").toUpperCase();
+        const cells = [
+          { v: s.protocol || "?", bold: true },
+          { v: null, badge: sigShort === "BULL" ? "placed" : (sigShort === "BEAR" ? "rejected" : "skipped"), label: sigShort },
+          { v: fmtTvl(s.tvl_usd) },
+          {
+            v: s.change_1d_pct != null ? (Number(s.change_1d_pct) >= 0 ? "+" : "") + Number(s.change_1d_pct).toFixed(2) + "%" : "—",
+            cls: s.change_1d_pct != null ? (Number(s.change_1d_pct) >= 0 ? "pos" : "neg") : "",
+          },
+          {
+            v: s.change_7d_pct != null ? (Number(s.change_7d_pct) >= 0 ? "+" : "") + Number(s.change_7d_pct).toFixed(2) + "%" : "—",
+            cls: s.change_7d_pct != null ? (Number(s.change_7d_pct) >= 0 ? "pos" : "neg") : "",
+          },
+          { v: s.stress_label || "—" },
+          { v: (s.horizon_days != null ? s.horizon_days + "d" : "—") },
+          { v: "+" + ((s.tp_pct ?? 0.05) * 100).toFixed(0) + "% / " + ((s.sl_pct ?? -0.03) * 100).toFixed(0) + "%" },
+        ];
+        cells.forEach(c => {
+          const td = document.createElement("td");
+          if (c.cls) td.className = c.cls;
+          if (c.bold) {
+            const b = document.createElement("b"); b.textContent = c.v;
+            td.appendChild(b);
+          } else if (c.badge) {
+            const span = document.createElement("span");
+            span.className = "badge " + c.badge;
+            span.textContent = c.label || c.v || "";
+            td.appendChild(span);
+          } else {
+            td.textContent = c.v;
+          }
+          tr.appendChild(td);
+        });
+        frag.appendChild(tr);
+      });
+      tbody.replaceChildren(frag);
+    }
+
+    function renderOptions(opts) {
+      const tbody = document.getElementById("options-tbody");
+      if (!tbody) return;
+      const frag = document.createDocumentFragment();
+      const decisions = (opts && opts.decisions) || [];
+      const ts = opts && opts.last_attempt_utc;
+      if (!decisions.length) {
+        frag.appendChild(emptyRow(9, "No options candidates this cycle. Monday market open will populate unusual flow.", "📊"));
+        tbody.replaceChildren(frag);
+        return;
+      }
+      decisions.forEach(d => {
+        const tr = document.createElement("tr");
+        const cells = [
+          fmtTs(ts),
+          d.occ_symbol || "?",
+          d.underlying || "—",
+          d.expiry || "—",
+          d.strike != null ? "$" + Number(d.strike).toFixed(2) : "—",
+          null,                                  // status badge cell
+          d.qty != null ? String(d.qty) : "—",
+          d.est_total_cost_usd != null ? fmtUsd(d.est_total_cost_usd) : (d.est_per_contract_usd != null ? fmtUsd(d.est_per_contract_usd) : "—"),
+          d.alpaca_order_id ? d.alpaca_order_id.slice(0, 18) + "…" : (d.reason || "—"),
+        ];
+        cells.forEach((c, i) => {
+          const td = document.createElement("td");
+          if (i === 1) {
+            const b = document.createElement("b"); b.textContent = c;
+            td.appendChild(b);
+          } else if (i === 5) {
+            td.appendChild(badge(d.status));
+          } else {
+            td.textContent = c;
+          }
+          tr.appendChild(td);
+        });
+        frag.appendChild(tr);
+      });
+      tbody.replaceChildren(frag);
+    }
+
+    async function refresh() {
+      const [orders, account, crypto, defi, options] = await Promise.all([
+        fetchJSON(ORDERS_URL),
+        fetchJSON(ACCOUNT_URL),
+        fetchJSON(CRYPTO_URL),
+        fetchJSON(DEFI_URL),
+        fetchJSON(OPTIONS_URL),
+      ]);
+      renderModePill(orders);
+      renderGuardrails(orders);
+      renderStats(orders, account);
+      renderDecisions(orders);
+      renderCrypto(crypto);
+      renderDefi(defi);
+      renderOptions(options);
+      renderBrackets(account && account.account ? account : null);
+      lastRefresh.textContent = fmtRefresh(new Date());
+    }
+
+    document.getElementById("refresh-now").addEventListener("click", refresh);
+    refresh();
+    setInterval(refresh, 60000);
+  </script>
+</body>
+</html>

@@ -1,0 +1,478 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>SDK — Catalyst Edge in 1 import</title>
+  <meta name="description" content="Python + Node SDKs for Catalyst Edge. pip install catalyst-edge · npm install @catalyst-edge/sdk. Type-safe, async-native, webhook receiver, CLI bundled. v0.1 ships this week." />
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/lib/admin-unlock.css" />
+  <link rel="stylesheet" href="/lib/scanner-polish.css" />
+  <link rel="stylesheet" href="/lib/nav-fix.css" />
+  <style>
+    :root{
+      --navy:#040a14; --navy2:#0a1424; --navy3:#0e1a2e;
+      --ink:#e6f1ff; --ink-dim:#9bb0c8; --ink-mute:#6e8198;
+      --cyan:#5ad7ff; --gold:#f5c662; --bull:#5cf2a4; --bear:#ff6b8b;
+      --line:rgba(110,140,180,0.18); --line-strong:rgba(110,140,180,0.32);
+      --glass: linear-gradient(180deg, rgba(15,28,48,0.78), rgba(7,14,28,0.78));
+      --code-bg:#040a14;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;background:#04070d;color:var(--ink);
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      -webkit-font-smoothing:antialiased; font-feature-settings:"ss01","cv11";
+    }
+    a{color:var(--cyan);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+    code, pre{font-family:"JetBrains Mono","IBM Plex Mono",ui-monospace,monospace}
+
+    .topbar{position:sticky;top:0;z-index:50;background:rgba(4,7,13,0.86);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+    .topbar-row{display:flex;align-items:center;gap:18px;padding:14px 24px;max-width:1400px;margin:0 auto}
+    .brand{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:14px;letter-spacing:0.18em;color:var(--gold);text-transform:uppercase}
+    .brand b{color:var(--cyan)}
+    nav.nav{display:flex;gap:8px;flex:1;flex-wrap:nowrap;overflow-x:auto;scroll-padding-top:80px}
+    nav.nav a{font-size:13px;color:var(--ink-dim);padding:8px 12px;border-radius:8px;white-space:nowrap}
+    nav.nav a:hover{background:rgba(90,215,255,0.08);color:var(--ink);text-decoration:none}
+    nav.nav a.active{color:var(--gold);background:rgba(245,198,98,0.08)}
+    .topbar-cta{display:flex;gap:10px;align-items:center}
+    .pill-cta{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;
+      padding:8px 14px;border:1px solid var(--gold);color:var(--gold);border-radius:999px;cursor:pointer}
+    .pill-cta:hover{background:rgba(245,198,98,0.12);text-decoration:none}
+
+    .suite-row{display:grid;grid-template-columns:repeat(7,1fr);gap:10px;padding:14px 24px;max-width:1400px;margin:0 auto;border-bottom:1px solid var(--line)}
+    .suite-card{background:var(--glass);border:1px solid var(--line);border-radius:12px;padding:10px 12px;
+      display:flex;flex-direction:column;gap:4px;transition:all .2s ease;cursor:pointer}
+    .suite-card:hover{border-color:rgba(90,215,255,0.45);transform:translateY(-2px);text-decoration:none}
+    .suite-card .sc-eye{font-family:"IBM Plex Mono",monospace;font-size:9px;letter-spacing:0.16em;color:var(--ink-mute);text-transform:uppercase}
+    .suite-card .sc-h{font-size:13px;color:var(--ink);font-weight:600}
+    .suite-card .sc-d{font-size:11px;color:var(--ink-dim);line-height:1.35}
+    @media (max-width:980px){
+      .suite-row{grid-template-columns:repeat(2,1fr)}
+      nav.nav a{padding:6px 8px;font-size:12px}
+    }
+
+    .hero{padding:64px 0 48px;border-bottom:1px solid var(--line);position:relative;overflow:hidden}
+    .hero::before{content:"";position:absolute;inset:0;
+      background:radial-gradient(800px 400px at 30% 20%, rgba(90,215,255,0.14), transparent 60%),
+                 radial-gradient(600px 380px at 80% 60%, rgba(245,198,98,0.10), transparent 60%);pointer-events:none}
+    .hero .wrap{position:relative}
+    .eyebrow{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:0.22em;color:var(--gold);text-transform:uppercase;margin-bottom:16px}
+    .h1{font-size:clamp(36px,5.5vw,68px);line-height:1.04;letter-spacing:-0.01em;margin:0 0 18px;font-weight:700}
+    .h1 .glow{color:var(--cyan)}
+    .h1 code{font-size:0.6em;background:rgba(90,215,255,0.08);color:var(--cyan);padding:6px 12px;border-radius:8px;border:1px solid rgba(90,215,255,0.25);display:inline-block;margin:0 4px}
+    .sub{font-size:18px;color:var(--ink-dim);max-width:720px;line-height:1.5}
+    .install-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+    .install-tag{display:flex;align-items:center;gap:10px;background:var(--code-bg);border:1px solid var(--line-strong);
+      border-radius:10px;padding:10px 14px;font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--ink)}
+    .install-tag .pkg-icon{font-size:18px}
+    .install-tag .cmd{color:var(--cyan)}
+
+    section.section{padding:56px 0;border-bottom:1px solid var(--line)}
+    .section h2{font-size:28px;margin:0 0 8px;letter-spacing:-0.01em}
+    .section .lead{color:var(--ink-dim);max-width:680px;margin:0 0 28px}
+
+    /* code samples */
+    .samples{display:grid;gap:18px}
+    .sample{background:var(--glass);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+    .sample-hd{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border-bottom:1px solid var(--line);
+      background:rgba(4,10,20,0.4)}
+    .sample-hd h4{margin:0;font-size:14px;color:var(--cyan)}
+    .sample-hd .endpoint{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--ink-mute);letter-spacing:0.1em}
+    .tabs{display:flex;gap:4px}
+    .tab{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;
+      padding:6px 12px;border-radius:6px;border:1px solid transparent;color:var(--ink-mute);cursor:pointer;background:transparent}
+    .tab.active{border-color:var(--cyan);color:var(--cyan);background:rgba(90,215,255,0.06)}
+    .panes{padding:18px}
+    pre{margin:0;background:var(--code-bg);border:1px solid var(--line);border-radius:8px;padding:16px;
+      font-size:12.5px;line-height:1.55;color:var(--ink);overflow-x:auto;white-space:pre}
+    .pane{display:none}
+    .pane.active{display:block}
+    .copy-btn{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;
+      padding:5px 10px;border:1px solid var(--line-strong);color:var(--ink-dim);border-radius:6px;background:transparent;cursor:pointer}
+    .copy-btn:hover{border-color:var(--cyan);color:var(--cyan)}
+    /* syntax tints */
+    .kw{color:#c792ea}
+    .str{color:var(--bull)}
+    .fn{color:var(--cyan)}
+    .num{color:var(--gold)}
+    .com{color:var(--ink-mute);font-style:italic}
+
+    /* feature grid */
+    .feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    @media (max-width:900px){.feat-grid{grid-template-columns:1fr 1fr}}
+    @media (max-width:560px){.feat-grid{grid-template-columns:1fr}}
+    .feat{background:var(--glass);border:1px solid var(--line);border-radius:12px;padding:18px;transition:all .2s ease}
+    .feat:hover{border-color:rgba(90,215,255,0.45);transform:translateY(-2px)}
+    .feat .ico{font-size:22px;margin-bottom:8px}
+    .feat h4{margin:0 0 4px;color:var(--cyan);font-size:15px}
+    .feat p{margin:0;color:var(--ink-dim);font-size:13px;line-height:1.5}
+
+    /* roadmap */
+    .roadmap{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    @media (max-width:760px){.roadmap{grid-template-columns:1fr}}
+    .road{background:var(--glass);border:1px solid var(--line);border-radius:12px;padding:18px;position:relative;overflow:hidden}
+    .road.now{border-color:rgba(245,198,98,0.55);box-shadow:0 14px 30px -22px rgba(245,198,98,0.4)}
+    .road-tag{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+    .road-when{font-size:13px;color:var(--cyan);margin-bottom:8px}
+    .road h4{margin:0 0 8px;font-size:18px}
+    .road ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+    .road ul li{font-size:13px;color:var(--ink-dim);display:flex;gap:8px;align-items:flex-start}
+    .road ul li::before{content:"›";color:var(--cyan);font-weight:700;flex-shrink:0}
+
+    /* email capture */
+    .capture{background:linear-gradient(135deg, rgba(90,215,255,0.10), rgba(245,198,98,0.08));
+      border:1px solid rgba(245,198,98,0.32);border-radius:18px;padding:32px;margin-top:8px}
+    .capture h3{margin:0 0 8px;font-size:22px}
+    .capture p{margin:0 0 18px;color:var(--ink-dim);font-size:14px;max-width:560px}
+    .capture-form{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+    .capture-form input[type=email]{flex:1;min-width:240px;background:#040a14;border:1px solid var(--line-strong);
+      color:var(--ink);font-size:15px;padding:13px 14px;border-radius:10px;font-family:inherit}
+    .capture-form input[type=email]:focus{outline:none;border-color:var(--cyan)}
+    .capture-form button{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;
+      padding:13px 22px;border-radius:10px;background:var(--gold);color:#1a1304;border:none;font-weight:700;cursor:pointer}
+    .capture-form button:hover{background:#ffd683}
+    .capture .micro{margin-top:10px;font-size:11px;color:var(--ink-mute);font-family:"IBM Plex Mono",monospace}
+
+    /* pro footer */
+    .pro-bar{background:var(--glass);border:1px solid var(--line);border-radius:14px;padding:20px;display:flex;
+      gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+    .pro-bar .pb-l{font-size:14px;color:var(--ink)}
+    .pro-bar .pb-l b{color:var(--gold)}
+    .pro-bar a.cta{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;
+      padding:10px 16px;border-radius:10px;background:var(--cyan);color:#04070d;font-weight:700}
+
+    footer{padding:36px 0;color:var(--ink-mute);font-size:12px;border-top:1px solid var(--line);text-align:center}
+    footer .links{display:flex;gap:14px;justify-content:center;margin-top:8px;flex-wrap:wrap}
+  </style>
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://catalystedgescanner.com/sdk/" />
+  <meta property="og:title" content="SDK — Catalyst Edge in 1 import" />
+  <meta property="og:description" content="Python + Node SDKs for Catalyst Edge. pip install catalyst-edge · npm install @catalyst-edge/sdk. Type-safe, async-native, webhook receiver, CLI bundled. v0.1 ships this week." />
+  <meta property="og:image" content="https://catalystedgescanner.com/og/sdk.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name" content="Catalyst Edge Scanner" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@catalystEdgePro" />
+  <meta name="twitter:title" content="SDK — Catalyst Edge in 1 import" />
+  <meta name="twitter:description" content="Python + Node SDKs for Catalyst Edge. pip install catalyst-edge · npm install @catalyst-edge/sdk. Type-safe, async-native, webhook receiver, CLI bundled. v0.1 ships this week." />
+  <meta name="twitter:image" content="https://catalystedgescanner.com/og/sdk.png" />
+<link rel="stylesheet" href="/lib/polish-tokens.css">
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-row">
+      <div class="brand"><b>Catalyst</b> · Edge</div>
+      <nav class="nav">
+        <a href="/scanner/">Scanner</a>
+        <a href="/international/">Global</a>
+        <a href="/dcf/">DCF</a>
+        <a href="/cross-border/">Cross-Border</a>
+        <a href="/alerts/">Alerts</a>
+        <a href="/data/api/">API</a>
+        <a href="/sdk/" class="active">SDK</a>
+        <a href="/docs/quickstart/">Docs</a>
+        <a href="/changelog/">Changelog</a>
+        <a href="/pricing/">Pricing</a>
+      </nav>
+      <div class="topbar-cta">
+        <a class="pill-cta" href="#early">Reserve early access</a>
+      </div>
+    </div>
+    <div class="suite-row">
+      <a class="suite-card" href="/scanner/"><span class="sc-eye">US Scanner</span><span class="sc-h">Catalyst Edge</span><span class="sc-d">Live US gappers + flow</span></a>
+      <a class="suite-card" href="/international/"><span class="sc-eye">Global</span><span class="sc-h">43 markets</span><span class="sc-d">Cross-border tape</span></a>
+      <a class="suite-card" href="/dcf/"><span class="sc-eye">Valuation</span><span class="sc-h">DCF Engine</span><span class="sc-d">Audited fair-value grades</span></a>
+      <a class="suite-card" href="/cross-border/"><span class="sc-eye">Convergence</span><span class="sc-h">ADR ↔ Home</span><span class="sc-d">Foreign + US arb</span></a>
+      <a class="suite-card" href="/alerts/"><span class="sc-eye">Alerts</span><span class="sc-h">Pro Tape</span><span class="sc-d">Live triggers right now</span></a>
+      <a class="suite-card" href="/data/api/"><span class="sc-eye">Developers</span><span class="sc-h">JSON API</span><span class="sc-d">22 endpoints</span></a>
+      <a class="suite-card" href="/docs/quickstart/"><span class="sc-eye">Onboard</span><span class="sc-h">Quickstart</span><span class="sc-d">First DCF in 60 sec</span></a>
+    </div>
+  </div>
+
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow">🐍 Python · 🟢 Node · 📦 Coming this week — Reserve early access</div>
+      <h1 class="h1">Catalyst Edge in <span class="glow">1 import.</span></h1>
+      <p class="sub">Type-safe, async-native, webhook-aware. Stop curl-piping JSON into jq. The same alpha you read on the scanner — embeddable into any Python or Node app, with a CLI bundled, in under 60 seconds.</p>
+      <div class="install-row">
+        <div class="install-tag"><span class="pkg-icon">🐍</span><span class="cmd">pip install catalyst-edge</span></div>
+        <div class="install-tag"><span class="pkg-icon">🟢</span><span class="cmd">npm install @catalyst-edge/sdk</span></div>
+        <div class="install-tag"><span class="pkg-icon">⚡</span><span class="cmd">npx @catalyst-edge/cli scan --grade A</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>Code in 4 lines</h2>
+      <p class="lead">Each example shows Python and Node side-by-side. Copy any block and run.</p>
+
+      <div class="samples">
+
+        <div class="sample" data-sample="dcf">
+          <div class="sample-hd">
+            <div>
+              <h4>Top-graded DCF picks</h4>
+              <div class="endpoint">GET /api/v1/dcf?grade=A</div>
+            </div>
+            <div class="tabs">
+              <button class="tab active" data-tab="py">Python</button>
+              <button class="tab" data-tab="js">Node</button>
+            </div>
+          </div>
+          <div class="panes">
+            <div class="pane py active">
+<pre><span class="kw">from</span> catalyst_edge <span class="kw">import</span> Client
+
+c = <span class="fn">Client</span>(api_key=<span class="str">"ce_live_..."</span>)
+picks = c.dcf.<span class="fn">top</span>(grade=<span class="str">"A"</span>)
+<span class="fn">print</span>(picks[:<span class="num">5</span>])
+<span class="com"># [DcfPick(ticker='META', upside=104.2, grade='A', wacc=0.09), ...]</span></pre>
+              <div style="margin-top:10px;text-align:right"><button class="copy-btn" data-copy>📋 Copy</button></div>
+            </div>
+            <div class="pane js">
+<pre><span class="kw">import</span> { Client } <span class="kw">from</span> <span class="str">'@catalyst-edge/sdk'</span>;
+
+<span class="kw">const</span> c = <span class="kw">new</span> <span class="fn">Client</span>({ apiKey: <span class="str">'ce_live_...'</span> });
+<span class="kw">const</span> picks = <span class="kw">await</span> c.dcf.<span class="fn">top</span>({ grade: <span class="str">'A'</span> });
+console.<span class="fn">log</span>(picks.<span class="fn">slice</span>(<span class="num">0</span>, <span class="num">5</span>));
+<span class="com">// [{ ticker: 'META', upside: 104.2, grade: 'A', wacc: 0.09 }, ...]</span></pre>
+              <div style="margin-top:10px;text-align:right"><button class="copy-btn" data-copy>📋 Copy</button></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sample" data-sample="tape">
+          <div class="sample-hd">
+            <div>
+              <h4>Global catalyst tape</h4>
+              <div class="endpoint">GET /api/v1/tape?country=ALL&amp;limit=200</div>
+            </div>
+            <div class="tabs">
+              <button class="tab active" data-tab="py">Python</button>
+              <button class="tab" data-tab="js">Node</button>
+            </div>
+          </div>
+          <div class="panes">
+            <div class="pane py active">
+<pre><span class="kw">from</span> catalyst_edge <span class="kw">import</span> Client
+
+c = <span class="fn">Client</span>(api_key=<span class="str">"ce_live_..."</span>)
+tape = c.tape.<span class="fn">list</span>(country=<span class="str">"ALL"</span>, kind=<span class="str">"earnings"</span>, limit=<span class="num">50</span>)
+<span class="kw">for</span> evt <span class="kw">in</span> tape:
+    <span class="fn">print</span>(<span class="str">f"{evt.ts} {evt.flag} {evt.ticker:6} {evt.headline}"</span>)</pre>
+              <div style="margin-top:10px;text-align:right"><button class="copy-btn" data-copy>📋 Copy</button></div>
+            </div>
+            <div class="pane js">
+<pre><span class="kw">import</span> { Client } <span class="kw">from</span> <span class="str">'@catalyst-edge/sdk'</span>;
+
+<span class="kw">const</span> c = <span class="kw">new</span> <span class="fn">Client</span>({ apiKey: <span class="str">'ce_live_...'</span> });
+<span class="kw">const</span> tape = <span class="kw">await</span> c.tape.<span class="fn">list</span>({ country: <span class="str">'ALL'</span>, kind: <span class="str">'earnings'</span>, limit: <span class="num">50</span> });
+<span class="kw">for</span> (<span class="kw">const</span> evt <span class="kw">of</span> tape) {
+  console.<span class="fn">log</span>(<span class="str">`${evt.ts} ${evt.flag} ${evt.ticker} ${evt.headline}`</span>);
+}</pre>
+              <div style="margin-top:10px;text-align:right"><button class="copy-btn" data-copy>📋 Copy</button></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sample" data-sample="cb">
+          <div class="sample-hd">
+            <div>
+              <h4>Cross-border STRONG setups</h4>
+              <div class="endpoint">GET /api/v1/crossborder?conviction=STRONG</div>
+            </div>
+            <div class="tabs">
+              <button class="tab active" data-tab="py">Python</button>
+              <button class="tab" data-tab="js">Node</button>
+            </div>
+          </div>
+          <div class="panes">
+            <div class="pane py active">
+<pre><span class="kw">from</span> catalyst_edge <span class="kw">import</span> Client
+
+c = <span class="fn">Client</span>(api_key=<span class="str">"ce_live_..."</span>)
+setups = c.crossborder.<span class="fn">strong</span>()
+<span class="kw">for</span> s <span class="kw">in</span> setups:
+    <span class="fn">print</span>(<span class="str">f"{s.adr} ↔ {s.home} | gap={s.gap_pct:+.2f}% | score={s.score}"</span>)
+<span class="com"># BABA ↔ 9988.HK | gap=+2.40% | score=4</span></pre>
+              <div style="margin-top:10px;text-align:right"><button class="copy-btn" data-copy>📋 Copy</button></div>
+            </div>
+            <div class="pane js">
+<pre><span class="kw">import</span> { Client } <span class="kw">from</span> <span class="str">'@catalyst-edge/sdk'</span>;
+
+<span class="kw">const</span> c = <span class="kw">new</span> <span class="fn">Client</span>({ apiKey: <span class="str">'ce_live_...'</span> });
+<span class="kw">const</span> setups = <span class="kw">await</span> c.crossborder.<span class="fn">strong</span>();
+<span class="kw">for</span> (<span class="kw">const</span> s <span class="kw">of</span> setups) {
+  console.<span class="fn">log</span>(<span class="str">`${s.adr} ↔ ${s.home} | gap=${s.gapPct.toFixed(2)}% | score=${s.score}`</span>);
+}</pre>
+              <div style="margin-top:10px;text-align:right"><button class="copy-btn" data-copy>📋 Copy</button></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sample" data-sample="alerts">
+          <div class="sample-hd">
+            <div>
+              <h4>Live alerts stream (async iterator)</h4>
+              <div class="endpoint">GET /api/v1/alerts/live (SSE)</div>
+            </div>
+            <div class="tabs">
+              <button class="tab active" data-tab="py">Python</button>
+              <button class="tab" data-tab="js">Node</button>
+            </div>
+          </div>
+          <div class="panes">
+            <div class="pane py active">
+<pre><span class="kw">import</span> asyncio
+<span class="kw">from</span> catalyst_edge <span class="kw">import</span> AsyncClient
+
+<span class="kw">async def</span> <span class="fn">main</span>():
+    c = <span class="fn">AsyncClient</span>(api_key=<span class="str">"ce_live_..."</span>)
+    <span class="kw">async for</span> a <span class="kw">in</span> c.alerts.<span class="fn">live</span>(severity=<span class="str">"urgent"</span>):
+        <span class="fn">print</span>(<span class="str">f"[{a.severity}] {a.ticker} → {a.message}"</span>)
+
+asyncio.<span class="fn">run</span>(<span class="fn">main</span>())</pre>
+              <div style="margin-top:10px;text-align:right"><button class="copy-btn" data-copy>📋 Copy</button></div>
+            </div>
+            <div class="pane js">
+<pre><span class="kw">import</span> { Client } <span class="kw">from</span> <span class="str">'@catalyst-edge/sdk'</span>;
+
+<span class="kw">const</span> c = <span class="kw">new</span> <span class="fn">Client</span>({ apiKey: <span class="str">'ce_live_...'</span> });
+<span class="kw">for await</span> (<span class="kw">const</span> a <span class="kw">of</span> c.alerts.<span class="fn">live</span>({ severity: <span class="str">'urgent'</span> })) {
+  console.<span class="fn">log</span>(<span class="str">`[${a.severity}] ${a.ticker} → ${a.message}`</span>);
+}</pre>
+              <div style="margin-top:10px;text-align:right"><button class="copy-btn" data-copy>📋 Copy</button></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>Why this SDK doesn't suck</h2>
+      <p class="lead">Six things every modern API client should ship — and most don't.</p>
+      <div class="feat-grid">
+        <div class="feat"><div class="ico">🔁</div><h4>Auto-retry with backoff</h4><p>Exponential backoff on 429/5xx. Respects Retry-After. Configurable max attempts. You don't write retry loops anymore.</p></div>
+        <div class="feat"><div class="ico">🛡️</div><h4>Type-safe end-to-end</h4><p>TypeScript types and Pydantic models generated from the OpenAPI spec. Autocomplete in your IDE for every field, every endpoint.</p></div>
+        <div class="feat"><div class="ico">📡</div><h4>Webhook receiver included</h4><p>Express + FastAPI middleware verifies HMAC signatures and decodes events. Drop into your handler, ship.</p></div>
+        <div class="feat"><div class="ico">⚡</div><h4>CLI bundled</h4><p><code>npx @catalyst-edge/cli scan --grade A</code> prints results. Pipe to jq, awk, or your shell. No SDK code required.</p></div>
+        <div class="feat"><div class="ico">🌀</div><h4>Async/await native</h4><p>Both SDKs ship sync and async clients. Stream live alerts via async iterator. No callback pyramids.</p></div>
+        <div class="feat"><div class="ico">✅</div><h4>100% test coverage</h4><p>Every endpoint has unit + integration tests. We dogfood the SDK on the production scanner. CI runs against the real API.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>Roadmap</h2>
+      <p class="lead">Public commitments. We ship daily — see <a href="/changelog/">changelog</a>.</p>
+      <div class="roadmap">
+        <div class="road now">
+          <div class="road-tag">v0.1 — this week</div>
+          <div class="road-when">📦 Initial release</div>
+          <h4>Python + Node</h4>
+          <ul>
+            <li>Sync + async clients</li>
+            <li>22 endpoint coverage</li>
+            <li>Webhook receiver middleware</li>
+            <li>CLI for shell pipelines</li>
+            <li>Pydantic v2 + TypeScript types</li>
+          </ul>
+        </div>
+        <div class="road">
+          <div class="road-tag">v0.2 — next month</div>
+          <div class="road-when">🌐 Language expansion</div>
+          <h4>Realtime + R + Go</h4>
+          <ul>
+            <li>Websocket feed (live tape)</li>
+            <li>R package on CRAN</li>
+            <li>Go module on pkg.go.dev</li>
+            <li>Server-Sent Events helpers</li>
+            <li>Streaming JSON parser</li>
+          </ul>
+        </div>
+        <div class="road">
+          <div class="road-tag">v1.0 — next quarter</div>
+          <div class="road-when">🤖 Agent-ready</div>
+          <h4>LangChain + Numerai</h4>
+          <ul>
+            <li>LangChain Tool wrappers</li>
+            <li>Numerai signal bridge</li>
+            <li>Composer Symphony export</li>
+            <li>Pandas + Polars dataframes</li>
+            <li>Stable v1 API contract</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="early">
+    <div class="wrap">
+      <div class="capture">
+        <h3>Get notified when SDK ships</h3>
+        <p>One email when v0.1 lands. No drip campaign, no upsell sequence. Drop your address — we'll send a single message with install instructions and your starter API key.</p>
+        <form class="capture-form" action="mailto:opensource@example.com" method="POST" enctype="text/plain">
+          <input type="hidden" name="subject" value="SDK early access" />
+          <input type="email" name="email" placeholder="you@fund.com" required />
+          <button type="submit">Reserve my spot →</button>
+        </form>
+        <div class="micro">No spam · 1 email when v0.1 ships · unsubscribe = ignore the email</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="pro-bar">
+        <div class="pb-l">SDK is free to install. Your API key requires <b>Pro tier or higher</b> ($39/mo). Free tier shows the SDK works against limited public endpoints (top 5 DCF picks, daily catalyst tape).</div>
+        <a class="cta" href="/pricing/">See pricing</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    Catalyst Edge SDK · Open spec · MIT-licensed client wrappers · Audited 89% hit rate
+    <div class="links">
+      <a href="/scanner/">Scanner</a>
+      <a href="/data/api/">API reference</a>
+      <a href="/docs/quickstart/">Quickstart</a>
+      <a href="/changelog/">Changelog</a>
+      <a href="mailto:opensource@example.com">Contact</a>
+    </div>
+  </footer>
+
+  <script src="/lib/tier.js" defer></script>
+  <script>
+    // Tab switching
+    document.querySelectorAll('.sample').forEach(s => {
+      s.querySelectorAll('.tab').forEach(t => {
+        t.addEventListener('click', () => {
+          const which = t.dataset.tab;
+          s.querySelectorAll('.tab').forEach(x => x.classList.toggle('active', x === t));
+          s.querySelectorAll('.pane').forEach(p => p.classList.toggle('active', p.classList.contains(which)));
+        });
+      });
+    });
+    // Copy buttons
+    document.querySelectorAll('[data-copy]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const pane = btn.closest('.pane');
+        const code = pane.querySelector('pre').innerText;
+        navigator.clipboard.writeText(code).then(() => {
+          const orig = btn.textContent;
+          btn.textContent = '✓ Copied';
+          setTimeout(() => { btn.textContent = orig; }, 1500);
+        });
+      });
+    });
+  </script>
+</body>
+</html>

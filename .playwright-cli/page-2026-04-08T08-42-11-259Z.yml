@@ -1,0 +1,160 @@
+- generic [ref=e63]:
+  - generic [ref=e64]:
+    - generic [ref=e65]:
+      - generic [ref=e67]: CB
+      - generic [ref=e68]:
+        - generic [ref=e69]: Cerebro
+        - generic [ref=e70]: economic nervous system
+    - generic [ref=e71]:
+      - text: visible
+      - generic [ref=e72]: 4,327
+      - generic [ref=e73]: /4,330
+    - generic [ref=e74]:
+      - text: active now
+      - generic [ref=e75]: "8"
+    - generic [ref=e76]:
+      - text: events/min
+      - generic [ref=e77]: "0"
+    - generic [ref=e78]:
+      - text: last spark
+      - generic [ref=e79]: 26s
+    - generic [ref=e80]: connected
+    - generic [ref=e82]:
+      - text: p_macro
+      - generic [ref=e83]: 1.000x
+    - generic [ref=e84]: operator telemetry
+  - generic [ref=e85]:
+    - button "-" [ref=e86] [cursor=pointer]
+    - generic [ref=e87]:
+      - generic [ref=e88]:
+        - generic [ref=e89]:
+          - generic [ref=e90]: Tactical Controls
+          - generic [ref=e91]: Universe Slice
+        - generic [ref=e92]:
+          - generic [ref=e93]: Visible
+          - generic [ref=e94]: 4,327 / 4,330
+      - generic [ref=e95]:
+        - generic [ref=e96]:
+          - generic [ref=e97]: Sector Lens
+          - combobox [ref=e98] [cursor=pointer]:
+            - option "All sectors" [selected]
+            - option "Biotech"
+            - option "Communications"
+            - option "Consumer"
+            - option "Energy"
+            - option "Financials"
+            - option "Industrials"
+            - option "Materials"
+            - option "Real Estate"
+            - option "Semiconductors"
+            - option "Staples"
+            - option "Technology"
+            - option "Utilities"
+        - generic [ref=e99]:
+          - generic [ref=e100]: Gravity Filter
+          - generic [ref=e101]:
+            - generic [ref=e102]: Minimum gravity
+            - strong [ref=e103]: "1"
+          - slider [ref=e104] [cursor=pointer]: "1"
+          - generic [ref=e105]:
+            - generic [ref=e106]: Micro
+            - generic [ref=e107]: Mid
+            - generic [ref=e108]: Mega
+        - generic [ref=e109]:
+          - generic [ref=e110]: Brightness Floor
+          - generic [ref=e111]:
+            - generic [ref=e112]: Minimum brightness
+            - strong [ref=e113]: "0"
+          - slider [ref=e114] [cursor=pointer]: "0"
+        - generic [ref=e115] [cursor=pointer]:
+          - checkbox "Active sparks only" [ref=e116]
+          - generic [ref=e117]: Active sparks only
+        - generic [ref=e118]:
+          - generic [ref=e119]:
+            - generic [ref=e120]: Cognitive Load
+            - generic [ref=e121]: 0%
+          - button "Initiate Deep Blue" [ref=e123] [cursor=pointer]
+      - button "Reset filters" [ref=e124] [cursor=pointer]
+  - generic [ref=e125]:
+    - generic [ref=e126]:
+      - generic [ref=e128]: Command / Search
+      - generic [ref=e130]:
+        - textbox "TICKER..." [ref=e131]
+        - button "Fly" [active] [ref=e132] [cursor=pointer]
+      - generic [ref=e261]:
+        - generic [ref=e262]: $BRRW
+        - text: BRRW scanner overlay
+    - generic [ref=e263]:
+      - generic [ref=e264]:
+        - generic [ref=e265]:
+          - generic [ref=e267]: BRRW
+          - generic [ref=e268]: BRRW scanner overlay
+        - button "✕" [ref=e269] [cursor=pointer]
+      - generic [ref=e270]:
+        - generic [ref=e271]: scanner parity
+        - generic [ref=e272]: This pick is entering Cerebro through the scanner parity bridge and is still awaiting full entity_master mapping.
+        - generic [ref=e273]:
+          - generic [ref=e274]: gappers
+          - generic [ref=e275]: ranked
+        - generic [ref=e276]:
+          - generic [ref=e277]:
+            - generic [ref=e278]: scanner rank
+            - generic [ref=e279]: "110"
+          - generic [ref=e280]:
+            - generic [ref=e281]: scanner score
+            - generic [ref=e282]: "29.00"
+        - generic [ref=e283]:
+          - generic [ref=e284]: "Form: 424B3"
+          - generic [ref=e285]: "Signals: scanner_overlay"
+        - link "↗ Scanner source filing" [ref=e287] [cursor=pointer]:
+          - /url: https://www.sec.gov/Archives/edgar/data/2076163/000149315226015390/0001493152-26-015390-index.htm
+      - generic [ref=e288]:
+        - generic [ref=e289]: Static Bedrock
+        - generic [ref=e290]:
+          - generic [ref=e291]:
+            - generic [ref=e292]: Gravity
+            - generic [ref=e293]: "11.60"
+          - generic [ref=e294]:
+            - generic [ref=e295]: Brightness
+            - generic [ref=e296]: "29.00"
+          - generic [ref=e297]:
+            - generic [ref=e298]: Cap Tier
+            - generic [ref=e299]: —
+          - generic [ref=e300]:
+            - generic [ref=e301]: ETF Weight
+            - generic [ref=e302]: —
+      - generic [ref=e303]:
+        - generic [ref=e304]: GICS classification
+        - generic [ref=e305]: UNCLASSIFIED
+      - generic [ref=e306]:
+        - generic [ref=e307]: ETF Canopy
+        - generic [ref=e308]: ETF canopy pending — bedrock sweep in progress
+      - generic [ref=e309]:
+        - generic [ref=e311]: Velocity Sparks
+        - generic [ref=e312]: No active velocity injections — node dormant
+      - generic [ref=e313]:
+        - generic [ref=e314]:
+          - generic [ref=e315]: AI intelligence
+          - generic [ref=e316]:
+            - generic [ref=e317]: Claude Haiku 4.5
+            - generic [ref=e318]: review required
+        - generic [ref=e319]:
+          - generic [ref=e320]:
+            - generic [ref=e321]: UNVERIFIED
+            - generic [ref=e322]: 0% conf
+          - generic [ref=e323]: Cerebro could not verify a cached SEC filing for BRRW at the moment. Recent sympathy history shows BRRW last moved as a sympathy peer off VMET on 2026-04-06 in financials.
+          - generic [ref=e324]:
+            - generic [ref=e325]: sympathy trail
+            - generic [ref=e326]:
+              - generic [ref=e327]:
+                - generic [ref=e328]: Peer off VMET
+                - generic [ref=e329]: 2026-04-06 · financials
+              - generic [ref=e330]:
+                - generic [ref=e331]: Leader setup
+                - generic [ref=e332]: 2026-04-06 · financials
+              - generic [ref=e333]:
+                - generic [ref=e334]: Peer off SWKHL
+                - generic [ref=e335]: 2026-04-06 · financials
+  - button "8 BIPC high" [ref=e336] [cursor=pointer]:
+    - generic [ref=e337]: "8"
+    - generic [ref=e338]: BIPC high

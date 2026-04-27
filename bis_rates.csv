@@ -1,0 +1,53 @@
+series,region,period,value,unit,captured_at
+policy_rate,Federal Reserve,2026-04-21,3.625,percent,2026-04-27T22:46:21Z
+policy_rate,ECB,2026-04-21,2.000,percent,2026-04-27T22:46:21Z
+policy_rate,Bank of England,2026-04-20,3.750,percent,2026-04-27T22:46:21Z
+policy_rate,Bank of Japan,2026-04-21,0.750,percent,2026-04-27T22:46:21Z
+policy_rate,Bank of Canada,2026-04-20,2.250,percent,2026-04-27T22:46:21Z
+policy_rate,Reserve Bank of Australia,2026-04-16,4.100,percent,2026-04-27T22:46:21Z
+policy_rate,Swiss National Bank,2026-04-21,0.000,percent,2026-04-27T22:46:21Z
+policy_rate,People's Bank of China,2026-04-19,3.000,percent,2026-04-27T22:46:21Z
+policy_rate,Reserve Bank of India,2026-04-20,5.250,percent,2026-04-27T22:46:21Z
+policy_rate,Banco Central do Brasil,2026-04-21,14.750,percent,2026-04-27T22:46:21Z
+policy_rate,Banxico,2026-04-21,6.750,percent,2026-04-27T22:46:21Z
+policy_rate,Bank of Korea,2026-04-01,2.500,percent,2026-04-27T22:46:21Z
+us_household_dsr,US,2015-Q4,8.10,percent,2026-04-27T22:46:21Z
+us_household_dsr,US,2016-Q1,8.10,percent,2026-04-27T22:46:21Z
+us_household_dsr,US,2016-Q2,8.10,percent,2026-04-27T22:46:21Z
+us_household_dsr,US,2016-Q3,8.20,percent,2026-04-27T22:46:21Z
+us_household_dsr,US,2016-Q4,8.20,percent,2026-04-27T22:46:21Z
+us_household_dsr,US,2017-Q1,8.10,percent,2026-04-27T22:46:21Z
+us_household_dsr,US,2017-Q2,8.10,percent,2026-04-27T22:46:21Z
+us_household_dsr,US,2017-Q3,8.10,percent,2026-04-27T22:46:21Z
+us_household_dsr,US,2017-Q4,8.10,percent,2026-04-27T22:46:21Z
+us_household_dsr,US,2018-Q1,8.10,percent,2026-04-27T22:46:21Z
+us_household_dsr,US,2018-Q2,8.10,percent,2026-04-27T22:46:21Z
+us_household_dsr,US,2018-Q3,8.10,percent,2026-04-27T22:46:21Z
+us_household_dsr,US,2018-Q4,8.10,percent,2026-04-27T22:46:21Z
+us_household_dsr,US,2019-Q1,8.00,percent,2026-04-27T22:46:21Z
+us_household_dsr,US,2019-Q2,8.00,percent,2026-04-27T22:46:21Z
+us_household_dsr,US,2019-Q3,8.00,percent,2026-04-27T22:46:21Z
+us_household_dsr,US,2019-Q4,7.90,percent,2026-04-27T22:46:21Z
+us_household_dsr,US,2020-Q1,7.80,percent,2026-04-27T22:46:21Z
+us_household_dsr,US,2020-Q2,7.50,percent,2026-04-27T22:46:21Z
+us_household_dsr,US,2020-Q3,7.40,percent,2026-04-27T22:46:21Z
+us_household_dsr,US,2020-Q4,7.30,percent,2026-04-27T22:46:21Z
+us_household_dsr,US,2021-Q1,7.10,percent,2026-04-27T22:46:21Z
+us_household_dsr,US,2021-Q2,7.20,percent,2026-04-27T22:46:21Z
+us_household_dsr,US,2021-Q3,7.30,percent,2026-04-27T22:46:21Z
+us_household_dsr,US,2021-Q4,7.30,percent,2026-04-27T22:46:21Z
+us_household_dsr,US,2022-Q1,7.50,percent,2026-04-27T22:46:21Z
+us_household_dsr,US,2022-Q2,7.70,percent,2026-04-27T22:46:21Z
+us_household_dsr,US,2022-Q3,7.90,percent,2026-04-27T22:46:21Z
+us_household_dsr,US,2022-Q4,8.00,percent,2026-04-27T22:46:21Z
+us_household_dsr,US,2023-Q1,8.10,percent,2026-04-27T22:46:21Z
+us_household_dsr,US,2023-Q2,8.20,percent,2026-04-27T22:46:21Z
+us_household_dsr,US,2023-Q3,8.20,percent,2026-04-27T22:46:21Z
+us_household_dsr,US,2023-Q4,8.10,percent,2026-04-27T22:46:21Z
+us_household_dsr,US,2024-Q1,8.00,percent,2026-04-27T22:46:21Z
+us_household_dsr,US,2024-Q2,8.00,percent,2026-04-27T22:46:21Z
+us_household_dsr,US,2024-Q3,8.00,percent,2026-04-27T22:46:21Z
+us_household_dsr,US,2024-Q4,7.90,percent,2026-04-27T22:46:21Z
+us_household_dsr,US,2025-Q1,7.90,percent,2026-04-27T22:46:21Z
+us_household_dsr,US,2025-Q2,7.90,percent,2026-04-27T22:46:21Z
+us_household_dsr,US,2025-Q3,7.90,percent,2026-04-27T22:46:21Z

@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>What is a SPAC? Blank Check Company Guide for Traders | Catalyst Edge</title>
+<meta name="description" content="SPACs (Special Purpose Acquisition Companies) let private companies go public through a merger. Learn how SPAC filings create trading catalysts and what SEC forms to watch.">
+<link rel="canonical" href="https://catalystedgescanner.com/glossary/what-is-spac/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How does a SPAC work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A SPAC raises money through an IPO, then has 18-24 months to find and merge with a private company. Once a merger target is announced, SPAC shareholders vote to approve the deal. If approved, the target company becomes publicly traded. If the SPAC can't find a deal in time, the money is returned to shareholders."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What SEC filings signal a SPAC merger?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The key filings are: 8-K announcing the definitive agreement, S-4 registration statement for the combined entity, DEF 14A proxy statement for the shareholder vote, and a final 8-K when the merger closes. Each filing creates a distinct trading catalyst."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can you redeem SPAC shares before a merger?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. SPAC shareholders can redeem their shares for approximately $10 per share (the trust value) before the merger vote. This creates a floor price near $10 for pre-merger SPACs, making them a lower-risk way to speculate on merger targets."
+      }
+    }
+  ]
+}
+</script>
+<style>
+:root {
+  --bg: #0a0e1a;
+  --surface: #111827;
+  --surface-2: #1a2035;
+  --border: #1e293b;
+  --text: #e2e8f0;
+  --text-dim: #94a3b8;
+  --accent: #d4a853;
+  --accent-glow: rgba(212, 168, 83, 0.15);
+  --blue: #3b82f6;
+  --green: #10b981;
+  --red: #ef4444;
+  --font: 'Space Grotesk', system-ui, sans-serif;
+  --mono: 'IBM Plex Mono', monospace;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+.container { max-width: 800px; margin: 0 auto; padding: 2rem 1.5rem; }
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(10, 14, 26, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0.75rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+}
+nav a { color: var(--accent); text-decoration: none; font-weight: 600; font-size: 0.95rem; }
+nav a:hover { text-decoration: underline; }
+nav .sep { color: var(--text-dim); }
+.hero {
+  text-align: center;
+  padding: 4rem 0 3rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 2rem;
+}
+.hero h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 800;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+}
+.hero .subtitle {
+  font-size: 1.15rem;
+  color: var(--text-dim);
+  max-width: 600px;
+  margin: 0 auto;
+}
+.content-section { margin-bottom: 2.5rem; }
+.content-section h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--accent-glow);
+}
+.content-section p, .content-section li {
+  color: var(--text-dim);
+  font-size: 1.05rem;
+}
+.content-section ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 0.5rem;
+}
+.content-section li {
+  padding: 0.35rem 0 0.35rem 1.5rem;
+  position: relative;
+}
+.content-section li::before {
+  content: '\25B8';
+  color: var(--accent);
+  position: absolute;
+  left: 0;
+}
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 0.95rem;
+}
+.data-table th, .data-table td {
+  padding: 0.6rem 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+.data-table th {
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.data-table td { color: var(--text-dim); }
+.lifecycle {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.75rem;
+  margin: 1rem 0;
+}
+.lifecycle-step {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: center;
+  position: relative;
+}
+.lifecycle-step .step-num {
+  display: inline-block;
+  background: var(--accent);
+  color: var(--bg);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: 0.85rem;
+  line-height: 28px;
+  margin-bottom: 0.5rem;
+}
+.lifecycle-step h4 {
+  color: var(--text);
+  font-size: 0.9rem;
+  margin-bottom: 0.3rem;
+}
+.lifecycle-step p {
+  color: var(--text-dim);
+  font-size: 0.8rem;
+  line-height: 1.4;
+}
+.faq-section { margin-top: 3rem; }
+.faq-section h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--accent);
+}
+.faq-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
+  overflow: hidden;
+}
+.faq-item summary {
+  padding: 1rem 1.25rem;
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.faq-item summary::before {
+  content: '+';
+  font-family: var(--mono);
+  color: var(--accent);
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+.faq-item[open] summary::before { content: '\2212'; }
+.faq-item p {
+  padding: 0 1.25rem 1rem;
+  color: var(--text-dim);
+  line-height: 1.6;
+}
+.cta-box {
+  background: linear-gradient(135deg, var(--surface) 0%, var(--surface-2) 100%);
+  border: 1px solid var(--accent);
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  margin: 3rem 0;
+}
+.cta-box h3 { color: var(--accent); font-size: 1.3rem; margin-bottom: 0.5rem; }
+.cta-box p { color: var(--text-dim); margin-bottom: 1.25rem; }
+.cta-box a {
+  display: inline-block;
+  background: var(--accent);
+  color: var(--bg);
+  font-weight: 700;
+  padding: 0.75rem 2rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.cta-box a:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px var(--accent-glow);
+}
+.related {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+.related h3 { font-size: 1rem; color: var(--text-dim); margin-bottom: 0.75rem; }
+.related a { color: var(--blue); text-decoration: none; font-size: 0.9rem; }
+.related a:hover { text-decoration: underline; }
+footer {
+  text-align: center;
+  padding: 2rem 0;
+  color: var(--text-dim);
+  font-size: 0.85rem;
+  border-top: 1px solid var(--border);
+  margin-top: 2rem;
+}
+footer a { color: var(--accent); text-decoration: none; }
+</style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@800;900&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/lib/cinematic-hero.css">
+  <link rel="stylesheet" href="/lib/cyber-shell.css">
+  <link rel="stylesheet" href="/lib/polish-tokens.css">
+</head>
+<body>
+  <div class="cy-bg" aria-hidden="true"></div>
+  <div class="cy-floor" aria-hidden="true"></div>
+  <div class="cy-vignette" aria-hidden="true"></div>
+  <div class="cy-scan" aria-hidden="true"></div>
+<nav>
+  <a href="/">Catalyst Edge</a>
+  <span class="sep">/</span>
+  <a href="/glossary/">Glossary</a>
+  <span class="sep">/</span>
+  <span style="color:var(--text-dim);font-size:0.9rem">What is a SPAC?</span>
+</nav>
+
+<div class="container">
+<section class="cin-hero cy-neon-hero cy-narrow cy-shimmer">
+    <div class="cin-grid">
+      <div class="cin-stat-stack">
+        <div class="cin-eyebrow"><span class="cin-live-dot"></span>SPAC · VEHICLE · LIVE</div>
+        <div class="cin-colossal">
+          <div class="cin-num-row"><span class="cin-num">SPAC</span></div>
+          <div class="cin-side">
+          <span class="cin-tag"><b>24-month</b> window</span>
+          <span class="cin-tag">de-SPAC trade</span>
+          <span class="cin-tag">redemption math</span>
+          </div>
+        </div>
+        <div class="cin-stamp">GLOSSARY · WHAT IS A SPAC? · v1.0 · <b>LIVE</b></div>
+      </div>
+      <div class="cin-h1-block">
+        <div class="cin-h1-eyebrow">📚 What is a SPAC?</div>
+        <h1 class="cin-headline"><em>Blank check vehicle</em>—the <span class="cin-accent">merger window math</span>.</h1>
+        <p class="cin-lede">A SPAC is a shell company that IPOs cash, then has 24 months to find a target. Trading the de-SPAC window — the merger announcement to ticker change — is its own subgenre with its own playbook.</p>
+        <div class="cin-cta-row">
+          <a href="#article-body" class="cin-btn-primary">Read article ↓</a>
+          <a href="/glossary/" class="cin-btn-ghost">Glossary index</a>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <h2>SPAC basics</h2>
+    <p>A Special Purpose Acquisition Company (SPAC) is a shell company that raises capital through an IPO with the sole purpose of acquiring a private company. The SPAC has no commercial operations &mdash; it's a blank check. The sponsors (experienced investors or executives) have 18-24 months to find a target, negotiate a merger, and bring it to a shareholder vote. If no deal closes in time, the trust is liquidated and cash returned to investors.</p>
+  </section>
+
+  <section class="content-section">
+    <h2>SPAC lifecycle</h2>
+    <div class="lifecycle">
+      <div class="lifecycle-step">
+        <span class="step-num">1</span>
+        <h4>IPO</h4>
+        <p>SPAC goes public at ~$10/share. Proceeds held in trust. Files S-1 with SEC.</p>
+      </div>
+      <div class="lifecycle-step">
+        <span class="step-num">2</span>
+        <h4>Target Search</h4>
+        <p>Sponsors identify acquisition targets. No public filings during this phase.</p>
+      </div>
+      <div class="lifecycle-step">
+        <span class="step-num">3</span>
+        <h4>Deal Announced</h4>
+        <p>8-K filed with definitive agreement. Stock typically spikes or drops on target quality.</p>
+      </div>
+      <div class="lifecycle-step">
+        <span class="step-num">4</span>
+        <h4>Vote &amp; Close</h4>
+        <p>Proxy filed (DEF 14A), shareholders vote. S-4 registers combined entity. Ticker changes on close.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <h2>SEC filings that create SPAC catalysts</h2>
+    <table class="data-table">
+      <thead>
+        <tr><th>Filing</th><th>Stage</th><th>Trading signal</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>S-1</td><td>IPO registration</td><td>New SPAC entering the market. Usually trades near $10.</td></tr>
+        <tr><td><a href="/glossary/what-is-8k/" style="color:var(--blue)">8-K</a></td><td>Deal announcement</td><td>The biggest catalyst. Target revealed. Gap up or gap down depending on target quality.</td></tr>
+        <tr><td>S-4</td><td>Merger registration</td><td>Combined entity financials disclosed. Detailed projections create re-rating opportunities.</td></tr>
+        <tr><td>DEF 14A</td><td>Shareholder vote</td><td>Vote date set. Redemption levels become key &mdash; high redemptions can kill deals.</td></tr>
+        <tr><td>8-K (closing)</td><td>Merger complete</td><td>Ticker change. Warrant conversion begins. New float established.</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="content-section">
+    <h2>SPAC trading strategies</h2>
+    <ul>
+      <li><strong>NAV floor arbitrage:</strong> Buy pre-deal SPACs near $10 trust value with limited downside. Upside if a quality target is announced.</li>
+      <li><strong>Rumor plays:</strong> SPACs often gap 30-100% on credible merger rumors before the 8-K. Risky but high-reward.</li>
+      <li><strong>De-SPAC short:</strong> After merger close, many de-SPACs drop as sponsor shares and warrants unlock. Short sellers target the dilution wave.</li>
+      <li><strong>Warrant conversion:</strong> SPAC warrants (exercise ~$11.50) can be lucrative if the combined company trades well above the strike.</li>
+    </ul>
+  </section>
+
+  <section class="content-section">
+    <h2>SPAC risks</h2>
+    <p>SPACs have cooled significantly since the 2020-2021 mania. The SEC introduced new SPAC disclosure rules in 2024 requiring enhanced projections, sponsor conflicts, and dilution disclosure. Key risks include sponsor dilution (the "promote" typically gives sponsors 20% of shares for minimal investment), weak target selection pressure from the deadline, and post-merger share price collapse as warrants and lockup shares flood the market.</p>
+  </section>
+
+  <div class="cta-box">
+    <h3>Track SPAC Filings in Real Time</h3>
+    <p>Catalyst Edge scans 8-K, S-4, and proxy filings that signal SPAC mergers and scores them alongside insider activity.</p>
+    <a href="https://catalystedgescanner.com/">Open Scanner</a>
+  </div>
+
+  <div class="faq-section">
+    <h2>Frequently Asked Questions</h2>
+    <details class="faq-item">
+      <summary>How does a SPAC work?</summary>
+      <p>A SPAC raises money through an IPO, then has 18-24 months to find and merge with a private company. Once a merger target is announced, SPAC shareholders vote to approve the deal. If approved, the target company becomes publicly traded. If the SPAC can't find a deal in time, the money is returned to shareholders.</p>
+    </details>
+    <details class="faq-item">
+      <summary>What SEC filings signal a SPAC merger?</summary>
+      <p>The key filings are: 8-K announcing the definitive agreement, S-4 registration statement for the combined entity, DEF 14A proxy statement for the shareholder vote, and a final 8-K when the merger closes. Each filing creates a distinct trading catalyst.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Can you redeem SPAC shares before a merger?</summary>
+      <p>Yes. SPAC shareholders can redeem their shares for approximately $10 per share (the trust value) before the merger vote. This creates a floor price near $10 for pre-merger SPACs, making them a lower-risk way to speculate on merger targets.</p>
+    </details>
+  </div>
+
+  <div class="related">
+    <h3>Related Topics</h3>
+    <p><a href="/glossary/what-is-8k/">What is an 8-K?</a> &middot; <a href="/glossary/what-is-s3-shelf-registration/">What is an S-3 Shelf Registration?</a> &middot; <a href="/glossary/what-is-lockup-expiration/">What is Lockup Expiration?</a> &middot; <a href="/glossary/what-is-gap-up-stock/">What is a Gap Up Stock?</a> &middot; <a href="/glossary/sec-filing-types-for-traders/">SEC Filing Types for Traders</a></p>
+  </div>
+</div>
+
+<footer>
+  <a href="https://catalystedgescanner.com/">Catalyst Edge Scanner</a> &middot;
+  <a href="https://catalystedge.agency">Daily Newsletter</a> &middot;
+  &copy; 2026 Catalyst Edge
+</footer>
+</body>
+</html>

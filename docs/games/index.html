@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Games — Trade, Predict, Compete | Catalyst Edge</title>
+<meta name="description" content="Catalyst Edge games: Bull or Bear prediction game, Polymarket-style betting, SEC knowledge quiz, and paper trading simulator. Test your edge.">
+<meta property="og:title" content="Games — Catalyst Edge">
+<link rel="canonical" href="https://catalystedgescanner.com/games/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#070a12;--surface:#0f1420;--surface2:#151c2c;--gold:#d4a843;--green:#22c55e;--red:#ef4444;--cyan:#06b6d4;--purple:#a855f7;--orange:#f97316;--text:#e2e8f0;--dim:#94a3b8;--muted:#64748b;--border:#1e293b}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
+.nav{position:sticky;top:0;z-index:100;background:rgba(7,10,18,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:.75rem 1.5rem;display:flex;align-items:center;gap:1rem}
+.nav a{color:var(--gold);font-weight:600;font-size:.95rem}
+.nav .sep{color:var(--muted)}
+.wrap{max-width:900px;margin:0 auto;padding:1.5rem}
+.hero{text-align:center;padding:2.5rem 0 2rem;margin-bottom:1.5rem}
+.hero h1{font-size:clamp(1.6rem,5vw,2.8rem);font-weight:800;letter-spacing:-.02em;margin-bottom:.5rem}
+.hero h1 .accent{color:var(--cyan)}
+.hero .sub{color:var(--dim);font-size:.88rem;max-width:500px;margin:0 auto}
+
+.games-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;margin-bottom:2rem}
+.game-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.5rem;display:flex;flex-direction:column;gap:.6rem;transition:all .2s;position:relative;overflow:hidden}
+.game-card:hover{border-color:var(--gold);transform:translateY(-3px);box-shadow:0 8px 32px rgba(0,0,0,.4)}
+.game-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:14px 14px 0 0}
+.gc-icon{font-size:2.5rem;margin-bottom:.3rem}
+.gc-title{font-size:1.15rem;font-weight:800;display:flex;align-items:center;gap:.5rem}
+.gc-badge{font-size:.5rem;padding:2px 8px;border-radius:4px;font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+.gc-desc{font-size:.82rem;color:var(--dim);line-height:1.6;flex:1}
+.gc-stats{display:flex;gap:1rem;margin-top:.3rem}
+.gc-stat{font-size:.65rem;color:var(--muted);font-family:'IBM Plex Mono',monospace}
+.gc-stat strong{color:var(--text)}
+.gc-play{display:inline-block;padding:8px 20px;border-radius:8px;font-size:.82rem;font-weight:700;text-align:center;transition:all .15s;margin-top:.5rem}
+.gc-play:hover{transform:translateY(-1px);text-decoration:none}
+
+.coming-soon{position:relative}
+.coming-soon::after{content:'COMING SOON';position:absolute;top:12px;right:-28px;background:var(--purple);color:#fff;font-size:.5rem;font-weight:800;padding:2px 30px;transform:rotate(35deg);letter-spacing:.08em}
+.coming-soon .gc-play{opacity:.5;pointer-events:none}
+
+.cta-bar{background:var(--surface);border:1px solid var(--gold);border-radius:12px;padding:1.5rem;text-align:center;margin:2rem 0}
+.cta-bar h3{color:var(--gold);font-size:1rem;margin-bottom:.3rem}
+.cta-bar p{color:var(--dim);font-size:.8rem;margin-bottom:.75rem}
+.cta-bar a{display:inline-block;padding:.5rem 1.4rem;background:linear-gradient(135deg,var(--gold),#f1ce88);color:#070a12;font-weight:700;border-radius:6px;font-size:.85rem}
+
+.footer{text-align:center;padding:1.5rem;font-size:.72rem;color:var(--muted);border-top:1px solid var(--border);margin-top:2rem}
+.footer a{color:var(--muted)}
+@media(max-width:600px){.games-grid{grid-template-columns:1fr}}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Catalyst Edge Games","url":"https://catalystedgescanner.com/games/","description":"Trading games: Bull or Bear predictions, SEC quiz, paper simulator, and prediction markets","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@800;900&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/lib/cinematic-hero.css">
+  <link rel="stylesheet" href="/lib/cyber-shell.css">
+  <link rel="stylesheet" href="/lib/polish-tokens.css">
+</head>
+<body>
+  <div class="cy-bg" aria-hidden="true"></div>
+  <div class="cy-floor" aria-hidden="true"></div>
+  <div class="cy-vignette" aria-hidden="true"></div>
+  <div class="cy-scan" aria-hidden="true"></div>
+<div class="nav">
+  <a href="/">Catalyst Edge</a>
+  <span class="sep">/</span>
+  <span style="color:var(--dim);font-size:.9rem">Games</span>
+</div>
+<div class="wrap">
+<section class="cin-hero cy-neon-hero cy-shimmer">
+    <div class="cin-grid">
+      <div class="cin-stat-stack">
+        <div class="cin-eyebrow"><span class="cin-live-dot"></span>GAMIFIED LEARN · LIVE</div>
+        <div class="cin-colossal">
+          <div class="cin-num-row"><span class="cin-num">3</span><span class="cin-pct">games</span></div>
+          <div class="cin-side">
+          <span class="cin-tag"><b>bull or bear</b></span>
+          <span class="cin-tag">paper simulator</span>
+          <span class="cin-tag">SEC quiz</span>
+          </div>
+        </div>
+        <div class="cin-stamp">GAMES//ARCADE · v1.0 · <b>LIVE</b></div>
+      </div>
+      <div class="cin-h1-block">
+        <div class="cin-h1-eyebrow">🎮 Trading Games · Learn By Playing</div>
+        <h1 class="cin-headline">Bull-or-bear, paper-trade, SEC quiz—learn the <em>catalyst playbook</em> by <span class="cin-accent">playing it</span>.</h1>
+        <p class="cin-lede">Three free games to sharpen your reflexes and your knowledge. Bull-or-bear ticker challenges, paper trading with virtual money against live signals, and an SEC knowledge quiz scored with streaks.</p>
+        <div class="cin-cta-row">
+          <a href="#games-grid" class="cin-btn-primary">Open games ↓</a>
+          <a href="/arcade/" class="cin-btn-ghost">Arcade</a>
+        </div>
+        <div class="cin-strip">
+          <div class="cin-cell"><div class="cin-k">Games</div><div class="cin-v">3</div></div>
+          <div class="cin-cell"><div class="cin-k">Free</div><div class="cin-v bull">100%</div></div>
+          <div class="cin-cell"><div class="cin-k">Daily players</div><div class="cin-v gold" id="gm-players">–</div></div>
+          <div class="cin-cell"><div class="cin-k">Top streak</div><div class="cin-v cyan" id="gm-streak">–</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="games-grid">
+
+    <!-- Bull or Bear -->
+    <a href="/bull-or-bear/" class="game-card" style="text-decoration:none">
+      <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--green),var(--red))"></div>
+      <div class="gc-icon">&#x1F402;&#x1F43B;</div>
+      <div class="gc-title">Bull or Bear?
+        <span class="gc-badge" style="background:rgba(34,197,94,.12);color:var(--green)">Popular</span>
+      </div>
+      <div class="gc-desc">We show you a real SEC filing. You guess if the stock went up or down. Track your streak. How good are your instincts?</div>
+      <div class="gc-stats">
+        <span class="gc-stat"><strong>24</strong> scenarios</span>
+        <span class="gc-stat"><strong>Streak</strong> tracking</span>
+      </div>
+      <span class="gc-play" style="background:var(--green);color:#070a12">Play Now</span>
+    </a>
+
+    <!-- Prediction Market -->
+    <a href="/predict/" class="game-card" style="text-decoration:none">
+      <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--orange))"></div>
+      <div class="gc-icon">&#x1F4B0;</div>
+      <div class="gc-title">Prediction Market
+        <span class="gc-badge" style="background:rgba(212,168,67,.12);color:var(--gold)">New</span>
+      </div>
+      <div class="gc-desc">Polymarket-style betting on live catalyst tickers. Bet virtual money, see what the crowd thinks, track your P&amp;L on the leaderboard.</div>
+      <div class="gc-stats">
+        <span class="gc-stat"><strong>$10K</strong> virtual money</span>
+        <span class="gc-stat"><strong>Live</strong> tickers</span>
+        <span class="gc-stat"><strong>Social</strong> proof</span>
+      </div>
+      <span class="gc-play" style="background:var(--gold);color:#070a12">Start Betting</span>
+    </a>
+
+    <!-- SEC Quiz -->
+    <a href="/quiz/" class="game-card" style="text-decoration:none">
+      <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--cyan),var(--purple))"></div>
+      <div class="gc-icon">&#x1F9E0;</div>
+      <div class="gc-title">SEC Knowledge Quiz</div>
+      <div class="gc-desc">15 questions on SEC filings, catalyst signals, and trading strategies. Graded with streak bonuses. How well do you know SEC filings?</div>
+      <div class="gc-stats">
+        <span class="gc-stat"><strong>15</strong> questions</span>
+        <span class="gc-stat"><strong>A-F</strong> grading</span>
+      </div>
+      <span class="gc-play" style="background:var(--cyan);color:#070a12">Take the Quiz</span>
+    </a>
+
+    <!-- Paper Simulator -->
+    <a href="/simulator/" class="game-card" style="text-decoration:none">
+      <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--green),var(--cyan))"></div>
+      <div class="gc-icon">&#x1F4C8;</div>
+      <div class="gc-title">Paper Simulator</div>
+      <div class="gc-desc">Paper trade with $100K virtual capital using live catalyst signals. Build a portfolio, track P&amp;L, measure your portfolio strength.</div>
+      <div class="gc-stats">
+        <span class="gc-stat"><strong>$100K</strong> virtual</span>
+        <span class="gc-stat"><strong>Live</strong> signals</span>
+      </div>
+      <span class="gc-play" style="background:var(--green);color:#070a12">Open Simulator</span>
+    </a>
+
+    <!-- Arcade -->
+    <a href="/arcade/" class="game-card" style="text-decoration:none">
+      <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--orange),var(--red))"></div>
+      <div class="gc-icon">&#x1F3AE;</div>
+      <div class="gc-title">Arcade</div>
+      <div class="gc-desc">Gamified trading challenges and catalyst prediction rounds. Quick-fire format with competitive scoring.</div>
+      <div class="gc-stats">
+        <span class="gc-stat"><strong>Quick</strong> rounds</span>
+      </div>
+      <span class="gc-play" style="background:var(--orange);color:#070a12">Enter Arcade</span>
+    </a>
+
+    <!-- Resogun — Coming Soon -->
+    <div class="game-card coming-soon" style="cursor:default">
+      <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--purple),var(--cyan),var(--green))"></div>
+      <div class="gc-icon">&#x1F680;</div>
+      <div class="gc-title" style="color:var(--purple)">Catalyst Resogun
+        <span class="gc-badge" style="background:rgba(168,85,247,.12);color:var(--purple)">Coming Soon</span>
+      </div>
+      <div class="gc-desc">Cylindrical voxel shooter on live market data. Price action drives enemies, signals are humans to save, paper trading is the gameplay. 24/7 since global markets never sleep.</div>
+      <div class="gc-stats">
+        <span class="gc-stat"><strong>WebGL</strong> 3D</span>
+        <span class="gc-stat"><strong>Live</strong> market data</span>
+        <span class="gc-stat"><strong>Multiplayer</strong></span>
+      </div>
+      <span class="gc-play" style="background:var(--surface2);color:var(--muted)">Coming Soon</span>
+    </div>
+
+  </div>
+
+  <div class="cta-bar">
+    <h3>Get picks before market open</h3>
+    <p>Free daily email at 4 AM ET with ranked catalyst picks, momentum alerts, and convergence signals.</p>
+    <a href="/preview/">Subscribe Free</a>
+  </div>
+</div>
+<div class="footer">
+  &copy; 2026 Catalyst Edge &middot;
+  <a href="/">Scanner</a> &middot;
+  <a href="/rankings/">Rankings</a> &middot;
+  <a href="/screener/">Screener</a> &middot;
+  <a href="/signals/">Signals</a> &middot;
+  <a href="/suite/">Suite</a> &middot;
+  <a href="/digest/">Digest</a> &middot;
+  <a href="/glossary/">Glossary</a> &middot;
+  Not financial advice.
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KV1VDK22VC"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-KV1VDK22VC');</script>
+</body>
+</html>

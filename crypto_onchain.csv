@@ -1,0 +1,5 @@
+ticker,wallet_label,chain,balance_coin,balance_usd,last_tx_time,captured_at
+TSLA,Tesla treasury cluster,btc,0.0000,0,ntx=0,2026-04-27T23:12:47Z
+SQ,Block BTC treasury,btc,0.0000,0,ntx=0,2026-04-27T23:12:47Z
+GBTC,Grayscale Bitcoin Trust,btc,0.0000,0,ntx=0,2026-04-27T23:12:47Z
+BITO,ProShares BITO ref,btc,0.0000,0,ntx=0,2026-04-27T23:12:47Z

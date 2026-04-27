@@ -1,0 +1,15 @@
+{
+  "date": "2026-04-02",
+  "top5_tickers": [
+    "AMKR",
+    "AVGO",
+    "CTRA",
+    "BNTX",
+    "CGAU"
+  ],
+  "gapper_count": 8,
+  "value_count": 6,
+  "moat_count": 5,
+  "total_combined": 163,
+  "top_pick": "AMKR"
+}

@@ -1,0 +1,6 @@
+date=2026-04-27
+subject=8 pre-market gap plays for Apr 27 -- scanner results
+html_size=126,639 bytes
+sent_ok=1
+sent_fail=0
+  OK  [free] opensource@example.com

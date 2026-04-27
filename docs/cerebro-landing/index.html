@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cerebro — Live Force Graph of 7,325+ Market Entities | Catalyst Edge</title>
+<meta name="description" content="Cerebro is Catalyst Edge's live force graph of 7,325+ entities — tickers, sectors, themes, signals — across 12 data domains and 300 execution flows. Open the HUD and fly through the market.">
+<meta name="keywords" content="cerebro, market force graph, stock universe, 3D market visualization, catalyst edge HUD, sympathy network, sector clusters, telemetry deck">
+<meta property="og:title" content="Cerebro — Live Force Graph | Catalyst Edge">
+<meta property="og:description" content="7,325 nodes. 12 domains. 300 execution flows. Cerebro renders the market as a living organism.">
+<meta property="og:url" content="https://catalystedgescanner.com/cerebro/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Cerebro — Live Force Graph | Catalyst Edge">
+<meta name="twitter:description" content="7,325 nodes. 12 domains. 300 execution flows. Fly through the market.">
+<link rel="canonical" href="https://catalystedgescanner.com/cerebro/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@600;700;800;900&family=Orbitron:wght@500;700;900&family=JetBrains+Mono:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/lib/cinematic-hero.css">
+<link rel="stylesheet" href="/lib/cyber-shell.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Cerebro",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Web",
+  "description": "Live force graph of 7,325+ market entities across 12 data domains and 300 execution flows.",
+  "url": "https://catalystedgescanner.com/cerebro/",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Catalyst Edge",
+    "url": "https://catalystedgescanner.com/"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+</script>
+<style>
+  :root {
+    --navy: #050214;
+    --ink: #e8f0ff;
+    --ink-dim: #93a4c9;
+    --ink-mute: #5a6c92;
+    --neon-cyan: #00ffff;
+    --neon-magenta: #ff2a8a;
+    --neon-purple: #b026ff;
+    --neon-lime: #d6ff3a;
+    --bull: #5cf2a4;
+    --bear: #ff5577;
+    --gold: #f5c662;
+    --panel: linear-gradient(180deg, rgba(15,8,40,0.78), rgba(7,4,28,0.82));
+    --panel-soft: rgba(15,8,40,0.55);
+    --border-soft: rgba(150,170,220,0.10);
+    --border-cyan: rgba(0,255,255,0.18);
+    --border-magenta: rgba(255,42,138,0.24);
+    --radius: 8px;
+    --radius-lg: 14px;
+    --shadow-card: 0 8px 24px -8px rgba(0,255,255,0.15);
+    --shadow-card-hover: 0 14px 36px -10px rgba(0,255,255,0.32);
+    --shadow-magenta: 0 8px 24px -8px rgba(255,42,138,0.22);
+    --easing: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: "Inter Tight", "Space Grotesk", system-ui, -apple-system, sans-serif;
+    background: var(--navy);
+    color: var(--ink);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  a { color: var(--neon-cyan); text-decoration: none; transition: color 0.2s ease, text-shadow 0.2s ease; }
+  a:hover { text-decoration: none; color: #80fbff; text-shadow: 0 0 10px rgba(0,255,255,0.6); }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 5; }
+
+  /* nav */
+  nav.cy-nav {
+    position: sticky;
+    top: 0;
+    z-index: 80;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 28px;
+    background: rgba(5,2,20,0.78);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border-soft);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+  }
+  nav.cy-nav .brand {
+    color: var(--neon-cyan);
+    font-weight: 700;
+    text-shadow: 0 0 12px rgba(0,255,255,0.4);
+  }
+  nav.cy-nav .sep { color: var(--ink-mute); }
+  nav.cy-nav .crumb { color: var(--ink-dim); }
+  nav.cy-nav .spacer { flex: 1; }
+  nav.cy-nav a.nav-link {
+    color: var(--ink-dim);
+    padding: 6px 12px;
+    border-radius: var(--radius);
+    transition: color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+  }
+  nav.cy-nav a.nav-link:hover {
+    color: var(--ink);
+    background: rgba(0,255,255,0.06);
+    transform: translateY(-1px);
+    text-shadow: none;
+  }
+  nav.cy-nav a.nav-link.cta {
+    color: #1a0a14;
+    background: linear-gradient(135deg, var(--neon-magenta), var(--neon-purple));
+    font-weight: 700;
+    box-shadow: 0 6px 18px -6px rgba(255,42,138,0.5);
+  }
+  nav.cy-nav a.nav-link.cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 26px -8px rgba(255,42,138,0.7);
+    text-shadow: none;
+  }
+
+  /* sections */
+  section { padding: 64px 0; position: relative; z-index: 5; }
+  section.tight { padding: 48px 0; }
+
+  .section-eyebrow {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--neon-magenta);
+    text-shadow: 0 0 8px rgba(255,42,138,0.4);
+    margin-bottom: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-eyebrow::before {
+    content: "";
+    width: 28px;
+    height: 1px;
+    background: var(--neon-magenta);
+    box-shadow: 0 0 8px var(--neon-magenta);
+  }
+  .section-title {
+    font-family: "Inter Tight", sans-serif;
+    font-size: clamp(28px, 3.4vw, 44px);
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    line-height: 1.1;
+    margin-bottom: 14px;
+    color: var(--ink);
+  }
+  .section-title em { font-style: normal; color: var(--neon-cyan); }
+  .section-title b { color: var(--neon-lime); font-weight: 800; }
+  .section-desc {
+    color: var(--ink-dim);
+    font-size: 16px;
+    max-width: 660px;
+    margin-bottom: 36px;
+    line-height: 1.65;
+  }
+
+  /* live data panel */
+  .live-deck {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+    gap: 28px;
+    align-items: stretch;
+  }
+  @media (max-width: 900px) {
+    .live-deck { grid-template-columns: 1fr; }
+  }
+  .deck-card {
+    background: var(--panel);
+    border: 1px solid var(--border-cyan);
+    border-radius: var(--radius);
+    padding: 22px 24px;
+    box-shadow: var(--shadow-card), inset 0 1px 0 rgba(255,255,255,0.04);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.25s var(--easing), box-shadow 0.25s var(--easing), border-color 0.25s ease;
+  }
+  .deck-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-card-hover), inset 0 1px 0 rgba(255,255,255,0.06);
+    border-color: rgba(0,255,255,0.32);
+  }
+  .deck-card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--neon-cyan), transparent);
+    opacity: 0.55;
+  }
+  .deck-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--neon-cyan);
+    text-shadow: 0 0 6px rgba(0,255,255,0.4);
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed rgba(0,255,255,0.14);
+  }
+  .deck-head .stamp { color: var(--ink-mute); font-size: 10px; }
+  .deck-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 14px;
+    padding: 9px 0;
+    align-items: center;
+    border-top: 1px solid rgba(150,170,220,0.06);
+  }
+  .deck-row:first-of-type { border-top: none; }
+  .deck-row .lbl {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+  .deck-row .val {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 14.5px;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    color: var(--ink);
+    text-align: right;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    justify-self: end;
+  }
+  .deck-row .val.bull { color: var(--bull); text-shadow: 0 0 6px rgba(92,242,164,0.4); }
+  .deck-row .val.cyan { color: var(--neon-cyan); text-shadow: 0 0 6px rgba(0,255,255,0.5); }
+  .deck-row .val.amber { color: var(--gold); }
+  .deck-row .val.magenta { color: var(--neon-magenta); text-shadow: 0 0 6px rgba(255,42,138,0.45); }
+  .deck-row .val.lime { color: var(--neon-lime); text-shadow: 0 0 6px rgba(214,255,58,0.45); }
+  .live-pip {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--bull);
+    box-shadow: 0 0 8px var(--bull);
+    animation: pip 1.6s ease-in-out infinite;
+    flex-shrink: 0;
+  }
+  @keyframes pip { 0%,100% { opacity: 1; } 50% { opacity: 0.45; } }
+
+  /* signal strength temperature pill */
+  .temp-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    font-weight: 700;
+  }
+  .temp-pill[data-temp="EXTREME"] { background: rgba(255,42,138,0.12); color: var(--neon-magenta); border: 1px solid rgba(255,42,138,0.36); text-shadow: 0 0 6px rgba(255,42,138,0.5); }
+  .temp-pill[data-temp="HIGH"]    { background: rgba(255,179,71,0.12); color: var(--gold); border: 1px solid rgba(255,179,71,0.36); }
+  .temp-pill[data-temp="MEDIUM"]  { background: rgba(0,255,255,0.10); color: var(--neon-cyan); border: 1px solid rgba(0,255,255,0.32); }
+  .temp-pill[data-temp="LOW"]     { background: rgba(150,170,220,0.10); color: var(--ink-dim); border: 1px solid rgba(150,170,220,0.20); }
+
+  /* feature grid */
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+  }
+  .feat {
+    background: var(--panel);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius);
+    padding: 22px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.25s var(--easing), box-shadow 0.25s var(--easing), border-color 0.25s ease;
+  }
+  .feat::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 2px;
+    background: var(--feat-color, var(--neon-cyan));
+    opacity: 0.65;
+  }
+  .feat::after {
+    content: "";
+    position: absolute;
+    inset: -40% -40% auto auto;
+    width: 220px; height: 220px;
+    background: radial-gradient(circle, var(--feat-color, var(--neon-cyan)), transparent 65%);
+    opacity: 0.06;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+  .feat:hover {
+    transform: translateY(-3px);
+    border-color: var(--feat-color, var(--neon-cyan));
+    box-shadow: 0 14px 32px -10px var(--feat-shadow, rgba(0,255,255,0.28));
+  }
+  .feat:hover::after { opacity: 0.16; }
+  .feat .icon {
+    width: 44px; height: 44px;
+    border-radius: var(--radius);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Orbitron", sans-serif;
+    font-weight: 900;
+    font-size: 18px;
+    color: var(--feat-color, var(--neon-cyan));
+    background: color-mix(in oklab, var(--feat-color, #00ffff) 12%, transparent);
+    border: 1px solid color-mix(in oklab, var(--feat-color, #00ffff) 28%, transparent);
+    margin-bottom: 16px;
+    text-shadow: 0 0 12px var(--feat-color, var(--neon-cyan));
+  }
+  .feat h3 {
+    font-family: "Inter Tight", sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin-bottom: 8px;
+    color: var(--ink);
+  }
+  .feat p {
+    font-size: 14px;
+    color: var(--ink-dim);
+    line-height: 1.62;
+    margin-bottom: 14px;
+  }
+  .feat .tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .feat .tag {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 4px 9px;
+    border-radius: 5px;
+    background: rgba(0,255,255,0.05);
+    border: 1px solid rgba(0,255,255,0.16);
+    color: var(--neon-cyan);
+  }
+  .feat[data-color="magenta"] .tag {
+    background: rgba(255,42,138,0.06);
+    border-color: rgba(255,42,138,0.22);
+    color: var(--neon-magenta);
+  }
+  .feat[data-color="purple"] .tag {
+    background: rgba(176,38,255,0.07);
+    border-color: rgba(176,38,255,0.24);
+    color: #c879ff;
+  }
+  .feat[data-color="lime"] .tag {
+    background: rgba(214,255,58,0.06);
+    border-color: rgba(214,255,58,0.22);
+    color: var(--neon-lime);
+  }
+  .feat[data-color="gold"] .tag {
+    background: rgba(245,198,98,0.06);
+    border-color: rgba(245,198,98,0.22);
+    color: var(--gold);
+  }
+  .feat[data-color="bull"] .tag {
+    background: rgba(92,242,164,0.06);
+    border-color: rgba(92,242,164,0.22);
+    color: var(--bull);
+  }
+
+  /* domains row */
+  .domains-strip {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 12px;
+    margin-top: 28px;
+  }
+  .domain-chip {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 16px;
+    background: rgba(15,8,40,0.5);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12px;
+    color: var(--ink-dim);
+    transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  }
+  .domain-chip:hover {
+    transform: translateY(-2px);
+    border-color: rgba(0,255,255,0.32);
+    background: rgba(0,255,255,0.04);
+    color: var(--ink);
+  }
+  .domain-chip .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    box-shadow: 0 0 8px currentColor;
+    flex-shrink: 0;
+  }
+  .domain-chip[data-c="c1"] .dot { background: var(--neon-cyan); color: var(--neon-cyan); }
+  .domain-chip[data-c="c2"] .dot { background: var(--neon-magenta); color: var(--neon-magenta); }
+  .domain-chip[data-c="c3"] .dot { background: var(--neon-purple); color: var(--neon-purple); }
+  .domain-chip[data-c="c4"] .dot { background: var(--neon-lime); color: var(--neon-lime); }
+  .domain-chip[data-c="c5"] .dot { background: var(--gold); color: var(--gold); }
+  .domain-chip[data-c="c6"] .dot { background: var(--bull); color: var(--bull); }
+
+  /* hot-today panel */
+  .hot-panel {
+    background: linear-gradient(135deg, rgba(255,42,138,0.06), rgba(0,255,255,0.04) 50%, rgba(176,38,255,0.06));
+    border: 1px solid rgba(255,42,138,0.30);
+    border-radius: var(--radius);
+    padding: 24px 28px;
+    box-shadow: var(--shadow-magenta);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 18px;
+    align-items: center;
+    margin-top: 28px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hot-panel::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(110deg, transparent 30%, rgba(255,42,138,0.08) 50%, transparent 70%);
+    background-size: 200% 100%;
+    animation: hot-shimmer 8s linear infinite;
+    pointer-events: none;
+  }
+  @keyframes hot-shimmer {
+    from { background-position: 100% 0; }
+    to   { background-position: -100% 0; }
+  }
+  .hot-cell { position: relative; z-index: 1; }
+  .hot-cell .lbl {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    margin-bottom: 6px;
+  }
+  .hot-cell .val {
+    font-family: "Orbitron", "JetBrains Mono", monospace;
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--neon-cyan);
+    text-shadow: 0 0 12px rgba(0,255,255,0.4);
+    font-variant-numeric: tabular-nums;
+  }
+  .hot-cell .val.lime { color: var(--neon-lime); text-shadow: 0 0 12px rgba(214,255,58,0.4); }
+  .hot-cell .val.magenta { color: var(--neon-magenta); text-shadow: 0 0 12px rgba(255,42,138,0.4); }
+
+  /* CTA block */
+  .cta-block {
+    text-align: center;
+    padding: 80px 28px;
+    border-top: 1px solid var(--border-soft);
+    border-bottom: 1px solid var(--border-soft);
+    background:
+      radial-gradient(800px 400px at 50% 0%, rgba(255,42,138,0.10), transparent 60%),
+      radial-gradient(900px 500px at 50% 100%, rgba(0,255,255,0.08), transparent 60%);
+    margin-top: 48px;
+    position: relative;
+    z-index: 5;
+  }
+  .cta-block .eyebrow {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--neon-magenta);
+    margin-bottom: 16px;
+  }
+  .cta-block h2 {
+    font-family: "Orbitron", sans-serif;
+    font-size: clamp(32px, 5vw, 56px);
+    font-weight: 900;
+    letter-spacing: -0.015em;
+    line-height: 1.05;
+    margin-bottom: 18px;
+    color: var(--ink);
+  }
+  .cta-block h2 .accent { color: var(--neon-cyan); text-shadow: 0 0 24px rgba(0,255,255,0.45); }
+  .cta-block p {
+    color: var(--ink-dim);
+    font-size: 16px;
+    max-width: 540px;
+    margin: 0 auto 32px;
+    line-height: 1.65;
+  }
+  .cta-row {
+    display: inline-flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .btn-launch {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 32px;
+    border-radius: var(--radius);
+    background: linear-gradient(135deg, var(--neon-magenta), var(--neon-purple));
+    color: #fff;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 13px;
+    letter-spacing: 0.20em;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 12px 32px -10px rgba(255,42,138,0.55);
+    border: 1px solid rgba(255,42,138,0.55);
+  }
+  .btn-launch:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 18px 40px -12px rgba(255,42,138,0.85);
+    text-shadow: none;
+    color: #fff;
+  }
+  .btn-launch svg { width: 16px; height: 16px; }
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 28px;
+    border-radius: var(--radius);
+    background: transparent;
+    border: 1px solid var(--neon-cyan);
+    color: var(--neon-cyan);
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px;
+    letter-spacing: 0.20em;
+    text-transform: uppercase;
+    font-weight: 700;
+    text-decoration: none;
+    transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+  }
+  .btn-ghost:hover {
+    transform: translateY(-2px);
+    background: rgba(0,255,255,0.06);
+    box-shadow: 0 8px 24px -8px rgba(0,255,255,0.45);
+    text-shadow: none;
+  }
+
+  /* footer */
+  footer.cy-foot {
+    padding: 40px 24px;
+    text-align: center;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11.5px;
+    color: var(--ink-mute);
+    border-top: 1px solid var(--border-soft);
+    background: rgba(5,2,20,0.4);
+    position: relative;
+    z-index: 5;
+  }
+  footer.cy-foot a {
+    color: var(--ink-dim);
+    margin: 0 6px;
+    transition: color 0.2s ease, text-shadow 0.2s ease;
+  }
+  footer.cy-foot a:hover { color: var(--neon-cyan); text-shadow: 0 0 6px rgba(0,255,255,0.4); }
+  footer.cy-foot .tagline {
+    color: var(--neon-cyan);
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    text-shadow: 0 0 8px rgba(0,255,255,0.3);
+  }
+
+  /* Cinematic hero overrides for cerebro */
+  .cin-hero { padding-top: 56px; padding-bottom: 56px; }
+</style>
+</head>
+<body class="cyber-on cin-bg">
+
+<div class="cy-bg" aria-hidden="true"></div>
+<div class="cy-floor" aria-hidden="true"></div>
+<div class="cy-vignette" aria-hidden="true"></div>
+<div class="cy-scan" aria-hidden="true"></div>
+
+<nav class="cy-nav">
+  <span class="brand">⟁ CATALYST_EDGE</span>
+  <span class="sep">/</span>
+  <span class="crumb">CEREBRO</span>
+  <span class="spacer"></span>
+  <a class="nav-link" href="/scanner/">Scanner</a>
+  <a class="nav-link" href="/jackpot/">Jackpot</a>
+  <a class="nav-link" href="/defi/">DeFi</a>
+  <a class="nav-link cta" href="/hud/">Open HUD →</a>
+</nav>
+
+<!-- ════════════ HERO ════════════ -->
+<section class="cin-hero cy-neon-hero cy-shimmer">
+  <div class="cin-grid">
+    <div class="cin-stat-stack">
+      <div class="cin-eyebrow"><span class="cin-live-dot"></span>CEREBRO // FORCE GRAPH · LIVE</div>
+      <div class="cin-colossal">
+        <div class="cin-num-row">
+          <span class="cin-num">7,325</span>
+        </div>
+        <div class="cin-side">
+          <span class="cin-tag">12 <b>data domains</b></span>
+          <span class="cin-tag">300 <b>execution flows</b></span>
+          <span class="cin-tag">refreshed <b>04:00 ET</b></span>
+        </div>
+      </div>
+      <div class="cin-stamp">CEREBRO//HUD · v2.3 · <b>LIVE</b></div>
+    </div>
+    <div class="cin-h1-block">
+      <div class="cin-h1-eyebrow">⟁ Force Graph · Telemetry Deck · Process Flows</div>
+      <h1 class="cin-headline">The market is a <em>living organism</em> — Cerebro renders it as <span class="cin-accent">7,325 nodes you can fly through</span>.</h1>
+      <p class="cin-lede">Every ticker, sector, theme, and signal becomes a glowing node. Every relationship — sympathy, ETF overlap, sector cluster, supply chain tether — becomes a visible link. <strong>Hover to inspect. Click to drill in. Watch catalysts fire in real time.</strong></p>
+      <div class="cin-cta-row">
+        <a href="/hud/" class="cin-btn-primary">Open Cerebro HUD →</a>
+        <a href="#what" class="cin-btn-ghost">What is this?</a>
+      </div>
+      <div class="cin-strip">
+        <div class="cin-cell"><div class="cin-k">Total signals</div><div class="cin-v cyan" id="hero-signals">—</div></div>
+        <div class="cin-cell"><div class="cin-k">Unique tickers</div><div class="cin-v gold" id="hero-tickers">—</div></div>
+        <div class="cin-cell"><div class="cin-k">Temperature</div><div class="cin-v bull" id="hero-temp">—</div></div>
+        <div class="cin-cell"><div class="cin-k">Last sync</div><div class="cin-v" id="hero-stamp">—</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ WHAT IS CEREBRO ════════════ -->
+<section id="what" class="tight">
+  <div class="wrap">
+    <div class="section-eyebrow">What is Cerebro</div>
+    <h2 class="section-title">A <em>force-graph HUD</em> that turns the entire market into one navigable surface.</h2>
+    <p class="section-desc">Cerebro is the visual cortex on top of Catalyst Edge. The same data that powers the SEC scanner, the convergence alerts, the dark-pool tracker, and the DeFi-shadow ledger — rendered as a living 3D universe. Tickers cluster by sector and ETF ownership. Sympathy correlations draw the connective tissue. Catalysts pulse the nodes that just fired.</p>
+    <div class="live-deck">
+      <div class="deck-card">
+        <div class="deck-head">
+          <span><span class="live-pip"></span>&nbsp;LIVE TELEMETRY</span>
+          <span class="stamp" id="live-stamp">SYNC · —</span>
+        </div>
+        <div class="deck-row"><span class="lbl">Total signals firing</span><span class="val cyan" id="live-signals">—</span></div>
+        <div class="deck-row"><span class="lbl">Unique tickers</span><span class="val" id="live-tickers">—</span></div>
+        <div class="deck-row"><span class="lbl">Convergence alerts</span><span class="val lime" id="live-conv">—</span></div>
+        <div class="deck-row"><span class="lbl">Gap plays</span><span class="val amber" id="live-gap">—</span></div>
+        <div class="deck-row"><span class="lbl">SEC filings (today)</span><span class="val" id="live-sec">—</span></div>
+        <div class="deck-row"><span class="lbl">Insider clusters</span><span class="val magenta" id="live-ins">—</span></div>
+        <div class="deck-row"><span class="lbl">Dark pool flags</span><span class="val cyan" id="live-dp">—</span></div>
+        <div class="deck-row"><span class="lbl">Market temperature</span><span class="val" id="live-temp"><span class="temp-pill" id="live-temp-pill">—</span></span></div>
+      </div>
+      <div class="deck-card">
+        <div class="deck-head"><span>WHAT YOU GET</span><span class="stamp">v2.3</span></div>
+        <div class="deck-row"><span class="lbl">Universe nodes</span><span class="val cyan">7,325</span></div>
+        <div class="deck-row"><span class="lbl">Sector clusters</span><span class="val">13</span></div>
+        <div class="deck-row"><span class="lbl">Data domains</span><span class="val lime">12</span></div>
+        <div class="deck-row"><span class="lbl">Execution flows</span><span class="val amber">300</span></div>
+        <div class="deck-row"><span class="lbl">Sympathy edges</span><span class="val">~12,140</span></div>
+        <div class="deck-row"><span class="lbl">Refresh cadence</span><span class="val magenta">04:00 ET · daily</span></div>
+        <div class="deck-row"><span class="lbl">Render engine</span><span class="val">force-directed · WebGL</span></div>
+        <div class="deck-row"><span class="lbl">Status</span><span class="val bull"><span class="live-pip"></span>&nbsp;OPERATIONAL</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ HOT TODAY ════════════ -->
+<section class="tight">
+  <div class="wrap">
+    <div class="section-eyebrow">Hot today</div>
+    <h2 class="section-title">What's <em>firing</em> in the universe right now</h2>
+    <p class="section-desc">Live counts pulled from the same scanner pipeline that feeds Cerebro. If a node is glowing brighter than its neighbors, you'll see why here.</p>
+    <div class="hot-panel" id="hot-panel">
+      <div class="hot-cell"><div class="lbl">Catalyst count</div><div class="val" id="hot-count">—</div></div>
+      <div class="hot-cell"><div class="lbl">Top source</div><div class="val lime" id="hot-source">—</div></div>
+      <div class="hot-cell"><div class="lbl">Squeeze candidates</div><div class="val magenta" id="hot-squeeze">—</div></div>
+      <div class="hot-cell"><div class="lbl">Smart money signals</div><div class="val" id="hot-smart">—</div></div>
+      <div class="hot-cell"><div class="lbl">Refresh</div><div class="val lime" id="hot-date">—</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ FEATURE GRID ════════════ -->
+<section>
+  <div class="wrap">
+    <div class="section-eyebrow">The HUD</div>
+    <h2 class="section-title">Six surfaces that work as <em>one cockpit</em></h2>
+    <p class="section-desc">Every panel in the HUD is collapsible glass. The force graph stays the protagonist; the panels stay out of your way until you need them.</p>
+    <div class="feature-grid">
+      <div class="feat" data-color="cyan" style="--feat-color:#00ffff;--feat-shadow:rgba(0,255,255,0.32)">
+        <div class="icon">⌬</div>
+        <h3>Force Graph</h3>
+        <p>WebGL-rendered universe of 7,325 nodes. Physics-driven clustering. Spin, pinch, zoom. Hover any node for an X-Ray tooltip. Click for the full inspector.</p>
+        <div class="tag-row">
+          <span class="tag">7,325 nodes</span>
+          <span class="tag">webgl</span>
+          <span class="tag">x-ray hover</span>
+        </div>
+      </div>
+      <div class="feat" data-color="magenta" style="--feat-color:#ff2a8a;--feat-shadow:rgba(255,42,138,0.32)">
+        <div class="icon">▤</div>
+        <h3>Telemetry Deck</h3>
+        <p>Mission-control bar pinned top-of-screen. Market bias, total velocity, sympathy count, hottest ticker, node count, intensity — all live, all collapsible.</p>
+        <div class="tag-row">
+          <span class="tag">market bias</span>
+          <span class="tag">velocity</span>
+          <span class="tag">hottest</span>
+        </div>
+      </div>
+      <div class="feat" data-color="purple" style="--feat-color:#b026ff;--feat-shadow:rgba(176,38,255,0.32)">
+        <div class="icon">≋</div>
+        <h3>Process Flows</h3>
+        <p>300 execution flows — every catalyst path traced. From SEC filing → ranking → classifier → outcome. Drill any flow for step-by-step provenance.</p>
+        <div class="tag-row">
+          <span class="tag">300 flows</span>
+          <span class="tag">audit trail</span>
+          <span class="tag">provenance</span>
+        </div>
+      </div>
+      <div class="feat" data-color="lime" style="--feat-color:#d6ff3a;--feat-shadow:rgba(214,255,58,0.32)">
+        <div class="icon">✦</div>
+        <h3>Domain Clusters</h3>
+        <p>12 data domains stitched together: SEC EDGAR, ETF canopy, options flow, FRED macro, NOAA weather, USPTO patents, PACER dockets, supply chain tethers.</p>
+        <div class="tag-row">
+          <span class="tag">12 domains</span>
+          <span class="tag">cross-stitched</span>
+          <span class="tag">9 spokes live</span>
+        </div>
+      </div>
+      <div class="feat" data-color="gold" style="--feat-color:#f5c662;--feat-shadow:rgba(245,198,98,0.32)">
+        <div class="icon">⚡</div>
+        <h3>Live Velocity Deck</h3>
+        <p>Bottom-right card stack. Breaking catalysts scroll in as they fire — headline, ticker, velocity score, timestamp. Spark alerts pulse the node on the graph.</p>
+        <div class="tag-row">
+          <span class="tag">breaking</span>
+          <span class="tag">spark alerts</span>
+          <span class="tag">linked</span>
+        </div>
+      </div>
+      <div class="feat" data-color="bull" style="--feat-color:#5cf2a4;--feat-shadow:rgba(92,242,164,0.32)">
+        <div class="icon">▶</div>
+        <h3>Open the HUD</h3>
+        <p>One click and you're in the cockpit. Loads in ~3 seconds. Mobile-friendly. No login required for the public read-only view.</p>
+        <div class="tag-row">
+          <span class="tag">3s load</span>
+          <span class="tag">mobile</span>
+          <span class="tag">public</span>
+        </div>
+        <div style="margin-top:14px"><a href="/hud/" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--bull)">Launch /hud/ →</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ DOMAINS ════════════ -->
+<section class="tight">
+  <div class="wrap">
+    <div class="section-eyebrow">Data fabric</div>
+    <h2 class="section-title">Twelve domains, <em>one graph</em></h2>
+    <p class="section-desc">Each chip is a live spoke. Every spoke writes to the same universe state — that's why a 13F filing and a NOAA storm warning can both push the same node.</p>
+    <div class="domains-strip">
+      <div class="domain-chip" data-c="c1"><span class="dot"></span>SEC EDGAR</div>
+      <div class="domain-chip" data-c="c2"><span class="dot"></span>ETF Canopy</div>
+      <div class="domain-chip" data-c="c3"><span class="dot"></span>Options Flow</div>
+      <div class="domain-chip" data-c="c4"><span class="dot"></span>FRED Macro</div>
+      <div class="domain-chip" data-c="c5"><span class="dot"></span>NOAA Weather</div>
+      <div class="domain-chip" data-c="c6"><span class="dot"></span>USPTO Patents</div>
+      <div class="domain-chip" data-c="c1"><span class="dot"></span>PACER Dockets</div>
+      <div class="domain-chip" data-c="c2"><span class="dot"></span>Supply Chain</div>
+      <div class="domain-chip" data-c="c3"><span class="dot"></span>News Momentum</div>
+      <div class="domain-chip" data-c="c4"><span class="dot"></span>Price &amp; Volume</div>
+      <div class="domain-chip" data-c="c5"><span class="dot"></span>Insider Cluster</div>
+      <div class="domain-chip" data-c="c6"><span class="dot"></span>Dark Pool Tape</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ FINAL CTA ════════════ -->
+<section class="cta-block">
+  <div class="eyebrow">⟁ READY TO FLY THROUGH IT</div>
+  <h2>Open the <span class="accent">cockpit.</span></h2>
+  <p>7,325 nodes are already arranged and breathing. The catalysts are firing. Click in — no signup, no paywall on the public view.</p>
+  <div class="cta-row">
+    <a href="/hud/" class="btn-launch">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+      Launch Cerebro HUD
+    </a>
+    <a href="/scanner/" class="btn-ghost">See today's picks →</a>
+  </div>
+</section>
+
+<!-- ════════════ FOOTER ════════════ -->
+<footer class="cy-foot">
+  <div class="tagline">Catalyst Edge · Cerebro v2.3</div>
+  <div>
+    <a href="/">Home</a> ·
+    <a href="/scanner/">Scanner</a> ·
+    <a href="/jackpot/">Jackpot</a> ·
+    <a href="/defi/">DeFi</a> ·
+    <a href="/signal-strength/">Signal Strength</a> ·
+    <a href="/glossary/">Glossary</a> ·
+    <a href="/pricing/">Pricing</a>
+  </div>
+  <div style="margin-top:14px;opacity:0.7">SEC filings scored before 04:00 ET · Not financial advice · &copy; 2026</div>
+</footer>
+
+<script>
+(function(){
+  function fmt(n) {
+    if (n === null || n === undefined) return '—';
+    var x = Number(n);
+    if (!isFinite(x)) return '—';
+    if (x >= 1000) return x.toLocaleString('en-US');
+    return String(x);
+  }
+  function setText(id, txt) {
+    var el = document.getElementById(id);
+    if (el) el.textContent = txt;
+  }
+  function nowStamp() {
+    var d = new Date();
+    var hh = String(d.getUTCHours()).padStart(2, '0');
+    var mm = String(d.getUTCMinutes()).padStart(2, '0');
+    return hh + ':' + mm + ' UTC';
+  }
+
+  fetch('/api/signal-strength', { cache: 'no-store' })
+    .then(function(r){ return r.ok ? r.json() : Promise.reject(r.status); })
+    .then(function(d){
+      if (!d || typeof d !== 'object') return;
+      var sources = Array.isArray(d.sources) ? d.sources : [];
+      var bySrc = {};
+      sources.forEach(function(s){ if (s && s.source) bySrc[s.source] = s; });
+      var get = function(k){ return (bySrc[k] && Number(bySrc[k].count)) || 0; };
+
+      setText('hero-signals', fmt(d.total_signals));
+      setText('hero-tickers', fmt(d.unique_tickers));
+      setText('hero-temp', d.temperature || '—');
+      setText('hero-stamp', d.date || nowStamp());
+
+      setText('live-signals', fmt(d.total_signals));
+      setText('live-tickers', fmt(d.unique_tickers));
+      setText('live-conv', fmt(get('convergence')));
+      setText('live-gap', fmt(get('gappers')));
+      setText('live-sec', fmt(get('sec_filings')));
+      setText('live-ins', fmt(get('insider')));
+      setText('live-dp', fmt(get('darkpool')));
+      setText('live-stamp', 'SYNC · ' + (d.date || nowStamp()));
+
+      var tpill = document.getElementById('live-temp-pill');
+      if (tpill) {
+        tpill.textContent = d.temperature || 'UNKNOWN';
+        tpill.setAttribute('data-temp', d.temperature || 'LOW');
+      }
+
+      setText('hot-count', fmt(d.total_signals));
+      var ranked = sources.slice().filter(function(s){
+        return s.source !== 'rankings' && s.source !== 'convergence';
+      }).sort(function(a,b){ return (b.count||0) - (a.count||0); });
+      var topLabel = ranked[0] ? (ranked[0].label || ranked[0].source) : '—';
+      setText('hot-source', String(topLabel).toUpperCase());
+      setText('hot-squeeze', fmt(get('squeeze')));
+      setText('hot-smart', fmt(get('smart_money')));
+      setText('hot-date', d.date || nowStamp());
+    })
+    .catch(function(){
+      setText('hero-stamp', nowStamp());
+      setText('live-stamp', 'SYNC · OFFLINE');
+    });
+})();
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KV1VDK22VC"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-KV1VDK22VC');</script>
+
+</body>
+</html>

@@ -1,0 +1,15 @@
+{
+  "date": "2026-03-16",
+  "top5_tickers": [
+    "BBAR",
+    "ERO",
+    "APLD",
+    "AMAT",
+    "ADPT"
+  ],
+  "gapper_count": 0,
+  "value_count": 7,
+  "moat_count": 1,
+  "total_combined": 106,
+  "top_pick": "BBAR"
+}

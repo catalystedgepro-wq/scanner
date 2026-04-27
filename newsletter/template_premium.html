@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Catalyst Edge Premium — Daily SEC Intelligence</title>
+</head>
+<body style="margin:0;padding:0;background:#f0f2f5;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;">
+
+<!-- Preheader (hidden preview text) -->
+<div style="display:none;max-height:0;overflow:hidden;color:#f0f2f5;">
+  Today's highest-conviction SEC catalyst plays — gappers, value, and institutional moat signals. &#847;&zwnj;&#847;&zwnj;&#847;&zwnj;
+</div>
+
+<table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#f0f2f5;padding:20px 0;">
+<tr><td align="center">
+<table width="620" cellpadding="0" cellspacing="0" border="0" style="max-width:620px;width:100%;">
+
+  <!-- ═══════════════════════════════ HEADER ═══════════════════════════════ -->
+  <tr>
+    <td style="background:#0a0f1e;border-radius:8px 8px 0 0;padding:0;">
+
+      <!-- Top bar -->
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td style="padding:12px 32px;border-bottom:1px solid rgba(255,255,255,0.08);">
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td style="font-size:11px;color:#64748b;letter-spacing:1.5px;text-transform:uppercase;font-weight:600;">
+                  SEC EDGAR Intelligence
+                </td>
+                <td align="right" style="font-size:11px;color:#64748b;">
+                  {{DATE_LONG}}
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+
+      <!-- Logo & tagline -->
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td style="padding:28px 32px 24px 32px;">
+            <table cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td style="padding-right:14px;vertical-align:middle;">
+                  <!-- Logo mark -->
+                  <div style="width:44px;height:44px;background:linear-gradient(135deg,#3b82f6,#8b5cf6);border-radius:10px;text-align:center;line-height:44px;font-size:22px;">⚡</div>
+                </td>
+                <td style="vertical-align:middle;">
+                  <div style="font-size:28px;font-weight:900;color:#ffffff;letter-spacing:-0.5px;line-height:1;">
+                    Catalyst Edge
+                  </div>
+                  <div style="font-size:12px;color:#94a3b8;margin-top:3px;letter-spacing:0.5px;">
+                    Daily Event-Driven Trading Intelligence
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+
+      <!-- Stats strip -->
+      <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:rgba(255,255,255,0.05);">
+        <tr>
+          <td style="padding:14px 32px;">
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td align="center" style="border-right:1px solid rgba(255,255,255,0.1);padding:0 16px 0 0;">
+                  <div style="font-size:20px;font-weight:800;color:#3b82f6;">{{GAPPER_COUNT}}</div>
+                  <div style="font-size:10px;color:#64748b;text-transform:uppercase;letter-spacing:1px;margin-top:2px;">Gappers</div>
+                </td>
+                <td align="center" style="border-right:1px solid rgba(255,255,255,0.1);padding:0 16px;">
+                  <div style="font-size:20px;font-weight:800;color:#10b981;">{{VALUE_COUNT}}</div>
+                  <div style="font-size:10px;color:#64748b;text-transform:uppercase;letter-spacing:1px;margin-top:2px;">Value</div>
+                </td>
+                <td align="center" style="border-right:1px solid rgba(255,255,255,0.1);padding:0 16px;">
+                  <div style="font-size:20px;font-weight:800;color:#8b5cf6;">{{MOAT_COUNT}}</div>
+                  <div style="font-size:10px;color:#64748b;text-transform:uppercase;letter-spacing:1px;margin-top:2px;">Moat</div>
+                </td>
+                <td align="center" style="padding:0 0 0 16px;">
+                  <div style="font-size:20px;font-weight:800;color:#f59e0b;">{{TOTAL_TICKERS}}</div>
+                  <div style="font-size:10px;color:#64748b;text-transform:uppercase;letter-spacing:1px;margin-top:2px;">Filings Scanned</div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+
+    </td>
+  </tr>
+
+  <!-- Voice AI banner — above the fold -->
+  <tr>
+    <td style="background:#0d1b2e;padding:10px 32px;border-top:1px solid rgba(255,255,255,0.06);">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td style="font-size:12px;color:#93c5fd;">
+            🎙️ <strong style="color:#ffffff;">New:</strong> Ask Catalyst AI about today's picks in real time
+          </td>
+          <td align="right">
+            <a href="https://www.catalystedge.agency/" style="display:inline-block;background:#3b82f6;color:#ffffff;font-size:11px;font-weight:700;text-decoration:none;padding:6px 14px;border-radius:4px;letter-spacing:0.3px;">
+              Talk to Catalyst →
+            </a>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+
+  <!-- Social / Scanner quick-links — always visible before clip point -->
+  <tr>
+    <td style="background:#0d1b2e;padding:10px 32px;border-top:1px solid rgba(255,255,255,0.06);">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td style="font-size:11px;color:#64748b;line-height:2;">
+            <a href="https://catalystedgescanner.com" style="color:#22c55e;text-decoration:none;font-weight:700;">📊 Scanner</a>
+            &nbsp;·&nbsp;
+            <a href="https://discord.gg/8aJEHghHVy" style="color:#818cf8;text-decoration:none;font-weight:600;">💬 Discord</a>
+            &nbsp;·&nbsp;
+            <a href="https://t.me/CatalystEdgeDaily" style="color:#818cf8;text-decoration:none;">📲 Telegram</a>
+            &nbsp;·&nbsp;
+            <a href="https://x.com/CatalystEdgePro" style="color:#64748b;text-decoration:none;">𝕏 Twitter</a>
+            &nbsp;·&nbsp;
+            <a href="https://www.instagram.com/yourhandle/" style="color:#64748b;text-decoration:none;">📷 Instagram</a>
+            &nbsp;·&nbsp;
+            <a href="https://www.tiktok.com/@catalystedge" style="color:#64748b;text-decoration:none;">🎵 TikTok</a>
+            &nbsp;·&nbsp;
+            <a href="https://www.youtube.com/@CatalystEdgePro" style="color:#64748b;text-decoration:none;">▶ YouTube</a>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+
+  <!-- White body -->
+  <tr>
+    <td style="background:#ffffff;padding:32px;">
+
+      <!-- ═══════════════════════ EDITOR'S NOTE ══════════════════════ -->
+      <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:20px;">
+        <tr>
+          <td style="background:#0f172a;padding:16px 20px;border-radius:6px;border-left:3px solid #3b82f6;">
+            <span style="font-size:10px;font-weight:700;color:#3b82f6;letter-spacing:2px;text-transform:uppercase;">Editor's Note</span>
+            <p style="font-size:13px;color:#94a3b8;font-style:italic;margin:6px 0 0 0;line-height:1.6;">{{EDITOR_NOTE}}</p>
+          </td>
+        </tr>
+      </table>
+
+      {{CATALYST_AI_CTA}}
+
+      {{FILING_TREND}}
+
+      <!-- ═══════════════════════ TODAY'S TOP 5 ═══════════════════════ -->
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td style="padding-bottom:6px;">
+            <span style="font-size:11px;font-weight:700;color:#3b82f6;letter-spacing:2px;text-transform:uppercase;">Editor's Picks</span>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding-bottom:20px;">
+            <div style="font-size:22px;font-weight:800;color:#0f172a;line-height:1.2;">Today's Top 5 Catalyst Plays</div>
+            <div style="font-size:13px;color:#64748b;margin-top:4px;">Ranked by combined SEC filing strength + live news momentum</div>
+          </td>
+        </tr>
+      </table>
+
+      <!-- Pick #1 -->
+      <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:10px;">
+        <tr>
+          <td style="background:#f8faff;border:1px solid #e2e8f0;border-left:4px solid #3b82f6;border-radius:0 6px 6px 0;padding:14px 16px;">
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td style="vertical-align:top;">
+                  <table cellpadding="0" cellspacing="0" border="0">
+                    <tr>
+                      <td style="padding-right:10px;vertical-align:middle;">
+                        <span style="font-size:20px;">🥇</span>
+                      </td>
+                      <td style="vertical-align:middle;">
+                        <span style="font-size:18px;font-weight:900;color:#1d4ed8;">{{PICK1_TICKER}}</span>
+                        &nbsp;
+                        <span style="display:inline-block;background:#3b82f6;color:#fff;font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;letter-spacing:0.5px;">{{PICK1_CATEGORY}}</span>
+                      </td>
+                    </tr>
+                  </table>
+                  <div style="font-size:13px;color:#475569;margin-top:6px;margin-left:30px;">{{PICK1_NARRATIVE}}</div>
+                </td>
+                <td align="right" style="vertical-align:top;white-space:nowrap;padding-left:12px;">
+                  <div style="font-size:16px;font-weight:800;color:#0f172a;">{{PICK1_PRICE}}</div>
+                  <div style="font-size:11px;color:#94a3b8;margin-top:2px;">Score: {{PICK1_SCORE}}</div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+
+      <!-- Picks #2-5 -->
+      {{PICKS_2_TO_5}}
+
+      {{INSIDER_CLUSTERS}}
+
+      <div style="height:28px;"></div>
+
+      <!-- ═══════════════════════ SECTOR MACRO ═══════════════════════ -->
+      {{SECTOR_STRIP}}
+
+      {{MACRO_CONTEXT}}
+
+      <!-- ══════════════════════ POLYMARKET PULSE ════════════════════════════ -->
+      {{POLYMARKET_SECTION}}
+
+      <div style="height:28px;border-bottom:1px solid #f1f5f9;margin-bottom:28px;"></div>
+
+      <!-- ═══════════════════════ GAPPER PLAYS ═══════════════════════ -->
+      <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:8px;">
+        <tr>
+          <td>
+            <span style="font-size:11px;font-weight:700;color:#ef4444;letter-spacing:2px;text-transform:uppercase;">Section 01</span>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding-bottom:4px;">
+            <span style="font-size:19px;font-weight:800;color:#0f172a;">⚡ Gapper Plays</span>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding-bottom:16px;">
+            <span style="font-size:12px;color:#64748b;">High-momentum event-driven setups — 8-K disclosures, FDA decisions, contract wins</span>
+          </td>
+        </tr>
+      </table>
+
+      {{GAPPER_TABLE}}
+
+      {{PRE_CATALYST_WATCHLIST}}
+
+      <!-- ══════════════════════ PENNY GAP PLAYS ═══════════════════════ -->
+      {{PENNY_GAPPERS}}
+
+      <!-- ══════════════════════ GAP TRACK RECORD ══════════════════════ -->
+      {{GAP_TRACK_RECORD}}
+
+      <div style="height:28px;border-bottom:1px solid #f1f5f9;margin:20px 0 28px 0;"></div>
+
+      <!-- ═══════════════════════ VALUE PLAYS ═══════════════════════ -->
+      <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:8px;">
+        <tr>
+          <td>
+            <span style="font-size:11px;font-weight:700;color:#10b981;letter-spacing:2px;text-transform:uppercase;">Section 02</span>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding-bottom:4px;">
+            <span style="font-size:19px;font-weight:800;color:#0f172a;">💎 Value Plays</span>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding-bottom:16px;">
+            <span style="font-size:12px;color:#64748b;">Insider buying, share buybacks, dividend signals — quality at a catalyst</span>
+          </td>
+        </tr>
+      </table>
+
+      {{VALUE_TABLE}}
+
+      {{SHORT_SQUEEZE_ALERT}}
+
+      <div style="height:28px;border-bottom:1px solid #f1f5f9;margin:20px 0 28px 0;"></div>
+
+      <!-- ═══════════════════════ MOAT INSTITUTIONAL ══════════════════ -->
+      <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:8px;">
+        <tr>
+          <td>
+            <span style="font-size:11px;font-weight:700;color:#8b5cf6;letter-spacing:2px;text-transform:uppercase;">Section 03</span>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding-bottom:4px;">
+            <span style="font-size:19px;font-weight:800;color:#0f172a;">🏰 Moat — Institutional Grade</span>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding-bottom:16px;">
+            <span style="font-size:12px;color:#64748b;">Large-cap names (≥$2B market cap) with durable competitive advantage signals</span>
+          </td>
+        </tr>
+      </table>
+
+      {{MOAT_TABLE}}
+
+      {{SECTOR_ROTATION}}
+
+      <!-- ═══════════════════════ SQUEEZE RADAR ══════════════════════ -->
+      {{SQUEEZE_RADAR}}
+
+      <!-- ══════════════════════ CONVERGENCE ALERTS ═══════════════════ -->
+      {{CONVERGENCE_ALERTS}}
+
+      <!-- ══════════════════════ DEEPVALUE SCREEN ══════════════════════ -->
+      {{DEEPVALUE_SCREEN}}
+
+      <!-- ══════════════════════ SMART MONEY TRACKER ═══════════════════ -->
+      {{SMART_MONEY}}
+
+      <!-- ══════════════════════ DARK POOL RADAR ═══════════════════════ -->
+      {{DARK_POOL}}
+
+      <!-- ══════════════════════ MERGER RADAR ══════════════════════════ -->
+      {{MERGER_RADAR}}
+
+      <!-- ══════════════════════ LOCKUP CALENDAR ═══════════════════════ -->
+      {{LOCKUP_CALENDAR}}
+
+      <!-- ══════════════════════ NT FILING RADAR ═══════════════════════ -->
+      {{NT_RADAR}}
+
+      <!-- ══════════════════════ REVENUE INFLECTION ════════════════════ -->
+      {{REVENUE_INFLECTION}}
+
+      <!-- ══════════════════════ INCOME / CONSERVATIVE ═════════════════ -->
+      {{INCOME_PICKS}}
+
+      <!-- ══════════════════════ CONGRESS OVERLAP ═══════════════════════ -->
+      {{CONGRESS_OVERLAP}}
+
+      <!-- ═══════════════════════ TRACK RECORD ═══════════════════════ -->
+      <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:8px;">
+        <tr>
+          <td>
+            <span style="font-size:11px;font-weight:700;color:#f59e0b;letter-spacing:2px;text-transform:uppercase;">Performance</span>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding-bottom:4px;">
+            <span style="font-size:19px;font-weight:800;color:#0f172a;">📊 Track Record</span>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding-bottom:16px;">
+            <span style="font-size:12px;color:#64748b;">Backtested against next-day open/close — updated daily as outcomes are confirmed</span>
+          </td>
+        </tr>
+      </table>
+
+      {{TRACK_RECORD}}
+
+    </td>
+  </tr>
+
+  <!-- ══════════════ WIN RATE BY FORM TYPE (Premium) ═══════════════════ -->
+  <tr>
+    <td style="background:#ffffff;padding:0 32px;">
+      {{FORM_TYPE_BREAKDOWN}}
+    </td>
+  </tr>
+
+  <!-- ══════════════ CATALYST TAG BREAKDOWN (Premium) ═══════════════════ -->
+  <tr>
+    <td style="background:#ffffff;padding:0 32px;">
+      {{CATALYST_TAG_BREAKDOWN}}
+    </td>
+  </tr>
+
+  <!-- ══════════════════════════ PREMIUM BADGE ════════════════════════════ -->
+  <tr>
+    <td style="padding:0 0 4px 0;">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0"
+             style="background:linear-gradient(135deg,#0f172a 0%,#1e1b4b 100%);border-radius:8px;padding:20px 32px;">
+        <tr>
+          <td>
+            <span style="font-size:11px;font-weight:700;color:#818cf8;letter-spacing:1.5px;text-transform:uppercase;">⚡ Premium Member</span>
+            &nbsp;&nbsp;
+            <span style="font-size:12px;color:#94a3b8;">You're getting the full Catalyst Edge intelligence stack. Thank you for being a founding member.</span>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding-top:10px;">
+            <span style="font-size:11px;color:#475569;">Questions or feedback?
+              <a href="mailto:opensource@example.com" style="color:#818cf8;text-decoration:none;">Reply to this email</a> — we read every one.
+            </span>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+
+  <!-- ══════════════════════════ REFERRAL BLOCK ═══════════════════════════ -->
+  <tr>
+    <td style="padding:0 0 4px 0;">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0"
+             style="background:#0f172a;border:1px solid rgba(99,102,241,0.3);border-radius:8px;padding:24px 32px;">
+        <tr>
+          <td style="padding-bottom:6px;">
+            <span style="font-size:11px;font-weight:700;color:#818cf8;letter-spacing:1.5px;text-transform:uppercase;">Grow the Community</span>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding-bottom:10px;">
+            <span style="font-size:18px;font-weight:800;color:#ffffff;line-height:1.3;">Know a serious trader?</span><br>
+            <span style="font-size:13px;color:#94a3b8;line-height:1.6;">Share your referral link. Every trader who subscribes makes this community stronger.</span>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding-bottom:14px;">
+            <a href="{{rp_refer_url}}"
+               style="display:inline-block;background:#6366f1;color:#ffffff;font-size:13px;font-weight:700;
+                      text-decoration:none;padding:10px 24px;border-radius:6px;letter-spacing:0.3px;">
+              Share Catalyst Edge →
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <span style="font-size:11px;color:#475569;">You've referred <strong style="color:#818cf8;">{{rp_num_referrals}}</strong> people so far.</span>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+
+  <!-- ═══════════════════════════════ FOOTER ═══════════════════════════════ -->
+  <tr>
+    <td style="background:#0a0f1e;border-radius:0 0 8px 8px;padding:24px 32px;">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <!-- How It Works -->
+        <tr>
+          <td colspan="2" style="padding-bottom:18px;border-bottom:1px solid rgba(255,255,255,0.07);margin-bottom:18px;">
+            {{HOW_IT_WORKS}}
+          </td>
+        </tr>
+        <!-- Community links -->
+        <tr>
+          <td colspan="2" style="padding:16px 0 0 0;">
+            <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:rgba(99,102,241,0.07);border:1px solid rgba(99,102,241,0.2);border-radius:6px;padding:12px 16px;">
+              <tr>
+                <td style="vertical-align:middle;">
+                  <span style="font-size:11px;color:#94a3b8;line-height:1.8;">
+                    💬 <a href="https://discord.gg/8aJEHghHVy" style="color:#818cf8;text-decoration:none;font-weight:600;">Discord</a> — live picks, bot commands, trader chat<br>
+                    📲 <a href="https://t.me/CatalystEdgeDaily" style="color:#818cf8;text-decoration:none;font-weight:600;">Telegram</a> — daily channel + <a href="https://t.me/CatalystEdgeBot" style="color:#818cf8;text-decoration:none;">interactive bot</a>
+                  </span>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <!-- Featured Partner: Simply Wall St (deep-research, pairs with our DCF) -->
+        <tr>
+          <td colspan="2" style="padding:16px 0 0 0;">
+            <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:linear-gradient(135deg,rgba(212,168,67,0.10),rgba(6,182,212,0.06));border:1px solid rgba(212,168,67,0.25);border-radius:8px;padding:14px 18px;">
+              <tr>
+                <td style="vertical-align:middle;">
+                  <span style="font-size:11px;font-weight:700;color:#d4a843;letter-spacing:1px;text-transform:uppercase;">⭐ Featured Partner</span>
+                  <div style="font-size:13px;color:#e2e8f0;line-height:1.6;margin-top:6px;">
+                    Want company-by-company DCF dashboards to pair with our screening?
+                    <a href="https://catalystedgescanner.com/go/simplywallst" style="color:#06b6d4;text-decoration:none;font-weight:700;">Simply Wall St</a>
+                    has Snowflake reports, fair-value charts, and full intrinsic-value math for every stock —
+                    <strong style="color:#d4a843;">14-day extended Premium trial via our partner link</strong>.
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <!-- Recommended Brokers -->
+        <tr>
+          <td colspan="2" style="padding:16px 0 0 0;">
+            <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.15);border-radius:6px;padding:12px 16px;">
+              <tr>
+                <td style="vertical-align:middle;">
+                  <span style="font-size:11px;font-weight:700;color:#94a3b8;letter-spacing:1px;text-transform:uppercase;">Recommended Brokers</span>
+                  <div style="font-size:11px;color:#94a3b8;line-height:2;margin-top:6px;">
+                    <a href="https://catalystedgescanner.com/go/moomoo" style="color:#22c55e;text-decoration:none;font-weight:600;">Moomoo</a> — Free Level 2 data&nbsp;&nbsp;&bull;&nbsp;&nbsp;<a href="https://catalystedgescanner.com/go/webull" style="color:#22c55e;text-decoration:none;font-weight:600;">Webull</a> — Free stocks on signup<br>
+                    <a href="https://catalystedgescanner.com/go/tradier" style="color:#22c55e;text-decoration:none;font-weight:600;">Tradier</a> — $0 options trading&nbsp;&nbsp;&bull;&nbsp;&nbsp;<a href="https://catalystedgescanner.com/go/public" style="color:#22c55e;text-decoration:none;font-weight:600;">Public.com</a> — Fractional shares<br>
+                    <a href="https://catalystedgescanner.com/go/alpaca" style="color:#22c55e;text-decoration:none;font-weight:600;">Alpaca</a> — API broker for AI bots&nbsp;&nbsp;&bull;&nbsp;&nbsp;<a href="https://catalystedgescanner.com/go/ibkr" style="color:#22c55e;text-decoration:none;font-weight:600;">Interactive Brokers</a> — TWS API
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <!-- Disclaimer -->
+        <tr>
+          <td style="padding-top:16px;">
+            <div style="font-size:13px;font-weight:700;color:#ffffff;margin-bottom:6px;">⚡ Catalyst Edge</div>
+            <div style="font-size:11px;color:#475569;line-height:1.7;max-width:440px;">
+              Data sourced from SEC EDGAR, public RSS news feeds, and Stooq/Yahoo Finance.
+              This newsletter is for informational purposes only and does not constitute
+              investment advice. Always conduct your own due diligence.
+            </div>
+          </td>
+          <td align="right" style="vertical-align:top;padding-top:16px;">
+            <div style="font-size:11px;color:#475569;line-height:2;">
+              <a href="https://catalystedgescanner.com" style="color:#22c55e;text-decoration:none;font-weight:700;">📊 catalystedgescanner.com</a><br>
+              <a href="https://catalystedge.agency" style="color:#3b82f6;text-decoration:none;">catalystedge.agency</a><br>
+              <a href="https://www.catalystedge.agency/" style="color:#60a5fa;text-decoration:none;">🎙️ catalystedge.agency</a><br>
+              <a href="https://x.com/CatalystEdgePro" style="color:#64748b;text-decoration:none;">𝕏 @CatalystEdgePro</a><br>
+              <a href="https://www.instagram.com/yourhandle/" style="color:#64748b;text-decoration:none;">📷 @yourhandle</a><br>
+              <a href="https://www.tiktok.com/@catalystedge" style="color:#64748b;text-decoration:none;">🎵 @catalystedge</a><br>
+              <a href="https://www.youtube.com/@CatalystEdgePro" style="color:#64748b;text-decoration:none;">▶ @CatalystEdgePro</a>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+
+</table>
+</td></tr>
+</table>
+
+</body>
+</html>

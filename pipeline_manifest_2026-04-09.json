@@ -1,0 +1,92 @@
+{
+  "generated_at": "2026-04-09T21:21:23.744821+00:00",
+  "git_branch": "main",
+  "git_commit": "0034d71a402307ae5b606deedc513cb361fb2b98",
+  "git_short_commit": "0034d71",
+  "hud_assets": [
+    "docs/hud/assets/index-CaiKezuM.js"
+  ],
+  "kind": "cerebro_pipeline_manifest",
+  "outputs": {
+    "api_server": {
+      "exists": true,
+      "mtime": 1775769454,
+      "path": "api_server.py",
+      "sha256": "616b3f52414388123fd0ce5341742833f333af4f80b86824b910191ee41f4e7e",
+      "size": 76810
+    },
+    "combined_priority": {
+      "exists": true,
+      "mtime": 1775768667,
+      "path": "combined_priority.csv",
+      "sha256": "a255c7a07ad0aa9aaef2e57ace5c888bdd61e7fc08946a995e8ab3c4c1e8464d",
+      "size": 13064
+    },
+    "entity_master": {
+      "exists": true,
+      "mtime": 1775769646,
+      "path": "entity_master.json",
+      "sha256": "1f51c2bc25f3b7b790ca95e9f4582420e64e0ed79d530fee4a9552c9c02489c2",
+      "size": 8226707
+    },
+    "hud_index": {
+      "exists": true,
+      "mtime": 1775762537,
+      "path": "docs/hud/index.html",
+      "sha256": "901985bd324d6bbae647db2dc27741b8eeb8870a928b0d52cb058c2c069f7b46",
+      "size": 844
+    },
+    "macro_layer": {
+      "exists": true,
+      "mtime": 1775674975,
+      "path": "macro_layer.json",
+      "sha256": "9c4ea80dc1bbaadd78b9ef7143627f0b3b22d1b87d90ec342496b542f49f2c3c",
+      "size": 1814
+    },
+    "newsletter_body": {
+      "exists": true,
+      "mtime": 1775714229,
+      "path": "newsletter_body.html",
+      "sha256": "8189a671683f171c970fe2fd3760821a33db9eac6325a4ad29bf2dc7aad38978",
+      "size": 130882
+    },
+    "scanner_artifact_status": {
+      "exists": true,
+      "mtime": 1775769683,
+      "path": "scanner_artifact_status.json",
+      "sha256": "24e112da57df51953defe2ee33e0869ee3cc545ee414fd015e896254e8184060",
+      "size": 402
+    },
+    "scanner_index": {
+      "exists": true,
+      "mtime": 1775769683,
+      "path": "docs/index.html",
+      "sha256": "f637e594c74af2776faf09d62eae94da6f1463dd1bc525418b0a8c55b3a6954a",
+      "size": 281912
+    },
+    "sec_catalyst_latest": {
+      "exists": true,
+      "mtime": 1775768423,
+      "path": "sec_catalyst_latest.csv",
+      "sha256": "d651a541b011d2dd4cdade494b55e57dfce81249ec2ec8ac3059f57f7f48600d",
+      "size": 54917
+    },
+    "sec_catalyst_ranked": {
+      "exists": true,
+      "mtime": 1775768423,
+      "path": "sec_catalyst_ranked.csv",
+      "sha256": "b66395e977f82cad159a4c52b25de15c589def6b8c76febca964e4955cdcff69",
+      "size": 34882
+    },
+    "sec_fetch_status": {
+      "exists": true,
+      "mtime": 1775768423,
+      "path": "sec_catalyst_fetch_status.json",
+      "sha256": "b2f5e7092e560b0e506104e9abcdd3881c230432122f667b8c7aca6312296fbb",
+      "size": 257
+    }
+  },
+  "root": "/home/operator/.openclaw/workspace",
+  "stamp": "2026-04-09",
+  "status": "complete"
+}

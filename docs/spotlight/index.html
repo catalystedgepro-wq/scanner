@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Stock of the Day — Top SEC Catalyst Pick | Catalyst Edge</title>
+<meta name="description" content="Today's #1 ranked SEC catalyst pick with full signal breakdown — filing strength, news momentum, squeeze potential, insider activity, and more.">
+<meta property="og:title" content="Stock of the Day — Catalyst Edge">
+<link rel="canonical" href="https://catalystedgescanner.com/spotlight/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#070a12;--surface:#0f1420;--surface2:#151c2c;--gold:#d4a843;--green:#22c55e;--red:#ef4444;--cyan:#06b6d4;--text:#e2e8f0;--dim:#94a3b8;--muted:#64748b;--border:#1e293b}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
+.wrap{max-width:900px;margin:0 auto;padding:1.5rem}
+.nav{position:sticky;top:0;z-index:100;background:rgba(7,10,18,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:.75rem 1.5rem;display:flex;align-items:center;gap:1rem}
+.nav a{color:var(--gold);font-weight:600;font-size:.95rem}
+.nav .sep{color:var(--muted)}
+.hero-card{background:linear-gradient(135deg,var(--surface) 0%,rgba(212,168,67,.06) 100%);border:2px solid var(--gold);border-radius:16px;padding:2rem;margin:2rem 0;position:relative;overflow:hidden}
+.hero-card::before{content:'';position:absolute;top:-50%;right:-20%;width:300px;height:300px;background:radial-gradient(circle,rgba(212,168,67,.08) 0%,transparent 70%);pointer-events:none}
+.hero-label{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:.5rem;display:flex;align-items:center;gap:.5rem}
+.hero-label .pulse{width:8px;height:8px;border-radius:50%;background:var(--gold);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.3)}}
+.hero-ticker{font-size:clamp(3rem,8vw,5rem);font-weight:800;line-height:1;margin-bottom:.3rem;background:linear-gradient(135deg,var(--gold),#f1ce88);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-score{font-size:1.8rem;font-weight:800;color:var(--text);margin-bottom:1rem}
+.hero-score span{color:var(--gold)}
+.hero-date{font-size:.8rem;color:var(--muted);font-family:'IBM Plex Mono',monospace}
+.signal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:.75rem;margin:1.5rem 0}
+.signal-chip{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:.75rem;text-align:center;transition:border-color .2s,transform .2s}
+.signal-chip:hover{border-color:var(--gold);transform:translateY(-2px)}
+.signal-chip.active{border-color:var(--green);background:rgba(34,197,94,.04)}
+.signal-chip .icon{font-size:1.3rem;margin-bottom:.3rem}
+.signal-chip .label{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.signal-chip .val{font-size:.9rem;font-weight:800;color:var(--text);margin-top:.15rem}
+.signal-chip.active .val{color:var(--green)}
+.score-breakdown{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:.75rem;margin:1.5rem 0}
+.sb-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1rem}
+.sb-card .lbl{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-bottom:.3rem}
+.sb-card .score-num{font-size:1.5rem;font-weight:800}
+.sb-card .bar{height:5px;background:rgba(212,168,67,.12);border-radius:3px;margin-top:.4rem}
+.sb-card .bar-fill{height:100%;border-radius:3px;transition:width .6s ease}
+.sector-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin:.8rem 0}
+.sector-tag{padding:3px 10px;border-radius:6px;font-size:.7rem;font-weight:600;background:rgba(139,92,246,.08);color:#a78bfa}
+.event-tag{padding:3px 10px;border-radius:6px;font-size:.7rem;font-weight:600;background:rgba(6,182,212,.08);color:var(--cyan)}
+.sec-link{display:inline-block;margin-top:.5rem;padding:6px 14px;background:rgba(212,168,67,.08);border:1px solid rgba(212,168,67,.2);border-radius:6px;font-size:.78rem;font-weight:600;color:var(--gold)}
+.sec-link:hover{background:rgba(212,168,67,.15);text-decoration:none}
+h2{font-size:1.2rem;font-weight:800;margin:2rem 0 .8rem;color:var(--text)}
+.runners{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:.75rem;margin:1rem 0}
+.runner-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1rem;transition:border-color .2s}
+.runner-card:hover{border-color:var(--gold)}
+.runner-rank{font-size:.65rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.runner-ticker{font-size:1.3rem;font-weight:800;color:var(--gold);margin:.2rem 0}
+.runner-score{font-size:.85rem;font-weight:700;color:var(--dim);font-family:'IBM Plex Mono',monospace}
+.runner-sector{font-size:.65rem;color:var(--muted);margin-top:.3rem}
+.empty-state{text-align:center;padding:4rem 1rem;color:var(--muted)}
+.empty-state h2{color:var(--dim)}
+.cta-bar{background:var(--surface);border:1px solid var(--gold);border-radius:10px;padding:1.25rem;text-align:center;margin:2rem 0}
+.cta-bar h3{color:var(--gold);font-size:1rem;margin-bottom:.3rem}
+.cta-bar p{color:var(--dim);font-size:.8rem;margin-bottom:.75rem}
+.cta-bar a{display:inline-block;padding:.5rem 1.4rem;background:linear-gradient(135deg,var(--gold),#f1ce88);color:#070a12;font-weight:700;border-radius:6px;font-size:.85rem}
+.footer{text-align:center;padding:1.5rem;font-size:.72rem;color:var(--muted);border-top:1px solid var(--border);margin-top:2rem}
+.footer a{color:var(--muted)}
+.loading{text-align:center;padding:3rem;color:var(--muted);font-size:.9rem}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Catalyst Edge Stock of the Day","url":"https://catalystedgescanner.com/spotlight/","description":"Daily top SEC catalyst pick with full signal breakdown","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@800;900&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/lib/cinematic-hero.css">
+  <link rel="stylesheet" href="/lib/cyber-shell.css">
+  <link rel="stylesheet" href="/lib/polish-tokens.css">
+</head>
+<body>
+  <div class="cy-bg" aria-hidden="true"></div>
+  <div class="cy-floor" aria-hidden="true"></div>
+  <div class="cy-vignette" aria-hidden="true"></div>
+  <div class="cy-scan" aria-hidden="true"></div>
+<div class=\"wrap\">
+<div class="ce-breadcrumb" style="max-width:1400px;margin:8px auto 0;padding:0 28px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-mute,#5a6c92);"><a href="/scanner/" style="color:var(--neon-cyan,#00ffff);text-decoration:none">&larr; Scanner</a><span style="color:var(--ink-mute,#5a6c92);margin:0 8px">&middot;</span><span>SPOTLIGHT</span></div>
+
+<section class="cin-hero cy-neon-hero cy-narrow cy-shimmer">
+    <div class="cin-grid">
+      <div class="cin-stat-stack">
+        <div class="cin-eyebrow"><span class="cin-live-dot"></span>TODAY'S #1 · DEEP DIVE · LIVE</div>
+        <div class="cin-colossal">
+          <div class="cin-num-row"><span class="cin-num">#1</span></div>
+          <div class="cin-side">
+          <span class="cin-tag"><b>highest-conviction</b> name</span>
+          <span class="cin-tag">all 9 layers shown</span>
+          <span class="cin-tag">updated daily</span>
+          </div>
+        </div>
+        <div class="cin-stamp">SPOTLIGHT//TOP1 · v1.0 · <b>LIVE</b></div>
+      </div>
+      <div class="cin-h1-block">
+        <div class="cin-h1-eyebrow">✨ Spotlight · The Deep Dive on Today's #1</div>
+        <h1 class="cin-headline">Every <em>signal</em>, every <span class="cin-accent">filing</span>, on the single highest-conviction name today.</h1>
+        <p class="cin-lede">The full breakdown of today's #1 from the rankings: catalyst score components, recent SEC filings, insider activity, gap behavior, sector context, and the trade thesis.</p>
+        <div class="cin-cta-row">
+          <a href="#spotlight-card" class="cin-btn-primary">See today's pick ↓</a>
+          <a href="/rankings/" class="cin-btn-ghost">Full rankings</a>
+        </div>
+        <div class="cin-strip">
+          <div class="cin-cell"><div class="cin-k">Pick rank</div><div class="cin-v">#1</div></div>
+          <div class="cin-cell"><div class="cin-k">Score</div><div class="cin-v bull">live</div></div>
+          <div class="cin-cell"><div class="cin-k">Sector</div><div class="cin-v gold">live</div></div>
+          <div class="cin-cell"><div class="cin-k">Updated</div><div class="cin-v cyan">daily</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<div class="nav">
+  <a href="/">Catalyst Edge</a>
+  <span class="sep">/</span>
+  <span style="color:var(--dim);font-size:.9rem">Stock of the Day</span>
+</div>
+<div class="wrap">
+  <div id="spotlight-content">
+    <div class="loading">Loading today's pick...</div>
+  </div>
+  <div class="cta-bar">
+    <h3>Get the spotlight pick before market open</h3>
+    <p>Free daily email at 4 AM ET with ranked picks, convergence signals, and performance tracking.</p>
+    <a href="/preview/">Subscribe Free</a>
+  </div>
+</div>
+<div class="footer">
+  &copy; 2026 Catalyst Edge &middot;
+  <a href="/">Scanner</a> &middot;
+  <a href="/rankings/">Rankings</a> &middot;
+  <a href="/screener/">Screener</a> &middot;
+  <a href="/sectors/">Sectors</a> &middot;
+  <a href="/convergence/">Convergence</a> &middot;
+  <a href="/darkpool/">Dark Pool</a> &middot;
+  <a href="/deepvalue/">Deep Value</a> &middot;
+  <a href="/performance/">Performance</a> &middot;
+  <a href="/glossary/">Glossary</a> &middot;
+  Not financial advice.
+</div>
+<script>
+(function(){
+  var container = document.getElementById('spotlight-content');
+
+  function el(tag, cls, text) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text) e.textContent = text;
+    return e;
+  }
+
+  fetch('/api/stock-of-the-day').then(function(r){return r.json()}).then(function(d){
+    if(!d.pick){
+      container.textContent = '';
+      var es = el('div','empty-state');
+      es.appendChild(el('h2','','No pick available yet'));
+      es.appendChild(el('p','','Check back after the daily scan runs at 4 AM ET.'));
+      container.appendChild(es);
+      return;
+    }
+    var p = d.pick;
+    container.textContent = '';
+
+    // Hero card
+    var hero = el('div','hero-card');
+    var lbl = el('div','hero-label');
+    lbl.appendChild(el('span','pulse'));
+    var lblText = document.createTextNode(' Stock of the Day \u2014 ' + (d.date||''));
+    lbl.appendChild(lblText);
+    hero.appendChild(lbl);
+    hero.appendChild(el('div','hero-ticker',p.ticker));
+    var scoreDiv = el('div','hero-score');
+    scoreDiv.appendChild(document.createTextNode('Score: '));
+    var scoreSpan = el('span','',parseFloat(p.total_score||0).toFixed(1));
+    scoreDiv.appendChild(scoreSpan);
+    scoreDiv.appendChild(document.createTextNode(' / 100'));
+    hero.appendChild(scoreDiv);
+    hero.appendChild(el('div','hero-date',p.signal_count+' active signal'+(p.signal_count!==1?'s':'')+' detected'));
+    container.appendChild(hero);
+
+    // Score breakdown
+    container.appendChild(el('h2','','Score Breakdown'));
+    var sbGrid = el('div','score-breakdown');
+    var scores = [
+      {lbl:'SEC Filing',val:p.sec_score,color:'var(--cyan)'},
+      {lbl:'News Momentum',val:p.news_score,color:'#3b82f6'},
+      {lbl:'Gap Potential',val:p.gapper_score,color:'var(--green)'},
+      {lbl:'Value Thesis',val:p.value_score,color:'var(--gold)'},
+      {lbl:'Moat Quality',val:p.moat_score,color:'#a78bfa'}
+    ];
+    scores.forEach(function(s){
+      var v = parseFloat(s.val||0);
+      var pct = Math.min(100, (v/20)*100);
+      var card = el('div','sb-card');
+      card.appendChild(el('div','lbl',s.lbl));
+      var num = el('div','score-num',v.toFixed(1));
+      num.style.color = s.color;
+      card.appendChild(num);
+      var bar = el('div','bar');
+      var fill = el('div','bar-fill');
+      fill.style.width = pct+'%';
+      fill.style.background = s.color;
+      bar.appendChild(fill);
+      card.appendChild(bar);
+      sbGrid.appendChild(card);
+    });
+    container.appendChild(sbGrid);
+
+    // Signal grid
+    container.appendChild(el('h2','','Signal Detection'));
+    var sigGrid = el('div','signal-grid');
+    var signalDefs = [
+      {key:'squeeze',icon:'\u26A1',label:'Squeeze'},
+      {key:'insider',icon:'\uD83D\uDC64',label:'Insider Buying'},
+      {key:'darkpool',icon:'\uD83C\uDF11',label:'Dark Pool'},
+      {key:'deepvalue',icon:'\uD83D\uDCB0',label:'Deep Value'},
+      {key:'convergence',icon:'\uD83C\uDFAF',label:'Convergence'},
+      {key:'smart_money',icon:'\uD83C\uDFE6',label:'Smart Money'},
+      {key:'merger',icon:'\uD83E\uDD1D',label:'Merger Signal'}
+    ];
+    signalDefs.forEach(function(sd){
+      var active = p.signals.indexOf(sd.key) !== -1;
+      var chip = el('div','signal-chip'+(active?' active':''));
+      chip.appendChild(el('div','icon',sd.icon));
+      chip.appendChild(el('div','label',sd.label));
+      chip.appendChild(el('div','val',active?'DETECTED':'--'));
+      sigGrid.appendChild(chip);
+    });
+    container.appendChild(sigGrid);
+
+    // Sector and event tags
+    if(p.sector_tags || p.event_tags){
+      var tagWrap = el('div','sector-tags');
+      if(p.sector_tags){
+        p.sector_tags.split(';').forEach(function(t){
+          t = t.trim();
+          if(t) tagWrap.appendChild(el('span','sector-tag',t));
+        });
+      }
+      if(p.event_tags){
+        p.event_tags.split(';').forEach(function(t){
+          t = t.trim();
+          if(t) tagWrap.appendChild(el('span','event-tag',t));
+        });
+      }
+      container.appendChild(tagWrap);
+    }
+
+    // SEC filing link
+    if(p.sec_form){
+      var secWrap = el('div','');
+      secWrap.style.margin = '1rem 0';
+      secWrap.appendChild(el('span','',('Latest filing: '+p.sec_form+' ')));
+      secWrap.firstChild.style.fontSize = '.8rem';
+      secWrap.firstChild.style.color = 'var(--muted)';
+      if(p.sec_link){
+        var link = document.createElement('a');
+        link.href = p.sec_link;
+        link.target = '_blank';
+        link.rel = 'noopener';
+        link.className = 'sec-link';
+        link.textContent = 'View on SEC.gov';
+        secWrap.appendChild(link);
+      }
+      container.appendChild(secWrap);
+    }
+
+    // Runners up
+    if(d.runners_up && d.runners_up.length > 0){
+      container.appendChild(el('h2','','Runners Up'));
+      var runGrid = el('div','runners');
+      d.runners_up.forEach(function(r){
+        var card = el('div','runner-card');
+        card.appendChild(el('div','runner-rank','#'+r.rank));
+        card.appendChild(el('div','runner-ticker',r.ticker));
+        card.appendChild(el('div','runner-score',parseFloat(r.total_score||0).toFixed(1)+' pts'));
+        if(r.sector_tags){
+          card.appendChild(el('div','runner-sector',r.sector_tags.split(';')[0]));
+        }
+        runGrid.appendChild(card);
+      });
+      container.appendChild(runGrid);
+    }
+  }).catch(function(){
+    container.textContent = '';
+    var es = el('div','empty-state');
+    es.appendChild(el('h2','','Could not load data'));
+    es.appendChild(el('p','','Try refreshing the page.'));
+    container.appendChild(es);
+  });
+})();
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KV1VDK22VC"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-KV1VDK22VC');</script>
+</body>
+</html>

@@ -1,0 +1,405 @@
+{
+  "name": "Cerebro Intraday Refresh Gatekeeper",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {}
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        220
+      ],
+      "id": "c4e54d13-c3fd-4ab8-9fe2-d2c69121d001",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "command": "cd /home/operator/.openclaw/workspace && bash ops/check_mnemosyne_lanes.sh --mode runtime"
+      },
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        240,
+        100
+      ],
+      "id": "c4e54d13-c3fd-4ab8-9fe2-d2c69121d000",
+      "name": "Check Mnemosyne Lanes"
+    },
+    {
+      "parameters": {
+        "jsCode": "const raw = $json.stdout || '{}';\nconst parsed = JSON.parse(raw);\nreturn [{\n  valid: Boolean(parsed.valid),\n  everos_enabled: parsed.everos_enabled || 'unset',\n  runtime_guard_ok: Boolean(parsed.runtime_guard_ok),\n  missing: parsed.missing || [],\n  raw: parsed,\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        480,
+        100
+      ],
+      "id": "c4e54d13-c3fd-4ab8-9fe2-d2c69121d000a",
+      "name": "Parse Mnemosyne Status"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "c4e54d13-c3fd-4ab8-9fe2-d2c69121d000b-cond",
+              "leftValue": "={{ $json.valid }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        720,
+        100
+      ],
+      "id": "c4e54d13-c3fd-4ab8-9fe2-d2c69121d000b",
+      "name": "Mnemosyne Ready?"
+    },
+    {
+      "parameters": {
+        "command": "cd /home/operator/.openclaw/workspace && CEREBRO_RUN_MODE=intraday ./run_daily_sec_catalyst.sh"
+      },
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        240,
+        220
+      ],
+      "id": "c4e54d13-c3fd-4ab8-9fe2-d2c69121d002",
+      "name": "Run Intraday Refresh"
+    },
+    {
+      "parameters": {
+        "command": "cat /home/operator/.openclaw/workspace/scanner_artifact_status.json"
+      },
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        480,
+        220
+      ],
+      "id": "c4e54d13-c3fd-4ab8-9fe2-d2c69121d003",
+      "name": "Read Scanner Artifact Status"
+    },
+    {
+      "parameters": {
+        "jsCode": "const raw = $json.stdout || '{}';\nconst parsed = JSON.parse(raw);\nconst counts = parsed.counts || {};\nconst primarySectionCount = Object.values(counts).reduce((sum, value) => sum + Number(value || 0), 0);\nreturn [{\n  valid: Boolean(parsed.valid),\n  generated_at: parsed.generated_at || null,\n  primarySectionCount,\n  counts,\n  raw: parsed,\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        720,
+        220
+      ],
+      "id": "c4e54d13-c3fd-4ab8-9fe2-d2c69121d004",
+      "name": "Parse Artifact Status"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "c4e54d13-c3fd-4ab8-9fe2-d2c69121d004-cond",
+              "leftValue": "={{ $json.primarySectionCount }}",
+              "rightValue": 0,
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        960,
+        220
+      ],
+      "id": "c4e54d13-c3fd-4ab8-9fe2-d2c69121d005",
+      "name": "Artifacts Valid?"
+    },
+    {
+      "parameters": {
+        "url": "http://127.0.0.1:8000/api/health",
+        "options": {
+          "allowUnauthorizedCerts": true
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1200,
+        120
+      ],
+      "id": "c4e54d13-c3fd-4ab8-9fe2-d2c69121d006",
+      "name": "Probe API Health"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "c4e54d13-c3fd-4ab8-9fe2-d2c69121d007-status",
+              "name": "workflow_status",
+              "value": "refresh_ok",
+              "type": "string"
+            },
+            {
+              "id": "c4e54d13-c3fd-4ab8-9fe2-d2c69121d007-health",
+              "name": "health_status",
+              "value": "={{ $json.status || 'unknown' }}",
+              "type": "string"
+            },
+            {
+              "id": "c4e54d13-c3fd-4ab8-9fe2-d2c69121d007-next",
+              "name": "next_action",
+              "value": "notify_operator",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1440,
+        120
+      ],
+      "id": "c4e54d13-c3fd-4ab8-9fe2-d2c69121d007",
+      "name": "Build Success Packet"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "c4e54d13-c3fd-4ab8-9fe2-d2c69121d008-status",
+              "name": "workflow_status",
+              "value": "refresh_review_required",
+              "type": "string"
+            },
+            {
+              "id": "c4e54d13-c3fd-4ab8-9fe2-d2c69121d008-reason",
+              "name": "reason",
+              "value": "scanner_artifact_invalid_or_empty",
+              "type": "string"
+            },
+            {
+              "id": "c4e54d13-c3fd-4ab8-9fe2-d2c69121d008-next",
+              "name": "next_action",
+              "value": "route_to_human_review",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1200,
+        340
+      ],
+      "id": "c4e54d13-c3fd-4ab8-9fe2-d2c69121d008",
+      "name": "Build Failure Packet"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "c4e54d13-c3fd-4ab8-9fe2-d2c69121d009-status",
+              "name": "workflow_status",
+              "value": "refresh_review_required",
+              "type": "string"
+            },
+            {
+              "id": "c4e54d13-c3fd-4ab8-9fe2-d2c69121d009-reason",
+              "name": "reason",
+              "value": "mnemosyne_gate_failed",
+              "type": "string"
+            },
+            {
+              "id": "c4e54d13-c3fd-4ab8-9fe2-d2c69121d009-missing",
+              "name": "missing",
+              "value": "={{ ($json.missing || []).join(',') }}",
+              "type": "string"
+            },
+            {
+              "id": "c4e54d13-c3fd-4ab8-9fe2-d2c69121d009-next",
+              "name": "next_action",
+              "value": "route_to_human_review",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        960,
+        20
+      ],
+      "id": "c4e54d13-c3fd-4ab8-9fe2-d2c69121d009",
+      "name": "Build Mnemosyne Failure Packet"
+    }
+  ],
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Check Mnemosyne Lanes",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Mnemosyne Lanes": {
+      "main": [
+        [
+          {
+            "node": "Parse Mnemosyne Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Mnemosyne Status": {
+      "main": [
+        [
+          {
+            "node": "Mnemosyne Ready?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mnemosyne Ready?": {
+      "main": [
+        [
+          {
+            "node": "Run Intraday Refresh",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Build Mnemosyne Failure Packet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Run Intraday Refresh": {
+      "main": [
+        [
+          {
+            "node": "Read Scanner Artifact Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Scanner Artifact Status": {
+      "main": [
+        [
+          {
+            "node": "Parse Artifact Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Artifact Status": {
+      "main": [
+        [
+          {
+            "node": "Artifacts Valid?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Artifacts Valid?": {
+      "main": [
+        [
+          {
+            "node": "Probe API Health",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Build Failure Packet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Probe API Health": {
+      "main": [
+        [
+          {
+            "node": "Build Success Packet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "active": false,
+  "settings": {},
+  "versionId": "c4e54d13-c3fd-4ab8-9fe2-d2c69121d009",
+  "id": "cerebro-intraday-refresh-gatekeeper",
+  "meta": {
+    "templateCredsSetupCompleted": false
+  },
+  "tags": []
+}

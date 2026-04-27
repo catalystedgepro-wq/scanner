@@ -1,0 +1,11063 @@
+{
+  "A": [
+    "industrials"
+  ],
+  "AACB": [
+    "financials"
+  ],
+  "AACBU": [
+    "financials"
+  ],
+  "AACP": [
+    "financials"
+  ],
+  "AAME": [
+    "financials"
+  ],
+  "AAMTF": [
+    "financials"
+  ],
+  "AAOI": [
+    "semis"
+  ],
+  "AAPG": [
+    "biotech"
+  ],
+  "AAPI": [
+    "financials"
+  ],
+  "AAPL": [
+    "tech",
+    "semis"
+  ],
+  "AARD": [
+    "biotech"
+  ],
+  "AAUAF": [
+    "materials"
+  ],
+  "ABBV": [
+    "biotech"
+  ],
+  "ABEO": [
+    "biotech"
+  ],
+  "ABEV": [
+    "staples"
+  ],
+  "ABNB": [
+    "industrials"
+  ],
+  "ABOS": [
+    "biotech"
+  ],
+  "ABPW": [
+    "tech"
+  ],
+  "ABSI": [
+    "industrials"
+  ],
+  "ABT": [
+    "biotech"
+  ],
+  "ABTC": [
+    "financials"
+  ],
+  "ABVE": [
+    "staples"
+  ],
+  "ABVEW": [
+    "staples"
+  ],
+  "ACCO": [
+    "comms"
+  ],
+  "ACDC": [
+    "materials"
+  ],
+  "ACET": [
+    "biotech"
+  ],
+  "ACGC": [
+    "financials"
+  ],
+  "ACHR-WT": [
+    "industrials"
+  ],
+  "ACI": [
+    "consumer"
+  ],
+  "ACLX": [
+    "biotech"
+  ],
+  "ACMR": [
+    "industrials"
+  ],
+  "ACNT": [
+    "materials"
+  ],
+  "ACOG": [
+    "biotech"
+  ],
+  "ACON": [
+    "biotech"
+  ],
+  "ACUT": [
+    "biotech"
+  ],
+  "ADAG": [
+    "biotech"
+  ],
+  "ADAMO": [
+    "financials"
+  ],
+  "ADC-PA": [
+    "financials"
+  ],
+  "ADCT": [
+    "biotech"
+  ],
+  "ADDTF": [
+    "tech"
+  ],
+  "ADGM": [
+    "biotech"
+  ],
+  "ADIL": [
+    "biotech"
+  ],
+  "ADNH": [
+    "financials"
+  ],
+  "ADPT": [
+    "biotech"
+  ],
+  "ADSK": [
+    "tech"
+  ],
+  "ADTX": [
+    "biotech"
+  ],
+  "ADUS": [
+    "biotech"
+  ],
+  "ADV": [
+    "industrials"
+  ],
+  "ADVB": [
+    "biotech"
+  ],
+  "ADYYF": [
+    "tech"
+  ],
+  "AEBI": [
+    "industrials"
+  ],
+  "AEC": [
+    "materials"
+  ],
+  "AEF": [
+    "financials"
+  ],
+  "AEGXF": [
+    "industrials"
+  ],
+  "AEHL": [
+    "comms"
+  ],
+  "AEHR": [
+    "industrials"
+  ],
+  "AEI": [
+    "real_estate"
+  ],
+  "AEIS": [
+    "semis"
+  ],
+  "AELKY": [
+    "industrials"
+  ],
+  "AEM": [
+    "materials"
+  ],
+  "AEON": [
+    "biotech"
+  ],
+  "AER": [
+    "industrials"
+  ],
+  "AERT": [
+    "tech"
+  ],
+  "AERTW": [
+    "industrials"
+  ],
+  "AESI": [
+    "materials"
+  ],
+  "AEYE": [
+    "tech"
+  ],
+  "AFCG": [
+    "financials"
+  ],
+  "AFJK": [
+    "financials"
+  ],
+  "AFL": [
+    "financials"
+  ],
+  "AFNDY": [
+    "financials"
+  ],
+  "AFYA": [
+    "consumer"
+  ],
+  "AG": [
+    "materials"
+  ],
+  "AGAE": [
+    "consumer"
+  ],
+  "AGBK": [
+    "financials"
+  ],
+  "AGCO": [
+    "industrials"
+  ],
+  "AGI": [
+    "materials"
+  ],
+  "AGL": [
+    "biotech"
+  ],
+  "AGMB": [
+    "biotech"
+  ],
+  "AGQPF": [
+    "utilities"
+  ],
+  "AGRO": [
+    "staples"
+  ],
+  "AGRZ": [
+    "staples"
+  ],
+  "AHL-PF": [
+    "financials"
+  ],
+  "AHR": [
+    "financials"
+  ],
+  "AHRO": [
+    "consumer"
+  ],
+  "AHRT-PA": [
+    "real_estate"
+  ],
+  "AHT$D": [
+    "biotech"
+  ],
+  "AHT$F": [
+    "biotech"
+  ],
+  "AHT$G": [
+    "biotech"
+  ],
+  "AHT$H": [
+    "biotech"
+  ],
+  "AHT$I": [
+    "biotech"
+  ],
+  "AHT-PD": [
+    "financials"
+  ],
+  "AHT-PG": [
+    "financials"
+  ],
+  "AHT-PI": [
+    "financials"
+  ],
+  "AI": [
+    "tech"
+  ],
+  "AIAI": [
+    "tech"
+  ],
+  "AIB": [
+    "financials"
+  ],
+  "AIBRF": [
+    "financials"
+  ],
+  "AIG": [
+    "financials"
+  ],
+  "AIKCF": [
+    "industrials"
+  ],
+  "AIM": [
+    "biotech"
+  ],
+  "AIMTF": [
+    "financials"
+  ],
+  "AIOS": [
+    "industrials"
+  ],
+  "AIPG": [
+    "industrials"
+  ],
+  "AIQUF": [
+    "materials"
+  ],
+  "AIRRF": [
+    "materials"
+  ],
+  "AIRS": [
+    "biotech"
+  ],
+  "AISP": [
+    "tech"
+  ],
+  "AITX": [
+    "tech"
+  ],
+  "AIV": [
+    "financials"
+  ],
+  "AIXN": [
+    "consumer"
+  ],
+  "AJG": [
+    "financials"
+  ],
+  "AKAN": [
+    "biotech"
+  ],
+  "AKBA": [
+    "biotech"
+  ],
+  "AKCLY": [
+    "materials"
+  ],
+  "AKO.A": [
+    "staples"
+  ],
+  "AKO.B": [
+    "staples"
+  ],
+  "AKOM": [
+    "tech"
+  ],
+  "ALAB": [
+    "semis"
+  ],
+  "ALB$A": [
+    "materials"
+  ],
+  "ALB-PA": [
+    "materials"
+  ],
+  "ALBT": [
+    "tech"
+  ],
+  "ALC": [
+    "biotech"
+  ],
+  "ALCE": [
+    "utilities"
+  ],
+  "ALCO": [
+    "staples"
+  ],
+  "ALCY": [
+    "financials"
+  ],
+  "ALDS": [
+    "consumer"
+  ],
+  "ALDX": [
+    "biotech"
+  ],
+  "ALEC": [
+    "biotech"
+  ],
+  "ALEGF": [
+    "consumer"
+  ],
+  "ALEUY": [
+    "consumer"
+  ],
+  "ALGT": [
+    "industrials"
+  ],
+  "ALH": [
+    "industrials"
+  ],
+  "ALIT": [
+    "industrials"
+  ],
+  "ALL$B": [
+    "financials"
+  ],
+  "ALL$H": [
+    "financials"
+  ],
+  "ALL$I": [
+    "financials"
+  ],
+  "ALL$J": [
+    "financials"
+  ],
+  "ALLR": [
+    "biotech"
+  ],
+  "ALLY": [
+    "financials"
+  ],
+  "ALM": [
+    "materials"
+  ],
+  "ALMS": [
+    "biotech"
+  ],
+  "ALMU": [
+    "semis"
+  ],
+  "ALNT": [
+    "tech"
+  ],
+  "ALNY": [
+    "biotech"
+  ],
+  "ALOY": [
+    "materials"
+  ],
+  "ALPIB": [
+    "financials"
+  ],
+  "ALRM": [
+    "tech"
+  ],
+  "ALT": [
+    "biotech"
+  ],
+  "ALTG-PA": [
+    "consumer"
+  ],
+  "ALTI": [
+    "financials"
+  ],
+  "ALTS": [
+    "financials"
+  ],
+  "ALUR": [
+    "biotech"
+  ],
+  "ALV": [
+    "consumer"
+  ],
+  "ALX": [
+    "financials"
+  ],
+  "ALZN": [
+    "biotech"
+  ],
+  "AMAT": [
+    "semis"
+  ],
+  "AMC": [
+    "consumer"
+  ],
+  "AMCCD": [
+    "consumer"
+  ],
+  "AMCCF": [
+    "consumer"
+  ],
+  "AMCX": [
+    "comms"
+  ],
+  "AMD": [
+    "semis"
+  ],
+  "AMGN": [
+    "biotech"
+  ],
+  "AMH$G": [
+    "financials"
+  ],
+  "AMH$H": [
+    "financials"
+  ],
+  "AMKR": [
+    "semis"
+  ],
+  "AMLX": [
+    "biotech"
+  ],
+  "AMPH": [
+    "biotech"
+  ],
+  "AMPL": [
+    "tech"
+  ],
+  "AMPWF": [
+    "industrials"
+  ],
+  "AMRN": [
+    "biotech"
+  ],
+  "AMRQF": [
+    "materials"
+  ],
+  "AMSF": [
+    "financials"
+  ],
+  "AMST": [
+    "tech"
+  ],
+  "AMTB": [
+    "financials"
+  ],
+  "AMTD": [
+    "financials"
+  ],
+  "AMVIF": [
+    "comms"
+  ],
+  "AMVOY": [
+    "comms"
+  ],
+  "AMWL": [
+    "industrials"
+  ],
+  "AMXOF": [
+    "comms"
+  ],
+  "AMZE": [
+    "consumer"
+  ],
+  "AMZN": [
+    "tech",
+    "consumer"
+  ],
+  "ANABV": [
+    "biotech"
+  ],
+  "ANET": [
+    "tech"
+  ],
+  "ANG$D": [
+    "financials"
+  ],
+  "ANG-PD": [
+    "financials"
+  ],
+  "ANGO": [
+    "biotech"
+  ],
+  "ANIP": [
+    "biotech"
+  ],
+  "ANKM": [
+    "tech"
+  ],
+  "ANL": [
+    "biotech"
+  ],
+  "ANNSF": [
+    "industrials"
+  ],
+  "ANNX": [
+    "biotech"
+  ],
+  "ANPA": [
+    "biotech"
+  ],
+  "ANPCF": [
+    "biotech"
+  ],
+  "ANTA": [
+    "financials"
+  ],
+  "ANTX": [
+    "biotech"
+  ],
+  "ANVS": [
+    "biotech"
+  ],
+  "ANY": [
+    "financials"
+  ],
+  "AOMN": [
+    "real_estate"
+  ],
+  "APA": [
+    "materials"
+  ],
+  "APAD": [
+    "consumer"
+  ],
+  "APGE": [
+    "biotech"
+  ],
+  "APH": [
+    "semis"
+  ],
+  "APLD": [
+    "tech"
+  ],
+  "APLM": [
+    "biotech"
+  ],
+  "APLS": [
+    "biotech"
+  ],
+  "APM": [
+    "biotech"
+  ],
+  "APMCF": [
+    "energy"
+  ],
+  "APO$A": [
+    "financials"
+  ],
+  "APOG": [
+    "materials"
+  ],
+  "APOS": [
+    "financials"
+  ],
+  "APP": [
+    "tech"
+  ],
+  "APPF": [
+    "tech"
+  ],
+  "APRE": [
+    "biotech"
+  ],
+  "APTN": [
+    "biotech"
+  ],
+  "APTOF": [
+    "biotech"
+  ],
+  "APTV": [
+    "consumer"
+  ],
+  "APUS": [
+    "biotech"
+  ],
+  "AQB": [
+    "biotech"
+  ],
+  "AQST": [
+    "biotech"
+  ],
+  "ARAI": [
+    "industrials"
+  ],
+  "ARCO": [
+    "consumer"
+  ],
+  "ARCXF": [
+    "materials"
+  ],
+  "ARE": [
+    "financials"
+  ],
+  "AREB": [
+    "industrials"
+  ],
+  "ARES$B": [
+    "financials"
+  ],
+  "ARGX": [
+    "biotech"
+  ],
+  "ARHS": [
+    "consumer"
+  ],
+  "ARKR": [
+    "consumer"
+  ],
+  "ARLP": [
+    "materials"
+  ],
+  "ARM": [
+    "semis"
+  ],
+  "ARMH": [
+    "semis"
+  ],
+  "ARMP": [
+    "biotech"
+  ],
+  "ARNNY": [
+    "financials"
+  ],
+  "ARQQW": [
+    "tech"
+  ],
+  "ARRY": [
+    "semis"
+  ],
+  "ARSTY": [
+    "industrials"
+  ],
+  "ARTL": [
+    "biotech"
+  ],
+  "ARTV": [
+    "biotech"
+  ],
+  "ARTW": [
+    "industrials"
+  ],
+  "ARX": [
+    "financials"
+  ],
+  "ARZTF": [
+    "staples"
+  ],
+  "AS": [
+    "consumer"
+  ],
+  "ASBHY": [
+    "staples"
+  ],
+  "ASBRF": [
+    "staples"
+  ],
+  "ASFH": [
+    "industrials"
+  ],
+  "ASFT": [
+    "tech"
+  ],
+  "ASMB": [
+    "biotech"
+  ],
+  "ASMH": [
+    "semis"
+  ],
+  "ASMLF": [
+    "industrials"
+  ],
+  "ASND": [
+    "biotech"
+  ],
+  "ASNS": [
+    "comms"
+  ],
+  "ASPC": [
+    "financials"
+  ],
+  "ASPI": [
+    "materials"
+  ],
+  "ASRMF": [
+    "industrials"
+  ],
+  "ASRRF": [
+    "financials"
+  ],
+  "ASRT": [
+    "biotech"
+  ],
+  "ASTE": [
+    "industrials"
+  ],
+  "ASTH": [
+    "biotech"
+  ],
+  "ASTI": [
+    "semis"
+  ],
+  "ASTL": [
+    "materials"
+  ],
+  "ASTS": [
+    "comms"
+  ],
+  "ASX": [
+    "semis"
+  ],
+  "ASYS": [
+    "industrials"
+  ],
+  "ATCX": [
+    "materials"
+  ],
+  "ATDRF": [
+    "comms"
+  ],
+  "ATEK": [
+    "utilities"
+  ],
+  "ATEN": [
+    "tech"
+  ],
+  "ATH$A": [
+    "financials"
+  ],
+  "ATH$B": [
+    "financials"
+  ],
+  "ATH$D": [
+    "financials"
+  ],
+  "ATH$E": [
+    "financials"
+  ],
+  "ATHM": [
+    "tech"
+  ],
+  "ATHNF": [
+    "industrials"
+  ],
+  "ATHNY": [
+    "industrials"
+  ],
+  "ATKR": [
+    "tech"
+  ],
+  "ATLX": [
+    "materials"
+  ],
+  "ATNI": [
+    "comms"
+  ],
+  "ATNM": [
+    "biotech"
+  ],
+  "ATON": [
+    "financials"
+  ],
+  "ATOS": [
+    "biotech"
+  ],
+  "ATRA": [
+    "biotech"
+  ],
+  "ATS": [
+    "industrials"
+  ],
+  "AUB$A": [
+    "financials"
+  ],
+  "AUBN": [
+    "financials"
+  ],
+  "AUIAF": [
+    "materials"
+  ],
+  "AUIWF": [
+    "materials"
+  ],
+  "AUMN": [
+    "materials"
+  ],
+  "AUPH": [
+    "biotech"
+  ],
+  "AURE": [
+    "financials"
+  ],
+  "AUUD": [
+    "tech"
+  ],
+  "AVA": [
+    "utilities"
+  ],
+  "AVAL": [
+    "financials"
+  ],
+  "AVAV": [
+    "industrials"
+  ],
+  "AVAX": [
+    "financials"
+  ],
+  "AVBC": [
+    "financials"
+  ],
+  "AVBH": [
+    "financials"
+  ],
+  "AVD": [
+    "industrials",
+    "materials"
+  ],
+  "AVGO": [
+    "semis"
+  ],
+  "AVHHL": [
+    "biotech"
+  ],
+  "AVIR": [
+    "biotech"
+  ],
+  "AVLN": [
+    "biotech"
+  ],
+  "AVNI": [
+    "financials"
+  ],
+  "AVNT": [
+    "materials"
+  ],
+  "AVO": [
+    "staples"
+  ],
+  "AVPMF": [
+    "materials"
+  ],
+  "AVR": [
+    "biotech"
+  ],
+  "AVTR": [
+    "industrials"
+  ],
+  "AVTX": [
+    "biotech"
+  ],
+  "AVVOF": [
+    "industrials"
+  ],
+  "AVVSY": [
+    "industrials"
+  ],
+  "AVX": [
+    "financials"
+  ],
+  "AWCA": [
+    "real_estate"
+  ],
+  "AWHL": [
+    "biotech"
+  ],
+  "AWK": [
+    "utilities"
+  ],
+  "AXIA$": [
+    "utilities"
+  ],
+  "AXIA$C": [
+    "utilities"
+  ],
+  "AXIA-P": [
+    "utilities"
+  ],
+  "AXIL": [
+    "materials"
+  ],
+  "AXP": [
+    "financials"
+  ],
+  "AXREF": [
+    "materials"
+  ],
+  "AXS$E": [
+    "financials"
+  ],
+  "AXSM": [
+    "biotech"
+  ],
+  "AZ": [
+    "industrials"
+  ],
+  "AZBLY": [
+    "industrials"
+  ],
+  "AZN": [
+    "biotech"
+  ],
+  "AZSAY": [
+    "industrials"
+  ],
+  "AZTR": [
+    "biotech"
+  ],
+  "AZZ": [
+    "industrials"
+  ],
+  "B": [
+    "materials"
+  ],
+  "BA$A": [
+    "industrials"
+  ],
+  "BABYF": [
+    "staples"
+  ],
+  "BAC-PS": [
+    "financials"
+  ],
+  "BACCU": [
+    "financials"
+  ],
+  "BACRP": [
+    "financials"
+  ],
+  "BAFBF": [
+    "industrials"
+  ],
+  "BAFN": [
+    "financials"
+  ],
+  "BAH": [
+    "industrials"
+  ],
+  "BAK": [
+    "materials"
+  ],
+  "BALY": [
+    "consumer"
+  ],
+  "BAM": [
+    "financials"
+  ],
+  "BANL": [
+    "consumer"
+  ],
+  "BAOS": [
+    "industrials"
+  ],
+  "BAP": [
+    "financials"
+  ],
+  "BARK": [
+    "consumer"
+  ],
+  "BARKW": [
+    "consumer"
+  ],
+  "BATL": [
+    "materials"
+  ],
+  "BAX": [
+    "biotech"
+  ],
+  "BBAAY": [
+    "industrials"
+  ],
+  "BBAR": [
+    "financials"
+  ],
+  "BBBY-WT": [
+    "consumer"
+  ],
+  "BBCP": [
+    "industrials"
+  ],
+  "BBCQ": [
+    "financials"
+  ],
+  "BBDO": [
+    "financials"
+  ],
+  "BBGI": [
+    "comms"
+  ],
+  "BBIO": [
+    "biotech"
+  ],
+  "BBLGW": [
+    "biotech"
+  ],
+  "BBOT": [
+    "biotech"
+  ],
+  "BBSI": [
+    "industrials"
+  ],
+  "BBT": [
+    "financials"
+  ],
+  "BBU": [
+    "industrials"
+  ],
+  "BC$C": [
+    "industrials"
+  ],
+  "BCAT": [
+    "financials"
+  ],
+  "BCAX": [
+    "biotech"
+  ],
+  "BCDRF": [
+    "financials"
+  ],
+  "BCGW": [
+    "financials"
+  ],
+  "BCH": [
+    "financials"
+  ],
+  "BCIC": [
+    "financials"
+  ],
+  "BCKIF": [
+    "industrials"
+  ],
+  "BCLYF": [
+    "financials"
+  ],
+  "BCML": [
+    "financials"
+  ],
+  "BCPC": [
+    "materials"
+  ],
+  "BCPPF": [
+    "comms"
+  ],
+  "BCUCF": [
+    "consumer"
+  ],
+  "BCV$A": [
+    "financials"
+  ],
+  "BDN": [
+    "financials"
+  ],
+  "BDRX": [
+    "biotech"
+  ],
+  "BDX": [
+    "biotech"
+  ],
+  "BE": [
+    "industrials"
+  ],
+  "BEATW": [
+    "biotech"
+  ],
+  "BEEM": [
+    "tech"
+  ],
+  "BEEP": [
+    "real_estate"
+  ],
+  "BEKE": [
+    "real_estate"
+  ],
+  "BENF": [
+    "financials"
+  ],
+  "BENFW": [
+    "financials"
+  ],
+  "BERZ": [
+    "financials"
+  ],
+  "BESS-WT": [
+    "utilities"
+  ],
+  "BETR": [
+    "financials"
+  ],
+  "BEWFF": [
+    "tech"
+  ],
+  "BF-B": [
+    "staples"
+  ],
+  "BF.A": [
+    "staples"
+  ],
+  "BF.B": [
+    "staples"
+  ],
+  "BFC": [
+    "financials"
+  ],
+  "BFLY": [
+    "biotech"
+  ],
+  "BFNH": [
+    "financials"
+  ],
+  "BFRG": [
+    "biotech"
+  ],
+  "BFRIW": [
+    "biotech"
+  ],
+  "BFS$D": [
+    "financials"
+  ],
+  "BFS$E": [
+    "financials"
+  ],
+  "BFST": [
+    "financials"
+  ],
+  "BGIN": [
+    "financials"
+  ],
+  "BGLC": [
+    "biotech"
+  ],
+  "BGMSP": [
+    "biotech"
+  ],
+  "BGSI": [
+    "consumer"
+  ],
+  "BH.A": [
+    "consumer"
+  ],
+  "BHAT": [
+    "consumer"
+  ],
+  "BHAV": [
+    "financials"
+  ],
+  "BHAVU": [
+    "financials"
+  ],
+  "BHB": [
+    "financials"
+  ],
+  "BHLLD": [
+    "materials"
+  ],
+  "BHM": [
+    "real_estate"
+  ],
+  "BHR-PD": [
+    "financials"
+  ],
+  "BHST": [
+    "biotech"
+  ],
+  "BIIB": [
+    "biotech"
+  ],
+  "BIO.B": [
+    "industrials"
+  ],
+  "BIOA": [
+    "biotech"
+  ],
+  "BIOT": [
+    "materials"
+  ],
+  "BIOX": [
+    "materials"
+  ],
+  "BIP$A": [
+    "industrials"
+  ],
+  "BIP$B": [
+    "industrials"
+  ],
+  "BIPC": [
+    "utilities"
+  ],
+  "BIRD": [
+    "consumer"
+  ],
+  "BITF": [
+    "financials"
+  ],
+  "BITTF": [
+    "materials"
+  ],
+  "BIXT": [
+    "biotech"
+  ],
+  "BK-PK": [
+    "financials"
+  ],
+  "BKE": [
+    "consumer"
+  ],
+  "BKH": [
+    "utilities"
+  ],
+  "BKKT-WT": [
+    "financials"
+  ],
+  "BKLPF": [
+    "consumer"
+  ],
+  "BKNG": [
+    "industrials"
+  ],
+  "BKR": [
+    "industrials"
+  ],
+  "BKTI": [
+    "comms"
+  ],
+  "BKV": [
+    "materials"
+  ],
+  "BKYI": [
+    "tech"
+  ],
+  "BLBD": [
+    "consumer"
+  ],
+  "BLBLF": [
+    "materials"
+  ],
+  "BLBX": [
+    "materials"
+  ],
+  "BLD": [
+    "industrials"
+  ],
+  "BLDP": [
+    "industrials"
+  ],
+  "BLFBY": [
+    "industrials"
+  ],
+  "BLGO": [
+    "materials"
+  ],
+  "BLHWF": [
+    "industrials"
+  ],
+  "BLIV": [
+    "tech"
+  ],
+  "BLK": [
+    "financials"
+  ],
+  "BLMH": [
+    "consumer"
+  ],
+  "BLMOY": [
+    "industrials"
+  ],
+  "BLNC": [
+    "industrials"
+  ],
+  "BLND": [
+    "tech"
+  ],
+  "BLNE": [
+    "financials"
+  ],
+  "BLNK": [
+    "tech"
+  ],
+  "BLSH": [
+    "financials"
+  ],
+  "BLTE": [
+    "biotech"
+  ],
+  "BLX": [
+    "financials"
+  ],
+  "BMA": [
+    "financials"
+  ],
+  "BMBL": [
+    "tech"
+  ],
+  "BMEA": [
+    "biotech"
+  ],
+  "BMHL": [
+    "financials"
+  ],
+  "BMM": [
+    "materials"
+  ],
+  "BMNM": [
+    "financials"
+  ],
+  "BMNR": [
+    "financials"
+  ],
+  "BMR": [
+    "tech"
+  ],
+  "BMRC": [
+    "financials"
+  ],
+  "BMRN": [
+    "biotech"
+  ],
+  "BNAI": [
+    "tech"
+  ],
+  "BNC": [
+    "staples"
+  ],
+  "BNCW": [
+    "staples"
+  ],
+  "BNCWW": [
+    "staples"
+  ],
+  "BNO": [
+    "financials"
+  ],
+  "BNRG": [
+    "energy"
+  ],
+  "BNS": [
+    "financials"
+  ],
+  "BNT": [
+    "financials"
+  ],
+  "BNTX": [
+    "biotech"
+  ],
+  "BNZI": [
+    "tech"
+  ],
+  "BODYW": [
+    "consumer"
+  ],
+  "BOH-PB": [
+    "financials"
+  ],
+  "BONXF": [
+    "materials"
+  ],
+  "BOOM": [
+    "materials"
+  ],
+  "BORAY": [
+    "biotech"
+  ],
+  "BORR": [
+    "materials"
+  ],
+  "BOSC": [
+    "tech"
+  ],
+  "BOT": [
+    "tech"
+  ],
+  "BOXL": [
+    "tech"
+  ],
+  "BPH": [
+    "energy"
+  ],
+  "BPOPM": [
+    "financials"
+  ],
+  "BPRN": [
+    "financials"
+  ],
+  "BPYPO": [
+    "real_estate"
+  ],
+  "BQ": [
+    "consumer"
+  ],
+  "BR": [
+    "industrials"
+  ],
+  "BRAG": [
+    "tech"
+  ],
+  "BRBF": [
+    "staples"
+  ],
+  "BRBS": [
+    "financials"
+  ],
+  "BRCB": [
+    "consumer"
+  ],
+  "BRCC": [
+    "staples"
+  ],
+  "BRELY": [
+    "materials"
+  ],
+  "BRETF": [
+    "materials"
+  ],
+  "BRFH": [
+    "staples"
+  ],
+  "BRGX": [
+    "tech"
+  ],
+  "BRIA": [
+    "consumer"
+  ],
+  "BRK-A": [
+    "financials"
+  ],
+  "BRK.A": [
+    "financials"
+  ],
+  "BRK.B": [
+    "financials"
+  ],
+  "BRKCF": [
+    "materials"
+  ],
+  "BRLLD": [
+    "materials"
+  ],
+  "BRLT": [
+    "consumer"
+  ],
+  "BRN": [
+    "materials"
+  ],
+  "BRO": [
+    "financials"
+  ],
+  "BRQL": [
+    "tech"
+  ],
+  "BRRW": [
+    "financials"
+  ],
+  "BRT": [
+    "financials"
+  ],
+  "BRTX": [
+    "biotech"
+  ],
+  "BRUN": [
+    "tech"
+  ],
+  "BRVO": [
+    "biotech"
+  ],
+  "BRW": [
+    "industrials"
+  ],
+  "BRX": [
+    "financials"
+  ],
+  "BRZE": [
+    "tech"
+  ],
+  "BSAC": [
+    "financials"
+  ],
+  "BSBK": [
+    "financials"
+  ],
+  "BSBR": [
+    "financials"
+  ],
+  "BSL": [
+    "financials"
+  ],
+  "BSPA": [
+    "financials"
+  ],
+  "BSQKZ": [
+    "tech"
+  ],
+  "BSRR": [
+    "financials"
+  ],
+  "BSTT": [
+    "financials"
+  ],
+  "BSVN": [
+    "financials"
+  ],
+  "BSY": [
+    "tech"
+  ],
+  "BTAB": [
+    "consumer"
+  ],
+  "BTAFF": [
+    "staples"
+  ],
+  "BTAI": [
+    "biotech"
+  ],
+  "BTBD": [
+    "consumer"
+  ],
+  "BTBT": [
+    "financials"
+  ],
+  "BTCS": [
+    "financials"
+  ],
+  "BTCT": [
+    "financials"
+  ],
+  "BTDPF": [
+    "consumer"
+  ],
+  "BTDPY": [
+    "consumer"
+  ],
+  "BTE": [
+    "materials"
+  ],
+  "BTGO": [
+    "financials"
+  ],
+  "BTMD": [
+    "biotech"
+  ],
+  "BTMWW": [
+    "financials"
+  ],
+  "BTQ": [
+    "tech"
+  ],
+  "BTSG": [
+    "biotech"
+  ],
+  "BTTC": [
+    "tech"
+  ],
+  "BUDZ": [
+    "industrials"
+  ],
+  "BULL": [
+    "financials"
+  ],
+  "BULLW": [
+    "financials"
+  ],
+  "BUR": [
+    "financials"
+  ],
+  "BURU": [
+    "tech"
+  ],
+  "BURUW": [
+    "tech"
+  ],
+  "BV": [
+    "industrials"
+  ],
+  "BVENY": [
+    "energy"
+  ],
+  "BVFL": [
+    "financials"
+  ],
+  "BVN": [
+    "materials"
+  ],
+  "BW$A": [
+    "industrials"
+  ],
+  "BWG": [
+    "financials"
+  ],
+  "BWIV": [
+    "financials"
+  ],
+  "BWIV-UN": [
+    "financials"
+  ],
+  "BWLP": [
+    "energy"
+  ],
+  "BWMN": [
+    "industrials"
+  ],
+  "BWMX": [
+    "consumer"
+  ],
+  "BXP": [
+    "financials"
+  ],
+  "BY": [
+    "financials"
+  ],
+  "BYCBF": [
+    "staples"
+  ],
+  "BYDDF": [
+    "consumer"
+  ],
+  "BYDIF": [
+    "tech"
+  ],
+  "BYFC": [
+    "financials"
+  ],
+  "BYND": [
+    "staples"
+  ],
+  "BYNO": [
+    "financials"
+  ],
+  "BZ": [
+    "energy"
+  ],
+  "BZAIW": [
+    "semis"
+  ],
+  "BZUN": [
+    "tech",
+    "consumer"
+  ],
+  "C": [
+    "financials"
+  ],
+  "C$R": [
+    "financials"
+  ],
+  "C-PR": [
+    "financials"
+  ],
+  "CABO": [
+    "comms"
+  ],
+  "CABR": [
+    "materials"
+  ],
+  "CAC": [
+    "financials"
+  ],
+  "CACC": [
+    "financials"
+  ],
+  "CACI": [
+    "tech"
+  ],
+  "CAEP": [
+    "financials"
+  ],
+  "CAF": [
+    "financials"
+  ],
+  "CAI": [
+    "biotech"
+  ],
+  "CAII": [
+    "financials"
+  ],
+  "CALC": [
+    "biotech"
+  ],
+  "CAN": [
+    "financials"
+  ],
+  "CANF": [
+    "biotech"
+  ],
+  "CAPR": [
+    "biotech"
+  ],
+  "CAPS": [
+    "consumer"
+  ],
+  "CAR": [
+    "consumer",
+    "industrials"
+  ],
+  "CARS": [
+    "tech"
+  ],
+  "CASS": [
+    "industrials"
+  ],
+  "CAST": [
+    "tech"
+  ],
+  "CAT": [
+    "industrials"
+  ],
+  "CATY": [
+    "financials"
+  ],
+  "CAVA": [
+    "consumer"
+  ],
+  "CAZGF": [
+    "tech"
+  ],
+  "CBAT": [
+    "tech"
+  ],
+  "CBGGF": [
+    "financials"
+  ],
+  "CBIO": [
+    "biotech"
+  ],
+  "CBK": [
+    "financials"
+  ],
+  "CBL": [
+    "financials"
+  ],
+  "CBNK": [
+    "financials"
+  ],
+  "CBPHF": [
+    "biotech"
+  ],
+  "CBRE": [
+    "real_estate"
+  ],
+  "CBSH": [
+    "financials"
+  ],
+  "CBSTF": [
+    "biotech"
+  ],
+  "CBSTQ": [
+    "staples"
+  ],
+  "CBUS": [
+    "materials"
+  ],
+  "CC": [
+    "materials"
+  ],
+  "CCCC": [
+    "biotech"
+  ],
+  "CCEL": [
+    "biotech"
+  ],
+  "CCEP": [
+    "staples"
+  ],
+  "CCG": [
+    "financials"
+  ],
+  "CCHH": [
+    "tech"
+  ],
+  "CCIX": [
+    "tech"
+  ],
+  "CCJ": [
+    "materials"
+  ],
+  "CCK": [
+    "industrials"
+  ],
+  "CCLDO": [
+    "tech"
+  ],
+  "CCNEP": [
+    "financials"
+  ],
+  "CCSI": [
+    "tech"
+  ],
+  "CCTC": [
+    "tech"
+  ],
+  "CCU": [
+    "staples"
+  ],
+  "CCZ": [
+    "comms"
+  ],
+  "CDGLF": [
+    "industrials"
+  ],
+  "CDLR": [
+    "industrials"
+  ],
+  "CDNA": [
+    "biotech"
+  ],
+  "CDNL": [
+    "industrials"
+  ],
+  "CDNS": [
+    "tech"
+  ],
+  "CDP": [
+    "financials"
+  ],
+  "CDR-PB": [
+    "financials"
+  ],
+  "CDRE": [
+    "industrials"
+  ],
+  "CDTHY": [
+    "financials"
+  ],
+  "CDTT": [
+    "biotech"
+  ],
+  "CE": [
+    "materials"
+  ],
+  "CECO": [
+    "industrials"
+  ],
+  "CEE": [
+    "financials"
+  ],
+  "CEIN": [
+    "materials"
+  ],
+  "CELG.R": [
+    "biotech"
+  ],
+  "CELU": [
+    "biotech"
+  ],
+  "CELUW": [
+    "biotech"
+  ],
+  "CELZ": [
+    "biotech"
+  ],
+  "CENX": [
+    "materials"
+  ],
+  "CEPO": [
+    "financials"
+  ],
+  "CEPU": [
+    "utilities"
+  ],
+  "CERO": [
+    "biotech"
+  ],
+  "CEROW": [
+    "biotech"
+  ],
+  "CETI": [
+    "tech"
+  ],
+  "CFND": [
+    "financials"
+  ],
+  "CFR$B": [
+    "financials"
+  ],
+  "CGAU": [
+    "materials"
+  ],
+  "CGON": [
+    "biotech"
+  ],
+  "CGTX": [
+    "biotech"
+  ],
+  "CHAR": [
+    "financials"
+  ],
+  "CHCI": [
+    "real_estate"
+  ],
+  "CHD": [
+    "materials"
+  ],
+  "CHE": [
+    "biotech"
+  ],
+  "CHEV": [
+    "consumer"
+  ],
+  "CHGG": [
+    "consumer"
+  ],
+  "CHLSY": [
+    "staples"
+  ],
+  "CHMG": [
+    "financials"
+  ],
+  "CHR": [
+    "tech"
+  ],
+  "CHSCO": [
+    "consumer"
+  ],
+  "CHT": [
+    "comms"
+  ],
+  "CHTH": [
+    "financials"
+  ],
+  "CHTR": [
+    "comms"
+  ],
+  "CHWRF": [
+    "comms"
+  ],
+  "CHWY": [
+    "consumer"
+  ],
+  "CI": [
+    "financials"
+  ],
+  "CIA": [
+    "financials"
+  ],
+  "CIB": [
+    "financials"
+  ],
+  "CICB": [
+    "financials"
+  ],
+  "CICC": [
+    "financials"
+  ],
+  "CIEN": [
+    "comms"
+  ],
+  "CIFR": [
+    "financials"
+  ],
+  "CIG.C": [
+    "energy"
+  ],
+  "CIGI": [
+    "real_estate"
+  ],
+  "CIGL": [
+    "industrials"
+  ],
+  "CII": [
+    "financials"
+  ],
+  "CIIT": [
+    "tech"
+  ],
+  "CIM$A": [
+    "financials"
+  ],
+  "CIM$B": [
+    "financials"
+  ],
+  "CIM$C": [
+    "financials"
+  ],
+  "CIM$D": [
+    "financials"
+  ],
+  "CIMG": [
+    "consumer"
+  ],
+  "CINF": [
+    "financials"
+  ],
+  "CING": [
+    "biotech"
+  ],
+  "CINGW": [
+    "biotech"
+  ],
+  "CINT": [
+    "tech"
+  ],
+  "CION": [
+    "financials"
+  ],
+  "CIRX": [
+    "staples"
+  ],
+  "CISO": [
+    "industrials"
+  ],
+  "CISS": [
+    "industrials"
+  ],
+  "CITR": [
+    "materials"
+  ],
+  "CIVB": [
+    "financials"
+  ],
+  "CL": [
+    "materials"
+  ],
+  "CLB": [
+    "materials"
+  ],
+  "CLBK": [
+    "financials"
+  ],
+  "CLDVF": [
+    "financials"
+  ],
+  "CLDW": [
+    "biotech"
+  ],
+  "CLDWW": [
+    "biotech"
+  ],
+  "CLDX": [
+    "biotech"
+  ],
+  "CLEV": [
+    "industrials"
+  ],
+  "CLGN": [
+    "biotech"
+  ],
+  "CLIR": [
+    "industrials"
+  ],
+  "CLLS": [
+    "biotech"
+  ],
+  "CLM": [
+    "financials"
+  ],
+  "CLMB": [
+    "consumer"
+  ],
+  "CLMT": [
+    "energy"
+  ],
+  "CLNV": [
+    "materials"
+  ],
+  "CLOW": [
+    "tech"
+  ],
+  "CLPT": [
+    "biotech"
+  ],
+  "CLRO": [
+    "comms"
+  ],
+  "CLRWF": [
+    "financials"
+  ],
+  "CLS": [
+    "semis"
+  ],
+  "CLSKW": [
+    "financials"
+  ],
+  "CLUS": [
+    "biotech"
+  ],
+  "CLYM": [
+    "biotech"
+  ],
+  "CMBM": [
+    "comms"
+  ],
+  "CMCL": [
+    "materials"
+  ],
+  "CMCLF": [
+    "materials"
+  ],
+  "CME": [
+    "financials"
+  ],
+  "CMG": [
+    "consumer"
+  ],
+  "CMGHF": [
+    "staples"
+  ],
+  "CMGMF": [
+    "industrials"
+  ],
+  "CMMB": [
+    "biotech"
+  ],
+  "CMND": [
+    "biotech"
+  ],
+  "CMPLY": [
+    "consumer"
+  ],
+  "CMPR": [
+    "consumer",
+    "tech"
+  ],
+  "CMPS": [
+    "biotech"
+  ],
+  "CMPX": [
+    "biotech"
+  ],
+  "CMRE$B": [
+    "industrials"
+  ],
+  "CMRE$C": [
+    "industrials"
+  ],
+  "CMRE$D": [
+    "industrials"
+  ],
+  "CMRE-PC": [
+    "industrials"
+  ],
+  "CMRF": [
+    "financials"
+  ],
+  "CMT": [
+    "materials"
+  ],
+  "CMTG": [
+    "financials",
+    "real_estate"
+  ],
+  "CMTL": [
+    "comms"
+  ],
+  "CMXHF": [
+    "biotech"
+  ],
+  "CNC": [
+    "financials"
+  ],
+  "CNCK": [
+    "financials"
+  ],
+  "CNDHF": [
+    "financials"
+  ],
+  "CNDIF": [
+    "financials"
+  ],
+  "CNEY": [
+    "materials"
+  ],
+  "CNFN": [
+    "industrials"
+  ],
+  "CNI": [
+    "industrials"
+  ],
+  "CNL": [
+    "materials"
+  ],
+  "CNLHN": [
+    "utilities"
+  ],
+  "CNM": [
+    "consumer"
+  ],
+  "CNRCF": [
+    "materials"
+  ],
+  "CNS": [
+    "financials"
+  ],
+  "CNSP": [
+    "biotech"
+  ],
+  "CNTM": [
+    "industrials"
+  ],
+  "CNTMF": [
+    "biotech"
+  ],
+  "CNTN": [
+    "tech"
+  ],
+  "CNVS": [
+    "consumer"
+  ],
+  "COAG": [
+    "biotech"
+  ],
+  "COBA": [
+    "materials"
+  ],
+  "COCO": [
+    "staples"
+  ],
+  "COCP": [
+    "biotech"
+  ],
+  "COCSF": [
+    "staples"
+  ],
+  "CODA": [
+    "industrials"
+  ],
+  "CODGF": [
+    "industrials"
+  ],
+  "CODI": [
+    "financials"
+  ],
+  "CODI$A": [
+    "financials"
+  ],
+  "CODI$B": [
+    "financials"
+  ],
+  "CODI$C": [
+    "financials"
+  ],
+  "COEP": [
+    "financials"
+  ],
+  "COEPW": [
+    "financials"
+  ],
+  "COF-PN": [
+    "financials"
+  ],
+  "COGT": [
+    "biotech"
+  ],
+  "COLA": [
+    "financials"
+  ],
+  "COLAR": [
+    "financials"
+  ],
+  "COLL": [
+    "biotech"
+  ],
+  "COLM": [
+    "consumer"
+  ],
+  "COOK": [
+    "consumer"
+  ],
+  "COOT": [
+    "staples"
+  ],
+  "COOTW": [
+    "staples"
+  ],
+  "CORZR": [
+    "financials"
+  ],
+  "CORZZ": [
+    "financials"
+  ],
+  "COSM": [
+    "consumer"
+  ],
+  "COTY": [
+    "materials"
+  ],
+  "COUR": [
+    "tech"
+  ],
+  "COYA": [
+    "biotech"
+  ],
+  "CP": [
+    "industrials"
+  ],
+  "CPA": [
+    "industrials"
+  ],
+  "CPAC": [
+    "materials",
+    "industrials"
+  ],
+  "CPAY": [
+    "industrials"
+  ],
+  "CPCPF": [
+    "materials"
+  ],
+  "CPER": [
+    "financials"
+  ],
+  "CPHI": [
+    "biotech"
+  ],
+  "CPIVF": [
+    "biotech"
+  ],
+  "CPNG": [
+    "consumer"
+  ],
+  "CPNNF": [
+    "real_estate"
+  ],
+  "CPPBY": [
+    "real_estate"
+  ],
+  "CPRI": [
+    "materials"
+  ],
+  "CPSS": [
+    "financials"
+  ],
+  "CPT": [
+    "financials"
+  ],
+  "CR": [
+    "industrials"
+  ],
+  "CRAC": [
+    "financials"
+  ],
+  "CRAI": [
+    "industrials"
+  ],
+  "CRAUY": [
+    "consumer"
+  ],
+  "CRBP": [
+    "biotech"
+  ],
+  "CRC": [
+    "materials"
+  ],
+  "CRCUF": [
+    "materials"
+  ],
+  "CRCW": [
+    "tech"
+  ],
+  "CRD.A": [
+    "financials"
+  ],
+  "CRD.B": [
+    "financials"
+  ],
+  "CRDF": [
+    "biotech"
+  ],
+  "CRE": [
+    "comms"
+  ],
+  "CRERF": [
+    "staples"
+  ],
+  "CREX": [
+    "tech"
+  ],
+  "CRGO": [
+    "industrials"
+  ],
+  "CRGY": [
+    "materials"
+  ],
+  "CRM": [
+    "tech"
+  ],
+  "CRMD": [
+    "biotech"
+  ],
+  "CRMT": [
+    "consumer"
+  ],
+  "CRNX": [
+    "biotech"
+  ],
+  "CRON": [
+    "biotech"
+  ],
+  "CROX": [
+    "materials"
+  ],
+  "CRRFY": [
+    "staples"
+  ],
+  "CRSF": [
+    "financials"
+  ],
+  "CRTMF": [
+    "materials"
+  ],
+  "CRUCF": [
+    "materials"
+  ],
+  "CRVS": [
+    "biotech"
+  ],
+  "CRWD": [
+    "tech"
+  ],
+  "CRWV": [
+    "tech"
+  ],
+  "CRYAF": [
+    "consumer"
+  ],
+  "CSAN": [
+    "consumer"
+  ],
+  "CSCIF": [
+    "materials"
+  ],
+  "CSDX": [
+    "biotech"
+  ],
+  "CSIQ": [
+    "semis"
+  ],
+  "CSL": [
+    "materials"
+  ],
+  "CSLLY": [
+    "biotech"
+  ],
+  "CSTM": [
+    "materials"
+  ],
+  "CSTWF": [
+    "financials"
+  ],
+  "CSV": [
+    "consumer"
+  ],
+  "CSWC": [
+    "financials"
+  ],
+  "CTA$A": [
+    "financials"
+  ],
+  "CTA$B": [
+    "financials"
+  ],
+  "CTAAU": [
+    "financials"
+  ],
+  "CTAS": [
+    "consumer"
+  ],
+  "CTGL": [
+    "tech"
+  ],
+  "CTGO": [
+    "biotech"
+  ],
+  "CTMX": [
+    "biotech"
+  ],
+  "CTNM": [
+    "biotech"
+  ],
+  "CTNT": [
+    "consumer"
+  ],
+  "CTOS": [
+    "industrials"
+  ],
+  "CTPUF": [
+    "real_estate"
+  ],
+  "CTRA": [
+    "materials"
+  ],
+  "CTRI": [
+    "utilities"
+  ],
+  "CTRVP": [
+    "biotech"
+  ],
+  "CTSUF": [
+    "financials"
+  ],
+  "CTTRF": [
+    "industrials"
+  ],
+  "CTVA": [
+    "materials"
+  ],
+  "CTW": [
+    "tech"
+  ],
+  "CTXR": [
+    "biotech"
+  ],
+  "CUBB": [
+    "financials"
+  ],
+  "CUE": [
+    "biotech"
+  ],
+  "CUPR": [
+    "biotech"
+  ],
+  "CURLF": [
+    "biotech"
+  ],
+  "CURR": [
+    "industrials"
+  ],
+  "CURV": [
+    "consumer"
+  ],
+  "CVCCF": [
+    "financials"
+  ],
+  "CVCPY": [
+    "financials"
+  ],
+  "CVGI": [
+    "consumer"
+  ],
+  "CVGW": [
+    "staples"
+  ],
+  "CVKD": [
+    "biotech"
+  ],
+  "CVLG": [
+    "industrials"
+  ],
+  "CVU": [
+    "industrials"
+  ],
+  "CVX": [
+    "energy"
+  ],
+  "CWBC": [
+    "financials"
+  ],
+  "CWBHF": [
+    "biotech"
+  ],
+  "CWCO": [
+    "utilities"
+  ],
+  "CWD": [
+    "real_estate"
+  ],
+  "CWT": [
+    "utilities"
+  ],
+  "CXAI": [
+    "tech"
+  ],
+  "CXAIW": [
+    "tech"
+  ],
+  "CXDO": [
+    "comms"
+  ],
+  "CXII": [
+    "financials"
+  ],
+  "CXMSF": [
+    "materials"
+  ],
+  "CYAB": [
+    "tech"
+  ],
+  "CYCA": [
+    "tech"
+  ],
+  "CYCU": [
+    "tech"
+  ],
+  "CYDY": [
+    "biotech"
+  ],
+  "CYH": [
+    "biotech"
+  ],
+  "CYJBF": [
+    "industrials"
+  ],
+  "CYN": [
+    "tech"
+  ],
+  "CYRX": [
+    "biotech"
+  ],
+  "CZR": [
+    "consumer"
+  ],
+  "CZWI": [
+    "financials"
+  ],
+  "DAIC": [
+    "tech"
+  ],
+  "DAICW": [
+    "tech"
+  ],
+  "DAIO": [
+    "industrials"
+  ],
+  "DAL": [
+    "industrials"
+  ],
+  "DAN": [
+    "consumer"
+  ],
+  "DARE": [
+    "biotech"
+  ],
+  "DAWN": [
+    "biotech"
+  ],
+  "DBRG$H": [
+    "tech"
+  ],
+  "DBRG$I": [
+    "tech"
+  ],
+  "DBRG$J": [
+    "tech"
+  ],
+  "DBRG-PJ": [
+    "financials"
+  ],
+  "DBVTF": [
+    "biotech"
+  ],
+  "DCBG": [
+    "financials"
+  ],
+  "DCFBS": [
+    "utilities"
+  ],
+  "DCX": [
+    "consumer"
+  ],
+  "DDD": [
+    "tech"
+  ],
+  "DDI": [
+    "tech"
+  ],
+  "DEA": [
+    "financials"
+  ],
+  "DEC": [
+    "materials"
+  ],
+  "DEFI": [
+    "financials"
+  ],
+  "DEFT": [
+    "financials"
+  ],
+  "DELL": [
+    "tech"
+  ],
+  "DFDV": [
+    "financials"
+  ],
+  "DFH": [
+    "industrials"
+  ],
+  "DFNS": [
+    "industrials"
+  ],
+  "DFNSW": [
+    "industrials"
+  ],
+  "DFSC": [
+    "tech"
+  ],
+  "DFTX": [
+    "biotech"
+  ],
+  "DG": [
+    "consumer"
+  ],
+  "DGNX": [
+    "tech"
+  ],
+  "DGTEF": [
+    "financials"
+  ],
+  "DGXX": [
+    "financials"
+  ],
+  "DH": [
+    "tech"
+  ],
+  "DHF": [
+    "financials"
+  ],
+  "DHI": [
+    "industrials"
+  ],
+  "DHR": [
+    "industrials"
+  ],
+  "DHT": [
+    "industrials"
+  ],
+  "DIAX": [
+    "financials"
+  ],
+  "DINO": [
+    "energy"
+  ],
+  "DINRF": [
+    "tech"
+  ],
+  "DJTWW": [
+    "tech"
+  ],
+  "DKI": [
+    "tech"
+  ],
+  "DKILF": [
+    "industrials"
+  ],
+  "DKL": [
+    "energy"
+  ],
+  "DLAKF": [
+    "industrials"
+  ],
+  "DLAKY": [
+    "industrials"
+  ],
+  "DLMAF": [
+    "staples"
+  ],
+  "DLMAY": [
+    "staples"
+  ],
+  "DLNG-PA": [
+    "industrials"
+  ],
+  "DLPN": [
+    "consumer"
+  ],
+  "DLTR": [
+    "consumer"
+  ],
+  "DLY": [
+    "financials"
+  ],
+  "DMA": [
+    "financials"
+  ],
+  "DMAA": [
+    "financials"
+  ],
+  "DMAAR": [
+    "financials"
+  ],
+  "DMII": [
+    "financials"
+  ],
+  "DMIIU": [
+    "financials"
+  ],
+  "DMRA": [
+    "biotech"
+  ],
+  "DMRC": [
+    "tech"
+  ],
+  "DNAB": [
+    "biotech"
+  ],
+  "DNACF": [
+    "industrials"
+  ],
+  "DNCLY": [
+    "consumer"
+  ],
+  "DNLI": [
+    "biotech"
+  ],
+  "DNN": [
+    "materials"
+  ],
+  "DNOPF": [
+    "staples"
+  ],
+  "DNTH": [
+    "biotech"
+  ],
+  "DNUT": [
+    "consumer"
+  ],
+  "DOCN": [
+    "tech"
+  ],
+  "DOGZ": [
+    "consumer"
+  ],
+  "DOLE": [
+    "staples"
+  ],
+  "DOMH": [
+    "biotech"
+  ],
+  "DOW": [
+    "materials"
+  ],
+  "DOWAY": [
+    "comms"
+  ],
+  "DPCDF": [
+    "consumer"
+  ],
+  "DPDSY": [
+    "consumer"
+  ],
+  "DPRO": [
+    "industrials"
+  ],
+  "DPZ": [
+    "consumer"
+  ],
+  "DRCT": [
+    "biotech"
+  ],
+  "DREM": [
+    "industrials"
+  ],
+  "DRIO": [
+    "biotech",
+    "tech"
+  ],
+  "DRMAW": [
+    "biotech"
+  ],
+  "DRRKF": [
+    "industrials"
+  ],
+  "DRS": [
+    "industrials"
+  ],
+  "DRSHF": [
+    "industrials"
+  ],
+  "DRTS": [
+    "biotech"
+  ],
+  "DRVN": [
+    "consumer"
+  ],
+  "DSL": [
+    "financials"
+  ],
+  "DSP": [
+    "tech"
+  ],
+  "DSRNY": [
+    "biotech"
+  ],
+  "DSS": [
+    "materials"
+  ],
+  "DSU": [
+    "financials"
+  ],
+  "DSX-WT": [
+    "industrials"
+  ],
+  "DSYW": [
+    "materials"
+  ],
+  "DSYWW": [
+    "materials"
+  ],
+  "DTCK": [
+    "consumer"
+  ],
+  "DTCX": [
+    "biotech"
+  ],
+  "DTF": [
+    "financials"
+  ],
+  "DTII": [
+    "materials"
+  ],
+  "DTSQ": [
+    "financials"
+  ],
+  "DTSS": [
+    "tech"
+  ],
+  "DUKB": [
+    "utilities"
+  ],
+  "DUKR": [
+    "industrials"
+  ],
+  "DUOT": [
+    "tech"
+  ],
+  "DUTBF": [
+    "biotech"
+  ],
+  "DVLT": [
+    "industrials"
+  ],
+  "DVN": [
+    "energy"
+  ],
+  "DVS": [
+    "materials"
+  ],
+  "DWTX": [
+    "biotech"
+  ],
+  "DX$C": [
+    "financials"
+  ],
+  "DX-PC": [
+    "financials"
+  ],
+  "DXCM": [
+    "biotech"
+  ],
+  "DXF": [
+    "financials"
+  ],
+  "DXR": [
+    "financials"
+  ],
+  "DXST": [
+    "utilities"
+  ],
+  "DXYZ": [
+    "financials"
+  ],
+  "DYAI": [
+    "biotech"
+  ],
+  "DYBTY": [
+    "biotech"
+  ],
+  "DYN": [
+    "biotech"
+  ],
+  "DYNR": [
+    "energy"
+  ],
+  "EACO": [
+    "consumer"
+  ],
+  "EAD": [
+    "financials"
+  ],
+  "EARN": [
+    "financials",
+    "real_estate"
+  ],
+  "EBCRY": [
+    "consumer"
+  ],
+  "EBON": [
+    "financials"
+  ],
+  "EBOSF": [
+    "biotech"
+  ],
+  "EBOSY": [
+    "biotech"
+  ],
+  "EBRCZ": [
+    "biotech"
+  ],
+  "EBS": [
+    "biotech"
+  ],
+  "EC": [
+    "materials"
+  ],
+  "ECAT": [
+    "financials"
+  ],
+  "ECDA": [
+    "consumer"
+  ],
+  "ECO": [
+    "industrials"
+  ],
+  "ECXW": [
+    "tech"
+  ],
+  "EDAP": [
+    "biotech"
+  ],
+  "EDBL": [
+    "staples"
+  ],
+  "EDBLW": [
+    "staples"
+  ],
+  "EDD": [
+    "financials"
+  ],
+  "EDHL": [
+    "industrials"
+  ],
+  "EDN": [
+    "utilities"
+  ],
+  "EDTK": [
+    "consumer"
+  ],
+  "EDVGF": [
+    "staples"
+  ],
+  "EDVLY": [
+    "consumer"
+  ],
+  "EEA": [
+    "financials"
+  ],
+  "EEIQ": [
+    "biotech"
+  ],
+  "EFC-PD": [
+    "real_estate"
+  ],
+  "EFOR": [
+    "industrials"
+  ],
+  "EFR": [
+    "financials"
+  ],
+  "EFSCP": [
+    "financials"
+  ],
+  "EFSI": [
+    "financials"
+  ],
+  "EGO": [
+    "materials"
+  ],
+  "EGY": [
+    "materials"
+  ],
+  "EHGO": [
+    "industrials"
+  ],
+  "EHSI": [
+    "biotech"
+  ],
+  "EIC": [
+    "financials"
+  ],
+  "EICA": [
+    "financials"
+  ],
+  "EICC": [
+    "financials"
+  ],
+  "EIX": [
+    "utilities"
+  ],
+  "EJH": [
+    "consumer"
+  ],
+  "ELA": [
+    "consumer"
+  ],
+  "ELAB": [
+    "biotech"
+  ],
+  "ELBM": [
+    "materials"
+  ],
+  "ELDCF": [
+    "materials"
+  ],
+  "ELDN": [
+    "biotech"
+  ],
+  "ELE": [
+    "materials"
+  ],
+  "ELEEF": [
+    "industrials"
+  ],
+  "ELFTY": [
+    "financials"
+  ],
+  "ELLO": [
+    "utilities"
+  ],
+  "ELMT": [
+    "industrials"
+  ],
+  "ELOG": [
+    "industrials"
+  ],
+  "ELPC": [
+    "utilities"
+  ],
+  "ELPW": [
+    "tech"
+  ],
+  "ELSE": [
+    "industrials"
+  ],
+  "ELTK": [
+    "semis"
+  ],
+  "ELTX": [
+    "biotech"
+  ],
+  "ELVGD": [
+    "tech"
+  ],
+  "ELVN": [
+    "biotech"
+  ],
+  "ELWT": [
+    "tech"
+  ],
+  "EMBJ": [
+    "industrials"
+  ],
+  "EMD": [
+    "financials"
+  ],
+  "EMF": [
+    "financials"
+  ],
+  "EMICF": [
+    "utilities"
+  ],
+  "EMLC": [
+    "financials"
+  ],
+  "EMPD": [
+    "consumer"
+  ],
+  "EMRH": [
+    "materials"
+  ],
+  "EMYB": [
+    "financials"
+  ],
+  "ENBP": [
+    "financials"
+  ],
+  "ENGN": [
+    "biotech"
+  ],
+  "ENGNW": [
+    "biotech"
+  ],
+  "ENLV": [
+    "biotech"
+  ],
+  "ENNPF": [
+    "energy"
+  ],
+  "ENSC": [
+    "biotech"
+  ],
+  "ENTX": [
+    "biotech"
+  ],
+  "ENVA": [
+    "financials"
+  ],
+  "ENVB": [
+    "biotech"
+  ],
+  "ENVX": [
+    "tech"
+  ],
+  "ENZN": [
+    "biotech"
+  ],
+  "EOD": [
+    "financials"
+  ],
+  "EOG": [
+    "materials"
+  ],
+  "EOLS": [
+    "biotech"
+  ],
+  "EONR-WT": [
+    "materials"
+  ],
+  "EOSE": [
+    "tech"
+  ],
+  "EP": [
+    "materials"
+  ],
+  "EP$C": [
+    "energy"
+  ],
+  "EP-PC": [
+    "utilities"
+  ],
+  "EPAC": [
+    "industrials"
+  ],
+  "EPD": [
+    "energy"
+  ],
+  "EPDU": [
+    "energy"
+  ],
+  "EPSM": [
+    "consumer"
+  ],
+  "EQ": [
+    "biotech"
+  ],
+  "EQH$A": [
+    "financials"
+  ],
+  "EQH$C": [
+    "financials"
+  ],
+  "EQS": [
+    "financials"
+  ],
+  "EQX": [
+    "materials"
+  ],
+  "ERAS": [
+    "biotech"
+  ],
+  "ERELY": [
+    "materials"
+  ],
+  "ERIE": [
+    "financials"
+  ],
+  "ERII": [
+    "industrials"
+  ],
+  "ERNAW": [
+    "biotech"
+  ],
+  "ERO": [
+    "materials"
+  ],
+  "ES": [
+    "utilities"
+  ],
+  "ESAB": [
+    "industrials"
+  ],
+  "ESAUF": [
+    "materials"
+  ],
+  "ESGH": [
+    "staples"
+  ],
+  "ESHA": [
+    "financials"
+  ],
+  "ESHSF": [
+    "tech"
+  ],
+  "ESLT": [
+    "industrials"
+  ],
+  "ESOA": [
+    "industrials"
+  ],
+  "ESPR": [
+    "biotech"
+  ],
+  "ESTA": [
+    "biotech"
+  ],
+  "ETI$": [
+    "utilities"
+  ],
+  "ETN": [
+    "industrials"
+  ],
+  "ETO": [
+    "financials"
+  ],
+  "ETON": [
+    "biotech"
+  ],
+  "ETS": [
+    "industrials"
+  ],
+  "ETSS": [
+    "financials"
+  ],
+  "ETST": [
+    "biotech"
+  ],
+  "ETUGF": [
+    "materials"
+  ],
+  "ETV": [
+    "financials"
+  ],
+  "ETW": [
+    "financials"
+  ],
+  "EUDA": [
+    "biotech"
+  ],
+  "EUDAW": [
+    "biotech"
+  ],
+  "EURBF": [
+    "financials"
+  ],
+  "EVAX": [
+    "biotech"
+  ],
+  "EVC": [
+    "comms"
+  ],
+  "EVCM": [
+    "tech"
+  ],
+  "EVER": [
+    "tech"
+  ],
+  "EVGN": [
+    "materials"
+  ],
+  "EVH": [
+    "industrials"
+  ],
+  "EVLVW": [
+    "tech"
+  ],
+  "EVMN": [
+    "biotech"
+  ],
+  "EVOTF": [
+    "biotech"
+  ],
+  "EVRG": [
+    "utilities"
+  ],
+  "EVTV": [
+    "consumer"
+  ],
+  "EWCZ": [
+    "consumer"
+  ],
+  "EWSB": [
+    "financials"
+  ],
+  "EXAS": [
+    "biotech"
+  ],
+  "EXK": [
+    "materials"
+  ],
+  "EXLS": [
+    "industrials"
+  ],
+  "EXOD": [
+    "financials"
+  ],
+  "EXOSF": [
+    "industrials"
+  ],
+  "EXOZ": [
+    "biotech"
+  ],
+  "EXPE": [
+    "industrials"
+  ],
+  "EXPI": [
+    "real_estate"
+  ],
+  "EYPT": [
+    "industrials"
+  ],
+  "EZGO": [
+    "industrials"
+  ],
+  "F$B": [
+    "consumer"
+  ],
+  "F$C": [
+    "consumer"
+  ],
+  "F$D": [
+    "consumer"
+  ],
+  "FA": [
+    "tech"
+  ],
+  "FABTQ": [
+    "consumer"
+  ],
+  "FAF": [
+    "financials"
+  ],
+  "FANG": [
+    "materials"
+  ],
+  "FAST": [
+    "consumer"
+  ],
+  "FATE": [
+    "biotech"
+  ],
+  "FBGL": [
+    "industrials"
+  ],
+  "FBIZ": [
+    "financials"
+  ],
+  "FBK": [
+    "financials"
+  ],
+  "FBLG": [
+    "biotech"
+  ],
+  "FBRX": [
+    "biotech"
+  ],
+  "FC": [
+    "industrials"
+  ],
+  "FCFS": [
+    "consumer"
+  ],
+  "FCHL": [
+    "consumer"
+  ],
+  "FCUV": [
+    "industrials"
+  ],
+  "FDBC": [
+    "financials"
+  ],
+  "FDCT": [
+    "tech"
+  ],
+  "FDMT": [
+    "biotech"
+  ],
+  "FDP": [
+    "staples"
+  ],
+  "FDS": [
+    "tech"
+  ],
+  "FDUS": [
+    "financials"
+  ],
+  "FDX": [
+    "industrials"
+  ],
+  "FELE": [
+    "industrials"
+  ],
+  "FEMY": [
+    "biotech"
+  ],
+  "FER": [
+    "industrials"
+  ],
+  "FERA": [
+    "financials"
+  ],
+  "FERAU": [
+    "financials"
+  ],
+  "FF": [
+    "financials"
+  ],
+  "FFAIW": [
+    "consumer"
+  ],
+  "FFBC": [
+    "financials"
+  ],
+  "FFIC": [
+    "financials"
+  ],
+  "FFMGF": [
+    "materials"
+  ],
+  "FGBIP": [
+    "financials"
+  ],
+  "FGHFF": [
+    "industrials"
+  ],
+  "FGIW": [
+    "industrials"
+  ],
+  "FGL": [
+    "industrials"
+  ],
+  "FGNXP": [
+    "biotech"
+  ],
+  "FGPRB": [
+    "consumer"
+  ],
+  "FGRS": [
+    "financials"
+  ],
+  "FHI": [
+    "financials"
+  ],
+  "FHN$C": [
+    "financials"
+  ],
+  "FHN$E": [
+    "financials"
+  ],
+  "FHN$F": [
+    "financials"
+  ],
+  "FHN$H": [
+    "financials"
+  ],
+  "FICO": [
+    "industrials"
+  ],
+  "FIG": [
+    "tech"
+  ],
+  "FIISO": [
+    "financials"
+  ],
+  "FINGF": [
+    "industrials"
+  ],
+  "FINW": [
+    "financials"
+  ],
+  "FIP": [
+    "industrials"
+  ],
+  "FIS": [
+    "industrials"
+  ],
+  "FITBM": [
+    "financials"
+  ],
+  "FIX": [
+    "industrials"
+  ],
+  "FIZZ": [
+    "staples"
+  ],
+  "FJET": [
+    "industrials"
+  ],
+  "FKURF": [
+    "industrials"
+  ],
+  "FKWL": [
+    "comms"
+  ],
+  "FLDD": [
+    "financials"
+  ],
+  "FLDDW": [
+    "financials"
+  ],
+  "FLNC": [
+    "tech"
+  ],
+  "FLNCF": [
+    "comms"
+  ],
+  "FLNG": [
+    "industrials"
+  ],
+  "FLO": [
+    "staples"
+  ],
+  "FLOC": [
+    "industrials"
+  ],
+  "FLUX": [
+    "energy",
+    "tech"
+  ],
+  "FLXS": [
+    "consumer"
+  ],
+  "FLY": [
+    "industrials"
+  ],
+  "FLYE": [
+    "consumer"
+  ],
+  "FLYW": [
+    "industrials"
+  ],
+  "FLYX-WT": [
+    "industrials"
+  ],
+  "FMAC": [
+    "financials"
+  ],
+  "FMAO": [
+    "financials"
+  ],
+  "FMC": [
+    "materials"
+  ],
+  "FMFC": [
+    "materials"
+  ],
+  "FMHS": [
+    "biotech"
+  ],
+  "FMST": [
+    "materials"
+  ],
+  "FMSTW": [
+    "materials"
+  ],
+  "FMTOF": [
+    "tech"
+  ],
+  "FMX": [
+    "staples"
+  ],
+  "FNGR": [
+    "tech"
+  ],
+  "FNIGY": [
+    "industrials"
+  ],
+  "FNV": [
+    "materials"
+  ],
+  "FOAC": [
+    "financials"
+  ],
+  "FOACW": [
+    "financials"
+  ],
+  "FOLD": [
+    "biotech"
+  ],
+  "FOR": [
+    "real_estate"
+  ],
+  "FORA": [
+    "tech"
+  ],
+  "FOSL": [
+    "tech"
+  ],
+  "FOUR$A": [
+    "industrials"
+  ],
+  "FOXOW": [
+    "industrials"
+  ],
+  "FOXXW": [
+    "tech"
+  ],
+  "FPH": [
+    "real_estate"
+  ],
+  "FPRGF": [
+    "materials"
+  ],
+  "FPS": [
+    "financials"
+  ],
+  "FR": [
+    "financials"
+  ],
+  "FRA": [
+    "financials"
+  ],
+  "FRECF": [
+    "comms"
+  ],
+  "FREVS": [
+    "financials"
+  ],
+  "FRFAF": [
+    "staples"
+  ],
+  "FRFFF": [
+    "financials"
+  ],
+  "FRGT": [
+    "industrials"
+  ],
+  "FRLCY": [
+    "consumer"
+  ],
+  "FRMM": [
+    "financials"
+  ],
+  "FRPH": [
+    "real_estate"
+  ],
+  "FRPT": [
+    "staples"
+  ],
+  "FRSH": [
+    "tech"
+  ],
+  "FRST": [
+    "financials"
+  ],
+  "FRSX": [
+    "tech"
+  ],
+  "FSI": [
+    "materials"
+  ],
+  "FSM": [
+    "materials"
+  ],
+  "FSTJ": [
+    "consumer"
+  ],
+  "FSUN": [
+    "financials"
+  ],
+  "FTEL": [
+    "consumer"
+  ],
+  "FTHY": [
+    "financials"
+  ],
+  "FTII": [
+    "biotech"
+  ],
+  "FTPSF": [
+    "utilities"
+  ],
+  "FTRE": [
+    "biotech"
+  ],
+  "FTW-WT": [
+    "materials"
+  ],
+  "FUJIF": [
+    "industrials"
+  ],
+  "FUJIY": [
+    "industrials"
+  ],
+  "FULC": [
+    "biotech"
+  ],
+  "FULTP": [
+    "financials"
+  ],
+  "FUN": [
+    "consumer"
+  ],
+  "FUNC": [
+    "financials"
+  ],
+  "FUND": [
+    "financials"
+  ],
+  "FURCF": [
+    "consumer"
+  ],
+  "FUSE": [
+    "tech"
+  ],
+  "FVAV": [
+    "financials"
+  ],
+  "FVCB": [
+    "financials"
+  ],
+  "FWRG": [
+    "consumer"
+  ],
+  "FXBY": [
+    "financials"
+  ],
+  "FXCNF": [
+    "tech"
+  ],
+  "FXCNY": [
+    "tech"
+  ],
+  "G": [
+    "industrials"
+  ],
+  "GAB": [
+    "financials"
+  ],
+  "GAB$G": [
+    "financials"
+  ],
+  "GAB$H": [
+    "financials"
+  ],
+  "GAB$K": [
+    "financials"
+  ],
+  "GAB-PG": [
+    "financials"
+  ],
+  "GAB-PH": [
+    "financials"
+  ],
+  "GAB-PK": [
+    "financials"
+  ],
+  "GAB-RI": [
+    "financials"
+  ],
+  "GAB.R": [
+    "financials"
+  ],
+  "GABC": [
+    "financials"
+  ],
+  "GACW": [
+    "financials"
+  ],
+  "GAERF": [
+    "industrials"
+  ],
+  "GAIN": [
+    "financials"
+  ],
+  "GAING": [
+    "financials"
+  ],
+  "GAINI": [
+    "financials"
+  ],
+  "GAINN": [
+    "financials"
+  ],
+  "GAINZ": [
+    "financials"
+  ],
+  "GALDY": [
+    "biotech"
+  ],
+  "GALT": [
+    "biotech"
+  ],
+  "GAM": [
+    "financials"
+  ],
+  "GAM$B": [
+    "financials"
+  ],
+  "GAM-PB": [
+    "financials"
+  ],
+  "GAME": [
+    "tech",
+    "consumer"
+  ],
+  "GAMG": [
+    "consumer",
+    "tech"
+  ],
+  "GARLF": [
+    "financials"
+  ],
+  "GARWF": [
+    "materials"
+  ],
+  "GAUZ": [
+    "tech"
+  ],
+  "GBAT": [
+    "financials"
+  ],
+  "GBCI": [
+    "financials"
+  ],
+  "GBLI": [
+    "financials"
+  ],
+  "GBMIF": [
+    "materials"
+  ],
+  "GBUX": [
+    "consumer"
+  ],
+  "GCGJ": [
+    "financials"
+  ],
+  "GCLW": [
+    "industrials"
+  ],
+  "GCLWW": [
+    "tech"
+  ],
+  "GCMG": [
+    "financials"
+  ],
+  "GCT": [
+    "consumer"
+  ],
+  "GCTK": [
+    "biotech"
+  ],
+  "GCTS-WT": [
+    "semis"
+  ],
+  "GD": [
+    "industrials"
+  ],
+  "GDC": [
+    "consumer"
+  ],
+  "GDERF": [
+    "biotech"
+  ],
+  "GDEVW": [
+    "tech"
+  ],
+  "GDHG": [
+    "consumer"
+  ],
+  "GDL": [
+    "financials"
+  ],
+  "GDLG": [
+    "tech"
+  ],
+  "GDO": [
+    "financials"
+  ],
+  "GDOG": [
+    "financials"
+  ],
+  "GDRX": [
+    "tech"
+  ],
+  "GDST": [
+    "industrials"
+  ],
+  "GDSTW": [
+    "industrials"
+  ],
+  "GDV-PK": [
+    "financials"
+  ],
+  "GEF.B": [
+    "industrials"
+  ],
+  "GEHDF": [
+    "financials"
+  ],
+  "GELHY": [
+    "consumer"
+  ],
+  "GELYF": [
+    "consumer"
+  ],
+  "GEO": [
+    "industrials"
+  ],
+  "GETY": [
+    "industrials"
+  ],
+  "GEVO": [
+    "energy"
+  ],
+  "GF": [
+    "financials"
+  ],
+  "GFIOF": [
+    "materials"
+  ],
+  "GFS": [
+    "semis"
+  ],
+  "GFTFF": [
+    "materials"
+  ],
+  "GGAL": [
+    "financials"
+  ],
+  "GGG": [
+    "industrials"
+  ],
+  "GGLXF": [
+    "materials"
+  ],
+  "GGPSF": [
+    "materials"
+  ],
+  "GGRO": [
+    "consumer"
+  ],
+  "GGROU": [
+    "staples"
+  ],
+  "GGRPY": [
+    "real_estate"
+  ],
+  "GGT": [
+    "financials"
+  ],
+  "GGT-PE": [
+    "financials"
+  ],
+  "GGT-PG": [
+    "financials"
+  ],
+  "GGTKY": [
+    "tech"
+  ],
+  "GGZ": [
+    "financials"
+  ],
+  "GH": [
+    "biotech"
+  ],
+  "GHBWF": [
+    "biotech"
+  ],
+  "GHI": [
+    "financials"
+  ],
+  "GHRS": [
+    "biotech"
+  ],
+  "GHY": [
+    "financials"
+  ],
+  "GHYP": [
+    "financials"
+  ],
+  "GIC": [
+    "consumer"
+  ],
+  "GIFT": [
+    "consumer"
+  ],
+  "GIKLY": [
+    "biotech"
+  ],
+  "GILT": [
+    "comms"
+  ],
+  "GIPR": [
+    "financials"
+  ],
+  "GIS": [
+    "staples"
+  ],
+  "GITS": [
+    "tech"
+  ],
+  "GL$D": [
+    "financials"
+  ],
+  "GL-PD": [
+    "financials"
+  ],
+  "GLABF": [
+    "biotech"
+  ],
+  "GLATF": [
+    "materials"
+  ],
+  "GLAXF": [
+    "biotech"
+  ],
+  "GLBE": [
+    "tech"
+  ],
+  "GLDD": [
+    "industrials"
+  ],
+  "GLDG": [
+    "materials"
+  ],
+  "GLED": [
+    "financials"
+  ],
+  "GLED-UN": [
+    "financials"
+  ],
+  "GLIBK": [
+    "comms"
+  ],
+  "GLIV": [
+    "financials"
+  ],
+  "GLMD": [
+    "biotech"
+  ],
+  "GLND": [
+    "materials"
+  ],
+  "GLNG": [
+    "industrials"
+  ],
+  "GLNK": [
+    "financials"
+  ],
+  "GLO": [
+    "financials"
+  ],
+  "GLOB": [
+    "tech"
+  ],
+  "GLOP$A": [
+    "energy"
+  ],
+  "GLOP$B": [
+    "energy"
+  ],
+  "GLOP$C": [
+    "energy"
+  ],
+  "GLP$B": [
+    "consumer"
+  ],
+  "GLPGF": [
+    "biotech"
+  ],
+  "GLPI": [
+    "financials"
+  ],
+  "GLQ": [
+    "financials"
+  ],
+  "GLTK": [
+    "comms"
+  ],
+  "GLVT": [
+    "industrials"
+  ],
+  "GLW": [
+    "materials"
+  ],
+  "GLXG": [
+    "industrials"
+  ],
+  "GMER": [
+    "tech"
+  ],
+  "GMM": [
+    "tech"
+  ],
+  "GMTL": [
+    "materials"
+  ],
+  "GMTL-WI": [
+    "materials"
+  ],
+  "GMWKF": [
+    "consumer"
+  ],
+  "GNE": [
+    "utilities"
+  ],
+  "GNK": [
+    "industrials"
+  ],
+  "GNL$A": [
+    "financials"
+  ],
+  "GNL$B": [
+    "financials"
+  ],
+  "GNL$D": [
+    "financials"
+  ],
+  "GNL$E": [
+    "financials"
+  ],
+  "GNLN": [
+    "consumer"
+  ],
+  "GNLX": [
+    "biotech"
+  ],
+  "GNMSF": [
+    "biotech"
+  ],
+  "GNT-PA": [
+    "financials"
+  ],
+  "GNVR": [
+    "materials"
+  ],
+  "GOAI": [
+    "tech"
+  ],
+  "GOF": [
+    "financials"
+  ],
+  "GOGO": [
+    "comms"
+  ],
+  "GOODO": [
+    "real_estate"
+  ],
+  "GOOG": [
+    "tech"
+  ],
+  "GOSS": [
+    "biotech"
+  ],
+  "GOTU": [
+    "tech",
+    "consumer"
+  ],
+  "GOVX": [
+    "biotech"
+  ],
+  "GP": [
+    "consumer"
+  ],
+  "GPAEF": [
+    "industrials"
+  ],
+  "GPCR": [
+    "biotech"
+  ],
+  "GPGI": [
+    "financials"
+  ],
+  "GPI": [
+    "consumer"
+  ],
+  "GPN": [
+    "industrials"
+  ],
+  "GPRE": [
+    "materials"
+  ],
+  "GPTGF": [
+    "real_estate"
+  ],
+  "GPUS-PD": [
+    "industrials"
+  ],
+  "GPUSF": [
+    "tech"
+  ],
+  "GRAF-WT": [
+    "financials"
+  ],
+  "GRAPF": [
+    "materials"
+  ],
+  "GRBK$A": [
+    "industrials"
+  ],
+  "GRC": [
+    "industrials"
+  ],
+  "GRCE": [
+    "biotech"
+  ],
+  "GRDN": [
+    "consumer"
+  ],
+  "GRDX": [
+    "biotech"
+  ],
+  "GREEL": [
+    "financials"
+  ],
+  "GRF": [
+    "financials"
+  ],
+  "GRFXY": [
+    "industrials"
+  ],
+  "GRKZF": [
+    "consumer"
+  ],
+  "GRML": [
+    "biotech"
+  ],
+  "GROY-WT": [
+    "materials"
+  ],
+  "GRPS": [
+    "biotech"
+  ],
+  "GRST": [
+    "biotech"
+  ],
+  "GRTX": [
+    "biotech"
+  ],
+  "GRUSF": [
+    "biotech"
+  ],
+  "GRVT": [
+    "materials"
+  ],
+  "GRXXF": [
+    "materials"
+  ],
+  "GS$A": [
+    "materials"
+  ],
+  "GS$C": [
+    "materials"
+  ],
+  "GS$D": [
+    "materials"
+  ],
+  "GSBC": [
+    "financials"
+  ],
+  "GSCCF": [
+    "materials"
+  ],
+  "GSCE": [
+    "materials"
+  ],
+  "GSKH": [
+    "biotech"
+  ],
+  "GSL$B": [
+    "industrials"
+  ],
+  "GSL-PB": [
+    "industrials"
+  ],
+  "GSMT": [
+    "financials"
+  ],
+  "GSOL": [
+    "financials"
+  ],
+  "GSTK": [
+    "biotech"
+  ],
+  "GSUI": [
+    "financials"
+  ],
+  "GT": [
+    "materials"
+  ],
+  "GTBIF": [
+    "biotech"
+  ],
+  "GTCH": [
+    "tech"
+  ],
+  "GTE": [
+    "materials"
+  ],
+  "GTEC": [
+    "semis",
+    "tech"
+  ],
+  "GTLB": [
+    "tech"
+  ],
+  "GTLRY": [
+    "materials"
+  ],
+  "GTY": [
+    "real_estate"
+  ],
+  "GUG": [
+    "financials"
+  ],
+  "GURE": [
+    "materials"
+  ],
+  "GUYGF": [
+    "materials"
+  ],
+  "GVA": [
+    "industrials"
+  ],
+  "GWKSY": [
+    "consumer"
+  ],
+  "GWLL": [
+    "energy"
+  ],
+  "GWRE": [
+    "tech"
+  ],
+  "GWRS": [
+    "utilities"
+  ],
+  "GWTI": [
+    "materials"
+  ],
+  "GXAI": [
+    "tech"
+  ],
+  "GXRP": [
+    "financials"
+  ],
+  "GYGLF": [
+    "staples"
+  ],
+  "GYRE": [
+    "biotech"
+  ],
+  "H": [
+    "consumer"
+  ],
+  "HAFC": [
+    "financials"
+  ],
+  "HAFN": [
+    "industrials"
+  ],
+  "HAL": [
+    "materials"
+  ],
+  "HAO": [
+    "industrials"
+  ],
+  "HAPVY": [
+    "financials"
+  ],
+  "HAS": [
+    "consumer"
+  ],
+  "HAWK": [
+    "tech"
+  ],
+  "HBANP": [
+    "financials"
+  ],
+  "HBCYF": [
+    "financials"
+  ],
+  "HBIA": [
+    "financials"
+  ],
+  "HBNB": [
+    "consumer"
+  ],
+  "HBNC": [
+    "financials"
+  ],
+  "HBT": [
+    "financials"
+  ],
+  "HBUV": [
+    "biotech"
+  ],
+  "HCA": [
+    "biotech"
+  ],
+  "HCAT": [
+    "tech"
+  ],
+  "HCC": [
+    "materials"
+  ],
+  "HCHL": [
+    "consumer"
+  ],
+  "HCMC": [
+    "staples"
+  ],
+  "HCSG": [
+    "biotech"
+  ],
+  "HCTI": [
+    "tech"
+  ],
+  "HCWB": [
+    "biotech"
+  ],
+  "HCXY": [
+    "financials"
+  ],
+  "HDB": [
+    "financials"
+  ],
+  "HEI.A": [
+    "industrials"
+  ],
+  "HELE": [
+    "consumer"
+  ],
+  "HELP": [
+    "biotech"
+  ],
+  "HEMNF": [
+    "tech"
+  ],
+  "HERE": [
+    "tech"
+  ],
+  "HFFG": [
+    "consumer"
+  ],
+  "HFWA": [
+    "financials"
+  ],
+  "HG": [
+    "financials"
+  ],
+  "HGAS": [
+    "materials"
+  ],
+  "HGLB": [
+    "financials"
+  ],
+  "HGMCF": [
+    "materials"
+  ],
+  "HGYN": [
+    "materials"
+  ],
+  "HHH": [
+    "financials"
+  ],
+  "HHLKF": [
+    "materials"
+  ],
+  "HIFS": [
+    "financials"
+  ],
+  "HIG-PG": [
+    "financials"
+  ],
+  "HIHO": [
+    "industrials"
+  ],
+  "HII": [
+    "industrials"
+  ],
+  "HIO": [
+    "financials"
+  ],
+  "HIT": [
+    "financials"
+  ],
+  "HITI": [
+    "consumer"
+  ],
+  "HIVE": [
+    "financials"
+  ],
+  "HKHC": [
+    "financials"
+  ],
+  "HKHHF": [
+    "staples"
+  ],
+  "HKHHY": [
+    "staples"
+  ],
+  "HKIT": [
+    "semis",
+    "tech"
+  ],
+  "HL-PB": [
+    "materials"
+  ],
+  "HLEO": [
+    "industrials"
+  ],
+  "HLIT": [
+    "comms"
+  ],
+  "HLLK": [
+    "real_estate"
+  ],
+  "HLLY-WT": [
+    "consumer"
+  ],
+  "HLMN": [
+    "industrials"
+  ],
+  "HLNCF": [
+    "materials"
+  ],
+  "HLX": [
+    "materials"
+  ],
+  "HMDCF": [
+    "biotech"
+  ],
+  "HMH": [
+    "industrials"
+  ],
+  "HMN": [
+    "financials"
+  ],
+  "HMR": [
+    "industrials"
+  ],
+  "HMRZF": [
+    "consumer"
+  ],
+  "HNOI": [
+    "materials"
+  ],
+  "HNRG": [
+    "utilities"
+  ],
+  "HNSDF": [
+    "industrials"
+  ],
+  "HNVR": [
+    "financials"
+  ],
+  "HOLO": [
+    "tech"
+  ],
+  "HOMB": [
+    "financials"
+  ],
+  "HON": [
+    "industrials"
+  ],
+  "HOPE": [
+    "financials"
+  ],
+  "HOTH": [
+    "biotech"
+  ],
+  "HPE$C": [
+    "tech"
+  ],
+  "HPE-PC": [
+    "tech"
+  ],
+  "HPHTF": [
+    "tech"
+  ],
+  "HPHTY": [
+    "tech"
+  ],
+  "HPP-PC": [
+    "real_estate"
+  ],
+  "HQ": [
+    "tech"
+  ],
+  "HQI": [
+    "industrials"
+  ],
+  "HQWW": [
+    "tech"
+  ],
+  "HQWWW": [
+    "tech"
+  ],
+  "HQY": [
+    "industrials"
+  ],
+  "HRBAY": [
+    "industrials"
+  ],
+  "HRIBF": [
+    "tech"
+  ],
+  "HROW": [
+    "biotech"
+  ],
+  "HSBH": [
+    "financials"
+  ],
+  "HSCS": [
+    "biotech"
+  ],
+  "HSDT": [
+    "financials"
+  ],
+  "HSHP": [
+    "industrials"
+  ],
+  "HSIGF": [
+    "industrials"
+  ],
+  "HSLV": [
+    "materials"
+  ],
+  "HSTM": [
+    "biotech",
+    "tech"
+  ],
+  "HSY": [
+    "staples"
+  ],
+  "HTFL": [
+    "biotech"
+  ],
+  "HTGC": [
+    "financials"
+  ],
+  "HTH": [
+    "financials"
+  ],
+  "HTHL": [
+    "consumer"
+  ],
+  "HTLM": [
+    "consumer"
+  ],
+  "HTO": [
+    "utilities"
+  ],
+  "HTOO": [
+    "industrials"
+  ],
+  "HUBG": [
+    "industrials"
+  ],
+  "HUBS": [
+    "tech"
+  ],
+  "HUHU": [
+    "consumer",
+    "tech"
+  ],
+  "HUIZ": [
+    "financials"
+  ],
+  "HUM": [
+    "financials"
+  ],
+  "HUMAW": [
+    "biotech"
+  ],
+  "HURA": [
+    "biotech"
+  ],
+  "HUT": [
+    "financials"
+  ],
+  "HUYA": [
+    "tech"
+  ],
+  "HVII": [
+    "utilities"
+  ],
+  "HVT.A": [
+    "consumer"
+  ],
+  "HXL": [
+    "materials"
+  ],
+  "HYAC-WT": [
+    "financials"
+  ],
+  "HYFT": [
+    "biotech"
+  ],
+  "HYI": [
+    "financials"
+  ],
+  "HYMC": [
+    "materials"
+  ],
+  "HYNE": [
+    "financials"
+  ],
+  "HYNLY": [
+    "utilities"
+  ],
+  "HYOR": [
+    "industrials"
+  ],
+  "HYPMY": [
+    "biotech"
+  ],
+  "HYT": [
+    "financials"
+  ],
+  "HZO": [
+    "consumer"
+  ],
+  "IAALF": [
+    "industrials"
+  ],
+  "IAC": [
+    "tech"
+  ],
+  "IACQ": [
+    "financials"
+  ],
+  "IAF": [
+    "financials"
+  ],
+  "IAG": [
+    "materials"
+  ],
+  "IAUX-WT": [
+    "materials"
+  ],
+  "IBACR": [
+    "financials"
+  ],
+  "IBG": [
+    "staples"
+  ],
+  "IBIDF": [
+    "tech"
+  ],
+  "IBIO": [
+    "biotech"
+  ],
+  "IBL": [
+    "biotech"
+  ],
+  "IBN": [
+    "financials"
+  ],
+  "IBO": [
+    "biotech"
+  ],
+  "IBRX": [
+    "biotech"
+  ],
+  "ICCC": [
+    "biotech"
+  ],
+  "ICCM": [
+    "biotech"
+  ],
+  "ICHGF": [
+    "consumer"
+  ],
+  "ICL": [
+    "materials"
+  ],
+  "ICON": [
+    "industrials"
+  ],
+  "ICU": [
+    "biotech"
+  ],
+  "IDAI": [
+    "tech"
+  ],
+  "IDEXF": [
+    "consumer"
+  ],
+  "IDN": [
+    "tech"
+  ],
+  "IDPEY": [
+    "consumer"
+  ],
+  "IDPUF": [
+    "staples"
+  ],
+  "IEHC": [
+    "semis"
+  ],
+  "IFCNF": [
+    "tech"
+  ],
+  "IFED": [
+    "financials"
+  ],
+  "IFHLY": [
+    "tech"
+  ],
+  "IFN": [
+    "financials"
+  ],
+  "IFRX": [
+    "biotech"
+  ],
+  "IFS": [
+    "financials"
+  ],
+  "IGA": [
+    "financials"
+  ],
+  "IGC": [
+    "biotech"
+  ],
+  "IGD": [
+    "financials"
+  ],
+  "IGI": [
+    "financials"
+  ],
+  "IGTA": [
+    "tech"
+  ],
+  "IGTAW": [
+    "financials"
+  ],
+  "IH": [
+    "tech"
+  ],
+  "IHD": [
+    "financials"
+  ],
+  "IHICF": [
+    "industrials"
+  ],
+  "IIF": [
+    "financials"
+  ],
+  "III": [
+    "industrials"
+  ],
+  "IINN": [
+    "biotech"
+  ],
+  "IINNW": [
+    "biotech"
+  ],
+  "ILAL": [
+    "real_estate"
+  ],
+  "ILLR": [
+    "financials"
+  ],
+  "ILPLF": [
+    "biotech"
+  ],
+  "IMAA": [
+    "tech"
+  ],
+  "IMAQ": [
+    "consumer"
+  ],
+  "IMAX": [
+    "tech"
+  ],
+  "IMCC": [
+    "biotech",
+    "consumer"
+  ],
+  "IMKTA": [
+    "consumer"
+  ],
+  "IMMR": [
+    "tech"
+  ],
+  "IMMX": [
+    "biotech"
+  ],
+  "IMNN": [
+    "biotech"
+  ],
+  "IMSR": [
+    "energy"
+  ],
+  "IMUX": [
+    "biotech"
+  ],
+  "INAI": [
+    "biotech"
+  ],
+  "INBS": [
+    "biotech"
+  ],
+  "INBX": [
+    "biotech"
+  ],
+  "INCY": [
+    "industrials"
+  ],
+  "INDI": [
+    "semis"
+  ],
+  "INDO": [
+    "materials"
+  ],
+  "INDP": [
+    "biotech"
+  ],
+  "INFY": [
+    "tech"
+  ],
+  "INGM": [
+    "consumer"
+  ],
+  "INGVF": [
+    "financials"
+  ],
+  "INHI": [
+    "consumer"
+  ],
+  "INIKF": [
+    "comms"
+  ],
+  "INKT": [
+    "biotech"
+  ],
+  "INLF": [
+    "industrials"
+  ],
+  "INM": [
+    "biotech"
+  ],
+  "INO": [
+    "biotech"
+  ],
+  "INOD": [
+    "tech"
+  ],
+  "INPOF": [
+    "industrials"
+  ],
+  "INR": [
+    "materials"
+  ],
+  "INSG": [
+    "tech"
+  ],
+  "INSW": [
+    "industrials"
+  ],
+  "INTC": [
+    "semis"
+  ],
+  "INTJ": [
+    "industrials"
+  ],
+  "INTR": [
+    "financials"
+  ],
+  "INTS": [
+    "biotech"
+  ],
+  "INTT": [
+    "industrials"
+  ],
+  "INTU": [
+    "tech"
+  ],
+  "INTZ": [
+    "tech"
+  ],
+  "INUV": [
+    "industrials"
+  ],
+  "INVL": [
+    "financials"
+  ],
+  "INVLW": [
+    "financials"
+  ],
+  "INVZ": [
+    "consumer"
+  ],
+  "INVZW": [
+    "consumer"
+  ],
+  "IONQ-WT": [
+    "tech"
+  ],
+  "IONR": [
+    "energy"
+  ],
+  "IOVA": [
+    "biotech"
+  ],
+  "IPAR": [
+    "materials"
+  ],
+  "IPDN": [
+    "tech"
+  ],
+  "IPEX": [
+    "financials"
+  ],
+  "IPFX": [
+    "tech"
+  ],
+  "IPHYF": [
+    "biotech"
+  ],
+  "IPI": [
+    "materials"
+  ],
+  "IPM": [
+    "tech"
+  ],
+  "IPOD": [
+    "financials"
+  ],
+  "IPSAY": [
+    "industrials"
+  ],
+  "IPSC": [
+    "biotech"
+  ],
+  "IPSOF": [
+    "industrials"
+  ],
+  "IPST": [
+    "staples"
+  ],
+  "IPTNF": [
+    "tech"
+  ],
+  "IPWR": [
+    "semis"
+  ],
+  "IPX": [
+    "materials"
+  ],
+  "IQ": [
+    "consumer"
+  ],
+  "IQST": [
+    "comms"
+  ],
+  "IR": [
+    "industrials"
+  ],
+  "IRAB-UN": [
+    "financials"
+  ],
+  "IRD": [
+    "biotech"
+  ],
+  "IREN": [
+    "financials"
+  ],
+  "IRS-WT": [
+    "real_estate"
+  ],
+  "IRVRF": [
+    "materials"
+  ],
+  "ISADY": [
+    "industrials"
+  ],
+  "ISFFF": [
+    "industrials"
+  ],
+  "ISPC": [
+    "industrials"
+  ],
+  "ISTR": [
+    "financials"
+  ],
+  "ITHUF": [
+    "biotech"
+  ],
+  "ITMSF": [
+    "tech"
+  ],
+  "ITOC": [
+    "biotech"
+  ],
+  "ITOCF": [
+    "industrials"
+  ],
+  "ITP": [
+    "industrials"
+  ],
+  "ITRG": [
+    "materials"
+  ],
+  "ITRN": [
+    "consumer"
+  ],
+  "ITUB": [
+    "financials"
+  ],
+  "IVBXF": [
+    "biotech"
+  ],
+  "IVEVF": [
+    "biotech"
+  ],
+  "IVF": [
+    "biotech"
+  ],
+  "IVHI": [
+    "industrials"
+  ],
+  "IVPR": [
+    "consumer"
+  ],
+  "IVR-PC": [
+    "financials"
+  ],
+  "IWFL": [
+    "financials"
+  ],
+  "IXHL": [
+    "biotech"
+  ],
+  "JAGX": [
+    "biotech"
+  ],
+  "JAN": [
+    "financials"
+  ],
+  "JAZZ": [
+    "biotech"
+  ],
+  "JBHIF": [
+    "consumer"
+  ],
+  "JBHT": [
+    "industrials"
+  ],
+  "JBI": [
+    "industrials"
+  ],
+  "JBIO": [
+    "biotech"
+  ],
+  "JBK": [
+    "financials"
+  ],
+  "JBL": [
+    "semis"
+  ],
+  "JBS": [
+    "staples"
+  ],
+  "JCAP": [
+    "financials"
+  ],
+  "JCE": [
+    "financials"
+  ],
+  "JCI": [
+    "industrials"
+  ],
+  "JDCMF": [
+    "consumer"
+  ],
+  "JDZG": [
+    "consumer"
+  ],
+  "JEF": [
+    "financials"
+  ],
+  "JELLF": [
+    "tech"
+  ],
+  "JEM": [
+    "consumer"
+  ],
+  "JENA-RI": [
+    "financials"
+  ],
+  "JEQ": [
+    "financials"
+  ],
+  "JF": [
+    "tech"
+  ],
+  "JFB": [
+    "industrials"
+  ],
+  "JFBR": [
+    "consumer"
+  ],
+  "JFBRW": [
+    "consumer"
+  ],
+  "JHG": [
+    "financials"
+  ],
+  "JHI": [
+    "financials"
+  ],
+  "JHIUF": [
+    "materials"
+  ],
+  "JHPCY": [
+    "biotech"
+  ],
+  "JJETF": [
+    "financials"
+  ],
+  "JMG": [
+    "consumer"
+  ],
+  "JNGHF": [
+    "biotech"
+  ],
+  "JNJ": [
+    "biotech"
+  ],
+  "JNVR": [
+    "biotech"
+  ],
+  "JOB": [
+    "industrials"
+  ],
+  "JOCM": [
+    "tech"
+  ],
+  "JOF": [
+    "financials"
+  ],
+  "JOYY": [
+    "tech"
+  ],
+  "JPC": [
+    "financials"
+  ],
+  "JPM": [
+    "financials"
+  ],
+  "JPM$C": [
+    "financials"
+  ],
+  "JPM$D": [
+    "financials"
+  ],
+  "JPM$J": [
+    "financials"
+  ],
+  "JPM$K": [
+    "financials"
+  ],
+  "JPM$L": [
+    "financials"
+  ],
+  "JPM$M": [
+    "financials"
+  ],
+  "JRI": [
+    "financials"
+  ],
+  "JSM": [
+    "financials"
+  ],
+  "JTAI": [
+    "industrials"
+  ],
+  "JTGEY": [
+    "financials"
+  ],
+  "JTGLF": [
+    "financials"
+  ],
+  "JUNS": [
+    "biotech"
+  ],
+  "JUSHF": [
+    "biotech"
+  ],
+  "JXG": [
+    "consumer"
+  ],
+  "JXN-PA": [
+    "financials"
+  ],
+  "JYD": [
+    "industrials"
+  ],
+  "JZ": [
+    "consumer"
+  ],
+  "KALU": [
+    "materials"
+  ],
+  "KAYS": [
+    "biotech"
+  ],
+  "KB": [
+    "financials"
+  ],
+  "KBH": [
+    "industrials"
+  ],
+  "KBSR": [
+    "financials"
+  ],
+  "KCAC-UN": [
+    "financials"
+  ],
+  "KCLHF": [
+    "tech"
+  ],
+  "KDDIF": [
+    "comms"
+  ],
+  "KDKRW": [
+    "tech"
+  ],
+  "KDOZF": [
+    "industrials"
+  ],
+  "KDP": [
+    "staples"
+  ],
+  "KELYB": [
+    "industrials"
+  ],
+  "KEP": [
+    "utilities"
+  ],
+  "KEY$I": [
+    "financials"
+  ],
+  "KEY$J": [
+    "financials"
+  ],
+  "KEY$K": [
+    "financials"
+  ],
+  "KEY$L": [
+    "financials"
+  ],
+  "KF": [
+    "financials"
+  ],
+  "KFRC": [
+    "industrials"
+  ],
+  "KGCRF": [
+    "materials"
+  ],
+  "KGEI": [
+    "materials"
+  ],
+  "KGS": [
+    "utilities"
+  ],
+  "KIDZ": [
+    "consumer"
+  ],
+  "KIDZW": [
+    "consumer"
+  ],
+  "KIKOF": [
+    "staples"
+  ],
+  "KINS": [
+    "financials"
+  ],
+  "KIO": [
+    "financials"
+  ],
+  "KIQSF": [
+    "industrials"
+  ],
+  "KITT": [
+    "industrials"
+  ],
+  "KITTW": [
+    "industrials"
+  ],
+  "KKR$D": [
+    "financials"
+  ],
+  "KKR-PD": [
+    "financials"
+  ],
+  "KLRS": [
+    "biotech"
+  ],
+  "KMTS": [
+    "biotech"
+  ],
+  "KMX": [
+    "consumer"
+  ],
+  "KMYGY": [
+    "materials"
+  ],
+  "KNOP": [
+    "industrials"
+  ],
+  "KNSL": [
+    "financials"
+  ],
+  "KNTK": [
+    "utilities"
+  ],
+  "KNX": [
+    "industrials"
+  ],
+  "KODK": [
+    "tech"
+  ],
+  "KOPN": [
+    "semis"
+  ],
+  "KORG": [
+    "tech"
+  ],
+  "KOS": [
+    "materials"
+  ],
+  "KOSCF": [
+    "staples"
+  ],
+  "KOYN": [
+    "financials"
+  ],
+  "KPET-UN": [
+    "financials"
+  ],
+  "KPHM": [
+    "biotech"
+  ],
+  "KRC": [
+    "financials"
+  ],
+  "KRG": [
+    "financials"
+  ],
+  "KRKR": [
+    "industrials"
+  ],
+  "KRMD": [
+    "biotech"
+  ],
+  "KRMN": [
+    "industrials"
+  ],
+  "KRRO": [
+    "biotech"
+  ],
+  "KRT": [
+    "materials"
+  ],
+  "KRTL": [
+    "industrials"
+  ],
+  "KSEZ": [
+    "financials"
+  ],
+  "KSS": [
+    "consumer"
+  ],
+  "KTEL": [
+    "tech"
+  ],
+  "KVAC": [
+    "financials"
+  ],
+  "KVYO": [
+    "tech"
+  ],
+  "KW": [
+    "real_estate"
+  ],
+  "KWMW": [
+    "consumer"
+  ],
+  "KXHCF": [
+    "semis"
+  ],
+  "KXIAY": [
+    "tech"
+  ],
+  "KYNB": [
+    "biotech"
+  ],
+  "KYOCY": [
+    "semis"
+  ],
+  "KYTX": [
+    "biotech"
+  ],
+  "KZIA": [
+    "biotech"
+  ],
+  "KZR": [
+    "biotech"
+  ],
+  "LAAOF": [
+    "consumer"
+  ],
+  "LAB": [
+    "industrials"
+  ],
+  "LABFF": [
+    "biotech"
+  ],
+  "LABT": [
+    "biotech"
+  ],
+  "LAC": [
+    "materials"
+  ],
+  "LACHF": [
+    "financials"
+  ],
+  "LADR": [
+    "financials"
+  ],
+  "LAES": [
+    "semis"
+  ],
+  "LANDO": [
+    "financials"
+  ],
+  "LAR": [
+    "materials"
+  ],
+  "LARK": [
+    "financials"
+  ],
+  "LASE": [
+    "tech"
+  ],
+  "LAWIL": [
+    "tech"
+  ],
+  "LAWR": [
+    "tech"
+  ],
+  "LBGJ": [
+    "financials"
+  ],
+  "LBRA": [
+    "financials"
+  ],
+  "LBRT": [
+    "materials"
+  ],
+  "LBSR": [
+    "materials"
+  ],
+  "LC": [
+    "financials"
+  ],
+  "LCCC": [
+    "financials"
+  ],
+  "LCID": [
+    "consumer"
+  ],
+  "LCTX": [
+    "biotech"
+  ],
+  "LCUT": [
+    "industrials"
+  ],
+  "LDI": [
+    "financials"
+  ],
+  "LEE": [
+    "comms"
+  ],
+  "LEN.B": [
+    "industrials"
+  ],
+  "LENDX": [
+    "financials"
+  ],
+  "LEU": [
+    "materials"
+  ],
+  "LEVI": [
+    "consumer"
+  ],
+  "LFS": [
+    "consumer"
+  ],
+  "LFST": [
+    "biotech"
+  ],
+  "LFVN": [
+    "biotech"
+  ],
+  "LFWD": [
+    "biotech"
+  ],
+  "LGCB": [
+    "consumer"
+  ],
+  "LGIH": [
+    "industrials"
+  ],
+  "LGMK": [
+    "biotech"
+  ],
+  "LGN": [
+    "industrials"
+  ],
+  "LGNYZ": [
+    "biotech"
+  ],
+  "LGNZZ": [
+    "biotech"
+  ],
+  "LGVN": [
+    "biotech"
+  ],
+  "LH": [
+    "biotech"
+  ],
+  "LHSW": [
+    "tech"
+  ],
+  "LIFX": [
+    "tech"
+  ],
+  "LILAB": [
+    "comms"
+  ],
+  "LIMX": [
+    "consumer"
+  ],
+  "LIN": [
+    "materials"
+  ],
+  "LINC": [
+    "consumer"
+  ],
+  "LIND": [
+    "industrials"
+  ],
+  "LINE": [
+    "financials"
+  ],
+  "LION": [
+    "consumer"
+  ],
+  "LITE": [
+    "comms"
+  ],
+  "LITM": [
+    "materials"
+  ],
+  "LITSF": [
+    "materials"
+  ],
+  "LIVG": [
+    "tech"
+  ],
+  "LIXT": [
+    "biotech"
+  ],
+  "LKFN": [
+    "financials"
+  ],
+  "LKYLY": [
+    "materials"
+  ],
+  "LKYRF": [
+    "materials"
+  ],
+  "LLOBF": [
+    "financials"
+  ],
+  "LLYVB": [
+    "consumer"
+  ],
+  "LMAT": [
+    "biotech"
+  ],
+  "LMB": [
+    "industrials"
+  ],
+  "LMFA": [
+    "financials",
+    "tech"
+  ],
+  "LMNR": [
+    "staples"
+  ],
+  "LMRI": [
+    "biotech"
+  ],
+  "LMRXF": [
+    "energy"
+  ],
+  "LMT": [
+    "industrials"
+  ],
+  "LNAI": [
+    "biotech"
+  ],
+  "LNC$D": [
+    "financials"
+  ],
+  "LNG": [
+    "energy"
+  ],
+  "LNKS": [
+    "semis"
+  ],
+  "LNT": [
+    "utilities"
+  ],
+  "LNXSF": [
+    "materials"
+  ],
+  "LNXSY": [
+    "materials"
+  ],
+  "LNZA": [
+    "materials"
+  ],
+  "LOB-PA": [
+    "financials"
+  ],
+  "LOBO": [
+    "industrials"
+  ],
+  "LOCL": [
+    "staples"
+  ],
+  "LOCLW": [
+    "staples"
+  ],
+  "LODE": [
+    "materials"
+  ],
+  "LOGC": [
+    "consumer"
+  ],
+  "LOIMF": [
+    "industrials"
+  ],
+  "LOKV": [
+    "consumer"
+  ],
+  "LOMA": [
+    "materials"
+  ],
+  "LONA": [
+    "biotech"
+  ],
+  "LOTMY": [
+    "consumer"
+  ],
+  "LOTW": [
+    "consumer"
+  ],
+  "LPCHY": [
+    "financials"
+  ],
+  "LPRO": [
+    "financials"
+  ],
+  "LQDA": [
+    "biotech"
+  ],
+  "LRCX": [
+    "industrials"
+  ],
+  "LRHC": [
+    "real_estate"
+  ],
+  "LRRIF": [
+    "materials"
+  ],
+  "LRVIY": [
+    "staples"
+  ],
+  "LSEGY": [
+    "financials"
+  ],
+  "LSF": [
+    "staples"
+  ],
+  "LSHGF": [
+    "comms"
+  ],
+  "LSHGY": [
+    "comms"
+  ],
+  "LSPD": [
+    "tech"
+  ],
+  "LSRCF": [
+    "tech"
+  ],
+  "LSTA": [
+    "biotech"
+  ],
+  "LTBR": [
+    "materials"
+  ],
+  "LTM": [
+    "industrials"
+  ],
+  "LTMGF": [
+    "consumer"
+  ],
+  "LTRN": [
+    "biotech"
+  ],
+  "LTRY": [
+    "tech"
+  ],
+  "LU": [
+    "financials"
+  ],
+  "LUCD": [
+    "biotech"
+  ],
+  "LUNR": [
+    "industrials"
+  ],
+  "LUV": [
+    "industrials"
+  ],
+  "LVO": [
+    "consumer"
+  ],
+  "LVS": [
+    "consumer"
+  ],
+  "LWLG": [
+    "materials"
+  ],
+  "LWSCF": [
+    "biotech"
+  ],
+  "LXFR": [
+    "materials"
+  ],
+  "LXU": [
+    "materials"
+  ],
+  "LYEL": [
+    "biotech"
+  ],
+  "LYTS": [
+    "consumer"
+  ],
+  "LZM-WT": [
+    "materials"
+  ],
+  "LZMH": [
+    "tech"
+  ],
+  "MA": [
+    "industrials"
+  ],
+  "MAAS": [
+    "tech"
+  ],
+  "MAIA": [
+    "biotech"
+  ],
+  "MAMO": [
+    "biotech"
+  ],
+  "MANA": [
+    "financials"
+  ],
+  "MANDF": [
+    "financials"
+  ],
+  "MANE": [
+    "biotech"
+  ],
+  "MANH": [
+    "tech"
+  ],
+  "MAPPF": [
+    "tech"
+  ],
+  "MAPS": [
+    "tech"
+  ],
+  "MARA": [
+    "financials"
+  ],
+  "MAS": [
+    "industrials"
+  ],
+  "MASI": [
+    "biotech"
+  ],
+  "MASK": [
+    "tech"
+  ],
+  "MASS": [
+    "biotech"
+  ],
+  "MAT": [
+    "consumer"
+  ],
+  "MATH": [
+    "financials"
+  ],
+  "MATV": [
+    "materials"
+  ],
+  "MATW": [
+    "materials"
+  ],
+  "MATX": [
+    "industrials"
+  ],
+  "MAWAF": [
+    "tech"
+  ],
+  "MAXN": [
+    "semis"
+  ],
+  "MAZE": [
+    "biotech"
+  ],
+  "MBAI": [
+    "tech"
+  ],
+  "MBFJF": [
+    "financials"
+  ],
+  "MBLY": [
+    "tech"
+  ],
+  "MBNKO": [
+    "financials"
+  ],
+  "MBRX": [
+    "biotech"
+  ],
+  "MBX": [
+    "biotech"
+  ],
+  "MCAH": [
+    "financials"
+  ],
+  "MCFT": [
+    "industrials"
+  ],
+  "MCHB": [
+    "financials"
+  ],
+  "MCI": [
+    "financials"
+  ],
+  "MCO": [
+    "industrials"
+  ],
+  "MCRB": [
+    "biotech"
+  ],
+  "MCRP": [
+    "consumer"
+  ],
+  "MCTA": [
+    "biotech"
+  ],
+  "MCW": [
+    "consumer"
+  ],
+  "MDA": [
+    "industrials"
+  ],
+  "MDAI": [
+    "biotech"
+  ],
+  "MDALF": [
+    "industrials"
+  ],
+  "MDCOY": [
+    "energy"
+  ],
+  "MDCX": [
+    "biotech"
+  ],
+  "MDCXW": [
+    "biotech"
+  ],
+  "MDDTY": [
+    "financials"
+  ],
+  "MDEX": [
+    "consumer"
+  ],
+  "MDLN": [
+    "biotech"
+  ],
+  "MDT": [
+    "biotech"
+  ],
+  "MDWD": [
+    "biotech"
+  ],
+  "MEC": [
+    "industrials"
+  ],
+  "MEDP": [
+    "industrials"
+  ],
+  "MEGI": [
+    "financials"
+  ],
+  "MEHA": [
+    "biotech"
+  ],
+  "MEIUF": [
+    "comms"
+  ],
+  "MELI": [
+    "industrials"
+  ],
+  "MEOBF": [
+    "biotech"
+  ],
+  "MEOH": [
+    "materials"
+  ],
+  "MET$A": [
+    "financials"
+  ],
+  "MET$E": [
+    "financials"
+  ],
+  "MET$F": [
+    "financials"
+  ],
+  "META": [
+    "tech"
+  ],
+  "METCZ": [
+    "financials"
+  ],
+  "METRY": [
+    "staples"
+  ],
+  "MFON": [
+    "tech"
+  ],
+  "MGA": [
+    "consumer"
+  ],
+  "MGCLY": [
+    "consumer"
+  ],
+  "MGCOF": [
+    "consumer"
+  ],
+  "MGHTF": [
+    "utilities"
+  ],
+  "MGIH": [
+    "comms"
+  ],
+  "MGM": [
+    "consumer"
+  ],
+  "MGN": [
+    "industrials"
+  ],
+  "MGNC": [
+    "staples"
+  ],
+  "MGPI": [
+    "consumer"
+  ],
+  "MGRX": [
+    "biotech"
+  ],
+  "MGTX": [
+    "biotech"
+  ],
+  "MGX": [
+    "biotech"
+  ],
+  "MHD": [
+    "financials"
+  ],
+  "MHF": [
+    "financials"
+  ],
+  "MHH": [
+    "industrials"
+  ],
+  "MHO": [
+    "industrials"
+  ],
+  "MI": [
+    "financials"
+  ],
+  "MIAX": [
+    "financials"
+  ],
+  "MICLF": [
+    "industrials"
+  ],
+  "MIDD": [
+    "industrials"
+  ],
+  "MIGI": [
+    "financials"
+  ],
+  "MIMDF": [
+    "tech"
+  ],
+  "MIMI": [
+    "industrials"
+  ],
+  "MIMTF": [
+    "materials"
+  ],
+  "MINE": [
+    "materials"
+  ],
+  "MIRA": [
+    "biotech"
+  ],
+  "MIRM": [
+    "biotech"
+  ],
+  "MIY": [
+    "financials"
+  ],
+  "MKC-V": [
+    "staples"
+  ],
+  "MKC.V": [
+    "staples"
+  ],
+  "MKDW": [
+    "tech"
+  ],
+  "MLCMF": [
+    "comms"
+  ],
+  "MLEC": [
+    "staples"
+  ],
+  "MLIZY": [
+    "tech"
+  ],
+  "MLM": [
+    "materials"
+  ],
+  "MLP": [
+    "real_estate"
+  ],
+  "MMA": [
+    "industrials"
+  ],
+  "MMCP": [
+    "industrials"
+  ],
+  "MMD": [
+    "financials"
+  ],
+  "MMED": [
+    "biotech"
+  ],
+  "MMLP": [
+    "consumer"
+  ],
+  "MMTIF": [
+    "tech"
+  ],
+  "MMTX": [
+    "financials"
+  ],
+  "MMXGY": [
+    "industrials"
+  ],
+  "MNDO": [
+    "tech"
+  ],
+  "MNDR": [
+    "tech"
+  ],
+  "MNMXF": [
+    "industrials"
+  ],
+  "MNR": [
+    "materials"
+  ],
+  "MNSKY": [
+    "comms"
+  ],
+  "MNTR": [
+    "financials"
+  ],
+  "MNYW": [
+    "industrials"
+  ],
+  "MNZLY": [
+    "utilities"
+  ],
+  "MOBI": [
+    "biotech"
+  ],
+  "MOBX": [
+    "semis"
+  ],
+  "MOBXW": [
+    "semis"
+  ],
+  "MODD": [
+    "biotech"
+  ],
+  "MOG-B": [
+    "industrials"
+  ],
+  "MOG.A": [
+    "industrials"
+  ],
+  "MOG.B": [
+    "industrials"
+  ],
+  "MOH": [
+    "financials"
+  ],
+  "MOLN": [
+    "biotech"
+  ],
+  "MOMO": [
+    "tech"
+  ],
+  "MONRF": [
+    "consumer"
+  ],
+  "MOS": [
+    "materials"
+  ],
+  "MOVE": [
+    "tech"
+  ],
+  "MP": [
+    "materials"
+  ],
+  "MPA": [
+    "financials"
+  ],
+  "MPB": [
+    "financials"
+  ],
+  "MPJPY": [
+    "tech"
+  ],
+  "MPNGF": [
+    "consumer"
+  ],
+  "MPT": [
+    "financials"
+  ],
+  "MPTI": [
+    "semis"
+  ],
+  "MPTI-RI": [
+    "semis"
+  ],
+  "MPU": [
+    "consumer"
+  ],
+  "MPV": [
+    "financials"
+  ],
+  "MQY": [
+    "financials"
+  ],
+  "MRAI": [
+    "biotech"
+  ],
+  "MRBK": [
+    "financials"
+  ],
+  "MRCIF": [
+    "consumer"
+  ],
+  "MRDN": [
+    "biotech"
+  ],
+  "MRK": [
+    "biotech"
+  ],
+  "MRM": [
+    "consumer"
+  ],
+  "MRNOW": [
+    "consumer"
+  ],
+  "MRP": [
+    "real_estate"
+  ],
+  "MRT": [
+    "consumer"
+  ],
+  "MRUWY": [
+    "semis"
+  ],
+  "MRVI": [
+    "biotech"
+  ],
+  "MRVL": [
+    "semis"
+  ],
+  "MRX": [
+    "financials"
+  ],
+  "MRZLF": [
+    "materials"
+  ],
+  "MS$A": [
+    "financials"
+  ],
+  "MS$E": [
+    "financials"
+  ],
+  "MS$F": [
+    "financials"
+  ],
+  "MS$I": [
+    "financials"
+  ],
+  "MS$K": [
+    "financials"
+  ],
+  "MS$L": [
+    "financials"
+  ],
+  "MS$O": [
+    "financials"
+  ],
+  "MS$P": [
+    "financials"
+  ],
+  "MS$Q": [
+    "financials"
+  ],
+  "MS-PL": [
+    "financials"
+  ],
+  "MS-PP": [
+    "financials"
+  ],
+  "MSAI": [
+    "industrials"
+  ],
+  "MSAIW": [
+    "industrials"
+  ],
+  "MSBIP": [
+    "financials"
+  ],
+  "MSBT": [
+    "financials"
+  ],
+  "MSD": [
+    "financials"
+  ],
+  "MSFT": [
+    "tech",
+    "semis"
+  ],
+  "MSGM": [
+    "tech"
+  ],
+  "MSLE": [
+    "biotech"
+  ],
+  "MSM": [
+    "consumer"
+  ],
+  "MSOGF": [
+    "materials"
+  ],
+  "MSOKF": [
+    "industrials"
+  ],
+  "MSPRZ": [
+    "tech"
+  ],
+  "MSS": [
+    "consumer"
+  ],
+  "MSSHY": [
+    "industrials"
+  ],
+  "MSTKY": [
+    "consumer"
+  ],
+  "MSUXF": [
+    "industrials"
+  ],
+  "MTAL": [
+    "financials"
+  ],
+  "MTB-PH": [
+    "financials"
+  ],
+  "MTDR": [
+    "materials"
+  ],
+  "MTEK": [
+    "semis",
+    "tech"
+  ],
+  "MTEKW": [
+    "comms"
+  ],
+  "MTEN": [
+    "industrials"
+  ],
+  "MTEX": [
+    "biotech"
+  ],
+  "MTGRF": [
+    "materials"
+  ],
+  "MTH": [
+    "industrials"
+  ],
+  "MTLMY": [
+    "materials"
+  ],
+  "MTLS": [
+    "tech"
+  ],
+  "MTMCF": [
+    "materials"
+  ],
+  "MTNB": [
+    "biotech"
+  ],
+  "MTPLF": [
+    "consumer"
+  ],
+  "MTVA": [
+    "biotech"
+  ],
+  "MTW": [
+    "industrials"
+  ],
+  "MTWO": [
+    "consumer"
+  ],
+  "MTX": [
+    "materials"
+  ],
+  "MU": [
+    "semis"
+  ],
+  "MUA": [
+    "financials"
+  ],
+  "MUC": [
+    "financials"
+  ],
+  "MUJ": [
+    "financials"
+  ],
+  "MUX": [
+    "materials"
+  ],
+  "MVBF": [
+    "financials"
+  ],
+  "MVIS": [
+    "semis"
+  ],
+  "MVST": [
+    "tech"
+  ],
+  "MVSTW": [
+    "tech"
+  ],
+  "MWC": [
+    "tech"
+  ],
+  "MWYN": [
+    "consumer"
+  ],
+  "MXF": [
+    "financials"
+  ],
+  "MXL": [
+    "semis"
+  ],
+  "MXUBY": [
+    "consumer"
+  ],
+  "MXUGF": [
+    "consumer"
+  ],
+  "MYCRY": [
+    "tech"
+  ],
+  "MYFW": [
+    "financials"
+  ],
+  "MYGN": [
+    "biotech"
+  ],
+  "MYI": [
+    "financials"
+  ],
+  "MYN": [
+    "financials"
+  ],
+  "MYSE": [
+    "comms"
+  ],
+  "NAAS": [
+    "consumer"
+  ],
+  "NAK": [
+    "materials"
+  ],
+  "NAKA": [
+    "biotech"
+  ],
+  "NAMM": [
+    "materials"
+  ],
+  "NAMMW": [
+    "materials"
+  ],
+  "NBBK": [
+    "financials"
+  ],
+  "NBIS": [
+    "tech"
+  ],
+  "NBND": [
+    "biotech"
+  ],
+  "NBP": [
+    "biotech"
+  ],
+  "NBRWF": [
+    "materials"
+  ],
+  "NBTB": [
+    "financials"
+  ],
+  "NBTX": [
+    "biotech"
+  ],
+  "NBXG": [
+    "financials"
+  ],
+  "NBY": [
+    "biotech"
+  ],
+  "NC": [
+    "materials"
+  ],
+  "NCHEF": [
+    "staples"
+  ],
+  "NCIQ": [
+    "financials"
+  ],
+  "NCLTF": [
+    "consumer"
+  ],
+  "NCLTY": [
+    "consumer"
+  ],
+  "NCNA": [
+    "biotech"
+  ],
+  "NCPLW": [
+    "financials"
+  ],
+  "NCRA": [
+    "staples"
+  ],
+  "NCRRP": [
+    "tech"
+  ],
+  "NCSYF": [
+    "tech"
+  ],
+  "NCT": [
+    "industrials"
+  ],
+  "NDAQ": [
+    "financials"
+  ],
+  "NE-WT": [
+    "materials"
+  ],
+  "NE.A": [
+    "materials"
+  ],
+  "NEE-PN": [
+    "utilities"
+  ],
+  "NEE-PV": [
+    "utilities"
+  ],
+  "NEMCL": [
+    "materials"
+  ],
+  "NEOV": [
+    "biotech"
+  ],
+  "NEOVW": [
+    "tech"
+  ],
+  "NERV": [
+    "biotech"
+  ],
+  "NET": [
+    "tech"
+  ],
+  "NEU": [
+    "materials"
+  ],
+  "NEWTH": [
+    "financials"
+  ],
+  "NEXA": [
+    "materials"
+  ],
+  "NEXHY": [
+    "industrials"
+  ],
+  "NEXM": [
+    "materials"
+  ],
+  "NEXT": [
+    "utilities"
+  ],
+  "NFE": [
+    "utilities"
+  ],
+  "NFGC": [
+    "materials"
+  ],
+  "NFSN": [
+    "consumer"
+  ],
+  "NG": [
+    "materials"
+  ],
+  "NGCOY": [
+    "energy"
+  ],
+  "NGEN": [
+    "biotech"
+  ],
+  "NGL-PC": [
+    "utilities"
+  ],
+  "NGSCF": [
+    "materials"
+  ],
+  "NHI": [
+    "financials"
+  ],
+  "NHKGF": [
+    "consumer"
+  ],
+  "NHKSY": [
+    "industrials"
+  ],
+  "NHPAP": [
+    "financials"
+  ],
+  "NHS": [
+    "financials"
+  ],
+  "NHS-RI": [
+    "financials"
+  ],
+  "NHS.R": [
+    "financials"
+  ],
+  "NIMU": [
+    "biotech"
+  ],
+  "NIPG": [
+    "consumer"
+  ],
+  "NIVFW": [
+    "biotech"
+  ],
+  "NIXX": [
+    "tech"
+  ],
+  "NKLR": [
+    "industrials"
+  ],
+  "NKSH": [
+    "financials"
+  ],
+  "NKTR": [
+    "biotech"
+  ],
+  "NKTX": [
+    "biotech"
+  ],
+  "NLCP": [
+    "financials"
+  ],
+  "NLY$F": [
+    "financials"
+  ],
+  "NLY$G": [
+    "financials"
+  ],
+  "NLY$I": [
+    "financials"
+  ],
+  "NLY$J": [
+    "financials"
+  ],
+  "NMG": [
+    "materials"
+  ],
+  "NMHI": [
+    "biotech"
+  ],
+  "NMHIW": [
+    "industrials"
+  ],
+  "NMM": [
+    "industrials"
+  ],
+  "NMPA": [
+    "financials"
+  ],
+  "NMTC": [
+    "biotech"
+  ],
+  "NNAX": [
+    "biotech"
+  ],
+  "NNDM": [
+    "semis"
+  ],
+  "NNE": [
+    "utilities"
+  ],
+  "NNFSF": [
+    "staples"
+  ],
+  "NNGPF": [
+    "financials"
+  ],
+  "NNI": [
+    "financials"
+  ],
+  "NNNN": [
+    "biotech"
+  ],
+  "NNWWF": [
+    "staples"
+  ],
+  "NOA": [
+    "materials"
+  ],
+  "NOAH": [
+    "financials"
+  ],
+  "NOFCF": [
+    "materials"
+  ],
+  "NOG": [
+    "materials"
+  ],
+  "NOKBF": [
+    "comms"
+  ],
+  "NOMA": [
+    "consumer"
+  ],
+  "NONOF": [
+    "biotech"
+  ],
+  "NOPFF": [
+    "materials"
+  ],
+  "NOTE-WT": [
+    "industrials"
+  ],
+  "NOV": [
+    "industrials"
+  ],
+  "NPCT": [
+    "financials"
+  ],
+  "NPEHF": [
+    "industrials"
+  ],
+  "NPXYY": [
+    "materials"
+  ],
+  "NRDY": [
+    "consumer"
+  ],
+  "NREF-PA": [
+    "financials"
+  ],
+  "NRG": [
+    "utilities"
+  ],
+  "NRGFF": [
+    "energy"
+  ],
+  "NRIM": [
+    "financials"
+  ],
+  "NRIX": [
+    "biotech"
+  ],
+  "NRSCF": [
+    "energy"
+  ],
+  "NRSN": [
+    "biotech"
+  ],
+  "NRSNW": [
+    "biotech"
+  ],
+  "NRUC": [
+    "utilities"
+  ],
+  "NSA$A": [
+    "financials"
+  ],
+  "NSA$B": [
+    "financials"
+  ],
+  "NSARP": [
+    "utilities"
+  ],
+  "NSC": [
+    "industrials"
+  ],
+  "NSFDF": [
+    "materials"
+  ],
+  "NSIT": [
+    "consumer"
+  ],
+  "NSPR": [
+    "biotech"
+  ],
+  "NSRX": [
+    "biotech"
+  ],
+  "NSTS": [
+    "financials"
+  ],
+  "NSYS": [
+    "semis"
+  ],
+  "NTCL": [
+    "tech"
+  ],
+  "NTHI": [
+    "biotech"
+  ],
+  "NTLA": [
+    "biotech"
+  ],
+  "NTRA": [
+    "biotech"
+  ],
+  "NTST": [
+    "financials"
+  ],
+  "NU": [
+    "financials"
+  ],
+  "NUAI": [
+    "materials"
+  ],
+  "NUAIW": [
+    "materials"
+  ],
+  "NUCL": [
+    "materials"
+  ],
+  "NUE": [
+    "materials"
+  ],
+  "NUWE": [
+    "biotech"
+  ],
+  "NVAC": [
+    "biotech"
+  ],
+  "NVAX": [
+    "biotech"
+  ],
+  "NVCR": [
+    "biotech"
+  ],
+  "NVCT": [
+    "biotech"
+  ],
+  "NVDA": [
+    "semis",
+    "tech"
+  ],
+  "NVGS": [
+    "industrials"
+  ],
+  "NVNI": [
+    "tech"
+  ],
+  "NVNIW": [
+    "tech"
+  ],
+  "NVNXF": [
+    "tech"
+  ],
+  "NVOH": [
+    "biotech"
+  ],
+  "NVRI": [
+    "tech"
+  ],
+  "NVSEF": [
+    "biotech"
+  ],
+  "NVTS": [
+    "semis"
+  ],
+  "NVVEW": [
+    "tech"
+  ],
+  "NVZMF": [
+    "materials"
+  ],
+  "NWAX-WT": [
+    "financials"
+  ],
+  "NWBI": [
+    "financials"
+  ],
+  "NWBO": [
+    "biotech"
+  ],
+  "NWCYY": [
+    "staples"
+  ],
+  "NWE": [
+    "utilities"
+  ],
+  "NWFL": [
+    "financials"
+  ],
+  "NWN": [
+    "utilities"
+  ],
+  "NWSGY": [
+    "industrials"
+  ],
+  "NWSLL": [
+    "comms"
+  ],
+  "NWSZF": [
+    "industrials"
+  ],
+  "NWTG": [
+    "consumer"
+  ],
+  "NXDT-PA": [
+    "financials"
+  ],
+  "NXE": [
+    "materials"
+  ],
+  "NXP": [
+    "financials"
+  ],
+  "NXPGF": [
+    "industrials"
+  ],
+  "NXPGY": [
+    "industrials"
+  ],
+  "NXPI": [
+    "semis"
+  ],
+  "NXTC": [
+    "biotech"
+  ],
+  "NXTT": [
+    "tech"
+  ],
+  "NXXT": [
+    "consumer"
+  ],
+  "NYAX": [
+    "tech"
+  ],
+  "NYC": [
+    "financials"
+  ],
+  "NYMXF": [
+    "biotech"
+  ],
+  "NYT": [
+    "comms"
+  ],
+  "NYXH": [
+    "biotech"
+  ],
+  "O": [
+    "real_estate"
+  ],
+  "OAK$A": [
+    "financials"
+  ],
+  "OAK$B": [
+    "financials"
+  ],
+  "OAK-PB": [
+    "financials"
+  ],
+  "OAKU": [
+    "biotech"
+  ],
+  "OAKUR": [
+    "biotech"
+  ],
+  "OBBCY": [
+    "tech"
+  ],
+  "OBCKF": [
+    "biotech"
+  ],
+  "OBE": [
+    "materials"
+  ],
+  "OBIBF": [
+    "tech"
+  ],
+  "OBICY": [
+    "tech"
+  ],
+  "OBIIF": [
+    "tech"
+  ],
+  "OBK": [
+    "financials"
+  ],
+  "OBNB": [
+    "financials"
+  ],
+  "OBNK": [
+    "financials"
+  ],
+  "OBOCY": [
+    "biotech"
+  ],
+  "OBULD": [
+    "materials"
+  ],
+  "OBULF": [
+    "materials"
+  ],
+  "OCFC": [
+    "financials"
+  ],
+  "OCG": [
+    "industrials"
+  ],
+  "OCLN": [
+    "industrials"
+  ],
+  "OCSAW": [
+    "biotech"
+  ],
+  "ODC": [
+    "consumer"
+  ],
+  "ODOT": [
+    "financials"
+  ],
+  "ODVWZ": [
+    "materials"
+  ],
+  "ODYS": [
+    "tech"
+  ],
+  "OEC": [
+    "materials"
+  ],
+  "OESX": [
+    "consumer"
+  ],
+  "OFG": [
+    "financials"
+  ],
+  "OFIX": [
+    "biotech"
+  ],
+  "OGEN": [
+    "biotech"
+  ],
+  "OGI": [
+    "biotech"
+  ],
+  "OGN": [
+    "biotech"
+  ],
+  "OII": [
+    "materials"
+  ],
+  "OILD": [
+    "financials"
+  ],
+  "OILU": [
+    "financials"
+  ],
+  "OIOW": [
+    "utilities"
+  ],
+  "OKTA": [
+    "tech"
+  ],
+  "OKUR": [
+    "biotech"
+  ],
+  "OKYO": [
+    "biotech"
+  ],
+  "OLOX": [
+    "consumer"
+  ],
+  "OLOXF": [
+    "financials"
+  ],
+  "OM": [
+    "biotech"
+  ],
+  "OMDA": [
+    "biotech"
+  ],
+  "OMEX": [
+    "industrials"
+  ],
+  "OMQS": [
+    "tech"
+  ],
+  "ONCO": [
+    "biotech"
+  ],
+  "ONCY": [
+    "biotech"
+  ],
+  "ONDS": [
+    "comms"
+  ],
+  "ONFOP": [
+    "tech"
+  ],
+  "ONMD": [
+    "biotech"
+  ],
+  "ONTF": [
+    "tech"
+  ],
+  "OPAD": [
+    "real_estate"
+  ],
+  "OPAL": [
+    "utilities"
+  ],
+  "OPBK": [
+    "financials"
+  ],
+  "OPITQ": [
+    "real_estate"
+  ],
+  "OPP": [
+    "financials"
+  ],
+  "OPP$A": [
+    "financials"
+  ],
+  "OPP$B": [
+    "financials"
+  ],
+  "OPP$C": [
+    "financials"
+  ],
+  "OPP-PA": [
+    "financials"
+  ],
+  "OPP-PB": [
+    "financials"
+  ],
+  "OPP-PC": [
+    "financials"
+  ],
+  "OPTHF": [
+    "biotech"
+  ],
+  "OPTT": [
+    "utilities"
+  ],
+  "OPTU": [
+    "comms"
+  ],
+  "OPTX": [
+    "industrials"
+  ],
+  "OPY": [
+    "financials"
+  ],
+  "OR": [
+    "materials"
+  ],
+  "ORBS": [
+    "tech"
+  ],
+  "ORC": [
+    "financials"
+  ],
+  "ORCL$D": [
+    "tech"
+  ],
+  "ORIO": [
+    "financials"
+  ],
+  "ORIS": [
+    "staples"
+  ],
+  "ORKA": [
+    "biotech"
+  ],
+  "ORLA": [
+    "materials"
+  ],
+  "ORLY": [
+    "consumer"
+  ],
+  "ORN": [
+    "industrials"
+  ],
+  "ORRCF": [
+    "materials"
+  ],
+  "ORXCF": [
+    "financials"
+  ],
+  "OSCUF": [
+    "financials"
+  ],
+  "OSOL": [
+    "financials"
+  ],
+  "OSRH": [
+    "biotech"
+  ],
+  "OSS": [
+    "tech"
+  ],
+  "OSTX": [
+    "biotech"
+  ],
+  "OTAI": [
+    "financials"
+  ],
+  "OTH": [
+    "tech"
+  ],
+  "OTIS": [
+    "industrials"
+  ],
+  "OTLC": [
+    "biotech"
+  ],
+  "OTLK": [
+    "biotech"
+  ],
+  "OTLY": [
+    "staples"
+  ],
+  "OTTR": [
+    "utilities"
+  ],
+  "OVATF": [
+    "biotech"
+  ],
+  "OVID": [
+    "biotech"
+  ],
+  "OVV": [
+    "materials"
+  ],
+  "OWLS": [
+    "tech"
+  ],
+  "OWLT": [
+    "biotech"
+  ],
+  "OWLTW": [
+    "biotech"
+  ],
+  "OWPC": [
+    "biotech"
+  ],
+  "OXM": [
+    "consumer"
+  ],
+  "OXSQ": [
+    "financials"
+  ],
+  "OZSC": [
+    "tech"
+  ],
+  "PAASF": [
+    "materials"
+  ],
+  "PACB": [
+    "industrials"
+  ],
+  "PACS": [
+    "biotech"
+  ],
+  "PAEXY": [
+    "energy"
+  ],
+  "PAGP": [
+    "energy"
+  ],
+  "PAGS": [
+    "tech"
+  ],
+  "PAHC": [
+    "biotech"
+  ],
+  "PAR": [
+    "tech"
+  ],
+  "PARXF": [
+    "energy"
+  ],
+  "PASG": [
+    "biotech"
+  ],
+  "PASTF": [
+    "consumer"
+  ],
+  "PASTY": [
+    "industrials"
+  ],
+  "PAVM": [
+    "biotech"
+  ],
+  "PAVS": [
+    "tech"
+  ],
+  "PAY": [
+    "industrials"
+  ],
+  "PAYC": [
+    "tech"
+  ],
+  "PAYO": [
+    "industrials"
+  ],
+  "PAYP": [
+    "industrials"
+  ],
+  "PBATF": [
+    "energy"
+  ],
+  "PBF": [
+    "energy"
+  ],
+  "PBI$B": [
+    "tech"
+  ],
+  "PBR-A": [
+    "materials"
+  ],
+  "PBR.A": [
+    "materials"
+  ],
+  "PCCOF": [
+    "staples"
+  ],
+  "PCG$X": [
+    "utilities"
+  ],
+  "PCLA": [
+    "consumer"
+  ],
+  "PCM": [
+    "financials"
+  ],
+  "PCN": [
+    "financials"
+  ],
+  "PCOR": [
+    "tech"
+  ],
+  "PCPGY": [
+    "tech"
+  ],
+  "PCPPF": [
+    "tech"
+  ],
+  "PCYO": [
+    "utilities"
+  ],
+  "PDC": [
+    "tech"
+  ],
+  "PDO": [
+    "financials"
+  ],
+  "PDSB": [
+    "biotech"
+  ],
+  "PDSKX": [
+    "real_estate"
+  ],
+  "PDSRX": [
+    "real_estate"
+  ],
+  "PDX": [
+    "financials"
+  ],
+  "PDYN": [
+    "tech"
+  ],
+  "PDYTY": [
+    "comms"
+  ],
+  "PEBO": [
+    "financials"
+  ],
+  "PECO": [
+    "financials"
+  ],
+  "PEG": [
+    "utilities"
+  ],
+  "PEGRF": [
+    "utilities"
+  ],
+  "PELIR": [
+    "financials"
+  ],
+  "PENN": [
+    "consumer"
+  ],
+  "PEO": [
+    "financials"
+  ],
+  "PEP": [
+    "staples"
+  ],
+  "PEPG": [
+    "biotech"
+  ],
+  "PETZ": [
+    "real_estate"
+  ],
+  "PFBX": [
+    "financials"
+  ],
+  "PFE": [
+    "biotech"
+  ],
+  "PFL": [
+    "financials"
+  ],
+  "PFLT": [
+    "financials"
+  ],
+  "PFN": [
+    "financials"
+  ],
+  "PFO": [
+    "financials"
+  ],
+  "PFSEF": [
+    "industrials"
+  ],
+  "PFSTY": [
+    "industrials"
+  ],
+  "PFX": [
+    "financials"
+  ],
+  "PFXNZ": [
+    "financials"
+  ],
+  "PG": [
+    "materials"
+  ],
+  "PGC": [
+    "financials"
+  ],
+  "PGEN": [
+    "biotech"
+  ],
+  "PGOL": [
+    "materials"
+  ],
+  "PGR": [
+    "financials"
+  ],
+  "PGZFF": [
+    "materials"
+  ],
+  "PHCI": [
+    "industrials"
+  ],
+  "PHDWY": [
+    "consumer"
+  ],
+  "PHIO": [
+    "biotech"
+  ],
+  "PHM": [
+    "industrials"
+  ],
+  "PHNMF": [
+    "materials"
+  ],
+  "PHR": [
+    "industrials"
+  ],
+  "PHXE-P": [
+    "materials"
+  ],
+  "PIIIW": [
+    "biotech"
+  ],
+  "PIM": [
+    "financials"
+  ],
+  "PINE-PA": [
+    "financials"
+  ],
+  "PK": [
+    "consumer"
+  ],
+  "PKBK": [
+    "financials"
+  ],
+  "PL-WT": [
+    "comms"
+  ],
+  "PLAB": [
+    "semis"
+  ],
+  "PLAG": [
+    "staples"
+  ],
+  "PLAI": [
+    "industrials"
+  ],
+  "PLAY": [
+    "consumer"
+  ],
+  "PLBC": [
+    "financials"
+  ],
+  "PLDGP": [
+    "financials"
+  ],
+  "PLMR": [
+    "financials"
+  ],
+  "PLMWF": [
+    "financials"
+  ],
+  "PLNH": [
+    "biotech"
+  ],
+  "PLRX": [
+    "biotech"
+  ],
+  "PLRZ": [
+    "biotech"
+  ],
+  "PLSAY": [
+    "consumer"
+  ],
+  "PLSE": [
+    "biotech"
+  ],
+  "PLUG": [
+    "industrials"
+  ],
+  "PM": [
+    "staples"
+  ],
+  "PMAX": [
+    "industrials"
+  ],
+  "PMCB": [
+    "biotech"
+  ],
+  "PMCUF": [
+    "biotech"
+  ],
+  "PMDIY": [
+    "biotech"
+  ],
+  "PMEC": [
+    "industrials"
+  ],
+  "PMHS": [
+    "biotech"
+  ],
+  "PMI": [
+    "biotech"
+  ],
+  "PMN": [
+    "biotech"
+  ],
+  "PMNT": [
+    "consumer"
+  ],
+  "PNBK": [
+    "financials"
+  ],
+  "PNI": [
+    "financials"
+  ],
+  "PNNT": [
+    "financials"
+  ],
+  "PNRG": [
+    "materials"
+  ],
+  "PNW": [
+    "utilities"
+  ],
+  "POAHF": [
+    "consumer"
+  ],
+  "POCI": [
+    "biotech"
+  ],
+  "PODC": [
+    "tech"
+  ],
+  "POET": [
+    "semis"
+  ],
+  "POLA": [
+    "biotech"
+  ],
+  "POLE": [
+    "financials"
+  ],
+  "POM": [
+    "consumer"
+  ],
+  "PONO": [
+    "financials"
+  ],
+  "PPBT": [
+    "biotech"
+  ],
+  "PPCB": [
+    "biotech"
+  ],
+  "PPENF": [
+    "utilities"
+  ],
+  "PPLC": [
+    "utilities"
+  ],
+  "PPRUF": [
+    "consumer"
+  ],
+  "PPSI": [
+    "tech"
+  ],
+  "PPTA": [
+    "materials"
+  ],
+  "PRBRY": [
+    "staples"
+  ],
+  "PRBZF": [
+    "staples"
+  ],
+  "PRDO": [
+    "consumer"
+  ],
+  "PREM": [
+    "energy"
+  ],
+  "PREN": [
+    "industrials"
+  ],
+  "PRGY": [
+    "tech"
+  ],
+  "PRHIZ": [
+    "financials"
+  ],
+  "PRK": [
+    "financials"
+  ],
+  "PRKR": [
+    "comms"
+  ],
+  "PRKS": [
+    "consumer"
+  ],
+  "PRLD": [
+    "biotech"
+  ],
+  "PRNAF": [
+    "biotech"
+  ],
+  "PRNSY": [
+    "staples"
+  ],
+  "PROF": [
+    "biotech"
+  ],
+  "PROK": [
+    "biotech"
+  ],
+  "PROP": [
+    "materials"
+  ],
+  "PRPH": [
+    "biotech"
+  ],
+  "PRQR": [
+    "biotech"
+  ],
+  "PRTS": [
+    "consumer"
+  ],
+  "PRVA": [
+    "biotech"
+  ],
+  "PRYMF": [
+    "industrials"
+  ],
+  "PRZO": [
+    "industrials"
+  ],
+  "PS": [
+    "financials"
+  ],
+  "PSA$F": [
+    "financials"
+  ],
+  "PSA$G": [
+    "financials"
+  ],
+  "PSA$H": [
+    "financials"
+  ],
+  "PSA$I": [
+    "financials"
+  ],
+  "PSA$J": [
+    "financials"
+  ],
+  "PSA$K": [
+    "financials"
+  ],
+  "PSA$L": [
+    "financials"
+  ],
+  "PSA$M": [
+    "financials"
+  ],
+  "PSA$N": [
+    "financials"
+  ],
+  "PSA$O": [
+    "financials"
+  ],
+  "PSA$P": [
+    "financials"
+  ],
+  "PSA$Q": [
+    "financials"
+  ],
+  "PSA$R": [
+    "financials"
+  ],
+  "PSA$S": [
+    "financials"
+  ],
+  "PSA-PG": [
+    "financials"
+  ],
+  "PSA-PS": [
+    "financials"
+  ],
+  "PSBAF": [
+    "staples"
+  ],
+  "PSBTY": [
+    "staples"
+  ],
+  "PSEC$A": [
+    "financials"
+  ],
+  "PSEC-PA": [
+    "financials"
+  ],
+  "PSHG": [
+    "industrials"
+  ],
+  "PSIG": [
+    "biotech"
+  ],
+  "PSKRF": [
+    "financials"
+  ],
+  "PSKY": [
+    "comms"
+  ],
+  "PSMT": [
+    "consumer"
+  ],
+  "PSRHF": [
+    "materials"
+  ],
+  "PSTV": [
+    "biotech"
+  ],
+  "PSUS": [
+    "financials"
+  ],
+  "PSYCF": [
+    "staples"
+  ],
+  "PTAX": [
+    "staples"
+  ],
+  "PTAXY": [
+    "staples"
+  ],
+  "PTHRF": [
+    "energy"
+  ],
+  "PTLO": [
+    "consumer"
+  ],
+  "PTRN": [
+    "consumer"
+  ],
+  "PTY": [
+    "financials"
+  ],
+  "PUBM": [
+    "tech"
+  ],
+  "PUCCF": [
+    "materials"
+  ],
+  "PUGBY": [
+    "staples"
+  ],
+  "PUIGF": [
+    "staples"
+  ],
+  "PUKPF": [
+    "materials"
+  ],
+  "PULM": [
+    "biotech"
+  ],
+  "PVH": [
+    "consumer"
+  ],
+  "PWDY": [
+    "tech"
+  ],
+  "PWRL": [
+    "tech"
+  ],
+  "PXLW": [
+    "tech"
+  ],
+  "PXS": [
+    "industrials"
+  ],
+  "PYAIF": [
+    "tech"
+  ],
+  "PYPD": [
+    "biotech"
+  ],
+  "PYPL": [
+    "industrials"
+  ],
+  "QADR": [
+    "biotech"
+  ],
+  "QCOM": [
+    "semis"
+  ],
+  "QDEL": [
+    "biotech"
+  ],
+  "QETA": [
+    "financials"
+  ],
+  "QFRD": [
+    "financials"
+  ],
+  "QGAI": [
+    "materials"
+  ],
+  "QH": [
+    "industrials"
+  ],
+  "QLEP": [
+    "financials"
+  ],
+  "QNCX": [
+    "biotech"
+  ],
+  "QNTM": [
+    "semis",
+    "tech"
+  ],
+  "QNTO": [
+    "financials"
+  ],
+  "QQQX": [
+    "financials"
+  ],
+  "QRED": [
+    "financials"
+  ],
+  "QRED-UN": [
+    "financials"
+  ],
+  "QRHC": [
+    "utilities"
+  ],
+  "QS": [
+    "tech"
+  ],
+  "QSEA": [
+    "financials"
+  ],
+  "QSEAU": [
+    "financials"
+  ],
+  "QSIAW": [
+    "biotech"
+  ],
+  "QTIW": [
+    "tech"
+  ],
+  "QTIWW": [
+    "biotech"
+  ],
+  "QTTB": [
+    "biotech"
+  ],
+  "QUMSR": [
+    "financials"
+  ],
+  "QURE": [
+    "biotech"
+  ],
+  "QXO$B": [
+    "consumer"
+  ],
+  "R": [
+    "consumer"
+  ],
+  "RAAQ": [
+    "financials"
+  ],
+  "RACC": [
+    "financials"
+  ],
+  "RACE": [
+    "consumer"
+  ],
+  "RAIN": [
+    "industrials"
+  ],
+  "RAKR": [
+    "staples"
+  ],
+  "RAL": [
+    "industrials"
+  ],
+  "RANG": [
+    "financials"
+  ],
+  "RAPP": [
+    "biotech"
+  ],
+  "RAYA": [
+    "industrials"
+  ],
+  "RBA": [
+    "industrials"
+  ],
+  "RBKB": [
+    "financials"
+  ],
+  "RBNE": [
+    "industrials"
+  ],
+  "RBSPF": [
+    "financials"
+  ],
+  "RC$C": [
+    "financials"
+  ],
+  "RC$E": [
+    "financials"
+  ],
+  "RCAT": [
+    "tech"
+  ],
+  "RCG": [
+    "financials"
+  ],
+  "RCIAF": [
+    "comms"
+  ],
+  "RCKT": [
+    "biotech"
+  ],
+  "RCKTW": [
+    "biotech"
+  ],
+  "RCMT": [
+    "industrials"
+  ],
+  "RCON": [
+    "materials"
+  ],
+  "RCWBY": [
+    "materials"
+  ],
+  "RCWLY": [
+    "materials"
+  ],
+  "RDGT": [
+    "consumer"
+  ],
+  "RDHL": [
+    "biotech"
+  ],
+  "RDIB": [
+    "consumer"
+  ],
+  "RDN": [
+    "financials"
+  ],
+  "RDNW": [
+    "tech"
+  ],
+  "RDPTF": [
+    "biotech"
+  ],
+  "RDVT": [
+    "tech"
+  ],
+  "RDY": [
+    "biotech"
+  ],
+  "REAL": [
+    "consumer"
+  ],
+  "REAX": [
+    "real_estate"
+  ],
+  "REBN": [
+    "consumer"
+  ],
+  "RECCY": [
+    "industrials"
+  ],
+  "RECT": [
+    "industrials"
+  ],
+  "REDRF": [
+    "materials"
+  ],
+  "REECF": [
+    "industrials"
+  ],
+  "REED": [
+    "staples"
+  ],
+  "REGCP": [
+    "financials"
+  ],
+  "REGN": [
+    "biotech"
+  ],
+  "REI": [
+    "materials"
+  ],
+  "RELY": [
+    "industrials"
+  ],
+  "RENGY": [
+    "materials"
+  ],
+  "RENX": [
+    "utilities"
+  ],
+  "REPX": [
+    "materials"
+  ],
+  "REXR-PC": [
+    "financials"
+  ],
+  "RGC": [
+    "consumer"
+  ],
+  "RGEN": [
+    "biotech"
+  ],
+  "RGLD": [
+    "financials"
+  ],
+  "RGNX": [
+    "biotech"
+  ],
+  "RGPX": [
+    "biotech"
+  ],
+  "RGR": [
+    "industrials"
+  ],
+  "RGT": [
+    "financials"
+  ],
+  "RH": [
+    "consumer"
+  ],
+  "RHLD": [
+    "financials"
+  ],
+  "RIBB": [
+    "financials"
+  ],
+  "RICK": [
+    "consumer"
+  ],
+  "RIKU": [
+    "consumer"
+  ],
+  "RILYT": [
+    "financials"
+  ],
+  "RIME": [
+    "tech"
+  ],
+  "RIOFF": [
+    "materials"
+  ],
+  "RIOT": [
+    "financials"
+  ],
+  "RITR": [
+    "real_estate"
+  ],
+  "RIV": [
+    "financials"
+  ],
+  "RIV$A": [
+    "financials"
+  ],
+  "RIV-PA": [
+    "financials"
+  ],
+  "RIVN": [
+    "consumer"
+  ],
+  "RKDA": [
+    "materials"
+  ],
+  "RKGRY": [
+    "industrials"
+  ],
+  "RKHNF": [
+    "materials"
+  ],
+  "RKLB": [
+    "industrials"
+  ],
+  "RKLIF": [
+    "industrials"
+  ],
+  "RKWAF": [
+    "materials"
+  ],
+  "RKWBF": [
+    "industrials"
+  ],
+  "RLAY": [
+    "biotech"
+  ],
+  "RLI": [
+    "financials"
+  ],
+  "RLJ$A": [
+    "financials"
+  ],
+  "RLMD": [
+    "biotech"
+  ],
+  "RLXXF": [
+    "industrials"
+  ],
+  "RLYB": [
+    "biotech"
+  ],
+  "RMAX": [
+    "real_estate"
+  ],
+  "RMBI": [
+    "financials"
+  ],
+  "RMBS": [
+    "semis"
+  ],
+  "RMESF": [
+    "materials"
+  ],
+  "RMIX": [
+    "industrials",
+    "materials"
+  ],
+  "RMNI": [
+    "industrials"
+  ],
+  "RMSG": [
+    "tech"
+  ],
+  "RMSL": [
+    "consumer"
+  ],
+  "RMT": [
+    "financials"
+  ],
+  "RMTG": [
+    "consumer"
+  ],
+  "RNAC": [
+    "biotech"
+  ],
+  "RNGOF": [
+    "materials"
+  ],
+  "RNGR": [
+    "materials"
+  ],
+  "RNKGF": [
+    "industrials"
+  ],
+  "RNR$F": [
+    "financials"
+  ],
+  "RNR$G": [
+    "financials"
+  ],
+  "RNTX": [
+    "biotech"
+  ],
+  "RNWW": [
+    "utilities"
+  ],
+  "RNXT": [
+    "biotech"
+  ],
+  "ROCK": [
+    "materials"
+  ],
+  "ROIUF": [
+    "tech"
+  ],
+  "ROIV": [
+    "biotech"
+  ],
+  "ROK": [
+    "biotech"
+  ],
+  "ROKU": [
+    "comms"
+  ],
+  "ROL": [
+    "industrials"
+  ],
+  "ROLR": [
+    "consumer"
+  ],
+  "ROMJF": [
+    "biotech"
+  ],
+  "ROST": [
+    "consumer"
+  ],
+  "ROYL": [
+    "materials"
+  ],
+  "RPAY": [
+    "industrials"
+  ],
+  "RPC": [
+    "financials"
+  ],
+  "RPGL": [
+    "tech"
+  ],
+  "RPM": [
+    "materials"
+  ],
+  "RR": [
+    "industrials"
+  ],
+  "RREV": [
+    "financials"
+  ],
+  "RRR": [
+    "consumer"
+  ],
+  "RSHGY": [
+    "financials"
+  ],
+  "RSI": [
+    "consumer"
+  ],
+  "RSKD": [
+    "industrials"
+  ],
+  "RSNHF": [
+    "financials"
+  ],
+  "RSRBF": [
+    "materials"
+  ],
+  "RSVRW": [
+    "consumer"
+  ],
+  "RTGN": [
+    "biotech"
+  ],
+  "RTMVF": [
+    "comms"
+  ],
+  "RUBI": [
+    "industrials"
+  ],
+  "RUSHB": [
+    "consumer"
+  ],
+  "RVI": [
+    "financials"
+  ],
+  "RVLV": [
+    "consumer"
+  ],
+  "RVMD": [
+    "biotech"
+  ],
+  "RVMDW": [
+    "biotech"
+  ],
+  "RVP": [
+    "biotech"
+  ],
+  "RVPH": [
+    "biotech"
+  ],
+  "RVSN": [
+    "industrials"
+  ],
+  "RVSNW": [
+    "industrials"
+  ],
+  "RVT": [
+    "financials"
+  ],
+  "RVYL": [
+    "industrials"
+  ],
+  "RWT$A": [
+    "financials"
+  ],
+  "RXT": [
+    "tech"
+  ],
+  "RYAM": [
+    "materials"
+  ],
+  "RYAOF": [
+    "industrials"
+  ],
+  "RYDAF": [
+    "materials"
+  ],
+  "RYES": [
+    "materials"
+  ],
+  "RYET": [
+    "tech"
+  ],
+  "RYKKF": [
+    "consumer"
+  ],
+  "RYLBF": [
+    "materials"
+  ],
+  "RYM": [
+    "staples"
+  ],
+  "RYOJ": [
+    "industrials"
+  ],
+  "RYTM": [
+    "biotech"
+  ],
+  "RZLV": [
+    "tech"
+  ],
+  "S": [
+    "tech"
+  ],
+  "SA": [
+    "materials"
+  ],
+  "SAABF": [
+    "industrials"
+  ],
+  "SABA": [
+    "financials"
+  ],
+  "SABOF": [
+    "comms"
+  ],
+  "SABR": [
+    "tech"
+  ],
+  "SABSW": [
+    "biotech"
+  ],
+  "SAFE": [
+    "financials"
+  ],
+  "SAFX": [
+    "materials"
+  ],
+  "SAIC": [
+    "tech"
+  ],
+  "SAIL": [
+    "tech"
+  ],
+  "SAJ": [
+    "financials"
+  ],
+  "SANA": [
+    "biotech"
+  ],
+  "SANM": [
+    "semis"
+  ],
+  "SAPH": [
+    "tech"
+  ],
+  "SAPIF": [
+    "staples"
+  ],
+  "SAPUY": [
+    "staples"
+  ],
+  "SAR": [
+    "financials"
+  ],
+  "SAT": [
+    "financials"
+  ],
+  "SATA": [
+    "financials"
+  ],
+  "SATL": [
+    "tech"
+  ],
+  "SATLF": [
+    "consumer"
+  ],
+  "SATLW": [
+    "comms"
+  ],
+  "SATT": [
+    "industrials"
+  ],
+  "SAV": [
+    "financials"
+  ],
+  "SAXPF": [
+    "financials"
+  ],
+  "SAY": [
+    "financials"
+  ],
+  "SAZ": [
+    "financials"
+  ],
+  "SB$C": [
+    "industrials"
+  ],
+  "SB$D": [
+    "industrials"
+  ],
+  "SB-PC": [
+    "industrials"
+  ],
+  "SBCLY": [
+    "materials"
+  ],
+  "SBCW": [
+    "biotech"
+  ],
+  "SBDS": [
+    "consumer"
+  ],
+  "SBET": [
+    "financials"
+  ],
+  "SBEV": [
+    "staples"
+  ],
+  "SBFM": [
+    "biotech"
+  ],
+  "SBGI": [
+    "comms"
+  ],
+  "SBI": [
+    "financials"
+  ],
+  "SBIG": [
+    "tech"
+  ],
+  "SBKLF": [
+    "materials"
+  ],
+  "SBMFF": [
+    "biotech"
+  ],
+  "SBMT": [
+    "materials"
+  ],
+  "SBMW": [
+    "financials"
+  ],
+  "SBOEF": [
+    "energy"
+  ],
+  "SBS": [
+    "utilities"
+  ],
+  "SBUX": [
+    "consumer"
+  ],
+  "SBYSF": [
+    "materials"
+  ],
+  "SCAFF": [
+    "industrials"
+  ],
+  "SCAGW": [
+    "consumer"
+  ],
+  "SCBXY": [
+    "financials"
+  ],
+  "SCE$L": [
+    "financials"
+  ],
+  "SCHL": [
+    "comms"
+  ],
+  "SCHW$D": [
+    "financials"
+  ],
+  "SCHW$J": [
+    "financials"
+  ],
+  "SCHW-PJ": [
+    "financials"
+  ],
+  "SCM": [
+    "financials"
+  ],
+  "SCNI": [
+    "biotech"
+  ],
+  "SCPX": [
+    "biotech"
+  ],
+  "SCRNY": [
+    "tech"
+  ],
+  "SCSC": [
+    "consumer"
+  ],
+  "SCSKF": [
+    "tech"
+  ],
+  "SCSXY": [
+    "tech"
+  ],
+  "SCTAY": [
+    "biotech"
+  ],
+  "SCTSF": [
+    "materials"
+  ],
+  "SCWO": [
+    "industrials"
+  ],
+  "SCXBF": [
+    "financials"
+  ],
+  "SCYX": [
+    "biotech"
+  ],
+  "SD": [
+    "materials"
+  ],
+  "SDHY": [
+    "financials"
+  ],
+  "SDOT": [
+    "consumer"
+  ],
+  "SDOW": [
+    "financials"
+  ],
+  "SDST": [
+    "biotech"
+  ],
+  "SEAL$A": [
+    "industrials"
+  ],
+  "SEAL$B": [
+    "industrials"
+  ],
+  "SEAT": [
+    "consumer"
+  ],
+  "SEAV": [
+    "industrials"
+  ],
+  "SEE": [
+    "materials"
+  ],
+  "SEED": [
+    "materials"
+  ],
+  "SEER": [
+    "industrials"
+  ],
+  "SEG": [
+    "consumer"
+  ],
+  "SEI": [
+    "industrials"
+  ],
+  "SEIC": [
+    "financials"
+  ],
+  "SEMR": [
+    "tech"
+  ],
+  "SEOVF": [
+    "biotech"
+  ],
+  "SEPN": [
+    "biotech"
+  ],
+  "SER": [
+    "biotech"
+  ],
+  "SERA": [
+    "biotech"
+  ],
+  "SERV": [
+    "industrials"
+  ],
+  "SES-WT": [
+    "tech"
+  ],
+  "SEZL": [
+    "industrials"
+  ],
+  "SFL": [
+    "industrials"
+  ],
+  "SFNC": [
+    "financials"
+  ],
+  "SG": [
+    "consumer"
+  ],
+  "SGA": [
+    "comms"
+  ],
+  "SGBAF": [
+    "comms"
+  ],
+  "SGMT": [
+    "biotech"
+  ],
+  "SGN": [
+    "tech"
+  ],
+  "SGPIY": [
+    "consumer"
+  ],
+  "SGRP": [
+    "industrials"
+  ],
+  "SGST": [
+    "financials"
+  ],
+  "SGTM": [
+    "materials"
+  ],
+  "SHC": [
+    "biotech"
+  ],
+  "SHEH": [
+    "financials"
+  ],
+  "SHG": [
+    "financials"
+  ],
+  "SHLAF": [
+    "industrials"
+  ],
+  "SHLRF": [
+    "industrials"
+  ],
+  "SHMD": [
+    "industrials"
+  ],
+  "SHMXY": [
+    "tech"
+  ],
+  "SHMZF": [
+    "tech"
+  ],
+  "SI": [
+    "biotech"
+  ],
+  "SICCY": [
+    "semis"
+  ],
+  "SIDU": [
+    "comms"
+  ],
+  "SIGA": [
+    "biotech"
+  ],
+  "SIGIP": [
+    "financials"
+  ],
+  "SIGY": [
+    "biotech"
+  ],
+  "SII": [
+    "financials"
+  ],
+  "SILA": [
+    "financials"
+  ],
+  "SILC": [
+    "semis",
+    "tech"
+  ],
+  "SIMAU": [
+    "financials"
+  ],
+  "SION": [
+    "biotech"
+  ],
+  "SIREF": [
+    "materials"
+  ],
+  "SITE": [
+    "consumer"
+  ],
+  "SITM": [
+    "semis"
+  ],
+  "SJ": [
+    "tech"
+  ],
+  "SKAI": [
+    "financials"
+  ],
+  "SKBL": [
+    "industrials"
+  ],
+  "SKE": [
+    "energy"
+  ],
+  "SKFG": [
+    "consumer"
+  ],
+  "SKLZ": [
+    "tech"
+  ],
+  "SKM": [
+    "comms"
+  ],
+  "SKY": [
+    "materials"
+  ],
+  "SKYE": [
+    "biotech"
+  ],
+  "SKYH-WT": [
+    "real_estate"
+  ],
+  "SKYQ": [
+    "utilities"
+  ],
+  "SKYT": [
+    "semis"
+  ],
+  "SKYW": [
+    "industrials"
+  ],
+  "SKYX": [
+    "consumer"
+  ],
+  "SLB": [
+    "materials"
+  ],
+  "SLBK": [
+    "financials"
+  ],
+  "SLDB": [
+    "biotech"
+  ],
+  "SLE": [
+    "tech"
+  ],
+  "SLFQF": [
+    "financials"
+  ],
+  "SLGL": [
+    "biotech"
+  ],
+  "SLMBP": [
+    "financials"
+  ],
+  "SLMT": [
+    "consumer"
+  ],
+  "SLND": [
+    "industrials"
+  ],
+  "SLND-WT": [
+    "industrials"
+  ],
+  "SLNG": [
+    "utilities"
+  ],
+  "SLNHP": [
+    "financials"
+  ],
+  "SLP": [
+    "tech"
+  ],
+  "SLRC": [
+    "financials"
+  ],
+  "SLS": [
+    "biotech"
+  ],
+  "SLSN": [
+    "materials"
+  ],
+  "SLSR": [
+    "materials"
+  ],
+  "SLVM": [
+    "materials"
+  ],
+  "SMA": [
+    "financials"
+  ],
+  "SMBK": [
+    "financials"
+  ],
+  "SMC": [
+    "utilities"
+  ],
+  "SMCI": [
+    "tech"
+  ],
+  "SMDD": [
+    "financials"
+  ],
+  "SMFRF": [
+    "consumer"
+  ],
+  "SMFSY": [
+    "materials"
+  ],
+  "SMG": [
+    "materials"
+  ],
+  "SMGSY": [
+    "consumer"
+  ],
+  "SMP": [
+    "consumer"
+  ],
+  "SMPHY": [
+    "real_estate"
+  ],
+  "SMR": [
+    "industrials"
+  ],
+  "SMTK": [
+    "tech",
+    "materials"
+  ],
+  "SMXT": [
+    "industrials"
+  ],
+  "SMXW": [
+    "industrials"
+  ],
+  "SMXWW": [
+    "industrials"
+  ],
+  "SN": [
+    "consumer"
+  ],
+  "SNA": [
+    "industrials"
+  ],
+  "SNBH": [
+    "consumer"
+  ],
+  "SNBR": [
+    "consumer"
+  ],
+  "SND": [
+    "materials"
+  ],
+  "SNDA": [
+    "biotech"
+  ],
+  "SNDL": [
+    "biotech"
+  ],
+  "SNEJF": [
+    "consumer"
+  ],
+  "SNEVY": [
+    "tech"
+  ],
+  "SNHIY": [
+    "industrials"
+  ],
+  "SNIRF": [
+    "industrials"
+  ],
+  "SNNRF": [
+    "comms"
+  ],
+  "SNNUF": [
+    "biotech"
+  ],
+  "SNOA": [
+    "biotech"
+  ],
+  "SNOW": [
+    "tech"
+  ],
+  "SNROF": [
+    "consumer"
+  ],
+  "SNROY": [
+    "consumer"
+  ],
+  "SNSC": [
+    "utilities"
+  ],
+  "SNSE": [
+    "biotech"
+  ],
+  "SNTW": [
+    "tech"
+  ],
+  "SNWV": [
+    "biotech"
+  ],
+  "SNX": [
+    "consumer"
+  ],
+  "SNYNF": [
+    "biotech"
+  ],
+  "SNYR": [
+    "biotech"
+  ],
+  "SOAGY": [
+    "biotech"
+  ],
+  "SOAR": [
+    "tech"
+  ],
+  "SOBO": [
+    "energy"
+  ],
+  "SOFI": [
+    "financials"
+  ],
+  "SOHGF": [
+    "industrials"
+  ],
+  "SOHGY": [
+    "industrials"
+  ],
+  "SOJF": [
+    "utilities"
+  ],
+  "SOLS": [
+    "materials"
+  ],
+  "SON": [
+    "materials"
+  ],
+  "SONM": [
+    "comms"
+  ],
+  "SOPH": [
+    "tech"
+  ],
+  "SOR": [
+    "financials"
+  ],
+  "SOWG": [
+    "staples"
+  ],
+  "SPAI": [
+    "biotech"
+  ],
+  "SPE": [
+    "financials"
+  ],
+  "SPE$C": [
+    "financials"
+  ],
+  "SPE-PC": [
+    "financials"
+  ],
+  "SPFI": [
+    "financials"
+  ],
+  "SPG-PJ": [
+    "financials"
+  ],
+  "SPGDF": [
+    "comms"
+  ],
+  "SPGNY": [
+    "comms"
+  ],
+  "SPHIF": [
+    "consumer"
+  ],
+  "SPHXF": [
+    "real_estate"
+  ],
+  "SPIIY": [
+    "industrials"
+  ],
+  "SPIR": [
+    "comms"
+  ],
+  "SPIWF": [
+    "industrials"
+  ],
+  "SPMA": [
+    "financials"
+  ],
+  "SPMC": [
+    "financials"
+  ],
+  "SPME": [
+    "financials"
+  ],
+  "SPND": [
+    "materials"
+  ],
+  "SPNT": [
+    "financials"
+  ],
+  "SPOT": [
+    "comms"
+  ],
+  "SPPL": [
+    "biotech"
+  ],
+  "SPRB": [
+    "biotech"
+  ],
+  "SPRC": [
+    "biotech"
+  ],
+  "SPRO": [
+    "biotech"
+  ],
+  "SPRU": [
+    "utilities"
+  ],
+  "SPST": [
+    "industrials"
+  ],
+  "SPTX": [
+    "biotech"
+  ],
+  "SPWR": [
+    "industrials"
+  ],
+  "SPWRW": [
+    "industrials"
+  ],
+  "SPXX": [
+    "financials"
+  ],
+  "SQLL": [
+    "industrials"
+  ],
+  "SQLLW": [
+    "industrials"
+  ],
+  "SRBEF": [
+    "tech"
+  ],
+  "SRCE": [
+    "financials"
+  ],
+  "SRCO": [
+    "industrials"
+  ],
+  "SREA": [
+    "utilities"
+  ],
+  "SRG-PA": [
+    "real_estate"
+  ],
+  "SRLZF": [
+    "materials"
+  ],
+  "SRTA": [
+    "biotech"
+  ],
+  "SRXH": [
+    "staples"
+  ],
+  "SRZN": [
+    "biotech"
+  ],
+  "SRZNW": [
+    "biotech"
+  ],
+  "SSB": [
+    "financials"
+  ],
+  "SSD": [
+    "industrials"
+  ],
+  "SSRLY": [
+    "biotech"
+  ],
+  "SSTK": [
+    "tech"
+  ],
+  "STAI": [
+    "industrials"
+  ],
+  "STC": [
+    "financials"
+  ],
+  "STCK": [
+    "financials"
+  ],
+  "STEM": [
+    "tech"
+  ],
+  "STEX": [
+    "biotech"
+  ],
+  "STFS": [
+    "industrials"
+  ],
+  "STHH": [
+    "semis"
+  ],
+  "STI": [
+    "tech"
+  ],
+  "STIM": [
+    "biotech"
+  ],
+  "STJNY": [
+    "industrials"
+  ],
+  "STKE": [
+    "financials"
+  ],
+  "STKL": [
+    "staples"
+  ],
+  "STKS": [
+    "consumer"
+  ],
+  "STKTF": [
+    "biotech"
+  ],
+  "STLD": [
+    "materials"
+  ],
+  "STLJF": [
+    "materials"
+  ],
+  "STMEF": [
+    "semis"
+  ],
+  "STN": [
+    "industrials"
+  ],
+  "STNE": [
+    "tech"
+  ],
+  "STNG": [
+    "industrials"
+  ],
+  "STOK": [
+    "biotech"
+  ],
+  "STQN": [
+    "financials"
+  ],
+  "STRA": [
+    "consumer"
+  ],
+  "STRD": [
+    "financials"
+  ],
+  "STRO": [
+    "biotech"
+  ],
+  "STRRP": [
+    "industrials"
+  ],
+  "STT$G": [
+    "financials"
+  ],
+  "STUB": [
+    "consumer"
+  ],
+  "STVN": [
+    "biotech"
+  ],
+  "STXS": [
+    "biotech"
+  ],
+  "SUGRF": [
+    "staples"
+  ],
+  "SUI": [
+    "financials"
+  ],
+  "SUJA": [
+    "staples"
+  ],
+  "SUMAU": [
+    "financials"
+  ],
+  "SUNE": [
+    "industrials"
+  ],
+  "SUNS": [
+    "financials"
+  ],
+  "SUPN": [
+    "biotech"
+  ],
+  "SUPV": [
+    "financials"
+  ],
+  "SUPX": [
+    "industrials"
+  ],
+  "SURG": [
+    "comms"
+  ],
+  "SUUN": [
+    "industrials"
+  ],
+  "SUZ": [
+    "materials"
+  ],
+  "SVAC": [
+    "utilities"
+  ],
+  "SVAUF": [
+    "real_estate"
+  ],
+  "SVC": [
+    "real_estate"
+  ],
+  "SVCO": [
+    "tech"
+  ],
+  "SVICY": [
+    "real_estate"
+  ],
+  "SVNDF": [
+    "staples"
+  ],
+  "SVNHF": [
+    "tech"
+  ],
+  "SVRA": [
+    "biotech"
+  ],
+  "SVREW": [
+    "tech"
+  ],
+  "SVRN": [
+    "industrials"
+  ],
+  "SVV": [
+    "consumer"
+  ],
+  "SVYSF": [
+    "materials"
+  ],
+  "SWAG": [
+    "industrials"
+  ],
+  "SWAGW": [
+    "industrials"
+  ],
+  "SWBGF": [
+    "financials"
+  ],
+  "SWBKY": [
+    "financials"
+  ],
+  "SWCPF": [
+    "industrials"
+  ],
+  "SWDR": [
+    "financials"
+  ],
+  "SWIM": [
+    "materials"
+  ],
+  "SWK": [
+    "industrials"
+  ],
+  "SWKS": [
+    "semis"
+  ],
+  "SWMR": [
+    "tech"
+  ],
+  "SXT": [
+    "materials"
+  ],
+  "SXTC": [
+    "biotech"
+  ],
+  "SXTPW": [
+    "biotech"
+  ],
+  "SYAXF": [
+    "materials"
+  ],
+  "SYBT": [
+    "financials"
+  ],
+  "SYF-PB": [
+    "financials"
+  ],
+  "SYHBF": [
+    "materials"
+  ],
+  "SYK": [
+    "biotech"
+  ],
+  "SYNSY": [
+    "materials"
+  ],
+  "SYRA": [
+    "industrials"
+  ],
+  "SYY": [
+    "consumer"
+  ],
+  "T$A": [
+    "comms"
+  ],
+  "T$C": [
+    "comms"
+  ],
+  "T-PC": [
+    "comms"
+  ],
+  "TACT": [
+    "tech"
+  ],
+  "TANH": [
+    "materials"
+  ],
+  "TAOP": [
+    "tech"
+  ],
+  "TAPR": [
+    "financials"
+  ],
+  "TARS": [
+    "biotech"
+  ],
+  "TASK": [
+    "tech"
+  ],
+  "TATT": [
+    "industrials"
+  ],
+  "TBBB": [
+    "consumer"
+  ],
+  "TBI": [
+    "industrials"
+  ],
+  "TBLD": [
+    "financials"
+  ],
+  "TBLLF": [
+    "materials"
+  ],
+  "TBNGY": [
+    "energy"
+  ],
+  "TBNRL": [
+    "materials"
+  ],
+  "TBRG": [
+    "tech"
+  ],
+  "TCBIO": [
+    "financials"
+  ],
+  "TCGL": [
+    "tech"
+  ],
+  "TCLHF": [
+    "tech"
+  ],
+  "TCLXY": [
+    "consumer"
+  ],
+  "TCMFF": [
+    "comms"
+  ],
+  "TDBCP": [
+    "financials"
+  ],
+  "TDF": [
+    "financials"
+  ],
+  "TDGMW": [
+    "industrials"
+  ],
+  "TDIC": [
+    "industrials"
+  ],
+  "TDTH": [
+    "industrials"
+  ],
+  "TDY": [
+    "industrials"
+  ],
+  "TE-WT": [
+    "semis"
+  ],
+  "TEAM": [
+    "tech"
+  ],
+  "TECX": [
+    "biotech"
+  ],
+  "TEICY": [
+    "real_estate"
+  ],
+  "TEL": [
+    "consumer"
+  ],
+  "TELO": [
+    "biotech"
+  ],
+  "TEM": [
+    "tech"
+  ],
+  "TEN-PF": [
+    "industrials"
+  ],
+  "TENX": [
+    "biotech"
+  ],
+  "TERN": [
+    "biotech"
+  ],
+  "TETUF": [
+    "industrials"
+  ],
+  "TFII": [
+    "industrials"
+  ],
+  "TFPM": [
+    "financials"
+  ],
+  "TG": [
+    "materials"
+  ],
+  "TGLS": [
+    "materials"
+  ],
+  "TGNA": [
+    "comms"
+  ],
+  "TGNT": [
+    "financials"
+  ],
+  "TGOPF": [
+    "financials"
+  ],
+  "TGS": [
+    "utilities"
+  ],
+  "TGT": [
+    "consumer"
+  ],
+  "THCLY": [
+    "comms"
+  ],
+  "THQQF": [
+    "comms"
+  ],
+  "THRM": [
+    "consumer"
+  ],
+  "THURF": [
+    "materials"
+  ],
+  "TICAW": [
+    "industrials"
+  ],
+  "TII": [
+    "materials"
+  ],
+  "TIL": [
+    "biotech"
+  ],
+  "TIMB": [
+    "comms"
+  ],
+  "TITN": [
+    "consumer"
+  ],
+  "TIVC": [
+    "biotech"
+  ],
+  "TKC": [
+    "comms"
+  ],
+  "TKCYY": [
+    "materials"
+  ],
+  "TKLF": [
+    "consumer"
+  ],
+  "TKMEF": [
+    "industrials"
+  ],
+  "TKMSF": [
+    "industrials"
+  ],
+  "TKMTY": [
+    "industrials"
+  ],
+  "TKO": [
+    "consumer"
+  ],
+  "TKRFF": [
+    "materials"
+  ],
+  "TLF": [
+    "materials"
+  ],
+  "TLIH": [
+    "consumer"
+  ],
+  "TLK": [
+    "comms"
+  ],
+  "TLPH": [
+    "biotech"
+  ],
+  "TLPPF": [
+    "biotech"
+  ],
+  "TLS": [
+    "tech"
+  ],
+  "TMCR": [
+    "materials"
+  ],
+  "TMCW": [
+    "materials"
+  ],
+  "TMH": [
+    "consumer"
+  ],
+  "TMP": [
+    "financials"
+  ],
+  "TMQ": [
+    "materials"
+  ],
+  "TMSOF": [
+    "comms"
+  ],
+  "TMTNF": [
+    "industrials"
+  ],
+  "TMTNY": [
+    "industrials"
+  ],
+  "TMUSL": [
+    "comms"
+  ],
+  "TNET": [
+    "industrials"
+  ],
+  "TNL": [
+    "consumer"
+  ],
+  "TNMWF": [
+    "industrials"
+  ],
+  "TNRSF": [
+    "materials"
+  ],
+  "TNYZF": [
+    "financials"
+  ],
+  "TOBAF": [
+    "staples"
+  ],
+  "TOETF": [
+    "real_estate"
+  ],
+  "TOFB": [
+    "staples"
+  ],
+  "TOII": [
+    "biotech"
+  ],
+  "TOIIW": [
+    "biotech"
+  ],
+  "TOKCF": [
+    "tech"
+  ],
+  "TOMYF": [
+    "consumer"
+  ],
+  "TOMZ": [
+    "materials"
+  ],
+  "TONX": [
+    "biotech"
+  ],
+  "TOON": [
+    "consumer"
+  ],
+  "TOPP": [
+    "industrials"
+  ],
+  "TOPS": [
+    "industrials"
+  ],
+  "TORO": [
+    "industrials"
+  ],
+  "TOST": [
+    "tech"
+  ],
+  "TOVX": [
+    "biotech"
+  ],
+  "TOXR": [
+    "financials"
+  ],
+  "TOYWF": [
+    "semis"
+  ],
+  "TPET": [
+    "energy"
+  ],
+  "TPGXL": [
+    "financials"
+  ],
+  "TPICQ": [
+    "industrials"
+  ],
+  "TPL": [
+    "financials"
+  ],
+  "TPST": [
+    "biotech"
+  ],
+  "TRAK": [
+    "tech"
+  ],
+  "TRAW": [
+    "biotech"
+  ],
+  "TRAX": [
+    "biotech"
+  ],
+  "TRBMF": [
+    "materials"
+  ],
+  "TRC": [
+    "real_estate"
+  ],
+  "TREE": [
+    "financials"
+  ],
+  "TRGSU": [
+    "financials"
+  ],
+  "TRIN": [
+    "financials"
+  ],
+  "TRINI": [
+    "financials"
+  ],
+  "TRINZ": [
+    "financials"
+  ],
+  "TRIP": [
+    "tech"
+  ],
+  "TRLC": [
+    "financials"
+  ],
+  "TRMB": [
+    "biotech"
+  ],
+  "TRMD": [
+    "industrials"
+  ],
+  "TRMK": [
+    "financials"
+  ],
+  "TRNR": [
+    "industrials"
+  ],
+  "TRNTF": [
+    "utilities"
+  ],
+  "TRON": [
+    "financials"
+  ],
+  "TROO": [
+    "financials"
+  ],
+  "TRSO": [
+    "tech"
+  ],
+  "TRT": [
+    "industrials"
+  ],
+  "TRTN$A": [
+    "industrials"
+  ],
+  "TRTN$B": [
+    "industrials"
+  ],
+  "TRTN$C": [
+    "industrials"
+  ],
+  "TRTN$D": [
+    "industrials"
+  ],
+  "TRTN$E": [
+    "industrials"
+  ],
+  "TRTN$F": [
+    "industrials"
+  ],
+  "TRTN$G": [
+    "industrials"
+  ],
+  "TRUP": [
+    "financials"
+  ],
+  "TRWD": [
+    "utilities"
+  ],
+  "TRX": [
+    "materials"
+  ],
+  "TSEM": [
+    "semis"
+  ],
+  "TSEOF": [
+    "materials"
+  ],
+  "TSKFF": [
+    "materials"
+  ],
+  "TSLA": [
+    "tech",
+    "consumer"
+  ],
+  "TSN": [
+    "staples"
+  ],
+  "TSNDF": [
+    "biotech"
+  ],
+  "TSOL": [
+    "energy"
+  ],
+  "TTAM": [
+    "materials"
+  ],
+  "TTEC": [
+    "industrials"
+  ],
+  "TU": [
+    "comms"
+  ],
+  "TULP": [
+    "biotech"
+  ],
+  "TUNGF": [
+    "materials"
+  ],
+  "TURB": [
+    "tech"
+  ],
+  "TUYA": [
+    "tech"
+  ],
+  "TVCN": [
+    "comms"
+  ],
+  "TVGNW": [
+    "biotech"
+  ],
+  "TVRD": [
+    "biotech"
+  ],
+  "TWAV": [
+    "tech"
+  ],
+  "TWN": [
+    "financials"
+  ],
+  "TWNPQ": [
+    "consumer"
+  ],
+  "TWO$A": [
+    "financials"
+  ],
+  "TWO$B": [
+    "financials"
+  ],
+  "TWO$C": [
+    "financials"
+  ],
+  "TWOD": [
+    "financials"
+  ],
+  "TWOH": [
+    "tech"
+  ],
+  "TX": [
+    "materials"
+  ],
+  "TXMD": [
+    "biotech"
+  ],
+  "TXN": [
+    "semis"
+  ],
+  "TXNM": [
+    "utilities"
+  ],
+  "TY": [
+    "financials"
+  ],
+  "TY$": [
+    "financials"
+  ],
+  "TY-P": [
+    "financials"
+  ],
+  "TYGO": [
+    "semis"
+  ],
+  "TYHOF": [
+    "industrials"
+  ],
+  "TYHOY": [
+    "industrials"
+  ],
+  "TYNPF": [
+    "materials"
+  ],
+  "TYRA": [
+    "biotech"
+  ],
+  "UAL": [
+    "industrials"
+  ],
+  "UAMY": [
+    "materials"
+  ],
+  "UBFO": [
+    "financials"
+  ],
+  "UBS": [
+    "financials"
+  ],
+  "UBXG": [
+    "tech"
+  ],
+  "UCAR": [
+    "tech"
+  ],
+  "UCL": [
+    "comms"
+  ],
+  "UCO": [
+    "financials"
+  ],
+  "UCTT": [
+    "semis"
+  ],
+  "UDMY": [
+    "consumer"
+  ],
+  "UGA": [
+    "financials"
+  ],
+  "UGP": [
+    "utilities"
+  ],
+  "UGRO": [
+    "consumer"
+  ],
+  "UHAL.B": [
+    "consumer"
+  ],
+  "UHGW": [
+    "industrials"
+  ],
+  "UHT": [
+    "financials"
+  ],
+  "ULBI": [
+    "tech"
+  ],
+  "ULYX": [
+    "tech"
+  ],
+  "UMAC": [
+    "comms"
+  ],
+  "UMC": [
+    "semis"
+  ],
+  "UMDD": [
+    "financials"
+  ],
+  "UNF": [
+    "consumer"
+  ],
+  "UNG": [
+    "financials"
+  ],
+  "UNH": [
+    "financials"
+  ],
+  "UNID": [
+    "financials"
+  ],
+  "UNIU": [
+    "financials"
+  ],
+  "UNL": [
+    "financials"
+  ],
+  "UNLYF": [
+    "consumer"
+  ],
+  "UNMA": [
+    "financials"
+  ],
+  "UNP": [
+    "industrials"
+  ],
+  "UOKA": [
+    "real_estate"
+  ],
+  "UPB": [
+    "biotech"
+  ],
+  "UPST": [
+    "financials"
+  ],
+  "UPWK": [
+    "tech"
+  ],
+  "UPX": [
+    "industrials"
+  ],
+  "URBN": [
+    "consumer"
+  ],
+  "URG": [
+    "materials"
+  ],
+  "URI": [
+    "industrials"
+  ],
+  "USA": [
+    "financials"
+  ],
+  "USAQ": [
+    "industrials"
+  ],
+  "USAR": [
+    "materials"
+  ],
+  "USAS": [
+    "materials"
+  ],
+  "USAU": [
+    "materials"
+  ],
+  "USB-PQ": [
+    "financials"
+  ],
+  "USB-PS": [
+    "financials"
+  ],
+  "USBC": [
+    "financials"
+  ],
+  "USCB": [
+    "financials"
+  ],
+  "USEA": [
+    "industrials"
+  ],
+  "USEG": [
+    "materials"
+  ],
+  "USGOW": [
+    "materials"
+  ],
+  "USIC": [
+    "staples"
+  ],
+  "USIO": [
+    "financials"
+  ],
+  "USL": [
+    "financials"
+  ],
+  "USLM": [
+    "materials"
+  ],
+  "USNA": [
+    "biotech"
+  ],
+  "USO": [
+    "financials"
+  ],
+  "UTF": [
+    "financials"
+  ],
+  "UTZ": [
+    "staples"
+  ],
+  "UUUFF": [
+    "materials"
+  ],
+  "UVE": [
+    "financials"
+  ],
+  "UVSP": [
+    "financials"
+  ],
+  "UWHR": [
+    "financials"
+  ],
+  "UWMC": [
+    "financials"
+  ],
+  "VACHW": [
+    "biotech"
+  ],
+  "VALE": [
+    "materials"
+  ],
+  "VALN": [
+    "biotech"
+  ],
+  "VARRY": [
+    "energy"
+  ],
+  "VATE": [
+    "industrials"
+  ],
+  "VBIX": [
+    "tech"
+  ],
+  "VBNK": [
+    "financials"
+  ],
+  "VCIG": [
+    "tech"
+  ],
+  "VCTR": [
+    "financials"
+  ],
+  "VCX": [
+    "financials"
+  ],
+  "VEEA": [
+    "tech"
+  ],
+  "VEEE": [
+    "industrials"
+  ],
+  "VENU": [
+    "consumer"
+  ],
+  "VEON": [
+    "comms"
+  ],
+  "VERI": [
+    "tech"
+  ],
+  "VERTF": [
+    "comms"
+  ],
+  "VERU": [
+    "biotech"
+  ],
+  "VERX": [
+    "tech"
+  ],
+  "VET": [
+    "materials"
+  ],
+  "VFF": [
+    "staples"
+  ],
+  "VFS": [
+    "consumer",
+    "industrials"
+  ],
+  "VG": [
+    "utilities"
+  ],
+  "VHC": [
+    "financials"
+  ],
+  "VIASP": [
+    "utilities"
+  ],
+  "VICI": [
+    "financials"
+  ],
+  "VICR": [
+    "semis"
+  ],
+  "VIDA": [
+    "consumer"
+  ],
+  "VIK": [
+    "industrials"
+  ],
+  "VINP": [
+    "financials"
+  ],
+  "VIRC": [
+    "consumer"
+  ],
+  "VISM": [
+    "tech"
+  ],
+  "VISN": [
+    "comms"
+  ],
+  "VITL": [
+    "staples"
+  ],
+  "VIV": [
+    "comms"
+  ],
+  "VIVK": [
+    "utilities"
+  ],
+  "VIVS": [
+    "biotech"
+  ],
+  "VLDX": [
+    "industrials"
+  ],
+  "VLGEA": [
+    "consumer"
+  ],
+  "VLO": [
+    "energy"
+  ],
+  "VMAR": [
+    "industrials"
+  ],
+  "VMET": [
+    "financials"
+  ],
+  "VNDA": [
+    "biotech"
+  ],
+  "VNOM": [
+    "materials"
+  ],
+  "VNTG": [
+    "industrials"
+  ],
+  "VNTXF": [
+    "staples"
+  ],
+  "VODPF": [
+    "comms"
+  ],
+  "VOR": [
+    "biotech"
+  ],
+  "VOXR": [
+    "materials"
+  ],
+  "VRBCF": [
+    "biotech"
+  ],
+  "VRCA": [
+    "biotech"
+  ],
+  "VRME": [
+    "tech"
+  ],
+  "VRNO": [
+    "biotech"
+  ],
+  "VROYF": [
+    "materials"
+  ],
+  "VRRCF": [
+    "materials"
+  ],
+  "VRSK": [
+    "tech"
+  ],
+  "VRSN": [
+    "tech"
+  ],
+  "VRSSF": [
+    "tech"
+  ],
+  "VRT": [
+    "semis"
+  ],
+  "VS": [
+    "tech"
+  ],
+  "VSA": [
+    "consumer"
+  ],
+  "VSCO": [
+    "consumer"
+  ],
+  "VSEEW": [
+    "biotech"
+  ],
+  "VSGRY": [
+    "tech"
+  ],
+  "VTGN": [
+    "biotech"
+  ],
+  "VTIX": [
+    "tech"
+  ],
+  "VTMX": [
+    "real_estate"
+  ],
+  "VTOL": [
+    "industrials"
+  ],
+  "VTR": [
+    "financials"
+  ],
+  "VTRS": [
+    "biotech"
+  ],
+  "VTTGF": [
+    "industrials"
+  ],
+  "VVOS": [
+    "biotech"
+  ],
+  "VVPR": [
+    "utilities"
+  ],
+  "VWAVW": [
+    "tech"
+  ],
+  "VXRT": [
+    "biotech"
+  ],
+  "VYLD": [
+    "financials"
+  ],
+  "VYST": [
+    "materials"
+  ],
+  "VZ": [
+    "comms"
+  ],
+  "VZLA": [
+    "materials"
+  ],
+  "W": [
+    "consumer"
+  ],
+  "WABC": [
+    "financials"
+  ],
+  "WAFDP": [
+    "financials"
+  ],
+  "WAFU": [
+    "consumer"
+  ],
+  "WAL$A": [
+    "financials"
+  ],
+  "WASH": [
+    "financials"
+  ],
+  "WAST": [
+    "industrials"
+  ],
+  "WAVE": [
+    "energy"
+  ],
+  "WBHC": [
+    "financials"
+  ],
+  "WBKCY": [
+    "financials"
+  ],
+  "WBS-PG": [
+    "financials"
+  ],
+  "WBSR": [
+    "financials"
+  ],
+  "WBTN": [
+    "comms"
+  ],
+  "WBUY": [
+    "consumer"
+  ],
+  "WBXWF": [
+    "tech"
+  ],
+  "WCN": [
+    "utilities"
+  ],
+  "WCT": [
+    "tech"
+  ],
+  "WDFC": [
+    "materials"
+  ],
+  "WEAT": [
+    "financials"
+  ],
+  "WEBJF": [
+    "consumer"
+  ],
+  "WEIBF": [
+    "tech"
+  ],
+  "WELPM": [
+    "utilities"
+  ],
+  "WELUF": [
+    "consumer"
+  ],
+  "WETO": [
+    "industrials"
+  ],
+  "WEX": [
+    "industrials"
+  ],
+  "WFC$A": [
+    "financials"
+  ],
+  "WFC$C": [
+    "financials"
+  ],
+  "WFC$D": [
+    "financials"
+  ],
+  "WFC$L": [
+    "financials"
+  ],
+  "WFC$Y": [
+    "financials"
+  ],
+  "WFC$Z": [
+    "financials"
+  ],
+  "WFC-PA": [
+    "financials"
+  ],
+  "WFC-PZ": [
+    "financials"
+  ],
+  "WFF": [
+    "consumer"
+  ],
+  "WFG": [
+    "materials"
+  ],
+  "WFRD": [
+    "industrials"
+  ],
+  "WGRX": [
+    "consumer"
+  ],
+  "WHD": [
+    "industrials"
+  ],
+  "WHLRL": [
+    "financials"
+  ],
+  "WHLT": [
+    "financials"
+  ],
+  "WHR$A": [
+    "consumer"
+  ],
+  "WHR-PA": [
+    "consumer"
+  ],
+  "WHWK": [
+    "biotech"
+  ],
+  "WIMI": [
+    "tech"
+  ],
+  "WING": [
+    "consumer"
+  ],
+  "WINT": [
+    "biotech"
+  ],
+  "WIPKF": [
+    "consumer"
+  ],
+  "WKC": [
+    "consumer"
+  ],
+  "WKHS": [
+    "consumer"
+  ],
+  "WKSP": [
+    "consumer"
+  ],
+  "WLAC": [
+    "financials"
+  ],
+  "WLDN": [
+    "industrials"
+  ],
+  "WLDSW": [
+    "tech"
+  ],
+  "WLFC": [
+    "consumer"
+  ],
+  "WLFFF": [
+    "materials"
+  ],
+  "WLKP": [
+    "materials"
+  ],
+  "WLTH": [
+    "financials"
+  ],
+  "WNEB": [
+    "financials"
+  ],
+  "WNLV": [
+    "consumer"
+  ],
+  "WNW": [
+    "materials"
+  ],
+  "WOLF": [
+    "semis"
+  ],
+  "WOLTF": [
+    "industrials"
+  ],
+  "WPM": [
+    "materials"
+  ],
+  "WPPGF": [
+    "industrials"
+  ],
+  "WPRT": [
+    "industrials"
+  ],
+  "WRB$E": [
+    "financials"
+  ],
+  "WRB$F": [
+    "financials"
+  ],
+  "WRB$G": [
+    "financials"
+  ],
+  "WRB$H": [
+    "financials"
+  ],
+  "WRDIF": [
+    "tech"
+  ],
+  "WS": [
+    "financials"
+  ],
+  "WSBCO": [
+    "financials"
+  ],
+  "WSBF": [
+    "financials"
+  ],
+  "WSKEF": [
+    "tech"
+  ],
+  "WSM": [
+    "consumer"
+  ],
+  "WSO.B": [
+    "consumer"
+  ],
+  "WST": [
+    "biotech"
+  ],
+  "WSTRF": [
+    "materials"
+  ],
+  "WSUP": [
+    "industrials"
+  ],
+  "WTKWY": [
+    "industrials"
+  ],
+  "WTRG": [
+    "utilities"
+  ],
+  "WTW": [
+    "financials"
+  ],
+  "WU": [
+    "industrials"
+  ],
+  "WW": [
+    "consumer"
+  ],
+  "WWD": [
+    "industrials"
+  ],
+  "WXM": [
+    "industrials"
+  ],
+  "WYNN": [
+    "consumer"
+  ],
+  "XAGE": [
+    "materials"
+  ],
+  "XAIR": [
+    "biotech"
+  ],
+  "XBIO": [
+    "biotech"
+  ],
+  "XCH": [
+    "tech"
+  ],
+  "XE": [
+    "industrials"
+  ],
+  "XELB": [
+    "financials"
+  ],
+  "XENE": [
+    "biotech"
+  ],
+  "XERS": [
+    "biotech"
+  ],
+  "XGN": [
+    "biotech"
+  ],
+  "XHG": [
+    "financials"
+  ],
+  "XHLD": [
+    "industrials"
+  ],
+  "XIFR": [
+    "tech"
+  ],
+  "XNCR": [
+    "biotech"
+  ],
+  "XNDU": [
+    "tech"
+  ],
+  "XOM": [
+    "energy"
+  ],
+  "XOMAP": [
+    "biotech"
+  ],
+  "XOSW": [
+    "consumer"
+  ],
+  "XPNGF": [
+    "consumer"
+  ],
+  "XPOF": [
+    "consumer"
+  ],
+  "XRAY": [
+    "biotech"
+  ],
+  "XRN-PB": [
+    "financials"
+  ],
+  "XRTX": [
+    "biotech"
+  ],
+  "XRXD": [
+    "tech"
+  ],
+  "XTIA": [
+    "tech"
+  ],
+  "XTLB": [
+    "biotech"
+  ],
+  "XWEL": [
+    "consumer"
+  ],
+  "XWIN": [
+    "consumer"
+  ],
+  "XXI": [
+    "financials"
+  ],
+  "XXII": [
+    "staples"
+  ],
+  "XYF": [
+    "financials"
+  ],
+  "XZJCF": [
+    "industrials"
+  ],
+  "YAAS": [
+    "tech"
+  ],
+  "YB": [
+    "financials"
+  ],
+  "YCBD": [
+    "materials"
+  ],
+  "YDKG": [
+    "tech"
+  ],
+  "YEXT": [
+    "tech"
+  ],
+  "YGSHY": [
+    "industrials"
+  ],
+  "YHC": [
+    "staples"
+  ],
+  "YHGJ": [
+    "materials"
+  ],
+  "YI": [
+    "consumer"
+  ],
+  "YKCLY": [
+    "materials"
+  ],
+  "YLY": [
+    "consumer"
+  ],
+  "YMATF": [
+    "industrials"
+  ],
+  "YMM": [
+    "tech"
+  ],
+  "YMT": [
+    "tech"
+  ],
+  "YMTKF": [
+    "materials"
+  ],
+  "YOU": [
+    "tech"
+  ],
+  "YPF": [
+    "energy"
+  ],
+  "YSHLF": [
+    "industrials"
+  ],
+  "YSWY": [
+    "consumer"
+  ],
+  "YUMC": [
+    "consumer"
+  ],
+  "YYGH": [
+    "industrials"
+  ],
+  "ZARE": [
+    "financials"
+  ],
+  "ZBAO": [
+    "consumer",
+    "tech"
+  ],
+  "ZBH": [
+    "biotech"
+  ],
+  "ZBIO": [
+    "biotech"
+  ],
+  "ZCMD": [
+    "consumer"
+  ],
+  "ZCSH": [
+    "financials"
+  ],
+  "ZDCAF": [
+    "industrials"
+  ],
+  "ZEFIF": [
+    "energy"
+  ],
+  "ZENA": [
+    "tech"
+  ],
+  "ZEOX": [
+    "tech"
+  ],
+  "ZETA": [
+    "tech"
+  ],
+  "ZHIHF": [
+    "industrials"
+  ],
+  "ZIM": [
+    "industrials"
+  ],
+  "ZIP": [
+    "tech"
+  ],
+  "ZJYL": [
+    "biotech"
+  ],
+  "ZKIN": [
+    "industrials"
+  ],
+  "ZNB": [
+    "consumer"
+  ],
+  "ZNKUF": [
+    "financials"
+  ],
+  "ZOMDF": [
+    "biotech"
+  ],
+  "ZPTA": [
+    "tech"
+  ],
+  "ZSHLY": [
+    "consumer"
+  ],
+  "ZSHOF": [
+    "consumer"
+  ],
+  "ZSICY": [
+    "industrials"
+  ],
+  "ZSPC": [
+    "tech"
+  ],
+  "ZSTK": [
+    "consumer"
+  ],
+  "ZTOEF": [
+    "industrials"
+  ],
+  "ZTSTF": [
+    "tech"
+  ],
+  "ZURA": [
+    "biotech"
+  ],
+  "ZVIA": [
+    "biotech"
+  ],
+  "ZYXIQ": [
+    "biotech"
+  ]
+}

@@ -1,0 +1,363 @@
+/* cyber-shell.css — Catalyst Edge cyberpunk visual layer.
+ *
+ * Drop-in module that gives any page the /defi/ utopian-cyberpunk treatment:
+ *   - Magenta/cyan/purple radial bloom background
+ *   - Animated perspective grid floor
+ *   - Subtle scanline overlay with sweep
+ *   - Vignette
+ *   - Cyber tape (optional) + neon nav
+ *
+ * Usage:
+ *   <link rel="stylesheet" href="/lib/cyber-shell.css">
+ *
+ *   <body class="cyber-on">
+ *     <div class="cy-bg" aria-hidden="true"></div>
+ *     <div class="cy-floor" aria-hidden="true"></div>
+ *     <div class="cy-vignette" aria-hidden="true"></div>
+ *     <div class="cy-scan" aria-hidden="true"></div>
+ *     ...rest of page...
+ *
+ * The shell inherits any existing host page colors. Use the `cy-` prefixed
+ * utility classes to opt into cyberpunk-tinted UI (cy-tape, cy-neon-nav, etc).
+ *
+ * Pairs with /lib/cinematic-hero.css — the cinematic hero stays editorial,
+ * this shell adds the futuristic atmosphere underneath.
+ */
+
+:root {
+  --cy-neon-cyan: #00ffff;
+  --cy-neon-magenta: #ff2a8a;
+  --cy-neon-purple: #b026ff;
+  --cy-neon-lime: #d6ff3a;
+  --cy-neon-amber: #ffb347;
+  --cy-bull: #5cf2a4;
+  --cy-bear: #ff5577;
+  --cy-grid-line: rgba(0, 255, 255, 0.04);
+  --cy-grid-line-strong: rgba(176, 38, 255, 0.10);
+}
+
+/* Background bloom + grid lattice */
+.cy-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+/* Upgrade 1 — animated gradient mesh (drifts slowly, breathes the page).
+ * Replaces flat radial bloom. ~150ms repaint per frame, GPU-friendly. */
+.cy-bg::before {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  background:
+    radial-gradient(900px 540px at 18% 8%, rgba(255, 42, 138, 0.18), transparent 65%),
+    radial-gradient(720px 480px at 85% 18%, rgba(0, 255, 255, 0.14), transparent 65%),
+    radial-gradient(1100px 700px at 50% 100%, rgba(176, 38, 255, 0.16), transparent 60%);
+  animation: cy-mesh-drift 24s ease-in-out infinite alternate;
+  filter: blur(40px) saturate(140%);
+  will-change: transform;
+}
+@keyframes cy-mesh-drift {
+  0%   { transform: translate3d(0, 0, 0) scale(1); }
+  50%  { transform: translate3d(2%, -1.5%, 0) scale(1.04); }
+  100% { transform: translate3d(-1.5%, 1%, 0) scale(1.02); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cy-bg::before { animation: none; }
+}
+.cy-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--cy-grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--cy-grid-line) 1px, transparent 1px),
+    linear-gradient(var(--cy-grid-line-strong) 1px, transparent 1px),
+    linear-gradient(90deg, var(--cy-grid-line-strong) 1px, transparent 1px);
+  background-size: 32px 32px, 32px 32px, 256px 256px, 256px 256px;
+  mask-image: radial-gradient(ellipse 90% 70% at 50% 30%, #000 30%, transparent 80%);
+}
+
+/* Perspective grid floor — receding to vanishing point */
+.cy-floor {
+  position: fixed;
+  bottom: -50%;
+  left: -25%;
+  width: 150%;
+  height: 70%;
+  background-image:
+    linear-gradient(rgba(0, 255, 255, 0.22) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 42, 138, 0.14) 1px, transparent 1px);
+  background-size: 60px 60px;
+  transform: perspective(720px) rotateX(62deg);
+  transform-origin: 50% 0;
+  opacity: 0.45;
+  z-index: 0;
+  pointer-events: none;
+  mask-image: linear-gradient(180deg, transparent 0%, #000 35%, transparent 100%);
+  animation: cy-floor-scroll 8s linear infinite;
+}
+@keyframes cy-floor-scroll {
+  from { background-position: 0 0; }
+  to   { background-position: 0 60px; }
+}
+
+/* Scanline overlay + sweep */
+.cy-scan {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 50;
+  background: repeating-linear-gradient(
+    180deg,
+    transparent 0,
+    transparent 3px,
+    rgba(255, 255, 255, 0.012) 3px,
+    rgba(255, 255, 255, 0.012) 4px
+  );
+}
+.cy-scan::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 255, 255, 0.04),
+    transparent 12%,
+    transparent 88%,
+    rgba(255, 42, 138, 0.04)
+  );
+  animation: cy-scan-sweep 6s linear infinite;
+}
+@keyframes cy-scan-sweep {
+  0%   { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+/* Vignette */
+.cy-vignette {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background: radial-gradient(ellipse at center, transparent 50%, rgba(5, 2, 20, 0.55) 100%);
+}
+
+/* When cyberpunk is on, push the host page above the bg layers */
+.cyber-on > * { position: relative; }
+.cyber-on > .cy-bg,
+.cyber-on > .cy-floor,
+.cyber-on > .cy-vignette,
+.cyber-on > .cy-scan { position: fixed; }
+
+/* Optional: live coin/score tape strip — usable on any page */
+.cy-tape {
+  position: relative;
+  z-index: 10;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 42, 138, 0.06),
+    rgba(176, 38, 255, 0.06),
+    rgba(0, 255, 255, 0.06)
+  );
+  border-top: 1px solid rgba(255, 42, 138, 0.24);
+  border-bottom: 1px solid rgba(255, 42, 138, 0.24);
+  overflow: hidden;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* Optional: cinematic-hero color override block — neon-tints the existing
+ * cin-hero classes when applied alongside cinematic-hero.css. Activate by
+ * adding `cy-neon-hero` to the cin-hero element. */
+.cy-neon-hero .cin-num {
+  background: linear-gradient(180deg, #ffffff 0%, var(--cy-neon-cyan) 50%, var(--cy-neon-magenta) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 80px rgba(255, 42, 138, 0.30);
+}
+.cy-neon-hero .cin-pct {
+  color: var(--cy-neon-magenta);
+  text-shadow: 0 0 12px rgba(255, 42, 138, 0.45);
+}
+.cy-neon-hero .cin-h1-eyebrow {
+  color: var(--cy-neon-magenta);
+  text-shadow: 0 0 8px rgba(255, 42, 138, 0.4);
+}
+.cy-neon-hero .cin-headline em {
+  color: var(--cy-neon-magenta);
+  text-shadow: 0 0 16px rgba(255, 42, 138, 0.4);
+}
+.cy-neon-hero .cin-headline .cin-accent {
+  color: var(--cy-neon-cyan);
+  text-shadow: 0 0 16px rgba(0, 255, 255, 0.4);
+}
+.cy-neon-hero .cin-eyebrow {
+  color: var(--cy-neon-cyan);
+  background: rgba(0, 255, 255, 0.05);
+  border-color: rgba(0, 255, 255, 0.32);
+  text-shadow: 0 0 8px rgba(0, 255, 255, 0.5);
+}
+.cy-neon-hero .cin-tag {
+  background: rgba(176, 38, 255, 0.06);
+  border-color: rgba(176, 38, 255, 0.30);
+  color: #93a4c9;
+}
+.cy-neon-hero .cin-tag b {
+  color: var(--cy-neon-lime);
+}
+.cy-neon-hero .cin-stamp {
+  background: rgba(5, 2, 20, 0.6);
+  border-color: rgba(150, 170, 220, 0.10);
+}
+.cy-neon-hero .cin-stamp b {
+  color: var(--cy-neon-cyan);
+}
+.cy-neon-hero .cin-btn-primary {
+  background: linear-gradient(135deg, var(--cy-neon-magenta), var(--cy-neon-purple));
+  color: #fff;
+  box-shadow: 0 0 24px rgba(255, 42, 138, 0.4);
+}
+.cy-neon-hero .cin-btn-primary:hover {
+  box-shadow: 0 0 32px rgba(255, 42, 138, 0.7);
+}
+.cy-neon-hero .cin-btn-ghost {
+  color: var(--cy-neon-cyan);
+  border-color: var(--cy-neon-cyan);
+}
+.cy-neon-hero .cin-btn-ghost:hover {
+  background: rgba(0, 255, 255, 0.08);
+}
+.cy-neon-hero .cin-cell .cin-v.cyan { color: var(--cy-neon-cyan); }
+.cy-neon-hero .cin-cell .cin-v.bull { color: var(--cy-bull); }
+.cy-neon-hero .cin-cell .cin-v.gold { color: var(--cy-neon-amber); }
+.cy-neon-hero .cin-cell .cin-v.bear { color: var(--cy-bear); }
+.cy-neon-hero .cin-strip {
+  background: rgba(15, 8, 40, 0.55);
+  border-color: rgba(150, 170, 220, 0.10);
+}
+.cy-neon-hero .cin-cell {
+  border-right-color: rgba(150, 170, 220, 0.08);
+}
+.cy-neon-hero .cin-live-dot {
+  background: var(--cy-neon-magenta);
+  box-shadow: 0 0 8px var(--cy-neon-magenta);
+}
+
+/* Upgrade 3 — shimmer sweep on colossal stats.
+ * Activate by adding `cy-shimmer` to the cinematic hero element. */
+.cy-neon-hero.cy-shimmer .cin-num {
+  background: linear-gradient(110deg,
+    #ffffff 0%,
+    var(--cy-neon-cyan) 28%,
+    #ffffff 50%,
+    var(--cy-neon-magenta) 72%,
+    #ffffff 100%);
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: cy-stat-shimmer 8s linear infinite;
+}
+@keyframes cy-stat-shimmer {
+  from { background-position: 200% 0; }
+  to   { background-position: -100% 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cy-neon-hero.cy-shimmer .cin-num { animation: none; }
+}
+
+/* cy-telemetry — SpaceX mission-control panel.
+ * Pure-CSS layout; values populated by per-page <script> blocks.
+ *
+ * <div class="cy-telemetry" role="region" aria-label="Mission telemetry">
+ *   <div class="cyt-row"><span class="cyt-lbl">MARKET</span><span class="cyt-val live"><span class="cyt-dot"></span>OPEN</span></div>
+ *   <div class="cyt-row"><span class="cyt-lbl">VIX</span><span class="cyt-val">14.82 <span class="cyt-delta down">-2.1%</span></span></div>
+ *   ...
+ * </div>
+ */
+.cy-telemetry {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  background: linear-gradient(180deg, rgba(10, 6, 28, 0.78), rgba(5, 2, 20, 0.82));
+  border: 1px solid rgba(0, 255, 255, 0.18);
+  border-radius: 14px;
+  padding: 14px 18px;
+  box-shadow: 0 12px 32px -16px rgba(0, 255, 255, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  position: relative;
+}
+.cy-telemetry::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--cy-neon-cyan), transparent);
+  opacity: 0.5;
+}
+.cy-telemetry .cyt-head {
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 9.5px; letter-spacing: 0.20em; text-transform: uppercase;
+  color: var(--cy-neon-cyan); margin-bottom: 10px;
+  border-bottom: 1px dashed rgba(0, 255, 255, 0.12); padding-bottom: 8px;
+}
+.cy-telemetry .cyt-head .cyt-title { font-weight: 700; text-shadow: 0 0 6px rgba(0,255,255,0.5); }
+.cy-telemetry .cyt-head .cyt-stamp { color: rgba(150, 170, 220, 0.55); font-size: 9px; }
+.cy-telemetry .cyt-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+  padding: 5px 0;
+  font-size: 11.5px;
+  line-height: 1.2;
+}
+.cy-telemetry .cyt-row + .cyt-row {
+  border-top: 1px solid rgba(150, 170, 220, 0.05);
+}
+.cy-telemetry .cyt-lbl {
+  color: rgba(150, 170, 220, 0.55);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-size: 10px;
+  align-self: center;
+}
+.cy-telemetry .cyt-val {
+  color: #e8f0ff;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  display: inline-flex; align-items: center; gap: 6px; justify-self: end;
+}
+.cy-telemetry .cyt-val.bull { color: var(--cy-bull); text-shadow: 0 0 6px rgba(92, 242, 164, 0.45); }
+.cy-telemetry .cyt-val.bear { color: var(--cy-bear); text-shadow: 0 0 6px rgba(255, 85, 119, 0.45); }
+.cy-telemetry .cyt-val.cyan { color: var(--cy-neon-cyan); text-shadow: 0 0 6px rgba(0, 255, 255, 0.5); }
+.cy-telemetry .cyt-val.amber { color: var(--cy-neon-amber); }
+.cy-telemetry .cyt-val.live {
+  color: var(--cy-bull);
+  text-shadow: 0 0 6px rgba(92, 242, 164, 0.5);
+}
+.cy-telemetry .cyt-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--cy-bull);
+  box-shadow: 0 0 8px var(--cy-bull);
+  animation: cyt-pulse 1.6s ease-out infinite;
+}
+@keyframes cyt-pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.45; }
+  100% { opacity: 1; }
+}
+.cy-telemetry .cyt-delta { font-size: 10px; font-weight: 600; }
+.cy-telemetry .cyt-delta.up   { color: var(--cy-bull); }
+.cy-telemetry .cyt-delta.down { color: var(--cy-bear); }
+@media (prefers-reduced-motion: reduce) {
+  .cy-telemetry .cyt-dot { animation: none; }
+}
+@media (max-width: 640px) {
+  .cy-telemetry .cyt-row { font-size: 10.5px; }
+}

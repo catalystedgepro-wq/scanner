@@ -1,0 +1,6 @@
+date=2026-04-03
+subject=8 pre-market gap plays for Apr 2 -- scanner results
+html_size=118,765 bytes
+sent_ok=1
+sent_fail=0
+  OK  [premium] opensource@example.com

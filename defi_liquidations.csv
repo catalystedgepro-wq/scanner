@@ -1,0 +1,301 @@
+captured_at,protocol,category,tvl_usd,change_1d_pct,change_7d_pct,chains,stress_label
+2026-04-25T03:05:15+00:00,Binance CEX,CEX,155278801674.0,-0.44,-1.03,"Ethereum,Bitcoin,Binance,Solana,Ripple",drift
+2026-04-25T03:05:15+00:00,OKX,CEX,26408923920.0,-0.93,39.88,"Ethereum,Bitcoin,Solana,Tron,Doge",drift
+2026-04-25T03:05:15+00:00,Lido,Liquid Staking,21712805587.0,-0.73,-5.03,"Ethereum,Solana,Moonbeam,Moonriver,Terra",drift
+2026-04-25T03:05:15+00:00,Bitfinex,CEX,18989067503.0,-0.95,1.15,"Bitcoin,Ethereum,Tron,Solana,Avalanche",drift
+2026-04-25T03:05:15+00:00,SSV Network,Staking Pool,17076933670.0,-0.72,-4.23,Ethereum,drift
+2026-04-25T03:05:15+00:00,Bybit,CEX,15913294007.0,-1.05,0.63,"Ethereum,Bitcoin,Tron,Solana,Mantle",drift
+2026-04-25T03:05:15+00:00,Robinhood,CEX,14034419705.0,-0.91,-1.4,"Bitcoin,Ethereum,Polygon,Avalanche",drift
+2026-04-25T03:05:15+00:00,Aave V3,Lending,13806644559.0,-0.33,-47.03,"Ethereum,Arbitrum,Base,Plasma,Avalanche",drift
+2026-04-25T03:05:15+00:00,EigenCloud,Restaking,9244554795.0,-5.26,-9.88,Ethereum,stress
+2026-04-25T03:05:15+00:00,WBTC,Bridge,8996993539.0,-1.29,-0.2,Bitcoin,drift
+2026-04-25T03:05:15+00:00,Binance staked ETH,Liquid Staking,8554841477.0,-0.71,-4.19,"Ethereum,Binance",drift
+2026-04-25T03:05:15+00:00,Morpho Blue,Lending,6724318065.0,0.97,-12.13,"Ethereum,Base,Hyperliquid L1,Katana,Monad",drift
+2026-04-25T03:05:15+00:00,Coinbase Bridge,Bridge,5691407023.0,-1.01,0.35,"Bitcoin,Ripple,Doge,Cardano,Litecoin",drift
+2026-04-25T03:05:15+00:00,Bitget,CEX,5629337642.0,1.7,-0.49,"Bitcoin,Ethereum,Binance,Solana,Tron",drift
+2026-04-25T03:05:15+00:00,Gemini,CEX,5548185172.0,-2.41,-2.08,"Bitcoin,Ethereum",drift
+2026-04-25T03:05:15+00:00,Sky Lending,CDP,5296272382.0,1.52,-13.48,Ethereum,drift
+2026-04-25T03:05:15+00:00,Binance Bitcoin,Bridge,5289491306.0,-0.66,0.3,Bitcoin,drift
+2026-04-25T03:05:15+00:00,ether.fi Stake,Liquid Restaking,5210487509.0,-0.77,-6.74,"Ethereum,Base,Arbitrum",drift
+2026-04-25T03:05:15+00:00,HTX,CEX,5190343444.0,-1.31,-1.87,"Tron,Ethereum,Bitcoin,Ripple,Doge",drift
+2026-04-25T03:05:15+00:00,Gate,CEX,4980896609.0,-0.51,-2.02,"Ethereum,Bitcoin,Binance,Solana,Tron",drift
+2026-04-25T03:05:15+00:00,MEXC,CEX,4827635996.0,-0.58,-0.54,"Ethereum,Bitcoin,Solana,Binance,Ripple",drift
+2026-04-25T03:05:15+00:00,Deribit,CEX,4569989150.0,-0.38,2.51,"Bitcoin,Ethereum,Solana,Ripple,Binance",drift
+2026-04-25T03:05:15+00:00,Hyperliquid Bridge,Bridge,4555020223.0,-0.18,-4.21,"Arbitrum,Hyperliquid L1",drift
+2026-04-25T03:05:15+00:00,Babylon Protocol,Restaking,4014989717.0,-1.05,-0.19,Bitcoin,drift
+2026-04-25T03:05:15+00:00,Ethena USDe,Basis Trading,3850923434.0,-2.72,-33.97,Ethereum,drift
+2026-04-25T03:05:15+00:00,USDT0,Bridge,3739271113.0,0.47,-6.09,Ethereum,drift
+2026-04-25T03:05:15+00:00,JustLend,Lending,3569259429.0,-0.55,-1.7,Tron,drift
+2026-04-25T03:05:15+00:00,SparkLend,Lending,3564685232.0,-0.54,77.16,"Ethereum,xDai",drift
+2026-04-25T03:05:15+00:00,Arbitrum Bridge,Canonical Bridge,3484109375.0,-0.39,-9.92,Ethereum,drift
+2026-04-25T03:05:15+00:00,KuCoin,CEX,3465997702.0,-0.65,-1.86,"Ethereum,Bitcoin,Solana,Ripple,Tron",drift
+2026-04-25T03:05:15+00:00,Tether Gold,RWA,3349043705.0,0.03,-2.7,"Ethereum,Monad,Plasma,Avalanche,Arbitrum",drift
+2026-04-25T03:05:15+00:00,Grove Finance,Onchain Capital Allocator,3296242896.0,-0.25,-2.32,"Ethereum,Avalanche,Base,Plume Mainnet",drift
+2026-04-25T03:05:15+00:00,Circle USYC,RWA,2903370562.0,0.01,0.0,"Binance,Ethereum,Near,Noble",drift
+2026-04-25T03:05:15+00:00,BlackRock BUIDL,RWA,2803635946.0,2.18,-7.63,"Ethereum,Aptos,Binance,Solana,Avalanche",drift
+2026-04-25T03:05:15+00:00,Base Bridge,Canonical Bridge,2789412540.0,0.35,-4.35,Ethereum,drift
+2026-04-25T03:05:15+00:00,Ondo Yield Assets,RWA,2731977697.0,-0.18,0.3,"Ethereum,Ripple,Plume Mainnet,Solana,Stellar",drift
+2026-04-25T03:05:15+00:00,Polygon Bridge,Chain,2574219859.0,0.34,-0.93,Polygon,drift
+2026-04-25T03:05:15+00:00,JustCryptos,Bridge,2498117000.0,-0.77,-1.73,Tron,drift
+2026-04-25T03:05:15+00:00,Spark Liquidity Layer,Onchain Capital Allocator,2456656905.0,0.16,23.81,"Ethereum,Base,Optimism,Unichain,Arbitrum",drift
+2026-04-25T03:05:15+00:00,Crypto-com,CEX,2360871494.0,0.68,-3.12,"Bitcoin,Ethereum,Polygon,Binance,Avalanche",drift
+2026-04-25T03:05:15+00:00,Paxos Gold,RWA,2262977835.0,-0.85,-5.03,Ethereum,drift
+2026-04-25T03:05:15+00:00,Spark Savings,Yield,1939981222.0,0.37,10.25,"Ethereum,Arbitrum,Avalanche,Base,Optimism",drift
+2026-04-25T03:05:15+00:00,Portal,Bridge,1899403667.0,0.26,10.86,"Ethereum,Solana,Binance,Algorand,Polygon",drift
+2026-04-25T03:05:15+00:00,Centrifuge Protocol,RWA,1891093915.0,-5.01,-4.94,"Ethereum,Avalanche,Plume Mainnet,Base,Binance",stress
+2026-04-25T03:05:15+00:00,PancakeSwap AMM,Dexs,1745060526.0,0.15,0.46,"Binance,Ethereum,Base,Aptos,zkSync Era",drift
+2026-04-25T03:05:15+00:00,Curve DEX,Dexs,1718915367.0,-0.1,-7.58,"Ethereum,Arbitrum,Base,Monad,Fraxtal",drift
+2026-04-25T03:05:15+00:00,Maple,Lending,1714569788.0,5.1,-10.38,"Ethereum,Solana",growth
+2026-04-25T03:05:15+00:00,Uniswap V3,Dexs,1699427343.0,0.48,-3.15,"Ethereum,Base,Arbitrum,Binance,Polygon",drift
+2026-04-25T03:05:15+00:00,Figure Markets Exchange,OTC Marketplace,1631941326.0,0.36,-0.76,Provenance,drift
+2026-04-25T03:05:15+00:00,Obol,Staking Pool,1626247618.0,-0.73,8.49,Ethereum,drift
+2026-04-25T03:05:15+00:00,Falcon Finance,Basis Trading,1621069471.0,0.05,-0.11,Ethereum,drift
+2026-04-25T03:05:15+00:00,HashKey Exchange,CEX,1569054003.0,0.79,0.46,"Bitcoin,Ethereum,Tron,Solana,Doge",drift
+2026-04-25T03:05:15+00:00,Kelp,Liquid Restaking,1559424989.0,-0.5,-5.24,"Ethereum,Arbitrum,Optimism,Manta,Mode",drift
+2026-04-25T03:05:15+00:00,Steakhouse Financial,Risk Curators,1558247414.0,7.47,-15.46,"Base,Ethereum,Monad,Katana,Arbitrum",growth
+2026-04-25T03:05:15+00:00,Bitstamp,CEX,1532847615.0,0.4,35.87,"Ethereum,Bitcoin,Ripple,Litecoin,Solana",drift
+2026-04-25T03:05:15+00:00,Kamino Lend,Lending,1494835627.0,0.18,-12.22,Solana,drift
+2026-04-25T03:05:15+00:00,Sentora,Risk Curators,1482590859.0,0.57,-26.8,"Ethereum,Solana",drift
+2026-04-25T03:05:15+00:00,Anemoy Capital,RWA,1418562242.0,-6.57,-6.52,"Ethereum,Celo,Base",stress
+2026-04-25T03:05:15+00:00,Pendle,Yield,1404755745.0,3.14,-20.31,"Ethereum,Plasma,Arbitrum,Sonic,Hyperliquid L1",drift
+2026-04-25T03:05:15+00:00,Bitkub,CEX,1394828110.0,-0.63,-0.28,"Bitcoin,Ethereum,Ripple,Binance,Solana",drift
+2026-04-25T03:05:15+00:00,Compound V3,Lending,1391351728.0,-1.27,-4.36,"Ethereum,Arbitrum,Base,Optimism,Polygon",drift
+2026-04-25T03:05:15+00:00,USDD,CDP,1351808069.0,-0.37,-5.87,"Tron,Ethereum,Binance",drift
+2026-04-25T03:05:15+00:00,Poloniex,CEX,1343467354.0,-0.86,-1.32,"Bitcoin,Ethereum,Ripple,Tron,EthereumClassic",drift
+2026-04-25T03:05:15+00:00,Rocket Pool,Liquid Staking,1302323146.0,-1.49,-5.59,Ethereum,drift
+2026-04-25T03:05:15+00:00,Bitmex,CEX,1240326187.0,-1.31,0.71,"Bitcoin,Ethereum,Tron,Solana,Binance",drift
+2026-04-25T03:05:15+00:00,Spiko,RWA,1232912882.0,1.53,-0.17,"Stellar,Arbitrum,Polygon,Ethereum,Starknet",drift
+2026-04-25T03:05:15+00:00,Venus Core Pool,Lending,1215379520.0,-0.59,-1.7,"Binance,Ethereum,Arbitrum,zkSync Era,Unichain",drift
+2026-04-25T03:05:15+00:00,Sanctum Validator LSTs,Liquid Staking,1159951692.0,0.18,-3.26,Solana,drift
+2026-04-25T03:05:15+00:00,Concrete,Onchain Capital Allocator,1042509609.0,-0.72,-3.65,"Ethereum,Stable,Berachain,Arbitrum,Katana",drift
+2026-04-25T03:05:15+00:00,Veda,Onchain Capital Allocator,1011748902.0,-5.4,-16.9,"Ethereum,Ink,Hyperliquid L1,Plasma,Base",stress
+2026-04-25T03:05:15+00:00,Raydium AMM,Dexs,1011268789.0,0.67,-3.56,Solana,drift
+2026-04-25T03:05:15+00:00,Uniswap V2,Dexs,958505166.0,2.61,-0.46,"Ethereum,Base,Polygon,Arbitrum,Binance",drift
+2026-04-25T03:05:15+00:00,SwissBorg,CEX,952245937.0,-0.4,-1.87,"Bitcoin,Ethereum,Solana,Ripple,Binance",drift
+2026-04-25T03:05:15+00:00,Gauntlet,Risk Curators,940216163.0,-0.3,-11.36,"Ethereum,Base,Katana,Optimism,Polygon",drift
+2026-04-25T03:05:15+00:00,Jito Liquid Staking,Liquid Staking,919772850.0,0.17,-5.63,Solana,drift
+2026-04-25T03:05:15+00:00,Binance Staked SOL,Liquid Staking,909992796.0,0.19,-1.34,Solana,drift
+2026-04-25T03:05:15+00:00,StakeWise V2,Liquid Staking,907874507.0,-0.78,-7.28,"Ethereum,xDai",drift
+2026-04-25T03:05:15+00:00,Superstate USTB,RWA,892695159.0,2.75,20.34,"Ethereum,Plume Mainnet,Solana",drift
+2026-04-25T03:05:15+00:00,DoubleZero Staked SOL,Liquid Staking,882847725.0,0.06,-3.02,Solana,drift
+2026-04-25T03:05:15+00:00,Jupiter Lend,Lending,877916800.0,-0.36,-11.21,Solana,drift
+2026-04-25T03:05:15+00:00,WisdomTree,RWA,868678197.0,-0.0,-0.33,"Ethereum,Stellar",drift
+2026-04-25T03:05:15+00:00,Function FBTC,Bridge,851777287.0,-1.38,0.16,Bitcoin,drift
+2026-04-25T03:05:15+00:00,Ondo Global Markets,RWA,824651763.0,1.53,0.55,"Ethereum,Binance,Solana",drift
+2026-04-25T03:05:15+00:00,Jupiter Staked SOL,Liquid Staking,818009214.0,0.16,-5.32,Solana,drift
+2026-04-25T03:05:15+00:00,Liquid Collective,Liquid Staking,814316962.0,-0.71,-4.38,Ethereum,drift
+2026-04-25T03:05:15+00:00,Lombard LBTC,Restaked BTC,774670863.0,-1.72,-1.48,"Bitcoin,Ethereum",drift
+2026-04-25T03:05:15+00:00,Kinetiq kHYPE,Liquid Staking,760488698.0,-1.52,-12.2,Hyperliquid L1,drift
+2026-04-25T03:05:15+00:00,Blockchain Capital,RWA,754118306.0,0,0,zkSync Era,drift
+2026-04-25T03:05:15+00:00,Fluid Lending,Lending,735896413.0,-1.39,-11.77,"Ethereum,Arbitrum,Plasma,Base,Polygon",drift
+2026-04-25T03:05:15+00:00,Uniswap V4,Dexs,725829151.0,2.99,4.59,"Ethereum,Arbitrum,Base,Polygon,Unichain",drift
+2026-04-25T03:05:15+00:00,OSL HK,CEX,705714963.0,-0.13,0.52,"Bitcoin,Ethereum,Solana,Tron,Binance",drift
+2026-04-25T03:05:15+00:00,Jupiter Perpetual Exchange,Derivatives,693827693.0,-0.98,-7.99,Solana,drift
+2026-04-25T03:05:15+00:00,mETH Protocol,Liquid Staking,673968640.0,-0.72,-4.17,Ethereum,drift
+2026-04-25T03:05:15+00:00,BingX,CEX,614295672.0,-0.19,-0.04,"Tron,Bitcoin,Binance,Ethereum,Solana",drift
+2026-04-25T03:05:15+00:00,Convex Finance,Yield,610896720.0,0.4,-5.25,"Ethereum,Fraxtal,Arbitrum,Polygon",drift
+2026-04-25T03:05:15+00:00,Lista Liquid Staking,Liquid Staking,608121946.0,-0.5,-1.86,Binance,drift
+2026-04-25T03:05:15+00:00,Ethena USDtb,RWA,589008048.0,1.47,-32.24,Ethereum,drift
+2026-04-25T03:05:15+00:00,Lista Lending,Lending,586566998.0,0.72,2.75,"Binance,Ethereum",drift
+2026-04-25T03:05:15+00:00,Tornado Cash,Privacy,556769983.0,-2.27,-5.76,"Ethereum,Binance,Arbitrum,Avalanche,xDai",drift
+2026-04-25T03:05:15+00:00,Aster Bridge,Bridge,543606488.0,-0.01,-16.14,"Binance,Ethereum,Arbitrum,Solana,Scroll",drift
+2026-04-25T03:05:15+00:00,Optimism Bridge,Canonical Bridge,528249164.0,-0.22,-1.26,"Ethereum,Base,PGN",drift
+2026-04-25T03:05:15+00:00,Lighter Bridge,Bridge,497442532.0,-0.6,-4.75,"Ethereum,Arbitrum",drift
+2026-04-25T03:05:15+00:00,SolvBTC,Bridge,490898053.0,-1.03,0.33,"Bitcoin,Ethereum,Binance,Solana,Base",drift
+2026-04-25T03:05:15+00:00,Korbit,CEX,485140154.0,-0.75,0.7,"Bitcoin,Ethereum,Ripple",drift
+2026-04-25T03:05:15+00:00,Symbiotic,Restaking,474676533.0,-1.11,-2.82,Ethereum,drift
+2026-04-25T03:05:15+00:00,Merlins Seal,Bridge,466825180.0,-0.81,3.15,"Bitcoin,Arbitrum,Ethereum,Zkfair",drift
+2026-04-25T03:05:15+00:00,Lorenzo enzoBTC,Bridge,465911969.0,-1.06,-7.17,Bitcoin,drift
+2026-04-25T03:05:15+00:00,Polymarket International,Prediction Market,462241404.0,2.18,1.96,Polygon,drift
+2026-04-25T03:05:15+00:00,Indodax,CEX,443340785.0,-0.4,-0.72,"Bitcoin,Ethereum,Solana,Binance,Cardano",drift
+2026-04-25T03:05:15+00:00,Unit,Bridge,438439479.0,-1.44,-6.32,"Bitcoin,Ethereum,Solana,Plasma,Monad",drift
+2026-04-25T03:05:15+00:00,tBTC,Decentralized BTC,427009010.0,-3.38,-8.12,"Bitcoin,Ethereum",drift
+2026-04-25T03:05:15+00:00,Quickswap Dex,Dexs,424194471.0,-7.21,-15.55,"Polygon,Base",stress
+2026-04-25T03:05:15+00:00,Avalon USDa,CDP,423547795.0,-0.73,1.14,"Binance,Ethereum,Klaytn,Berachain,Sonic",drift
+2026-04-25T03:05:15+00:00,Nexo,CEX,395356584.0,-0.35,9.82,"Ethereum,Binance,Polygon,Avalanche,Arbitrum",drift
+2026-04-25T03:05:15+00:00,Lista CDP,CDP,395265222.0,-0.59,-1.6,Binance,drift
+2026-04-25T03:05:15+00:00,xStocks,RWA,390127977.0,-1.92,-2.33,"Solana,Arbitrum",drift
+2026-04-25T03:05:15+00:00,Renzo,Liquid Restaking,388287029.0,0.38,-3.73,"Ethereum,Arbitrum,Linea,Solana,Zircuit",drift
+2026-04-25T03:05:15+00:00,Linea Bridge,Canonical Bridge,385528633.0,1.43,-4.18,Ethereum,drift
+2026-04-25T03:05:15+00:00,Solstice USX,Basis Trading,378518453.0,0.0,0.07,Solana,drift
+2026-04-25T03:05:15+00:00,Lightning Network,Payments,375319868.0,-0.86,0.81,Bitcoin,drift
+2026-04-25T03:05:15+00:00,CIAN Yield Layer,Yield Aggregator,375060979.0,4.0,-5.0,"Ethereum,Mantle,Arbitrum,Optimism,Base",drift
+2026-04-25T03:05:15+00:00,Stader,Liquid Staking,374181704.0,-1.03,-4.54,"Ethereum,Hedera,Binance,Fantom,Terra2",drift
+2026-04-25T03:05:15+00:00,HyperLend Pooled,Lending,366886904.0,-0.76,-8.86,Hyperliquid L1,drift
+2026-04-25T03:05:15+00:00,Multipli.fi,Yield,366595997.0,-0.01,-0.04,"Ethereum,Base,Monad,Arbitrum,Binance",drift
+2026-04-25T03:05:15+00:00,BounceBit CeDeFi Yield,Basis Trading,365953444.0,-1.04,0.38,"BounceBit,Binance,Ethereum,Solana,Base",drift
+2026-04-25T03:05:15+00:00,Hyperliquid HLP,Derivatives,362841031.0,-0.3,-8.24,Hyperliquid L1,drift
+2026-04-25T03:05:15+00:00,Bedrock uniBTC,Anchor BTC,359782688.0,-0.39,0.81,"Bitcoin,Ethereum,Merlin,BOB,Binance",drift
+2026-04-25T03:05:15+00:00,Phemex,CEX,356210278.0,-0.28,-0.84,"Ethereum,Bitcoin,Ripple,Binance,Solana",drift
+2026-04-25T03:05:15+00:00,Euler V2,Lending,348631708.0,3.77,-33.32,"Ethereum,Plasma,Avalanche,BOB,Monad",drift
+2026-04-25T03:05:15+00:00,Hastra,RWA,336114733.0,-1.58,-8.95,Solana,drift
+2026-04-25T03:05:15+00:00,PancakeSwap AMM V3,Dexs,333037500.0,0.8,0.45,"Binance,Base,Ethereum,Solana,Arbitrum",drift
+2026-04-25T03:05:15+00:00,Aave Horizon RWA,RWA Lending,330337119.0,10.57,29.86,Ethereum,growth
+2026-04-25T03:05:15+00:00,UniRouter,Bridge,330045952.0,-1.06,0.76,BSquared,drift
+2026-04-25T03:05:15+00:00,Free Protocol,Bridge,326397852.0,1.09,0.5,"Merlin,Ethereum,Binance,Arbitrum,Manta",drift
+2026-04-25T03:05:15+00:00,cap,Lending,322211227.0,2.76,8.65,Ethereum,drift
+2026-04-25T03:05:15+00:00,Buzz Farming,Farm,320992838.0,-1.06,0.47,BSquared,drift
+2026-04-25T03:05:15+00:00,Stacks sBTC,Bridge,319652379.0,-1.0,-1.24,Bitcoin,drift
+2026-04-25T03:05:15+00:00,Kraken Bitcoin,Bridge,319114689.0,-1.06,0.3,Bitcoin,drift
+2026-04-25T03:05:15+00:00,ether.fi Liquid,Onchain Capital Allocator,316346688.0,-16.83,-33.58,Ethereum,cascade
+2026-04-25T03:05:15+00:00,Backpack,CEX,315279716.0,-1.03,-2.23,"Solana,Bitcoin,Hyperliquid L1,Ethereum,Arbitrum",drift
+2026-04-25T03:05:15+00:00,Coinbase Wrapped Staked ETH,Liquid Staking,305179452.0,-1.02,-5.34,Ethereum,drift
+2026-04-25T03:05:15+00:00,Bitvavo,CEX,303862260.0,0.93,-1.68,"Bitcoin,Ethereum,Solana,Hyperliquid L1,Base",drift
+2026-04-25T03:05:15+00:00,Mellow Core,Onchain Capital Allocator,300805552.0,-0.72,-6.06,"Ethereum,RSK,Monad,Mezo",drift
+2026-04-25T03:05:15+00:00,Defi Saver,CDP Manager,297088229.0,-0.28,-5.64,"Ethereum,Arbitrum,Optimism,Base",drift
+2026-04-25T03:05:15+00:00,B2 Buzz,Canonical Bridge,291413709.0,-0.78,0.06,"Bitcoin,Ethereum,Polygon,Binance",drift
+2026-04-25T03:05:15+00:00,Meteora DLMM,Dexs,290042392.0,1.87,-4.74,Solana,drift
+2026-04-25T03:05:15+00:00,xDAI Stake Bridge,Canonical Bridge,285875021.0,0.35,-3.14,Ethereum,drift
+2026-04-25T03:05:15+00:00,USD AI,RWA Lending,285159469.0,0.46,0.12,Arbitrum,drift
+2026-04-25T03:05:15+00:00,M0,Stablecoin Issuer,284773241.0,-4.99,-6.77,Ethereum,drift
+2026-04-25T03:05:15+00:00,Marinade Liquid Staking,Liquid Staking,279990159.0,0.11,-3.6,Solana,drift
+2026-04-25T03:05:15+00:00,BitFi Basis,Basis Trading,271305289.0,-0.73,0.51,"Binance,Ethereum,Hemi,Base,CORE",drift
+2026-04-25T03:05:15+00:00,Nexus BTC,Bridge,268736656.0,15.96,27.08,Bitcoin,growth
+2026-04-25T03:05:15+00:00,Benqi Staked Avax,Liquid Staking,267883465.0,0.33,10.04,Avalanche,drift
+2026-04-25T03:05:15+00:00,WEEX,CEX,264707595.0,-0.37,-0.81,"Ethereum,Bitcoin,Tron,Binance,Solana",drift
+2026-04-25T03:05:15+00:00,Superstate USCC,Basis Trading,262873253.0,0.13,-0.28,"Ethereum,Solana,Plume Mainnet",drift
+2026-04-25T03:05:15+00:00,Mantle Bridge,Canonical Bridge,260359199.0,-0.15,2.22,Ethereum,drift
+2026-04-25T03:05:15+00:00,Orca DEX,Dexs,260001357.0,1.15,-3.57,"Solana,Eclipse",drift
+2026-04-25T03:05:15+00:00,Upshift,Onchain Capital Allocator,259737526.0,-14.36,-23.36,"Ethereum,Flare,Monad,Hyperliquid L1,Avalanche",cascade
+2026-04-25T03:05:15+00:00,Re,RWA,256517464.0,0.18,29.27,"Ethereum,Base,Avalanche,Arbitrum",drift
+2026-04-25T03:05:15+00:00,b14g,Restaking,251376293.0,-1.2,13.12,"Bitcoin,CORE,Babylon Genesis",drift
+2026-04-25T03:05:15+00:00,World Chain,Canonical Bridge,251358748.0,-1.49,-7.4,Ethereum,drift
+2026-04-25T03:05:15+00:00,Marinade Native,Staking Pool,250500698.0,0.12,-2.85,Solana,drift
+2026-04-25T03:05:15+00:00,GMX V2 Perps,Derivatives,244098782.0,-0.36,-9.23,"Arbitrum,Avalanche,MegaETH,Botanix",drift
+2026-04-25T03:05:15+00:00,Drift Staked SOL,Liquid Staking,240360227.0,0.11,-3.01,Solana,drift
+2026-04-25T03:05:15+00:00,FAssets,Bridge,237260167.0,-0.44,-3.01,"Ripple,Flare",drift
+2026-04-25T03:05:15+00:00,GTBTC,Restaked BTC,233409490.0,-1.06,0.31,Bitcoin,drift
+2026-04-25T03:05:15+00:00,Lombard BTC.b,Bridge,232622950.0,-2.33,-7.1,Bitcoin,drift
+2026-04-25T03:05:15+00:00,AFI Protocol,Farm,225612282.0,-0.01,-0.18,"Base,Ethereum,Monad",drift
+2026-04-25T03:05:15+00:00,Starknet Bridge,Canonical Bridge,218530491.0,-2.41,1.74,Ethereum,drift
+2026-04-25T03:05:15+00:00,PumpSwap,Dexs,218399609.0,3.32,-1.3,Solana,drift
+2026-04-25T03:05:15+00:00,Connext,Bridge,216425344.0,0.24,-6.3,"Ethereum,Linea,Arbitrum,Base,Metis",drift
+2026-04-25T03:05:15+00:00,Tydro,Lending,215451419.0,2.77,-46.85,Ink,drift
+2026-04-25T03:05:15+00:00,DigiFT,RWA,205159201.0,0.64,0.12,"Ethereum,Binance,Arbitrum,Plume Mainnet",drift
+2026-04-25T03:05:15+00:00,Cooler Loans,Lending,204191705.0,4.46,11.1,Ethereum,drift
+2026-04-25T03:05:15+00:00,Yearn Finance,Yield Aggregator,202633688.0,-0.76,-9.58,"Ethereum,Katana,Base,Optimism,Polygon",drift
+2026-04-25T03:05:15+00:00,Aerodrome Slipstream,Dexs,202512761.0,3.69,-9.29,Base,drift
+2026-04-25T03:05:15+00:00,Echo Bridge,Bridge,202429090.0,-2.86,-1.29,"BSquared,Bitcoin",drift
+2026-04-25T03:05:15+00:00,GAIB,RWA,201919456.0,0.0,0.0,"Ethereum,Sei,Arbitrum,Binance,Base",drift
+2026-04-25T03:05:15+00:00,Solv Basis Trading,Basis Trading,200381918.0,-1.88,-0.04,"Binance,Arbitrum,Ethereum,Mantle,Polygon",drift
+2026-04-25T03:05:15+00:00,VALR,CEX,198150120.0,-1.21,-3.43,"Bitcoin,Ethereum,Ripple,Tron,Solana",drift
+2026-04-25T03:05:15+00:00,CoinEx,CEX,196749805.0,-0.49,-1.68,"Bitcoin,Ethereum,Tron,Starknet",drift
+2026-04-25T03:05:15+00:00,Bitrue,CEX,195864012.0,-0.07,-3.13,"Ripple,Ethereum,Hedera,Tron,Bitcoin",drift
+2026-04-25T03:05:15+00:00,Midas RWA,RWA,185857539.0,0.01,-14.74,"Ethereum,Monad,Plasma,Arbitrum,Solana",drift
+2026-04-25T03:05:15+00:00,exSat Staking BTC,Bridge,183156726.0,1.83,5.97,Bitcoin,drift
+2026-04-25T03:05:15+00:00,Pareto Credit,RWA Lending,181047750.0,0.01,-2.25,"Ethereum,Polygon,Arbitrum,Optimism",drift
+2026-04-25T03:05:15+00:00,Fraxtal,Chain,180690907.0,0.35,-0.35,Ethereum,drift
+2026-04-25T03:05:15+00:00,edgeX Bridge,Bridge,179566906.0,-1.36,-8.17,"Ethereum,edgeX L1,Arbitrum,Binance",drift
+2026-04-25T03:05:15+00:00,EtherFi Borrowing Market,Lending,176904759.0,6.52,-5.02,"Optimism,Scroll",growth
+2026-04-25T03:05:15+00:00,Liquity V1,CDP,176328415.0,-0.25,-4.46,Ethereum,drift
+2026-04-25T03:05:15+00:00,Sanctum Infinity,Dexs,175697900.0,0.02,-4.48,Solana,drift
+2026-04-25T03:05:15+00:00,KPK,Risk Curators,175133685.0,257.8,155.82,"Ethereum,xDai,Arbitrum,Binance,Base",growth
+2026-04-25T03:05:15+00:00,Noble,Chain,172083105.0,-0.27,-1.35,Noble,drift
+2026-04-25T03:05:15+00:00,K3 Capital,Risk Curators,171243713.0,1.81,-5.47,"Ethereum,Plasma,Avalanche,Arbitrum,Binance",drift
+2026-04-25T03:05:15+00:00,SUNSwap V3,Dexs,171116650.0,-0.39,-0.29,Tron,drift
+2026-04-25T03:05:15+00:00,Mantle Restaking,Liquid Restaking,170092564.0,-0.69,-4.5,Ethereum,drift
+2026-04-25T03:05:15+00:00,Stake DAO,Yield,168516360.0,-0.92,-11.14,"Ethereum,Base,Arbitrum,Fraxtal,Polygon",drift
+2026-04-25T03:05:15+00:00,Vault Bridge,Risk Curators,168262440.0,6.42,-19.58,Ethereum,growth
+2026-04-25T03:05:15+00:00,Zircuit Staking,Farm,168256750.0,1.01,61.11,"Ethereum,Zircuit",drift
+2026-04-25T03:05:15+00:00,Extended,Derivatives,168049859.0,-0.38,-5.42,"Starknet,Ethereum",drift
+2026-04-25T03:05:15+00:00,CoinDCX,CEX,168028198.0,-0.67,-1.15,"Bitcoin,Ethereum,Ripple,Cardano,Binance",drift
+2026-04-25T03:05:15+00:00,Kamino Liquidity,Liquidity Manager,167186386.0,1.1,-7.45,Solana,drift
+2026-04-25T03:05:15+00:00,Biconomy.com,CEX,165660614.0,-0.57,-3.42,"Ethereum,Polygon,Tron,Bitcoin",drift
+2026-04-25T03:05:15+00:00,Fluid Lite,Yield Aggregator,163670117.0,-0.59,-21.99,Ethereum,drift
+2026-04-25T03:05:15+00:00,Yield Basis,Leveraged Farming,162117225.0,-2.32,-17.05,Ethereum,drift
+2026-04-25T03:05:15+00:00,Aster asBNB,Yield,159530424.0,-0.61,-1.94,Binance,drift
+2026-04-25T03:05:15+00:00,Hyperliquid Spot Orderbook,Dexs,158743478.0,3.02,11.99,Hyperliquid L1,drift
+2026-04-25T03:05:15+00:00,RealT Tokens,RWA,156806701.0,0.01,0.01,xDai,drift
+2026-04-25T03:05:15+00:00,PinkSale,Launchpad,156184965.0,-0.11,-3.04,"Binance,Ethereum,Polygon,Cronos,Avalanche",drift
+2026-04-25T03:05:15+00:00,NAVI Lending,Lending,154654186.0,-2.62,3.94,Sui,drift
+2026-04-25T03:05:15+00:00,EtherFi Cash Liquid,Crypto Card Issuer,151857461.0,0.11,-4.91,"Optimism,Scroll",drift
+2026-04-25T03:05:15+00:00,Suilend,Lending,147666682.0,0.49,-10.07,Sui,drift
+2026-04-25T03:05:15+00:00,zkSync Era txBridge,Canonical Bridge,146277230.0,-0.29,-3.71,Ethereum,drift
+2026-04-25T03:05:15+00:00,Echo Lending,Lending,145424359.0,0.33,1.57,Aptos,drift
+2026-04-25T03:05:15+00:00,OnRe,RWA,144677355.0,0.58,-3.87,Solana,drift
+2026-04-25T03:05:15+00:00,Mantle Index Four Fund,RWA,144605954.0,-0.62,1.2,Mantle,drift
+2026-04-25T03:05:15+00:00,Polygon zkEVM Bridge,Canonical Bridge,144275065.0,0.27,-14.62,Ethereum,drift
+2026-04-25T03:05:15+00:00,Compound V2,Lending,143561327.0,-0.48,-3.74,Ethereum,drift
+2026-04-25T03:05:15+00:00,Lagoon,Onchain Capital Allocator,142416617.0,-0.83,-1.86,"Ethereum,Base,Arbitrum,TAC,Avalanche",drift
+2026-04-25T03:05:15+00:00,Axelar,Bridge,138861624.0,0.06,-1.46,"Ethereum,Binance,Ripple,Optimism,Arbitrum",drift
+2026-04-25T03:05:15+00:00,UNCX Network V2,Token Locker,138635462.0,-0.84,-3.03,"Ethereum,Binance,Base,Polygon,Arbitrum",drift
+2026-04-25T03:05:15+00:00,Avalanche Core Bridge,Canonical Bridge,137025283.0,-1.84,-4.85,"Ethereum,Bitcoin",drift
+2026-04-25T03:05:15+00:00,stHYPE,Liquid Staking,136128569.0,0.65,-13.75,Hyperliquid L1,drift
+2026-04-25T03:05:15+00:00,Doppler Finance,CeDeFi,134559553.0,0.19,-1.44,"Ripple,Ethereum",drift
+2026-04-25T03:05:15+00:00,Aave V2,Lending,134292958.0,-0.6,-5.96,"Ethereum,Polygon,Avalanche",drift
+2026-04-25T03:05:15+00:00,Telos Consilium,Risk Curators,133313991.0,-0.67,-0.73,"Plasma,Ethereum",drift
+2026-04-25T03:05:15+00:00,Beefy,Yield Aggregator,132343709.0,-1.32,-9.13,"Ethereum,Base,Arbitrum,Fraxtal,Binance",drift
+2026-04-25T03:05:15+00:00,Frax Ether,Liquid Staking,132058270.0,-0.87,-4.63,"Ethereum,Fraxtal",drift
+2026-04-25T03:05:15+00:00,Dolomite,Lending,131418437.0,-3.6,-23.92,"Ethereum,Berachain,Arbitrum,Mantle,Botanix",drift
+2026-04-25T03:05:15+00:00,Aerodrome V1,Dexs,130216222.0,0.11,-2.2,Base,drift
+2026-04-25T03:05:15+00:00,Hyperithm,Risk Curators,127011259.0,0.55,-25.84,"Ethereum,Monad,Katana,Arbitrum,Plasma",drift
+2026-04-25T03:05:15+00:00,RAAC,RWA,124537314.0,-0.08,-2.68,Ethereum,drift
+2026-04-25T03:05:15+00:00,Phantom SOL,Liquid Staking,124366758.0,0.47,-3.79,Solana,drift
+2026-04-25T03:05:15+00:00,OpenEden TBILL,RWA,123718951.0,-0.85,-8.65,"Ethereum,Ripple,Solana,Arbitrum",drift
+2026-04-25T03:05:15+00:00,Tectonic,Lending,122772894.0,0.19,-0.04,Cronos,drift
+2026-04-25T03:05:15+00:00,Aster USDF,Basis Trading,119647708.0,0.3,0.9,Binance,drift
+2026-04-25T03:05:15+00:00,Theo Network thBill,RWA,119602060.0,0.01,-11.29,"Ethereum,Arbitrum,Solana",drift
+2026-04-25T03:05:15+00:00,Derive V2,Derivatives,118353338.0,-0.35,-1.52,"Arbitrum,Hyperliquid L1,Optimism,Ethereum,Base",drift
+2026-04-25T03:05:15+00:00,VVS Standard,Dexs,117422831.0,-0.48,-6.66,Cronos,drift
+2026-04-25T03:05:15+00:00,Chiliz Governance Staking,Chain,117315444.0,-4.28,15.85,Chiliz,drift
+2026-04-25T03:05:15+00:00,Benqi Lending,Lending,115427775.0,0.18,-10.09,Avalanche,drift
+2026-04-25T03:05:15+00:00,Treehouse Protocol,DOR,115216685.0,-0.59,-39.16,"Ethereum,Avalanche,Mantle",drift
+2026-04-25T03:05:15+00:00,UltraYield Curator,Risk Curators,114408752.0,1.99,-24.18,"Ethereum,Hyperliquid L1,Monad,Etherlink,Base",drift
+2026-04-25T03:05:15+00:00,Venus Flux,Lending,114364716.0,2.6,-7.09,Binance,drift
+2026-04-25T03:05:15+00:00,Bitunix,CEX,112512270.0,-0.26,0.27,"Bitcoin,Tron,Ripple,Ethereum",drift
+2026-04-25T03:05:15+00:00,BloFin,CEX,111613392.0,0.13,5.1,"Ethereum,Tron,Bitcoin,Solana,Ripple",drift
+2026-04-25T03:05:15+00:00,Hyperlane,Cross Chain Bridge,111238255.0,1.39,0.56,"Binance,Ethereum,Base,Arbitrum,Hyperliquid L1",drift
+2026-04-25T03:05:15+00:00,The Vault Liquid Staking,Liquid Staking,111148591.0,0.11,-2.31,Solana,drift
+2026-04-25T03:05:15+00:00,Bitlayer YBTC Family,Anchor BTC,110626225.0,-1.06,-0.15,"Bitcoin,Ethereum",drift
+2026-04-25T03:05:15+00:00,Homora V2,Leveraged Farming,110273717.0,,,"Ethereum,Binance,Avalanche,Fantom,Optimism",unknown
+2026-04-25T03:05:15+00:00,Blend Pools V2,Lending,109298642.0,-0.74,3.84,Stellar,drift
+2026-04-25T03:05:15+00:00,JPool,Liquid Staking,109127773.0,0.06,-3.05,Solana,drift
+2026-04-25T03:05:15+00:00,Liquity V2,CDP,107980438.0,-0.39,-3.35,Ethereum,drift
+2026-04-25T03:05:15+00:00,Nexus Mutual,Insurance,107946324.0,-1.0,-5.24,Ethereum,drift
+2026-04-25T03:05:15+00:00,Clearstar,Risk Curators,106448028.0,1.24,-8.55,"Flare,Ethereum,Base,Hyperliquid L1,Hemi",drift
+2026-04-25T03:05:15+00:00,Avalon CeDeFi,Anchor BTC,106245981.0,-0.73,1.14,Ethereum,drift
+2026-04-25T03:05:15+00:00,Ember Protocol,Onchain Capital Allocator,105652249.0,-8.8,-10.21,"Ethereum,Sui",stress
+2026-04-25T03:05:15+00:00,Securitize Tokenized AAA CLO Fund,RWA,105039351.0,0.0,0.16,Ethereum,drift
+2026-04-25T03:05:15+00:00,Reserve Protocol,Indexes,104847684.0,-5.85,-11.17,"Ethereum,Base,Arbitrum,Binance",stress
+2026-04-25T03:05:15+00:00,MatrixDock STBT,RWA,103961203.0,0.01,-0.23,Ethereum,drift
+2026-04-25T03:05:15+00:00,Unitas,Basis Trading,103472663.0,0.09,-0.12,"Binance,Solana",drift
+2026-04-25T03:05:15+00:00,Avant avUSD,Basis Trading,102999928.0,-13.2,-18.55,Avalanche,cascade
+2026-04-25T03:05:15+00:00,dYdX V4,Derivatives,102044577.0,-0.46,-2.49,dYdX,drift
+2026-04-25T03:05:15+00:00,crvUSD,CDP,101603669.0,13.26,147.38,Ethereum,growth
+2026-04-25T03:05:15+00:00,Usual USD0,RWA,100937963.0,-0.01,-0.83,Ethereum,drift
+2026-04-25T03:05:15+00:00,Sophon Bridge,Canonical Bridge,100672577.0,4.69,1.58,Ethereum,drift
+2026-04-25T03:05:15+00:00,Bybit Staked SOL,Liquid Staking,99653152.0,0.21,-2.52,Solana,drift
+2026-04-25T03:05:15+00:00,Ourbit,CEX,99440687.0,-0.68,-0.05,"Bitcoin,Solana,Ethereum,Binance,Tron",drift
+2026-04-25T03:05:15+00:00,Lofty,RWA,99270040.0,0.01,0.0,Algorand,drift
+2026-04-25T03:05:15+00:00,Stargate V2,Cross Chain Bridge,98762546.0,-2.88,-10.34,"Ethereum,Arbitrum,Binance,Base,Optimism",drift
+2026-04-25T03:05:15+00:00,Aera V3,Onchain Capital Allocator,97778695.0,-0.0,-6.92,"Base,Ethereum",drift
+2026-04-25T03:05:15+00:00,Apollo Diversified Credit Securitize Fund,RWA,97748043.0,0.08,0.26,"Ethereum,Aptos,Sei,Ink,Avalanche",drift
+2026-04-25T03:05:15+00:00,River Omni-CDP,CeDeFi,97252356.0,-0.58,0.37,"Binance,Base,BSquared,Ethereum,BOB",drift
+2026-04-25T03:05:15+00:00,Tonstakers LSD,Liquid Staking,96683454.0,-0.23,-2.58,TON,drift
+2026-04-25T03:05:15+00:00,Sky RWA,RWA,94471765.0,-0.28,0.08,Ethereum,drift
+2026-04-25T03:05:15+00:00,SoSoValue Indexes,Indexes,94386137.0,-0.42,-1.73,"Bitcoin,Ethereum,Ripple,Binance,Doge",drift
+2026-04-25T03:05:15+00:00,BYDFi,CEX,94126155.0,-0.81,-0.24,"Bitcoin,Ethereum,Ripple",drift
+2026-04-25T03:05:15+00:00,OSL,CEX,93511698.0,-21.98,36.08,"Solana,Tron,Ethereum,Bitcoin,Avalanche",cascade
+2026-04-25T03:05:15+00:00,Railgun,Privacy,93316456.0,-0.08,5.44,"Ethereum,Arbitrum,Binance,Polygon",drift
+2026-04-25T03:05:15+00:00,Dswap,Dexs,93079313.0,1.05,5.79,ENI,drift
+2026-04-25T03:05:15+00:00,Flying Tulip Yield,Services,92207025.0,,,,unknown
+2026-04-25T03:05:15+00:00,BlazeStake,Liquid Staking,89665733.0,0.08,-2.48,Solana,drift
+2026-04-25T03:05:15+00:00,Enzyme Finance,Indexes,89574675.0,0.61,-1.74,"Ethereum,Polygon,Arbitrum",drift
+2026-04-25T03:05:15+00:00,KAIO,RWA,89385349.0,0.01,0.0,"Sui,Sei,Immutable zkEVM,Near,Aptos",drift
+2026-04-25T03:05:15+00:00,Lulo,Yield Aggregator,87151033.0,-0.01,0.46,Solana,drift
+2026-04-25T03:05:15+00:00,RockawayX,Risk Curators,87047659.0,2.35,12.64,"Solana,Ethereum,Sei,Plume Mainnet,Binance",drift
+2026-04-25T03:05:15+00:00,Firelight,Farm,86973570.0,-0.53,7.36,Flare,drift
+2026-04-25T03:05:15+00:00,YBTC.B,Anchor BTC,85898786.0,-1.06,0.62,Bitlayer,drift
+2026-04-25T03:05:15+00:00,Felix Vaults,Onchain Capital Allocator,85840303.0,-1.77,-19.1,Hyperliquid L1,drift
+2026-04-25T03:05:15+00:00,Loopscale,Lending,84208815.0,0.46,-2.15,Solana,drift
+2026-04-25T03:05:15+00:00,Frax USD,RWA,83867001.0,-0.9,-3.81,Ethereum,drift
+2026-04-25T03:05:15+00:00,Strata Markets,Yield,83444175.0,-7.05,-41.82,Ethereum,stress
+2026-04-25T03:05:15+00:00,Zest V2,Lending,82496486.0,-0.87,-3.55,Stacks,drift
+2026-04-25T03:05:15+00:00,Balancer V3,Dexs,82089351.0,1.4,-17.39,"Ethereum,Monad,Arbitrum,Base,Hyperliquid L1",drift
+2026-04-25T03:05:15+00:00,Reservoir Protocol,CDP,81435972.0,-25.09,-61.88,"Ethereum,Monad,Plasma,Berachain,Binance",cascade
+2026-04-25T03:05:15+00:00,AILayer farm,Farm,81210173.0,-1.06,0.3,"Bitcoin,zkLink",drift
+2026-04-25T03:05:15+00:00,infiniFi,Yield,81034899.0,0.21,-19.62,Ethereum,drift
+2026-04-25T03:05:15+00:00,Save,Lending,80634980.0,-0.01,-5.6,"Solana,Eclipse",drift
+2026-04-25T03:05:15+00:00,Re7 Labs,Risk Curators,80034626.0,-0.66,-16.88,"Avalanche,Plasma,World Chain,Ethereum,Starknet",drift
+2026-04-25T03:05:15+00:00,Lorenzo sUSD1+,Yield,79605584.0,0.01,-0.01,"Binance,Ethereum",drift
+2026-04-25T03:05:15+00:00,BitFi BTC,Anchor BTC,79001763.0,-0.91,0.37,AILayer,drift

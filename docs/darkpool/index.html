@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dark Pool Tracker — Unusual Volume & Block Trades | Catalyst Edge</title>
+<meta name="description" content="Track dark pool activity and unusual volume signals. See which stocks have massive hidden block trades and volume spikes institutions don't want you to see.">
+<meta property="og:title" content="Dark Pool Tracker — Catalyst Edge">
+<link rel="canonical" href="https://catalystedgescanner.com/darkpool/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#070a12;--surface:#0f1420;--gold:#d4a843;--green:#22c55e;--red:#ef4444;--cyan:#06b6d4;--text:#e2e8f0;--dim:#94a3b8;--muted:#64748b;--border:#1e293b}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
+.wrap{max-width:1080px;margin:0 auto;padding:1.5rem}
+.nav{position:sticky;top:0;z-index:100;background:rgba(7,10,18,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:.75rem 1.5rem;display:flex;align-items:center;gap:1rem}
+.nav a{color:var(--gold);font-weight:600;font-size:.95rem}
+.nav .sep{color:var(--muted)}
+.hero{text-align:center;padding:2.5rem 0 2rem;border-bottom:1px solid var(--border);margin-bottom:1.5rem}
+.hero h1{font-size:clamp(1.5rem,4vw,2.2rem);font-weight:800;line-height:1.2;margin-bottom:.4rem}
+.hero h1 em{font-style:normal;color:var(--cyan)}
+.hero .sub{color:var(--dim);font-size:.9rem;max-width:560px;margin:0 auto}
+.live-dot{display:inline-block;width:8px;height:8px;background:var(--green);border-radius:50%;margin-right:6px;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.stats-bar{display:flex;justify-content:center;gap:2rem;margin:1rem 0;flex-wrap:wrap}
+.sb-item{text-align:center}
+.sb-val{font-size:1.3rem;font-weight:800;color:var(--gold)}
+.sb-lbl{font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.dp-table{width:100%;border-collapse:collapse;margin:1.5rem 0}
+.dp-table th{text-align:left;padding:8px 10px;font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;border-bottom:1px solid var(--border);position:sticky;top:52px;background:var(--bg)}
+.dp-table td{padding:8px 10px;font-size:.82rem;border-bottom:1px solid rgba(30,41,59,.5)}
+.dp-table tr:hover{background:rgba(6,182,212,.04)}
+.tk{font-weight:800;font-size:.9rem}
+.mono{font-family:'IBM Plex Mono',monospace;font-size:.78rem}
+.vol-extreme{color:var(--cyan);font-weight:800}
+.vol-high{color:var(--gold);font-weight:700}
+.dp-flag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:.65rem;font-weight:700;text-transform:uppercase;background:rgba(6,182,212,.12);color:var(--cyan)}
+.change-up{color:var(--green);font-weight:700}
+.change-dn{color:var(--red);font-weight:700}
+.cta-bar{background:var(--surface);border:1px solid var(--gold);border-radius:10px;padding:1.25rem;text-align:center;margin:2rem 0}
+.cta-bar h3{color:var(--gold);font-size:1rem;margin-bottom:.3rem}
+.cta-bar p{color:var(--dim);font-size:.8rem;margin-bottom:.75rem}
+.cta-bar a{display:inline-block;padding:.5rem 1.4rem;background:linear-gradient(135deg,var(--gold),#f1ce88);color:#070a12;font-weight:700;border-radius:6px;font-size:.85rem}
+.footer{text-align:center;padding:1.5rem;font-size:.72rem;color:var(--muted);border-top:1px solid var(--border);margin-top:2rem}
+.footer a{color:var(--muted)}
+.table-wrap{overflow-x:auto}
+</style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@800;900&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/lib/cinematic-hero.css">
+  <link rel="stylesheet" href="/lib/cyber-shell.css">
+  <link rel="stylesheet" href="/lib/polish-tokens.css">
+</head>
+<body>
+  <div class="cy-bg" aria-hidden="true"></div>
+  <div class="cy-floor" aria-hidden="true"></div>
+  <div class="cy-vignette" aria-hidden="true"></div>
+  <div class="cy-scan" aria-hidden="true"></div>
+<div class="nav">
+  <a href="/">Catalyst Edge</a>
+  <span class="sep">/</span>
+  <span style="color:var(--dim);font-size:.9rem">Dark Pool</span>
+</div>
+<div class="wrap">
+<div class="ce-breadcrumb" style="max-width:1400px;margin:8px auto 0;padding:0 28px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-mute,#5a6c92);"><a href="/scanner/" style="color:var(--neon-cyan,#00ffff);text-decoration:none">&larr; Scanner</a><span style="color:var(--ink-mute,#5a6c92);margin:0 8px">&middot;</span><span>DARK POOL</span></div>
+
+<section class="cin-hero cy-neon-hero cy-shimmer">
+    <div class="cin-grid">
+      <div class="cin-stat-stack">
+        <div class="cin-eyebrow"><span class="cin-live-dot"></span>DARK POOL · UNUSUAL VOLUME · LIVE</div>
+        <div class="cin-colossal">
+          <div class="cin-num-row"><span class="cin-num">40%+</span></div>
+          <div class="cin-side">
+          <span class="cin-tag">off-exchange share</span>
+          <span class="cin-tag">institutional <b>tape</b></span>
+          <span class="cin-tag">block-print clusters</span>
+          </div>
+        </div>
+        <div class="cin-stamp">DARKPOOL//FLOW · v1.4 · <b>LIVE</b></div>
+      </div>
+      <div class="cin-h1-block">
+        <div class="cin-h1-eyebrow">🌑 Dark Pool & Unusual Volume · Where Institutions Trade</div>
+        <h1 class="cin-headline">When <em>40%+</em> of a name's tape goes off-exchange, the institutions are <span class="cin-accent">accumulating quietly</span>.</h1>
+        <p class="cin-lede">Off-exchange volume share, block prints, and unusual print clustering. We surface names where dark-pool participation jumps relative to the 30-day average — the institutional smoke signal before the public bid moves.</p>
+        <div class="cin-cta-row">
+          <a href="#dp-table" class="cin-btn-primary">See unusual flow ↓</a>
+          <a href="/scanner/" class="cin-btn-ghost">Open scanner</a>
+        </div>
+        <div class="cin-strip">
+          <div class="cin-cell"><div class="cin-k">Tracked</div><div class="cin-v" id="dp-total" data-mirror="d-total">–</div></div>
+          <div class="cin-cell"><div class="cin-k">High DP %</div><div class="cin-v bull" id="dp-high" data-mirror="d-flagged">–</div></div>
+          <div class="cin-cell"><div class="cin-k">Block prints</div><div class="cin-v gold" id="dp-blocks" data-mirror="d-max">–</div></div>
+          <div class="cin-cell"><div class="cin-k">Latest</div><div class="cin-v cyan" id="dp-latest">–</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="table-wrap">
+    <table class="dp-table">
+      <thead><tr><th>Ticker</th><th>Signal</th><th>Volume</th><th>Avg Vol</th><th>Vol Ratio</th><th>Price Change</th><th>Dark Pool</th></tr></thead>
+      <tbody id="dp-body"></tbody>
+    </table>
+  </div>
+  <div class="cta-bar">
+    <h3>Get dark pool alerts daily</h3>
+    <p>Free daily email with dark pool signals, convergence alerts, and SEC catalysts at 4 AM ET.</p>
+    <a href="/preview/">Subscribe Free</a>
+  </div>
+</div>
+<div class="footer">
+  &copy; 2026 Catalyst Edge &middot;
+  <a href="/">Scanner</a> &middot; <a href="/convergence/">Convergence</a> &middot;
+  <a href="/jackpot/" style="color:#22c55e">🎯 JACKPOT</a>
+  <a href="/dcf/" style="color:#06b6d4">💰 DCF</a> &middot;
+  <a href="/squeeze/">Squeeze</a> &middot; <a href="/insiders/">Insiders</a> &middot;
+  <a href="/congress/">Congress</a> &middot; <a href="/glossary/">Glossary</a> &middot; Not financial advice.
+</div>
+<script>
+(function(){
+  function setText(id, val) { var n = document.getElementById(id); if (n) n.textContent = val; }
+  function fmtVol(v){var n=parseInt(v)||0;if(n>=1e9)return(n/1e9).toFixed(1)+'B';if(n>=1e6)return(n/1e6).toFixed(1)+'M';if(n>=1e3)return(n/1e3).toFixed(0)+'K';return n.toString()}
+  fetch('/api/darkpool').then(function(r){return r.json()}).then(function(d){
+    var signals=d.signals||[];
+    setText('d-total', signals.length);
+    var flagged=0,maxVR=0;
+    signals.forEach(function(s){
+      if(s.dark_pool_flag==='True')flagged++;
+      var vr=parseFloat(s.vol_ratio)||0;
+      if(vr>maxVR)maxVR=vr;
+    });
+    setText('d-flagged', flagged);
+    setText('d-max', maxVR.toFixed(1)+'x');
+    var tbody=document.getElementById('dp-body');
+    // Only show rows with a real dark-pool / accumulation signal.
+    // NORMAL rows were cluttering the table with "--" in the flag column.
+    var filtered=signals.filter(function(s){
+      var vr=parseFloat(s.vol_ratio)||0;
+      return s.dark_pool_flag==='True' || vr>=2.0
+        || (s.signal_type||'').match(/UNUSUAL|ACCUMULATION|STEALTH/i);
+    });
+    filtered.forEach(function(s){
+      var tr=document.createElement('tr');
+      var vr=parseFloat(s.vol_ratio)||0;
+      var chg=parseFloat(s.price_change)||0;
+
+      var td1=document.createElement('td');td1.className='tk';td1.textContent=s.ticker;tr.appendChild(td1);
+      var td2=document.createElement('td');td2.className='mono';td2.textContent=(s.signal_type||'').replace(/_/g,' ');td2.style.fontSize='.72rem';tr.appendChild(td2);
+      var td3=document.createElement('td');td3.className='mono';td3.textContent=fmtVol(s.volume);tr.appendChild(td3);
+      var td4=document.createElement('td');td4.className='mono';td4.textContent=fmtVol(s.avg_volume);td4.style.color='var(--muted)';tr.appendChild(td4);
+      var td5=document.createElement('td');td5.className='mono '+(vr>=10?'vol-extreme':vr>=5?'vol-high':'');td5.textContent=vr.toFixed(1)+'x';tr.appendChild(td5);
+      var td6=document.createElement('td');td6.className='mono '+(chg>=0?'change-up':'change-dn');td6.textContent=(chg>0?'+':'')+chg.toFixed(1)+'%';tr.appendChild(td6);
+      var td7=document.createElement('td');
+      if(s.dark_pool_flag==='True'){var b=document.createElement('span');b.className='dp-flag';b.textContent='DARK POOL';td7.appendChild(b)}
+      else if(vr>=2.0){var b=document.createElement('span');b.className='dp-flag';b.style.background='rgba(250,204,21,.15)';b.style.color='#facc15';b.textContent='VOL SPIKE';td7.appendChild(b)}
+      else{td7.textContent='--';td7.style.color='var(--muted)'}
+      tr.appendChild(td7);
+      tbody.appendChild(tr);
+    });
+  });
+})();
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KV1VDK22VC"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-KV1VDK22VC');</script>
+  <script src="/lib/cy-strip-mirror.js" defer></script>
+</body>
+</html>

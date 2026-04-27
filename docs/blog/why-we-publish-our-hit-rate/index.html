@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Why we publish our hit rate (and Bloomberg never will) — Catalyst Edge blog</title>
+  <meta name="description" content="Bloomberg, FactSet, and Refinitiv won't publish their hit rates. We do — and here's why, plus how to read ours without confusing accuracy for skill." />
+  <meta property="og:title" content="Why we publish our hit rate (and Bloomberg never will)" />
+  <meta property="og:description" content="Bloomberg, FactSet, and Refinitiv won't publish theirs. Here's why we do." />
+  <meta property="og:type" content="article" />
+  <link rel="alternate" type="application/rss+xml" title="Catalyst Edge blog" href="/blog/rss.xml" />
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/lib/admin-unlock.css" />
+  <link rel="stylesheet" href="/lib/scanner-polish.css" />
+  <link rel="stylesheet" href="/lib/nav-fix.css" />
+  <style>
+    :root{
+      --navy:#040a14; --navy2:#0a1424; --navy3:#0e1a2e;
+      --ink:#e6f1ff; --ink-dim:#9bb0c8; --ink-mute:#6e8198;
+      --cyan:#5ad7ff; --gold:#f5c662; --bull:#5cf2a4; --bear:#ff6b8b;
+      --line:rgba(110,140,180,0.18); --line-strong:rgba(110,140,180,0.32);
+      --glass: linear-gradient(180deg, rgba(15,28,48,0.78), rgba(7,14,28,0.78));
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;background:#04070d;color:var(--ink);
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      -webkit-font-smoothing:antialiased; font-feature-settings:"ss01","cv11";
+    }
+    a{color:var(--cyan);text-decoration:none}
+    a:hover{text-decoration:underline}
+    code{font-family:"JetBrains Mono","IBM Plex Mono",ui-monospace,monospace;font-size:0.92em;background:rgba(90,215,255,0.06);padding:1px 6px;border-radius:4px;color:var(--cyan)}
+
+    .topbar{position:sticky;top:0;z-index:50;background:rgba(4,7,13,0.86);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+    .topbar-row{display:flex;align-items:center;gap:18px;padding:14px 24px;max-width:1400px;margin:0 auto}
+    .brand{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:14px;letter-spacing:0.18em;color:var(--gold);text-transform:uppercase}
+    .brand b{color:var(--cyan)}
+    nav.nav{display:flex;gap:8px;flex:1;flex-wrap:nowrap;overflow-x:auto;scroll-padding-top:80px}
+    nav.nav a{font-size:13px;color:var(--ink-dim);padding:8px 12px;border-radius:8px;white-space:nowrap}
+    nav.nav a:hover{background:rgba(90,215,255,0.08);color:var(--ink);text-decoration:none}
+    nav.nav a.active{color:var(--gold);background:rgba(245,198,98,0.08)}
+
+    article.post{max-width:780px;margin:0 auto;padding:48px 24px 64px}
+    .crumbs{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:0.16em;color:var(--ink-mute);text-transform:uppercase;margin-bottom:24px}
+    .crumbs a{color:var(--ink-dim)}
+    .crumbs a:hover{color:var(--cyan)}
+    .eyebrow{display:inline-flex;gap:14px;font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:0.18em;color:var(--gold);text-transform:uppercase;margin-bottom:14px;flex-wrap:wrap}
+    .eyebrow .read{color:var(--ink-mute)}
+    .eyebrow .tag{padding:3px 10px;border-radius:6px;background:rgba(245,198,98,0.08);border:1px solid rgba(245,198,98,0.32)}
+    h1.title{font-size:clamp(30px,4.5vw,46px);line-height:1.1;letter-spacing:-0.01em;margin:0 0 14px;font-weight:700}
+    .lede{font-size:18px;color:var(--ink-dim);line-height:1.55;margin:0 0 32px}
+
+    article.post h2{margin:36px 0 12px;font-size:22px;color:var(--cyan);letter-spacing:-0.005em}
+    article.post p{margin:0 0 14px;color:var(--ink);font-size:16px;line-height:1.7}
+    article.post ul{margin:0 0 18px;padding-left:24px;color:var(--ink-dim);font-size:15.5px;line-height:1.7}
+    article.post ul li{margin-bottom:6px}
+    article.post ul li b{color:var(--ink)}
+
+    .pull{font-size:20px;line-height:1.5;color:var(--gold);font-style:italic;
+      padding:14px 22px;border-left:3px solid var(--gold);background:rgba(245,198,98,0.05);border-radius:0 10px 10px 0;margin:24px 0}
+    .callout{background:#04070d;border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:18px 0;font-size:14px;color:var(--ink-dim);line-height:1.6}
+    .callout b{color:var(--ink)}
+    .callout code{font-size:13px}
+
+    .byline{margin-top:48px;padding-top:24px;border-top:1px dashed var(--line);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px}
+    .byline .who{font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:0.14em;color:var(--ink-mute);text-transform:uppercase}
+    .byline .who b{color:var(--ink)}
+    .byline .share{display:flex;gap:8px;flex-wrap:wrap}
+    .byline .share a{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;
+      padding:8px 12px;border-radius:8px;border:1px solid var(--line-strong);color:var(--ink-dim)}
+    .byline .share a:hover{border-color:var(--cyan);color:var(--cyan);text-decoration:none}
+
+    .next-up{margin-top:32px;background:var(--glass);border:1px solid var(--line);border-radius:14px;padding:18px}
+    .next-up .eye{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:0.18em;color:var(--ink-mute);text-transform:uppercase}
+    .next-up h4{margin:6px 0 4px;font-size:16px;color:var(--cyan)}
+    .next-up p{margin:0;color:var(--ink-dim);font-size:13.5px}
+
+    footer{padding:36px 0;color:var(--ink-mute);font-size:12px;border-top:1px solid var(--line);text-align:center}
+    footer .links{display:flex;gap:14px;justify-content:center;margin-top:8px;flex-wrap:wrap}
+  </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Why we publish our hit rate (and Bloomberg never will)",
+  "description": "Bloomberg, FactSet, and Refinitiv won't publish their hit rates. We do — and here's why, plus how to read ours without confusing accuracy for skill.",
+  "datePublished": "2026-04-25",
+  "dateModified": "2026-04-25",
+  "author": {
+    "@type": "Organization",
+    "name": "Catalyst Edge Scanner",
+    "url": "https://catalystedgescanner.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://catalystedgescanner.com/press/logo.png"
+    }
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Catalyst Edge Scanner",
+    "url": "https://catalystedgescanner.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://catalystedgescanner.com/press/logo.png"
+    }
+  },
+  "image": "https://catalystedgescanner.com/press/logo.png",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://catalystedgescanner.com/blog/why-we-publish-our-hit-rate/"
+  },
+  "url": "https://catalystedgescanner.com/blog/why-we-publish-our-hit-rate/"
+}
+</script>
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://catalystedgescanner.com/blog/why-we-publish-our-hit-rate/" />
+  <meta property="og:title" content="Why we publish our hit rate (and Bloomberg never will) — Catalyst Edge blog" />
+  <meta property="og:description" content="Bloomberg, FactSet, and Refinitiv won" />
+  <meta property="og:image" content="https://catalystedgescanner.com/og/blog-why-we-publish.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name" content="Catalyst Edge Scanner" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@catalystEdgePro" />
+  <meta name="twitter:title" content="Why we publish our hit rate (and Bloomberg never will) — Catalyst Edge blog" />
+  <meta name="twitter:description" content="Bloomberg, FactSet, and Refinitiv won" />
+  <meta name="twitter:image" content="https://catalystedgescanner.com/og/blog-why-we-publish.png" />
+<link rel="stylesheet" href="/lib/polish-tokens.css">
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-row">
+      <div class="brand"><b>Catalyst</b> · Edge</div>
+      <nav class="nav">
+        <a href="/scanner/">Scanner</a>
+        <a href="/international/">Global</a>
+        <a href="/dcf/">DCF</a>
+        <a href="/cross-border/">Cross-Border</a>
+        <a href="/sdk/">SDK</a>
+        <a href="/benchmarks/">Benchmarks</a>
+        <a href="/trust/">Trust</a>
+        <a href="/blog/" class="active">Blog</a>
+        <a href="/community/">Community</a>
+        <a href="/changelog/">Changelog</a>
+        <a href="/pricing/">Pricing</a>
+      </nav>
+    </div>
+  </div>
+
+  <article class="post">
+    <div class="crumbs"><a href="/blog/">← All posts</a></div>
+    <div class="eyebrow"><span>2026-04-25</span><span class="read">≈ 5 min read</span><span class="tag">Methodology</span></div>
+    <h1 class="title">Why we publish our hit rate (and Bloomberg never will)</h1>
+    <p class="lede">Three of the largest market-data companies in the world — Bloomberg, FactSet, Refinitiv — have decades of fundamental data, billions in revenue, and tens of thousands of customers. None of them publishes a hit rate on the signals they sell. We do. Here's the case for transparency, and how to read ours without confusing accuracy for skill.</p>
+
+    <h2>The asymmetric incentive</h2>
+    <p>Publishing a hit rate is bad business if you're an incumbent and good business if you're a challenger. The math is simple: if Bloomberg published an 80% hit rate, half their customers would call it a sandbag and half would call it a brag. If they published a 50% hit rate, they'd lose half the room overnight. So they don't publish. The information asymmetry — they know how good they are, you don't — is the moat.</p>
+    <p>That moat only works while no one else publishes either. The second a credible challenger publishes a number — any number — the entire incumbent silence becomes a liability. So we did. <a href="/trust/">/trust</a> contains the audit, the methodology in code, and a 50-row sample of 2026-Q1 catalyst calls with the misses visible.</p>
+
+    <div class="pull">"If you can't audit the model, you can't trust the call. Every Bloomberg user trusts a model they cannot inspect."</div>
+
+    <h2>What 89% actually means</h2>
+    <p>Our published rate is 89% on 2026-Q1 catalyst calls (n = 847). A "hit" is defined narrowly: the catalyst's stated direction (bullish or bearish from the filing classifier) was correct on a 5-day forward horizon by at least 1.5%. The 5-day window is standard event-study practice (Brown &amp; Warner 1985). The 1.5% threshold is just slightly above 1σ of daily volatility on the universe — high enough to exclude random walks, low enough to actually fire.</p>
+    <p>That definition is narrow on purpose. A 1.5% / 5-day threshold is not the same as "predicts which stocks will double." Reading the number any other way is a mistake. We picked the threshold because it's where the academic literature already lives — borrow their precedent and you don't have to argue about it.</p>
+
+    <h2>How to read a hit rate without fooling yourself</h2>
+    <p>Three rules of thumb when looking at <em>any</em> published rate, including ours:</p>
+    <ul>
+      <li><b>Sample size matters more than percentage.</b> 89% on 12 calls is luck. 89% on 847 is signal. Always check n.</li>
+      <li><b>Threshold matters more than method.</b> A 1.5% threshold and a 5% threshold produce wildly different rates on the same data. Read both numbers if both exist.</li>
+      <li><b>Survivorship bias is the silent killer.</b> If a vendor only audits the names they're willing to remember, the rate is theatre. We audit every call published in <code>combined_priority.csv</code>, including the embarrassing ones.</li>
+    </ul>
+
+    <div class="callout">
+      <b>What's not in the 89%:</b> our intl-markets coverage (sample size still small — first audit 2026-07-31), sympathy chains (90-day correlation window still collecting), options flow (no live key yet), and macro regime calls. We say so explicitly on <a href="/trust/">/trust</a> rather than letting the headline number absorb work it hasn't earned.
+    </div>
+
+    <h2>Why we'll keep doing it</h2>
+    <p>Every quarter we re-run the audit, post the new sample, and update the rate. If the number drops below 80% we say so within 24 hours and ship a methodology fix within a week. If we silently change the formula, the change shows up in <a href="/changelog/">the changelog</a> with a delta diff before the new rate goes live.</p>
+    <p>The simplest version: <strong>we want you to be able to verify what we tell you</strong>. The companies that don't publish hit rates are betting that you'll never ask. We're betting on the opposite. If we're wrong about that bet, we deserve to lose the customer. If we're right, the entire incumbent stance becomes harder to defend with every passing quarter.</p>
+
+    <h2>What you can do with this</h2>
+    <p>If you're a customer or a prospect, ask every other vendor in the space the same question: <em>what's your published, audited hit rate, and where do I find the methodology?</em> Their answer (or the lack of one) tells you what they think you'll accept. The market gets better when you start asking.</p>
+
+    <div class="byline">
+      <span class="who">Founder · <b>Catalyst Edge Scanner</b> · 2026-04-25</span>
+      <div class="share">
+        <a href="https://x.com/intent/tweet?url=https%3A%2F%2Fcatalystedgescanner.com%2Fblog%2Fwhy-we-publish-our-hit-rate%2F&text=Why%20we%20publish%20our%20hit%20rate%20(and%20Bloomberg%20never%20will)" target="_blank" rel="noopener">𝕏 share</a>
+        <a href="mailto:?subject=Why%20we%20publish%20our%20hit%20rate&body=https%3A%2F%2Fcatalystedgescanner.com%2Fblog%2Fwhy-we-publish-our-hit-rate%2F">Email</a>
+        <a href="/blog/">← All posts</a>
+      </div>
+    </div>
+
+    <div class="next-up">
+      <span class="eye">Up next · 2026-04-23</span>
+      <h4><a href="/blog/how-the-cross-border-convergence-score-works/">How the cross-border convergence score works →</a></h4>
+      <p>The 4-point composite signal we use to score ADR ↔ home-listing setups in real time. Math + worked example.</p>
+    </div>
+  </article>
+
+  <footer>
+    Catalyst Edge Scanner · Build log · Audited 89% hit rate · Ships daily, not quarterly
+    <div class="links">
+      <a href="/scanner/">Scanner</a>
+      <a href="/trust/">Trust</a>
+      <a href="/changelog/">Changelog</a>
+      <a href="/blog/">Blog</a>
+      <a href="mailto:opensource@example.com">Contact</a>
+    </div>
+  </footer>
+
+  <script src="/lib/tier.js" defer></script>
+</body>
+</html>

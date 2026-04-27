@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<title>Trading Protocol · Catalyst Edge</title>
+<meta name="description" content="What Catalyst Edge trades and what it will not trade. Published before each entry — same compliance posture as a published-then-traded analyst newsletter.">
+<link rel="canonical" href="https://catalystedgescanner.com/protocol/">
+<meta name="robots" content="index,follow">
+<style>
+body{margin:0;font:14.5px/1.65 ui-sans-serif,system-ui,sans-serif;background:#07090f;color:#e5e9f0;padding:40px 18px}
+.wrap{max-width:780px;margin:0 auto}
+.kicker{color:#e7b76c;font:11px ui-monospace,monospace;letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px}
+h1{font-size:34px;font-weight:800;letter-spacing:-.01em;margin:0 0 12px;line-height:1.1}
+.lede{color:#8b96ab;margin:0 0 32px;max-width:660px;font-size:15px}
+h2{color:#e7b76c;font-size:18px;margin:36px 0 12px}
+h3{color:#72e5ff;font-size:13px;margin:18px 0 4px;font-family:ui-monospace,monospace;text-transform:uppercase;letter-spacing:.08em}
+.disclaimer{background:rgba(231,183,108,.05);border-left:3px solid #e7b76c;padding:14px 18px;margin:20px 0;font-size:13px;color:#c9d1d9;border-radius:0 6px 6px 0}
+.tier-card{background:rgba(15,21,33,.6);border:1px solid rgba(255,255,255,.06);border-radius:10px;padding:14px 18px;margin:10px 0}
+.tier-1{border-color:rgba(63,185,80,.35)}
+.tier-2{border-color:rgba(231,183,108,.32)}
+.no{color:#f78166;font-weight:700}
+.yes{color:#3fb950;font-weight:700}
+ul{margin:6px 0 0;padding-left:22px}
+li{margin:4px 0}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid rgba(255,255,255,.06)}
+th{color:#8b96ab;font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.06em}
+.foot{margin-top:48px;padding-top:18px;border-top:1px solid rgba(255,255,255,.06);color:#6b7280;font-size:12px}
+.foot a{color:#72e5ff;text-decoration:none}
+code{background:rgba(114,229,255,.08);color:#72e5ff;padding:2px 6px;border-radius:4px;font-family:ui-monospace,monospace;font-size:12px}
+.commit{background:rgba(63,185,80,.06);border:1px solid rgba(63,185,80,.32);padding:14px 18px;border-radius:8px;margin:24px 0}
+.commit-num{font-family:ui-monospace,monospace;color:#3fb950;font-weight:700;font-size:18px}
+</style></head>
+<body><div class="wrap">
+
+<div class="kicker">PUBLISHED PROTOCOL · UPDATED 2026-04-27</div>
+<h1>Trading Protocol</h1>
+<p class="lede">Catalyst Edge runs a small live trading account against the same scoops it publishes. This page is the WHAT — what gets traded and what doesn't. The HOW (sizing math, entry timing rules, threshold tuning) is internal.</p>
+
+<div class="disclaimer">
+This is not financial advice. Live ledger + realized P/L public at <a href="/trust/" style="color:#e7b76c;font-weight:600">/trust/</a>. Each trade is preceded by a citation-based <a href="/scoops/" style="color:#e7b76c;font-weight:600">/scoops/</a> page going live first.
+</div>
+
+<h2>What we will trade</h2>
+
+<div class="tier-card tier-1">
+<h3>Tier 1 · Primary Target</h3>
+The single highest-conviction ticker emitted by our scanner each cycle, when accompanied by a published <a href="/scoops/" style="color:#72e5ff">/scoops/</a> page citing primary sources (SEC, tier-1 wires, prediction markets).
+</div>
+
+<div class="tier-card tier-2">
+<h3>Tier 2 · JACKPOT picks</h3>
+The intersection of catalyst convergence + intraday gap. Historical backtest: 89% hit rate on +2% intraday (n=45). Only entered when a /scoops/ page is live for that ticker.
+</div>
+
+<h2>What we will NOT trade</h2>
+
+<table>
+<tr><th>Filter</th><th>Reason</th></tr>
+<tr><td>Sub-$1 stocks</td><td><span class="no">Never</span> — penny spread destroys edge at small capital</td></tr>
+<tr><td>Market cap < $300M</td><td>Microcap pump exposure</td></tr>
+<tr><td>Form S-3 / 424B / S-1 / FWP / NT 10-K/Q catalysts</td><td>Dilution / late-filing — auto-blocked</td></tr>
+<tr><td>8-K / Form 4 catalysts on caps > $10B</td><td>Empirically negative edge in cluster analysis</td></tr>
+<tr><td>Anything without a /scoops/ page in last 36h</td><td>Publish-first compliance — we publish citations BEFORE trading</td></tr>
+<tr><td>Tickers blocked by auto-promoted kill list</td><td>Closed-loop strategy filter</td></tr>
+</table>
+
+<h2>How we exit</h2>
+
+Every position is governed by:
+<ul>
+<li>A <strong>profit target</strong> (partial close on hit, trail rest)</li>
+<li>A <strong>hard stop</strong> (capital preservation)</li>
+<li>A <strong>trailing stop</strong> (only arms after the position is held overnight — this keeps us PDT-rule-safe)</li>
+<li>A <strong>time stop</strong> (close after a fixed number of trading days regardless of P/L)</li>
+</ul>
+<p class="lede" style="margin:8px 0 0;font-size:13px">The exact thresholds are internal — they tune via the closed-loop validator. What matters is that <em>every position has 4 exit triggers, every one of them automatic</em>.</p>
+
+<h2>How we size</h2>
+
+<p>Position size scales with <strong>realized historical edge</strong> on the published score≥15 cohort. When edge is positive and stable, sizing scales up. When edge is negative or noisy, sizing falls back to a fixed floor. This is governed by walk-forward (out-of-sample) performance, not the in-sample tuning window.</p>
+
+<h2>Halt conditions (hard-coded)</h2>
+
+<ul>
+<li>Daily loss exceeds threshold → new entries auto-halt; exits continue</li>
+<li>Pattern-day-trade count nears the regulatory ceiling → entries halt</li>
+<li>Manual halt file → entries halt; exits ALWAYS continue regardless</li>
+<li>Tradier API error → cycle skipped, retried next cron tick</li>
+</ul>
+
+<h2>The trust posture</h2>
+
+<div class="commit">
+The bot publishes BEFORE trading:
+<ol>
+<li>Convergence detector flags a ticker</li>
+<li>Citation block assembled from primary sources (SEC + tier-1 wires + prediction markets)</li>
+<li>/scoops/ page renders with sources</li>
+<li>This /protocol/ page is publicly live (you're on it)</li>
+<li>Order placed via Tradier API</li>
+<li>Fill recorded, ticker added to /trust/ ledger</li>
+</ol>
+<p style="margin:14px 0 0">Same legal class as a published-newsletter analyst.</p>
+</div>
+
+<h2>Live commitment</h2>
+
+<p>Catalyst Edge runs this against a small live trading account on Tradier. Every fill is disclosed in real time at <a href="/trust/" style="color:#e7b76c">/trust/</a>. If the strategy loses, we publish that too — same posture as the rest of our auditable workflow.</p>
+
+<div class="foot">
+<strong>Live status:</strong>
+<a href="/scoops/">scoops index</a> ·
+<a href="/trust/">trust ledger</a> ·
+<a href="/methodology/">methodology</a> ·
+<a href="/scanner/">scanner</a><br>
+Auto-published. Last revision: 2026-04-27. Sizing math, threshold values, and tuning rules are internal — what's traded and how exits fire are public.
+</div>
+
+</div></body></html>

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bull or Bear? — SEC Filing Prediction Game | Catalyst Edge</title>
+<meta name="description" content="Test your trading instincts. We show you real SEC catalysts — you guess if the stock went up or down. Track your streak and compete.">
+<meta property="og:title" content="Bull or Bear? — Catalyst Edge">
+<link rel="canonical" href="https://catalystedgescanner.com/bull-or-bear/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#070a12;--surface:#0f1420;--gold:#d4a843;--green:#22c55e;--red:#ef4444;--cyan:#06b6d4;--text:#e2e8f0;--dim:#94a3b8;--muted:#64748b;--border:#1e293b}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;min-height:100vh;display:flex;flex-direction:column}
+a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
+.nav{position:sticky;top:0;z-index:100;background:rgba(7,10,18,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:.75rem 1.5rem;display:flex;align-items:center;gap:1rem}
+.nav a{color:var(--gold);font-weight:600;font-size:.95rem}
+.nav .sep{color:var(--muted)}
+.game-wrap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem 1.5rem;max-width:520px;margin:0 auto;width:100%}
+
+.score-bar{display:flex;gap:2rem;margin-bottom:2rem;text-align:center}
+.score-item{text-align:center}
+.score-val{font-size:2rem;font-weight:800;font-family:'IBM Plex Mono',monospace}
+.score-lbl{font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.streak-fire{color:var(--gold)}
+
+.card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:2rem;width:100%;text-align:center;margin-bottom:1.5rem;transition:border-color .3s,box-shadow .3s}
+.card.correct{border-color:var(--green);box-shadow:0 0 30px rgba(34,197,94,.15)}
+.card.wrong{border-color:var(--red);box-shadow:0 0 30px rgba(239,68,68,.15)}
+.card-ticker{font-size:2.5rem;font-weight:800;color:var(--gold);margin-bottom:.5rem}
+.card-form{display:inline-block;padding:3px 10px;background:rgba(6,182,212,.12);color:var(--cyan);border-radius:6px;font-size:.75rem;font-weight:700;margin-bottom:.8rem}
+.card-catalyst{color:var(--dim);font-size:.88rem;margin-bottom:.6rem;min-height:44px}
+.card-date{font-family:'IBM Plex Mono',monospace;font-size:.75rem;color:var(--muted)}
+
+.btn-row{display:flex;gap:12px;width:100%}
+.game-btn{flex:1;padding:14px;border:none;border-radius:10px;font-size:1.1rem;font-weight:800;cursor:pointer;font-family:inherit;transition:all .15s;letter-spacing:.5px}
+.game-btn:active{transform:scale(.97)}
+.game-btn:disabled{opacity:.5;cursor:not-allowed}
+.btn-bull{background:var(--green);color:#070a12}
+.btn-bull:hover:not(:disabled){box-shadow:0 4px 20px rgba(34,197,94,.3)}
+.btn-bear{background:var(--red);color:#fff}
+.btn-bear:hover:not(:disabled){box-shadow:0 4px 20px rgba(239,68,68,.3)}
+
+.result-overlay{display:none;position:fixed;inset:0;background:rgba(7,10,18,.85);z-index:200;justify-content:center;align-items:center;flex-direction:column;text-align:center;padding:2rem}
+.result-overlay.show{display:flex}
+.result-icon{font-size:4rem;margin-bottom:1rem}
+.result-text{font-size:1.8rem;font-weight:800;margin-bottom:.5rem}
+.result-detail{color:var(--dim);font-size:1rem;margin-bottom:1.5rem}
+.result-move{font-family:'IBM Plex Mono',monospace;font-size:1.3rem;font-weight:700;margin-bottom:1.5rem}
+.next-btn{padding:12px 36px;background:var(--gold);color:#070a12;border:none;border-radius:8px;font-size:1rem;font-weight:700;cursor:pointer;font-family:inherit}
+.next-btn:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(212,168,67,.3)}
+
+.start-screen{text-align:center}
+.start-screen h1{font-size:clamp(1.8rem,5vw,2.5rem);font-weight:800;margin-bottom:1rem}
+.start-screen h1 .bull{color:var(--green)}.start-screen h1 .bear{color:var(--red)}
+.start-screen p{color:var(--dim);font-size:1rem;max-width:400px;margin:0 auto 1.5rem}
+.start-btn{padding:14px 40px;background:linear-gradient(135deg,var(--gold),#f1ce88);color:#070a12;border:none;border-radius:10px;font-size:1.1rem;font-weight:800;cursor:pointer;font-family:inherit}
+.start-btn:hover{transform:translateY(-2px);box-shadow:0 4px 20px rgba(212,168,67,.3)}
+.best-score{font-family:'IBM Plex Mono',monospace;font-size:.85rem;color:var(--muted);margin-top:1rem}
+.more-games{margin-top:1.5rem;font-size:.8rem;color:var(--dim)}
+.more-games a{color:var(--gold)}
+
+.footer{text-align:center;padding:1.5rem;font-size:.72rem;color:var(--muted);border-top:1px solid var(--border)}
+.footer a{color:var(--muted)}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Bull or Bear? — SEC Catalyst Prediction Game","url":"https://catalystedgescanner.com/bull-or-bear/","description":"Test your trading instincts. Given a real SEC catalyst, predict if the stock went up or down.","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<link rel="stylesheet" href="/lib/polish-tokens.css">
+</head>
+<body>
+<div class="nav">
+  <a href="/">Catalyst Edge</a>
+  <span class="sep">/</span>
+  <a href="/games/">Games</a>
+  <span class="sep">/</span>
+  <span style="color:var(--dim);font-size:.9rem">Bull or Bear?</span>
+</div>
+
+<div class="game-wrap" id="game-wrap">
+  <div class="start-screen" id="start-screen">
+    <h1><span class="bull">Bull</span> or <span class="bear">Bear</span>?</h1>
+    <p>We show you a real SEC filing catalyst. You guess if the stock went up or down after. How many can you get right?</p>
+    <button class="start-btn" id="start-btn">Play Now</button>
+    <div class="best-score" id="best-display"></div>
+    <div class="more-games">More games: <a href="/predict/">Prediction Market</a> &middot; <a href="/quiz/">SEC Quiz</a> &middot; <a href="/simulator/">Paper Simulator</a></div>
+  </div>
+
+  <div id="game-area" style="display:none;width:100%">
+    <div class="score-bar">
+      <div class="score-item"><div class="score-val" id="sc-correct" style="color:var(--green)">0</div><div class="score-lbl">Correct</div></div>
+      <div class="score-item"><div class="score-val streak-fire" id="sc-streak">0</div><div class="score-lbl">Streak</div></div>
+      <div class="score-item"><div class="score-val" id="sc-round">1</div><div class="score-lbl">Round</div></div>
+    </div>
+
+    <div class="card" id="card">
+      <div class="card-ticker" id="card-ticker">--</div>
+      <div class="card-form" id="card-form">--</div>
+      <div class="card-catalyst" id="card-catalyst">Loading...</div>
+      <div class="card-date" id="card-date"></div>
+    </div>
+
+    <div class="btn-row">
+      <button class="game-btn btn-bull" id="btn-bull">BULL</button>
+      <button class="game-btn btn-bear" id="btn-bear">BEAR</button>
+    </div>
+  </div>
+</div>
+
+<div class="result-overlay" id="result-overlay">
+  <div class="result-icon" id="result-icon"></div>
+  <div class="result-text" id="result-text"></div>
+  <div class="result-move" id="result-move"></div>
+  <div class="result-detail" id="result-detail"></div>
+  <button class="next-btn" id="next-btn">Next Round</button>
+</div>
+
+<div class="footer">
+  &copy; 2026 Catalyst Edge &middot;
+  <a href="/">Scanner</a> &middot;
+  <a href="/games/">Games</a> &middot;
+  <a href="/predict/">Predictions</a> &middot;
+  <a href="/quiz/">Quiz</a> &middot;
+  <a href="/simulator/">Simulator</a> &middot;
+  <a href="/suite/">Suite</a> &middot;
+  <a href="/glossary/">Glossary</a> &middot;
+  Not financial advice.
+</div>
+
+<script>
+(function(){
+  var catalysts = [
+    {ticker:'NVDA',form:'8-K',catalyst:'Announced new AI chip architecture partnership with major cloud provider',date:'2026-03-15',move:12.3,dir:'bull'},
+    {ticker:'TSLA',form:'4',catalyst:'Elon Musk sold 4.4M shares at $285 avg — largest insider sale in 6 months',date:'2026-02-28',move:-8.7,dir:'bear'},
+    {ticker:'AAPL',form:'10-K',catalyst:'Revenue beat by 6%, services revenue hit all-time high, raised dividend 4%',date:'2026-01-30',move:5.2,dir:'bull'},
+    {ticker:'GME',form:'S-3',catalyst:'Filed shelf registration for up to $2B in new shares — potential dilution ahead',date:'2026-03-10',move:-15.4,dir:'bear'},
+    {ticker:'AMD',form:'8-K',catalyst:'Acquired AI startup for $2.1B, expanding data center portfolio',date:'2026-03-22',move:7.8,dir:'bull'},
+    {ticker:'PLTR',form:'4',catalyst:'CEO bought 2M shares at $24.50 — 4th insider buy this month (cluster)',date:'2026-02-14',move:11.2,dir:'bull'},
+    {ticker:'RIVN',form:'S-1',catalyst:'Secondary offering of 40M shares priced at $12.50, below market price',date:'2026-01-18',move:-22.1,dir:'bear'},
+    {ticker:'META',form:'8-K',catalyst:'Announced $40B AI infrastructure investment, 3 new data centers',date:'2026-03-08',move:4.6,dir:'bull'},
+    {ticker:'SPCE',form:'NT 10-K',catalyst:'Failed to file annual report on time — material weakness in accounting controls',date:'2026-03-01',move:-18.3,dir:'bear'},
+    {ticker:'SOFI',form:'8-K',catalyst:'Received bank charter expansion approval from OCC, can now offer commercial loans',date:'2026-02-20',move:14.5,dir:'bull'},
+    {ticker:'COIN',form:'4',catalyst:'CFO and 3 VPs sold combined $45M in stock over 3 days',date:'2026-03-18',move:-9.8,dir:'bear'},
+    {ticker:'SHOP',form:'8-K',catalyst:'Launched AI-powered commerce suite, signed Walmart as enterprise client',date:'2026-02-05',move:8.9,dir:'bull'},
+    {ticker:'BABA',form:'6-K',catalyst:'Chinese regulators imposed new data sharing restrictions on tech firms',date:'2026-01-25',move:-11.6,dir:'bear'},
+    {ticker:'SQ',form:'8-K',catalyst:'Cash App reached 100M monthly active users, ARPU up 22% YoY',date:'2026-03-12',move:6.3,dir:'bull'},
+    {ticker:'LCID',form:'S-3',catalyst:'Registered 200M shares for potential sale by Saudi PIF — overhang risk',date:'2026-02-08',move:-13.7,dir:'bear'},
+    {ticker:'CRWD',form:'4',catalyst:'5 insiders bought $8.2M in shares within 10 days — strong cluster signal',date:'2026-03-05',move:9.4,dir:'bull'},
+    {ticker:'UPST',form:'8-K',catalyst:'Expanded lending partnership with 12 regional banks, new auto loan product',date:'2026-02-22',move:18.7,dir:'bull'},
+    {ticker:'NKLA',form:'NT 10-Q',catalyst:'Delayed quarterly filing, going concern warning from auditors',date:'2026-01-14',move:-31.2,dir:'bear'},
+    {ticker:'SNOW',form:'4',catalyst:'CEO purchased $5M in shares at $165, largest personal buy in 2 years',date:'2026-03-20',move:7.1,dir:'bull'},
+    {ticker:'MSTR',form:'8-K',catalyst:'Purchased additional 12,000 BTC at avg $67,500, total holdings now 450K BTC',date:'2026-03-25',move:15.8,dir:'bull'},
+    {ticker:'BYND',form:'S-3',catalyst:'Filed to sell up to $150M in new shares while stock at 52-week low',date:'2026-01-22',move:-19.5,dir:'bear'},
+    {ticker:'NET',form:'8-K',catalyst:'Won $200M Pentagon cybersecurity contract, beating out Amazon and Microsoft',date:'2026-02-18',move:12.1,dir:'bull'},
+    {ticker:'WISH',form:'NT 10-K',catalyst:'Auditor flagged material weakness, restated two prior quarters',date:'2026-03-28',move:-25.4,dir:'bear'},
+    {ticker:'DDOG',form:'4',catalyst:'Multiple VPs exercised and sold 80% of vested options in coordinated exit',date:'2026-02-12',move:-6.8,dir:'bear'},
+  ];
+
+  var state = {round:0, correct:0, streak:0, best:0, used:[]};
+  var currentQ = null;
+
+  function loadBest(){
+    try{state.best=parseInt(localStorage.getItem('ce_predict_best'))||0}catch(e){}
+    var el=document.getElementById('best-display');
+    if(state.best>0) el.textContent='Best streak: '+state.best;
+  }
+  function saveBest(){
+    if(state.streak>state.best){state.best=state.streak;try{localStorage.setItem('ce_predict_best',state.best)}catch(e){}}
+  }
+
+  function pickQuestion(){
+    if(state.used.length>=catalysts.length) state.used=[];
+    var available=catalysts.filter(function(c,i){return state.used.indexOf(i)===-1});
+    var idx=Math.floor(Math.random()*available.length);
+    var q=available[idx];
+    state.used.push(catalysts.indexOf(q));
+    return q;
+  }
+
+  function showQuestion(){
+    currentQ = pickQuestion();
+    state.round++;
+    document.getElementById('sc-round').textContent=state.round;
+    document.getElementById('card-ticker').textContent=currentQ.ticker;
+    document.getElementById('card-form').textContent=currentQ.form;
+    document.getElementById('card-catalyst').textContent=currentQ.catalyst;
+    document.getElementById('card-date').textContent='Filed: '+currentQ.date;
+    document.getElementById('card').className='card';
+    document.getElementById('btn-bull').disabled=false;
+    document.getElementById('btn-bear').disabled=false;
+  }
+
+  function answer(guess){
+    document.getElementById('btn-bull').disabled=true;
+    document.getElementById('btn-bear').disabled=true;
+    var isCorrect = guess===currentQ.dir;
+    var card=document.getElementById('card');
+    card.className='card '+(isCorrect?'correct':'wrong');
+
+    if(isCorrect){
+      state.correct++;
+      state.streak++;
+      saveBest();
+    } else {
+      state.streak=0;
+    }
+    document.getElementById('sc-correct').textContent=state.correct;
+    document.getElementById('sc-streak').textContent=state.streak;
+
+    var overlay=document.getElementById('result-overlay');
+    document.getElementById('result-icon').textContent=isCorrect?'\u2705':'\u274C';
+    document.getElementById('result-text').textContent=isCorrect?'Correct!':'Wrong!';
+    var moveAbs=Math.abs(currentQ.move);
+    var moveStr=currentQ.dir==='bull'?'+'+moveAbs+'%':'-'+moveAbs+'%';
+    var moveEl=document.getElementById('result-move');
+    moveEl.textContent=currentQ.ticker+' moved '+moveStr+' after this filing';
+    moveEl.style.color=currentQ.dir==='bull'?'var(--green)':'var(--red)';
+    document.getElementById('result-detail').textContent=isCorrect?'Streak: '+state.streak+(state.streak>=3?' \u2014 On fire!':''):'The '+currentQ.form+' filing was a '+currentQ.dir+' signal.';
+    overlay.className='result-overlay show';
+  }
+
+  document.getElementById('start-btn').addEventListener('click',function(){
+    document.getElementById('start-screen').style.display='none';
+    document.getElementById('game-area').style.display='';
+    showQuestion();
+  });
+
+  document.getElementById('btn-bull').addEventListener('click',function(){answer('bull')});
+  document.getElementById('btn-bear').addEventListener('click',function(){answer('bear')});
+  document.getElementById('next-btn').addEventListener('click',function(){
+    document.getElementById('result-overlay').className='result-overlay';
+    showQuestion();
+  });
+
+  loadBest();
+})();
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KV1VDK22VC"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-KV1VDK22VC');</script>
+</body>
+</html>

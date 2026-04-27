@@ -1,0 +1,7 @@
+date=2026-04-13
+subject=SEC Catalyst Daily — 2026-04-13 | Top Pick: CARS
+html_size=125,898 bytes
+sent_ok=2
+sent_fail=0
+  OK  [premium] opensource@example.com
+  OK  [free] opensource@example.com

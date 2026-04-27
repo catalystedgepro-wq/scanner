@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Press kit — Catalyst Edge Scanner</title>
+  <meta name="description" content="Open press kit for Catalyst Edge — quick facts, narrative angles, brand assets, founder bio, quotable stats. Solo-built Bloomberg killer in 30 days. Audited 89% hit rate." />
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/lib/admin-unlock.css" />
+  <link rel="stylesheet" href="/lib/scanner-polish.css" />
+  <link rel="stylesheet" href="/lib/nav-fix.css" />
+  <style>
+    :root{
+      --navy:#040a14; --navy2:#0a1424; --navy3:#0e1a2e;
+      --ink:#e6f1ff; --ink-dim:#9bb0c8; --ink-mute:#6e8198;
+      --cyan:#5ad7ff; --gold:#f5c662; --bull:#5cf2a4; --bear:#ff6b8b;
+      --line:rgba(110,140,180,0.18); --line-strong:rgba(110,140,180,0.32);
+      --glass: linear-gradient(180deg, rgba(15,28,48,0.78), rgba(7,14,28,0.78));
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;background:#04070d;color:var(--ink);
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      -webkit-font-smoothing:antialiased; font-feature-settings:"ss01","cv11";
+    }
+    a{color:var(--cyan);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+    code{font-family:"JetBrains Mono","IBM Plex Mono",ui-monospace,monospace;font-size:0.92em;background:rgba(90,215,255,0.06);padding:1px 6px;border-radius:4px;color:var(--cyan)}
+
+    .topbar{position:sticky;top:0;z-index:50;background:rgba(4,7,13,0.86);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+    .topbar-row{display:flex;align-items:center;gap:18px;padding:14px 24px;max-width:1400px;margin:0 auto}
+    .brand{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:14px;letter-spacing:0.18em;color:var(--gold);text-transform:uppercase}
+    .brand b{color:var(--cyan)}
+    nav.nav{display:flex;gap:8px;flex:1;flex-wrap:nowrap;overflow-x:auto;scroll-padding-top:80px}
+    nav.nav a{font-size:13px;color:var(--ink-dim);padding:8px 12px;border-radius:8px;white-space:nowrap}
+    nav.nav a:hover{background:rgba(90,215,255,0.08);color:var(--ink);text-decoration:none}
+    nav.nav a.active{color:var(--gold);background:rgba(245,198,98,0.08)}
+    .topbar-cta{display:flex;gap:10px;align-items:center}
+    .pill-cta{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;
+      padding:8px 14px;border:1px solid var(--gold);color:var(--gold);border-radius:999px;cursor:pointer}
+    .pill-cta:hover{background:rgba(245,198,98,0.12);text-decoration:none}
+
+    .hero{padding:56px 0 36px;border-bottom:1px solid var(--line);position:relative;overflow:hidden}
+    .hero::before{content:"";position:absolute;inset:0;
+      background:radial-gradient(800px 400px at 30% 20%, rgba(90,215,255,0.12), transparent 60%),
+                 radial-gradient(600px 380px at 80% 60%, rgba(245,198,98,0.10), transparent 60%);pointer-events:none}
+    .hero .wrap{position:relative}
+    .eyebrow{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:0.22em;color:var(--gold);text-transform:uppercase;margin-bottom:14px}
+    .h1{font-size:clamp(36px,5.5vw,60px);line-height:1.05;letter-spacing:-0.01em;margin:0 0 14px;font-weight:700}
+    .h1 .glow{color:var(--cyan)}
+    .sub{font-size:17px;color:var(--ink-dim);max-width:760px;line-height:1.55}
+    .stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:32px}
+    .stat-box{background:var(--glass);border:1px solid var(--line);border-radius:14px;padding:18px}
+    .stat-box .lbl{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:0.18em;color:var(--ink-mute);text-transform:uppercase;margin-bottom:6px}
+    .stat-box .val{font-size:24px;font-weight:700;font-variant-numeric:tabular-nums;color:var(--cyan)}
+    .stat-box .ann{font-size:12px;color:var(--ink-dim);margin-top:4px}
+    @media (max-width:860px){.stats-row{grid-template-columns:repeat(2,1fr)}}
+
+    section.section{padding:48px 0;border-bottom:1px solid var(--line)}
+    .section h2{font-size:24px;margin:0 0 8px;letter-spacing:-0.01em}
+    .section .lead{color:var(--ink-dim);max-width:760px;margin:0 0 22px;font-size:14px}
+
+    /* quick facts */
+    .facts{background:var(--glass);border:1px solid var(--line);border-radius:14px;padding:22px;
+      display:grid;grid-template-columns:repeat(2,1fr);gap:10px 22px}
+    @media (max-width:760px){.facts{grid-template-columns:1fr}}
+    .facts li{list-style:none;padding-left:22px;position:relative;color:var(--ink-dim);font-size:14px;line-height:1.55}
+    .facts li b{color:var(--ink)}
+    .facts li::before{content:"›";position:absolute;left:0;top:0;color:var(--cyan);font-weight:700}
+
+    /* narrative angles */
+    .ang-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    @media (max-width:980px){.ang-grid{grid-template-columns:1fr}}
+    .ang{background:var(--glass);border:1px solid var(--line);border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:10px;
+      transition:all .2s ease;position:relative;overflow:hidden}
+    .ang:hover{border-color:rgba(90,215,255,0.45);transform:translateY(-2px)}
+    .ang::before{content:"";position:absolute;top:-30px;right:-30px;width:140px;height:140px;border-radius:50%;
+      background:radial-gradient(circle, rgba(90,215,255,0.14), transparent 70%);pointer-events:none}
+    .ang.b::before{background:radial-gradient(circle, rgba(245,198,98,0.16), transparent 70%)}
+    .ang.c::before{background:radial-gradient(circle, rgba(124,109,242,0.18), transparent 70%)}
+    .ang-tag{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:0.18em;color:var(--gold);text-transform:uppercase;position:relative;z-index:1}
+    .ang h3{margin:4px 0 0;font-size:18px;color:var(--ink);line-height:1.3;position:relative;z-index:1}
+    .ang p{margin:0;color:var(--ink-dim);font-size:13.5px;line-height:1.6;position:relative;z-index:1}
+    .ang .hook{font-style:italic;color:var(--cyan);font-size:13px;line-height:1.55;position:relative;z-index:1;
+      padding:10px 12px;border-left:3px solid var(--cyan);background:rgba(90,215,255,0.05);border-radius:0 8px 8px 0}
+
+    /* brand assets */
+    .brand-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    @media (max-width:860px){.brand-grid{grid-template-columns:1fr}}
+    .asset{background:var(--glass);border:1px solid var(--line);border-radius:14px;padding:20px}
+    .asset h3{margin:0 0 10px;color:var(--cyan);font-size:16px}
+    .logo-preview{background:#04070d;border:1px solid var(--line);border-radius:10px;padding:16px;display:flex;justify-content:center;align-items:center;min-height:120px}
+    .logo-preview img{max-width:100%;height:auto;display:block}
+    .dl-row{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+    .dl-row a{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;
+      padding:8px 14px;border-radius:8px;border:1px solid var(--cyan);color:var(--cyan)}
+    .dl-row a:hover{background:rgba(90,215,255,0.10);text-decoration:none}
+    .swatch-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:8px}
+    @media (max-width:560px){.swatch-grid{grid-template-columns:repeat(2,1fr)}}
+    .swatch{border:1px solid var(--line);border-radius:10px;padding:10px;display:flex;flex-direction:column;gap:4px}
+    .swatch .dot{width:100%;height:42px;border-radius:6px}
+    .swatch .name{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:0.14em;color:var(--ink-mute);text-transform:uppercase}
+    .swatch .hex{font-family:"JetBrains Mono",monospace;font-size:12.5px;color:var(--ink)}
+    .typo-row{font-size:13.5px;color:var(--ink-dim);line-height:1.7}
+    .typo-row b{color:var(--ink)}
+    .typo-row code{font-size:13px}
+
+    /* founder */
+    .founder{display:grid;grid-template-columns:200px 1fr;gap:24px;align-items:center;
+      background:var(--glass);border:1px solid var(--line);border-radius:18px;padding:24px}
+    @media (max-width:680px){.founder{grid-template-columns:1fr;text-align:center}.founder .avatar{margin:0 auto}}
+    .avatar{width:180px;height:180px;border-radius:50%;
+      background:radial-gradient(circle at 35% 35%, rgba(90,215,255,0.5), rgba(245,198,98,0.3) 50%, rgba(124,109,242,0.4) 100%);
+      border:2px solid var(--gold);position:relative;overflow:hidden}
+    .avatar::after{content:"⚡";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+      font-size:80px;color:rgba(255,255,255,0.85);font-weight:700}
+    .founder .role{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:0.18em;color:var(--gold);text-transform:uppercase;margin-bottom:8px}
+    .founder h3{margin:0 0 10px;font-size:22px}
+    .founder p{margin:0 0 14px;color:var(--ink-dim);font-size:14px;line-height:1.6}
+    .founder .links{display:flex;gap:10px;flex-wrap:wrap}
+    .founder .links a{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;
+      padding:9px 14px;border-radius:8px;border:1px solid var(--line-strong);color:var(--ink-dim)}
+    .founder .links a:hover{border-color:var(--cyan);color:var(--cyan);text-decoration:none}
+
+    /* quotable */
+    .quote-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+    @media (max-width:760px){.quote-grid{grid-template-columns:1fr}}
+    .quote{background:var(--glass);border:1px solid var(--line);border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:6px;
+      transition:all .2s ease;cursor:pointer}
+    .quote:hover{border-color:rgba(90,215,255,0.45)}
+    .quote .num{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:0.18em;color:var(--ink-mute);text-transform:uppercase}
+    .quote p{margin:0;color:var(--ink);font-size:15px;line-height:1.5;font-weight:500}
+    .quote .src{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:0.14em;color:var(--ink-mute);margin-top:4px}
+    .quote .copy-hint{font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:0.14em;color:var(--cyan);margin-top:4px;text-transform:uppercase}
+
+    /* press inquiries form */
+    .inq{background:linear-gradient(135deg, rgba(90,215,255,0.10), rgba(245,198,98,0.08));
+      border:1px solid rgba(245,198,98,0.32);border-radius:18px;padding:32px}
+    .inq h3{margin:0 0 8px;font-size:24px}
+    .inq p{margin:0 0 18px;color:var(--ink-dim);font-size:14px;max-width:600px;line-height:1.55}
+    .inq-form{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    @media (max-width:760px){.inq-form{grid-template-columns:1fr}}
+    .inq-form label{display:flex;flex-direction:column;gap:6px;font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:0.16em;color:var(--ink-mute);text-transform:uppercase}
+    .inq-form input, .inq-form textarea{
+      background:#040a14;border:1px solid var(--line-strong);color:var(--ink);font-size:14px;padding:11px 12px;border-radius:10px;font-family:inherit}
+    .inq-form input:focus, .inq-form textarea:focus{outline:none;border-color:var(--cyan)}
+    .inq-form .full{grid-column:1 / -1}
+    .inq-form button{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;
+      padding:13px 20px;border-radius:10px;background:var(--gold);color:#1a1304;border:none;font-weight:700;cursor:pointer}
+    .inq-form button:hover{background:#ffd683}
+
+    footer{padding:36px 0;color:var(--ink-mute);font-size:12px;border-top:1px solid var(--line);text-align:center}
+    footer .links{display:flex;gap:14px;justify-content:center;margin-top:8px;flex-wrap:wrap}
+  </style>
+<link rel="stylesheet" href="/lib/polish-tokens.css">
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-row">
+      <div class="brand"><b>Catalyst</b> · Edge</div>
+      <nav class="nav">
+        <a href="/scanner/">Scanner</a>
+        <a href="/international/">Global</a>
+        <a href="/dcf/">DCF</a>
+        <a href="/cross-border/">Cross-Border</a>
+        <a href="/sdk/">SDK</a>
+        <a href="/benchmarks/">Benchmarks</a>
+        <a href="/trust/">Trust</a>
+        <a href="/community/">Community</a>
+        <a href="/press/" class="active">Press</a>
+        <a href="/changelog/">Changelog</a>
+        <a href="/pricing/">Pricing</a>
+      </nav>
+      <div class="topbar-cta">
+        <a class="pill-cta" href="#inquiries">Press inquiry ↓</a>
+      </div>
+    </div>
+  </div>
+
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow">📰 Open press kit · Last updated 2026-04-25 · <a href="mailto:opensource@example.com" style="color:var(--gold)">opensource@example.com</a> for inquiries</div>
+      <h1 class="h1">Press kit — built for <span class="glow">journalists, podcasters, and analysts.</span></h1>
+      <p class="sub">Everything you need to write, podcast, or publish about Catalyst Edge in one page. Quick facts, three pre-framed narrative angles, brand assets, founder bio, and six quotable stats. Use anything below freely; please link back to <a href="/">catalystedgescanner.com</a>.</p>
+      <div class="stats-row">
+        <div class="stat-box"><div class="lbl">Days from blank repo to live</div><div class="val">30</div><div class="ann">2026-03-26 → 2026-04-25</div></div>
+        <div class="stat-box"><div class="lbl">Audited hit rate</div><div class="val">89%</div><div class="ann">Public methodology · <a href="/trust/" style="color:var(--gold)">/trust</a></div></div>
+        <div class="stat-box"><div class="lbl">Country coverage</div><div class="val">43</div><div class="ann">6 continents · 443 tickers</div></div>
+        <div class="stat-box"><div class="lbl">Bloomberg vs us</div><div class="val">−98%</div><div class="ann">$24,000/yr → $108/yr</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>Quick facts</h2>
+      <p class="lead">Single source of truth — every claim below is verifiable on the linked page.</p>
+      <ul class="facts">
+        <li><b>Built solo</b> by 1 founder · bootstrapped · no VC</li>
+        <li><b>30-day launch</b> from empty repo to first paying customer</li>
+        <li><b>1 paying customer</b> — Stripe live since 2026-04-22</li>
+        <li><b>Audited 89% hit rate</b> on 2026-Q1 catalyst calls (n=847)</li>
+        <li><b>SEC EDGAR XBRL DCF</b> on 1,001 names · every input traceable</li>
+        <li><b>43-country catalyst tape</b> · 6 continents · 12 country feeds</li>
+        <li><b>Open methodology</b> + public hit-rate audit at <a href="/trust/">/trust</a></li>
+        <li><b>Stripe-handled billing</b> · we never see card numbers</li>
+        <li><b>Zero tracking pixels</b> · no GA, no Pixel, no Hotjar</li>
+        <li><b>Cloudflare-protected</b> · TLS 1.3 · email-obfuscated</li>
+        <li><b>SDK shipping</b> · <code>pip install catalyst-edge</code> · <code>npm install @catalyst-edge/sdk</code></li>
+        <li><b>White-label available</b> via Enterprise tier ($499+/seat/mo)</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>Three narrative angles</h2>
+      <p class="lead">Three pre-framed stories — copy a hook, build a piece around it. Every claim is sourced and auditable.</p>
+      <div class="ang-grid">
+
+        <article class="ang">
+          <span class="ang-tag">Angle 01 · Velocity</span>
+          <h3>Solo founder builds Bloomberg killer in 30 days</h3>
+          <p>From blank repo on 2026-03-26 to live scanner with 1 paying customer 27 days later. 21 phases shipped, no VC, no team. The bootstrap-velocity story for the AI-coding era.</p>
+          <div class="hook">"While Bloomberg shipped one quarterly UI tweak, a solo founder shipped 21 product phases — including a 43-country catalyst tape and an audited DCF engine — in 30 days."</div>
+        </article>
+
+        <article class="ang b">
+          <span class="ang-tag">Angle 02 · Accountability</span>
+          <h3>Audited 89% hit rate beats incumbents who refuse to publish theirs</h3>
+          <p>Bloomberg, FactSet, and Refinitiv don't publish hit rates on their fundamental signals. Catalyst Edge does — quarterly, with a 50-row sample, the methodology code public, and the misses as visible as the wins.</p>
+          <div class="hook">"The market-data oligopoly has had decades to publish their accuracy. They haven't. A solo founder did it in 30 days."</div>
+        </article>
+
+        <article class="ang c">
+          <span class="ang-tag">Angle 03 · Transparency</span>
+          <h3>Open methodology vs black-box terminals</h3>
+          <p>Every DCF input on Catalyst Edge traces back to a SEC EDGAR XBRL filing. WACC, FCF, terminal growth, equity bridge — all visible, all editable. Bloomberg's DCF view is a paywalled summary; ours is an audit trail.</p>
+          <div class="hook">"If you can't audit the model, you can't trust the call. Every Bloomberg user trusts a model they cannot inspect."</div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>Brand assets</h2>
+      <p class="lead">Logo, palette, typography. Use freely in editorial coverage. Don't recolor or distort the wordmark.</p>
+      <div class="brand-grid">
+
+        <div class="asset">
+          <h3>Logo</h3>
+          <div class="logo-preview">
+            <img src="/press/logo.svg" alt="Catalyst Edge wordmark" width="480" height="120" />
+          </div>
+          <div class="dl-row">
+            <a href="/press/logo.svg" download>⬇ SVG (vector)</a>
+            <a href="/press/logo.png" download>⬇ PNG (256×64 raster)</a>
+          </div>
+          <p style="margin-top:10px;color:var(--ink-dim);font-size:12px">SVG is canonical and infinitely scalable. PNG is for outlets that can't render SVG inline. Both use the brand palette below.</p>
+        </div>
+
+        <div class="asset">
+          <h3>Palette</h3>
+          <div class="swatch-grid">
+            <div class="swatch"><div class="dot" style="background:#5ad7ff"></div><span class="name">Cyan / signal</span><span class="hex">#5ad7ff</span></div>
+            <div class="swatch"><div class="dot" style="background:#f5c662"></div><span class="name">Gold / accent</span><span class="hex">#f5c662</span></div>
+            <div class="swatch"><div class="dot" style="background:#5cf2a4"></div><span class="name">Bull / positive</span><span class="hex">#5cf2a4</span></div>
+            <div class="swatch"><div class="dot" style="background:#ff6b8b"></div><span class="name">Bear / negative</span><span class="hex">#ff6b8b</span></div>
+            <div class="swatch"><div class="dot" style="background:#04070d;border:1px solid var(--line)"></div><span class="name">Navy / surface</span><span class="hex">#04070d</span></div>
+            <div class="swatch"><div class="dot" style="background:#e6f1ff"></div><span class="name">Ink / type</span><span class="hex">#e6f1ff</span></div>
+          </div>
+          <h3 style="margin-top:18px">Typography</h3>
+          <div class="typo-row">
+            <p style="margin:0 0 6px"><b>Display + accents:</b> <code>"IBM Plex Mono"</code> — uppercase, 0.18em letter-spacing, used for stat boxes, eyebrows, badges, and pillarstrip nav.</p>
+            <p style="margin:0"><b>Body + UI:</b> system sans (<code>ui-sans-serif</code>, <code>system-ui</code>, <code>-apple-system</code>, <code>"Segoe UI"</code>, <code>Roboto</code>) — fast load, no FOUT, native to every OS.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>Founder bio</h2>
+      <p class="lead">One paragraph for editorial use. Headshot is a placeholder gradient — request the real one for cover photography.</p>
+      <div class="founder">
+        <div class="avatar"></div>
+        <div>
+          <div class="role">Founder · @catalystEdgePro</div>
+          <h3>Building Catalyst Edge solo, in public.</h3>
+          <p>Solo founder building Catalyst Edge in public from a single laptop. Background in fintech and quant infrastructure; built the scanner over 30 days from a blank repo to a live $9 Stripe subscription on 2026-04-22. Believes the next decade of retail data tooling belongs to whoever ships fastest with auditable methodology — not to whoever has the biggest sales org. Posts daily build logs and honest postmortems on <a href="https://x.com/catalystEdgePro" target="_blank" rel="noopener">X / @catalystEdgePro</a>; reads every reply.</p>
+          <div class="links">
+            <a href="https://x.com/catalystEdgePro" target="_blank" rel="noopener">𝕏 / Twitter</a>
+            <a href="https://github.com/catalystedge" target="_blank" rel="noopener">GitHub</a>
+            <a href="mailto:opensource@example.com?subject=Press%20inquiry">Email</a>
+            <a href="/community/">Community</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>Quotable stats</h2>
+      <p class="lead">Six copy-paste-ready facts. All sourced and verifiable. Click any card to copy to clipboard.</p>
+      <div class="quote-grid">
+
+        <div class="quote" data-quote="One Bloomberg Terminal seat costs $24,000/yr. Catalyst Edge Pro is $108/yr. Same primitives — catalyst tape, fair-value DCF, cross-border convergence — for 0.45% of the price.">
+          <span class="num">Stat 01</span>
+          <p>"One Bloomberg Terminal seat costs $24,000/yr. Catalyst Edge Pro is $108/yr. Same primitives — catalyst tape, fair-value DCF, cross-border convergence — for 0.45% of the price."</p>
+          <span class="src">— pricing comparison · /pricing</span>
+          <span class="copy-hint">click to copy</span>
+        </div>
+
+        <div class="quote" data-quote="Catalyst Edge published a 89% audited hit rate on 2026-Q1 catalyst calls — with the methodology in code, the sample public, and the misses visible. Bloomberg, FactSet, and Refinitiv have never published one.">
+          <span class="num">Stat 02</span>
+          <p>"Catalyst Edge published a 89% audited hit rate on 2026-Q1 catalyst calls — with the methodology in code, the sample public, and the misses visible. Bloomberg, FactSet, and Refinitiv have never published one."</p>
+          <span class="src">— audit · /trust</span>
+          <span class="copy-hint">click to copy</span>
+        </div>
+
+        <div class="quote" data-quote="From empty repo on 2026-03-26 to live scanner with a paying customer on 2026-04-22 — 27 days. 21 product phases shipped in 30 days, all logged publicly with date and scope at /changelog.">
+          <span class="num">Stat 03</span>
+          <p>"From empty repo on 2026-03-26 to live scanner with a paying customer on 2026-04-22 — 27 days. 21 product phases shipped in 30 days, all logged publicly with date and scope at /changelog."</p>
+          <span class="src">— ship log · /changelog</span>
+          <span class="copy-hint">click to copy</span>
+        </div>
+
+        <div class="quote" data-quote="Catalyst Edge covers 43 markets across 6 continents — including Africa, often dropped from incumbent terminals — with cross-border ADR ↔ home-listing convergence on a single screen. Bloomberg has the data; Catalyst Edge has the composite signal.">
+          <span class="num">Stat 04</span>
+          <p>"Catalyst Edge covers 43 markets across 6 continents — including Africa, often dropped from incumbent terminals — with cross-border ADR ↔ home-listing convergence on a single screen. Bloomberg has the data; Catalyst Edge has the composite signal."</p>
+          <span class="src">— global scanner · /international</span>
+          <span class="copy-hint">click to copy</span>
+        </div>
+
+        <div class="quote" data-quote="Every DCF input on Catalyst Edge — revenue CAGR, OCF, capex, WACC, terminal growth, equity bridge — traces back to a SEC EDGAR XBRL filing. The transparency is the product.">
+          <span class="num">Stat 05</span>
+          <p>"Every DCF input on Catalyst Edge — revenue CAGR, OCF, capex, WACC, terminal growth, equity bridge — traces back to a SEC EDGAR XBRL filing. The transparency is the product."</p>
+          <span class="src">— DCF engine · /dcf</span>
+          <span class="copy-hint">click to copy</span>
+        </div>
+
+        <div class="quote" data-quote="The Catalyst Edge stack ships zero third-party tracking pixels — no Google Analytics, no Facebook Pixel, no Hotjar — and collects no PII beyond an email and a Stripe customer ID. The privacy posture is a feature, not a footnote.">
+          <span class="num">Stat 06</span>
+          <p>"The Catalyst Edge stack ships zero third-party tracking pixels — no Google Analytics, no Facebook Pixel, no Hotjar — and collects no PII beyond an email and a Stripe customer ID. The privacy posture is a feature, not a footnote."</p>
+          <span class="src">— security posture · /security</span>
+          <span class="copy-hint">click to copy</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="inquiries">
+    <div class="wrap">
+      <div class="inq">
+        <h3>Press inquiries</h3>
+        <p>Quote, interview, or just a fact-check? One short form. Email opens with subject pre-filled. Founder reads every message; replies within 24 hours, faster on deadlines.</p>
+        <form class="inq-form" action="mailto:opensource@example.com" method="POST" enctype="text/plain">
+          <input type="hidden" name="subject" value="Press inquiry · [outlet]" />
+          <label>Outlet
+            <input type="text" name="outlet" placeholder="e.g. Bloomberg, Pirate Wires, Acquired pod…" required />
+          </label>
+          <label>Your email
+            <input type="email" name="email" placeholder="reporter@outlet.com" required />
+          </label>
+          <label>Deadline
+            <input type="text" name="deadline" placeholder="e.g. 2026-04-30 17:00 ET" />
+          </label>
+          <label>Format
+            <input type="text" name="format" placeholder="article · podcast · video · live tv" />
+          </label>
+          <label class="full">What you're working on
+            <textarea name="notes" rows="3" placeholder="One sentence on the story angle, plus any specific quote or data ask"></textarea>
+          </label>
+          <div class="full"><button type="submit">Send inquiry →</button></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    Catalyst Edge Scanner · Open press kit · Audited 89% hit rate · Ships daily, not quarterly
+    <div class="links">
+      <a href="/scanner/">Scanner</a>
+      <a href="/trust/">Trust</a>
+      <a href="/changelog/">Changelog</a>
+      <a href="/community/">Community</a>
+      <a href="mailto:opensource@example.com">Contact</a>
+    </div>
+  </footer>
+
+  <script src="/lib/tier.js" defer></script>
+  <script>
+    document.querySelectorAll('.quote[data-quote]').forEach(q => {
+      q.addEventListener('click', () => {
+        const text = q.dataset.quote;
+        if (!text) return;
+        navigator.clipboard.writeText(text).then(() => {
+          const hint = q.querySelector('.copy-hint');
+          if (!hint) return;
+          const orig = hint.textContent;
+          hint.textContent = '✓ copied';
+          setTimeout(() => { hint.textContent = orig; }, 1400);
+        });
+      });
+    });
+  </script>
+</body>
+</html>
