@@ -75,3 +75,24 @@ Thumbs.db
 .sec_quote*
 .sec_shares*
 .sec_email_env*
+
+# Catch-all idempotency marker pattern — any dotfile with date suffix
+.*_2025-*
+.*_2026-*
+.*_W[0-9]*
+.*_alert*
+.*_post*
+.*_posted*
+.*_replied*
+.*_sent_*
+.*_brief_*
+.*_share_*
+.*_engagement*
+.*_milestone*
+.*_growth*
+.*_dm*
+.*_seen*
+.*_cache*
+.*_meta*
+.live_strategy.json
+.mcp.json
