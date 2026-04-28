@@ -31,3 +31,14 @@ node_modules/
 # Local OS
 .DS_Store
 Thumbs.db
+
+# Runtime markers — never commit
+.beehiiv_posted_*
+.bounced_*
+.b2b_outreach_*
+.affiliate_outreach_*
+.base/
+.numerai*
+.gitnexus/
+.remember/
+.graphify*
