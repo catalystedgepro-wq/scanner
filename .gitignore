@@ -42,3 +42,8 @@ Thumbs.db
 .gitnexus/
 .remember/
 .graphify*
+.cerebro_memory.db
+.claude/
+.dir_submit_*
+.agents/
+*.session.cookies
